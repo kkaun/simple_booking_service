@@ -45,9 +45,11 @@ PRIMARY KEY (`id`))
 DROP TABLE IF EXISTS `apartment` ;
 
 CREATE TABLE IF NOT EXISTS `apartment` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `number` INT NOT NULL,
   `type` VARCHAR(45) NULL,
-  `is_reserved` TINYINT NULL,
+  `persons_num` TINYINT NOT NULL,
+  `is_reserved` TINYINT NOT NULL,
   `hotel_id` INT NOT NULL,
   `price` DECIMAL(11,4) NULL,
 PRIMARY KEY (`number`, `hotel_id`),
