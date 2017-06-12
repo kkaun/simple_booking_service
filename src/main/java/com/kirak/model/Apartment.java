@@ -1,6 +1,9 @@
 package com.kirak.model;
 
+import org.hibernate.validator.constraints.Range;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by Kir on 30.05.2017.
@@ -15,57 +18,38 @@ import javax.persistence.*;
 )
 
 @Entity
-public class Apartment implements HasId {
+public class Apartment extends BaseEntity {
 
-    private static final String GET_ALL_BY_HOTEL = "Apartment.getAllByHotel";
-    private static final String DELETE = "Apartment.delete";
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Integer id;
-
-    @Column(name = "number", nullable = false)
-    private Short number;
+    public static final String GET_ALL_BY_HOTEL = "Apartment.getAllByHotel";
+    public static final String DELETE = "Apartment.delete";
 
     @Column(name = "type")
+    @NotNull
     private String type;
 
+    @Range(min = 1, max = 20)
+    @NotNull
     @Column(name = "persons_num")
     private Short personsNum;
 
+    @Range(min = 0, max = 1)
+    @NotNull
     @Column(name = "reserved")
     private Short reserved;
 
+    @Range(min = 0, max = 10)
     @Column(name = "extra_beds")
-    private Short extraBeds;
+    private Short extraBeds = 0;
+
+    @Column(name = "price", precision=8, scale=2)
+    @NotNull
+    private Double price;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private Hotel hotel;
 
-    @Column(precision=10, scale=2)
-    private Double price;
 
-
-
-    @Override
-    public Integer getId() {
-        return null;
-    }
-
-    @Override
-    public void setId(Integer id) {
-
-    }
-
-
-    public Short getNumber() {
-        return number;
-    }
-
-    public void setNumber(Short number) {
-        this.number = number;
-    }
 
     public String getType() {
         return type;
@@ -119,8 +103,6 @@ public class Apartment implements HasId {
     @Override
     public String toString() {
         return "Apartment{" +
-                "id=" + id +
-                ", number=" + number +
                 ", type='" + type + '\'' +
                 ", personsNum=" + personsNum +
                 ", reserved=" + reserved +

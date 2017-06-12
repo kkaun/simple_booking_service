@@ -7,7 +7,7 @@ import javax.persistence.Column;
 /**
  * Created by Kir on 01.06.2017.
  */
-public class NamedEntity {
+public class NamedEntity extends BaseEntity{
 
     @NotBlank
     @Column(name = "name", nullable = false)
