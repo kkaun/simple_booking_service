@@ -19,6 +19,7 @@ import javax.validation.constraints.NotNull;
 )
 
 @Entity
+@Table(name = "apartment")
 public class Apartment extends BaseEntity {
 
     public static final String GET_ALL_BY_HOTEL = "Apartment.getAllByHotel";

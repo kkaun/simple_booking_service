@@ -53,10 +53,11 @@ DROP TABLE IF EXISTS `user`;
 
 CREATE TABLE IF NOT EXISTS `user` (
   `id`         INT         NOT NULL DEFAULT 10000,
-  `email`      VARCHAR(45) NOT NULL,
+  `email`      VARCHAR(45) NOT NULL UNIQUE,
   `name`       VARCHAR(45) NULL,
   `password`   VARCHAR(45) NOT NULL,
-  `registered` TIMESTAMP            DEFAULT CURRENT_TIMESTAMP,
+  `registered` TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
+  INDEX `user_unique_email_idx`(`email`),
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB;
@@ -68,9 +69,9 @@ CREATE TABLE IF NOT EXISTS `user_role` (
   `user_id` INT         NOT NULL,
   `role`    VARCHAR(45) NULL,
   PRIMARY KEY (`user_id`),
-  CONSTRAINT `fk_user_role_user`
-  FOREIGN KEY (`user_id`)
-  REFERENCES `user` (`id`)
+  CONSTRAINT `fk_user_role_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 )
@@ -85,12 +86,21 @@ CREATE TABLE IF NOT EXISTS `vote` (
   `id`         INT           NOT NULL AUTO_INCREMENT,
   `rate`       DECIMAL(2, 1) NOT NULL,
   `date_added` TIMESTAMP     NOT NULL,
+  `user_id`    INT           NOT NULL,
   `hotel_id`   INT           NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_vote_hotel1_idx` (`hotel_id` ASC),
+  INDEX `fk_vote_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_vote_hotel1`
-  FOREIGN KEY (`hotel_id`)
-  REFERENCES `hotel` (`id`)
+    FOREIGN KEY (`hotel_id`)
+    REFERENCES `hotel` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_id1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
 )
   ENGINE = InnoDB;
 
@@ -111,11 +121,15 @@ CREATE TABLE IF NOT EXISTS `hotel` (
   INDEX `fk_hotel_country1_idx` (`country_id` ASC),
   INDEX `fk_hotel_city1_idx` (`city_id` ASC),
   CONSTRAINT `fk_hotel_country1`
-  FOREIGN KEY (`country_id`)
-  REFERENCES `country` (`id`),
+    FOREIGN KEY (`country_id`)
+    REFERENCES `country` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
   CONSTRAINT `fk_hotel_city1`
-  FOREIGN KEY (`city_id`)
-  REFERENCES `city` (`id`)
+    FOREIGN KEY (`city_id`)
+    REFERENCES `city` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
 )
   ENGINE = InnoDB;
 
@@ -133,8 +147,8 @@ CREATE TABLE IF NOT EXISTS `apartment` (
   PRIMARY KEY (`id`, `hotel_id`),
   INDEX `fk_apartment_hotel1_idx` (`hotel_id` ASC),
   CONSTRAINT `fk_apartment_hotel1`
-  FOREIGN KEY (`hotel_id`)
-  REFERENCES `hotel` (`id`)
+    FOREIGN KEY (`hotel_id`)
+    REFERENCES `hotel` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 )
@@ -157,13 +171,13 @@ CREATE TABLE IF NOT EXISTS `booking` (
   INDEX `fk_booking_user1_idx` (`user_id` ASC),
   INDEX `fk_booking_apartment1_idx` (`apartment_id` ASC, `apartment_hotel_id` ASC),
   CONSTRAINT `fk_booking_user1`
-  FOREIGN KEY (`user_id`)
-  REFERENCES `user` (`id`)
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_booking_apartment1`
-  FOREIGN KEY (`apartment_id`, `apartment_hotel_id`)
-  REFERENCES `apartment` (`id`, `hotel_id`)
+    FOREIGN KEY (`apartment_id`, `apartment_hotel_id`)
+    REFERENCES `apartment` (`id`, `hotel_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 )

@@ -12,15 +12,19 @@ import javax.validation.constraints.NotNull;
 
 @NamedQueries({@NamedQuery(name = Hotel.GET_ALL_BY_CITY, query = "SELECT h FROM Hotel h WHERE h.city=:cityId ORDER BY h.rating"),
         @NamedQuery(name = Hotel.GET_ALL_BY_COUNTRY, query = "SELECT h FROM Hotel h WHERE h.country=:countryId ORDER BY h.rating"),
-        @NamedQuery(name = Hotel.GET_ALL_BY_RATING, query = "SELECT h FROM Hotel h ORDER BY h.rating DESC")
+        @NamedQuery(name = Hotel.GET_ALL_BY_RATING, query = "SELECT h FROM Hotel h ORDER BY h.rating DESC"),
+        @NamedQuery(name = Hotel.DELETE, query = "DELETE FROM Hotel h WHERE h.id=:hotelId " +
+                "AND h.city.id=:cityId")
 })
 
 @Entity
+@Table(name = "hotel")
 public class Hotel extends NamedEntity {
 
     public static final String GET_ALL_BY_CITY = "Hotel.getAllByCity";
     public static final String GET_ALL_BY_COUNTRY = "Hotel.getAllByCity";
     public static final String GET_ALL_BY_RATING = "Hotel.getAllByCity";
+    public static final String DELETE = "Hotel.delete";
 
     //TODO: add photo uploading feature to entity and business logic
 
@@ -102,8 +106,8 @@ public class Hotel extends NamedEntity {
     public String toString() {
         return "Hotel{" +
                 "id='" + getId() + "\'" +
-                "name='" + getName() + "\'" +
-                "rating=" + rating +
+                ", name='" + getName() + "\'" +
+                ", rating=" + rating +
                 ", country=" + country +
                 ", cityId=" + cityId +
                 ", address='" + address + '\'' +

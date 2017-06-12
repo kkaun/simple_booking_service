@@ -9,13 +9,14 @@ import javax.persistence.*;
  * Created by Kir on 12.06.2017.
  */
 
-@NamedQueries({@NamedQuery(name = City.GET_ALL_BY_COUNTRY, query = "SELECT c FROM City c WHERE c.country.id=:countyId " +
+@NamedQueries({@NamedQuery(name = City.GET_ALL_BY_REGION, query = "SELECT c FROM City c WHERE c.ccFips=:ccFips " +
         "ORDER BY c.fullName ASC")})
 
 @Entity
+@Table(name = "city")
 public class City extends BaseEntity {
 
-    public static final String GET_ALL_BY_COUNTRY = "City.getAllByCountry";
+    public static final String GET_ALL_BY_REGION = "City.getAllByCountry";
 
     @Range(min = 0, max = 2)
     @Column(name = "cc_fips")
@@ -57,7 +58,7 @@ public class City extends BaseEntity {
     public String toString() {
         return "City{" +
                 "id" + "\'" +
-                "ccFips='" + ccFips + '\'' +
+                ", ccFips='" + ccFips + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", country=" + country +
                 '}';

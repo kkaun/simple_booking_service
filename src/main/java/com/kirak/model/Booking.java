@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
 })
 
 @Entity
+@Table(name = "booking")
 public class Booking extends BaseEntity {
 
     public static final String GET_ALL_BY_USER_ID = "Booking.getAllByUserId";

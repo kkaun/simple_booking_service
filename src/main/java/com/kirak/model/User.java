@@ -22,7 +22,7 @@ import java.util.*;
         @NamedQuery(name = User.ALL_SORTED, query = "SELECT u FROM User u ORDER BY u.name, u.email"),
 })
 @Entity
-@Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_unique_email_idx")})
+@Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "user_unique_email_idx")})
 public class User extends NamedEntity {
 
     public static final String DELETE = "User.delete";
@@ -89,11 +89,11 @@ public class User extends NamedEntity {
     public String toString() {
         return "User{" +
                 "id='" + getId() + "\'" +
-                "name='" + getName() + "\'" +
-                "email='" + email + '\'' +
+                ", name='" + getName() + "\'" +
+                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", registered=" + registered +
-                ", roles=" + roles +
+                ", roles=" + roles.toString() +
                 '}';
     }
 }

@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 })
 
 @Entity
+@Table(name = "vote")
 public class Vote extends BaseEntity {
 
     private static final String GET_ALL_BY_HOTEL = "Vote.getAllByHotel";
@@ -58,7 +59,7 @@ public class Vote extends BaseEntity {
     public String toString() {
         return "Vote{" +
                 "id" + getId() + "\'" +
-                "rate=" + rate +
+                ", rate=" + rate +
                 ", dateAdded=" + dateAdded +
                 ", hotel=" + hotel +
                 '}';
