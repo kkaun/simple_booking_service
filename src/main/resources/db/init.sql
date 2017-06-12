@@ -78,6 +78,21 @@ CREATE TABLE IF NOT EXISTS `user_role` (
 
 --    /////////////////////////////////////////
 
+
+DROP TABLE IF EXISTS `vote` ;
+
+CREATE TABLE IF NOT EXISTS `vote` (
+  `id`    INT NOT NULL AUTO_INCREMENT,
+  `rate`  DECIMAL(2, 1) NOT NULL,
+  `date_added`    TIMESTAMP NOT NULL,
+  `hotel_id` INT NOT NULL
+
+);
+
+
+
+--   //////////////////////////////////////////
+
 DROP TABLE IF EXISTS `hotel`;
 
 CREATE TABLE IF NOT EXISTS `hotel` (
