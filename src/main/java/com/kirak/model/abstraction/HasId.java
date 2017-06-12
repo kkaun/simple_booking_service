@@ -1,4 +1,4 @@
-package com.kirak.model;
+package com.kirak.model.abstraction;
 
 /**
  * Created by Kir on 11.06.2017.

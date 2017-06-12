@@ -1,5 +1,6 @@
 package com.kirak.model;
 
+import com.kirak.model.abstraction.BaseEntity;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.Column;
@@ -10,7 +11,7 @@ import javax.persistence.Entity;
  */
 
 @Entity
-public class City extends BaseEntity{
+public class City extends BaseEntity {
 
 
     @Range(min = 0, max = 2)

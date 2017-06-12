@@ -1,8 +1,10 @@
 package com.kirak.model;
 
+import com.kirak.model.abstraction.NamedEntity;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by Kir on 30.05.2017.
@@ -27,15 +29,18 @@ public class Hotel extends NamedEntity {
     private Double rating;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "country_id")
+    @NotNull
+    @Column(name = "country_id", nullable = false)
     private Country country;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "city_id")
+    @NotNull
+    @Column(name = "city_id", nullable = false)
     private City cityId;
 
     @Length(max = 45)
-    @Column(name = "address")
+    @Column(name = "address", nullable = false)
+    @NotNull
     private String address;
 
     @Length(max = 15)

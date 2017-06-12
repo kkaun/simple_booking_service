@@ -1,18 +1,15 @@
 package com.kirak.model;
 
+import com.kirak.model.abstraction.NamedEntity;
 import org.hibernate.annotations.*;
-import org.hibernate.annotations.Cache;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.Range;
-import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import java.util.*;
 

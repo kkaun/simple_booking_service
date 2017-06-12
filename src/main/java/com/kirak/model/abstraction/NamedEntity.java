@@ -1,5 +1,6 @@
-package com.kirak.model;
+package com.kirak.model.abstraction;
 
+import com.kirak.model.abstraction.BaseEntity;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Column;
@@ -7,7 +8,7 @@ import javax.persistence.Column;
 /**
  * Created by Kir on 01.06.2017.
  */
-public class NamedEntity extends BaseEntity{
+public class NamedEntity extends BaseEntity {
 
     @NotBlank
     @Column(name = "name", nullable = false)

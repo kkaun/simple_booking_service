@@ -1,5 +1,5 @@
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_UNIQUE_CHECKS = @@UNIQUE_CHECKS, UNIQUE_CHECKS = 0;
+SET @OLD_FOREIGN_KEY_CHECKS = @@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS = 0;
 SET @OLD_SQL_MODE = @@SQL_MODE, SQL_MODE = 'TRADITIONAL,ALLOW_INVALID_DATES';
 
 DROP SCHEMA IF EXISTS `booking_service`;
@@ -8,14 +8,13 @@ CREATE SCHEMA IF NOT EXISTS `booking_service`
   DEFAULT CHARACTER SET utf8;
 USE `booking_service`;
 
-
 --  //////////////////////////////////////
 
 
 DROP TABLE IF EXISTS `city`;
 CREATE TABLE `city` (
-  `id`           INT NOT NULL AUTO_INCREMENT,
-  `cc_fips`      VARCHAR(2),
+  `id`        INT NOT NULL AUTO_INCREMENT,
+  `cc_fips`   VARCHAR(2),
   `full_name` VARCHAR(200),
   INDEX `idx_cc_fips` (`cc_fips`),
   PRIMARY KEY (`id`)
@@ -57,39 +56,43 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email`      VARCHAR(45) NOT NULL,
   `name`       VARCHAR(45) NULL,
   `password`   VARCHAR(45) NOT NULL,
-  `registered` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `registered` TIMESTAMP            DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB;
 
 
-DROP TABLE IF EXISTS `user_role` ;
+DROP TABLE IF EXISTS `user_role`;
 
 CREATE TABLE IF NOT EXISTS `user_role` (
-  `user_id` INT NOT NULL,
+  `user_id` INT         NOT NULL,
   `role`    VARCHAR(45) NULL,
   PRIMARY KEY (`user_id`),
   CONSTRAINT `fk_user_role_user`
   FOREIGN KEY (`user_id`)
   REFERENCES `user` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION
+)
   ENGINE = InnoDB;
 
 --    /////////////////////////////////////////
 
 
-DROP TABLE IF EXISTS `vote` ;
+DROP TABLE IF EXISTS `vote`;
 
 CREATE TABLE IF NOT EXISTS `vote` (
-  `id`    INT NOT NULL AUTO_INCREMENT,
-  `rate`  DECIMAL(2, 1) NOT NULL,
-  `date_added`    TIMESTAMP NOT NULL,
-  `hotel_id` INT NOT NULL
-
-);
-
-
+  `id`         INT           NOT NULL AUTO_INCREMENT,
+  `rate`       DECIMAL(2, 1) NOT NULL,
+  `date_added` TIMESTAMP     NOT NULL,
+  `hotel_id`   INT           NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_vote_hotel1_idx` (`hotel_id` ASC),
+  CONSTRAINT `fk_vote_hotel1`
+  FOREIGN KEY (`hotel_id`)
+  REFERENCES `hotel` (`id`)
+)
+  ENGINE = InnoDB;
 
 --   //////////////////////////////////////////
 
@@ -143,7 +146,7 @@ DROP TABLE IF EXISTS `booking`;
 CREATE TABLE IF NOT EXISTS `booking` (
   `id`                 INT            NOT NULL,
   `active`             TINYINT        NOT NULL DEFAULT 0,
-  `date_added`         TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
+  `date_added`         TIMESTAMP               DEFAULT CURRENT_TIMESTAMP,
   `in_date`            TIMESTAMP      NULL,
   `out_date`           TIMESTAMP      NULL,
   `sum`                DECIMAL(11, 4) NULL,

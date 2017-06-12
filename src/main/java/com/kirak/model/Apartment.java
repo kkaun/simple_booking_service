@@ -1,5 +1,6 @@
 package com.kirak.model;
 
+import com.kirak.model.abstraction.BaseEntity;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;

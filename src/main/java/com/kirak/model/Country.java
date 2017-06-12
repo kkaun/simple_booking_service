@@ -1,6 +1,6 @@
 package com.kirak.model;
 
-import org.hibernate.validator.constraints.Range;
+import com.kirak.model.abstraction.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +14,7 @@ import javax.persistence.NamedQuery;
 @NamedQueries({@NamedQuery(name = Country.GET_ALL_SORTED, query = "SELECT c FROM Country c ")})
 
 @Entity
-public class Country extends BaseEntity{
+public class Country extends BaseEntity {
 
     public static final String GET_ALL_SORTED = "Country.getAllSorted";
 

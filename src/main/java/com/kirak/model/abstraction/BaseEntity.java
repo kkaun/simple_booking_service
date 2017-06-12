@@ -1,4 +1,4 @@
-package com.kirak.model;
+package com.kirak.model.abstraction;
 
 import org.hibernate.Hibernate;
 
