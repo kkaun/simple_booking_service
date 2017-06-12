@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 /**
@@ -23,33 +24,41 @@ public class Booking extends BaseEntity {
     public static final String GET_ALL_BY_USER_ID = "Booking.getAllByUserId";
     public static final String GET_ALL_BY_HOTEL_ID = "Booking.getAllByHotelId";
 
+    @NotNull
     @Range(min = 0, max = 1)
     @Column(name = "active")
     private Short active = 0;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    @Column(name = "date_added")
+    @NotNull
+    @Column(name = "date_added", nullable = false)
     private LocalDateTime dateAdded;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    @Column(name = "in_date")
+    @NotNull
+    @Column(name = "in_date", nullable = false)
     private LocalDateTime inDate;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    @Column(name = "out_date")
+    @NotNull
+    @Column(name = "out_date", nullable = false)
     private LocalDateTime outDate;
 
-    @Column(name = "sum", precision=11, scale=2)
+    @NotNull
+    @Column(name = "sum", precision=11, scale=2, nullable = false)
     private Double sum;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "apartment_id")
     private Apartment apartment;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "apartment_hotel_id")
     private Hotel hotel;

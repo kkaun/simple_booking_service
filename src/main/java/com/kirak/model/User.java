@@ -22,11 +22,8 @@ import java.util.*;
         @NamedQuery(name = User.ALL_SORTED, query = "SELECT u FROM User u ORDER BY u.name, u.email"),
 })
 @Entity
-//@NamedEntityGraph(name = User.GRAPH_WITH_MEALS, attributeNodes = {@NamedAttributeNode("meals")})
 @Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_unique_email_idx")})
 public class User extends NamedEntity {
-
-//    public static final String GRAPH_WITH_MEALS = "User.withMeals";
 
     public static final String DELETE = "User.delete";
     public static final String BY_EMAIL = "User.getByEmail";

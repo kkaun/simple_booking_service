@@ -46,8 +46,9 @@ public class Apartment extends BaseEntity {
     @NotNull
     private Double price;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "hotel_id", nullable = false)
     private Hotel hotel;
 
 

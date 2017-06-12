@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 
 @NamedQueries({@NamedQuery(name = Hotel.GET_ALL_BY_CITY, query = "SELECT h FROM Hotel h WHERE h.city=:cityId ORDER BY h.rating"),
         @NamedQuery(name = Hotel.GET_ALL_BY_COUNTRY, query = "SELECT h FROM Hotel h WHERE h.country=:countryId ORDER BY h.rating"),
-        //@NamedQuery(name = )
+        @NamedQuery(name = Hotel.GET_ALL_BY_RATING, query = "SELECT h FROM Hotel h ORDER BY h.rating DESC")
 })
 
 @Entity

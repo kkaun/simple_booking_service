@@ -30,7 +30,37 @@ public class Vote extends BaseEntity {
     @JoinColumn(name = "hotel_id", nullable = false)
     private Hotel hotel;
 
+    public Double getRate() {
+        return rate;
+    }
 
+    public void setRate(Double rate) {
+        this.rate = rate;
+    }
 
+    public LocalDateTime getDateAdded() {
+        return dateAdded;
+    }
 
+    public void setDateAdded(LocalDateTime dateAdded) {
+        this.dateAdded = dateAdded;
+    }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+    }
+
+    @Override
+    public String toString() {
+        return "Vote{" +
+                "id" + getId() + "\'" +
+                "rate=" + rate +
+                ", dateAdded=" + dateAdded +
+                ", hotel=" + hotel +
+                '}';
+    }
 }
