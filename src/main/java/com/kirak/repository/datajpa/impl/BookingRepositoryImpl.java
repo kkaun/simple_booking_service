@@ -2,6 +2,10 @@ package com.kirak.repository.datajpa.impl;
 
 import com.kirak.model.Booking;
 import com.kirak.repository.BookingRepository;
+import com.kirak.repository.datajpa.DataJpaBookingRepository;
+import com.kirak.repository.datajpa.DataJpaHotelRepository;
+import com.kirak.repository.datajpa.DataJpaUserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -10,29 +14,42 @@ import java.util.List;
  */
 public class BookingRepositoryImpl implements BookingRepository {
 
+    @Autowired
+    private DataJpaBookingRepository bookingRepository;
+
+    @Autowired
+    private DataJpaUserRepository userRepository;
+
+    @Autowired
+    private DataJpaHotelRepository hotelRepository;
+
 
     @Override
-    public Booking save(Booking booking, int userId) {
-        return null;
+    public Booking save(Booking booking, int userId, int hotelId) {
+        if(!booking.isNew() && get(booking.getId(), userId, hotelId) == null){
+            return null;
+        }
+        booking.setUser(userRepository.findOne(userId));
+        booking.setHotel(hotelRepository.findOne(hotelId));
+        return bookingRepository.save(booking);
     }
 
-    @Override
-    public boolean delete(int id, int userId) {
-        return false;
-    }
+
 
     @Override
-    public Booking get(int id, int userId) {
-        return null;
+    public Booking get(long id, int userId, int hotelId) {
+        Booking booking = bookingRepository.findOne(id);
+        return booking != null && booking.getUser().getId() == userId
+                && booking.getHotel().getId() == hotelId ? booking : null;
     }
 
     @Override
     public List<Booking> getAllByUserId(int userId) {
-        return null;
+        return bookingRepository.getAllByUserId(userId);
     }
 
     @Override
     public List<Booking> getAllByHotelId(int hotelId) {
-        return null;
+        return bookingRepository.getAllByHotelId(hotelId);
     }
 }

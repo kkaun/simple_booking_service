@@ -25,10 +25,10 @@ public interface DataJpaApartmentRepository extends JpaRepository<Apartment, Int
     Apartment save(Apartment apartment);
 
     @Query(Apartment.GET_ALL_BY_PERSONS_NUM)
-    List<Apartment> getByAllByPersonsNum(@Param("id") int id, @Param("hotelId") int hotelId);
+    List<Apartment> getByAllByPersonsNum(@Param("hotelId") int hotelId);
 
     @Query(Apartment.GET_ALL_BY_PRICE)
-    List<Apartment> getAllByPrice(@Param("id") int id, @Param("hotelId") int hotelId);
+    List<Apartment> getAllByPrice(@Param("hotelId") int hotelId);
 
 
 }

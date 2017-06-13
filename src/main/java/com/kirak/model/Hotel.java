@@ -42,8 +42,8 @@ public class Hotel extends NamedEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
-    @Column(name = "city_id", nullable = false)
-    private City cityId;
+    @JoinColumn(name = "city_id", nullable = false)
+    private City city;
 
     @Length(max = 45)
     @Column(name = "address", nullable = false)
@@ -73,12 +73,12 @@ public class Hotel extends NamedEntity {
         this.country = country;
     }
 
-    public City getCityId() {
-        return cityId;
+    public City getCity() {
+        return city;
     }
 
-    public void setCityId(City cityId) {
-        this.cityId = cityId;
+    public void setCity(City city) {
+        this.city = city;
     }
 
     public String getAddress() {
@@ -111,8 +111,8 @@ public class Hotel extends NamedEntity {
                 "id='" + getId() + "\'" +
                 ", name='" + getName() + "\'" +
                 ", rating=" + rating +
-                ", country=" + country +
-                ", cityId=" + cityId +
+                ", country=" + country.getCountryName() +
+                ", city=" + city.getFullName() +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 ", description='" + description + '\'' +

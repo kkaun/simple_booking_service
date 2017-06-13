@@ -64,7 +64,7 @@ public class Country extends BaseShortEntity {
     @Override
     public String toString() {
         return "Country{" +
-                "id" + "\'" +
+                "id" + '\'' +
                 "ccFips='" + ccFips + '\'' +
                 ", ccIso='" + ccIso + '\'' +
                 ", tld='" + tld + '\'' +

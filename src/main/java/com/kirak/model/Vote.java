@@ -26,6 +26,9 @@ public class Vote extends BaseIntEntity {
     @Column (name = "rate", nullable = false)
     private Double rate;
 
+    @Column (name = "comment", columnDefinition = "TINYTEXT")
+    private String comment;
+
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @Column(name = "date_added", nullable = false)
     private LocalDateTime dateAdded;
@@ -70,10 +73,19 @@ public class Vote extends BaseIntEntity {
         this.user = user;
     }
 
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
     @Override
     public String toString() {
         return "Vote{" +
-                "id" + getId() + "\'" +
+                "id=" + getId() + '\'' +
+                ", comment=" + comment + '\'' +
                 ", rate=" + rate +
                 ", dateAdded=" + dateAdded +
                 ", hotel=" + hotel +

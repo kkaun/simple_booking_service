@@ -3,6 +3,9 @@ package com.kirak.repository.datajpa;
 import com.kirak.model.AptType;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -15,10 +18,16 @@ import java.util.List;
 public interface DataJpaAptTypeRepository extends JpaRepository<AptType, Short> {
 
     @Override
+    @Transactional
     AptType save(AptType aptType);
 
+    @Modifying
+    @Transactional
+    @Query(AptType.DELETE)
+    short delete(@Param("id") short id);
+
     @Override
-    void delete(Short aShort);
+    AptType findOne(Short id);
 
     @Override
     List<AptType> findAll(Sort sort);

@@ -11,9 +11,9 @@ public interface AptTypeRepository {
 
     AptType save(AptType type);
 
-    boolean delete(int id);
+    boolean delete(short id);
 
-    AptType get(int id);
+    AptType get(short id);
 
     List<AptType> getAll();
 }

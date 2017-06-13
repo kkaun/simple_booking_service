@@ -2,6 +2,9 @@ package com.kirak.repository.datajpa.impl;
 
 import com.kirak.model.City;
 import com.kirak.repository.CityRepository;
+import com.kirak.repository.datajpa.DataJpaCityRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,14 +16,18 @@ import java.util.List;
 
 public class CityRepositoryimpl implements CityRepository {
 
+    @Autowired
+    private DataJpaCityRepository cityRepository;
 
     @Override
     public City get(int id) {
-        return null;
+        return cityRepository.findOne(id);
     }
 
     @Override
-    public List<City> getAll(int userId) {
-        return null;
+    public List<City> getAllByRegion(String ccFips) {
+        return cityRepository.getAllByRegion(ccFips);
     }
+
+
 }

@@ -11,7 +11,11 @@ import java.util.List;
 public interface VoteRepository{
 
     // null if updated vote do not belong to userId
-    Vote save(Vote meal, int userId);
+    Vote save(Vote vote, int userId);
+
+    default short delete(Vote vote, int userId){
+        throw new UnsupportedOperationException("Vote cannot be deleted, only modified!");
+    }
 
     // null if vote do not belong to userId
     Vote get(int id, int userId);

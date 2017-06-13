@@ -84,6 +84,7 @@ DROP TABLE IF EXISTS `vote`;
 
 CREATE TABLE IF NOT EXISTS `vote` (
   `id`         INT           NOT NULL AUTO_INCREMENT,
+  `comment`    TINYTEXT      NULL,
   `rate`       DECIMAL(2, 1) NOT NULL,
   `date_added` TIMESTAMP     NOT NULL,
   `user_id`    INT           NOT NULL,

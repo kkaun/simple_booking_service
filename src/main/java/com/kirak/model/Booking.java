@@ -133,7 +133,7 @@ public class Booking extends BaseLongEntity {
     @Override
     public String toString() {
         return "Booking{" +
-                "id='" + getId() + "\'" +
+                "id='" + getId() + '\'' +
                 ", active=" + active +
                 ", dateAdded=" + dateAdded +
                 ", inDate=" + inDate +

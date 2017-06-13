@@ -11,5 +11,5 @@ public interface CityRepository {
 
     City get(int id);
 
-    List<City> getAll(int userId);
+    List<City> getAllByRegion(String ccFips);
 }

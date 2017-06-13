@@ -10,8 +10,8 @@ import java.util.List;
  */
 public interface CountryRepository {
 
-    Country get(int id);
+    Country get(short id);
 
-    List<Country> getAll(int userId);
+    List<Country> getAll();
 
 }

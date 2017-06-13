@@ -111,7 +111,7 @@ public class Apartment extends BaseIntEntity {
     @Override
     public String toString() {
         return "Apartment{" +
-                "id='" + getId() + "\'" +
+                "id='" + getId() + '\'' +
                 ", type='" + type + '\'' +
                 ", personsNum=" + personsNum +
                 ", reserved=" + reserved +

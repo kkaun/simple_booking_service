@@ -11,13 +11,14 @@ import java.util.List;
 public interface BookingRepository {
 
     // null if updated booking does not belong to userId
-    Booking save(Booking booking, int userId);
+    Booking save(Booking booking, int userId, int hotelId);
 
-    // false if booking does not belong to userId
-    boolean delete(int id, int userId);
+    default boolean delete(long id, int userId, int hotelId){
+        throw new UnsupportedOperationException("Booking cannot be deleted, only modified!");
+    }
 
     // null if booking does not belong to userId
-    Booking get(int id, int userId);
+    Booking get(long id, int userId, int hotelId);
 
     List<Booking> getAllByUserId(int userId);
 
