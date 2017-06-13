@@ -10,9 +10,11 @@ import javax.validation.constraints.NotNull;
  * Created by Kir on 30.05.2017.
  */
 
-@NamedQueries({@NamedQuery(name = Hotel.GET_ALL_BY_CITY, query = "SELECT h FROM Hotel h WHERE h.city=:cityId ORDER BY h.rating"),
-        @NamedQuery(name = Hotel.GET_ALL_BY_COUNTRY, query = "SELECT h FROM Hotel h WHERE h.country=:countryId ORDER BY h.rating"),
-        @NamedQuery(name = Hotel.GET_ALL_BY_RATING, query = "SELECT h FROM Hotel h ORDER BY h.rating DESC"),
+@NamedQueries({@NamedQuery(name = Hotel.GET_ALL_BY_CITY, query = "SELECT h FROM Hotel h WHERE h.city=:cityId ORDER BY h.rating DESC"),
+        @NamedQuery(name = Hotel.GET_ALL_BY_COUNTRY, query = "SELECT h FROM Hotel h WHERE h.country=:countryId ORDER BY h.rating DESC"),
+        @NamedQuery(name = Hotel.GET_BETWEEN_RATINGS, query = "SELECT h FROM Hotel h WHERE h.rating BETWEEN :minRating " +
+                "AND :maxRating ORDER BY h.rating"),
+        @NamedQuery(name = Hotel.GET_ALL_SORTED, query = "SELECT h FROM Hotel h ORDER BY h.rating DESC"),
         @NamedQuery(name = Hotel.DELETE, query = "DELETE FROM Hotel h WHERE h.id=:hotelId " +
                 "AND h.city.id=:cityId")
 })
@@ -23,7 +25,8 @@ public class Hotel extends NamedEntity {
 
     public static final String GET_ALL_BY_CITY = "Hotel.getAllByCity";
     public static final String GET_ALL_BY_COUNTRY = "Hotel.getAllByCity";
-    public static final String GET_ALL_BY_RATING = "Hotel.getAllByCity";
+    public static final String GET_ALL_SORTED = "Hotel.getAllByCity";
+    public static final String GET_BETWEEN_RATINGS = "Hotel.getAllByCity";
     public static final String DELETE = "Hotel.delete";
 
     //TODO: add photo uploading feature to entity and business logic

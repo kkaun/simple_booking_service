@@ -1,6 +1,6 @@
 package com.kirak.model;
 
-import com.kirak.model.abstraction.BaseEntity;
+import com.kirak.model.abstraction.BaseIntEntity;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
@@ -14,7 +14,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "city")
-public class City extends BaseEntity {
+public class City extends BaseIntEntity {
 
     public static final String GET_ALL_BY_REGION = "City.getAllByCountry";
 

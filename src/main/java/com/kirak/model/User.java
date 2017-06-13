@@ -10,6 +10,7 @@ import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import java.util.*;
 
@@ -42,7 +43,6 @@ public class User extends NamedEntity {
     @Column(name = "registered", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date registered = new Date();
 
-
     //@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
@@ -51,6 +51,14 @@ public class User extends NamedEntity {
     //@Fetch(FetchMode.SUBSELECT)
     @BatchSize(size = 200)
     private Set<UserRole> roles;
+
+    @OrderBy("dateTime DESC")
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<Booking> bookings;
+
+    @OrderBy("dateTime DESC")
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<Vote> votes;
 
 
     public String getEmail() {
@@ -83,6 +91,22 @@ public class User extends NamedEntity {
 
     public void setRoles(Set<UserRole> roles) {
         this.roles = roles;
+    }
+
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Set<Booking> bookings) {
+        this.bookings = bookings;
+    }
+
+    public Set<Vote> getVotes() {
+        return votes;
+    }
+
+    public void setVotes(Set<Vote> votes) {
+        this.votes = votes;
     }
 
     @Override

@@ -9,25 +9,27 @@ import javax.persistence.*;
  */
 @Access(AccessType.FIELD)
 @MappedSuperclass
-public class BaseEntity implements HasId {
+public class BaseIntEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    protected BaseEntity() {
+    protected BaseIntEntity() {
     }
 
-    protected BaseEntity(Integer id) {
+    protected BaseIntEntity(Integer id) {
         this.id = id;
     }
 
-    @Override
+    public boolean isNew() {
+        return (getId() == null);
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
 
-    @Override
     public Integer getId() {
         return id;
     }
@@ -40,7 +42,7 @@ public class BaseEntity implements HasId {
         if (o == null || !getClass().equals(Hibernate.getClass(o))) {
             return false;
         }
-        BaseEntity that = (BaseEntity) o;
+        BaseIntEntity that = (BaseIntEntity) o;
         return getId() != null && getId().equals(that.getId());
     }
 

@@ -1,6 +1,7 @@
 package com.kirak.model;
 
-import com.kirak.model.abstraction.BaseEntity;
+import com.kirak.model.abstraction.BaseIntEntity;
+import com.kirak.model.abstraction.BaseShortEntity;
 
 import javax.persistence.*;
 
@@ -12,7 +13,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "country")
-public class Country extends BaseEntity {
+public class Country extends BaseShortEntity {
 
     public static final String GET_ALL_SORTED = "Country.getAllSorted";
 

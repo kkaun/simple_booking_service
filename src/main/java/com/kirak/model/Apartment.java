@@ -1,6 +1,6 @@
 package com.kirak.model;
 
-import com.kirak.model.abstraction.BaseEntity;
+import com.kirak.model.abstraction.BaseIntEntity;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
@@ -12,17 +12,20 @@ import javax.validation.constraints.NotNull;
 
 
 @NamedQueries({
-        @NamedQuery(name = Apartment.GET_ALL_BY_HOTEL, query = "SELECT a FROM Apartment a WHERE a.hotel.id=:hotelId " +
+        @NamedQuery(name = Apartment.GET_ALL_BY_PERSONS_NUM, query = "SELECT a FROM Apartment a WHERE a.hotel.id=:hotelId " +
                 "ORDER BY a.persons_num ASC"),
         @NamedQuery(name = Apartment.DELETE, query = "DELETE FROM Apartment a WHERE a.id=:apartmentId " +
-                "AND a.hotel.id=:hotelId")}
+                "AND a.hotel.id=:hotelId"),
+        @NamedQuery(name = Apartment.GET_ALL_BY_PRICE, query = "SELECT a FROM Apartment a WHERE a.hotel.id=:hotelId " +
+                "ORDER BY a.price ASC")}
 )
 
 @Entity
 @Table(name = "apartment")
-public class Apartment extends BaseEntity {
+public class Apartment extends BaseIntEntity {
 
-    public static final String GET_ALL_BY_HOTEL = "Apartment.getAllByHotel";
+    public static final String GET_ALL_BY_PERSONS_NUM = "Apartment.getAllByHotel";
+    public static final String GET_ALL_BY_PRICE = "Apartment.getAllByPrice";
     public static final String DELETE = "Apartment.delete";
 
     @Column(name = "type")

@@ -158,9 +158,9 @@ CREATE TABLE IF NOT EXISTS `apartment` (
 DROP TABLE IF EXISTS `booking`;
 
 CREATE TABLE IF NOT EXISTS `booking` (
-  `id`                 INT            NOT NULL,
+  `id`                 BIGINT         NOT NULL,
   `active`             TINYINT        NOT NULL DEFAULT 0,
-  `date_added`         TIMESTAMP               DEFAULT CURRENT_TIMESTAMP,
+  `date_added`         TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
   `in_date`            TIMESTAMP      NULL,
   `out_date`           TIMESTAMP      NULL,
   `sum`                DECIMAL(11, 4) NULL,

@@ -1,6 +1,6 @@
 package com.kirak.model;
 
-import com.kirak.model.abstraction.BaseEntity;
+import com.kirak.model.abstraction.BaseIntEntity;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -11,14 +11,17 @@ import java.time.LocalDateTime;
  */
 
 @NamedQueries({@NamedQuery(name = Vote.GET_ALL_BY_HOTEL, query = "SELECT v FROM Vote v WHERE v.hotel.id=:hotelId " +
-        "ORDER BY v.dateAdded DESC")
+        "ORDER BY v.dateAdded DESC"),
+        @NamedQuery(name = Vote.GET_ALL_BY_USER, query = "SELECT v FROM Vote v WHERE v.user.id=:userId " +
+                "ORDER BY v.dateAdded DESC")
 })
 
 @Entity
 @Table(name = "vote")
-public class Vote extends BaseEntity {
+public class Vote extends BaseIntEntity {
 
-    private static final String GET_ALL_BY_HOTEL = "Vote.getAllByHotel";
+    public static final String GET_ALL_BY_HOTEL = "Vote.getAllByHotel";
+    public static final String GET_ALL_BY_USER = "Vote.getAllByUser";
 
     @Column (name = "rate", nullable = false)
     private Double rate;
@@ -26,6 +29,10 @@ public class Vote extends BaseEntity {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @Column(name = "date_added", nullable = false)
     private LocalDateTime dateAdded;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hotel_id", nullable = false)
@@ -53,6 +60,14 @@ public class Vote extends BaseEntity {
 
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

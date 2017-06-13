@@ -1,6 +1,7 @@
 package com.kirak.model;
 
-import com.kirak.model.abstraction.BaseEntity;
+import com.kirak.model.abstraction.BaseIntEntity;
+import com.kirak.model.abstraction.BaseLongEntity;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -20,7 +21,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "booking")
-public class Booking extends BaseEntity {
+public class Booking extends BaseLongEntity {
 
     public static final String GET_ALL_BY_USER_ID = "Booking.getAllByUserId";
     public static final String GET_ALL_BY_HOTEL_ID = "Booking.getAllByHotelId";
