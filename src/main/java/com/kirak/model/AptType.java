@@ -1,29 +1,50 @@
 package com.kirak.model;
 
+import com.kirak.model.abstraction.BaseShortEntity;
+import org.hibernate.validator.constraints.Range;
+
+import javax.persistence.*;
+
 /**
  * Created by Kir on 11.06.2017.
  */
-public enum AptType {
 
-    ONE_SINGLE_BED_STANDARD,
-    TWO_SINGLE_BEDS_STANDARD,
-    TWO_SEP_BEDS_STANDARD,
-    TWO_SINGLE_BEDS_IMPROVED,
-    TWO_SEP_BEDS_IMPROVED,
-    TWO_SEP_BADS_COMFORT,
-    FAMILY_THREE_WITH_SEP,
-    FAMILY_THREE_WITHOUT_SEP,
-    FAMILY_FOUR_WITH_SEP,
-    FAMILY_FOUR_WITHOUT_SEP,
-    FAMILY_FIVE_WITH_SEP,
-    FAMILY_FIVE_WITHOUT_SEP,
-    FAMILY_SIX_WITH_SEP,
-    FAMILY_SIX_WITHOUT_SEP,
-    HOSTEL_FOUR,
-    HOSTEL_FIVE,
-    HOSTEL_SIX,
-    HOSTEL_SEVEN,
-    HOSTEL_EIGHT,
-    HOSTEL_NINE,
-    HOSTEL_TEN
+@NamedQueries({@NamedQuery(name = AptType.GET_ALL, query = "SELECT t FROM AptType t ORDER BY t.type ASC")})
+
+@Entity
+@Table(name = "apt_type")
+public class AptType extends BaseShortEntity {
+
+    public static final String GET_ALL = "AptType.getAll";
+
+    @Range(min = 3, max = 255)
+    @Column(name = "type")
+    private String type;
+
+    @Column(name = "beds_num")
+    private Short bedsNum;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Short getBedsNum() {
+        return bedsNum;
+    }
+
+    public void setBedsNum(Short bedsNum) {
+        this.bedsNum = bedsNum;
+    }
+
+    @Override
+    public String toString() {
+        return "AptType{" +
+                "type='" + type + '\'' +
+                ", bedsNum=" + bedsNum +
+                '}';
+    }
 }

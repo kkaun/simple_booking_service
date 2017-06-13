@@ -9,7 +9,7 @@ import javax.persistence.*;
  * Created by Kir on 12.06.2017.
  */
 
-@NamedQueries({@NamedQuery(name = Country.GET_ALL_SORTED, query = "SELECT c FROM Country c ")})
+@NamedQueries({@NamedQuery(name = Country.GET_ALL_SORTED, query = "SELECT c FROM Country c ORDER BY c.countryName ASC")})
 
 @Entity
 @Table(name = "country")

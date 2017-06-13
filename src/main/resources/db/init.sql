@@ -134,6 +134,17 @@ CREATE TABLE IF NOT EXISTS `hotel` (
   ENGINE = InnoDB;
 
 
+DROP TABLE IF EXISTS `apt_type`;
+
+CREATE TABLE IF NOT EXISTS `apt_type` (
+  `id`        TINYINT NOT NULL,
+  `type`      VARCHAR(255) NULL,
+  `beds_num`  TINYINT NOT NULL,
+  PRIMARY KEY (`id`)
+)
+  ENGINE = InnoDB;
+
+
 DROP TABLE IF EXISTS `apartment`;
 
 CREATE TABLE IF NOT EXISTS `apartment` (

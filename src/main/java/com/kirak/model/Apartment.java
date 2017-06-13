@@ -57,6 +57,8 @@ public class Apartment extends BaseIntEntity {
 
 
 
+
+
     public String getType() {
         return type;
     }
