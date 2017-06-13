@@ -31,5 +31,4 @@ public interface DataJpaApartmentRepository extends JpaRepository<Apartment, Int
     List<Apartment> getAllByPrice(@Param("id") int id, @Param("hotelId") int hotelId);
 
 
-
 }
