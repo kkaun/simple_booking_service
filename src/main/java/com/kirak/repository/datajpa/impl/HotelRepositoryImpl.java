@@ -28,28 +28,30 @@ public class HotelRepositoryImpl implements HotelRepository {
         return hotel;
     }
 
+
     @Override
     public boolean delete(int id, int cityId) {
-        return false;
+        return hotelRepository.delete(id, cityId) != 0;
     }
 
     @Override
     public Hotel get(int id, int cityId) {
-        return null;
+        Hotel hotel = hotelRepository.findOne(id);
+        return hotel != null && hotel.getCity().getId() == cityId ? hotel : null;
     }
 
     @Override
     public List<Hotel> getAllByCity(int cityId) {
-        return null;
+        return hotelRepository.getAllByCity(cityId);
     }
 
     @Override
     public List<Hotel> getBetweenRatings(double minRating, double maxRating) {
-        return null;
+        return hotelRepository.getBetweenRatings(minRating, maxRating);
     }
 
     @Override
     public List<Hotel> getAll() {
-        return null;
+        return hotelRepository.getAllSorted();
     }
 }

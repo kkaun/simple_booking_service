@@ -20,8 +20,6 @@ public interface VoteRepository{
     // null if vote do not belong to userId
     Vote get(int id, int userId);
 
-    List<Vote> getAll(int userId);
-
     List<Vote> getAllByHotel(int hotelId);
 
     List<Vote> getAllByUser(int userId);

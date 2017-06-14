@@ -2,6 +2,9 @@ package com.kirak.repository.datajpa.impl;
 
 import com.kirak.model.User;
 import com.kirak.repository.UserRepository;
+import com.kirak.repository.datajpa.DataJpaUserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
@@ -10,28 +13,33 @@ import java.util.List;
  */
 public class UserRepositoryImpl implements UserRepository{
 
+    @Autowired
+    private DataJpaUserRepository userRepository;
+
+    private static final Sort SORT_NAME_EMAIL = new Sort("name", "email");
+
     @Override
     public User save(User user) {
-        return null;
+        return userRepository.save(user);
     }
 
     @Override
     public boolean delete(int id) {
-        return false;
+        return userRepository.delete(id) != 0;
     }
 
     @Override
     public User get(int id) {
-        return null;
+        return userRepository.findOne(id);
     }
 
     @Override
     public User getByEmail(String email) {
-        return null;
+        return userRepository.getByEmail(email);
     }
 
     @Override
     public List<User> getAll() {
-        return null;
+        return userRepository.findAll(SORT_NAME_EMAIL);
     }
 }
