@@ -15,8 +15,8 @@ import java.time.LocalDateTime;
 
 @NamedQueries({@NamedQuery(name = Booking.GET_ALL_BY_USER_ID, query = "SELECT b FROM Booking b WHERE b.user_id=:userId " +
         "ORDER BY b.dateAdded DESC"),
-        @NamedQuery(name = Booking.GET_ALL_BY_HOTEL_ID, query = "SELECT b FROM Booking b WHERE b.apartment_hotel_id=:hotelId " +
-                "ORDER BY b.dateAdded DESC"),
+        @NamedQuery(name = Booking.GET_ALL_BY_HOTEL_BETWEEN_DATES, query = "SELECT b FROM Booking b WHERE b.apartment_hotel_id=:hotelId " +
+                "AND b.dateAdded BETWEEN :startDate AND :endDate ORDER BY b.dateAdded DESC")
 })
 
 @Entity
@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 public class Booking extends BaseLongEntity {
 
     public static final String GET_ALL_BY_USER_ID = "Booking.getAllByUserId";
-    public static final String GET_ALL_BY_HOTEL_ID = "Booking.getAllByHotelId";
+    public static final String GET_ALL_BY_HOTEL_BETWEEN_DATES = "Booking.getAllByHotelBetweenDates";
 
     @NotNull
     @Range(min = 0, max = 1)

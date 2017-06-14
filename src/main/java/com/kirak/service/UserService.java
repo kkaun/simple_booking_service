@@ -1,6 +1,7 @@
 package com.kirak.service;
 
 import com.kirak.model.User;
+import javassist.NotFoundException;
 
 import java.util.List;
 
@@ -10,7 +11,16 @@ import java.util.List;
 public interface UserService {
 
     User save(User user);
-    User get(int userId);
-    void delete(int userId);
+
+    void delete(Integer id) throws NotFoundException;
+
+    User get(Integer id) throws NotFoundException;
+
+    User getByEmail(String email) throws NotFoundException;
+
     List<User> getAll();
+
+    void update(User user);
+
+    void evictCache();//for tests
 }

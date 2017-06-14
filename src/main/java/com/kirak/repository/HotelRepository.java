@@ -10,13 +10,13 @@ import java.util.List;
  */
 public interface HotelRepository {
 
-    // null if updated meal do not belong to userId
-    Hotel save(Hotel meal, int userId);
+    // null if updated hotel does not belong to userId
+    Hotel save(Hotel hotel, int userId);
 
-    // false if meal do not belong to userId
+    // false if hotel does not belong to userId
     boolean delete(int id, int userId);
 
-    // null if meal do not belong to userId
+    // null if hotel does not belong to userId
     Hotel get(int id, int userId);
 
     List<Hotel> getAllByCity(int cityId);

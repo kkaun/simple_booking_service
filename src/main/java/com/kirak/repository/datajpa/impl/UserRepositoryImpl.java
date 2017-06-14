@@ -5,12 +5,15 @@ import com.kirak.repository.UserRepository;
 import com.kirak.repository.datajpa.DataJpaUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Created by Kir on 13.06.2017.
  */
+
+@Repository
 public class UserRepositoryImpl implements UserRepository{
 
     @Autowired

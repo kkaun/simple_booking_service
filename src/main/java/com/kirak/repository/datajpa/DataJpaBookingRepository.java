@@ -31,6 +31,6 @@ public interface DataJpaBookingRepository extends JpaRepository<Booking, Long>{
     List<Booking> getAllByUserId(@Param("userId") int userId);
 
     @Query(Booking.GET_ALL_BY_HOTEL_ID)
-    List<Booking> getAllByHotelId(@Param("hotelId") int hotelId);
+    List<Booking> getAllByHotelBetweenDates(@Param("hotelId") int hotelId);
 
 }

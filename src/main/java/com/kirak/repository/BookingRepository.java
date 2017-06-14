@@ -2,6 +2,7 @@ package com.kirak.repository;
 
 import com.kirak.model.Booking;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,6 +23,6 @@ public interface BookingRepository {
 
     List<Booking> getAllByUserId(int userId);
 
-    List<Booking> getAllByHotelId(int hotelId);
+    List<Booking> getAllByHotelBetweenDates(int hotelId, LocalDate startDate, LocalDate endDate);
 
 }

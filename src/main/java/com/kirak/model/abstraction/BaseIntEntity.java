@@ -9,7 +9,7 @@ import javax.persistence.*;
  */
 @Access(AccessType.FIELD)
 @MappedSuperclass
-public class BaseIntEntity {
+public class BaseIntEntity implements BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +26,16 @@ public class BaseIntEntity {
         return (getId() == null);
     }
 
+    @Override
+    public void setId(Number id) {
+        this.id = id.intValue();
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
 
+    @Override
     public Integer getId() {
         return id;
     }

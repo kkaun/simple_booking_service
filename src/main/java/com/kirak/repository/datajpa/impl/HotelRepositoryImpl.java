@@ -5,12 +5,15 @@ import com.kirak.repository.HotelRepository;
 import com.kirak.repository.datajpa.DataJpaCityRepository;
 import com.kirak.repository.datajpa.DataJpaHotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Created by Kir on 13.06.2017.
  */
+
+@Repository
 public class HotelRepositoryImpl implements HotelRepository {
 
     @Autowired

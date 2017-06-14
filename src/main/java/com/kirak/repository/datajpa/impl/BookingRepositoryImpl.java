@@ -6,12 +6,16 @@ import com.kirak.repository.datajpa.DataJpaBookingRepository;
 import com.kirak.repository.datajpa.DataJpaHotelRepository;
 import com.kirak.repository.datajpa.DataJpaUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
  * Created by Kir on 13.06.2017.
  */
+
+@Repository
 public class BookingRepositoryImpl implements BookingRepository {
 
     @Autowired
@@ -49,7 +53,7 @@ public class BookingRepositoryImpl implements BookingRepository {
     }
 
     @Override
-    public List<Booking> getAllByHotelId(int hotelId) {
-        return bookingRepository.getAllByHotelId(hotelId);
+    public List<Booking> getAllByHotelBetweenDates(int hotelId, LocalDate startDate, LocalDate endDate) {
+        return bookingRepository.getAllByHotelBetweenDates(hotelId);
     }
 }

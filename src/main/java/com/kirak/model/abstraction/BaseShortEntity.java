@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 @Access(AccessType.FIELD)
 @MappedSuperclass
-public class BaseShortEntity {
+public class BaseShortEntity implements BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,14 +23,21 @@ public class BaseShortEntity {
         this.id = id;
     }
 
+    @Override
     public boolean isNew() {
         return (getId() == null);
+    }
+
+    @Override
+    public void setId(Number id) {
+        this.id = id.shortValue();
     }
 
     public void setId(Short id) {
         this.id = id;
     }
 
+    @Override
     public Short getId() {
         return id;
     }

@@ -13,5 +13,4 @@ public interface CountryRepository {
     Country get(short id);
 
     List<Country> getAll();
-
 }

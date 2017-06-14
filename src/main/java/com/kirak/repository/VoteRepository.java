@@ -11,14 +11,14 @@ import java.util.List;
 public interface VoteRepository{
 
     // null if updated vote do not belong to userId
-    Vote save(Vote vote, int userId);
+    Vote save(Vote vote, int userId, int hotelId);
 
-    default short delete(Vote vote, int userId){
+    default short delete(Vote vote, int userId, int hotelId){
         throw new UnsupportedOperationException("Vote cannot be deleted, only modified!");
     }
 
     // null if vote do not belong to userId
-    Vote get(int id, int userId);
+    Vote get(int id, int userId, int hotelId);
 
     List<Vote> getAllByHotel(int hotelId);
 

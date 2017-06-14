@@ -10,9 +10,13 @@ import java.util.List;
 public interface VoteService {
 
     Vote save(Vote vote, int userId, int hotelId);
-    Vote get(int voteId, int userId, int hotelId);
-    void update(Vote vote, int userId, int hotelId);
-    //void delete(int voteId, int userId, int hotelId);
-    List<Vote> getAll();
+
+    Vote update(Vote vote, int userId, int hotelId);
+
+    Vote get(Integer id, int userId, int hotelId);
+
+    List<Vote> getAllByHotel(int hotelId);
+
+    List<Vote> getAllByUser(int userId);
 
 }

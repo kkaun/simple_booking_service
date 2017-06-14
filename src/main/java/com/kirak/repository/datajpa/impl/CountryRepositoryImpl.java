@@ -4,8 +4,10 @@ import com.kirak.model.Country;
 import com.kirak.repository.CityRepository;
 import com.kirak.repository.CountryRepository;
 import com.kirak.repository.datajpa.DataJpaCountryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -14,10 +16,12 @@ import java.util.List;
  * Created by Kir on 13.06.2017.
  */
 
+@Repository
 public class CountryRepositoryImpl implements CountryRepository {
 
     private Sort COUNTRY_NAME_SORT = new Sort("countryName");
 
+    @Autowired
     private DataJpaCountryRepository countryRepository;
 
     @Override

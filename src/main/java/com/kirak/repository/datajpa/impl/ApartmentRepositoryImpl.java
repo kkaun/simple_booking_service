@@ -5,6 +5,7 @@ import com.kirak.repository.ApartmentRepository;
 import com.kirak.repository.datajpa.DataJpaApartmentRepository;
 import com.kirak.repository.datajpa.DataJpaHotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -12,6 +13,8 @@ import java.util.List;
 /**
  * Created by Kir on 13.06.2017.
  */
+
+@Repository
 public class ApartmentRepositoryImpl implements ApartmentRepository {
 
     @Autowired
@@ -43,7 +46,7 @@ public class ApartmentRepositoryImpl implements ApartmentRepository {
     }
 
     @Override
-    public List<Apartment> getByAllByPersonsNum(int hotelId) {
+    public List<Apartment> getAllByPersonsNum(int hotelId) {
         return apartmentRepository.getByAllByPersonsNum(hotelId);
     }
 

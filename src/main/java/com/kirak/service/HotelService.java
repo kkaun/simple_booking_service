@@ -1,6 +1,7 @@
 package com.kirak.service;
 
 import com.kirak.model.Hotel;
+import javassist.NotFoundException;
 
 import java.util.List;
 
@@ -9,8 +10,17 @@ import java.util.List;
  */
 public interface HotelService {
 
-    Hotel save(Hotel hotel);
-    Hotel get(int hotelId);
-    void delete(int hotelId);
+    Hotel save(Hotel hotel, int cityId);
+
+    Hotel update(Hotel hotel, int cityId) throws NotFoundException;
+
+    void delete(Integer id, int cityId) throws NotFoundException;
+
+    Hotel get(Integer id, int cityId) throws NotFoundException;
+
+    List<Hotel> getAllByCity(int cityId);
+
+    List<Hotel> getBetweenRatings(double minRating, double maxRating);
+
     List<Hotel> getAll();
 }
