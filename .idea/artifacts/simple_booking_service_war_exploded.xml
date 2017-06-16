@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="simple_booking_service:war exploded">
-    <output-path>$PROJECT_DIR$/target/topjava</output-path>
+    <output-path>$PROJECT_DIR$/target/simple_booking_service</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -59,11 +59,11 @@
           <element id="library" level="project" name="Maven: javax.transaction:jta:1.1" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.8" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-test:4.2.2.RELEASE" />
-          <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.0.0" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.6" />
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/target/topjava/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/simple_booking_service/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="simple_booking_service/web/Web" />
     </root>

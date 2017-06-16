@@ -21,24 +21,25 @@
         <spring-security.version>4.2.2.RELEASE</spring-security.version>
         <jackson-json.version>2.8.8</jackson-json.version>
 
-        <!-- Logging -->
+        <!--  Logging  -->
         <logback.version>1.2.2</logback.version>
         <slf4j.version>1.7.25</slf4j.version>
 
-        <!--DB-->
-        <postgresql.version>42.0.0</postgresql.version>
-        <!--    Tests  -->
+        <!--   DB    -->
+        <mysql-connector-java.version>5.1.6</mysql-connector-java.version>
+
+        <!--   Tests  -->
         <junit.version>4.12</junit.version>
         <hamcrest.version>1.3</hamcrest.version>
 
-        <!-- Hibernate -->
+        <!--  Hibernate  -->
         <hibernate.version>5.2.9.Final</hibernate.version>
         <hibernate-validator.version>5.4.1.Final</hibernate-validator.version>
 
-        <!--Tools-->
+        <!--   Tools   -->
         <ehcache.version>2.10.3</ehcache.version>
 
-        <!--webjars-->
+        <!--   Webjars   -->
         <webjars-bootstrap.version>3.3.7-1</webjars-bootstrap.version>
         <webjars-jquery.version>3.2.1</webjars-jquery.version>
         <webjars-datetimepicker.version>2.5.4</webjars-datetimepicker.version>
@@ -48,7 +49,7 @@
 
 
     <build>
-        <finalName>topjava</finalName>
+        <finalName>simple_booking_service</finalName>
         <defaultGoal>package</defaultGoal>
         <plugins>
             <plugin>
@@ -81,12 +82,10 @@
                             <file.encoding>UTF-8</file.encoding>
                             <spring.profiles.active>tomcat,datajpa</spring.profiles.active>
                         </systemProperties>
-                        <dependencies>
-                            <dependency>
-                                <groupId>org.postgresql</groupId>
-                                <artifactId>postgresql</artifactId>
-                            </dependency>
-                        </dependencies>
+                        <dependency>
+                            <groupId>mysql</groupId>
+                            <artifactId>mysql-connector-java</artifactId>
+                        </dependency>
                     </container>
                     <configuration>
                         <configfiles>
@@ -99,8 +98,8 @@
                     </configuration>
                     <deployables>
                         <deployable>
-                            <groupId>ru.javawebinar</groupId>
-                            <artifactId>topjava</artifactId>
+                            <groupId>com.kirak</groupId>
+                            <artifactId>simple_booking_service</artifactId>
                             <type>war</type>
                             <properties>
                                 <context>${project.build.finalName}</context>
@@ -111,26 +110,26 @@
             </plugin>
 
             <!--
-                        <plugin>
-                            <groupId>org.apache.tomcat.maven</groupId>
-                            <artifactId>tomcat7-maven-plugin</artifactId>
-                            <version>2.2</version>
-                            <configuration>
-                                <contextFile>src/main/resources/tomcat/context.xml</contextFile>
-                                <systemProperties>
-                                    <file.encoding>UTF-8</file.encoding>
-                                    <spring.profiles.active>tomcat,datajpa</spring.profiles.active>
-                                </systemProperties>
-                                <protocol>org.apache.coyote.http11.Http11NioProtocol</protocol>
-                            </configuration>
-                            <dependencies>
-                                <dependency>
-                                    <groupId>org.postgresql</groupId>
-                                    <artifactId>postgresql</artifactId>
-                                    <version>${postgresql.version}</version>
-                                </dependency>
-                            </dependencies>
-                        </plugin>
+                <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>2.2</version>
+                    <configuration>
+                        <contextFile>src/main/resources/tomcat/context.xml</contextFile>
+                        <systemProperties>
+                            <file.encoding>UTF-8</file.encoding>
+                            <spring.profiles.active>tomcat,datajpa</spring.profiles.active>
+                        </systemProperties>
+                        <protocol>org.apache.coyote.http11.Http11NioProtocol</protocol>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>${mysql-connector-java.version}</version>
+                    </dependency>
+                    </dependencies>
+                </plugin>
             -->
         </plugins>
     </build>
@@ -353,22 +352,12 @@
 
     <profiles>
         <profile>
-            <id>hsqldb</id>
+            <id>mysql</id>
             <dependencies>
                 <dependency>
-                    <groupId>org.hsqldb</groupId>
-                    <artifactId>hsqldb</artifactId>
-                    <version>2.4.0</version>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>postgres</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.postgresql</groupId>
-                    <artifactId>postgresql</artifactId>
-                    <version>${postgresql.version}</version>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                    <version>${mysql-connector-java.version}</version>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.tomcat</groupId>

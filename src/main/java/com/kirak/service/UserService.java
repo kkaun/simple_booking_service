@@ -1,7 +1,9 @@
 package com.kirak.service;
 
 import com.kirak.model.User;
-import javassist.NotFoundException;
+import com.kirak.to.UserTo;
+import com.kirak.util.exception.NotFoundException;
+
 
 import java.util.List;
 
@@ -19,6 +21,8 @@ public interface UserService {
     User getByEmail(String email) throws NotFoundException;
 
     List<User> getAll();
+
+    void update(UserTo userTo);
 
     void update(User user);
 

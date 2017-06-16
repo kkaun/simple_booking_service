@@ -9,10 +9,8 @@ import java.util.*;
 public class DbMockDataReducer {
 
     public static void main(String[] args) throws IOException {
-
         prepareCountriesToDb();
     }
-
 
     public static void prepareCountriesToDb(){
 

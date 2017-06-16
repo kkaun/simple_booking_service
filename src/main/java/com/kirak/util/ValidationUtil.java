@@ -54,4 +54,14 @@ public class ValidationUtil {
             LOG.error(ex.toString());
         }
     }
+
+    public static Throwable getErrorRootCause(Throwable t) {
+        Throwable result = t;
+        Throwable cause;
+
+        while (null != (cause = result.getCause()) && (result != cause)) {
+            result = cause;
+        }
+        return result;
+    }
 }
