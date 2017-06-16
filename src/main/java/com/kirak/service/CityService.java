@@ -12,5 +12,5 @@ public interface CityService {
 
     City get(Short id) throws NotFoundException;
 
-    List<City> getAllByRegion(String ccFips);
+    List<City> getAllByRegion(String countryName);
 }

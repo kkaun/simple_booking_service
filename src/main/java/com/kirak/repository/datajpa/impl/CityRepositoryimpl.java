@@ -27,8 +27,8 @@ public class CityRepositoryimpl implements CityRepository {
     }
 
     @Override
-    public List<City> getAllByRegion(String ccFips) {
-        return cityRepository.getAllByRegion(ccFips);
+    public List<City> getAllByRegion(String countryName) {
+        return cityRepository.getAllByRegion(countryName);
     }
 
 

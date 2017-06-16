@@ -28,7 +28,7 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public List<City> getAllByRegion(String ccFips) {
-        return repository.getAllByRegion(ccFips);
+    public List<City> getAllByRegion(String countryName) {
+        return repository.getAllByRegion(countryName);
     }
 }

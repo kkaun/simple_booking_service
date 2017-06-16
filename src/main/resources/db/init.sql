@@ -27,7 +27,7 @@ CREATE TABLE `city` (
 DROP TABLE IF EXISTS `country`;
 CREATE TABLE `country` (
   `id`           TINYINT NOT NULL AUTO_INCREMENT,
-  `country_name`         VARCHAR(45),
+  `country_name` VARCHAR(45),
   INDEX `idx_country_name`(`country_name`),
   PRIMARY KEY (`id`)
 )

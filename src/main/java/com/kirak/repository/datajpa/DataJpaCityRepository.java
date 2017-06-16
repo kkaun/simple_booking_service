@@ -20,7 +20,7 @@ public interface DataJpaCityRepository extends JpaRepository<City, Integer> {
     City findOne(Integer id);
 
     @Query(City.GET_ALL_BY_REGION)
-    List<City> getAllByRegion(@Param("ccFips") String ccFips);
+    List<City> getAllByRegion(@Param("countryName") String countryName);
 
 //    @Override
 //    List<City> findAll(Sort sort);
