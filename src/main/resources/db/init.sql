@@ -13,34 +13,22 @@ USE `booking_service`;
 
 DROP TABLE IF EXISTS `city`;
 CREATE TABLE `city` (
-  `id`        INT NOT NULL AUTO_INCREMENT,
-  `cc_fips`   VARCHAR(2),
-  `full_name` VARCHAR(200),
-  INDEX `idx_cc_fips` (`cc_fips`),
+  `id`            INT NOT NULL AUTO_INCREMENT,
+  `city_name`     VARCHAR(45),
+  `country_name`  VARCHAR(45),
+  INDEX `idx_country_name` (`country_name`),
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   COLLATE = utf8_bin;
 
--- Load data into table
-LOAD DATA LOCAL
-INFILE 'C:/Users/Кира/Desktop/GEODATASOURCE-CITIES-FREE.TXT'
-INTO TABLE `city`
-FIELDS TERMINATED BY '\t'
-LINES TERMINATED BY '\r\n'
-IGNORE 1 LINES;
-
 
 DROP TABLE IF EXISTS `country`;
 CREATE TABLE `country` (
   `id`           TINYINT NOT NULL AUTO_INCREMENT,
-  `cc_fips`      VARCHAR(2),
-  `cc_iso`       VARCHAR(2),
-  `tld`          VARCHAR(3),
-  `country_name` VARCHAR(100),
-  INDEX `idx_cc_fips`(`cc_fips`),
-  INDEX `idx_cc_iso`(`cc_iso`),
+  `country_name`         VARCHAR(45),
+  INDEX `idx_country_name`(`country_name`),
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB

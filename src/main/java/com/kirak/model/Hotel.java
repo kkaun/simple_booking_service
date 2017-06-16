@@ -112,7 +112,7 @@ public class Hotel extends NamedEntity {
                 ", name='" + getName() + "\'" +
                 ", rating=" + rating +
                 ", country=" + country.getCountryName() +
-                ", city=" + city.getFullName() +
+                ", city=" + city.getCityName() +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 ", description='" + description + '\'' +

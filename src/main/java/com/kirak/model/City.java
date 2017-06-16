@@ -9,8 +9,8 @@ import javax.persistence.*;
  * Created by Kir on 12.06.2017.
  */
 
-@NamedQueries({@NamedQuery(name = City.GET_ALL_BY_REGION, query = "SELECT c FROM City c WHERE c.ccFips=:ccFips " +
-        "ORDER BY c.fullName ASC")})
+@NamedQueries({@NamedQuery(name = City.GET_ALL_BY_REGION, query = "SELECT c FROM City c WHERE c.countryName=:countryName " +
+        "ORDER BY c.cityName ASC")})
 
 @Entity
 @Table(name = "city")
@@ -18,32 +18,33 @@ public class City extends BaseIntEntity {
 
     public static final String GET_ALL_BY_REGION = "City.getAllByCountry";
 
-    @Range(min = 0, max = 2)
-    @Column(name = "cc_fips")
-    private String ccFips;
+    @Column(name = "city_name")
+    private String cityName;
 
     @Range(min = 1, max = 200)
-    @Column(name = "full_name")
-    private String fullName;
+    @Column(name = "country_name")
+    private String countryName;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "country_id")
+    @JoinColumn(name = "country_name")
     private Country country;
 
-    public String getCcFips() {
-        return ccFips;
+
+
+    public String getCityName() {
+        return cityName;
     }
 
-    public void setCcFips(String ccFips) {
-        this.ccFips = ccFips;
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getCountryName() {
+        return countryName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
     }
 
     public Country getCountry() {
@@ -58,8 +59,8 @@ public class City extends BaseIntEntity {
     public String toString() {
         return "City{" +
                 "id" + "\'" +
-                ", ccFips='" + ccFips + '\'' +
-                ", fullName='" + fullName + '\'' +
+                ", cityName='" + cityName + '\'' +
+                ", countryName='" + countryName + '\'' +
                 ", country=" + country +
                 '}';
     }

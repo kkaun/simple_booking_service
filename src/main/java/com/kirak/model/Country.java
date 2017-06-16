@@ -4,6 +4,7 @@ import com.kirak.model.abstraction.BaseIntEntity;
 import com.kirak.model.abstraction.BaseShortEntity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by Kir on 12.06.2017.
@@ -17,41 +18,11 @@ public class Country extends BaseShortEntity {
 
     public static final String GET_ALL_SORTED = "Country.getAllSorted";
 
-    @Column(name = "cc_fips")
-    private String ccFips;
-
-    @Column(name = "cc_iso")
-    private String ccIso;
-
-    @Column(name = "tld")
-    private String tld;
-
     @Column(name = "country_name")
     private String countryName;
 
-    public String getCcFips() {
-        return ccFips;
-    }
-
-    public void setCcFips(String ccFips) {
-        this.ccFips = ccFips;
-    }
-
-    public String getCcIso() {
-        return ccIso;
-    }
-
-    public void setCcIso(String ccIso) {
-        this.ccIso = ccIso;
-    }
-
-    public String getTld() {
-        return tld;
-    }
-
-    public void setTld(String tld) {
-        this.tld = tld;
-    }
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<City> cities;
 
     public String getCountryName() {
         return countryName;
@@ -61,13 +32,18 @@ public class Country extends BaseShortEntity {
         this.countryName = countryName;
     }
 
+    public Set<City> getCities() {
+        return cities;
+    }
+
+    public void setCities(Set<City> cities) {
+        this.cities = cities;
+    }
+
     @Override
     public String toString() {
         return "Country{" +
                 "id" + '\'' +
-                "ccFips='" + ccFips + '\'' +
-                ", ccIso='" + ccIso + '\'' +
-                ", tld='" + tld + '\'' +
                 ", countryName='" + countryName + '\'' +
                 '}';
     }
