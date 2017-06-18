@@ -4,6 +4,7 @@ import com.kirak.model.Vote;
 import com.kirak.repository.VoteRepository;
 import com.kirak.service.VoteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import static com.kirak.util.ValidationUtil.checkNotFoundWithId;
@@ -13,6 +14,8 @@ import java.util.List;
 /**
  * Created by Kir on 13.06.2017.
  */
+
+@Service
 public class VoteServiceImpl implements VoteService {
 
     private VoteRepository repository;

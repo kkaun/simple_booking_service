@@ -9,4 +9,6 @@ import org.slf4j.LoggerFactory;
 public class AbstractHotelSellingController {
 
     private final Logger LOG = LoggerFactory.getLogger(getClass());
+
+
 }

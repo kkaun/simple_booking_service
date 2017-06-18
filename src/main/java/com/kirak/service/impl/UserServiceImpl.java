@@ -2,11 +2,14 @@ package com.kirak.service.impl;
 
 import com.kirak.model.User;
 import com.kirak.repository.UserRepository;
+
 import com.kirak.service.UserService;
-import javassist.NotFoundException;
+import com.kirak.to.UserTo;
+import com.kirak.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import static com.kirak.util.ValidationUtil.checkNotFound;
@@ -17,6 +20,8 @@ import java.util.List;
 /**
  * Created by Kir on 01.06.2017.
  */
+
+@Service
 public class UserServiceImpl implements UserService {
 
 
@@ -62,6 +67,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAll() {
         return repository.getAll();
+    }
+
+    @Override
+    public void update(UserTo userTo) {
+
     }
 
 

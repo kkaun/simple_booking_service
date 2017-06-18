@@ -6,6 +6,7 @@ import com.kirak.service.BookingService;
 import com.kirak.util.ValidationUtil;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import java.time.LocalDate;
@@ -16,6 +17,8 @@ import static com.kirak.util.ValidationUtil.checkNotFoundWithId;
 /**
  * Created by Kir on 01.06.2017.
  */
+
+@Service
 public class BookingServiceImpl implements BookingService {
 
     private BookingRepository repository;

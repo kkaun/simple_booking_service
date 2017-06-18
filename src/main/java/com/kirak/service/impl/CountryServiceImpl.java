@@ -8,6 +8,7 @@ import com.kirak.service.CityService;
 import com.kirak.service.CountryService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import static com.kirak.util.ValidationUtil.checkNotFoundWithId;
 
@@ -16,6 +17,8 @@ import java.util.List;
 /**
  * Created by Kir on 14.06.2017.
  */
+
+@Service
 public class CountryServiceImpl implements CountryService {
 
     private CountryRepository repository;

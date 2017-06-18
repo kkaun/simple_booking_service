@@ -5,6 +5,7 @@ import com.kirak.repository.CityRepository;
 import com.kirak.service.CityService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import static com.kirak.util.ValidationUtil.checkNotFoundWithId;
 
@@ -13,6 +14,8 @@ import java.util.List;
 /**
  * Created by Kir on 14.06.2017.
  */
+
+@Service
 public class CityServiceImpl implements CityService {
 
     private CityRepository repository;
