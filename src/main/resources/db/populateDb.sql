@@ -1,9 +1,59 @@
 
 
+-- admin
+INSERT INTO users (name, email, password)
+VALUES ('User', 'user@yandex.ru', '000111');
+INSERT INTO users (name, email, password)
+VALUES ('User1', 'user1@yandex.ru', '111222');
+
+-- password
+INSERT INTO users (name, email, password)
+VALUES ('Admin', 'admin@gmail.com', '222333');
+
+INSERT INTO user_roles (role, user_id) VALUES
+  ('ROLE_USER', 100000),
+  ('ROLE_ADMIN', 100001),
+  ('ROLE_USER', 100001),
+  ('ROLE_USER', 100001),
+  ('ROLE_USER', 100001);
 
 
 
+INSERT INTO apartment (type, reserved, extra_beds, price, hotel_id)
+    VALUES
+      ();
 
+
+
+INSERT INTO hotel (name, rating, country_id, city_id, phone, description)
+    VALUES
+      ();
+
+
+
+INSERT INTO apt_type(beds_arrangement, category, person_num)
+    VALUES
+      ('ONE SINGLE BED', 'STANDARD', 1),
+      ('TWO SINGLE BEDS', 'STANDARD', 2),
+      ('TWO SEPARATE BEDS', 'STANDARD', 2),
+      ('TWO SINGLE BEDS', 'IMPROVED', 2),
+      ('TWO SEPARATE BEDS', 'IMPROVED', 2),
+      ('TWO SEPARATE BEDS', 'COMFORT', 2),
+      ('THREE-PERSON WITH SEPARATE BEDS', 'FAMILY NUMBER', 3),
+      ('THREE-PERSON WITH TWIN BED', 'FAMILY NUMBER', 3),
+      ('FOUR-PERSON WITH SEPARATE BEDS', 'FAMILY NUMBER', 4),
+      ('FOUR-PERSON WITH TWIN BEDS', 'FAMILY NUMBER', 4),
+      ('FIVE-PERSON WITH SEPARATE BEDS', 'FAMILY NUMBER', 5),
+      ('FIVE-PERSON WITH TWIN BEDS', 'FAMILY NUMBER', 5),
+      ('SIX-PERSON WITH SEPARATE BEDS', 'FAMILY NUMBER', 6),
+      ('SIX-PERSON WITH TWIN BEDS', 'FAMILY NUMBER', 6),
+      ('FOUR-PERSON', 'HOSTEL', 4),
+      ('FIVE-PERSON', 'HOSTEL', 5),
+      ('SIX-PERSON', 'HOSTEL', 6),
+      ('SEVEN-PERSON', 'HOSTEL', 7),
+      ('HOSTEL-PERSON', 'HOSTEL', 8),
+      ('HOSTEL-PERSON', 'HOSTEL', 9),
+      ('HOSTEL-PERSON', 'HOSTEL', 10);
 
 
 

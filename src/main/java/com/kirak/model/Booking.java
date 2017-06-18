@@ -1,6 +1,5 @@
 package com.kirak.model;
 
-import com.kirak.model.abstraction.BaseIntEntity;
 import com.kirak.model.abstraction.BaseLongEntity;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -49,6 +48,17 @@ public class Booking extends BaseLongEntity {
     @NotNull
     @Column(name = "sum", precision=11, scale=2, nullable = false)
     private Double sum;
+
+    //-----------------------------------------
+    @Range(min = 1, max = 20)
+    @NotNull
+    @Column(name = "person_num")
+    private Short personNum;
+
+    @Range(min = 0, max = 6)
+    @Column(name = "extra_beds")
+    private Short extraBeds = 0;
+    //------------------------------------------
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
@@ -130,6 +140,22 @@ public class Booking extends BaseLongEntity {
         this.hotel = hotel;
     }
 
+    public Short getPersonNum() {
+        return personNum;
+    }
+
+    public void setPersonNum(Short personNum) {
+        this.personNum = personNum;
+    }
+
+    public Short getExtraBeds() {
+        return extraBeds;
+    }
+
+    public void setExtraBeds(Short extraBeds) {
+        this.extraBeds = extraBeds;
+    }
+
     @Override
     public String toString() {
         return "Booking{" +
@@ -139,6 +165,8 @@ public class Booking extends BaseLongEntity {
                 ", inDate=" + inDate +
                 ", outDate=" + outDate +
                 ", sum=" + sum +
+                ", person number=" + personNum +
+                ", extra beds=" + extraBeds +
                 ", user=" + user +
                 ", apartment=" + apartment +
                 ", hotel=" + hotel +

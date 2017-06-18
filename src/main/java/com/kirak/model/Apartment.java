@@ -12,39 +12,40 @@ import javax.validation.constraints.NotNull;
 
 
 @NamedQueries({
-        @NamedQuery(name = Apartment.GET_ALL_BY_PERSONS_NUM, query = "SELECT a FROM Apartment a WHERE a.hotel.id=:hotelId " +
-                "ORDER BY a.persons_num ASC"),
+        @NamedQuery(name = Apartment.GET_ALL_BY_HOTEL_PERSONS_NUM, query = "SELECT a FROM Apartment a WHERE a.hotel.id=:hotelId " +
+                "ORDER BY a.type.personNum ASC"),
         @NamedQuery(name = Apartment.DELETE, query = "DELETE FROM Apartment a WHERE a.id=:apartmentId " +
                 "AND a.hotel.id=:hotelId"),
         @NamedQuery(name = Apartment.GET_ALL_BY_PRICE, query = "SELECT a FROM Apartment a WHERE a.hotel.id=:hotelId " +
-                "ORDER BY a.price ASC")}
-)
+                "ORDER BY a.price ASC"),
+        @NamedQuery(name = Apartment.GET_ALL_BY_ARRANGEMENT, query = "SELECT a FROM Apartment a " +
+                "WHERE a.type.bedsArrangement=:bedsArrangement ORDER BY a.type.personNum ASC"),
+        @NamedQuery(name = Apartment.GET_ALL_BY_CATEGORY, query = "SELECT a FROM Apartment a WHERE " +
+                "a.type.category=:category ORDER BY a.type.personNum ASC")
+})
 
 @Entity
 @Table(name = "apartment")
 public class Apartment extends BaseIntEntity {
 
-    public static final String GET_ALL_BY_PERSONS_NUM = "Apartment.getAllByHotel";
+    public static final String GET_ALL_BY_HOTEL_PERSONS_NUM = "Apartment.getAllByPersonsNum";
     public static final String GET_ALL_BY_PRICE = "Apartment.getAllByPrice";
+    public static final String GET_ALL_BY_ARRANGEMENT = "Apartment.getAllByArrangement";
+    public static final String GET_ALL_BY_CATEGORY = "Apartment.getAllByType";
     public static final String DELETE = "Apartment.delete";
 
-    @Column(name = "type")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "apt_type_id")
     @NotNull
-    private String type;
+    private AptType type;
 
-    @Range(min = 1, max = 20)
     @NotNull
-    @Column(name = "persons_num")
-    private Short personsNum;
+    @Column(name = "overallQuantity")
+    private Short overallQuantity;
 
-    @Range(min = 0, max = 1)
     @NotNull
-    @Column(name = "reserved")
-    private Short reserved;
-
-    @Range(min = 0, max = 10)
-    @Column(name = "extra_beds")
-    private Short extraBeds = 0;
+    @Column(name = "reservedQuantity")
+    private Short reservedQuantity;
 
     @Column(name = "price", precision=8, scale=2)
     @NotNull
@@ -57,38 +58,28 @@ public class Apartment extends BaseIntEntity {
 
 
 
-
-
-    public String getType() {
+    public AptType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(AptType type) {
         this.type = type;
     }
 
-    public Short getPersonsNum() {
-        return personsNum;
+    public Short getOverallQuantity() {
+        return overallQuantity;
     }
 
-    public void setPersonsNum(Short personsNum) {
-        this.personsNum = personsNum;
+    public void setOverallQuantity(Short overallQuantity) {
+        this.overallQuantity = overallQuantity;
     }
 
-    public Short getReserved() {
-        return reserved;
+    public Short getReservedQuantity() {
+        return reservedQuantity;
     }
 
-    public void setReserved(Short reserved) {
-        this.reserved = reserved;
-    }
-
-    public Short getExtraBeds() {
-        return extraBeds;
-    }
-
-    public void setExtraBeds(Short extraBeds) {
-        this.extraBeds = extraBeds;
+    public void setReservedQuantity(Short reservedQuantity) {
+        this.reservedQuantity = reservedQuantity;
     }
 
     public Hotel getHotel() {
@@ -113,9 +104,8 @@ public class Apartment extends BaseIntEntity {
         return "Apartment{" +
                 "id='" + getId() + '\'' +
                 ", type='" + type + '\'' +
-                ", personsNum=" + personsNum +
-                ", reserved=" + reserved +
-                ", extraBeds=" + extraBeds +
+                ", overall numbers quantity=" + overallQuantity +
+                ", reserved numbers quantity=" + reservedQuantity +
                 ", hotel=" + hotel +
                 ", price=" + price +
                 '}';

@@ -13,12 +13,13 @@ USE `booking_service`;
 
 DROP TABLE IF EXISTS `city`;
 CREATE TABLE `city` (
-  `id`            INT NOT NULL AUTO_INCREMENT,
-  `city_name`     VARCHAR(45),
-  `country_name`  VARCHAR(45),
+  `id`           INT NOT NULL AUTO_INCREMENT,
+  `city_name`    VARCHAR(45),
+  `country_name` VARCHAR(45),
   INDEX `idx_country_name` (`country_name`),
   PRIMARY KEY (`id`)
 )
+  AUTO_INCREMENT = 100000,
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   COLLATE = utf8_bin;
@@ -40,14 +41,15 @@ CREATE TABLE `country` (
 DROP TABLE IF EXISTS `user`;
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `id`         INT         NOT NULL DEFAULT 10000,
+  `id`         INT         NOT NULL AUTO_INCREMENT,
   `email`      VARCHAR(45) NOT NULL UNIQUE,
   `name`       VARCHAR(45) NULL,
   `password`   VARCHAR(45) NOT NULL,
-  `registered` TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
+  `registered` TIMESTAMP            DEFAULT CURRENT_TIMESTAMP,
   INDEX `user_unique_email_idx`(`email`),
   PRIMARY KEY (`id`)
 )
+  AUTO_INCREMENT = 100000,
   ENGINE = InnoDB;
 
 
@@ -58,8 +60,8 @@ CREATE TABLE IF NOT EXISTS `user_role` (
   `role`    VARCHAR(45) NULL,
   PRIMARY KEY (`user_id`),
   CONSTRAINT `fk_user_role_user1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `user` (`id`)
+  FOREIGN KEY (`user_id`)
+  REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 )
@@ -81,16 +83,17 @@ CREATE TABLE IF NOT EXISTS `vote` (
   INDEX `fk_vote_hotel1_idx` (`hotel_id` ASC),
   INDEX `fk_vote_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_vote_hotel1`
-    FOREIGN KEY (`hotel_id`)
-    REFERENCES `hotel` (`id`)
+  FOREIGN KEY (`hotel_id`)
+  REFERENCES `hotel` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_id1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `user` (`id`)
+  FOREIGN KEY (`user_id`)
+  REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 )
+  AUTO_INCREMENT = 100000,
   ENGINE = InnoDB;
 
 --   //////////////////////////////////////////
@@ -101,6 +104,7 @@ CREATE TABLE IF NOT EXISTS `hotel` (
   `id`          INT           NOT NULL AUTO_INCREMENT,
   `name`        VARCHAR(45)   NOT NULL,
   `rating`      DECIMAL(2, 1) NULL,
+  `stars`       TINYINT       NULL,
   `country_id`  TINYINT       NOT NULL,
   `city_id`     INT           NOT NULL,
   `address`     VARCHAR(45)   NOT NULL,
@@ -110,25 +114,27 @@ CREATE TABLE IF NOT EXISTS `hotel` (
   INDEX `fk_hotel_country1_idx` (`country_id` ASC),
   INDEX `fk_hotel_city1_idx` (`city_id` ASC),
   CONSTRAINT `fk_hotel_country1`
-    FOREIGN KEY (`country_id`)
-    REFERENCES `country` (`id`)
+  FOREIGN KEY (`country_id`)
+  REFERENCES `country` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_hotel_city1`
-    FOREIGN KEY (`city_id`)
-    REFERENCES `city` (`id`)
+  FOREIGN KEY (`city_id`)
+  REFERENCES `city` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 )
+  AUTO_INCREMENT = 100000,
   ENGINE = InnoDB;
 
 
 DROP TABLE IF EXISTS `apt_type`;
 
 CREATE TABLE IF NOT EXISTS `apt_type` (
-  `id`        TINYINT NOT NULL,
-  `type`      VARCHAR(255) NULL,
-  `beds_num`  TINYINT NOT NULL,
+  `id`               TINYINT      NOT NULL,
+  `beds_arrangement` VARCHAR(255) NULL,
+  `category`         VARCHAR(255) NULL,
+  `person_num`       TINYINT      NOT NULL,
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB;
@@ -137,33 +143,41 @@ CREATE TABLE IF NOT EXISTS `apt_type` (
 DROP TABLE IF EXISTS `apartment`;
 
 CREATE TABLE IF NOT EXISTS `apartment` (
-  `id`          INT            NOT NULL AUTO_INCREMENT,
-  `type`        VARCHAR(45)    NOT NULL,
-  `persons_num` TINYINT        NOT NULL,
-  `reserved`    TINYINT        NOT NULL,
-  `extra_beds`  TINYINT,
-  `price`       DECIMAL(11, 4) NULL,
-  `hotel_id`    INT            NOT NULL,
+  `id`                INT            NOT NULL AUTO_INCREMENT,
+  `apt_type_id`       INT            NOT NULL,
+  `overall_quantity`  TINYINT        NOT NULL,
+  `reserved_quantity` TINYINT        NOT NULL,
+  `price`             DECIMAL(11, 4) NULL,
+  `hotel_id`          INT            NOT NULL,
   PRIMARY KEY (`id`, `hotel_id`),
   INDEX `fk_apartment_hotel1_idx` (`hotel_id` ASC),
+  INDEX `fk_apartment_apt_type1_idx` (`apt_type_id`),
   CONSTRAINT `fk_apartment_hotel1`
-    FOREIGN KEY (`hotel_id`)
-    REFERENCES `hotel` (`id`)
+  FOREIGN KEY (`hotel_id`)
+  REFERENCES `hotel` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_apartment_apt_type1`
+  FOREIGN KEY (`apt_type_id`)
+  REFERENCES `apt_type` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 )
+  AUTO_INCREMENT = 100000,
   ENGINE = InnoDB;
 
 
 DROP TABLE IF EXISTS `booking`;
 
 CREATE TABLE IF NOT EXISTS `booking` (
-  `id`                 BIGINT         NOT NULL,
+  `id`                 BIGINT         NOT NULL AUTO_INCREMENT,
   `active`             TINYINT        NOT NULL DEFAULT 0,
-  `date_added`         TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
+  `date_added`         TIMESTAMP               DEFAULT CURRENT_TIMESTAMP,
   `in_date`            TIMESTAMP      NULL,
   `out_date`           TIMESTAMP      NULL,
   `sum`                DECIMAL(11, 4) NULL,
+  `person_num`         TINYINT        NOT NULL,
+  `extra_beds`         TINYINT,
   `user_id`            INT            NOT NULL,
   `apartment_id`       INT            NOT NULL,
   `apartment_hotel_id` INT            NOT NULL,
@@ -171,16 +185,17 @@ CREATE TABLE IF NOT EXISTS `booking` (
   INDEX `fk_booking_user1_idx` (`user_id` ASC),
   INDEX `fk_booking_apartment1_idx` (`apartment_id` ASC, `apartment_hotel_id` ASC),
   CONSTRAINT `fk_booking_user1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `user` (`id`)
+  FOREIGN KEY (`user_id`)
+  REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_booking_apartment1`
-    FOREIGN KEY (`apartment_id`, `apartment_hotel_id`)
-    REFERENCES `apartment` (`id`, `hotel_id`)
+  FOREIGN KEY (`apartment_id`, `apartment_hotel_id`)
+  REFERENCES `apartment` (`id`, `hotel_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 )
+  AUTO_INCREMENT = 100000,
   ENGINE = InnoDB;
 
 

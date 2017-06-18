@@ -2,6 +2,7 @@ package com.kirak.model;
 
 import com.kirak.model.abstraction.NamedEntity;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -34,6 +35,10 @@ public class Hotel extends NamedEntity {
 
     @Column(name = "rating", precision=1, scale=1)
     private Double rating;
+
+    @Range(min = 1, max = 5)
+    @Column(name = "stars")
+    private Short stars;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
@@ -103,6 +108,14 @@ public class Hotel extends NamedEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Short getStars() {
+        return stars;
+    }
+
+    public void setStars(Short stars) {
+        this.stars = stars;
     }
 
     @Override

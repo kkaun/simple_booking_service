@@ -1,6 +1,5 @@
 package com.kirak.model;
 
-import com.kirak.model.abstraction.BaseIntEntity;
 import com.kirak.model.abstraction.BaseShortEntity;
 
 import javax.persistence.*;

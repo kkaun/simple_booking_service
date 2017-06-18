@@ -1,6 +1,7 @@
 package com.kirak.model;
 
 import com.kirak.model.abstraction.BaseIntEntity;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
@@ -21,7 +22,6 @@ public class City extends BaseIntEntity {
     @Column(name = "city_name")
     private String cityName;
 
-    @Range(min = 1, max = 200)
     @Column(name = "country_name")
     private String countryName;
 

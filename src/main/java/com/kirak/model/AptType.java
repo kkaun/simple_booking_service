@@ -1,6 +1,7 @@
 package com.kirak.model;
 
 import com.kirak.model.abstraction.BaseShortEntity;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
@@ -20,34 +21,48 @@ public class AptType extends BaseShortEntity {
     public static final String GET_ALL = "AptType.getAll";
     public static final String DELETE = "AptType.delete";
 
-    @Range(min = 3, max = 255)
-    @Column(name = "type")
-    private String type;
+    @Length(min = 3, max = 255)
+    @Column(name = "beds_arrangement")
+    private String bedsArrangement;
 
-    @Column(name = "beds_num")
-    private Short bedsNum;
+    @Length(min = 3, max = 255)
+    @Column(name = "category")
+    private String category;
 
-    public String getType() {
-        return type;
+    @Column(name = "person_num")
+    private Short personNum;
+
+
+    public String getCategory() {
+        return category;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public Short getBedsNum() {
-        return bedsNum;
+    public String getBedsArrangement() {
+        return bedsArrangement;
     }
 
-    public void setBedsNum(Short bedsNum) {
-        this.bedsNum = bedsNum;
+    public void setBedsArrangement(String bedsArrangement) {
+        this.bedsArrangement = bedsArrangement;
+    }
+
+    public Short getPersonNum() {
+        return personNum;
+    }
+
+    public void setPersonNum(Short personNum) {
+        this.personNum = personNum;
     }
 
     @Override
     public String toString() {
         return "AptType{" +
-                "type='" + type + '\'' +
-                ", bedsNum=" + bedsNum +
+                ", beds arrangement='" + bedsArrangement + '\'' +
+                ", category='" + category + '\'' +
+                ", personNum=" + personNum +
                 '}';
     }
 }
