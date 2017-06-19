@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 /**
  * Created by Kir on 30.05.2017.
@@ -62,6 +63,15 @@ public class Hotel extends NamedEntity {
     @Column(name = "description", columnDefinition = "TINYTEXT")
     private String description;
 
+    @Temporal(TemporalType.TIME)
+    @Column(name = "check_in")
+    private Date checkIn;
+
+    @Temporal(TemporalType.TIME)
+    @Column(name = "check_out")
+    private Date checkOut;
+
+
     public Double getRating() {
         return rating;
     }
@@ -112,6 +122,22 @@ public class Hotel extends NamedEntity {
 
     public Short getStars() {
         return stars;
+    }
+
+    public Date getCheckIn() {
+        return checkIn;
+    }
+
+    public void setCheckIn(Date checkIn) {
+        this.checkIn = checkIn;
+    }
+
+    public Date getCheckOut() {
+        return checkOut;
+    }
+
+    public void setCheckOut(Date checkOut) {
+        this.checkOut = checkOut;
     }
 
     public void setStars(Short stars) {

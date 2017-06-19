@@ -1,62 +1,4 @@
 
-
--- admin
-INSERT INTO users (name, email, password)
-VALUES ('User', 'user@yandex.ru', '000111');
-INSERT INTO users (name, email, password)
-VALUES ('User1', 'user1@yandex.ru', '111222');
-
--- password
-INSERT INTO users (name, email, password)
-VALUES ('Admin', 'admin@gmail.com', '222333');
-
-INSERT INTO user_roles (role, user_id) VALUES
-  ('ROLE_USER', 100000),
-  ('ROLE_ADMIN', 100001),
-  ('ROLE_USER', 100001),
-  ('ROLE_USER', 100001),
-  ('ROLE_USER', 100001);
-
-
-
-INSERT INTO apartment (type, reserved, extra_beds, price, hotel_id)
-    VALUES
-      ();
-
-
-
-INSERT INTO hotel (name, rating, country_id, city_id, phone, description)
-    VALUES
-      ();
-
-
-
-INSERT INTO apt_type(beds_arrangement, category, person_num)
-    VALUES
-      ('ONE SINGLE BED', 'STANDARD', 1),
-      ('TWO SINGLE BEDS', 'STANDARD', 2),
-      ('TWO SEPARATE BEDS', 'STANDARD', 2),
-      ('TWO SINGLE BEDS', 'IMPROVED', 2),
-      ('TWO SEPARATE BEDS', 'IMPROVED', 2),
-      ('TWO SEPARATE BEDS', 'COMFORT', 2),
-      ('THREE-PERSON WITH SEPARATE BEDS', 'FAMILY NUMBER', 3),
-      ('THREE-PERSON WITH TWIN BED', 'FAMILY NUMBER', 3),
-      ('FOUR-PERSON WITH SEPARATE BEDS', 'FAMILY NUMBER', 4),
-      ('FOUR-PERSON WITH TWIN BEDS', 'FAMILY NUMBER', 4),
-      ('FIVE-PERSON WITH SEPARATE BEDS', 'FAMILY NUMBER', 5),
-      ('FIVE-PERSON WITH TWIN BEDS', 'FAMILY NUMBER', 5),
-      ('SIX-PERSON WITH SEPARATE BEDS', 'FAMILY NUMBER', 6),
-      ('SIX-PERSON WITH TWIN BEDS', 'FAMILY NUMBER', 6),
-      ('FOUR-PERSON', 'HOSTEL', 4),
-      ('FIVE-PERSON', 'HOSTEL', 5),
-      ('SIX-PERSON', 'HOSTEL', 6),
-      ('SEVEN-PERSON', 'HOSTEL', 7),
-      ('HOSTEL-PERSON', 'HOSTEL', 8),
-      ('HOSTEL-PERSON', 'HOSTEL', 9),
-      ('HOSTEL-PERSON', 'HOSTEL', 10);
-
-
-
 INSERT INTO country
 (country_name)
 VALUES
@@ -577,7 +519,7 @@ VALUES
   ('Gongzhuling', 'China'),
   ('Changshu', 'China'),
   ('Qom', 'Iran'),
-  ('Dnipropetrovsk', 'Ukraine'),
+  ('Dnipro', 'Ukraine'),
   ('Freetown', 'Sierra Leone'),
   ('Sendai', 'Japan'),
   ('Dakar', 'Senegal'),
@@ -781,3 +723,115 @@ VALUES
   ('Atlanta', 'USA'),
   ('Sheffield', 'UK'),
   ('Surakarta', 'Indonesia');
+
+
+
+
+
+
+
+
+
+
+INSERT INTO users (name, email, password)
+VALUES ('User', 'user@yandex.ru', '000111'),
+('User1', 'user1@yandex.ru', '111222'),
+('User1', 'user2@yandex.ru', '444555'),
+('User1', 'user3@yandex.ru', '555666');
+
+
+INSERT INTO users (name, email, password)
+VALUES ('Admin', 'admin@gmail.com', '222333');
+
+INSERT INTO user_roles (role, user_id) VALUES
+  ('ROLE_USER', 100001),
+  ('ROLE_SYSTEM_ADMIN', 100001),
+  ('ROLE_HOTEL_MANAGER', 100001),
+  ('ROLE_USER', 100003),
+  ('ROLE_USER', 100004),
+  ('ROLE_USER', 100005),
+  ('ROLE_HOTEL_MANAGER', 100005);
+
+
+
+
+INSERT INTO hotel (name, rating, stars, country_id, city_id, address, phone, description, check_in, check_out)
+VALUES
+  ('Astoryia', 7.8, 3, 111, 84, 'Address, 3/43', '+8943543353', 'Description desc desc desc desc desc desc', '14:00:00', '12:00:00'),
+  ('Radyossun', 8.8, 4, 111, 521, '+8943367573', 'Address, 5/53', 'Description desc  desc desc desc desc desc', '14:00:00', '12:00:00'),
+  ('Otel', 7.8, 3, 111, 393, '+8943543353', 'Address, 8/76', 'Description desc desc desc desc desc', '14:00:00', '12:00:00'),
+  ('Kosmos', 7.8, 4, 87, 10, '+7943999953', 'Address, 2/51', 'Description desc desc desc desc desc desc', '14:00:00', '12:00:00'),
+  ('Perk Inn', 7.8, 5, 87, 43, '+79449980953', 'Address, 11/58', 'Description desc desc desc desc desc desc', '14:00:00', '12:00:00');
+
+
+INSERT INTO apt_type(beds_arrangement, category, person_num)
+VALUES
+  ('ONE SINGLE BED', 'STANDARD', 1),
+  ('TWO SINGLE BEDS', 'STANDARD', 2),
+  ('TWO SEPARATE BEDS', 'STANDARD', 2),
+  ('TWO SINGLE BEDS', 'IMPROVED', 2),
+  ('TWO SEPARATE BEDS', 'IMPROVED', 2),
+  ('TWO SEPARATE BEDS', 'COMFORT', 2),
+  ('THREE-PERSON WITH SEPARATE BEDS', 'FAMILY NUMBER', 3),
+  ('THREE-PERSON WITH TWIN BED', 'FAMILY NUMBER', 3),
+  ('FOUR-PERSON WITH SEPARATE BEDS', 'FAMILY NUMBER', 4),
+  ('FOUR-PERSON WITH TWIN BEDS', 'FAMILY NUMBER', 4),
+  ('FIVE-PERSON WITH SEPARATE BEDS', 'FAMILY NUMBER', 5),
+  ('FIVE-PERSON WITH TWIN BEDS', 'FAMILY NUMBER', 5),
+  ('SIX-PERSON WITH SEPARATE BEDS', 'FAMILY NUMBER', 6),
+  ('SIX-PERSON WITH TWIN BEDS', 'FAMILY NUMBER', 6),
+  ('FOUR-PERSON WITH SEPARATE BEDS', 'HOSTEL ROOM', 4),
+  ('FOUR-PERSON WITH BUNK BEDS', 'HOSTEL ROOM', 4),
+  ('FIVE-PERSON WITH SEPARATE BEDS', 'HOSTEL ROOM', 5),
+  ('FIVE-PERSON WITH BUNK BEDS', 'HOSTEL ROOM', 5),
+  ('SIX-PERSON WITH SEPARATE BEDS', 'HOSTEL ROOM', 6),
+  ('SIX-PERSON WITH BUNK BEDS', 'HOSTEL ROOM', 6),
+  ('SEVEN-PERSON WITH SEPARATE BEDS', 'HOSTEL ROOM', 7),
+  ('SEVEN-PERSON WITH BUNK BEDS', 'HOSTEL ROOM', 7),
+  ('EIGHT-PERSON WITH SEPARATE BEDS', 'HOSTEL ROOM', 8),
+  ('EIGHT-PERSON WITH BUNK BEDS', 'HOSTEL ROOM', 8),
+  ('NINE-PERSON WITH SEPARATE BEDS', 'HOSTEL ROOM', 9),
+  ('NINE-PERSON WITH BUNK BEDS', 'HOSTEL ROOM', 9),
+  ('TEN-PERSON WITH SEPARATE BEDS', 'HOSTEL ROOM', 10),
+  ('TEN-PERSON WITH BUNK BEDS', 'HOSTEL ROOM', 10);
+
+
+
+INSERT INTO apartment (apt_type_id, overall_quantity, reserved_quantity, price, hotel_id)
+    VALUES
+      (3, 6, 4, 2000.00, 100001),
+      (4, 3, 3, 3000.00, 100001),
+      (1, 2, 2, 1200.00, 100002),
+      (2, 4, 3, 1600.00, 100002),
+      (3, 5, 4, 1200.00, 100002),
+      (1, 2, 1, 1400.00, 100003),
+      (2, 3, 1, 1800.00, 100003),
+      (5, 4, 2, 5000.00, 100003),
+      (2, 6, 4, 1500.00, 100004),
+      (3, 3, 2, 2300.00, 100004),
+      (1, 7, 6, 1000.00, 100005),
+      (3, 2, 2, 3200.00, 100005),
+      (5, 3, 1, 4000.00, 100005);
+
+
+
+INSERT INTO booking (active, date_added, in_date, out_date, sum, person_num, extra_beds, user_id, apartment_id, apartment_hotel_id)
+    VALUES
+      (0, '2016-05-23 10:00:00', '2016-06-14 14:00:00', '2017-06-15 12:00:00', 5000, 4, 0, 100001, 100001, 100001),
+      (0, '2016-03-21 10:00:00', '2016-03-30 14:00:00', '2017-06-30 12:00:00', 5000, 4, 0, 100002, 100003, 100002),
+      (0, '2017-05-11 10:00:00', '2017-06-30 14:00:00', '2017-06-30 12:00:00', 5000, 4, 0, 100002, 100007, 100003),
+      (0, '2017-05-12 10:00:00', '2017-07-30 14:00:00', '2017-07-30 12:00:00', 5000, 4, 0, 100003, 100010, 100004),
+      (0, '2017-05-14 10:00:00', '2017-08-30 14:00:00', '2017-08-30 12:00:00', 5000, 4, 0, 100004, 100011, 100005),
+      (0, '2017-05-27 10:00:00', '2017-09-30 14:00:00', '2017-09-30 12:00:00', 5000, 4, 0, 100005, 100011, 100005);
+
+
+INSERT INTO vote (rate, user_comment, date_added, user_id, hotel_id)
+    VALUES
+      (8.5, 'User comment!', '2017-01-30 17:05:01', 100001, 100001),
+      (6.5, 'User comment!', '2017-03-30 13:07:34', 100002, 100002);
+
+
+
+
+
+

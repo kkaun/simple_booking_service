@@ -26,9 +26,8 @@ public class Booking extends BaseLongEntity {
     public static final String GET_ALL_BY_HOTEL_BETWEEN_DATES = "Booking.getAllByHotelBetweenDates";
 
     @NotNull
-    @Range(min = 0, max = 1)
-    @Column(name = "active")
-    private Short active = 0;
+    @Column(name = "active",  nullable = false, columnDefinition = "boolean default true")
+    private boolean active;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @NotNull
