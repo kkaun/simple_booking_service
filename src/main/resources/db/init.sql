@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email`      VARCHAR(45) NOT NULL UNIQUE,
   `name`       VARCHAR(45) NULL,
   `password`   VARCHAR(45) NOT NULL,
-  `registered` TIMESTAMP            DEFAULT CURRENT_TIMESTAMP,
+  `registered` TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
   INDEX `user_unique_email_idx`(`email`),
   PRIMARY KEY (`id`)
 )
@@ -146,14 +146,14 @@ DROP TABLE IF EXISTS `apartment`;
 
 CREATE TABLE IF NOT EXISTS `apartment` (
   `id`                INT            NOT NULL AUTO_INCREMENT,
-  `apt_type_id`       INT            NOT NULL,
+  `apt_type_id`       TINYINT        NOT NULL,
   `overall_quantity`  TINYINT        NOT NULL,
   `reserved_quantity` TINYINT        NOT NULL,
   `price`             DECIMAL(11, 4) NULL,
   `hotel_id`          INT            NOT NULL,
   PRIMARY KEY (`id`, `hotel_id`),
   INDEX `fk_apartment_hotel1_idx` (`hotel_id` ASC),
-  INDEX `fk_apartment_apt_type1_idx` (`apt_type_id`),
+  INDEX `fk_apartment_apt_type1_idx` (`apt_type_id` ASC),
   CONSTRAINT `fk_apartment_hotel1`
   FOREIGN KEY (`hotel_id`)
   REFERENCES `hotel` (`id`)
@@ -175,8 +175,8 @@ CREATE TABLE IF NOT EXISTS `booking` (
   `id`                 BIGINT         NOT NULL AUTO_INCREMENT,
   `active`             BOOLEAN        DEFAULT TRUE,
   `date_added`         TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
-  `in_date`            TIMESTAMP      NOT NULL,
-  `out_date`           TIMESTAMP      NOT NULL,
+  `in_date`            TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
+  `out_date`           TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
   `sum`                DECIMAL(11, 4) NOT NULL,
   `person_num`         TINYINT        NOT NULL,
   `extra_beds`         TINYINT        NULL,
@@ -185,7 +185,8 @@ CREATE TABLE IF NOT EXISTS `booking` (
   `apartment_hotel_id` INT            NOT NULL,
   PRIMARY KEY (`id`, `user_id`, `apartment_id`, `apartment_hotel_id`),
   INDEX `fk_booking_user1_idx` (`user_id` ASC),
-  INDEX `fk_booking_apartment1_idx` (`apartment_id` ASC, `apartment_hotel_id` ASC),
+  INDEX `fk_booking_apartment1_idx` (`apartment_id` ASC),
+  INDEX `fk_booking_apartment_hotel1_idx` (`apartment_hotel_id` ASC),
   CONSTRAINT `fk_booking_user1`
   FOREIGN KEY (`user_id`)
   REFERENCES `user` (`id`)
@@ -194,8 +195,8 @@ CREATE TABLE IF NOT EXISTS `booking` (
   CONSTRAINT `fk_booking_apartment1`
   FOREIGN KEY (`apartment_id`, `apartment_hotel_id`)
   REFERENCES `apartment` (`id`, `hotel_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION
 )
   AUTO_INCREMENT = 100000,
   ENGINE = InnoDB;

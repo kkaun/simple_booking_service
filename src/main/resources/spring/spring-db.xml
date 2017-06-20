@@ -28,7 +28,7 @@
     </beans>
 
 
-    <beans profile="jpa,datajpa">
+    <beans profile="jpa,com.kirak.service.datajpa">
         <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
               p:dataSource-ref="dataSource"
               p:packagesToScan="ru.javawebinar.**.model">
@@ -68,7 +68,7 @@
     </beans>
 
 
-    <beans profile="datajpa">
+    <beans profile="com.kirak.service.datajpa">
         <context:component-scan base-package="com.kirak.**.repository.datajpa"/>
         <jpa:repositories base-package="com.kirak.**.repository.datajpa"/>
     </beans>

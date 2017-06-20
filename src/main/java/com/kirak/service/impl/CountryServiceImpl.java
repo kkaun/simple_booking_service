@@ -1,10 +1,7 @@
 package com.kirak.service.impl;
 
-import com.kirak.model.City;
 import com.kirak.model.Country;
-import com.kirak.repository.CityRepository;
 import com.kirak.repository.CountryRepository;
-import com.kirak.service.CityService;
 import com.kirak.service.CountryService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

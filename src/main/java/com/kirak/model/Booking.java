@@ -75,11 +75,11 @@ public class Booking extends BaseLongEntity {
     private Hotel hotel;
 
 
-    public Short getActive() {
+    public boolean isActive() {
         return active;
     }
 
-    public void setActive(Short active) {
+    public void setActive(boolean active) {
         this.active = active;
     }
 
