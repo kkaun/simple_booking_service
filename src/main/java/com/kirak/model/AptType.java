@@ -10,7 +10,7 @@ import javax.persistence.*;
  * Created by Kir on 11.06.2017.
  */
 
-@NamedQueries({@NamedQuery(name = AptType.GET_ALL, query = "SELECT t FROM AptType t ORDER BY t.type ASC"),
+@NamedQueries({@NamedQuery(name = AptType.GET_ALL, query = "SELECT t FROM AptType t ORDER BY t.personNum ASC"),
         @NamedQuery(name = AptType.DELETE, query = "DELETE FROM AptType t WHERE t.id=:id")
 })
 

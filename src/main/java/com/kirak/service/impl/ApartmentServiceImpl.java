@@ -51,13 +51,8 @@ public class ApartmentServiceImpl implements ApartmentService {
     }
 
     @Override
-    public List<Apartment> getAllSortedByPersonsNum(int hotelId) {
-        return repository.getAllByPersonsNum(hotelId);
-    }
-
-    @Override
-    public List<Apartment> getAllSortedByPrice(int hotelId) {
-        return repository.getAllByPrice(hotelId);
+    public List<Apartment> getAllByHotel(int hotelId) {
+        return repository.getAllByHotel(hotelId);
     }
 
     @Override

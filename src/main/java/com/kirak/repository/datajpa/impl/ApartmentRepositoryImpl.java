@@ -46,12 +46,12 @@ public class ApartmentRepositoryImpl implements ApartmentRepository {
     }
 
     @Override
-    public List<Apartment> getAllByPersonsNum(int hotelId) {
-        return apartmentRepository.getByAllByPersonsNum(hotelId);
+    public List<Apartment> getAllByHotel(int hotelId) {
+        return apartmentRepository.getAllByHotel(hotelId);
     }
 
     @Override
-    public List<Apartment> getAllByPrice(int hotelId) {
-        return apartmentRepository.getAllByPrice(hotelId);
+    public List<Apartment> getAll() {
+        return apartmentRepository.findAll();
     }
 }

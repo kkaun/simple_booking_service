@@ -5,6 +5,8 @@ import com.kirak.model.Apartment;
 import com.kirak.model.abstraction.BaseIntEntity;
 
 import java.time.Month;
+import java.util.Arrays;
+import java.util.List;
 
 import static com.kirak.mock.AptTypeTestData.*;
 import static com.kirak.mock.HotelTestData.*;
@@ -30,12 +32,13 @@ public class ApartmentTestData {
     public static final Apartment APARTMENT4 = new Apartment(APARTMENT4_ID, TYPE4, (short)3, (short)1, 4600.00, HOTEL3);
     public static final Apartment APARTMENT5 = new Apartment(APARTMENT5_ID, TYPE5, (short)6, (short)2, 5200.00, HOTEL4);
 
+    public static final List<Apartment> APARTMENTS = Arrays.asList(APARTMENT1, APARTMENT2, APARTMENT3, APARTMENT4, APARTMENT5);
 
-    public static Apartment getCreated() {
+    public static Apartment getCreatedApartment() {
         return new Apartment(null, TYPE3, (short)7, (short)3, 1850.00, HOTEL3);
     }
 
-    public static Apartment getUpdated() {
+    public static Apartment getUpdatedApartment() {
         return new Apartment(APARTMENT1_ID, APARTMENT1.getType(), APARTMENT1.getOverallQuantity(), (short)0, 1450.00, HOTEL1);
     }
 

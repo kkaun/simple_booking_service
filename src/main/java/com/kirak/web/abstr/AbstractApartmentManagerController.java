@@ -31,7 +31,7 @@ public class AbstractApartmentManagerController {
         return null;
     }
 
-    List<Apartment> getAllSortedByPrice(int hotelId){
+    List<Apartment> getAllByHotel(int hotelId){
         return null;
     }
 }

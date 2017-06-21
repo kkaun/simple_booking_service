@@ -12,16 +12,10 @@ import javax.validation.constraints.NotNull;
 
 
 @NamedQueries({
-        @NamedQuery(name = Apartment.GET_ALL_BY_HOTEL_PERSONS_NUM, query = "SELECT a FROM Apartment a WHERE a.hotel.id=:hotelId " +
-                "ORDER BY a.type.personNum ASC"),
         @NamedQuery(name = Apartment.DELETE, query = "DELETE FROM Apartment a WHERE a.id=:apartmentId " +
                 "AND a.hotel.id=:hotelId"),
         @NamedQuery(name = Apartment.GET_ALL_BY_PRICE, query = "SELECT a FROM Apartment a WHERE a.hotel.id=:hotelId " +
-                "ORDER BY a.price ASC"),
-        @NamedQuery(name = Apartment.GET_ALL_BY_ARRANGEMENT, query = "SELECT a FROM Apartment a " +
-                "WHERE a.type.bedsArrangement=:bedsArrangement ORDER BY a.type.personNum ASC"),
-        @NamedQuery(name = Apartment.GET_ALL_BY_CATEGORY, query = "SELECT a FROM Apartment a WHERE " +
-                "a.type.category=:category ORDER BY a.type.personNum ASC")
+                "ORDER BY a.price ASC")
 })
 
 @Entity
@@ -29,7 +23,7 @@ import javax.validation.constraints.NotNull;
 public class Apartment extends BaseIntEntity {
 
     public static final String GET_ALL_BY_HOTEL_PERSONS_NUM = "Apartment.getAllByPersonsNum";
-    public static final String GET_ALL_BY_PRICE = "Apartment.getAllByPrice";
+    public static final String GET_ALL_BY_PRICE = "Apartment.getAllByHotel";
     public static final String GET_ALL_BY_ARRANGEMENT = "Apartment.getAllByArrangement";
     public static final String GET_ALL_BY_CATEGORY = "Apartment.getAllByType";
     public static final String DELETE = "Apartment.delete";

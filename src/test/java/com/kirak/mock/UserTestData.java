@@ -58,12 +58,12 @@ public class UserTestData {
     );
 
 
-    public static User getCreated() {
+    public static User getCreatedUser() {
         User created = new User(null, "User NEW", "user1@yandex.ru", "password1", USER1_BOOKINGS, UserRole.ROLE_USER);
         return created;
     }
 
-    public static User getUpdated() {
+    public static User getUpdatedUser() {
         User updated = new User(USER1_ID, "User UPDATED", "user1@yandex.ru", "password1", USER1_BOOKINGS, UserRole.ROLE_USER);
         return updated;
     }

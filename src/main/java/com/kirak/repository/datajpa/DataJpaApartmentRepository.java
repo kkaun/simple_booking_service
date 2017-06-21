@@ -25,11 +25,8 @@ public interface DataJpaApartmentRepository extends JpaRepository<Apartment, Int
     @Override
     Apartment save(Apartment apartment);
 
-    @Query(Apartment.GET_ALL_BY_HOTEL_PERSONS_NUM)
-    List<Apartment> getByAllByPersonsNum(@Param("hotelId") int hotelId);
-
     @Query(Apartment.GET_ALL_BY_PRICE)
-    List<Apartment> getAllByPrice(@Param("hotelId") int hotelId);
+    List<Apartment> getAllByHotel(@Param("hotelId") int hotelId);
 
     @Override
     List<Apartment> findAll();

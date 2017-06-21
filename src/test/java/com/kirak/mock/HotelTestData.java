@@ -4,6 +4,8 @@ import com.kirak.matchers.ModelMatcher;
 import com.kirak.model.Hotel;
 import java.sql.Time;
 import java.time.LocalTime;
+import java.util.Arrays;
+import java.util.List;
 
 import static com.kirak.mock.CityTestData.*;
 import static com.kirak.mock.CountryTestData.RUSSIA;
@@ -34,13 +36,14 @@ public class HotelTestData {
     public static final Hotel HOTEL4 = new Hotel(HOTEL4_ID, "HOTEL4", 7.4, (short)4, UKRAINE, LVIV, "Address4",
             null, "Description4", Time.valueOf(CHECK_IN), Time.valueOf(CHECK_OUT));
 
+    public static final List<Hotel> HOTELS = Arrays.asList(HOTEL1, HOTEL2, HOTEL3, HOTEL4);
 
-    public static Hotel getCreated() {
+    public static Hotel getCreatedHotel() {
         return new Hotel(null, "HOTEL1", 7.0, (short)3, RUSSIA, ST_PETERSBURG, "Address3253",
                 "8943112333", null, Time.valueOf(CHECK_IN), Time.valueOf(CHECK_OUT));
     }
 
-    public static Hotel getUpdated() {
+    public static Hotel getUpdatedHotel() {
         return new Hotel(HOTEL1_ID, "HOTEL1", 9.3, (short)3, HOTEL1.getCountry(), HOTEL1.getCity(), HOTEL1.getAddress(),
                 "89433543464", "Adding description in editing", Time.valueOf(CHECK_IN), Time.valueOf(CHECK_OUT));
     }

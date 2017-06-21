@@ -48,6 +48,11 @@ public class BookingRepositoryImpl implements BookingRepository {
     }
 
     @Override
+    public List<Booking> getAll() {
+        return bookingRepository.findAll();
+    }
+
+    @Override
     public List<Booking> getAllByUserId(int userId) {
         return bookingRepository.getAllByUserId(userId);
     }

@@ -4,6 +4,8 @@ import com.kirak.matchers.ModelMatcher;
 import com.kirak.model.Booking;
 
 import java.time.Month;
+import java.util.Arrays;
+import java.util.List;
 
 import static com.kirak.mock.ApartmentTestData.*;
 import static com.kirak.mock.HotelTestData.*;
@@ -45,13 +47,16 @@ public class BookingTestData {
             31200.00, (short)4, (short)0, ADMIN, APARTMENT5, HOTEL4);
 
 
-    public static Booking getCreated() {
+    public static final List<Booking> BOOKINGS = Arrays.asList(BOOKING1, BOOKING2, BOOKING5, BOOKING3, BOOKING4);
+
+
+    public static Booking getCreatedBooking() {
         return new Booking(null, false, of(2016, Month.SEPTEMBER, 8, 19, 25),
                 of(2017, Month.JUNE, 17, 14, 0), of(2017, Month.JUNE, 27, 12, 0),
                 3200.00, (short)2, (short)0, USER2, APARTMENT2, HOTEL2);
     }
 
-    public static Booking getUpdated() {
+    public static Booking getUpdatedBooking() {
         return new Booking(BOOKING1_ID, true, BOOKING1.getDateAdded(), BOOKING1.getInDate(),
                 of(2017, Month.JUNE, 12, 12, 0),
                 3200.00, (short)2, (short)0, BOOKING1.getUser(), BOOKING1.getApartment(), BOOKING1.getHotel());

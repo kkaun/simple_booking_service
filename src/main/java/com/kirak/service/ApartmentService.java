@@ -18,9 +18,7 @@ public interface ApartmentService {
 
     Apartment get(Integer id, int hotelId) throws NotFoundException;
 
-    List<Apartment> getAllSortedByPersonsNum(int hotelId);
-
-    List<Apartment> getAllSortedByPrice(int hotelId);
+    List<Apartment> getAllByHotel(int hotelId);
 
     List<Apartment> getAll();
 }

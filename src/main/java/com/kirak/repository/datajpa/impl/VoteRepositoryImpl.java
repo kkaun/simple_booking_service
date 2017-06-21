@@ -51,4 +51,9 @@ public class VoteRepositoryImpl implements VoteRepository {
     public List<Vote> getAllByUser(int userId) {
         return voteRepository.getAllByUser(userId );
     }
+
+    @Override
+    public List<Vote> getAll() {
+        return voteRepository.findAll();
+    }
 }
