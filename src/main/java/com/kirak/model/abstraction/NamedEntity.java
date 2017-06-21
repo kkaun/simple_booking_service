@@ -21,6 +21,11 @@ public class NamedEntity extends BaseIntEntity {
         this.name = name;
     }
 
+    protected NamedEntity(Integer id, String name) {
+        super(id);
+        this.name = name;
+    }
+
     public void setName(String name) {
         this.name = name;
     }

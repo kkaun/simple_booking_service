@@ -32,6 +32,12 @@ public class AptType extends BaseShortEntity {
     @Column(name = "person_num")
     private Short personNum;
 
+    public AptType(short id, String bedsArrangement, String category, Short personNum) {
+        super(id);
+        this.bedsArrangement = bedsArrangement;
+        this.category = category;
+        this.personNum = personNum;
+    }
 
     public String getCategory() {
         return category;

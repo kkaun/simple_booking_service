@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.sql.Time;
 import java.util.Date;
 
 /**
@@ -65,12 +66,25 @@ public class Hotel extends NamedEntity {
 
     @Temporal(TemporalType.TIME)
     @Column(name = "check_in")
-    private Date checkIn;
+    private Time checkIn;
 
     @Temporal(TemporalType.TIME)
     @Column(name = "check_out")
-    private Date checkOut;
+    private Time checkOut;
 
+    public Hotel(Integer id, String name, Double rating, Short stars, Country country, City city, String address,
+                 String phone, String description, Time checkIn, Time checkOut) {
+        super(id, name);
+        this.rating = rating;
+        this.stars = stars;
+        this.country = country;
+        this.city = city;
+        this.address = address;
+        this.phone = phone;
+        this.description = description;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+    }
 
     public Double getRating() {
         return rating;
@@ -124,19 +138,19 @@ public class Hotel extends NamedEntity {
         return stars;
     }
 
-    public Date getCheckIn() {
+    public Time getCheckIn() {
         return checkIn;
     }
 
-    public void setCheckIn(Date checkIn) {
+    public void setCheckIn(Time checkIn) {
         this.checkIn = checkIn;
     }
 
-    public Date getCheckOut() {
+    public Time getCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(Date checkOut) {
+    public void setCheckOut(Time checkOut) {
         this.checkOut = checkOut;
     }
 

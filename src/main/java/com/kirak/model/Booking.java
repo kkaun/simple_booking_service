@@ -74,6 +74,20 @@ public class Booking extends BaseLongEntity {
     @JoinColumn(name = "apartment_hotel_id")
     private Hotel hotel;
 
+    public Booking(Long id, boolean active, LocalDateTime dateAdded, LocalDateTime inDate, LocalDateTime outDate,
+                   Double sum, Short personNum, Short extraBeds, User user, Apartment apartment, Hotel hotel) {
+        super(id);
+        this.active = active;
+        this.dateAdded = dateAdded;
+        this.inDate = inDate;
+        this.outDate = outDate;
+        this.sum = sum;
+        this.personNum = personNum;
+        this.extraBeds = extraBeds;
+        this.user = user;
+        this.apartment = apartment;
+        this.hotel = hotel;
+    }
 
     public boolean isActive() {
         return active;

@@ -56,7 +56,14 @@ public class Apartment extends BaseIntEntity {
     @JoinColumn(name = "hotel_id", nullable = false)
     private Hotel hotel;
 
-
+    public Apartment(Integer id, AptType type, Short overallQuantity, Short reservedQuantity, Double price, Hotel hotel) {
+        super(id);
+        this.type = type;
+        this.overallQuantity = overallQuantity;
+        this.reservedQuantity = reservedQuantity;
+        this.price = price;
+        this.hotel = hotel;
+    }
 
     public AptType getType() {
         return type;

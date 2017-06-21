@@ -41,6 +41,15 @@ public class Vote extends BaseIntEntity {
     @JoinColumn(name = "hotel_id", nullable = false)
     private Hotel hotel;
 
+    public Vote(Integer id, Double rate, String userComment, LocalDateTime dateAdded, User user, Hotel hotel) {
+        super(id);
+        this.rate = rate;
+        this.userComment = userComment;
+        this.dateAdded = dateAdded;
+        this.user = user;
+        this.hotel = hotel;
+    }
+
     public Double getRate() {
         return rate;
     }

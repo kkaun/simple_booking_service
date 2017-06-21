@@ -29,7 +29,12 @@ public class City extends BaseIntEntity {
     @JoinColumn(name = "country_name")
     private Country country;
 
-
+    public City(Integer id, String cityName, String countryName, Country country) {
+        super(id);
+        this.cityName = cityName;
+        this.countryName = countryName;
+        this.country = country;
+    }
 
     public String getCityName() {
         return cityName;

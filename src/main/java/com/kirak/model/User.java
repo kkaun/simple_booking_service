@@ -5,6 +5,7 @@ import org.hibernate.annotations.*;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
@@ -61,6 +62,25 @@ public class User extends NamedEntity {
     private Set<Vote> votes;
 
 
+    public User(User u) {
+        this(u.getId(), u.getName(), u.getEmail(), u.getPassword(), u.getRegistered(), u.getBookings(), u.getRoles());
+    }
+
+    public User(Integer id, String name, String email, String password, Set<Booking> bookings, UserRole role, UserRole... roles) {
+        this(id, name, email, password, new Date(), bookings, EnumSet.of(role, roles));
+    }
+
+    public User(Integer id, String name, String email, String password, Date registered, Set<Booking> bookings, Collection<UserRole> roles) {
+        super(id, name);
+        this.email = email;
+        this.password = password;
+        this.bookings = bookings;
+        this.registered = registered;
+        setRoles(roles);
+    }
+
+
+
     public String getEmail() {
         return email;
     }
@@ -89,8 +109,8 @@ public class User extends NamedEntity {
         return roles;
     }
 
-    public void setRoles(Set<UserRole> roles) {
-        this.roles = roles;
+    public void setRoles(Collection<UserRole> roles) {
+        this.roles = CollectionUtils.isEmpty(roles) ? Collections.emptySet() : EnumSet.copyOf(roles);
     }
 
     public Set<Booking> getBookings() {

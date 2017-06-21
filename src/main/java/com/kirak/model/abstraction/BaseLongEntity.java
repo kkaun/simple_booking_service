@@ -4,6 +4,8 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 
+import static com.kirak.model.abstraction.BaseIntEntity.START_SEQ;
+
 /**
  * Created by Kir on 13.06.2017.
  */
@@ -12,10 +14,10 @@ import javax.persistence.*;
 @MappedSuperclass
 public class BaseLongEntity implements BaseEntity {
 
-    public static final int START_SEQ = 100000;
+    public static final long START_SEQ_LONG = 100000;
 
     @Id
-    @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1, initialValue = START_SEQ)
+    @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1, initialValue = (int)START_SEQ_LONG)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

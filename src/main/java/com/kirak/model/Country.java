@@ -23,6 +23,12 @@ public class Country extends BaseShortEntity {
     @OneToMany(fetch = FetchType.LAZY)
     private Set<City> cities;
 
+    public Country(Short id, String countryName, Set<City> cities) {
+        super(id);
+        this.countryName = countryName;
+        this.cities = cities;
+    }
+
     public String getCountryName() {
         return countryName;
     }
