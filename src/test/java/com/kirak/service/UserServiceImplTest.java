@@ -1,13 +1,25 @@
 package com.kirak.service;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created by Kir on 19.06.2017.
  */
 public class UserServiceImplTest {
+
+    @Autowired
+    private UserService service;
+
+    @Before
+    public void setUp() throws Exception{
+        service.evictCache();
+    }
+
     @Test
     public void save() throws Exception {
+
     }
 
     @Test

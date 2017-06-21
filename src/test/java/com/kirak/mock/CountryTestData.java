@@ -15,6 +15,9 @@ import static com.kirak.mock.CityTestData.*;
  */
 public class CountryTestData {
 
+    public static final Short RUSSIA_ID = (short)1;
+    public static final Short UKRAINE_ID = (short)2;
+
     public static final Set<City> RUSSIAN_CITIES = new HashSet<City>(Arrays.asList(new City[] {MOSCOW, ST_PETERSBURG}));
     public static final Set<City> UKRAINIAN_CITIES = new HashSet<City>(Arrays.asList(new City[] {KYIV, LVIV}));
 

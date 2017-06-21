@@ -27,6 +27,9 @@ public interface DataJpaBookingRepository extends JpaRepository<Booking, Long>{
     @Query("UPDATE Booking b SET b.active = :passive where b.id = :id")
     void setPassive(@Param("active") Short active, @Param("id") Long id);
 
+    @Override
+    List<Booking>findAll();
+
     @Query(Booking.GET_ALL_BY_USER_ID)
     List<Booking> getAllByUserId(@Param("userId") int userId);
 

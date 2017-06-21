@@ -19,4 +19,6 @@ public interface VoteService {
 
     List<Vote> getAllByUser(int userId);
 
+    List<Vote> getAll();
+
 }

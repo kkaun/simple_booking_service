@@ -23,5 +23,6 @@ public interface ApartmentRepository {
 
     List<Apartment> getAllByPrice(int hotelId);
 
+    List<Apartment> getAll();
 
 }

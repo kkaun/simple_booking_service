@@ -41,12 +41,12 @@ public class ApartmentServiceImpl implements ApartmentService {
     }
 
     @Override
-    public void delete(Short id, int hotelId) throws NotFoundException {
+    public void delete(Integer id, int hotelId) throws NotFoundException {
         checkNotFoundWithId(repository.delete(id, hotelId), id);
     }
 
     @Override
-    public Apartment get(Short id, int hotelId) throws NotFoundException {
+    public Apartment get(Integer id, int hotelId) throws NotFoundException {
         return checkNotFoundWithId(repository.get(id, hotelId), id);
     }
 
@@ -59,4 +59,11 @@ public class ApartmentServiceImpl implements ApartmentService {
     public List<Apartment> getAllSortedByPrice(int hotelId) {
         return repository.getAllByPrice(hotelId);
     }
+
+    @Override
+    public List<Apartment> getAll() {
+        return repository.getAll();
+    }
+
+
 }

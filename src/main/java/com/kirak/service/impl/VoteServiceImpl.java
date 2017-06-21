@@ -51,4 +51,9 @@ public class VoteServiceImpl implements VoteService {
     public List<Vote> getAllByUser(int userId) {
         return repository.getAllByUser(userId);
     }
+
+    @Override
+    public List<Vote> getAll() {
+        return repository.getAll();
+    }
 }

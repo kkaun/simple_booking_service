@@ -23,4 +23,6 @@ public interface VoteRepository{
     List<Vote> getAllByHotel(int hotelId);
 
     List<Vote> getAllByUser(int userId);
+
+    List<Vote> getAll();
 }

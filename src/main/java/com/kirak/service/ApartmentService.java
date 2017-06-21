@@ -14,11 +14,13 @@ public interface ApartmentService {
 
     Apartment update(Apartment apt, int hotelId) throws NotFoundException;
 
-    void delete(Short id, int hotelId) throws NotFoundException;
+    void delete(Integer id, int hotelId) throws NotFoundException;
 
-    Apartment get(Short id, int hotelId) throws NotFoundException;
+    Apartment get(Integer id, int hotelId) throws NotFoundException;
 
     List<Apartment> getAllSortedByPersonsNum(int hotelId);
 
     List<Apartment> getAllSortedByPrice(int hotelId);
+
+    List<Apartment> getAll();
 }

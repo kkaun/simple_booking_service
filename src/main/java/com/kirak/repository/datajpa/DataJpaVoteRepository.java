@@ -28,4 +28,7 @@ public interface DataJpaVoteRepository extends JpaRepository<Vote, Integer>{
     @Query(Vote.GET_ALL_BY_USER)
     List<Vote> getAllByUser(@Param("userId") int userId);
 
+    @Override
+    List<Vote> findAll();
+
 }

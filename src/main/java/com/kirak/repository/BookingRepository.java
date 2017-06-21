@@ -21,6 +21,8 @@ public interface BookingRepository {
     // null if booking does not belong to userId
     Booking get(long id, int userId, int hotelId);
 
+    List<Booking> getAll();
+
     List<Booking> getAllByUserId(int userId);
 
     List<Booking> getAllByHotelBetweenDates(int hotelId, LocalDate startDate, LocalDate endDate);

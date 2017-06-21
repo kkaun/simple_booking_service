@@ -1,6 +1,7 @@
 package com.kirak.repository.datajpa;
 
 import com.kirak.model.Apartment;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -24,11 +25,14 @@ public interface DataJpaApartmentRepository extends JpaRepository<Apartment, Int
     @Override
     Apartment save(Apartment apartment);
 
-    @Query(Apartment.GET_ALL_BY_PERSONS_NUM)
+    @Query(Apartment.GET_ALL_BY_HOTEL_PERSONS_NUM)
     List<Apartment> getByAllByPersonsNum(@Param("hotelId") int hotelId);
 
     @Query(Apartment.GET_ALL_BY_PRICE)
     List<Apartment> getAllByPrice(@Param("hotelId") int hotelId);
+
+    @Override
+    List<Apartment> findAll();
 
 
 }
