@@ -1,7 +1,9 @@
 package com.kirak.repository.datajpa;
 
 import com.kirak.model.Vote;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,6 +31,10 @@ public interface DataJpaVoteRepository extends JpaRepository<Vote, Integer>{
     List<Vote> getAllByUser(@Param("userId") int userId);
 
     @Override
-    List<Vote> findAll();
+    List<Vote> findAll(Sort sort);
 
+    @Modifying
+    @Transactional
+    @Query(Vote.DELETE)
+    int delete(@Param("id") Integer id, @Param("userId") int userId, @Param("hotelId") int hotelId);
 }

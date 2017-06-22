@@ -17,25 +17,25 @@ VALUES
 
 
 
-INSERT INTO users (name, email, password)
+INSERT INTO user (name, email, password)
 VALUES
   ('User1', 'user1@yandex.ru', 'password1'),
   ('User2', 'user2@yandex.ru', 'password2'),
   ('User3', 'user3@yandex.ru', 'password3');
 
-INSERT INTO users (name, email, password)
+INSERT INTO user (name, email, password)
 VALUES ('Manager', 'manager@gmail.com', 'manager');
 
-INSERT INTO users (name, email, password)
+INSERT INTO user (name, email, password)
 VALUES ('Admin', 'admin@gmail.com', 'admin');
 
-INSERT INTO user_roles (role, user_id) VALUES
-  ('ROLE_USER', 100000),
-  ('ROLE_USER', 100001),
-  ('ROLE_USER', 100002),
-  ('ROLE_HOTEL_MANAGER', 100003),
-  ('ROLE_SYSTEM_ADMIN', 100004),
-  ('ROLE_USER', 100004);
+INSERT INTO user_role (user_id, role) VALUES
+  (100000, 'ROLE_USER'),
+  (100001, 'ROLE_USER'),
+  (100002, 'ROLE_USER'),
+  (100003, 'ROLE_HOTEL_MANAGER'),
+  (100004, 'ROLE_SYSTEM_ADMIN'),
+  (100004, 'ROLE_USER');
 
 
 

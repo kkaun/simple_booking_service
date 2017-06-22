@@ -17,7 +17,6 @@ import java.util.Date;
         @NamedQuery(name = Hotel.GET_ALL_BY_COUNTRY, query = "SELECT h FROM Hotel h WHERE h.country=:countryId ORDER BY h.rating DESC"),
         @NamedQuery(name = Hotel.GET_BETWEEN_RATINGS, query = "SELECT h FROM Hotel h WHERE h.rating BETWEEN :minRating " +
                 "AND :maxRating ORDER BY h.rating"),
-        @NamedQuery(name = Hotel.GET_ALL_SORTED, query = "SELECT h FROM Hotel h ORDER BY h.rating DESC"),
         @NamedQuery(name = Hotel.DELETE, query = "DELETE FROM Hotel h WHERE h.id=:hotelId " +
                 "AND h.city.id=:cityId")
 })
@@ -28,7 +27,6 @@ public class Hotel extends NamedEntity {
 
     public static final String GET_ALL_BY_CITY = "Hotel.getAllByCity";
     public static final String GET_ALL_BY_COUNTRY = "Hotel.getAllByCity";
-    public static final String GET_ALL_SORTED = "Hotel.getAllByCity";
     public static final String GET_BETWEEN_RATINGS = "Hotel.getAllByCity";
     public static final String DELETE = "Hotel.delete";
 

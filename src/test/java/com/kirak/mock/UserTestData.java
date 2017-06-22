@@ -45,6 +45,9 @@ public class UserTestData {
             ADMIN_BOOKINGS, UserRole.ROLE_SYSTEM_ADMIN, UserRole.ROLE_USER);
 
 
+    public static final List<User> ALL_USERS = Arrays.asList(USER1, USER2, USER3, MANAGER, ADMIN);
+
+
     public static final ModelMatcher<User> USER_MATCHER = ModelMatcher.of(User.class,
             (expected, actual) -> expected == actual ||
                     (Objects.equals(expected.getPassword(), actual.getPassword())
@@ -59,14 +62,11 @@ public class UserTestData {
 
 
     public static User getCreatedUser() {
-        User created = new User(null, "User NEW", "user1@yandex.ru", "password1", USER1_BOOKINGS, UserRole.ROLE_USER);
-        return created;
+        return new User(null, "User NEW", "user1@yandex.ru", "password1", USER1_BOOKINGS, UserRole.ROLE_USER);
     }
 
     public static User getUpdatedUser() {
-        User updated = new User(USER1_ID, "User UPDATED", "user1@yandex.ru", "password1", USER1_BOOKINGS, UserRole.ROLE_USER);
-        return updated;
+        return new User(USER1_ID, "User UPDATED", "user1@yandex.ru", "password1", USER1_BOOKINGS, UserRole.ROLE_USER);
     }
-
 
 }

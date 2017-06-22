@@ -13,7 +13,9 @@ import java.time.LocalDateTime;
 @NamedQueries({@NamedQuery(name = Vote.GET_ALL_BY_HOTEL, query = "SELECT v FROM Vote v WHERE v.hotel.id=:hotelId " +
         "ORDER BY v.dateAdded DESC"),
         @NamedQuery(name = Vote.GET_ALL_BY_USER, query = "SELECT v FROM Vote v WHERE v.user.id=:userId " +
-                "ORDER BY v.dateAdded DESC")
+                "ORDER BY v.dateAdded DESC"),
+        @NamedQuery(name = Vote.DELETE, query = "DELETE FROM Vote v WHERE v.id=:id AND v.user.id=:userId " +
+                "AND v.hotel.id=:hotelId"),
 })
 
 @Entity
@@ -22,6 +24,7 @@ public class Vote extends BaseIntEntity {
 
     public static final String GET_ALL_BY_HOTEL = "Vote.getAllByHotel";
     public static final String GET_ALL_BY_USER = "Vote.getAllByUser";
+    public static final String DELETE = "Vote.delete";
 
     @Column (name = "rate", nullable = false)
     private Double rate;

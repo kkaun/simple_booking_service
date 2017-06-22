@@ -1,6 +1,7 @@
 package com.kirak.repository.datajpa;
 
 import com.kirak.model.Hotel;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -34,7 +35,6 @@ public interface DataJpaHotelRepository extends JpaRepository<Hotel, Integer> {
     @Query(Hotel.GET_BETWEEN_RATINGS)
     List<Hotel> getBetweenRatings(@Param("minRating") double minRating, @Param("maxRating") double maxRating);
 
-    @Query(Hotel.GET_ALL_SORTED)
-    List<Hotel> getAllSorted();
+    List<Hotel> getAll(Sort sort);
 
 }

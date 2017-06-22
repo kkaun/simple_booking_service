@@ -26,7 +26,7 @@ public class BookingServiceImplTest extends AbstractServiceTest {
     public void save() throws Exception {
         Booking created = getCreatedBooking();
         service.save(created, USER2_ID, HOTEL2_ID);
-        BOOKING_MATCHER.assertCollectionEquals(Arrays.asList(BOOKING1, BOOKING2, BOOKING5, BOOKING3, BOOKING4, created),
+        BOOKING_MATCHER.assertCollectionEquals(Arrays.asList(BOOKING4, BOOKING3, BOOKING5, BOOKING2, BOOKING1, created),
                 service.getAll());
     }
 

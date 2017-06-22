@@ -37,6 +37,11 @@ public class VoteRepositoryImpl implements VoteRepository {
     }
 
     @Override
+    public boolean delete(int id, int userId, int hotelId) {
+        return voteRepository.delete(id, userId, hotelId) != 0;
+    }
+
+    @Override
     public Vote get(int id, int userId, int hotelId) {
         Vote vote = voteRepository.findOne(id);
         return vote != null && vote.getUser().getId() == userId && vote.getHotel().getId() == hotelId ? vote : null;

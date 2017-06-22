@@ -5,6 +5,7 @@ import com.kirak.repository.HotelRepository;
 import com.kirak.repository.datajpa.DataJpaCityRepository;
 import com.kirak.repository.datajpa.DataJpaHotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,6 +17,8 @@ import java.util.List;
 @Repository
 public class HotelRepositoryImpl implements HotelRepository {
 
+    private Sort CITY_SORT = new Sort("city");
+
     @Autowired
     private DataJpaHotelRepository hotelRepository;
 
@@ -24,13 +27,12 @@ public class HotelRepositoryImpl implements HotelRepository {
 
     @Override
     public Hotel save(Hotel hotel, int cityId) {
-        if(!hotel.isNew() && get(hotel.getId(), cityId) == null){
+        if (!hotel.isNew() && get(hotel.getId(), cityId) == null) {
             return null;
         }
         hotel.setCity(cityRepository.findOne(cityId));
         return hotel;
     }
-
 
     @Override
     public boolean delete(int id, int cityId) {
@@ -55,6 +57,6 @@ public class HotelRepositoryImpl implements HotelRepository {
 
     @Override
     public List<Hotel> getAll() {
-        return hotelRepository.getAllSorted();
+        return hotelRepository.findAll(CITY_SORT);
     }
 }

@@ -1,6 +1,7 @@
 package com.kirak.repository.datajpa;
 
 import com.kirak.model.Booking;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -28,7 +29,7 @@ public interface DataJpaBookingRepository extends JpaRepository<Booking, Long>{
     void setPassive(@Param("active") Short active, @Param("id") Long id);
 
     @Override
-    List<Booking>findAll();
+    List<Booking>findAll(Sort sort);
 
     @Query(Booking.GET_ALL_BY_USER_ID)
     List<Booking> getAllByUserId(@Param("userId") int userId);

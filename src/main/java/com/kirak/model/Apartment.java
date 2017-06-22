@@ -22,10 +22,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "apartment")
 public class Apartment extends BaseIntEntity {
 
-    public static final String GET_ALL_BY_HOTEL_PERSONS_NUM = "Apartment.getAllByPersonsNum";
     public static final String GET_ALL_BY_PRICE = "Apartment.getAllByHotel";
-    public static final String GET_ALL_BY_ARRANGEMENT = "Apartment.getAllByArrangement";
-    public static final String GET_ALL_BY_CATEGORY = "Apartment.getAllByType";
     public static final String DELETE = "Apartment.delete";
 
     @OneToOne(fetch = FetchType.LAZY)

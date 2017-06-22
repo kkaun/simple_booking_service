@@ -29,7 +29,7 @@ public interface DataJpaApartmentRepository extends JpaRepository<Apartment, Int
     List<Apartment> getAllByHotel(@Param("hotelId") int hotelId);
 
     @Override
-    List<Apartment> findAll();
+    List<Apartment> findAll(Sort sort);
 
 
 }

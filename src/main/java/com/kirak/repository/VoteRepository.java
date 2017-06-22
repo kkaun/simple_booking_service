@@ -13,9 +13,7 @@ public interface VoteRepository{
     // null if updated vote do not belong to userId
     Vote save(Vote vote, int userId, int hotelId);
 
-    default short delete(Vote vote, int userId, int hotelId){
-        throw new UnsupportedOperationException("Vote cannot be deleted, only modified!");
-    }
+    boolean delete(int id, int userId, int hotelId);
 
     // null if vote do not belong to userId
     Vote get(int id, int userId, int hotelId);

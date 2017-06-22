@@ -5,6 +5,7 @@ import com.kirak.repository.ApartmentRepository;
 import com.kirak.repository.datajpa.DataJpaApartmentRepository;
 import com.kirak.repository.datajpa.DataJpaHotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +17,8 @@ import java.util.List;
 
 @Repository
 public class ApartmentRepositoryImpl implements ApartmentRepository {
+
+    private Sort PRICE_SORT = new Sort("price");
 
     @Autowired
     private DataJpaApartmentRepository apartmentRepository;
@@ -52,6 +55,6 @@ public class ApartmentRepositoryImpl implements ApartmentRepository {
 
     @Override
     public List<Apartment> getAll() {
-        return apartmentRepository.findAll();
+        return apartmentRepository.findAll(PRICE_SORT);
     }
 }

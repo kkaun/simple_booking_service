@@ -3,6 +3,7 @@ package com.kirak.service.impl;
 import com.kirak.model.Vote;
 import com.kirak.repository.VoteRepository;
 import com.kirak.service.VoteService;
+import com.kirak.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -55,5 +56,10 @@ public class VoteServiceImpl implements VoteService {
     @Override
     public List<Vote> getAll() {
         return repository.getAll();
+    }
+
+    @Override
+    public void delete(Integer id, int userId, int hotelId) {
+        checkNotFoundWithId(repository.delete(id, userId, hotelId), id);
     }
 }

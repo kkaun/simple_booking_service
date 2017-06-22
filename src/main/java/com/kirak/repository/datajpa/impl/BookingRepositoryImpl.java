@@ -6,6 +6,7 @@ import com.kirak.repository.datajpa.DataJpaBookingRepository;
 import com.kirak.repository.datajpa.DataJpaHotelRepository;
 import com.kirak.repository.datajpa.DataJpaUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -17,6 +18,8 @@ import java.util.List;
 
 @Repository
 public class BookingRepositoryImpl implements BookingRepository {
+
+    private Sort DATE_ADDED_SORT = new Sort(Sort.Direction.DESC, "dateAdded");
 
     @Autowired
     private DataJpaBookingRepository bookingRepository;
@@ -49,7 +52,7 @@ public class BookingRepositoryImpl implements BookingRepository {
 
     @Override
     public List<Booking> getAll() {
-        return bookingRepository.findAll();
+        return bookingRepository.findAll(DATE_ADDED_SORT);
     }
 
     @Override

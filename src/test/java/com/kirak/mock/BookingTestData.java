@@ -47,7 +47,7 @@ public class BookingTestData {
             31200.00, (short)4, (short)0, ADMIN, APARTMENT5, HOTEL4);
 
 
-    public static final List<Booking> BOOKINGS = Arrays.asList(BOOKING1, BOOKING2, BOOKING5, BOOKING3, BOOKING4);
+    public static final List<Booking> BOOKINGS = Arrays.asList(BOOKING4, BOOKING3, BOOKING5, BOOKING2, BOOKING1);
 
 
     public static Booking getCreatedBooking() {

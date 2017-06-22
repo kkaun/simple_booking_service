@@ -58,7 +58,6 @@ DROP TABLE IF EXISTS `user_role`;
 CREATE TABLE IF NOT EXISTS `user_role` (
   `user_id` INT         NOT NULL,
   `role`    VARCHAR(45) NULL,
-  PRIMARY KEY (`user_id`),
   CONSTRAINT `fk_user_role_user1`
   FOREIGN KEY (`user_id`)
   REFERENCES `user` (`id`)
@@ -87,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `vote` (
   REFERENCES `hotel` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_user_id1`
+  CONSTRAINT `fk_vote_user1`
   FOREIGN KEY (`user_id`)
   REFERENCES `user` (`id`)
     ON DELETE NO ACTION
@@ -133,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `hotel` (
 DROP TABLE IF EXISTS `apt_type`;
 
 CREATE TABLE IF NOT EXISTS `apt_type` (
-  `id`               TINYINT      NOT NULL,
+  `id`               TINYINT      NOT NULL AUTO_INCREMENT,
   `beds_arrangement` VARCHAR(255) NULL,
   `category`         VARCHAR(255) NULL,
   `person_num`       TINYINT      NOT NULL,
@@ -193,8 +192,13 @@ CREATE TABLE IF NOT EXISTS `booking` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_booking_apartment1`
-  FOREIGN KEY (`apartment_id`, `apartment_hotel_id`)
-  REFERENCES `apartment` (`id`, `hotel_id`)
+  FOREIGN KEY (`apartment_id`)
+  REFERENCES `apartment` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_booking_apartment_hotel1`
+  FOREIGN KEY (`apartment_hotel_id`)
+  REFERENCES `apartment` (`hotel_id`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION
 )
