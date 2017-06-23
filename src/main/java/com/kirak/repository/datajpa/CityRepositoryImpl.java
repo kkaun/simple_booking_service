@@ -1,9 +1,8 @@
-package com.kirak.repository.datajpa.impl;
+package com.kirak.repository.datajpa;
 
-import com.kirak.model.Country;
+import com.kirak.model.City;
 import com.kirak.repository.CityRepository;
-import com.kirak.repository.CountryRepository;
-import com.kirak.repository.datajpa.DataJpaCountryRepository;
+import com.kirak.repository.datajpa.DataJpaCityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,22 +14,25 @@ import java.util.List;
 /**
  * Created by Kir on 13.06.2017.
  */
-
+@Transactional
 @Repository
-public class CountryRepositoryImpl implements CountryRepository {
+public class CityRepositoryImpl implements CityRepository {
 
-    private Sort COUNTRY_NAME_SORT = new Sort("countryName");
+    @Autowired
+    private DataJpaCityRepository cityRepository;
 
     @Autowired
     private DataJpaCountryRepository countryRepository;
 
     @Override
-    public Country get(short id) {
-        return countryRepository.findOne(id);
+    public City get(int id) {
+        return cityRepository.findOne(id);
     }
 
     @Override
-    public List<Country> getAll() {
-        return countryRepository.findAll(COUNTRY_NAME_SORT);
+    public List<City> getAllByRegion(short countryId) {
+        return cityRepository.getAllByRegion(countryId);
     }
+
+
 }

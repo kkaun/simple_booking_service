@@ -1,27 +1,48 @@
 
+DELETE FROM vote;
+ALTER TABLE vote AUTO_INCREMENT = 100000;
+DELETE FROM booking;
+ALTER TABLE booking AUTO_INCREMENT = 100000;
+DELETE FROM apartment;
+ALTER TABLE apartment AUTO_INCREMENT = 100000;
+DELETE FROM apt_type;
+ALTER TABLE apt_type AUTO_INCREMENT = 1;
+DELETE FROM hotel;
+ALTER TABLE hotel AUTO_INCREMENT = 100000;
+DELETE FROM user_role;
+ALTER TABLE user_role;
+DELETE FROM user;
+ALTER TABLE user AUTO_INCREMENT = 100000;
+DELETE FROM city;
+ALTER TABLE city AUTO_INCREMENT = 100000;
+DELETE FROM country;
+ALTER TABLE country AUTO_INCREMENT = 1;
+
+
+
 INSERT INTO country
-(country_name)
+(name)
 VALUES
   ('Russia'),
   ('Ukraine');
 
 
 INSERT INTO city
-(city_name, country_name)
+(name, country_id)
 VALUES
-  ('Moscow', 'Russia'),
-  ('St Petersburg', 'Russia'),
-  ('Kiev', 'Ukraine'),
-  ('Lviv', 'Ukraine');
+  ('Moscow', 1),
+  ('St Petersburg', 1),
+  ('Kiev', 2),
+  ('Lviv', 2);
 
 
 
 
 INSERT INTO user (name, email, password)
 VALUES
-  ('User1', 'user1@yandex.ru', 'password1'),
-  ('User2', 'user2@yandex.ru', 'password2'),
-  ('User3', 'user3@yandex.ru', 'password3');
+  ('User1', 'user123@yandex.ru', 'password1'),
+  ('User2', 'user223@yandex.ru', 'password2'),
+  ('User3', 'user3234@yandex.ru', 'password3');
 
 INSERT INTO user (name, email, password)
 VALUES ('Manager', 'manager@gmail.com', 'manager');

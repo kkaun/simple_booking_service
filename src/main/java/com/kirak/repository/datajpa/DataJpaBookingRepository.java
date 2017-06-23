@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -24,17 +25,14 @@ public interface DataJpaBookingRepository extends JpaRepository<Booking, Long>{
     @Override
     Booking findOne(Long id);
 
-    @Modifying
-    @Query("UPDATE Booking b SET b.active = :passive where b.id = :id")
-    void setPassive(@Param("active") Short active, @Param("id") Long id);
-
     @Override
     List<Booking>findAll(Sort sort);
 
-    @Query(Booking.GET_ALL_BY_USER_ID)
+    @Query("SELECT b FROM Booking b WHERE b.user.id=:userId ORDER BY b.dateAdded DESC")
     List<Booking> getAllByUserId(@Param("userId") int userId);
 
-    @Query(Booking.GET_ALL_BY_HOTEL_BETWEEN_DATES)
-    List<Booking> getAllByHotelBetweenDates(@Param("hotelId") int hotelId);
+    @Query("SELECT b FROM Booking b WHERE b.hotel.id=:hotelId AND b.dateAdded BETWEEN :startDate AND :endDate ORDER BY b.dateAdded DESC")
+    List<Booking> getAllByHotelBetweenDates(@Param("hotelId") int hotelId,
+                                            @Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
 }

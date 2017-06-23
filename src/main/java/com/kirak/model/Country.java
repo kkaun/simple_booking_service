@@ -8,33 +8,30 @@ import java.util.Set;
 /**
  * Created by Kir on 12.06.2017.
  */
-
-@NamedQueries({@NamedQuery(name = Country.GET_ALL_SORTED, query = "SELECT c FROM Country c ORDER BY c.countryName ASC")})
-
 @Entity
 @Table(name = "country")
 public class Country extends BaseShortEntity {
 
-    public static final String GET_ALL_SORTED = "Country.getAllSorted";
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "country_name")
-    private String countryName;
-
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "country")
     private Set<City> cities;
 
-    public Country(Short id, String countryName, Set<City> cities) {
+    public Country(){}
+
+    public Country(Short id, String name, Set<City> cities) {
         super(id);
-        this.countryName = countryName;
+        this.name = name;
         this.cities = cities;
     }
 
-    public String getCountryName() {
-        return countryName;
+    public String getName() {
+        return name;
     }
 
-    public void setCountryName(String countryName) {
-        this.countryName = countryName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Set<City> getCities() {
@@ -49,7 +46,7 @@ public class Country extends BaseShortEntity {
     public String toString() {
         return "Country{" +
                 "id" + '\'' +
-                ", countryName='" + countryName + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

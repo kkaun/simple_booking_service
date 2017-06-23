@@ -80,7 +80,7 @@
                         <containerId>tomcat8x</containerId>
                         <systemProperties>
                             <file.encoding>UTF-8</file.encoding>
-                            <spring.profiles.active>tomcat,com.kirak.service.datajpa</spring.profiles.active>
+                            <spring.profiles.active>tomcat,com.kirak.service.impl</spring.profiles.active>
                         </systemProperties>
                         <dependency>
                             <groupId>mysql</groupId>

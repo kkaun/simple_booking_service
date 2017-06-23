@@ -26,4 +26,6 @@ public interface BookingService {
     List<Booking> getAllByHotelBetweenDates(int hotelId, LocalDate startDate, LocalDate endDate);
 
     List<Booking> getAll();
+
+    void evictCache();//for tests
 }

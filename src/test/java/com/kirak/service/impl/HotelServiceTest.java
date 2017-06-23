@@ -1,23 +1,34 @@
-package com.kirak.service;
+package com.kirak.service.impl;
 
 import com.kirak.model.Hotel;
+import com.kirak.service.AbstractServiceTest;
+import com.kirak.service.HotelService;
 import com.kirak.util.exception.NotFoundException;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Arrays;
 import java.util.Collections;
 
+import static com.kirak.Profile.DATAJPA;
 import static com.kirak.mock.CityTestData.*;
 import static com.kirak.mock.HotelTestData.*;
 
 /**
  * Created by Kir on 19.06.2017.
  */
-public class HotelServiceImplTest extends AbstractServiceTest{
+@ActiveProfiles(DATAJPA)
+public class HotelServiceTest extends AbstractServiceTest {
 
     @Autowired
     private HotelService service;
+
+    @Before
+    public void setUp() throws Exception {
+        service.evictCache();
+    }
 
     @Test
     public void save() throws Exception {

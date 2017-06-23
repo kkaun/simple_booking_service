@@ -18,18 +18,13 @@ import java.util.*;
 /**
  * Created by Kir on 30.05.2017.
  */
-@NamedQueries({
-        @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:id"),
-        @NamedQuery(name = User.BY_EMAIL, query = "SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.roles WHERE u.email=?1"),
-        @NamedQuery(name = User.ALL_SORTED, query = "SELECT u FROM User u ORDER BY u.name, u.email"),
-})
 @Entity
 @Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "user_unique_email_idx")})
 public class User extends NamedEntity {
 
     public static final String DELETE = "User.delete";
     public static final String BY_EMAIL = "User.getByEmail";
-    public static final String ALL_SORTED = "User.getAllSorted";
+    //public static final String ALL_SORTED = "User.getAllSorted";
 
     @Column(name = "email", nullable = false, unique = true)
     @Email
@@ -46,21 +41,22 @@ public class User extends NamedEntity {
 
     //@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @Enumerated(EnumType.STRING)
-    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
     @ElementCollection(fetch = FetchType.EAGER)
     //@Fetch(FetchMode.SUBSELECT)
     @BatchSize(size = 200)
     private Set<UserRole> roles;
 
-    @OrderBy("dateTime DESC")
-    @OneToMany(fetch = FetchType.LAZY)
+    @OrderBy("dateAdded DESC")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private Set<Booking> bookings;
 
-    @OrderBy("dateTime DESC")
-    @OneToMany(fetch = FetchType.LAZY)
+    @OrderBy("dateAdded DESC")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private Set<Vote> votes;
 
+    public User(){}
 
     public User(User u) {
         this(u.getId(), u.getName(), u.getEmail(), u.getPassword(), u.getRegistered(), u.getBookings(), u.getRoles());

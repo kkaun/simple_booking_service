@@ -1,4 +1,4 @@
-package com.kirak.repository.datajpa.impl;
+package com.kirak.repository.datajpa;
 
 import com.kirak.model.AptType;
 import com.kirak.repository.AptTypeRepository;
@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by Kir on 13.06.2017.
  */
-
+@Transactional
 @Repository
 public class AptTypeRepositoryImpl implements AptTypeRepository{
 

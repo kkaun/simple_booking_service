@@ -9,22 +9,9 @@ import java.time.LocalDateTime;
 /**
  * Created by Kir on 12.06.2017.
  */
-
-@NamedQueries({@NamedQuery(name = Vote.GET_ALL_BY_HOTEL, query = "SELECT v FROM Vote v WHERE v.hotel.id=:hotelId " +
-        "ORDER BY v.dateAdded DESC"),
-        @NamedQuery(name = Vote.GET_ALL_BY_USER, query = "SELECT v FROM Vote v WHERE v.user.id=:userId " +
-                "ORDER BY v.dateAdded DESC"),
-        @NamedQuery(name = Vote.DELETE, query = "DELETE FROM Vote v WHERE v.id=:id AND v.user.id=:userId " +
-                "AND v.hotel.id=:hotelId"),
-})
-
 @Entity
 @Table(name = "vote")
 public class Vote extends BaseIntEntity {
-
-    public static final String GET_ALL_BY_HOTEL = "Vote.getAllByHotel";
-    public static final String GET_ALL_BY_USER = "Vote.getAllByUser";
-    public static final String DELETE = "Vote.delete";
 
     @Column (name = "rate", nullable = false)
     private Double rate;
@@ -36,13 +23,15 @@ public class Vote extends BaseIntEntity {
     @Column(name = "date_added", nullable = false)
     private LocalDateTime dateAdded;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "hotel_id", nullable = false)
     private Hotel hotel;
+
+    public Vote(){}
 
     public Vote(Integer id, Double rate, String userComment, LocalDateTime dateAdded, User user, Hotel hotel) {
         super(id);

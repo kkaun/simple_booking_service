@@ -19,8 +19,8 @@ public interface DataJpaCityRepository extends JpaRepository<City, Integer> {
     @Override
     City findOne(Integer id);
 
-    @Query(City.GET_ALL_BY_REGION)
-    List<City> getAllByRegion(@Param("countryName") String countryName);
+    @Query("SELECT c FROM City c WHERE c.country.id=:countryId ORDER BY c.name ASC")
+    List<City> getAllByRegion(@Param("countryId") short countryId);
 
 //    @Override
 //    List<City> findAll(Sort sort);

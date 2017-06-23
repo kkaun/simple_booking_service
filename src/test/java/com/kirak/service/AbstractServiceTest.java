@@ -33,8 +33,8 @@ import static org.hamcrest.CoreMatchers.instanceOf;
                         "classpath:spring/spring-db.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles(resolver = ActiveDbProfileResolver.class)
-@Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
-public class AbstractServiceTest {
+@Sql(scripts = "classpath:db/populateDbForTest.sql", config = @SqlConfig(encoding = "UTF-8"))
+public abstract class AbstractServiceTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(AbstractServiceTest.class);
 

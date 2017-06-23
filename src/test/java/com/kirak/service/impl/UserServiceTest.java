@@ -1,13 +1,16 @@
-package com.kirak.service;
+package com.kirak.service.impl;
 
 import com.kirak.model.User;
 import com.kirak.model.UserRole;
 import com.kirak.model.Vote;
+import com.kirak.service.AbstractServiceTest;
+import com.kirak.service.UserService;
 import com.kirak.util.exception.NotFoundException;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.time.Month;
 import java.util.Arrays;
@@ -15,6 +18,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 
+import static com.kirak.Profile.DATAJPA;
 import static com.kirak.mock.HotelTestData.HOTEL3;
 import static com.kirak.mock.UserTestData.*;
 import static com.kirak.mock.VoteTestData.VOTE3_ID;
@@ -23,7 +27,8 @@ import static java.time.LocalDateTime.of;
 /**
  * Created by Kir on 19.06.2017.
  */
-public class UserServiceImplTest {
+@ActiveProfiles(DATAJPA)
+public class UserServiceTest extends AbstractServiceTest {
 
     @Autowired
     protected UserService service;

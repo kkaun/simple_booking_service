@@ -12,23 +12,9 @@ import java.util.Date;
 /**
  * Created by Kir on 30.05.2017.
  */
-
-@NamedQueries({@NamedQuery(name = Hotel.GET_ALL_BY_CITY, query = "SELECT h FROM Hotel h WHERE h.city=:cityId ORDER BY h.rating DESC"),
-        @NamedQuery(name = Hotel.GET_ALL_BY_COUNTRY, query = "SELECT h FROM Hotel h WHERE h.country=:countryId ORDER BY h.rating DESC"),
-        @NamedQuery(name = Hotel.GET_BETWEEN_RATINGS, query = "SELECT h FROM Hotel h WHERE h.rating BETWEEN :minRating " +
-                "AND :maxRating ORDER BY h.rating"),
-        @NamedQuery(name = Hotel.DELETE, query = "DELETE FROM Hotel h WHERE h.id=:hotelId " +
-                "AND h.city.id=:cityId")
-})
-
 @Entity
 @Table(name = "hotel")
 public class Hotel extends NamedEntity {
-
-    public static final String GET_ALL_BY_CITY = "Hotel.getAllByCity";
-    public static final String GET_ALL_BY_COUNTRY = "Hotel.getAllByCity";
-    public static final String GET_BETWEEN_RATINGS = "Hotel.getAllByCity";
-    public static final String DELETE = "Hotel.delete";
 
     //TODO: add photo uploading feature to entity and business logic
 
@@ -40,12 +26,12 @@ public class Hotel extends NamedEntity {
     @Column(name = "stars")
     private Short stars;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @NotNull
-    @Column(name = "country_id", nullable = false)
+    @JoinColumn(name = "country_id", nullable = false)
     private Country country;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @NotNull
     @JoinColumn(name = "city_id", nullable = false)
     private City city;
@@ -62,13 +48,13 @@ public class Hotel extends NamedEntity {
     @Column(name = "description", columnDefinition = "TINYTEXT")
     private String description;
 
-    @Temporal(TemporalType.TIME)
     @Column(name = "check_in")
     private Time checkIn;
 
-    @Temporal(TemporalType.TIME)
     @Column(name = "check_out")
     private Time checkOut;
+
+    public Hotel(){}
 
     public Hotel(Integer id, String name, Double rating, Short stars, Country country, City city, String address,
                  String phone, String description, Time checkIn, Time checkOut) {
@@ -162,8 +148,8 @@ public class Hotel extends NamedEntity {
                 "id='" + getId() + "\'" +
                 ", name='" + getName() + "\'" +
                 ", rating=" + rating +
-                ", country=" + country.getCountryName() +
-                ", city=" + city.getCityName() +
+                ", country=" + country.getId() +
+                ", city=" + city.getName() +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 ", description='" + description + '\'' +

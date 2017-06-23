@@ -1,6 +1,7 @@
 package com.kirak.model.abstraction;
 
 import org.hibernate.Hibernate;
+import org.springframework.data.domain.Persistable;
 
 import javax.persistence.*;
 
@@ -12,7 +13,7 @@ import static com.kirak.model.abstraction.BaseIntEntity.START_SEQ;
 
 @Access(AccessType.FIELD)
 @MappedSuperclass
-public class BaseLongEntity implements BaseEntity {
+public class BaseLongEntity implements BaseEntity, Persistable<Long> {
 
     public static final long START_SEQ_LONG = 100000;
 

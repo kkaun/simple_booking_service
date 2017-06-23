@@ -1,13 +1,18 @@
-package com.kirak.service;
+package com.kirak.service.impl;
 
 import com.kirak.model.Vote;
+import com.kirak.service.AbstractServiceTest;
+import com.kirak.service.VoteService;
 import com.kirak.util.exception.NotFoundException;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Arrays;
 import java.util.Collections;
 
+import static com.kirak.Profile.DATAJPA;
 import static com.kirak.mock.HotelTestData.*;
 import static com.kirak.mock.UserTestData.USER1_ID;
 import static com.kirak.mock.UserTestData.USER2_ID;
@@ -16,10 +21,16 @@ import static com.kirak.mock.VoteTestData.*;
 /**
  * Created by Kir on 19.06.2017.
  */
-public class VoteServiceImplTest extends AbstractServiceTest {
+@ActiveProfiles(DATAJPA)
+public class VoteServiceTest extends AbstractServiceTest {
 
     @Autowired
     private VoteService service;
+
+    @Before
+    public void setUp() throws Exception {
+        service.evictCache();
+    }
 
     @Test
     public void save() throws Exception {

@@ -23,7 +23,7 @@ public interface DataJpaAptTypeRepository extends JpaRepository<AptType, Short> 
 
     @Modifying
     @Transactional
-    @Query(AptType.DELETE)
+    @Query("DELETE FROM AptType t WHERE t.id=:id")
     short delete(@Param("id") short id);
 
     @Override

@@ -1,6 +1,27 @@
 
+DELETE FROM vote;
+ALTER TABLE vote AUTO_INCREMENT = 100000;
+DELETE FROM booking;
+ALTER TABLE booking AUTO_INCREMENT = 100000;
+DELETE FROM apartment;
+ALTER TABLE apartment AUTO_INCREMENT = 100000;
+DELETE FROM apt_type;
+ALTER TABLE apt_type AUTO_INCREMENT = 1;
+DELETE FROM hotel;
+ALTER TABLE hotel AUTO_INCREMENT = 100000;
+DELETE FROM user_role;
+ALTER TABLE user_role;
+DELETE FROM user;
+ALTER TABLE user AUTO_INCREMENT = 100000;
+DELETE FROM city;
+ALTER TABLE city AUTO_INCREMENT = 100000;
+DELETE FROM country;
+ALTER TABLE country AUTO_INCREMENT = 1;
+
+
+
 INSERT INTO country
-(country_name)
+(name)
 VALUES
   ('Afghanistan'),
   ('Algeria'),
@@ -125,7 +146,7 @@ VALUES
 
 
 INSERT INTO city
-(city_name, country_name)
+(name, country_id)
 VALUES
   ('Karachi', 'Pakistan'),
   ('Shanghai', 'China'),
@@ -733,17 +754,17 @@ VALUES
 
 
 
-INSERT INTO users (name, email, password)
+INSERT INTO user (name, email, password)
 VALUES ('User', 'user@yandex.ru', '000111'),
 ('User1', 'user1@yandex.ru', '111222'),
 ('User1', 'user2@yandex.ru', '444555'),
 ('User1', 'user3@yandex.ru', '555666');
 
 
-INSERT INTO users (name, email, password)
+INSERT INTO user (name, email, password)
 VALUES ('Admin', 'admin@gmail.com', '222333');
 
-INSERT INTO user_roles (role, user_id) VALUES
+INSERT INTO user_role (role, user_id) VALUES
   ('ROLE_USER', 100001),
   ('ROLE_SYSTEM_ADMIN', 100001),
   ('ROLE_HOTEL_MANAGER', 100001),

@@ -9,47 +9,27 @@ import javax.persistence.*;
 /**
  * Created by Kir on 12.06.2017.
  */
-
-@NamedQueries({@NamedQuery(name = City.GET_ALL_BY_REGION, query = "SELECT c FROM City c WHERE c.countryName=:countryName " +
-        "ORDER BY c.cityName ASC")})
-
 @Entity
 @Table(name = "city")
 public class City extends BaseIntEntity {
 
-    public static final String GET_ALL_BY_REGION = "City.getAllByCountry";
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "city_name")
-    private String cityName;
-
-    @Column(name = "country_name")
-    private String countryName;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "country_name")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "country_id")
     private Country country;
 
-    public City(Integer id, String cityName, String countryName, Country country) {
+    public City(){}
+
+    public City(Integer id, String name, Country country) {
         super(id);
-        this.cityName = cityName;
-        this.countryName = countryName;
+        this.name = name;
         this.country = country;
     }
 
-    public String getCityName() {
-        return cityName;
-    }
-
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
-    }
-
-    public String getCountryName() {
-        return countryName;
-    }
-
-    public void setCountryName(String countryName) {
-        this.countryName = countryName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Country getCountry() {
@@ -60,12 +40,15 @@ public class City extends BaseIntEntity {
         this.country = country;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return "City{" +
                 "id" + "\'" +
-                ", cityName='" + cityName + '\'' +
-                ", countryName='" + countryName + '\'' +
+                ", name='" + name + '\'' +
                 ", country=" + country +
                 '}';
     }

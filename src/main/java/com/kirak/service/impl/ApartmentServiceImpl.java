@@ -5,7 +5,9 @@ import com.kirak.repository.ApartmentRepository;
 import com.kirak.service.ApartmentService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.List;
@@ -16,11 +18,11 @@ import static com.kirak.util.ValidationUtil.checkNotFoundWithId;
 /**
  * Created by Kir on 01.06.2017.
  */
-
+@Transactional
 @Service
 public class ApartmentServiceImpl implements ApartmentService {
 
-    private ApartmentRepository repository;
+    private final ApartmentRepository repository;
 
     @Autowired
     private ApartmentServiceImpl(ApartmentRepository repository){
@@ -58,6 +60,12 @@ public class ApartmentServiceImpl implements ApartmentService {
     @Override
     public List<Apartment> getAll() {
         return repository.getAll();
+    }
+
+    @CacheEvict(value = "users", allEntries = true)
+    @Override
+    public void evictCache() {
+
     }
 
 

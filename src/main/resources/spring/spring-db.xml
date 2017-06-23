@@ -8,7 +8,6 @@
 
     <jdbc:initialize-database data-source="dataSource" enabled="${database.init}">
         <jdbc:script location="classpath:db/${jdbc.initLocation}"/>
-        <jdbc:script encoding="utf-8" location="classpath:db/populateDb.sql"/>
     </jdbc:initialize-database>
 
     <beans profile="mysql">
@@ -23,15 +22,19 @@
     </beans>
 
     <beans profile="tomcat">
-        <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/topjava"/>
+        <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/simple-booking-service"/>
         <context:property-placeholder location="classpath:properties/tomcat.properties" system-properties-mode="OVERRIDE"/>
     </beans>
 
 
-    <beans profile="jpa,com.kirak.service.datajpa">
+    <beans profile="datajpa">
+
+        <context:component-scan base-package="com.kirak.**.repository.datajpa"/>
+        <jpa:repositories base-package="com.kirak.**.repository.datajpa"/>
+
         <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
               p:dataSource-ref="dataSource"
-              p:packagesToScan="ru.javawebinar.**.model">
+              p:packagesToScan="com.kirak.**.model">
             <!--p:persistenceUnitName="persistenceUnit">-->
 
             <property name="jpaPropertyMap">
@@ -40,7 +43,7 @@
                     <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SQL_COMMENTS}"
                            value="${hibernate.use_sql_comments}"/>
                     <!--<entry key="#{T(org.hibernate.cfg.AvailableSettings).HBM2DDL_AUTO}" value="${hibernate.hbm2ddl.auto}"/>-->
-
+                    <entry key="#{T(org.hibernate.cfg.AvailableSettings).ENABLE_LAZY_LOAD_NO_TRANS}" value="${hibernate.enable_lazy_load_no_trans}"/>
                     <entry key="#{T(org.hibernate.cfg.AvailableSettings).CACHE_REGION_FACTORY}" value="org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory"/>
                     <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SECOND_LEVEL_CACHE}" value="true"/>
                     <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_QUERY_CACHE}" value="false"/> <!--default-->
@@ -65,15 +68,13 @@
         <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
               p:entityManagerFactory-ref="entityManagerFactory"/>
 
+
+
+
     </beans>
 
-
-    <beans profile="com.kirak.service.datajpa">
-        <context:component-scan base-package="com.kirak.**.repository.datajpa"/>
-        <jpa:repositories base-package="com.kirak.**.repository.datajpa"/>
-    </beans>
-
-
-
+    <!--<beans profile="datajpa">-->
+        <!---->
+    <!--</beans>-->
 
 </beans>

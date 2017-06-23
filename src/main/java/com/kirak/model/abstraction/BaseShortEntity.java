@@ -1,6 +1,7 @@
 package com.kirak.model.abstraction;
 
 import org.hibernate.Hibernate;
+import org.springframework.data.domain.Persistable;
 
 import javax.persistence.*;
 
@@ -10,7 +11,7 @@ import javax.persistence.*;
 
 @Access(AccessType.FIELD)
 @MappedSuperclass
-public class BaseShortEntity implements BaseEntity {
+public class BaseShortEntity implements BaseEntity, Persistable<Short> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

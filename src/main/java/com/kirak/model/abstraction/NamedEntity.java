@@ -3,10 +3,13 @@ package com.kirak.model.abstraction;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 
 /**
  * Created by Kir on 01.06.2017.
  */
+
+@MappedSuperclass
 public class NamedEntity extends BaseIntEntity {
 
     @NotBlank

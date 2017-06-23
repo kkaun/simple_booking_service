@@ -6,7 +6,9 @@ import com.kirak.service.AptTypeService;
 import com.kirak.util.ValidationUtil;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.List;
@@ -17,11 +19,11 @@ import static com.kirak.util.ValidationUtil.checkNotFoundWithId;
 /**
  * Created by Kir on 14.06.2017.
  */
-
+@Transactional
 @Service
 public class AptTypeServiceImpl implements AptTypeService {
 
-    private AptTypeRepository repository;
+    private final AptTypeRepository repository;
 
     @Autowired
     private AptTypeServiceImpl(AptTypeRepository repository){
@@ -53,5 +55,11 @@ public class AptTypeServiceImpl implements AptTypeService {
     @Override
     public List<AptType> getAll() {
         return repository.getAll();
+    }
+
+    @CacheEvict(value = "users", allEntries = true)
+    @Override
+    public void evictCache() {
+
     }
 }

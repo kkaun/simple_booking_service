@@ -19,8 +19,8 @@ public interface DataJpaHotelRepository extends JpaRepository<Hotel, Integer> {
 
     @Modifying
     @Transactional
-    @Query(Hotel.DELETE)
-    int delete(@Param("id") int id, @Param("cityId") int cityId);
+    @Query("DELETE FROM Hotel h WHERE h.id=:hotelId AND h.city.id=:cityId")
+    int delete(@Param("hotelId") int hotelId, @Param("cityId") int cityId);
 
     @Override
     @Transactional
@@ -29,12 +29,13 @@ public interface DataJpaHotelRepository extends JpaRepository<Hotel, Integer> {
     @Override
     Hotel findOne(Integer id);
 
-    @Query(Hotel.GET_ALL_BY_CITY)
+    @Query("SELECT h FROM Hotel h WHERE h.city=:cityId ORDER BY h.rating DESC")
     List<Hotel> getAllByCity(@Param("cityId") int cityId);
 
-    @Query(Hotel.GET_BETWEEN_RATINGS)
+    @Query("SELECT h FROM Hotel h WHERE h.rating BETWEEN :minRating AND :maxRating ORDER BY h.rating")
     List<Hotel> getBetweenRatings(@Param("minRating") double minRating, @Param("maxRating") double maxRating);
 
-    List<Hotel> getAll(Sort sort);
+    @Override
+    List<Hotel> findAll(Sort sort);
 
 }

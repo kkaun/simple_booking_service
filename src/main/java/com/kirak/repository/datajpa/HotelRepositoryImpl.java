@@ -1,4 +1,4 @@
-package com.kirak.repository.datajpa.impl;
+package com.kirak.repository.datajpa;
 
 import com.kirak.model.Hotel;
 import com.kirak.repository.HotelRepository;
@@ -7,13 +7,14 @@ import com.kirak.repository.datajpa.DataJpaHotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
  * Created by Kir on 13.06.2017.
  */
-
+@Transactional
 @Repository
 public class HotelRepositoryImpl implements HotelRepository {
 

@@ -5,7 +5,9 @@ import com.kirak.repository.HotelRepository;
 import com.kirak.service.HotelService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import static com.kirak.util.ValidationUtil.checkNotFoundWithId;
@@ -15,11 +17,11 @@ import java.util.List;
 /**
  * Created by Kir on 01.06.2017.
  */
-
+@Transactional
 @Service
 public class HotelServiceImpl implements HotelService {
 
-    private HotelRepository repository;
+    private final HotelRepository repository;
 
     @Autowired
     private HotelServiceImpl(HotelRepository repository){
@@ -63,5 +65,11 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public List<Hotel> getAll() {
         return repository.getAll();
+    }
+
+    @CacheEvict(value = "users", allEntries = true)
+    @Override
+    public void evictCache() {
+
     }
 }

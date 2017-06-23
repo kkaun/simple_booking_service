@@ -6,7 +6,9 @@ import com.kirak.service.BookingService;
 import com.kirak.util.ValidationUtil;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.time.LocalDate;
@@ -17,11 +19,11 @@ import static com.kirak.util.ValidationUtil.checkNotFoundWithId;
 /**
  * Created by Kir on 01.06.2017.
  */
-
+@Transactional
 @Service
 public class BookingServiceImpl implements BookingService {
 
-    private BookingRepository repository;
+    private final BookingRepository repository;
 
     @Autowired
     private BookingServiceImpl(BookingRepository repository){
@@ -61,6 +63,12 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public List<Booking> getAll() {
         return repository.getAll();
+    }
+
+    @CacheEvict(value = "users", allEntries = true)
+    @Override
+    public void evictCache() {
+
     }
 
 

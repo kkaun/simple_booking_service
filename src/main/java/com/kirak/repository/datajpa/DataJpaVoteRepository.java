@@ -24,10 +24,10 @@ public interface DataJpaVoteRepository extends JpaRepository<Vote, Integer>{
     @Override
     Vote findOne(Integer id);
 
-    @Query(Vote.GET_ALL_BY_HOTEL)
+    @Query("SELECT v FROM Vote v WHERE v.hotel.id=:hotelId ORDER BY v.dateAdded DESC")
     List<Vote> getAllByHotel(@Param("hotelId") int hotelId);
 
-    @Query(Vote.GET_ALL_BY_USER)
+    @Query("SELECT v FROM Vote v WHERE v.user.id=:userId ORDER BY v.dateAdded DESC")
     List<Vote> getAllByUser(@Param("userId") int userId);
 
     @Override
@@ -35,6 +35,6 @@ public interface DataJpaVoteRepository extends JpaRepository<Vote, Integer>{
 
     @Modifying
     @Transactional
-    @Query(Vote.DELETE)
+    @Query("DELETE FROM Vote v WHERE v.id=:id AND v.user.id=:userId AND v.hotel.id=:hotelId")
     int delete(@Param("id") Integer id, @Param("userId") int userId, @Param("hotelId") int hotelId);
 }

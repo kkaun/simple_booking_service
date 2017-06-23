@@ -11,19 +11,9 @@ import java.time.LocalDateTime;
 /**
  * Created by Kir on 30.05.2017.
  */
-
-@NamedQueries({@NamedQuery(name = Booking.GET_ALL_BY_USER_ID, query = "SELECT b FROM Booking b WHERE b.user_id=:userId " +
-        "ORDER BY b.dateAdded DESC"),
-        @NamedQuery(name = Booking.GET_ALL_BY_HOTEL_BETWEEN_DATES, query = "SELECT b FROM Booking b WHERE b.apartment_hotel_id=:hotelId " +
-                "AND b.dateAdded BETWEEN :startDate AND :endDate ORDER BY b.dateAdded DESC")
-})
-
 @Entity
 @Table(name = "booking")
 public class Booking extends BaseLongEntity {
-
-    public static final String GET_ALL_BY_USER_ID = "Booking.getAllByUserId";
-    public static final String GET_ALL_BY_HOTEL_BETWEEN_DATES = "Booking.getAllByHotelBetweenDates";
 
     @NotNull
     @Column(name = "active",  nullable = false, columnDefinition = "boolean default true")
@@ -48,7 +38,6 @@ public class Booking extends BaseLongEntity {
     @Column(name = "sum", precision=11, scale=2, nullable = false)
     private Double sum;
 
-    //-----------------------------------------
     @Range(min = 1, max = 20)
     @NotNull
     @Column(name = "person_num")
@@ -57,22 +46,20 @@ public class Booking extends BaseLongEntity {
     @Range(min = 0, max = 6)
     @Column(name = "extra_beds")
     private Short extraBeds = 0;
-    //------------------------------------------
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "apartment_id")
     private Apartment apartment;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "apartment_hotel_id")
     private Hotel hotel;
+
+    public Booking(){}
 
     public Booking(Long id, boolean active, LocalDateTime dateAdded, LocalDateTime inDate, LocalDateTime outDate,
                    Double sum, Short personNum, Short extraBeds, User user, Apartment apartment, Hotel hotel) {

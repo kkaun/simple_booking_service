@@ -23,4 +23,6 @@ public interface HotelService {
     List<Hotel> getBetweenRatings(double minRating, double maxRating);
 
     List<Hotel> getAll();
+
+    void evictCache();//for tests
 }

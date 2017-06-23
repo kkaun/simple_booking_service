@@ -1,4 +1,4 @@
-package com.kirak.repository.datajpa.impl;
+package com.kirak.repository.datajpa;
 
 import com.kirak.model.Apartment;
 import com.kirak.repository.ApartmentRepository;
@@ -6,6 +6,7 @@ import com.kirak.repository.datajpa.DataJpaApartmentRepository;
 import com.kirak.repository.datajpa.DataJpaHotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,7 +15,7 @@ import java.util.List;
 /**
  * Created by Kir on 13.06.2017.
  */
-
+@Transactional
 @Repository
 public class ApartmentRepositoryImpl implements ApartmentRepository {
 
@@ -48,6 +49,7 @@ public class ApartmentRepositoryImpl implements ApartmentRepository {
         return apt != null && apt.getHotel().getId() == hotelId ? apt : null;
     }
 
+    @SuppressWarnings("JpaQlInspection")
     @Override
     public List<Apartment> getAllByHotel(int hotelId) {
         return apartmentRepository.getAllByHotel(hotelId);

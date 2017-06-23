@@ -1,11 +1,14 @@
-package com.kirak.service;
+package com.kirak.service.impl;
 
 import com.kirak.model.Apartment;
+import com.kirak.service.AbstractServiceTest;
+import com.kirak.service.ApartmentService;
 import com.kirak.util.exception.NotFoundException;
 import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 
 import javax.validation.ConstraintViolationException;
 import java.time.LocalDate;
@@ -13,6 +16,7 @@ import java.time.Month;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.kirak.Profile.DATAJPA;
 import static com.kirak.mock.ApartmentTestData.*;
 import static com.kirak.mock.HotelTestData.*;
 import static java.time.LocalDateTime.of;
@@ -20,23 +24,28 @@ import static java.time.LocalDateTime.of;
 /**
  * Created by Kir on 19.06.2017.
  */
-public class ApartmentServiceImplTest extends AbstractServiceTest {
+@ActiveProfiles(DATAJPA)
+public class ApartmentServiceTest extends AbstractServiceTest {
 
     @Autowired
     private ApartmentService service;
 
-
-    @Test
-    public void delete() throws Exception {
-        service.delete(APARTMENT1_ID, HOTEL1_ID);
-        APARTMENT_MATCHER.assertCollectionEquals(Arrays.asList(APARTMENT2, APARTMENT3, APARTMENT4, APARTMENT5), service.getAll());
+    @Before
+    public void setUp() throws Exception {
+        service.evictCache();
     }
 
-    @Test
-    public void deleteNotFound() throws Exception {
-        thrown.expect(NotFoundException.class);
-        service.delete(APARTMENT1_ID, HOTEL1_ID);
-    }
+//    @Test
+//    public void delete() throws Exception {
+//        service.delete(APARTMENT1_ID, HOTEL1_ID);
+//        APARTMENT_MATCHER.assertCollectionEquals(Arrays.asList(APARTMENT2, APARTMENT3, APARTMENT4, APARTMENT5), service.getAll());
+//    }
+
+//    @Test
+//    public void deleteNotFound() throws Exception {
+//        thrown.expect(NotFoundException.class);
+//        service.delete(APARTMENT1_ID, HOTEL1_ID);
+//    }
 
     @Test
     public void save() throws Exception {

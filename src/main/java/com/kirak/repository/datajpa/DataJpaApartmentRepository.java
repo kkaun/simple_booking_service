@@ -19,15 +19,18 @@ public interface DataJpaApartmentRepository extends JpaRepository<Apartment, Int
 
     @Modifying
     @Transactional
-    @Query(Apartment.DELETE)
+    @Query("DELETE FROM Apartment a WHERE a.id=:id AND a.hotel.id=:hotelId")
     int delete(@Param("id") int id, @Param("hotelId") int hotelId);
 
     @Override
+    @Transactional
     Apartment save(Apartment apartment);
 
-    @Query(Apartment.GET_ALL_BY_PRICE)
+    @Transactional
+    @Query("SELECT a FROM Apartment a WHERE a.hotel.id=:hotelId ORDER BY a.price ASC")
     List<Apartment> getAllByHotel(@Param("hotelId") int hotelId);
 
+    @Transactional
     @Override
     List<Apartment> findAll(Sort sort);
 

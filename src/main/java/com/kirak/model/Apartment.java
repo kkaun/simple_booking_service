@@ -9,33 +9,21 @@ import javax.validation.constraints.NotNull;
 /**
  * Created by Kir on 30.05.2017.
  */
-
-
-@NamedQueries({
-        @NamedQuery(name = Apartment.DELETE, query = "DELETE FROM Apartment a WHERE a.id=:apartmentId " +
-                "AND a.hotel.id=:hotelId"),
-        @NamedQuery(name = Apartment.GET_ALL_BY_PRICE, query = "SELECT a FROM Apartment a WHERE a.hotel.id=:hotelId " +
-                "ORDER BY a.price ASC")
-})
-
 @Entity
-@Table(name = "apartment")
+@Table(name = "apartment" )
 public class Apartment extends BaseIntEntity {
 
-    public static final String GET_ALL_BY_PRICE = "Apartment.getAllByHotel";
-    public static final String DELETE = "Apartment.delete";
-
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "apt_type_id")
     @NotNull
     private AptType type;
 
     @NotNull
-    @Column(name = "overallQuantity")
+    @Column(name = "overall_quantity")
     private Short overallQuantity;
 
     @NotNull
-    @Column(name = "reservedQuantity")
+    @Column(name = "reserved_quantity")
     private Short reservedQuantity;
 
     @Column(name = "price", precision=8, scale=2)
@@ -43,9 +31,11 @@ public class Apartment extends BaseIntEntity {
     private Double price;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "hotel_id", nullable = false)
     private Hotel hotel;
+
+    public Apartment(){}
 
     public Apartment(Integer id, AptType type, Short overallQuantity, Short reservedQuantity, Double price, Hotel hotel) {
         super(id);

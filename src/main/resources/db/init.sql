@@ -14,9 +14,9 @@ USE `booking_service`;
 DROP TABLE IF EXISTS `city`;
 CREATE TABLE `city` (
   `id`           INT NOT NULL AUTO_INCREMENT,
-  `city_name`    VARCHAR(45),
-  `country_name` VARCHAR(45),
-  INDEX `idx_country_name` (`country_name`),
+  `name`         VARCHAR(45),
+  `country_id` VARCHAR(45),
+  INDEX `idx_country_id` (`country_id`),
   PRIMARY KEY (`id`)
 )
   AUTO_INCREMENT = 100000,
@@ -28,8 +28,8 @@ CREATE TABLE `city` (
 DROP TABLE IF EXISTS `country`;
 CREATE TABLE `country` (
   `id`           TINYINT NOT NULL AUTO_INCREMENT,
-  `country_name` VARCHAR(45),
-  INDEX `idx_country_name`(`country_name`),
+  `name`         VARCHAR(45),
+  INDEX `idx_country_id`(`id`),
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
@@ -39,7 +39,6 @@ CREATE TABLE `country` (
 -- /////////////////////////////////////////
 
 DROP TABLE IF EXISTS `user`;
-
 CREATE TABLE IF NOT EXISTS `user` (
   `id`         INT         NOT NULL AUTO_INCREMENT,
   `email`      VARCHAR(45) NOT NULL UNIQUE,
@@ -54,7 +53,6 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 
 DROP TABLE IF EXISTS `user_role`;
-
 CREATE TABLE IF NOT EXISTS `user_role` (
   `user_id` INT         NOT NULL,
   `role`    VARCHAR(45) NULL,
@@ -70,7 +68,6 @@ CREATE TABLE IF NOT EXISTS `user_role` (
 
 
 DROP TABLE IF EXISTS `vote`;
-
 CREATE TABLE IF NOT EXISTS `vote` (
   `id`              INT           NOT NULL AUTO_INCREMENT,
   `rate`            DECIMAL(2, 1) NOT NULL,
@@ -98,7 +95,6 @@ CREATE TABLE IF NOT EXISTS `vote` (
 --   //////////////////////////////////////////
 
 DROP TABLE IF EXISTS `hotel`;
-
 CREATE TABLE IF NOT EXISTS `hotel` (
   `id`          INT           NOT NULL AUTO_INCREMENT,
   `name`        VARCHAR(45)   NOT NULL,
@@ -130,7 +126,6 @@ CREATE TABLE IF NOT EXISTS `hotel` (
 
 
 DROP TABLE IF EXISTS `apt_type`;
-
 CREATE TABLE IF NOT EXISTS `apt_type` (
   `id`               TINYINT      NOT NULL AUTO_INCREMENT,
   `beds_arrangement` VARCHAR(255) NULL,
@@ -142,7 +137,6 @@ CREATE TABLE IF NOT EXISTS `apt_type` (
 
 
 DROP TABLE IF EXISTS `apartment`;
-
 CREATE TABLE IF NOT EXISTS `apartment` (
   `id`                INT            NOT NULL AUTO_INCREMENT,
   `apt_type_id`       TINYINT        NOT NULL,
@@ -169,7 +163,6 @@ CREATE TABLE IF NOT EXISTS `apartment` (
 
 
 DROP TABLE IF EXISTS `booking`;
-
 CREATE TABLE IF NOT EXISTS `booking` (
   `id`                 BIGINT         NOT NULL AUTO_INCREMENT,
   `active`             BOOLEAN        DEFAULT TRUE,

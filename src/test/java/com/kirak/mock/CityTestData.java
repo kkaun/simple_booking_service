@@ -16,8 +16,8 @@ public class CityTestData {
     public static final Integer KYIV_ID = START_SEQ + 2;
     public static final Integer LVIV_ID = START_SEQ + 3;
 
-    public static final City MOSCOW = new City(MOSCOW_ID, "Moscow", "Russia", RUSSIA);
-    public static final City ST_PETERSBURG = new City(SPB_ID, "St Petersburg", "Russia", RUSSIA);
-    public static final City KYIV = new City(KYIV_ID, "Kiev", "Ukraine", UKRAINE);
-    public static final City LVIV = new City(LVIV_ID, "Lviv", "Ukraine", UKRAINE);
+    public static final City MOSCOW = new City(MOSCOW_ID, "Moscow", RUSSIA);
+    public static final City ST_PETERSBURG = new City(SPB_ID, "St Petersburg", RUSSIA);
+    public static final City KYIV = new City(KYIV_ID, "Kiev", UKRAINE);
+    public static final City LVIV = new City(LVIV_ID, "Lviv", UKRAINE);
 }

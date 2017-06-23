@@ -62,11 +62,11 @@ public class UserTestData {
 
 
     public static User getCreatedUser() {
-        return new User(null, "User NEW", "user1@yandex.ru", "password1", USER1_BOOKINGS, UserRole.ROLE_USER);
+        return new User(null, "User NEW", "user644@yandex.ru", "password1", USER1_BOOKINGS, UserRole.ROLE_USER);
     }
 
     public static User getUpdatedUser() {
-        return new User(USER1_ID, "User UPDATED", "user1@yandex.ru", "password1", USER1_BOOKINGS, UserRole.ROLE_USER);
+        return new User(USER1_ID, "User UPDATED", "user657@yandex.ru", "password1", USER1_BOOKINGS, UserRole.ROLE_USER);
     }
 
 }

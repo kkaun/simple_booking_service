@@ -1,4 +1,4 @@
-package com.kirak.repository.datajpa.impl;
+package com.kirak.repository.datajpa;
 
 import com.kirak.model.Booking;
 import com.kirak.repository.BookingRepository;
@@ -8,6 +8,7 @@ import com.kirak.repository.datajpa.DataJpaUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
 /**
  * Created by Kir on 13.06.2017.
  */
-
+@Transactional
 @Repository
 public class BookingRepositoryImpl implements BookingRepository {
 
@@ -62,6 +63,6 @@ public class BookingRepositoryImpl implements BookingRepository {
 
     @Override
     public List<Booking> getAllByHotelBetweenDates(int hotelId, LocalDate startDate, LocalDate endDate) {
-        return bookingRepository.getAllByHotelBetweenDates(hotelId);
+        return bookingRepository.getAllByHotelBetweenDates(hotelId, startDate, endDate);
     }
 }
