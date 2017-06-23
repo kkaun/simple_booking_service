@@ -56,6 +56,11 @@ public class Hotel extends NamedEntity {
 
     public Hotel(){}
 
+    public Hotel(Hotel h) {
+        this(h.getId(), h.getName(), h.getRating(), h.getStars(), h.getCountry(), h.getCity(), h.getAddress(),
+                h.getPhone(), h.getDescription(), h.getCheckIn(), h.getCheckOut());
+    }
+
     public Hotel(Integer id, String name, Double rating, Short stars, Country country, City city, String address,
                  String phone, String description, Time checkIn, Time checkOut) {
         super(id, name);

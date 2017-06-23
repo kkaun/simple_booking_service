@@ -32,12 +32,11 @@ public class VoteTestData {
     public static final Vote VOTE3 = new Vote(VOTE3_ID, 8.0, "User Vote comment  3",
             of(2017, Month.JUNE, 9, 14, 45), USER3, HOTEL2);
 
-    public static final List<Vote> VOTES = Arrays.asList(VOTE1, VOTE3, VOTE2);
 
-    public static Vote getCreatedVote() {
-        return new Vote(null, 9.0, "User Vote comment  NEW",
-                of(2017, Month.JUNE, 11, 14, 32), USER2, HOTEL3);
-    }
+//    public static Vote getCreatedVote() {
+//        return new Vote(null, 9.0, "User Vote comment  NEW",
+//                of(2017, Month.JUNE, 11, 14, 32), USER2, HOTEL3);
+//    }
 
     public static Vote getUpdatedVote() {
         return new Vote(VOTE1_ID, 8.5, "User Vote comment  EDITED",

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -62,7 +63,7 @@ public class BookingRepositoryImpl implements BookingRepository {
     }
 
     @Override
-    public List<Booking> getAllByHotelBetweenDates(int hotelId, LocalDate startDate, LocalDate endDate) {
+    public List<Booking> getAllByHotelBetweenDates(int hotelId, LocalDateTime startDate, LocalDateTime endDate) {
         return bookingRepository.getAllByHotelBetweenDates(hotelId, startDate, endDate);
     }
 }

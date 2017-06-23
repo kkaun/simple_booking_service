@@ -18,7 +18,7 @@ import java.util.List;
 @Repository
 public class HotelRepositoryImpl implements HotelRepository {
 
-    private Sort CITY_SORT = new Sort("city");
+    private Sort RATING_SORT = new Sort(Sort.Direction.DESC, "rating");
 
     @Autowired
     private DataJpaHotelRepository hotelRepository;
@@ -26,13 +26,14 @@ public class HotelRepositoryImpl implements HotelRepository {
     @Autowired
     private DataJpaCityRepository cityRepository;
 
+    @Transactional
     @Override
     public Hotel save(Hotel hotel, int cityId) {
         if (!hotel.isNew() && get(hotel.getId(), cityId) == null) {
             return null;
         }
         hotel.setCity(cityRepository.findOne(cityId));
-        return hotel;
+        return hotelRepository.save(hotel);
     }
 
     @Override
@@ -58,6 +59,6 @@ public class HotelRepositoryImpl implements HotelRepository {
 
     @Override
     public List<Hotel> getAll() {
-        return hotelRepository.findAll(CITY_SORT);
+        return hotelRepository.findAll(RATING_SORT);
     }
 }

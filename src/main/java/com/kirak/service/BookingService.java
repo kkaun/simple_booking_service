@@ -4,6 +4,7 @@ import com.kirak.model.Booking;
 import javassist.NotFoundException;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ public interface BookingService {
 
     List<Booking> getAllByUserId(int userId);
 
-    List<Booking> getAllByHotelBetweenDates(int hotelId, LocalDate startDate, LocalDate endDate);
+    List<Booking> getAllByHotelBetweenDates(int hotelId, LocalDateTime startDate, LocalDateTime endDate);
 
     List<Booking> getAll();
 

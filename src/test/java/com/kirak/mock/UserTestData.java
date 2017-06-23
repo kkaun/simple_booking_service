@@ -42,10 +42,10 @@ public class UserTestData {
     public static final User MANAGER = new User(MANAGER_ID, "Manager", "manager@gmail.com", "manager",
             Collections.emptySet(), UserRole.ROLE_HOTEL_MANAGER);
     public static final User ADMIN = new User(ADMIN_ID, "Admin", "admin@gmail.com", "admin",
-            ADMIN_BOOKINGS, UserRole.ROLE_SYSTEM_ADMIN, UserRole.ROLE_USER);
+            ADMIN_BOOKINGS, UserRole.ROLE_USER, UserRole.ROLE_SYSTEM_ADMIN);
 
 
-    public static final List<User> ALL_USERS = Arrays.asList(USER1, USER2, USER3, MANAGER, ADMIN);
+    public static final List<User> ALL_USERS = Arrays.asList(ADMIN, MANAGER, USER1, USER2, USER3);
 
 
     public static final ModelMatcher<User> USER_MATCHER = ModelMatcher.of(User.class,
@@ -60,13 +60,5 @@ public class UserTestData {
                     )
     );
 
-
-    public static User getCreatedUser() {
-        return new User(null, "User NEW", "user644@yandex.ru", "password1", USER1_BOOKINGS, UserRole.ROLE_USER);
-    }
-
-    public static User getUpdatedUser() {
-        return new User(USER1_ID, "User UPDATED", "user657@yandex.ru", "password1", USER1_BOOKINGS, UserRole.ROLE_USER);
-    }
 
 }

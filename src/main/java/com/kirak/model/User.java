@@ -2,6 +2,7 @@ package com.kirak.model;
 
 import com.kirak.model.abstraction.NamedEntity;
 import org.hibernate.annotations.*;
+import org.hibernate.annotations.Cache;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
@@ -13,18 +14,16 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
  * Created by Kir on 30.05.2017.
  */
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Entity
 @Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "user_unique_email_idx")})
 public class User extends NamedEntity {
-
-    public static final String DELETE = "User.delete";
-    public static final String BY_EMAIL = "User.getByEmail";
-    //public static final String ALL_SORTED = "User.getAllSorted";
 
     @Column(name = "email", nullable = false, unique = true)
     @Email
@@ -36,7 +35,7 @@ public class User extends NamedEntity {
     @Length(min = 5)
     private String password;
 
-    @Column(name = "registered", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "registered", columnDefinition = "timestamp default now()")
     private Date registered = new Date();
 
     //@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -134,6 +133,8 @@ public class User extends NamedEntity {
                 ", password='" + password + '\'' +
                 ", registered=" + registered +
                 ", roles=" + roles.toString() +
+                ", bookings=" + bookings.toString() +
+                //", votes=" + votes.toString() +
                 '}';
     }
 }

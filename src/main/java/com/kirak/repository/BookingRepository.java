@@ -25,6 +25,6 @@ public interface BookingRepository {
 
     List<Booking> getAllByUserId(int userId);
 
-    List<Booking> getAllByHotelBetweenDates(int hotelId, LocalDate startDate, LocalDate endDate);
+    List<Booking> getAllByHotelBetweenDates(int hotelId, LocalDateTime startDate, LocalDateTime endDate);
 
 }

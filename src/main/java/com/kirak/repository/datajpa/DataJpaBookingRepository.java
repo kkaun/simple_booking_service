@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -33,6 +34,6 @@ public interface DataJpaBookingRepository extends JpaRepository<Booking, Long>{
 
     @Query("SELECT b FROM Booking b WHERE b.hotel.id=:hotelId AND b.dateAdded BETWEEN :startDate AND :endDate ORDER BY b.dateAdded DESC")
     List<Booking> getAllByHotelBetweenDates(@Param("hotelId") int hotelId,
-                                            @Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+                                            @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
 }

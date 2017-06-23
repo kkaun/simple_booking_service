@@ -4,6 +4,7 @@ import com.kirak.matchers.ModelMatcher;
 import com.kirak.model.Booking;
 
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,13 +19,15 @@ import static java.time.LocalDateTime.of;
  */
 public class BookingTestData {
 
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
     public static final ModelMatcher<Booking> BOOKING_MATCHER = ModelMatcher.of(Booking.class);
 
     public static final Long BOOKING1_ID = START_SEQ_LONG;
     public static final Long BOOKING2_ID = START_SEQ_LONG + 1;
     public static final Long BOOKING3_ID = START_SEQ_LONG + 2;
-    public static final Long BOOKING4_ID = START_SEQ_LONG + 4;
-    public static final Long BOOKING5_ID = START_SEQ_LONG + 5;
+    public static final Long BOOKING4_ID = START_SEQ_LONG + 3;
+    public static final Long BOOKING5_ID = START_SEQ_LONG + 4;
 
     public static final Booking BOOKING1 = new Booking(BOOKING1_ID, true, of(2016, Month.MAY, 12, 16, 17),
             of(2017, Month.MAY, 23, 14, 0), of(2017, Month.MAY, 28, 12, 0),
@@ -51,7 +54,7 @@ public class BookingTestData {
 
 
     public static Booking getCreatedBooking() {
-        return new Booking(null, false, of(2016, Month.SEPTEMBER, 8, 19, 25),
+        return new Booking(null, false, of(2017, Month.JUNE, 8, 19, 25),
                 of(2017, Month.JUNE, 17, 14, 0), of(2017, Month.JUNE, 27, 12, 0),
                 3200.00, (short)2, (short)0, USER2, APARTMENT2, HOTEL2);
     }

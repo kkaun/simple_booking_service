@@ -6,6 +6,7 @@ import com.kirak.repository.datajpa.DataJpaHotelRepository;
 import com.kirak.repository.datajpa.DataJpaUserRepository;
 import com.kirak.repository.datajpa.DataJpaVoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,8 @@ import java.util.List;
 @Repository
 public class VoteRepositoryImpl implements VoteRepository {
 
+    public static final Sort RATE_SORT = new Sort("rate");
+
     @Autowired
     private DataJpaVoteRepository voteRepository;
 
@@ -27,6 +30,7 @@ public class VoteRepositoryImpl implements VoteRepository {
     @Autowired
     private DataJpaHotelRepository hotelRepository;
 
+    @Transactional
     @Override
     public Vote save(Vote vote, int userId, int hotelId) {
         if(!vote.isNew() && get(vote.getId(), userId, hotelId) == null){
@@ -34,7 +38,7 @@ public class VoteRepositoryImpl implements VoteRepository {
         }
         vote.setUser(userRepository.getOne(userId));
         vote.setHotel(hotelRepository.getOne(hotelId));
-        return vote;
+        return voteRepository.save(vote);
     }
 
     @Override
@@ -60,6 +64,6 @@ public class VoteRepositoryImpl implements VoteRepository {
 
     @Override
     public List<Vote> getAll() {
-        return voteRepository.findAll();
+        return voteRepository.findAll(RATE_SORT);
     }
 }

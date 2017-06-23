@@ -18,7 +18,7 @@ import java.util.List;
 @Repository
 public class AptTypeRepositoryImpl implements AptTypeRepository{
 
-    private Sort BED_NUM_SORT = new Sort("bedsNum");
+    private Sort BED_NUM_SORT = new Sort("personNum");
 
     @Autowired
     private DataJpaAptTypeRepository aptTypeRepository;

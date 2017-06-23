@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.Arrays;
 import java.util.Collections;
@@ -37,7 +38,7 @@ public class BookingServiceTest extends AbstractServiceTest {
     public void save() throws Exception {
         Booking created = getCreatedBooking();
         service.save(created, USER2_ID, HOTEL2_ID);
-        BOOKING_MATCHER.assertCollectionEquals(Arrays.asList(BOOKING4, BOOKING3, BOOKING5, BOOKING2, BOOKING1, created),
+        BOOKING_MATCHER.assertCollectionEquals(Arrays.asList(created, BOOKING4, BOOKING3, BOOKING5, BOOKING2, BOOKING1),
                 service.getAll());
     }
 
@@ -64,19 +65,19 @@ public class BookingServiceTest extends AbstractServiceTest {
     public void getNotFound() throws Exception {
         thrown.expect(NotFoundException.class);
         thrown.expectMessage("Not found entity with id=" + BOOKING1_ID);
-        service.get(BOOKING2_ID, USER3_ID, HOTEL2_ID);
+        service.get(BOOKING1_ID, USER3_ID, HOTEL2_ID);
     }
 
     @Test
     public void getAllByUserId() throws Exception {
-        BOOKING_MATCHER.assertCollectionEquals(Arrays.asList(BOOKING1, BOOKING4), service.getAllByUserId(USER1_ID));
+        BOOKING_MATCHER.assertCollectionEquals(Arrays.asList(BOOKING4, BOOKING1), service.getAllByUserId(USER1_ID));
     }
 
     @Test
     public void getAllByHotelBetweenDates() throws Exception {
         BOOKING_MATCHER.assertCollectionEquals(Collections.singletonList(BOOKING1),
-                service.getAllByHotelBetweenDates(HOTEL1_ID, of(2016, Month.MAY, 11),
-                        of(2016, Month.MAY, 14)));
+                service.getAllByHotelBetweenDates(HOTEL1_ID, LocalDateTime.of(2016, Month.MAY, 11, 0, 0),
+                        LocalDateTime.of(2016, Month.MAY, 14, 0 ,0)));
     }
 
     @Test

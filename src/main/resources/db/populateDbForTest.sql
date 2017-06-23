@@ -40,9 +40,9 @@ VALUES
 
 INSERT INTO user (name, email, password)
 VALUES
-  ('User1', 'user123@yandex.ru', 'password1'),
-  ('User2', 'user223@yandex.ru', 'password2'),
-  ('User3', 'user3234@yandex.ru', 'password3');
+  ('User1', 'user1@yandex.ru', 'password1'),
+  ('User2', 'user2@yandex.ru', 'password2'),
+  ('User3', 'user3@yandex.ru', 'password3');
 
 INSERT INTO user (name, email, password)
 VALUES ('Manager', 'manager@gmail.com', 'manager');
@@ -55,8 +55,8 @@ INSERT INTO user_role (user_id, role) VALUES
   (100001, 'ROLE_USER'),
   (100002, 'ROLE_USER'),
   (100003, 'ROLE_HOTEL_MANAGER'),
-  (100004, 'ROLE_SYSTEM_ADMIN'),
-  (100004, 'ROLE_USER');
+  (100004, 'ROLE_USER'),
+  (100004, 'ROLE_SYSTEM_ADMIN');
 
 
 
@@ -67,7 +67,7 @@ VALUES
   ('HOTEL1', 9.1, 3, 1, 100000, 'Address1', '8943111111', null, '14:00:00', '12:00:00'),
   ('HOTEL2', null, 4, 1, 100001, 'Address2', '8943111111', 'Description2', '14:00:00', '12:00:00'),
   ('HOTEL3', 6.8, null, 2, 100002, 'Address3', '8943111111', 'Description3', '14:00:00', '12:00:00'),
-  ('HOTEL4', 7.4, 4, 2, 100003, 'Address4', '8943111111', 'Description4', '14:00:00', '12:00:00');
+  ('HOTEL4', 7.4, 4, 2, 100003, 'Address4', null, 'Description4', '14:00:00', '12:00:00');
 
 
 

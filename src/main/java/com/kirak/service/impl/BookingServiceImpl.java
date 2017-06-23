@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.kirak.util.ValidationUtil.checkNotFoundWithId;
@@ -54,7 +55,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public List<Booking> getAllByHotelBetweenDates(int hotelId, LocalDate startDate, LocalDate endDate) {
+    public List<Booking> getAllByHotelBetweenDates(int hotelId, LocalDateTime startDate, LocalDateTime endDate) {
         Assert.notNull(startDate, "Incoming LocalDate must not be null!");
         Assert.notNull(endDate, "Incoming LocalDate must not be null!");
         return repository.getAllByHotelBetweenDates(hotelId, startDate, endDate);
