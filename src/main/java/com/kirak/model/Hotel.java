@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Time;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by Kir on 30.05.2017.
@@ -17,7 +18,6 @@ import java.util.Date;
 public class Hotel extends NamedEntity {
 
     //TODO: add photo uploading feature to entity and business logic
-
 
     @Column(name = "rating", precision=1, scale=1)
     private Double rating;
@@ -54,15 +54,18 @@ public class Hotel extends NamedEntity {
     @Column(name = "check_out")
     private Time checkOut;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "hotel")
+    private Set<Vote> votes;
+
     public Hotel(){}
 
     public Hotel(Hotel h) {
         this(h.getId(), h.getName(), h.getRating(), h.getStars(), h.getCountry(), h.getCity(), h.getAddress(),
-                h.getPhone(), h.getDescription(), h.getCheckIn(), h.getCheckOut());
+                h.getPhone(), h.getDescription(), h.getCheckIn(), h.getCheckOut(), h.getVotes());
     }
 
     public Hotel(Integer id, String name, Double rating, Short stars, Country country, City city, String address,
-                 String phone, String description, Time checkIn, Time checkOut) {
+                 String phone, String description, Time checkIn, Time checkOut, Set<Vote> votes) {
         super(id, name);
         this.rating = rating;
         this.stars = stars;
@@ -73,6 +76,7 @@ public class Hotel extends NamedEntity {
         this.description = description;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
+        this.votes = votes;
     }
 
     public Double getRating() {
@@ -145,6 +149,14 @@ public class Hotel extends NamedEntity {
 
     public void setStars(Short stars) {
         this.stars = stars;
+    }
+
+    public Set<Vote> getVotes() {
+        return votes;
+    }
+
+    public void setVotes(Set<Vote> votes) {
+        this.votes = votes;
     }
 
     @Override

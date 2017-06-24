@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @RestController
-@RequestMapping(value = RestApartmentController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
-public class RestApartmentController extends AbstractApartmentController {
+@RequestMapping(value = ApartmentRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
+public class ApartmentRestController extends AbstractApartmentController {
 
-    static final String REST_URL = "/rest/manager/apartments";
+    static final String REST_URL = "/manager/apartments";
 
 
-    public RestApartmentController(ApartmentService apartmentService) {
+    public ApartmentRestController(ApartmentService apartmentService) {
         super(apartmentService);
     }
 }
