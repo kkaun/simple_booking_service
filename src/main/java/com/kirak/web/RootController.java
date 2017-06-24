@@ -23,18 +23,18 @@ public class RootController extends AbstractSystemAdminUserController {
 
     @GetMapping("/")
     public String root() {
-        return "redirect:hotels";
+        return "hotels";
     }
 
     @PreAuthorize("hasRole('SYSTEM_ADMIN')")
-    @GetMapping("/admin")
+    @GetMapping("/adminpanel")
     public String users() {
-        return "admin";
+        return "adminpanel";
     }
 
     @PreAuthorize("hasRole('HOTEL_MANAGER')")
     @GetMapping("/object")
-    public String bookers() {
+    public String myHotel() {
         return "object";  //&id...
     }
 
@@ -46,6 +46,11 @@ public class RootController extends AbstractSystemAdminUserController {
     @GetMapping(value = "/registerObject")
     public String addHotel() {
         return "newobject";
+    }
+
+    @GetMapping(value = "/book")
+    public String book() {
+        return "book";
     }
 
 
