@@ -2,7 +2,6 @@ package com.kirak.web;
 
 
 import com.kirak.util.ErrorInfo;
-import com.kirak.util.MessageUtil;
 import com.kirak.util.ValidationUtil;
 import com.kirak.util.exception.ApplicationException;
 import com.kirak.util.exception.NotFoundException;
@@ -34,7 +33,6 @@ public class ExceptionViewHandler {
 
     @Autowired
     private MessageUtil messageUtil;
-
 
 
     @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)

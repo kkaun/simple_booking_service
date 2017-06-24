@@ -23,6 +23,11 @@ public class RootController extends AbstractSystemAdminUserController {
 
     @GetMapping("/")
     public String root() {
+        return "redirect:hotels";
+    }
+
+    @GetMapping("/hotels")
+    public String hotels() {
         return "hotels";
     }
 

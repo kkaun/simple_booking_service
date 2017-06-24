@@ -61,7 +61,7 @@ public class User extends NamedEntity {
         this(u.getId(), u.getName(), u.getEmail(), u.getPassword(), u.getRegistered(), u.getBookings(), u.getRoles());
     }
 
-    public User(Integer id, String name, String email, String password, Date registered, Set<Booking> bookings, UserRole role, UserRole... roles) {
+    public User(Integer id, String name, String email, String password, Set<Booking> bookings, UserRole role, UserRole... roles) {
         this(id, name, email, password, new Date(), bookings, EnumSet.of(role, roles));
     }
 
