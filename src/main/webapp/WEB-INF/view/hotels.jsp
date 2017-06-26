@@ -7,8 +7,6 @@
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
 
-
-
 <div class="container">
 
     <div class="row">

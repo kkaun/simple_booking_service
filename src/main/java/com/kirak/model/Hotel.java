@@ -79,6 +79,13 @@ public class Hotel extends NamedEntity {
         this.votes = votes;
     }
 
+    public Hotel(Integer id, String name, Double rating, Short stars, String description) {
+        super(id, name);
+        this.rating = rating;
+        this.stars = stars;
+        this.description = description;
+    }
+
     public Double getRating() {
         return rating;
     }

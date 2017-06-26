@@ -74,6 +74,9 @@ public class User extends NamedEntity {
         setRoles(roles);
     }
 
+    public User(Integer o, String name, String s, String password, UserRole roleUser) {
+
+    }
 
 
     public String getEmail() {

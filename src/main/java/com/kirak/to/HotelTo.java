@@ -28,16 +28,16 @@ public class HotelTo extends NamedEntity implements Serializable {
 
     private final String description;
 
-    private final Set<Vote> votes;
+    private final Integer votesNum;
 
 
-    public HotelTo(Integer id, String name, Double rating, Short stars, String description, Set<Vote> votes) {
+    public HotelTo(Integer id, String name, Double rating, Short stars, String description, int votesNum) {
         this.id = id;
         this.name = name;
         this.rating = rating;
         this.stars = stars;
         this.description = description;
-        this.votes = votes;
+        this.votesNum = votesNum;
     }
 
 
@@ -63,8 +63,12 @@ public class HotelTo extends NamedEntity implements Serializable {
         return description;
     }
 
-    public Set<Vote> getVotes() {
-        return votes;
+    public Integer getVotesNum() {
+        return votesNum;
+    }
+
+    public Integer getVotesSize() {
+        return votesNum;
     }
 
     @Override
@@ -75,7 +79,7 @@ public class HotelTo extends NamedEntity implements Serializable {
                 ", rating=" + rating +
                 ", stars=" + stars +
                 ", description='" + description + '\'' +
-                ", votes=" + votes +
+                ", votes number=" + votesNum +
                 '}';
     }
 }
