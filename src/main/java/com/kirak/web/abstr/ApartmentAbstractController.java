@@ -11,13 +11,13 @@ import java.util.List;
 /**
  * Created by Kir on 18.06.2017.
  */
-public abstract class AbstractApartmentController {
+public abstract class ApartmentAbstractController {
 
     private final Logger LOG = LoggerFactory.getLogger(getClass());
 
     private final ApartmentService apartmentService;
 
-    public AbstractApartmentController(ApartmentService apartmentService){
+    public ApartmentAbstractController(ApartmentService apartmentService){
         this.apartmentService = apartmentService;
     }
 

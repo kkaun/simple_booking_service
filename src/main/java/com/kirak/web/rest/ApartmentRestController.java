@@ -1,7 +1,7 @@
 package com.kirak.web.rest;
 
 import com.kirak.service.ApartmentService;
-import com.kirak.web.abstr.AbstractApartmentController;
+import com.kirak.web.abstr.ApartmentAbstractController;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = ApartmentRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
-public class ApartmentRestController extends AbstractApartmentController {
+public class ApartmentRestController extends ApartmentAbstractController {
 
     static final String REST_URL = "/manager/apartments";
 

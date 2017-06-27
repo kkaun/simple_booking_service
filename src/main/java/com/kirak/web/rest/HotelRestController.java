@@ -3,8 +3,7 @@ package com.kirak.web.rest;
 import com.kirak.model.Hotel;
 import com.kirak.service.HotelService;
 import com.kirak.to.HotelTo;
-import com.kirak.web.abstr.AbstractHotelController;
-import javassist.NotFoundException;
+import com.kirak.web.abstr.HotelAbstractController;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,12 +18,12 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping(value = HotelsRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
-public class HotelsRestController extends AbstractHotelController{
+@RequestMapping(value = HotelRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
+public class HotelRestController extends HotelAbstractController {
 
     public static final String REST_URL = "/hotels";
 
-    private HotelsRestController(HotelService hotelService) {
+    private HotelRestController(HotelService hotelService) {
         super(hotelService);
     }
 
@@ -57,7 +56,7 @@ public class HotelsRestController extends AbstractHotelController{
         return super.get(id,  cityId);
     }
 
-    @GetMapping(value = "/by-city", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/by_city", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
     public List<HotelTo> getAllByCity(int cityId) {
         return super.getAllByCity(cityId);

@@ -14,13 +14,13 @@ import static com.kirak.util.ValidationUtil.checkId;
 /**
  * Created by Kir on 16.06.2017.
  */
-public abstract class AbstractHotelController {
+public abstract class HotelAbstractController {
 
     private final Logger LOG = LoggerFactory.getLogger(getClass());
 
     private final HotelService hotelService;
 
-    public AbstractHotelController(HotelService hotelService){
+    public HotelAbstractController(HotelService hotelService){
         this.hotelService = hotelService;
     }
 
@@ -46,12 +46,12 @@ public abstract class AbstractHotelController {
 
     public List<HotelTo> getAllByCity(int cityId){
         LOG.info("Getting all hotels by city {}", cityId);
-        return HotelUtil.getAllByCity(hotelService.getAllByCity(cityId));
+        return HotelUtil.getAllByCity(hotelService.getAll(), cityId);
     }
 
     public List<HotelTo> getBetweenRatings(double minRating, double maxRating){
         LOG.info("Getting all hotels between ratings {} - {}", minRating, maxRating);
-        return HotelUtil.getBetweenRatings(hotelService.getBetweenRatings(minRating, maxRating));
+        return HotelUtil.getBetweenRatings(hotelService.getAll(), minRating, maxRating);
     }
 
     public List<HotelTo> getAll(){

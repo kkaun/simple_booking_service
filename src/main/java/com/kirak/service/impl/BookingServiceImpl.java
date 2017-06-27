@@ -39,7 +39,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public Booking update(Booking booking, int userId, int hotelId) throws NotFoundException {
+    public Booking update(Booking booking, int userId, int hotelId) {
         Assert.notNull(booking, "Booking must not be null!");
         return checkNotFoundWithId(repository.save(booking, userId, hotelId), booking.getId());
     }

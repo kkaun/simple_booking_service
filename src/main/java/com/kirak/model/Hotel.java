@@ -64,6 +64,7 @@ public class Hotel extends NamedEntity {
                 h.getPhone(), h.getDescription(), h.getCheckIn(), h.getCheckOut(), h.getVotes());
     }
 
+
     public Hotel(Integer id, String name, Double rating, Short stars, Country country, City city, String address,
                  String phone, String description, Time checkIn, Time checkOut, Set<Vote> votes) {
         super(id, name);
@@ -84,6 +85,20 @@ public class Hotel extends NamedEntity {
         this.rating = rating;
         this.stars = stars;
         this.description = description;
+    }
+
+    public Hotel(Integer id, String name, Double rating, Short stars, Country country,
+                 City city, String address, String phone, String description, Time checkIn, Time checkOut) {
+        super(id, name);
+        this.rating = rating;
+        this.stars = stars;
+        this.country = country;
+        this.city = city;
+        this.address = address;
+        this.phone = phone;
+        this.description = description;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
     }
 
     public Double getRating() {

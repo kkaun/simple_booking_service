@@ -1,9 +1,8 @@
 package com.kirak.service;
 
 import com.kirak.model.Booking;
-import javassist.NotFoundException;
+import com.kirak.util.exception.NotFoundException;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -20,7 +19,7 @@ public interface BookingService {
         throw new UnsupportedOperationException("Booking cannot be deleted, only modified!");
     }
 
-    Booking get(Long id, int userId, int hotelId);
+    Booking get(Long id, int userId, int hotelId) throws NotFoundException;
 
     List<Booking> getAllByUserId(int userId);
 

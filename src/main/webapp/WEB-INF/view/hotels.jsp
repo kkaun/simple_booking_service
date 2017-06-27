@@ -36,7 +36,7 @@
             <td>${hotel.votes.size}</td>
             <td><a href="hotels/update?id=${meal.id}">Update</a></td>
             <td><a href="hotels/delete?id=${meal.id}">Delete</a></td>
-
+            </c:forEach>
         </table>
 
         </div>
@@ -44,5 +44,6 @@
         <div class="col-md-1"></div>
     </div>
 </div>
+
 </body>
 </html>

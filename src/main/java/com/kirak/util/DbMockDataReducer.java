@@ -2,6 +2,7 @@ package com.kirak.util;
 
 import java.io.*;
 import java.util.*;
+import org.apache.commons.lang3.text.WordUtils;
 
 /**
  * Created by Kir on 14.06.2017.
@@ -9,8 +10,60 @@ import java.util.*;
 public class DbMockDataReducer {
 
     public static void main(String[] args) throws IOException {
-        prepareCountriesToDb();
+        countryNamesToIds();
     }
+
+
+    public static void countryNamesToIds() {
+
+        File countriesInFile = new File("D:\\cities\\COUNTRIES_IDS.txt");
+        File citiesInFile = new File("D:\\cities\\CITIES_WITH_COUNTRY_IDS.txt");
+
+        Map<String, Integer> countryMockMap = new HashMap<>();
+        //Map<String, Integer> cityMap = new HashMap<>();
+
+        try (FileReader outStream = new FileReader("D:\\cities\\COUNTRIES_REDUCED.txt");
+             BufferedReader reader = new BufferedReader(outStream);
+             FileWriter inStream = new FileWriter(countriesInFile);
+             BufferedWriter writer = new BufferedWriter(inStream)) {
+
+            String line;
+            int id = 0;
+            while ((line = reader.readLine()) != null) {
+                id++;
+                countryMockMap.put(line, id);
+                writer.write(line + ", " + id);
+                writer.newLine();
+            }
+
+        }catch (IOException e){
+            System.out.println(e.getCause().toString());
+        }
+
+        try (FileReader outStream = new FileReader("D:\\cities\\CITIES_600.txt");
+             BufferedReader reader = new BufferedReader(outStream);
+             FileWriter inStream = new FileWriter(citiesInFile);
+             BufferedWriter writer = new BufferedWriter(inStream)) {
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                for (int i = 0; i < line.length(); i++) {
+                    if (line.charAt(i) == ',') {
+                        String key = line.substring(i+2, line.length());
+                        if(countryMockMap.containsKey(key)){
+                            writer.write("('" + WordUtils.capitalize(line.substring(0, i).toLowerCase())
+                                    + "', " + countryMockMap.get(key) + "),");
+                            writer.newLine();
+                        }
+                    }
+                }
+            }
+
+        }catch (IOException e){
+            System.out.println(e.getCause().toString());
+        }
+    }
+
 
     public static void prepareCountriesToDb(){
 

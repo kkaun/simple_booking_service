@@ -27,7 +27,7 @@ import static com.kirak.util.ValidationUtil.checkNew;
  */
 
 
-public abstract class AbstractSystemAdminUserController {
+public abstract class SystemAdminAbstractController {
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
     public static final String EXCEPTION_DUPLICATE_EMAIL = "exception.user.duplicateEmail";
@@ -45,7 +45,7 @@ public abstract class AbstractSystemAdminUserController {
         modificationRestriction = environment.acceptsProfiles(Profile.HEROKU);
     }
 
-    public AbstractSystemAdminUserController(UserService service) {
+    public SystemAdminAbstractController(UserService service) {
         this.service = service;
     }
 

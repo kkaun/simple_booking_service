@@ -35,18 +35,18 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public Hotel update(Hotel hotel, int cityId) throws NotFoundException {
+    public Hotel update(Hotel hotel, int cityId) {
         Assert.notNull(hotel, "Hotel must not be null!");
         return checkNotFoundWithId(repository.save(hotel, cityId), hotel.getId());
     }
 
     @Override
-    public void delete(Integer id, int cityId) throws NotFoundException {
+    public void delete(Integer id, int cityId) {
         checkNotFoundWithId(repository.delete(id, cityId), id);
     }
 
     @Override
-    public Hotel get(Integer id, int cityId) throws NotFoundException {
+    public Hotel get(Integer id, int cityId) {
         return checkNotFoundWithId(repository.get(id, cityId), id);
     }
 
