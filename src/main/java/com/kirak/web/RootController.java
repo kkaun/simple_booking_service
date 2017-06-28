@@ -1,10 +1,12 @@
 package com.kirak.web;
 
+import com.kirak.service.HotelService;
 import com.kirak.service.UserService;
 import com.kirak.web.abstr.SystemAdminAbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
@@ -15,10 +17,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class RootController extends SystemAdminAbstractController {
 
     @Autowired
-    public RootController(UserService service) {
-        super(service);
-    }
+    private HotelService hotelService;
 
+    @Autowired
+    public RootController(UserService userService, HotelService hotelService) {
+        super(userService);
+        this.hotelService = hotelService;
+    }
 
     @GetMapping("/")
     public String root() {
@@ -26,7 +31,8 @@ public class RootController extends SystemAdminAbstractController {
     }
 
     @GetMapping("/hotels")
-    public String hotels() {
+    public String hotels(Model model) {
+        model.addAttribute("hotels", hotelService.getAll());
         return "hotels";
     }
 

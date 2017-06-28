@@ -25,18 +25,24 @@
                 <th>Stars</th>
                 <th>Description</th>
                 <th>Votes number</th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
-            <c:forEach items="${hotels}" var="hotel">
-            <jsp:useBean id="hotel" scope="page" type="com.kirak.to.HotelTo"/>
-            <td>${hotel.name}</td>
-            <td>${hotel.rating}</td>
-            <td>${hotel.stars}</td>
-            <td>${hotel.description}</td>
-            <td>${hotel.votes.size}</td>
-            <td><a href="hotels/update?id=${meal.id}">Update</a></td>
-            <td><a href="hotels/delete?id=${meal.id}">Delete</a></td>
-            </c:forEach>
+
+                <c:forEach items="${hotels}" var="hotel">
+                <jsp:useBean id="hotel" scope="page" type="com.kirak.model.Hotel"/>
+                    <tr>
+                        <td>${hotel.name}</td>
+                        <td>${hotel.rating}</td>
+                        <td>${hotel.stars}</td>
+                        <td>${hotel.description}</td>
+                        <td>${hotel.votes.size()}</td>
+                        <td><a href="hotels/update?id=${hotel.id}">Update</a></td>
+                        <td><a href="hotels/delete?id=${hotel.id}">Delete</a></td>
+                    </tr>
+                </c:forEach>
+
         </table>
 
         </div>

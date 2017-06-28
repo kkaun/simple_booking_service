@@ -751,34 +751,37 @@ VALUES
 
 
 INSERT INTO user (name, email, password)
-VALUES ('User', 'user@yandex.ru', '000111'),
-('User1', 'user1@yandex.ru', '111222'),
-('User1', 'user2@yandex.ru', '444555'),
-('User1', 'user3@yandex.ru', '555666');
-
+VALUES
+  ('User1', 'user1@yandex.ru', 'password1'),
+  ('User2', 'user2@yandex.ru', 'password2'),
+  ('User3', 'user3@yandex.ru', 'password3');
 
 INSERT INTO user (name, email, password)
-VALUES ('Admin', 'admin@gmail.com', '222333');
+VALUES ('Manager', 'manager@gmail.com', 'manager');
 
-INSERT INTO user_role (role, user_id) VALUES
-  ('ROLE_USER', 100001),
-  ('ROLE_SYSTEM_ADMIN', 100001),
-  ('ROLE_HOTEL_MANAGER', 100001),
-  ('ROLE_USER', 100003),
-  ('ROLE_USER', 100004),
-  ('ROLE_USER', 100005),
-  ('ROLE_HOTEL_MANAGER', 100005);
+INSERT INTO user (name, email, password)
+VALUES ('Admin', 'admin@gmail.com', 'admin');
+
+INSERT INTO user_role (user_id, role) VALUES
+  (100000, 'ROLE_USER'),
+  (100001, 'ROLE_USER'),
+  (100002, 'ROLE_USER'),
+  (100003, 'ROLE_HOTEL_MANAGER'),
+  (100004, 'ROLE_USER'),
+  (100004, 'ROLE_SYSTEM_ADMIN');
+
 
 
 
 
 INSERT INTO hotel (name, rating, stars, country_id, city_id, address, phone, description, check_in, check_out)
 VALUES
-  ('Astoryia', 7.8, 3, 111, 84, 'Address, 3/43', '+8943543353', 'Description desc desc desc desc desc desc', '14:00:00', '12:00:00'),
-  ('Radyossun', 8.8, 4, 111, 521, '+8943367573', 'Address, 5/53', 'Description desc  desc desc desc desc desc', '14:00:00', '12:00:00'),
-  ('Otel', 7.8, 3, 111, 393, '+8943543353', 'Address, 8/76', 'Description desc desc desc desc desc', '14:00:00', '12:00:00'),
-  ('Kosmos', 7.8, 4, 87, 10, '+7943999953', 'Address, 2/51', 'Description desc desc desc desc desc desc', '14:00:00', '12:00:00'),
-  ('Perk Inn', 7.8, 5, 87, 43, '+79449980953', 'Address, 11/58', 'Description desc desc desc desc desc desc', '14:00:00', '12:00:00');
+  ('HOTEL1', 9.1, 3, 87, 100009, 'Address1', '89431543453', null, '14:00:00', '12:00:00'),
+  ('HOTEL2', null, 4, 87, 100041, 'Address2', '89431564565', 'Description2', '14:00:00', '12:00:00'),
+  ('HOTEL3', 6.8, null, 111, 100519, 'Address3', '894312223222', 'Description3', '14:00:00', '12:00:00'),
+  ('HOTEL4', 7.4, 4, 111, 100082, 'Address4', null, 'Description4', '14:00:00', '12:00:00'),
+  ('HOTEL5', 7.4, 4, 111, 100082, 'Address4', null, 'Description4', '14:00:00', '12:00:00');
+
 
 
 INSERT INTO apt_type(beds_arrangement, category, person_num)
@@ -815,37 +818,31 @@ VALUES
 
 
 INSERT INTO apartment (apt_type_id, overall_quantity, reserved_quantity, price, hotel_id)
-    VALUES
-      (3, 6, 4, 2000.00, 100001),
-      (4, 3, 3, 3000.00, 100001),
-      (1, 2, 2, 1200.00, 100002),
-      (2, 4, 3, 1600.00, 100002),
-      (3, 5, 4, 1200.00, 100002),
-      (1, 2, 1, 1400.00, 100003),
-      (2, 3, 1, 1800.00, 100003),
-      (5, 4, 2, 5000.00, 100003),
-      (2, 6, 4, 1500.00, 100004),
-      (3, 3, 2, 2300.00, 100004),
-      (1, 7, 6, 1000.00, 100005),
-      (3, 2, 2, 3200.00, 100005),
-      (5, 3, 1, 4000.00, 100005);
+VALUES
+  (1, 2, 1, 1200.00, 100000),
+  (2, 3, 3, 1500.00, 100000),
+  (3, 4, 0, 3200.00, 100001),
+  (4, 3, 1, 4600.00, 100002),
+  (5, 6, 2, 5200.00, 100003);
+
 
 
 
 INSERT INTO booking (active, date_added, in_date, out_date, sum, person_num, extra_beds, user_id, apartment_id, apartment_hotel_id)
-    VALUES
-      (0, '2016-05-23 10:00:00', '2016-06-14 14:00:00', '2017-06-15 12:00:00', 5000, 4, 0, 100001, 100001, 100001),
-      (0, '2016-03-21 10:00:00', '2016-03-30 14:00:00', '2017-06-30 12:00:00', 5000, 4, 0, 100002, 100003, 100002),
-      (0, '2017-05-11 10:00:00', '2017-06-30 14:00:00', '2017-06-30 12:00:00', 5000, 4, 0, 100002, 100007, 100003),
-      (0, '2017-05-12 10:00:00', '2017-07-30 14:00:00', '2017-07-30 12:00:00', 5000, 4, 0, 100003, 100010, 100004),
-      (0, '2017-05-14 10:00:00', '2017-08-30 14:00:00', '2017-08-30 12:00:00', 5000, 4, 0, 100004, 100011, 100005),
-      (0, '2017-05-27 10:00:00', '2017-09-30 14:00:00', '2017-09-30 12:00:00', 5000, 4, 0, 100005, 100011, 100005);
+VALUES
+  (1, '2016-05-12 16:17:00', '2017-05-23 14:00:00', '2017-05-28 12:00:00', 6000.00, 1, 0, 100000, 100000, 100000),
+  (1, '2017-01-23 11:21:00', '2017-04-14 14:00:00', '2017-04-17 12:00:00', 4500.00, 2, 0, 100001, 100001, 100000),
+  (1, '2017-03-08 19:25:00', '2017-06-07 14:00:00', '2017-06-30 12:00:00', 3200.00, 2, 0, 100002, 100002, 100001),
+  (1, '2017-05-02 10:43:00', '2017-05-21 14:00:00', '2017-05-23 12:00:00', 10000.00, 2, 1, 100000, 100003, 100002),
+  (0, '2017-02-15 16:35:00', '2017-05-23 14:00:00', '2017-05-28 12:00:00', 31200.00, 4, 0, 100004, 100004, 100003);
+
 
 
 INSERT INTO vote (rate, user_comment, date_added, user_id, hotel_id)
-    VALUES
-      (8.5, 'User comment!', '2017-01-30 17:05:01', 100001, 100001),
-      (6.5, 'User comment!', '2017-03-30 13:07:34', 100002, 100002);
+VALUES
+  (9.5, 'User Vote comment  1', '2017-06-16 19:32:00', 100000, 100002),
+  (6.5, 'User Vote comment  2', '2017-05-04 09:45:00', 100001, 100000),
+  (8.0, 'User Vote comment  3', '2017-06-09 14:45:00', 100002, 100001);
 
 
 
