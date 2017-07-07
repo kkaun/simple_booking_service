@@ -13,8 +13,8 @@ USE `booking_service`;
 
 DROP TABLE IF EXISTS `city`;
 CREATE TABLE `city` (
-  `id`           INT NOT NULL AUTO_INCREMENT,
-  `name`         VARCHAR(45),
+  `id`         INT NOT NULL AUTO_INCREMENT,
+  `name`       VARCHAR(45),
   `country_id` VARCHAR(45),
   INDEX `idx_country_id` (`country_id`),
   PRIMARY KEY (`id`)
@@ -27,8 +27,8 @@ CREATE TABLE `city` (
 
 DROP TABLE IF EXISTS `country`;
 CREATE TABLE `country` (
-  `id`           TINYINT NOT NULL AUTO_INCREMENT,
-  `name`         VARCHAR(45),
+  `id`   SMALLINT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45),
   INDEX `idx_country_id`(`id`),
   PRIMARY KEY (`id`)
 )
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email`      VARCHAR(45) NOT NULL UNIQUE,
   `name`       VARCHAR(45) NULL,
   `password`   VARCHAR(45) NOT NULL,
-  `registered` TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
+  `registered` TIMESTAMP            DEFAULT CURRENT_TIMESTAMP,
   INDEX `user_unique_email_idx`(`email`),
   PRIMARY KEY (`id`)
 )
@@ -69,12 +69,12 @@ CREATE TABLE IF NOT EXISTS `user_role` (
 
 DROP TABLE IF EXISTS `vote`;
 CREATE TABLE IF NOT EXISTS `vote` (
-  `id`              INT           NOT NULL AUTO_INCREMENT,
-  `rate`            DECIMAL(2, 1) NOT NULL,
-  `user_comment`    TINYTEXT      NULL,
-  `date_added`      TIMESTAMP     NOT NULL,
-  `user_id`         INT           NOT NULL,
-  `hotel_id`        INT           NOT NULL,
+  `id`           INT           NOT NULL AUTO_INCREMENT,
+  `rate`         DECIMAL(2, 1) NOT NULL,
+  `user_comment` TINYTEXT      NULL,
+  `date_added`   TIMESTAMP     NOT NULL,
+  `user_id`      INT           NOT NULL,
+  `hotel_id`     INT           NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_vote_hotel1_idx` (`hotel_id` ASC),
   INDEX `fk_vote_user1_idx` (`user_id` ASC),
@@ -99,8 +99,8 @@ CREATE TABLE IF NOT EXISTS `hotel` (
   `id`          INT           NOT NULL AUTO_INCREMENT,
   `name`        VARCHAR(45)   NOT NULL,
   `rating`      DECIMAL(2, 1) NULL,
-  `stars`       TINYINT       NULL,
-  `country_id`  TINYINT       NOT NULL,
+  `stars`       SMALLINT      NULL,
+  `country_id`  SMALLINT      NOT NULL,
   `city_id`     INT           NOT NULL,
   `address`     VARCHAR(45)   NOT NULL,
   `phone`       VARCHAR(15)   NULL,
@@ -127,10 +127,10 @@ CREATE TABLE IF NOT EXISTS `hotel` (
 
 DROP TABLE IF EXISTS `apt_type`;
 CREATE TABLE IF NOT EXISTS `apt_type` (
-  `id`               TINYINT      NOT NULL AUTO_INCREMENT,
+  `id`               SMALLINT     NOT NULL AUTO_INCREMENT,
   `beds_arrangement` VARCHAR(255) NULL,
   `category`         VARCHAR(255) NULL,
-  `person_num`       TINYINT      NOT NULL,
+  `person_num`       SMALLINT     NOT NULL,
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB;
@@ -139,9 +139,9 @@ CREATE TABLE IF NOT EXISTS `apt_type` (
 DROP TABLE IF EXISTS `apartment`;
 CREATE TABLE IF NOT EXISTS `apartment` (
   `id`                INT            NOT NULL AUTO_INCREMENT,
-  `apt_type_id`       TINYINT        NOT NULL,
-  `overall_quantity`  TINYINT        NOT NULL,
-  `reserved_quantity` TINYINT        NOT NULL,
+  `apt_type_id`       SMALLINT       NOT NULL,
+  `overall_quantity`  SMALLINT       NOT NULL,
+  `reserved_quantity` SMALLINT       NOT NULL,
   `price`             DECIMAL(11, 4) NULL,
   `hotel_id`          INT            NOT NULL,
   PRIMARY KEY (`id`, `hotel_id`),
@@ -170,8 +170,8 @@ CREATE TABLE IF NOT EXISTS `booking` (
   `in_date`            TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
   `out_date`           TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
   `sum`                DECIMAL(11, 4) NOT NULL,
-  `person_num`         TINYINT        NOT NULL,
-  `extra_beds`         TINYINT        NULL,
+  `person_num`         SMALLINT       NOT NULL,
+  `extra_beds`         SMALLINT       NULL,
   `user_id`            INT            NOT NULL,
   `apartment_id`       INT            NOT NULL,
   `apartment_hotel_id` INT            NOT NULL,
@@ -192,8 +192,8 @@ CREATE TABLE IF NOT EXISTS `booking` (
   CONSTRAINT `fk_booking_apartment_hotel1`
   FOREIGN KEY (`apartment_hotel_id`)
   REFERENCES `apartment` (`hotel_id`)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
 )
   AUTO_INCREMENT = 100000,
   ENGINE = InnoDB;
