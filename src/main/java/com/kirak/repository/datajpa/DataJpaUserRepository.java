@@ -17,6 +17,7 @@ import java.util.List;
 
 @Transactional(readOnly = true)
 public interface DataJpaUserRepository extends JpaRepository<User, Integer> {
+
     @Transactional
     @Modifying
     @Query("DELETE FROM User u WHERE u.id=:id")

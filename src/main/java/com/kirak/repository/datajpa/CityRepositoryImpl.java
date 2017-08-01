@@ -34,5 +34,9 @@ public class CityRepositoryImpl implements CityRepository {
         return cityRepository.getAllByRegion(countryId);
     }
 
+    @Override
+    public List<City> getAll() {
+        return cityRepository.findAll();
+    }
 
 }

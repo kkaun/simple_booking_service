@@ -35,4 +35,10 @@ public class CityServiceImpl implements CityService {
     public List<City> getAllByRegion(short countryId) {
         return repository.getAllByRegion(countryId);
     }
+
+    @Override
+    public List<City> getAll() {
+        return repository.getAll();
+    }
+
 }

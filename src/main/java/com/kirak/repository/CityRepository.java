@@ -12,4 +12,6 @@ public interface CityRepository {
     City get(int id);
 
     List<City> getAllByRegion(short countryId);
+
+    List<City> getAll();
 }

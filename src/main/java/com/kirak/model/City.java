@@ -5,6 +5,8 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * Created by Kir on 12.06.2017.
@@ -20,12 +22,17 @@ public class City extends BaseIntEntity {
     @JoinColumn(name = "country_id")
     private Country country;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "city")
+    @NotNull
+    private List<Hotel> hotels;
+
     public City(){}
 
-    public City(Integer id, String name, Country country) {
+    public City(Integer id, String name, Country country, List<Hotel> hotels) {
         super(id);
         this.name = name;
         this.country = country;
+        this.hotels = hotels;
     }
 
     public void setName(String name) {
@@ -42,6 +49,14 @@ public class City extends BaseIntEntity {
 
     public String getName() {
         return name;
+    }
+
+    public List<Hotel> getHotels() {
+        return hotels;
+    }
+
+    public void setHotels(List<Hotel> hotels) {
+        this.hotels = hotels;
     }
 
     @Override

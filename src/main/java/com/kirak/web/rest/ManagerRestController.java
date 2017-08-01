@@ -29,7 +29,8 @@ public class ManagerRestController extends BookingAbstractController{
 
     @PutMapping(value = "/{userId}&{hotelId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @Override
-    public Booking update(@RequestBody Booking booking, @PathVariable("userId") int userId, @PathVariable("hotelId")int hotelId) {
+    public Booking update(@RequestBody Booking booking,
+                          @PathVariable("userId") int userId, @PathVariable("hotelId")int hotelId) {
         return super.update(booking, userId, hotelId);
     }
 
@@ -40,7 +41,8 @@ public class ManagerRestController extends BookingAbstractController{
 
     @GetMapping(value = "/{id}&{userId}&{hotelId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
-    public Booking get(@PathVariable("id")Long id, @PathVariable("userId") int userId, @PathVariable("hotelId") int hotelId) {
+    public Booking get(@PathVariable("id")Long id,
+                       @PathVariable("userId") int userId, @PathVariable("hotelId") int hotelId) {
         return super.get(id, userId, hotelId);
     }
 

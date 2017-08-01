@@ -22,7 +22,7 @@ public interface DataJpaCityRepository extends JpaRepository<City, Integer> {
     @Query("SELECT c FROM City c WHERE c.country.id=:countryId ORDER BY c.name ASC")
     List<City> getAllByRegion(@Param("countryId") short countryId);
 
-//    @Override
-//    List<City> findAll(Sort sort);
+    @Override
+    List<City> findAll();
 
 }

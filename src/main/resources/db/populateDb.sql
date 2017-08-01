@@ -780,7 +780,7 @@ VALUES
   ('HOTEL2', null, 4, 87, 100041, 'Address2', '89431564565', 'Description2', '14:00:00', '12:00:00'),
   ('HOTEL3', 6.8, null, 111, 100519, 'Address3', '894312223222', 'Description3', '14:00:00', '12:00:00'),
   ('HOTEL4', 7.4, 4, 111, 100082, 'Address4', null, 'Description4', '14:00:00', '12:00:00'),
-  ('HOTEL5', 7.4, 4, 111, 100082, 'Address4', null, 'Description4', '14:00:00', '12:00:00');
+  ('HOTEL5', 5.6, 3, 111, 100082, 'Address5', null, 'Description5', '14:00:00', '12:00:00');
 
 
 
