@@ -1,18 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Кира
-  Date: 24.06.2017
-  Time: 22:12
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
-<head>
-    <title>Title</title>
-
-</head>
 <body>
-
 
 <div class="container">
     <div class="row">
@@ -51,15 +40,14 @@
                 </div>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="headBtnHolder"><button type="button" class="btn btn-default btn-md btn-block headBtn"> Register your object </button></li>
+                    <li class="headBtnHolder"><button type="button" class="btn btn-default btn-md btn-block headBtn"> List your object </button></li>
                     <li class="headBtnHolder"><button type="button" class="btn btn-default btn-md btn-block headBtn"> Register as user </button></li>
-                    <li class="headBtnHolder"><button type="button" class="btn btn-default btn-md btn-block headBtn"> Log in </button></li>
+                    <li class="headBtnHolder"><button type="button" class="btn btn-default btn-md btn-block headBtn"> Login </button></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
     </div>
 </div>
-
 
 </body>
 </html>

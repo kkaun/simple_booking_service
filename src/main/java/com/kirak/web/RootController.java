@@ -1,8 +1,5 @@
 package com.kirak.web;
 
-import com.kirak.model.City;
-import com.kirak.model.Country;
-import com.kirak.model.Hotel;
 import com.kirak.service.CityService;
 import com.kirak.service.CountryService;
 import com.kirak.service.HotelService;
@@ -16,8 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import static com.kirak.util.model.CityUtil.getFiveCitiesByHotelAmount;
+import static com.kirak.util.model.HotelUtil.getFiveHotelsByRating;
 
 /**
  * Created by Kir on 16.06.2017.
@@ -46,8 +43,11 @@ public class RootController extends SystemAdminAbstractController {
         return "redirect:index";
     }
 
+
     @GetMapping("/index")
-    public String index(){
+    public String index(Model model){
+        model.addAttribute("citiesFive", getFiveCitiesByHotelAmount(cityService.getAll()));
+        model.addAttribute("hotelsFive", getFiveHotelsByRating(hotelService.getAll()));
         return "index";
     }
 
@@ -69,12 +69,11 @@ public class RootController extends SystemAdminAbstractController {
         return "hotels";
     }
 
-
-//    @GetMapping("/hotels")
-//    public String hotels(Model model) {
-//        model.addAttribute("hotels", hotelService.getAll());
-//        return "hotels";
-//    }
+    @GetMapping("/hotels")
+    public String hotels(Model model) {
+        model.addAttribute("hotels", hotelService.getAll());
+        return "hotels";
+    }
 
     @PreAuthorize("hasRole('SYSTEM_ADMIN')")
     @GetMapping("/users")

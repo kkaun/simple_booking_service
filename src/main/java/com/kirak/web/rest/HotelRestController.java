@@ -58,7 +58,7 @@ public class HotelRestController extends HotelAbstractController {
 
     @GetMapping(value = "/by_city", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
-    public List<HotelTo> getAllByCity(int cityId) {
+    public List<HotelTo> getAllByCity(@RequestParam int cityId) {
         return super.getAllByCity(cityId);
     }
 

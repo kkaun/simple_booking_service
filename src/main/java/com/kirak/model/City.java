@@ -28,6 +28,12 @@ public class City extends BaseIntEntity {
 
     public City(){}
 
+    public City(Integer id, String name, Country country) {
+        super(id);
+        this.name = name;
+        this.country = country;
+    }
+
     public City(Integer id, String name, Country country, List<Hotel> hotels) {
         super(id);
         this.name = name;
@@ -62,9 +68,10 @@ public class City extends BaseIntEntity {
     @Override
     public String toString() {
         return "City{" +
-                "id" + "\'" +
+                "id" + getId() + "\'" +
                 ", name='" + name + '\'' +
                 ", country=" + country +
+                ", hotels=" + hotels.toString() +
                 '}';
     }
 }

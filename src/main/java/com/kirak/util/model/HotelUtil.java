@@ -50,5 +50,17 @@ public class HotelUtil {
                 .collect(Collectors.toList());
     }
 
+    public static List<Hotel> getFiveHotelsByRating(List<Hotel> hotels){
+
+        Comparator<Hotel> byRating = (Hotel o1, Hotel o2)->
+                Double.compare(o2.getRating() != null? o2.getRating() : 0,
+                        o1.getRating() != null? o1.getRating() : 0);
+
+        return hotels.stream()
+                .sorted(byRating)
+                .limit(5)
+                .collect(Collectors.toList());
+    }
+
 
 }
