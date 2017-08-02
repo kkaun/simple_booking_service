@@ -15,6 +15,18 @@ import java.util.stream.Collectors;
  */
 public class HotelUtil {
 
+
+    public static Double calculateHotelRating(Hotel hotel){
+
+        OptionalDouble average = hotel.getVotes()
+                .stream()
+                .map(Vote::getRate)
+                .mapToDouble(r -> r)
+                .average();
+
+        return average.isPresent() ? average.getAsDouble() : 0;
+    }
+
 //    public static Hotel createNewFromTo(HotelTo newHotel) {
 //        return new Hotel(null, newHotel.getName(), newHotel.getRating(), newHotel.getStars(), newHotel.getDescription());
 //    }
@@ -53,14 +65,13 @@ public class HotelUtil {
     public static List<Hotel> getFiveHotelsByRating(List<Hotel> hotels){
 
         Comparator<Hotel> byRating = (Hotel o1, Hotel o2)->
-                Double.compare(o2.getRating() != null? o2.getRating() : 0,
-                        o1.getRating() != null? o1.getRating() : 0);
+                Integer.compare(!o2.getVotes().isEmpty() ? o2.getVotes().size() : 0,
+                        !o1.getVotes().isEmpty() ? o1.getVotes().size() : 0);
 
         return hotels.stream()
                 .sorted(byRating)
                 .limit(5)
                 .collect(Collectors.toList());
     }
-
 
 }

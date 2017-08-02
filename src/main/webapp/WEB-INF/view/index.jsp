@@ -76,15 +76,21 @@
                         </div>
                         <div class="col-md-3 text-center">
                             <h2> ${hotel.votes.size()} <small> votes </small></h2>
+                            <p> Average  <small> / </small> 5 </p>
                             <button type="button" class="btn btn-default btn-lg btn-block"> Book Now </button>
-                            <div class="stars">
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                            </div>
-                            <p> Average 4.5 <small> / </small> 5 </p>
+
+                            <c:if test="${not empty hotel.stars}">
+                                <c:forEach begin="0" end="${hotel.stars}" varStatus="loop">
+                                    <div class="stars">
+                                        <span class="glyphicon glyphicon-star"></span>
+                                    </div>
+                                </c:forEach>
+                                <c:forEach begin="0" end="${5 - hotel.stars}" varStatus="loop">
+                                    <div class="stars">
+                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                    </div>
+                                </c:forEach>
+                            </c:if>
                         </div>
                     </a>
                 </c:forEach>

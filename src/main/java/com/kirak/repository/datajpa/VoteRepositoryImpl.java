@@ -1,5 +1,6 @@
 package com.kirak.repository.datajpa;
 
+import com.kirak.model.Hotel;
 import com.kirak.model.Vote;
 import com.kirak.repository.VoteRepository;
 import com.kirak.repository.datajpa.DataJpaHotelRepository;
@@ -38,6 +39,9 @@ public class VoteRepositoryImpl implements VoteRepository {
         }
         vote.setUser(userRepository.getOne(userId));
         vote.setHotel(hotelRepository.getOne(hotelId));
+        Hotel hotel = hotelRepository.getOne(hotelId);
+
+        hotelRepository.save(hotelRepository.getOne(hotelId));
         return voteRepository.save(vote);
     }
 
