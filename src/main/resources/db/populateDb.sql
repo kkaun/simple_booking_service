@@ -774,30 +774,30 @@ INSERT INTO user_role (user_id, role) VALUES
 
 
 
-INSERT INTO hotel (name, rating, stars, country_id, city_id, address, phone, description, check_in, check_out)
+INSERT INTO hotel (name, stars, country_id, city_id, address, phone, description, check_in, check_out)
 VALUES
-  ('HOTEL1', 9.1, 3, 87, 100009, 'Address1', '89431543453', null, '14:00:00', '12:00:00'),
-  ('HOTEL2', null, 4, 87, 100041, 'Address2', '89431564565', 'Description2', '14:00:00', '12:00:00'),
-  ('HOTEL3', 6.8, null, 111, 100519, 'Address3', '894312223222', 'Description3', '14:00:00', '12:00:00'),
-  ('HOTEL4', 7.4, 4, 111, 100082, 'Address4', null, 'Description4', '14:00:00', '12:00:00'),
-  ('HOTEL5', 5.6, 3, 109, 100570, 'Address5', null, 'Description5', '14:00:00', '12:00:00'),
-  ('HOTEL6', 9.6, 3, 36, 100573, 'Address6', '894312223222', 'Description6', '14:00:00', '12:00:00'),
-  ('HOTEL7', 7.7, 3, 109, 100565, 'Address7', null, 'Description7', '14:00:00', '12:00:00'),
-  ('HOTEL8', 7.8, 3, 13, 100029, 'Address8', null, 'Description8', '14:00:00', '12:00:00'),
-  ('HOTEL9', 8.2, 3, 36, 100552, 'Address9', null, 'Description9', '14:00:00', '12:00:00'),
-  ('HOTEL10', 8.3, 3, 13, 100029, 'Address10', null, 'Description10', '14:00:00', '12:00:00'),
-  ('HOTEL11', 5.9, null, 27, 100313, 'Address11', '89431222367', 'Description11', '14:00:00', '12:00:00'),
-  ('HOTEL12', 4.1, 3, 18, 100099, 'Address12', '894312227546', 'Description12', '14:00:00', '12:00:00'),
-  ('HOTEL13', 6.6, null, 10, 100153, 'Address13', '894312223423', 'Description13', '14:00:00', '12:00:00'),
-  ('HOTEL14', 9.2, 3, 109, 100462, 'Address14', '89431222377', 'Description14', '14:00:00', '12:00:00'),
-  ('HOTEL15', 7.8, 3, 108, 100572, 'Address15', '89431245622', 'Description15', '14:00:00', '12:00:00'),
-  ('HOTEL16', 6.4, 3, 101, 100096, 'Address16', '894312223762', 'Description16', '14:00:00', '12:00:00'),
-  ('HOTEL17', 6.9, 3, 87, 100041, 'Address17', '89431221111', 'Description17', '14:00:00', '12:00:00'),
-  ('HOTEL18', 7.1, 3, 111, 100082, 'Address18', null, 'Description18', '14:00:00', '12:00:00'),
-  ('HOTEL19', 6.7, 3, 109, 100015, 'Address19', null, 'Description19', '14:00:00', '12:00:00'),
-  ('HOTEL20', 8.8, 3, 109, 100015, 'Address20', null, 'Description20', '14:00:00', '12:00:00'),
-  ('HOTEL21', 6.3, 3, 109, 100462, 'Address21', null, 'Description21', '14:00:00', '12:00:00'),
-  ('HOTEL22', 9.1, 3, 27, 100313, 'Address22', null, 'Description22', '14:00:00', '12:00:00');
+  ('HOTEL1', 3, 87, 100009, 'Address1', '89431543453', null, '14:00:00', '12:00:00'),
+  ('HOTEL2', 4, 87, 100041, 'Address2', '89431564565', 'Description2', '14:00:00', '12:00:00'),
+  ('HOTEL3', null, 111, 100519, 'Address3', '894312223222', 'Description3', '14:00:00', '12:00:00'),
+  ('HOTEL4', 4, 111, 100082, 'Address4', null, 'Description4', '14:00:00', '12:00:00'),
+  ('HOTEL5', 3, 109, 100570, 'Address5', null, 'Description5', '14:00:00', '12:00:00'),
+  ('HOTEL6', 3, 36, 100573, 'Address6', '894312223222', 'Description6', '14:00:00', '12:00:00'),
+  ('HOTEL7', 3, 109, 100565, 'Address7', null, 'Description7', '14:00:00', '12:00:00'),
+  ('HOTEL8', 3, 13, 100029, 'Address8', null, 'Description8', '14:00:00', '12:00:00'),
+  ('HOTEL9', 3, 36, 100552, 'Address9', null, 'Description9', '14:00:00', '12:00:00'),
+  ('HOTEL10', 3, 13, 100029, 'Address10', null, 'Description10', '14:00:00', '12:00:00'),
+  ('HOTEL11', null, 27, 100313, 'Address11', '89431222367', 'Description11', '14:00:00', '12:00:00'),
+  ('HOTEL12', 3, 18, 100099, 'Address12', '894312227546', 'Description12', '14:00:00', '12:00:00'),
+  ('HOTEL13', null, 10, 100153, 'Address13', '894312223423', 'Description13', '14:00:00', '12:00:00'),
+  ('HOTEL14', 3, 109, 100462, 'Address14', '89431222377', 'Description14', '14:00:00', '12:00:00'),
+  ('HOTEL15', 3, 108, 100572, 'Address15', '89431245622', 'Description15', '14:00:00', '12:00:00'),
+  ('HOTEL16', 3, 101, 100096, 'Address16', '894312223762', 'Description16', '14:00:00', '12:00:00'),
+  ('HOTEL17', 3, 87, 100041, 'Address17', '89431221111', 'Description17', '14:00:00', '12:00:00'),
+  ('HOTEL18', 3, 111, 100082, 'Address18', null, 'Description18', '14:00:00', '12:00:00'),
+  ('HOTEL19', 3, 109, 100015, 'Address19', null, 'Description19', '14:00:00', '12:00:00'),
+  ('HOTEL20', 3, 109, 100015, 'Address20', null, 'Description20', '14:00:00', '12:00:00'),
+  ('HOTEL21', 3, 109, 100462, 'Address21', null, 'Description21', '14:00:00', '12:00:00'),
+  ('HOTEL22', 3, 27, 100313, 'Address22', null, 'Description22', '14:00:00', '12:00:00');
 
 
 

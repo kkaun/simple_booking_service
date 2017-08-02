@@ -56,13 +56,6 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public List<Hotel> getBetweenRatings(double minRating, double maxRating) {
-        Assert.notNull(minRating, "Input rating must not be null!");
-        Assert.notNull(maxRating, "Input rating must not be null!");
-        return repository.getBetweenRatings(minRating, maxRating);
-    }
-
-    @Override
     public List<Hotel> getAll() {
         return repository.getAll();
     }

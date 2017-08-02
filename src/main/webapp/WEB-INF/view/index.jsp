@@ -1,7 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://kirak.com.functions" prefix="f" %>
 
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
@@ -62,7 +63,7 @@
             <div class="list-group">
 
                 <c:forEach items="${hotelsFive}" var="hotel">
-                <jsp:useBean id="hotel" scope="page" type="com.kirak.model.Hotel"/>
+                <jsp:useBean id="hotel" scope="page" type="com.kirak.to.HotelTo"/>
                     <a href="#" class="list-group-item">
                         <div class="media col-md-3">
                             <figure class="pull-left">
@@ -75,22 +76,16 @@
                             </p>
                         </div>
                         <div class="col-md-3 text-center">
-                            <h2> ${hotel.votes.size()} <small> votes </small></h2>
-                            <p> Average  <small> / </small> 5 </p>
-                            <button type="button" class="btn btn-default btn-lg btn-block"> Book Now </button>
-
-                            <c:if test="${not empty hotel.stars}">
-                                <c:forEach begin="0" end="${hotel.stars}" varStatus="loop">
-                                    <div class="stars">
+                            <div class="stars">
+                                <c:if test="${not empty hotel.stars}">
+                                    <c:forEach begin="0" end="${hotel.stars - 1}" varStatus="loop">
                                         <span class="glyphicon glyphicon-star"></span>
-                                    </div>
-                                </c:forEach>
-                                <c:forEach begin="0" end="${5 - hotel.stars}" varStatus="loop">
-                                    <div class="stars">
-                                        <span class="glyphicon glyphicon-star-empty"></span>
-                                    </div>
-                                </c:forEach>
-                            </c:if>
+                                    </c:forEach>
+                                </c:if>
+                            </div>
+                            <h3> Average ${hotel.rating} <small> / </small> 10 </h3>
+                            <h4> ${hotel.votesNum} <small> votes </small></h4>
+                            <button type="button" class="btn btn-default btn-lg btn-block"> Book Now </button>
                         </div>
                     </a>
                 </c:forEach>

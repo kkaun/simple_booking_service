@@ -98,7 +98,6 @@ DROP TABLE IF EXISTS `hotel`;
 CREATE TABLE IF NOT EXISTS `hotel` (
   `id`          INT           NOT NULL AUTO_INCREMENT,
   `name`        VARCHAR(45)   NOT NULL,
-  `rating`      DECIMAL(2, 1) NULL,
   `stars`       SMALLINT      NULL,
   `country_id`  SMALLINT      NOT NULL,
   `city_id`     INT           NOT NULL,

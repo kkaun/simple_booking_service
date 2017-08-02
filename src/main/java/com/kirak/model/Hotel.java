@@ -31,9 +31,6 @@ public class Hotel extends NamedEntity {
      */
 
 
-    @Column(name = "rating", precision=1, scale=1)
-    private Double rating;
-
     @Range(min = 1, max = 5)
     @Column(name = "stars")
     private Short stars;
@@ -72,15 +69,14 @@ public class Hotel extends NamedEntity {
     public Hotel(){}
 
     public Hotel(Hotel h) {
-        this(h.getId(), h.getName(), h.getRating(), h.getStars(), h.getCountry(), h.getCity(), h.getAddress(),
+        this(h.getId(), h.getName(), h.getStars(), h.getCountry(), h.getCity(), h.getAddress(),
                 h.getPhone(), h.getDescription(), h.getCheckIn(), h.getCheckOut(), h.getVotes());
     }
 
 
-    public Hotel(Integer id, String name, Double rating, Short stars, Country country, City city, String address,
+    public Hotel(Integer id, String name, Short stars, Country country, City city, String address,
                  String phone, String description, Time checkIn, Time checkOut, Set<Vote> votes) {
         super(id, name);
-        this.rating = rating;
         this.stars = stars;
         this.country = country;
         this.city = city;
@@ -92,17 +88,15 @@ public class Hotel extends NamedEntity {
         this.votes = votes;
     }
 
-    public Hotel(Integer id, String name, Double rating, Short stars, String description) {
+    public Hotel(Integer id, String name, Short stars, String description) {
         super(id, name);
-        this.rating = rating;
         this.stars = stars;
         this.description = description;
     }
 
-    public Hotel(Integer id, String name, Double rating, Short stars, Country country,
+    public Hotel(Integer id, String name, Short stars, Country country,
                  City city, String address, String phone, String description, Time checkIn, Time checkOut) {
         super(id, name);
-        this.rating = rating;
         this.stars = stars;
         this.country = country;
         this.city = city;
@@ -111,14 +105,6 @@ public class Hotel extends NamedEntity {
         this.description = description;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
-    }
-
-    public Double getRating() {
-        return rating;
-    }
-
-    public void setRating(Double rating) {
-        this.rating = rating;
     }
 
     public Country getCountry() {
@@ -198,7 +184,6 @@ public class Hotel extends NamedEntity {
         return "Hotel{" +
                 "id='" + getId() + "\'" +
                 ", name='" + getName() + "\'" +
-                ", rating=" + rating +
                 ", country=" + country.getId() +
                 ", city=" + city.getName() +
                 ", address='" + address + '\'' +

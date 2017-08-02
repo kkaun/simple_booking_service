@@ -29,11 +29,8 @@ public interface DataJpaHotelRepository extends JpaRepository<Hotel, Integer> {
     @Override
     Hotel findOne(Integer id);
 
-    @Query("SELECT h FROM Hotel h WHERE h.city.id=:cityId ORDER BY h.rating DESC")
+    @Query("SELECT h FROM Hotel h WHERE h.city.id=:cityId")
     List<Hotel> getAllByCity(@Param("cityId") int cityId);
-
-    @Query("SELECT h FROM Hotel h WHERE h.rating BETWEEN :minRating AND :maxRating ORDER BY h.rating")
-    List<Hotel> getBetweenRatings(@Param("minRating") double minRating, @Param("maxRating") double maxRating);
 
     @Override
     List<Hotel> findAll(Sort sort);

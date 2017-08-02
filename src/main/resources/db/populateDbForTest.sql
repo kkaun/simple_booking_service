@@ -62,12 +62,12 @@ INSERT INTO user_role (user_id, role) VALUES
 
 
 
-INSERT INTO hotel (name, rating, stars, country_id, city_id, address, phone, description, check_in, check_out)
+INSERT INTO hotel (name, stars, country_id, city_id, address, phone, description, check_in, check_out)
 VALUES
-  ('HOTEL1', 9.1, 3, 1, 100000, 'Address1', '8943111111', null, '14:00:00', '12:00:00'),
-  ('HOTEL2', null, 4, 1, 100001, 'Address2', '8943111111', 'Description2', '14:00:00', '12:00:00'),
-  ('HOTEL3', 6.8, null, 2, 100002, 'Address3', '8943111111', 'Description3', '14:00:00', '12:00:00'),
-  ('HOTEL4', 7.4, 4, 2, 100003, 'Address4', null, 'Description4', '14:00:00', '12:00:00');
+  ('HOTEL1', 3, 1, 100000, 'Address1', '8943111111', null, '14:00:00', '12:00:00'),
+  ('HOTEL2', 4, 1, 100001, 'Address2', '8943111111', 'Description2', '14:00:00', '12:00:00'),
+  ('HOTEL3', null, 2, 100002, 'Address3', '8943111111', 'Description3', '14:00:00', '12:00:00'),
+  ('HOTEL4', 4, 2, 100003, 'Address4', null, 'Description4', '14:00:00', '12:00:00');
 
 
 

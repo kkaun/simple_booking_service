@@ -39,9 +39,6 @@ public class VoteRepositoryImpl implements VoteRepository {
         }
         vote.setUser(userRepository.getOne(userId));
         vote.setHotel(hotelRepository.getOne(hotelId));
-        Hotel hotel = hotelRepository.getOne(hotelId);
-
-        hotelRepository.save(hotelRepository.getOne(hotelId));
         return voteRepository.save(vote);
     }
 

@@ -15,8 +15,7 @@ import java.util.stream.Collectors;
  */
 public class HotelUtil {
 
-
-    public static Double calculateHotelRating(Hotel hotel){
+    public static synchronized Double calculateHotelRating(Hotel hotel){
 
         OptionalDouble average = hotel.getVotes()
                 .stream()
@@ -27,13 +26,18 @@ public class HotelUtil {
         return average.isPresent() ? average.getAsDouble() : 0;
     }
 
+    public static synchronized Integer calculateHotelVotesNum(Hotel hotel){
+
+        return !hotel.getVotes().isEmpty() ? hotel.getVotes().size() : 0;
+    }
+
 //    public static Hotel createNewFromTo(HotelTo newHotel) {
 //        return new Hotel(null, newHotel.getName(), newHotel.getRating(), newHotel.getStars(), newHotel.getDescription());
 //    }
 
     public static HotelTo asTo(Hotel hotel) {
-        return new HotelTo(hotel.getId(), hotel.getName(), hotel.getRating(), hotel.getStars(),
-                hotel.getDescription(), hotel.getVotes().size());
+        return new HotelTo(hotel.getId(), hotel.getName(), calculateHotelRating(hotel), hotel.getStars(),
+                hotel.getDescription(), calculateHotelVotesNum(hotel));
     }
 
 
@@ -56,21 +60,22 @@ public class HotelUtil {
     public static List<HotelTo> getBetweenRatings(Collection<Hotel> hotels, double minRating, double maxRating){
 
         return hotels.stream()
-                .filter(hotel -> hotel.getRating() >= minRating && hotel.getRating() <= maxRating)
+                .filter(hotel -> calculateHotelRating(hotel) >= minRating && calculateHotelRating(hotel) <= maxRating)
                 .collect(Collectors.toList()).stream()
                 .map(HotelUtil::asTo)
                 .collect(Collectors.toList());
     }
 
-    public static List<Hotel> getFiveHotelsByRating(List<Hotel> hotels){
+    public static List<HotelTo> getFiveHotelsByRating(List<Hotel> hotels){
 
         Comparator<Hotel> byRating = (Hotel o1, Hotel o2)->
-                Integer.compare(!o2.getVotes().isEmpty() ? o2.getVotes().size() : 0,
-                        !o1.getVotes().isEmpty() ? o1.getVotes().size() : 0);
+                Integer.compare(calculateHotelVotesNum(o2),
+                        calculateHotelVotesNum(o1));
 
         return hotels.stream()
                 .sorted(byRating)
                 .limit(5)
+                .map(HotelUtil::asTo)
                 .collect(Collectors.toList());
     }
 

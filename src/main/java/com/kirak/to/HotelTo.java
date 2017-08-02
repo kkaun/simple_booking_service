@@ -67,10 +67,6 @@ public class HotelTo extends NamedEntity implements Serializable {
         return votesNum;
     }
 
-    public Integer getVotesSize() {
-        return votesNum;
-    }
-
     @Override
     public String toString() {
         return "HotelTo{" +

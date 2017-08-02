@@ -77,11 +77,6 @@ public class HotelServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    public void getBetweenRatings() throws Exception {
-        HOTEL_MATCHER.assertCollectionEquals(Arrays.asList(HOTEL3, HOTEL4), service.getBetweenRatings(6.0, 8.0));
-    }
-
-    @Test
     public void getAll() throws Exception {
         HOTEL_MATCHER.assertCollectionEquals(HOTELS, service.getAll());
     }

@@ -18,7 +18,7 @@ import java.util.List;
 @Repository
 public class HotelRepositoryImpl implements HotelRepository {
 
-    private Sort RATING_SORT = new Sort(Sort.Direction.DESC, "rating");
+    //private Sort RATING_SORT = new Sort(Sort.Direction.DESC, "rating");
 
     @Autowired
     private DataJpaHotelRepository hotelRepository;
@@ -53,12 +53,7 @@ public class HotelRepositoryImpl implements HotelRepository {
     }
 
     @Override
-    public List<Hotel> getBetweenRatings(double minRating, double maxRating) {
-        return hotelRepository.getBetweenRatings(minRating, maxRating);
-    }
-
-    @Override
     public List<Hotel> getAll() {
-        return hotelRepository.findAll(RATING_SORT);
+        return hotelRepository.findAll();
     }
 }

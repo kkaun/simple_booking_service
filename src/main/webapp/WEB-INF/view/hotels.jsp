@@ -32,13 +32,13 @@
             </thead>
 
                 <c:forEach items="${hotels}" var="hotel">
-                <jsp:useBean id="hotel" scope="page" type="com.kirak.model.Hotel"/>
+                <jsp:useBean id="hotel" scope="page" type="com.kirak.to.HotelTo"/>
                     <tr>
                         <td>${hotel.name}</td>
                         <td>${hotel.rating}</td>
                         <td>${hotel.stars}</td>
                         <td>${hotel.description}</td>
-                        <td>${hotel.votes.size()}</td>
+                        <td>${hotel.votesNum}</td>
                         <td><a href="hotels/update?id=${hotel.id}">Update</a></td>
                         <td><a href="hotels/delete?id=${hotel.id}">Delete</a></td>
                     </tr>
