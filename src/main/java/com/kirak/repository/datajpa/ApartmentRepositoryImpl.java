@@ -49,6 +49,11 @@ public class ApartmentRepositoryImpl implements ApartmentRepository {
         return apt != null && apt.getHotel().getId() == hotelId ? apt : null;
     }
 
+    @Override
+    public Apartment get(int id) {
+        return apartmentRepository.findOne(id);
+    }
+
     @SuppressWarnings("JpaQlInspection")
     @Override
     public List<Apartment> getAllByHotel(int hotelId) {

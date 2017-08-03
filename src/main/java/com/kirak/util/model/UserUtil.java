@@ -1,8 +1,15 @@
 package com.kirak.util.model;
 
+import com.kirak.model.Hotel;
 import com.kirak.model.User;
 import com.kirak.model.UserRole;
 import com.kirak.to.UserTo;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by Kir on 26.06.2017.
@@ -23,4 +30,22 @@ public class UserUtil {
         user.setPassword(userTo.getPassword());
         return user;
     }
+
+    public static List<Hotel> getManageableObjects(User user){
+
+        return new ArrayList<>(user.getHotels());
+    }
+
+    public static boolean isPhoneDuplicated(String phone, List<User> users){
+
+        //TODO: Try to use commons validator
+
+        return users.stream()
+                .map(User::getPhone)
+                .collect(Collectors.toList())
+                .stream()
+                .filter(p -> p.equals(phone))
+                .count() >= 1;
+    }
+
 }

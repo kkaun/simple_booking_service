@@ -13,12 +13,14 @@
 
         <c:forEach items="${managableObjects}" var="object">
             <div class="col-md-12">
-                <div class="well">
+            <div class="well">
 
-                </div>
+            </div>
             </div>
         </c:forEach>
 
     </div>
 </div>
 <jsp:include page="fragments/footer.jsp"/>
+
+

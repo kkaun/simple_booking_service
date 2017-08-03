@@ -61,6 +61,11 @@ public class Booking extends BaseLongEntity {
 
     public Booking(){}
 
+    public Booking(boolean active, LocalDateTime dateAdded, LocalDateTime inDate, LocalDateTime outDate,
+                   Double sum, Short personNum, Short extraBeds, User user, Apartment apartment, Hotel hotel) {
+        this(null, active, dateAdded, inDate, outDate, sum, personNum, extraBeds, user, apartment, hotel);
+    }
+
     public Booking(Long id, boolean active, LocalDateTime dateAdded, LocalDateTime inDate, LocalDateTime outDate,
                    Double sum, Short personNum, Short extraBeds, User user, Apartment apartment, Hotel hotel) {
         super(id);

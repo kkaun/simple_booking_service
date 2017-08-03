@@ -35,6 +35,7 @@ public class HotelUtil {
 //        return new Hotel(null, newHotel.getName(), newHotel.getRating(), newHotel.getStars(), newHotel.getDescription());
 //    }
 
+
     public static HotelTo asTo(Hotel hotel) {
         return new HotelTo(hotel.getId(), hotel.getName(), calculateHotelRating(hotel), hotel.getStars(),
                 hotel.getDescription(), calculateHotelVotesNum(hotel));

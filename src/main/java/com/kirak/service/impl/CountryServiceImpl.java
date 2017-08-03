@@ -28,7 +28,7 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public Country get(Short id) throws NotFoundException {
+    public Country get(Short id) {
         return checkNotFoundWithId(repository.get(id), id);
     }
 

@@ -2,6 +2,7 @@ package com.kirak.repository.datajpa;
 
 import com.kirak.model.Hotel;
 import com.kirak.repository.HotelRepository;
+import com.kirak.repository.UserRepository;
 import com.kirak.repository.datajpa.DataJpaCityRepository;
 import com.kirak.repository.datajpa.DataJpaHotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class HotelRepositoryImpl implements HotelRepository {
     @Autowired
     private DataJpaCityRepository cityRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Transactional
     @Override
     public Hotel save(Hotel hotel, int cityId) {
@@ -45,6 +49,17 @@ public class HotelRepositoryImpl implements HotelRepository {
     public Hotel get(int id, int cityId) {
         Hotel hotel = hotelRepository.findOne(id);
         return hotel != null && hotel.getCity().getId() == cityId ? hotel : null;
+    }
+
+    @Override
+    public Hotel get(int id) {
+        return hotelRepository.findOne(id);
+    }
+
+    @Override
+    public Hotel getForManaging(int id, int managerId) {
+        Hotel hotel = hotelRepository.findOne(id);
+        return hotel != null && hotel.getManager().getId() == managerId ? hotel : null;
     }
 
     @Override

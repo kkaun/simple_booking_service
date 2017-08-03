@@ -37,18 +37,18 @@ public class AptTypeServiceImpl implements AptTypeService {
     }
 
     @Override
-    public void update(AptType type) throws NotFoundException {
+    public void update(AptType type) {
         Assert.notNull(type, "Apartment Type must not be null!");
         repository.save(type);
     }
 
     @Override
-    public void delete(Short id) throws NotFoundException {
+    public void delete(Short id) {
         checkNotFoundWithId(repository.delete(id), id);
     }
 
     @Override
-    public AptType get(Short id) throws NotFoundException {
+    public AptType get(Short id) {
         return checkNotFoundWithId(repository.get(id), id);
     }
 

@@ -17,7 +17,7 @@ import java.net.URI;
  */
 public class UserBookingRestController extends BookingAbstractController{
 
-    public static final String REST_URL = "/user";
+    static final String REST_URL = "/user";
 
     protected UserBookingRestController(BookingService bookingService) {
         super(bookingService);

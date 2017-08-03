@@ -18,6 +18,10 @@ public interface HotelService {
 
     Hotel get(Integer id, int cityId) throws NotFoundException;
 
+    Hotel get(Integer id) throws NotFoundException;
+
+    Hotel getForManaging(Integer id, int managerId) throws NotFoundException;
+
     List<Hotel> getAllByCity(int cityId);
 
     List<Hotel> getAll();

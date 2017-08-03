@@ -28,7 +28,7 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public City get(Integer id) throws NotFoundException {
+    public City get(Integer id) {
         return checkNotFoundWithId(repository.get(id), id);
     }
 

@@ -19,6 +19,10 @@ public interface HotelRepository {
     // null if hotel does not belong to userId
     Hotel get(int id, int cityId);
 
+    Hotel get(int id);
+
+    Hotel getForManaging(int id, int managerId);
+
     List<Hotel> getAllByCity(int cityId);
 
     List<Hotel> getAll();

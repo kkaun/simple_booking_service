@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id`         INT         NOT NULL AUTO_INCREMENT,
   `email`      VARCHAR(45) NOT NULL UNIQUE,
   `name`       VARCHAR(45) NULL,
-  `password`   VARCHAR(45) NOT NULL,
+  `password`   VARCHAR(45),
   `registered` TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
   INDEX `user_unique_email_idx`(`email`),
   PRIMARY KEY (`id`)
@@ -108,9 +108,11 @@ CREATE TABLE IF NOT EXISTS `hotel` (
   `description` TINYTEXT      NULL,
   `check_in`    TIME          NOT NULL,
   `check_out`   TIME          NOT NULL,
+  `manager`     INT           NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_hotel_country1_idx` (`country_id` ASC),
   INDEX `fk_hotel_city1_idx` (`city_id` ASC),
+  INDEX `fk_hotel_manager1_idx` (`manager` ASC),
   CONSTRAINT `fk_hotel_country1`
   FOREIGN KEY (`country_id`)
   REFERENCES `country` (`id`)
@@ -120,7 +122,12 @@ CREATE TABLE IF NOT EXISTS `hotel` (
   FOREIGN KEY (`city_id`)
   REFERENCES `city` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_hotel_manager1`
+  FOREIGN KEY (`manager`)
+  REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
 )
   AUTO_INCREMENT = 100000,
   ENGINE = InnoDB;

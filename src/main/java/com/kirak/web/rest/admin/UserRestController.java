@@ -5,6 +5,7 @@ import com.kirak.service.UserService;
 import com.kirak.web.abstr.UserAbstractController;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -14,11 +15,13 @@ import java.util.List;
 /**
  * Created by Kir on 15.06.2017.
  */
-public class AdminUserRestController extends UserAbstractController {
+@Controller
+@RequestMapping(value = UserRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
+public class UserRestController extends UserAbstractController {
 
-    private static final String REST_URL = "/admin/users";
+    static final String REST_URL = "/users";
 
-    public AdminUserRestController(UserService service) {
+    public UserRestController(UserService service) {
         super(service);
     }
 

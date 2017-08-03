@@ -18,6 +18,8 @@ public interface ApartmentService {
 
     Apartment get(Integer id, int hotelId) throws NotFoundException;
 
+    Apartment get(Integer id) throws NotFoundException;
+
     List<Apartment> getAllByHotel(int hotelId);
 
     List<Apartment> getAll();

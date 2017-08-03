@@ -3,7 +3,6 @@ package com.kirak.service.impl;
 import com.kirak.model.Hotel;
 import com.kirak.repository.HotelRepository;
 import com.kirak.service.HotelService;
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
@@ -48,6 +47,16 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public Hotel get(Integer id, int cityId) {
         return checkNotFoundWithId(repository.get(id, cityId), id);
+    }
+
+    @Override
+    public Hotel get(Integer id) throws com.kirak.util.exception.NotFoundException {
+        return checkNotFoundWithId(repository.get(id), id);
+    }
+
+    @Override
+    public Hotel getForManaging(Integer id, int managerId) throws com.kirak.util.exception.NotFoundException {
+        return checkNotFoundWithId(repository.get(id, managerId), id);
     }
 
     @Override

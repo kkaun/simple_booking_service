@@ -19,6 +19,8 @@ public interface ApartmentRepository {
     // null if apt does not belong to hotelId
     Apartment get(int id, int hotelId);
 
+    Apartment get(int id);
+
     List<Apartment> getAllByHotel(int hotelId);
 
     List<Apartment> getAll();

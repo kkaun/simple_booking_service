@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.util.CollectionUtils;
 
+import javax.management.relation.Role;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
@@ -25,10 +26,15 @@ import java.util.*;
 @Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "user_unique_email_idx")})
 public class User extends NamedEntity {
 
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(name = "email", unique = true)
     @Email
     @NotBlank
     private String email;
+
+    @Column(name = "phone", unique = true)
+    @Email
+    @NotBlank
+    private String phone;
 
     @Column(name = "password", nullable = false)
     @NotBlank
@@ -55,10 +61,22 @@ public class User extends NamedEntity {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private Set<Vote> votes;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "manager")
+    private Set<Hotel> hotels;
+
     public User(){}
 
     public User(User u) {
         this(u.getId(), u.getName(), u.getEmail(), u.getPassword(), u.getRegistered(), u.getBookings(), u.getRoles());
+    }
+
+    //For anonymous user
+    public User(String name, String email, String phone, UserRole role, UserRole... roles) {
+        this(null, name, email, phone, new Date(), EnumSet.of(role, roles));
+    }
+
+    public User(Integer id, String name, String email, String phone, UserRole role, UserRole... roles) {
+        this(id, name, email, phone, new Date(), EnumSet.of(role, roles));
     }
 
     public User(Integer id, String name, String email, String password, Set<Booking> bookings, UserRole role, UserRole... roles) {
@@ -74,8 +92,14 @@ public class User extends NamedEntity {
         setRoles(roles);
     }
 
-    public User(Integer o, String name, String s, String password, UserRole roleUser) {
 
+    public User(Integer id, String name, String email, String phone, Date registered, Collection<UserRole> roles) {
+        super(id, name);
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.registered = registered;
+        setRoles(roles);
     }
 
 
@@ -85,6 +109,14 @@ public class User extends NamedEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getPassword() {
@@ -127,17 +159,27 @@ public class User extends NamedEntity {
         this.votes = votes;
     }
 
+    public void setRoles(Set<UserRole> roles) {
+        this.roles = roles;
+    }
+
+    public Set<Hotel> getHotels() {
+        return hotels;
+    }
+
+    public void setHotels(Set<Hotel> hotels) {
+        this.hotels = hotels;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id='" + getId() + "\'" +
                 ", name='" + getName() + "\'" +
-                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", registered=" + registered +
                 ", roles=" + roles.toString() +
                 ", bookings=" + bookings.toString() +
-                //", votes=" + votes.toString() +
                 '}';
     }
 }

@@ -23,7 +23,6 @@ public abstract class BookingAbstractController {
         this.bookingService = bookingService;
     }
 
-
     public Booking create(Booking booking, int hotelId){
         int userId = AuthorizedUser.getId();
         LOG.info("Saving {}", booking);

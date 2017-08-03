@@ -16,7 +16,7 @@ public class ManagerBookingRestController extends BookingAbstractController{
 
     //!!! ONLY FOR OWN HOTEL
 
-    public static final String REST_URL = "/manager/booking";
+    static final String REST_URL = "/manager/booking";
 
     protected ManagerBookingRestController(BookingService bookingService) {
         super(bookingService);

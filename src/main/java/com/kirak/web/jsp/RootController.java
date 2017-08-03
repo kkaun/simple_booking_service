@@ -1,12 +1,16 @@
-package com.kirak.web;
+package com.kirak.web.jsp;
 
+import com.kirak.model.Booking;
+import com.kirak.model.User;
 import com.kirak.service.*;
 import com.kirak.to.HotelTo;
 import com.kirak.util.model.AptTypeUtil;
 import com.kirak.util.model.HotelUtil;
 import com.kirak.util.model.RegionUtil;
+import com.kirak.util.model.UserUtil;
+import com.kirak.web.AuthorizedUser;
+import com.kirak.web.ModelUtil;
 import com.kirak.web.abstr.UserAbstractController;
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -14,6 +18,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -35,6 +41,15 @@ public class RootController extends UserAbstractController {
 
     @Autowired
     private AptTypeService aptTypeService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private BookingService bookingService;
+
+    @Autowired
+    private ApartmentService apartmentService;
 
     @Autowired
     public RootController(UserService userService, HotelService hotelService) {
@@ -106,8 +121,7 @@ public class RootController extends UserAbstractController {
     public String searchByCity(@RequestParam("city") String city, Model model) {
         model.addAttribute("hotels", HotelUtil.getAllByCity(hotelService.getAll(), Integer.parseInt(city)));
         model.addAttribute("city", cityService.get(Integer.parseInt(city)));
-        model.addAttribute("categories", AptTypeUtil.getUniqueCategories(aptTypeService.getAll()));
-        model.addAttribute("personNums", AptTypeUtil.getUniquePersonNums(aptTypeService.getAll()));
+        ModelUtil.addUniqueFilterParams(model, aptTypeService);
         return "hotels";
     }
 
@@ -124,8 +138,9 @@ public class RootController extends UserAbstractController {
 
     //@PreAuthorize("hasRole('HOTEL_MANAGER')")
     @GetMapping("/manager")
-    public String manageObject() {
-        return "object";  //&id...
+    public String manageObject(Model model) {
+        model.addAttribute(UserUtil.getManageableObjects(userService.get(AuthorizedUser.getId())));
+        return "manager";
     }
 
     @GetMapping(value = "/login")
@@ -138,9 +153,62 @@ public class RootController extends UserAbstractController {
         return "newobject";
     }
 
+    @GetMapping(value = "/inspect_hotel")
+    public String hotel(@RequestParam("id") String hotelId, Model model) {
+        model.addAttribute("hotel", HotelUtil.asTo(hotelService.get(Integer.parseInt(hotelId))));
+        ModelUtil.addUniqueFilterParams(model, aptTypeService);
+        return "hotels";
+    }
+
     @GetMapping(value = "/book")
-    public String book() {
+    public String book(@RequestParam ("id") String hotelId, Model model) {
+        model.addAttribute("hotel", HotelUtil.asTo(hotelService.get(Integer.parseInt(hotelId))));
         return "book";
+    }
+
+    @GetMapping(value = "/confirm_anonymous_booking")
+    public String confirmAnonymousBooking(@RequestParam ("hotelId") String hotelId,
+                              @RequestParam ("apartmentId") String apartmentId,
+                              @RequestParam ("inDate") String inDate,
+                              @RequestParam ("outDate") String outDate,
+                              @RequestParam ("userName") String userName,
+                              @RequestParam ("userPhone") String userPhone,
+                              @RequestParam ("userEmail") String userEmail,
+                              @RequestParam ("personNum") String personNum,
+                              @RequestParam ("extraBeds") String extraBeds,
+                              @RequestParam ("sum") String sum,
+                              Model model) {
+
+        //User user = new User();
+
+        Booking booking = new Booking(true, LocalDateTime.now(), LocalDateTime.parse(inDate),
+                LocalDateTime.parse(outDate), Double.parseDouble(sum), Short.parseShort(personNum),
+                Short.parseShort(extraBeds), userService.get(AuthorizedUser.getId()),
+                apartmentService.get(Integer.parseInt(apartmentId)), hotelService.get(Integer.parseInt(hotelId)));
+
+        model.addAttribute("booking", bookingService.save(booking, AuthorizedUser.getId(),
+                Integer.parseInt(hotelId)));
+        return "confirmation";
+    }
+
+    @GetMapping(value = "/confirm_customer_booking")
+    public String confirmCustomerBooking(@RequestParam ("hotelId") String hotelId,
+                                          @RequestParam ("apartmentId") String apartmentId,
+                                          @RequestParam ("inDate") String inDate,
+                                          @RequestParam ("outDate") String outDate,
+                                          @RequestParam ("personNum") String personNum,
+                                          @RequestParam ("extraBeds") String extraBeds,
+                                          @RequestParam ("sum") String sum,
+                                          Model model) {
+        int userId = AuthorizedUser.getId();
+
+        Booking booking = new Booking(true, LocalDateTime.now(), LocalDateTime.parse(inDate),
+                LocalDateTime.parse(outDate), Double.parseDouble(sum), Short.parseShort(personNum),
+                Short.parseShort(extraBeds), userService.get(AuthorizedUser.getId()),
+                apartmentService.get(Integer.parseInt(apartmentId)), hotelService.get(Integer.parseInt(hotelId)));
+
+        //model.addAttribute("booking", bookingService.save(booking, ))
+        return "confirmation";
     }
 
 

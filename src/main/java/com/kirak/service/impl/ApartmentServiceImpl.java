@@ -37,19 +37,24 @@ public class ApartmentServiceImpl implements ApartmentService {
     }
 
     @Override
-    public Apartment update(Apartment apt, int hotelId) throws NotFoundException {
+    public Apartment update(Apartment apt, int hotelId) {
         Assert.notNull(apt, "Apartment must not be null!");
         return checkNotFoundWithId(repository.save(apt, hotelId), apt.getId());
     }
 
     @Override
-    public void delete(Integer id, int hotelId) throws NotFoundException {
+    public void delete(Integer id, int hotelId) {
         checkNotFoundWithId(repository.delete(id, hotelId), id);
     }
 
     @Override
-    public Apartment get(Integer id, int hotelId) throws NotFoundException {
+    public Apartment get(Integer id, int hotelId) {
         return checkNotFoundWithId(repository.get(id, hotelId), id);
+    }
+
+    @Override
+    public Apartment get(Integer id) throws com.kirak.util.exception.NotFoundException {
+        return checkNotFoundWithId(repository.get(id), id);
     }
 
     @Override

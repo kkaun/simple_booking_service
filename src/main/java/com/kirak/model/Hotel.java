@@ -63,6 +63,11 @@ public class Hotel extends NamedEntity {
     @Column(name = "check_out")
     private Time checkOut;
 
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "manager", nullable = false)
+    private User manager;
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "hotel")
     private Set<Vote> votes;
 
@@ -177,6 +182,14 @@ public class Hotel extends NamedEntity {
 
     public void setVotes(Set<Vote> votes) {
         this.votes = votes;
+    }
+
+    public User getManager() {
+        return manager;
+    }
+
+    public void setManager(User manager) {
+        this.manager = manager;
     }
 
     @Override
