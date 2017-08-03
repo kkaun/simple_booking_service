@@ -1,6 +1,7 @@
 package com.kirak.util.model;
 
 import com.kirak.model.City;
+import com.kirak.model.Hotel;
 
 import java.util.Comparator;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.stream.Collectors;
 /**
  * Created by Kir on 02.08.2017.
  */
-public class CityUtil {
+public class RegionUtil {
 
     public static List<City> getFiveCitiesByHotelAmount(List<City> cities){
 
@@ -21,4 +22,7 @@ public class CityUtil {
                 .limit(5)
                 .collect(Collectors.toList());
     }
+
+
+
 }

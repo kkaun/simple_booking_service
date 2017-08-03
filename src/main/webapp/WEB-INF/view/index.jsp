@@ -11,8 +11,26 @@
 
 
 <div class="container">
-    <div class="row">
-        <h2>Hotel booking service demo</h2>
+    <div class="row" style="margin-bottom: 10px">
+        <div class="col-md-6">
+        <h3>Book/Manage fake apartments around the world!</h3>
+        </div>
+
+        <div class="col-md-6">
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <form method = "get" id="search_form" action="search">
+                        <input type="text" class="search-query form-control"
+                               name="region" placeholder="Search hotels by Country, City or Region" />
+                    </form>
+                    <span class="input-group-btn">
+                        <button class="btn btn-danger" form="search_form" type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="row">
@@ -32,7 +50,7 @@
                     <c:forEach items="${citiesFive}" var="city">
                         <jsp:useBean id="city" scope="page" type="com.kirak.model.City"/>
                         <div class="item">
-                            <a href="hotels/by_city?${city.id}"><img src="http://placehold.it/1200x400"/></a>
+                            <a href="get_by_city?city=${city.id}"><img src="http://placehold.it/1200x400"/></a>
                             <div class="carousel-caption">
                                 <h1 class="carousel-caption-header">${city.name}</h1>
                                 <p class="carousel-caption-text hidden-sm hidden-xs">
@@ -59,9 +77,9 @@
 
     <div class="row">
         <div class="well">
-            <h1 class="text-center">Vote for your favorite</h1>
+            <h1 class="text-center">Inspect the most rated objects:</h1>
+            <hr>
             <div class="list-group">
-
                 <c:forEach items="${hotelsFive}" var="hotel">
                 <jsp:useBean id="hotel" scope="page" type="com.kirak.to.HotelTo"/>
                     <a href="#" class="list-group-item">
@@ -82,6 +100,9 @@
                                         <span class="glyphicon glyphicon-star"></span>
                                     </c:forEach>
                                 </c:if>
+                                <c:if test="${empty hotel.stars}">
+                                    <p> No stars yet </p>
+                                </c:if>
                             </div>
                             <h3> Average ${hotel.rating} <small> / </small> 10 </h3>
                             <h4> ${hotel.votesNum} <small> votes </small></h4>
@@ -99,7 +120,7 @@
     $(document).ready(function () {
         $('.carousel-inner .item:first').addClass('active');
         $('#cityCarousel').carousel({
-            interval: 4000
+            interval: 2000
         });
         $('#cityCarousel').carousel('cycle');
     });

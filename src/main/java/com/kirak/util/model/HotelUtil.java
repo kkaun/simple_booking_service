@@ -47,6 +47,15 @@ public class HotelUtil {
                 .collect(Collectors.toList());
     }
 
+    public static List<HotelTo> getAllByRegion(String region, List<Hotel> hotels){
+
+        return hotels.stream()
+                .filter(hotel -> hotel.getCity().getName().toLowerCase().equals(region.toLowerCase()) ||
+                        hotel.getCountry().getName().toLowerCase().equals(region.toLowerCase()) ||
+                        hotel.getAddress().toLowerCase().equals(region.toLowerCase()))
+                .map(HotelUtil::asTo)
+                .collect(Collectors.toList());
+    }
 
     public static List<HotelTo> getAllByCity(Collection<Hotel> hotels, int cityId){
 
