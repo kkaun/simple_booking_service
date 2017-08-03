@@ -32,9 +32,9 @@
 
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="headBtnHolder"><button type="button" class="btn btn-default btn-md btn-block headBtn"> List your object </button></li>
-                    <li class="headBtnHolder"><button type="button" class="btn btn-default btn-md btn-block headBtn"> Register as user </button></li>
-                    <li class="headBtnHolder"><button type="button" class="btn btn-default btn-md btn-block headBtn"> Login </button></li>
+                    <li class="headBtnHolder"><button type="button" class="btn btn-default btn-md btn-block headBtn"> List your Object </button></li>
+                    <li class="headBtnHolder"><button type="button" class="btn btn-default btn-md btn-block headBtn"> Register as User </button></li>
+                    <li class="headBtnHolder"><button type="button" class="btn btn-default btn-md btn-block headBtn"> Login as... </button></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>

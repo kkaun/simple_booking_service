@@ -1,28 +1,24 @@
-package com.kirak.web.rest;
+package com.kirak.web.rest.admin;
 
 import com.kirak.model.User;
 import com.kirak.service.UserService;
-import com.kirak.to.UserTo;
-import com.kirak.util.ErrorInfo;
-import com.kirak.web.abstr.SystemAdminAbstractController;
-import org.springframework.dao.DataIntegrityViolationException;
+import com.kirak.web.abstr.UserAbstractController;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
 import java.util.List;
 
 /**
  * Created by Kir on 15.06.2017.
  */
-public class SystemAdminRestController extends SystemAdminAbstractController {
+public class AdminUserRestController extends UserAbstractController {
 
     private static final String REST_URL = "/admin/users";
 
-    public SystemAdminRestController(UserService service) {
+    public AdminUserRestController(UserService service) {
         super(service);
     }
 

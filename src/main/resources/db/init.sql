@@ -13,9 +13,11 @@ USE `booking_service`;
 
 DROP TABLE IF EXISTS `city`;
 CREATE TABLE `city` (
-  `id`         INT NOT NULL AUTO_INCREMENT,
-  `name`       VARCHAR(45),
-  `country_id` VARCHAR(45),
+  `id`          INT NOT NULL AUTO_INCREMENT,
+  `name`        VARCHAR(45),
+  `country_id`  VARCHAR(45),
+  `description` TEXT,
+  `img_path`    VARCHAR(255) NULL,
   INDEX `idx_country_id` (`country_id`),
   PRIMARY KEY (`id`)
 )
@@ -44,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email`      VARCHAR(45) NOT NULL UNIQUE,
   `name`       VARCHAR(45) NULL,
   `password`   VARCHAR(45) NOT NULL,
-  `registered` TIMESTAMP            DEFAULT CURRENT_TIMESTAMP,
+  `registered` TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
   INDEX `user_unique_email_idx`(`email`),
   PRIMARY KEY (`id`)
 )

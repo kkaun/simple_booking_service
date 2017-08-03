@@ -10,7 +10,7 @@ import org.apache.commons.lang3.text.WordUtils;
 public class DbMockDataReducer {
 
     public static void main(String[] args) throws IOException {
-        countryNamesToIds();
+        prepareCitiesToDb();
     }
 
 
@@ -86,9 +86,9 @@ public class DbMockDataReducer {
 
     public static void prepareCitiesToDb(){
 
-        File inFile = new File("D:\\cities\\CITIES_DB_READY.txt");
+        File inFile = new File("D:\\Countries_Cities_Mock_Data\\CITIES_DB_READY_1.txt");
 
-        try (FileReader outStream = new FileReader("D:\\cities\\CITIES_600.txt");
+        try (FileReader outStream = new FileReader("D:\\Countries_Cities_Mock_Data\\CITIES_OLD_WORKING_FOR_CHANGE.txt");
              BufferedReader reader = new BufferedReader(outStream);
              FileWriter inStream = new FileWriter(inFile);
              BufferedWriter writer = new BufferedWriter(inStream)) {
@@ -99,8 +99,13 @@ public class DbMockDataReducer {
                     if(line.charAt(i) == ','){
                         String city = line.substring(0, i).toLowerCase();
                         String country = line.substring(i + 2, line.length());
+                        String description = "Beautiful city with an old, monumental heart " +
+                                "and numerous high-tech modern districts, " +
+                                "it has a lot of legends to tell to its visitors. Feel both " +
+                                "ancient and contemporary spirits of this place with our help!";
+                        String imgPath = "null";
                         writer.write("('" + Character.toUpperCase(city.charAt(0)) + city.substring(1) +
-                                "'" + ", '" + country + "'),");
+                                "', " + country + ", '" + description + "', " + imgPath + "),");
                         writer.newLine();
                     }
                 }

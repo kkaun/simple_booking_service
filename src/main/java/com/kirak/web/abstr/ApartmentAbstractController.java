@@ -31,11 +31,11 @@ public abstract class ApartmentAbstractController {
         return apartmentService.update(apt, hotelId);
     }
 
-    void delete(int id, int hotelId) throws NotFoundException{
+    void delete(int id, int hotelId){
 
     }
 
-    Apartment get(int id, int hotelId) throws NotFoundException{
+    Apartment get(int id, int hotelId){
         LOG.info("Getting apartment {}", id);
         return apartmentService.get(id, hotelId);
     }

@@ -2,7 +2,7 @@ package com.kirak.service;
 
 import com.kirak.model.City;
 import com.kirak.model.Hotel;
-import javassist.NotFoundException;
+import com.kirak.util.exception.NotFoundException;
 
 import java.util.List;
 
@@ -11,9 +11,13 @@ import java.util.List;
  */
 public interface CityService {
 
-    City get(Short id) throws NotFoundException;
+    City get(Integer id) throws NotFoundException;
 
     List<City> getAllByRegion(short countryId);
 
     List<City> getAll();
+
+    City save(City city);
+
+    void update(City city);
 }

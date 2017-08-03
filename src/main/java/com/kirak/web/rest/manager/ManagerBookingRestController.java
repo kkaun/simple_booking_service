@@ -1,28 +1,24 @@
-package com.kirak.web.rest;
+package com.kirak.web.rest.manager;
 
 import com.kirak.model.Booking;
-import com.kirak.model.Hotel;
 import com.kirak.service.BookingService;
-import com.kirak.service.HotelService;
-import com.kirak.to.HotelTo;
 import com.kirak.web.abstr.BookingAbstractController;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.List;
 
 /**
  * Created by Kir on 18.06.2017.
  */
-public class ManagerRestController extends BookingAbstractController{
+public class ManagerBookingRestController extends BookingAbstractController{
 
-    public static final String REST_URL = "/manager";
+    //!!! ONLY FOR OWN HOTEL
 
-    protected ManagerRestController(BookingService bookingService) {
+    public static final String REST_URL = "/manager/booking";
+
+    protected ManagerBookingRestController(BookingService bookingService) {
         super(bookingService);
     }
 

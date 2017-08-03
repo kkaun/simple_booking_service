@@ -39,4 +39,9 @@ public class CityRepositoryImpl implements CityRepository {
         return cityRepository.findAll();
     }
 
+    @Override
+    public City save(City city) {
+        return cityRepository.save(city);
+    }
+
 }

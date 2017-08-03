@@ -22,6 +22,12 @@ public class City extends BaseIntEntity {
     @JoinColumn(name = "country_id")
     private Country country;
 
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "img_path")
+    private String imgPath;
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "city")
     @NotNull
     private List<Hotel> hotels;
@@ -34,11 +40,13 @@ public class City extends BaseIntEntity {
         this.country = country;
     }
 
-    public City(Integer id, String name, Country country, List<Hotel> hotels) {
+    public City(Integer id, String name, String description, String imgPath, Country country, List<Hotel> hotels) {
         super(id);
         this.name = name;
         this.country = country;
         this.hotels = hotels;
+        this.description = description;
+        this.imgPath = imgPath;
     }
 
     public void setName(String name) {
@@ -63,6 +71,22 @@ public class City extends BaseIntEntity {
 
     public void setHotels(List<Hotel> hotels) {
         this.hotels = hotels;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
     }
 
     @Override

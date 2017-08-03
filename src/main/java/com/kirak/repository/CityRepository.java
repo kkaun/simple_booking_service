@@ -14,4 +14,6 @@ public interface CityRepository {
     List<City> getAllByRegion(short countryId);
 
     List<City> getAll();
+
+    City save(City city);
 }

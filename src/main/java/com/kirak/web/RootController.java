@@ -1,19 +1,17 @@
 package com.kirak.web;
 
-import com.kirak.model.AptType;
 import com.kirak.service.*;
 import com.kirak.to.HotelTo;
 import com.kirak.util.model.AptTypeUtil;
 import com.kirak.util.model.HotelUtil;
 import com.kirak.util.model.RegionUtil;
-import com.kirak.web.abstr.SystemAdminAbstractController;
+import com.kirak.web.abstr.UserAbstractController;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
@@ -24,7 +22,7 @@ import java.util.List;
  */
 
 @Controller
-public class RootController extends SystemAdminAbstractController {
+public class RootController extends UserAbstractController {
 
     @Autowired
     private HotelService hotelService;
@@ -105,20 +103,28 @@ public class RootController extends SystemAdminAbstractController {
     }
 
     @GetMapping(value = "/get_by_city")
-    public String searchByCity(@RequestParam("city") String city, Model model){
+    public String searchByCity(@RequestParam("city") String city, Model model) {
         model.addAttribute("hotels", HotelUtil.getAllByCity(hotelService.getAll(), Integer.parseInt(city)));
+        model.addAttribute("city", cityService.get(Integer.parseInt(city)));
+        model.addAttribute("categories", AptTypeUtil.getUniqueCategories(aptTypeService.getAll()));
+        model.addAttribute("personNums", AptTypeUtil.getUniquePersonNums(aptTypeService.getAll()));
         return "hotels";
     }
 
-    @PreAuthorize("hasRole('SYSTEM_ADMIN')")
-    @GetMapping("/users")
+    //@PreAuthorize("hasRole('SYSTEM_ADMIN')")
+    @GetMapping("/admin")
     public String users() {
-        return "users";
+        return "admin";
     }
 
-    @PreAuthorize("hasRole('HOTEL_MANAGER')")
+    @GetMapping("/cities")
+    public String manageCities() {
+        return "cities";
+    }
+
+    //@PreAuthorize("hasRole('HOTEL_MANAGER')")
     @GetMapping("/manager")
-    public String myHotel() {
+    public String manageObject() {
         return "object";  //&id...
     }
 
@@ -128,7 +134,7 @@ public class RootController extends SystemAdminAbstractController {
     }
 
     @GetMapping(value = "/registerObject")
-    public String addHotel() {
+    public String addObject() {
         return "newobject";
     }
 

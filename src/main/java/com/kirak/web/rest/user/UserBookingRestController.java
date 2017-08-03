@@ -1,12 +1,10 @@
-package com.kirak.web.rest;
+package com.kirak.web.rest.user;
 
 import com.kirak.model.Booking;
-import com.kirak.model.Hotel;
 import com.kirak.service.BookingService;
 import com.kirak.web.abstr.BookingAbstractController;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;

@@ -1,7 +1,7 @@
 package com.kirak.service;
 
 import com.kirak.model.Country;
-import javassist.NotFoundException;
+import com.kirak.util.exception.NotFoundException;
 
 import java.util.List;
 

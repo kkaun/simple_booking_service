@@ -17,6 +17,10 @@ import java.util.List;
 public interface DataJpaCityRepository extends JpaRepository<City, Integer> {
 
     @Override
+    @Transactional
+    City save(City city);
+
+    @Override
     City findOne(Integer id);
 
     @Query("SELECT c FROM City c WHERE c.country.id=:countryId ORDER BY c.name ASC")

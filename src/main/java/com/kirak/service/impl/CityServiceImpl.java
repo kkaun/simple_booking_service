@@ -7,6 +7,7 @@ import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import static com.kirak.util.ValidationUtil.checkNotFoundWithId;
 
@@ -27,7 +28,7 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public City get(Short id) throws NotFoundException {
+    public City get(Integer id) throws NotFoundException {
         return checkNotFoundWithId(repository.get(id), id);
     }
 
@@ -39,6 +40,18 @@ public class CityServiceImpl implements CityService {
     @Override
     public List<City> getAll() {
         return repository.getAll();
+    }
+
+    @Override
+    public City save(City city) {
+        Assert.notNull(city, "user must not be null");
+        return repository.save(city);
+    }
+
+    @Override
+    public void update(City city) {
+        Assert.notNull(city, "user must not be null");
+        repository.save(city);
     }
 
 }

@@ -17,6 +17,10 @@
             <c:if test="${not empty region}">
                 <h2>We found some objects in ${region}:</h2>
             </c:if>
+            <c:if test="${not empty city}">
+                <h3>${city.name}.
+                    <br>${city.description}</h3>
+            </c:if>
         </div>
     </div>
 

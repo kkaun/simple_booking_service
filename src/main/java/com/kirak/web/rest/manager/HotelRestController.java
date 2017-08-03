@@ -1,4 +1,4 @@
-package com.kirak.web.rest;
+package com.kirak.web.rest.manager;
 
 import com.kirak.model.Hotel;
 import com.kirak.service.HotelService;
