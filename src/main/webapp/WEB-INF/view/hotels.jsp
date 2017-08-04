@@ -28,46 +28,7 @@
     <div class="row">
 
         <div class="col-md-4">
-            <div class="well">
-                <h3 align="center">Search Filter</h3>
-                <form class="form-horizontal" method="post" action="parametric_search">
-                    <div class="form-group">
-                        <label for="location" class="control-label">Location(City)</label>
-                        <input type="text" class="form-control" name="location" id="location">
-                    </div>
-                    <div class="form-group">
-                        <label for="person_num" class="control-label">No. of Persons</label>
-                        <select class="form-control" name="personNum" id="person_num">
-                            <c:forEach items="${personNums}" var="personNum">
-                                <option value="${personNum}">${personNum}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="category" class="control-label">Room Type</label>
-                        <select class="form-control" name="category" id="category">
-                            <c:forEach items="${categories}" var="category">
-                                <option value="${category}">${category}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="price_from" class="control-label">Min Price</label>
-                        <div class="input-group">
-                            <div class="input-group-addon" id="basic-addon1">$</div>
-                            <input type="text" class="form-control" name="priceFrom" id="price_from" aria-describedby="basic-addon1">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="price_to" class="control-label">Max Price</label>
-                        <div class="input-group">
-                            <div class="input-group-addon" id="basic-addon2">$</div>
-                            <input type="text" class="form-control" name="priceTo" id="price_to" aria-describedby="basic-addon1">
-                        </div>
-                    </div>
-                    <p class="text-center"><a href="#" class="btn btn-danger glyphicon glyphicon-search" role="button"></a></p>
-                </form>
-            </div>
+            <jsp:include page="fragments/searchfilter.jsp"/>
         </div>
 
         <div class="col-md-8">
@@ -86,7 +47,7 @@
                     <c:if test="${not empty hotels}">
                         <c:forEach items="${hotels}" var="hotel">
                             <jsp:useBean id="hotel" scope="page" type="com.kirak.to.HotelTo"/>
-                            <a href="#" class="list-group-item">
+                            <a href="inspect_hotel?${hotel.id}" class="list-group-item">
                                 <div class="media col-md-3">
                                     <figure class="pull-left">
                                         <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" >
@@ -110,7 +71,7 @@
                                     </div>
                                     <h3> Average ${hotel.rating} <small> / </small> 10 </h3>
                                     <h4> ${hotel.votesNum} <small> votes </small></h4>
-                                    <button type="button" class="btn btn-default btn-lg btn-block"> Book Now </button>
+                                    <button type="button" href="inspect_hotel?${hotel.id}" class="btn btn-default btn-lg btn-block"> Book Now </button>
                                 </div>
                             </a>
                         </c:forEach>

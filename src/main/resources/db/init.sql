@@ -44,8 +44,9 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id`         INT         NOT NULL AUTO_INCREMENT,
   `email`      VARCHAR(45) NOT NULL UNIQUE,
+  `phone`      VARCHAR(20) NOT NULL UNIQUE,
   `name`       VARCHAR(45) NULL,
-  `password`   VARCHAR(45),
+  `password`   VARCHAR(45) NULL,
   `registered` TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
   INDEX `user_unique_email_idx`(`email`),
   PRIMARY KEY (`id`)
@@ -98,17 +99,18 @@ CREATE TABLE IF NOT EXISTS `vote` (
 
 DROP TABLE IF EXISTS `hotel`;
 CREATE TABLE IF NOT EXISTS `hotel` (
-  `id`          INT           NOT NULL AUTO_INCREMENT,
-  `name`        VARCHAR(45)   NOT NULL,
-  `stars`       SMALLINT      NULL,
-  `country_id`  SMALLINT      NOT NULL,
-  `city_id`     INT           NOT NULL,
-  `address`     VARCHAR(45)   NOT NULL,
-  `phone`       VARCHAR(15)   NULL,
-  `description` TINYTEXT      NULL,
-  `check_in`    TIME          NOT NULL,
-  `check_out`   TIME          NOT NULL,
-  `manager`     INT           NOT NULL,
+  `id`                INT           NOT NULL AUTO_INCREMENT,
+  `name`              VARCHAR(45)   NOT NULL,
+  `stars`             SMALLINT      NULL,
+  `country_id`        SMALLINT      NOT NULL,
+  `city_id`           INT           NOT NULL,
+  `address`           VARCHAR(45)   NOT NULL,
+  `phone`             VARCHAR(15)   NULL,
+  `description`       TINYTEXT      NULL,
+  `check_in`          TIME          NOT NULL,
+  `check_out`         TIME          NOT NULL,
+  `max_extra_per_day` SMALLINT      NOT NULL,
+  `manager`           INT           NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_hotel_country1_idx` (`country_id` ASC),
   INDEX `fk_hotel_city1_idx` (`city_id` ASC),
@@ -127,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `hotel` (
   FOREIGN KEY (`manager`)
   REFERENCES `user` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE NO ACTION
 )
   AUTO_INCREMENT = 100000,
   ENGINE = InnoDB;

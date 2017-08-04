@@ -1,8 +1,7 @@
 package com.kirak.util.model;
 
-import com.kirak.model.Country;
-import com.kirak.model.Hotel;
-import com.kirak.model.Vote;
+import com.kirak.model.*;
+import com.kirak.service.HotelService;
 import com.kirak.to.HotelTo;
 import org.springframework.util.Assert;
 
@@ -14,22 +13,6 @@ import java.util.stream.Collectors;
  * Created by Kir on 25.06.2017.
  */
 public class HotelUtil {
-
-    public static synchronized Double calculateHotelRating(Hotel hotel){
-
-        OptionalDouble average = hotel.getVotes()
-                .stream()
-                .map(Vote::getRate)
-                .mapToDouble(r -> r)
-                .average();
-
-        return average.isPresent() ? average.getAsDouble() : 0;
-    }
-
-    public static synchronized Integer calculateHotelVotesNum(Hotel hotel){
-
-        return !hotel.getVotes().isEmpty() ? hotel.getVotes().size() : 0;
-    }
 
 //    public static Hotel createNewFromTo(HotelTo newHotel) {
 //        return new Hotel(null, newHotel.getName(), newHotel.getRating(), newHotel.getStars(), newHotel.getDescription());
@@ -87,6 +70,50 @@ public class HotelUtil {
                 .limit(5)
                 .map(HotelUtil::asTo)
                 .collect(Collectors.toList());
+    }
+
+    public static synchronized Double calculateHotelRating(Hotel hotel){
+
+        OptionalDouble average = hotel.getVotes()
+                .stream()
+                .map(Vote::getRate)
+                .mapToDouble(r -> r)
+                .average();
+
+        return average.isPresent() ? average.getAsDouble() : 0;
+    }
+
+    public static synchronized Integer calculateHotelVotesNum(Hotel hotel){
+
+        return !hotel.getVotes().isEmpty() ? hotel.getVotes().size() : 0;
+    }
+
+    public static List<String> getUniqueCategories(List<Apartment> apartments){
+
+        return apartments.stream()
+                .map(Apartment::getType)
+                .map(AptType::getCategory)
+                .collect(Collectors.toList())
+                .stream()
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+    public static List<String> getUniquePersonNums(List<Apartment> apartments){
+
+        return apartments.stream()
+                .map(Apartment::getType)
+                .map(AptType::getPersonNum)
+                .map(Object::toString)
+                .collect(Collectors.toList())
+                .stream()
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+    public static List<Apartment> getHotelApartments(String hotelId, HotelService hotelService){
+
+        return new ArrayList<>(hotelService.get(Integer.parseInt(hotelId)).getApartments());
     }
 
 }

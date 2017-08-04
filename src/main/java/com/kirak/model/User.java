@@ -26,12 +26,12 @@ import java.util.*;
 @Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "user_unique_email_idx")})
 public class User extends NamedEntity {
 
-    @Column(name = "email", unique = true)
+    @Column(name = "email", nullable = false, unique = true)
     @Email
     @NotBlank
     private String email;
 
-    @Column(name = "phone", unique = true)
+    @Column(name = "phone", nullable = false, unique = true)
     @Email
     @NotBlank
     private String phone;
@@ -66,10 +66,6 @@ public class User extends NamedEntity {
 
     public User(){}
 
-    public User(User u) {
-        this(u.getId(), u.getName(), u.getEmail(), u.getPassword(), u.getRegistered(), u.getBookings(), u.getRoles());
-    }
-
     //For anonymous user
     public User(String name, String email, String phone, UserRole role, UserRole... roles) {
         this(null, name, email, phone, new Date(), EnumSet.of(role, roles));
@@ -79,14 +75,20 @@ public class User extends NamedEntity {
         this(id, name, email, phone, new Date(), EnumSet.of(role, roles));
     }
 
-    public User(Integer id, String name, String email, String password, Set<Booking> bookings, UserRole role, UserRole... roles) {
-        this(id, name, email, password, new Date(), bookings, EnumSet.of(role, roles));
+    //For registered user
+    public User(User u) {
+        this(u.getId(), u.getName(), u.getEmail(), u.getPhone(), u.getPassword(), u.getRegistered(), u.getRoles());
     }
 
-    public User(Integer id, String name, String email, String password, Date registered, Set<Booking> bookings, Collection<UserRole> roles) {
+    public User(Integer id, String name, String email, String phone, String password, UserRole role, UserRole... roles) {
+        this(id, name, email, phone, password, new Date(), EnumSet.of(role, roles));
+    }
+
+    public User(Integer id, String name, String email,String phone, String password, Date registered, Collection<UserRole> roles) {
         super(id, name);
         this.email = email;
         this.password = password;
+        this.phone = phone;
         this.bookings = bookings;
         this.registered = registered;
         setRoles(roles);

@@ -30,7 +30,6 @@ public class HotelTo extends NamedEntity implements Serializable {
 
     private final Integer votesNum;
 
-
     public HotelTo(Integer id, String name, Double rating, Short stars, String description, int votesNum) {
         this.id = id;
         this.name = name;
@@ -39,7 +38,6 @@ public class HotelTo extends NamedEntity implements Serializable {
         this.description = description;
         this.votesNum = votesNum;
     }
-
 
     @Override
     public Integer getId() {

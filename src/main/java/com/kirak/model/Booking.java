@@ -43,7 +43,7 @@ public class Booking extends BaseLongEntity {
     @Column(name = "person_num")
     private Short personNum;
 
-    @Range(min = 0, max = 6)
+    @Range(min = 0, max = 10)
     @Column(name = "extra_beds")
     private Short extraBeds = 0;
 

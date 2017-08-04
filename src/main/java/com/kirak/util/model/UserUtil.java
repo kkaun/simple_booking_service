@@ -5,10 +5,7 @@ import com.kirak.model.User;
 import com.kirak.model.UserRole;
 import com.kirak.to.UserTo;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -16,12 +13,18 @@ import java.util.stream.Collectors;
  */
 public class UserUtil {
 
-    public static User createNewFromTo(UserTo newUser) {
-        return new User(null, newUser.getName(), newUser.getEmail().toLowerCase(), newUser.getPassword(), UserRole.ROLE_USER);
+    public static User createNewAnonymousFromTo(UserTo newUser) {
+        return new User(null, newUser.getName(), newUser.getEmail().toLowerCase(), newUser.getPhone(),
+                UserRole.ROLE_USER);
+    }
+
+    public static User createNewRegisteredFromTo(UserTo newUser) {
+        return new User(null, newUser.getName(), newUser.getEmail().toLowerCase(), newUser.getPhone(),
+                newUser.getPassword(), UserRole.ROLE_USER);
     }
 
     public static UserTo asTo(User user) {
-        return new UserTo(user.getId(), user.getName(), user.getEmail(), user.getPassword());
+        return new UserTo(user.getId(), user.getName(), user.getEmail(), user.getPhone(), user.getPassword());
     }
 
     public static User updateFromTo(User user, UserTo userTo) {
@@ -45,6 +48,18 @@ public class UserUtil {
                 .collect(Collectors.toList())
                 .stream()
                 .filter(p -> p.equals(phone))
+                .count() >= 1;
+    }
+
+    public static boolean isEmailDuplicated(String email, List<User> users){
+
+        //TODO: Try to use commons validator
+
+        return users.stream()
+                .map(User::getEmail)
+                .collect(Collectors.toList())
+                .stream()
+                .filter(p -> p.equals(email))
                 .count() >= 1;
     }
 

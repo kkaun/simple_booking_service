@@ -34,45 +34,40 @@
     </div>
 
     <div class="row">
-        <!-- The carousel -->
-            <div id="transition-timer-carousel" class="carousel slide transition-timer-carousel" data-ride="carousel">
+        <div id="transition-timer-carousel" class="carousel slide transition-timer-carousel" data-ride="carousel">
 
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#transition-timer-carousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#transition-timer-carousel" data-slide-to="1"></li>
-                    <li data-target="#transition-timer-carousel" data-slide-to="2"></li>
-                    <li data-target="#transition-timer-carousel" data-slide-to="3"></li>
-                    <li data-target="#transition-timer-carousel" data-slide-to="4"></li>
-                </ol>
+            <ol class="carousel-indicators">
+                <li data-target="#transition-timer-carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#transition-timer-carousel" data-slide-to="1"></li>
+                <li data-target="#transition-timer-carousel" data-slide-to="2"></li>
+                <li data-target="#transition-timer-carousel" data-slide-to="3"></li>
+                <li data-target="#transition-timer-carousel" data-slide-to="4"></li>
+            </ol>
 
-                    <div class="carousel-inner">
-                    <c:forEach items="${citiesFive}" var="city">
-                        <jsp:useBean id="city" scope="page" type="com.kirak.model.City"/>
-                        <div class="item">
-                            <a href="get_by_city?city=${city.id}"><img src="http://placehold.it/1200x400"/></a>
-                            <div class="carousel-caption">
-                                <h1 class="carousel-caption-header">${city.name}</h1>
-                                <p class="carousel-caption-text hidden-sm hidden-xs">
-                                        ${city.country.name}
-                                </p>
-                            </div>
+                <div class="carousel-inner">
+                <c:forEach items="${citiesFive}" var="city">
+                    <jsp:useBean id="city" scope="page" type="com.kirak.model.City"/>
+                    <div class="item">
+                        <a href="get_by_city?city=${city.id}"><img src="http://placehold.it/1200x400"/></a>
+                        <div class="carousel-caption">
+                            <h1 class="carousel-caption-header">${city.name}</h1>
+                            <p class="carousel-caption-text hidden-sm hidden-xs">
+                                    ${city.country.name}
+                            </p>
                         </div>
-                    </c:forEach>
                     </div>
+                </c:forEach>
+                </div>
 
+            <a class="left carousel-control" href="#transition-timer-carousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#transition-timer-carousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
 
-                <!-- Controls -->
-                <a class="left carousel-control" href="#transition-timer-carousel" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                </a>
-                <a class="right carousel-control" href="#transition-timer-carousel" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                </a>
-
-                <!-- Timer "progress bar" -->
-                <hr class="transition-timer-carousel-progress-bar animate" />
-            </div>
+            <hr class="transition-timer-carousel-progress-bar animate" />
+        </div>
     </div>
 
     <div class="row">
@@ -82,10 +77,10 @@
             <div class="list-group">
                 <c:forEach items="${hotelsFive}" var="hotel">
                 <jsp:useBean id="hotel" scope="page" type="com.kirak.to.HotelTo"/>
-                    <a href="#" class="list-group-item">
+                    <a href="inspect_hotel?${hotel.id}" class="list-group-item">
                         <div class="media col-md-3">
                             <figure class="pull-left">
-                                <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" >
+                                <img class="media-object img-rounded img-responsive" src="http://placehold.it/350x250" alt="placehold.it/350x250" >
                             </figure>
                         </div>
                         <div class="col-md-6">
@@ -106,11 +101,10 @@
                             </div>
                             <h3> Average ${hotel.rating} <small> / </small> 10 </h3>
                             <h4> ${hotel.votesNum} <small> votes </small></h4>
-                            <button type="button" class="btn btn-default btn-lg btn-block"> Book Now </button>
+                            <button type="button" href="inspect_hotel?${hotel.id}" class="btn btn-default btn-lg btn-block"> Book Now </button>
                         </div>
                     </a>
                 </c:forEach>
-
             </div>
         </div>
     </div>

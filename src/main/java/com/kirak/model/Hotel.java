@@ -63,10 +63,17 @@ public class Hotel extends NamedEntity {
     @Column(name = "check_out")
     private Time checkOut;
 
+    @Range(min = 0, max = 10)
+    @Column(name = "max_extra_per_day")
+    private Short maxExtraBedsPerDay;
+
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "manager", nullable = false)
     private User manager;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "hotel")
+    private Set<Apartment> apartments;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "hotel")
     private Set<Vote> votes;
@@ -190,6 +197,22 @@ public class Hotel extends NamedEntity {
 
     public void setManager(User manager) {
         this.manager = manager;
+    }
+
+    public Set<Apartment> getApartments() {
+        return apartments;
+    }
+
+    public void setApartments(Set<Apartment> apartments) {
+        this.apartments = apartments;
+    }
+
+    public Short getMaxExtraBedsPerDay() {
+        return maxExtraBedsPerDay;
+    }
+
+    public void setMaxExtraBedsPerDay(Short maxExtraBedsPerDay) {
+        this.maxExtraBedsPerDay = maxExtraBedsPerDay;
     }
 
     @Override

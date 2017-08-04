@@ -24,18 +24,19 @@ public class UserTo implements BaseEntity, Serializable {
     @NotBlank
     private String email;
 
+    @NotBlank
+    private String phone;
+
     @Length(min = 5, max = 32)
     @SafeHtml
     private String password;
 
 
-    public UserTo() {
-    }
-
-    public UserTo(Integer id, String name, String email, String password) {
+    public UserTo(Integer id, String name, String email, String phone, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.phone = phone;
         this.password = password;
     }
 
@@ -84,6 +85,14 @@ public class UserTo implements BaseEntity, Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     @Override
