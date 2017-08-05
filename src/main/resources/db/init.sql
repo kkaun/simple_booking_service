@@ -150,8 +150,6 @@ DROP TABLE IF EXISTS `apartment`;
 CREATE TABLE IF NOT EXISTS `apartment` (
   `id`                INT            NOT NULL AUTO_INCREMENT,
   `apt_type_id`       SMALLINT       NOT NULL,
-  `overall_quantity`  SMALLINT       NOT NULL,
-  `reserved_quantity` SMALLINT       NOT NULL,
   `price`             DECIMAL(11, 4) NULL,
   `hotel_id`          INT            NOT NULL,
   PRIMARY KEY (`id`, `hotel_id`),

@@ -3,9 +3,11 @@ package com.kirak.util.model;
 import com.kirak.model.*;
 import com.kirak.service.HotelService;
 import com.kirak.to.HotelTo;
+import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -114,6 +116,17 @@ public class HotelUtil {
     public static List<Apartment> getHotelApartments(String hotelId, HotelService hotelService){
 
         return new ArrayList<>(hotelService.get(Integer.parseInt(hotelId)).getApartments());
+    }
+
+    public static void addUniqueHotelParams(String hotelId, HotelService hotelService, Model model){
+        model.addAttribute("uniquePersonNums", HotelUtil.getUniquePersonNums(HotelUtil.getHotelApartments(hotelId, hotelService)));
+        model.addAttribute("uniqueCategories", HotelUtil.getUniqueCategories(HotelUtil.getHotelApartments(hotelId, hotelService)));
+    }
+
+    public static Map<Hotel, Integer> filterAvailableHotelsByRequest(Hotel hotel, LocalDate inDate, LocalDate outDate, Short personNum,
+                                                                     String category, Double minPrice, Double maxPrice){
+        //Stub
+        return null;
     }
 
 }

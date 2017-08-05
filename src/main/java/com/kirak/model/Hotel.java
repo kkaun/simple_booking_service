@@ -75,6 +75,9 @@ public class Hotel extends NamedEntity {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "hotel")
     private Set<Apartment> apartments;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel")
+    private Set<Booking> bookings;
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "hotel")
     private Set<Vote> votes;
 
@@ -213,6 +216,14 @@ public class Hotel extends NamedEntity {
 
     public void setMaxExtraBedsPerDay(Short maxExtraBedsPerDay) {
         this.maxExtraBedsPerDay = maxExtraBedsPerDay;
+    }
+
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Set<Booking> bookings) {
+        this.bookings = bookings;
     }
 
     @Override

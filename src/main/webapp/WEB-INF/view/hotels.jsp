@@ -71,7 +71,7 @@
                                     </div>
                                     <h3> Average ${hotel.rating} <small> / </small> 10 </h3>
                                     <h4> ${hotel.votesNum} <small> votes </small></h4>
-                                    <button type="button" href="inspect_hotel?${hotel.id}" class="btn btn-default btn-lg btn-block"> Book Now </button>
+                                    <button type="button" href="inspect_hotel?${hotel.id}" class="btn btn-default btn-lg btn-block"> View & Book </button>
                                 </div>
                             </a>
                         </c:forEach>

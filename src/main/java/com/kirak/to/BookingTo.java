@@ -28,24 +28,22 @@ public class BookingTo {
     private Double sum;
 
     public BookingTo(Hotel hotel, Apartment apartment, LocalDate inDate, LocalDate outDate,
-                     Short personNum, Short extraBeds, Double sum) {
+                     Short personNum, Double sum) {
         this.hotel = hotel;
         this.apartment = apartment;
         this.inDate = inDate;
         this.outDate = outDate;
         this.personNum = personNum;
-        this.extraBeds = extraBeds;
         this.sum = sum;
     }
 
     public BookingTo(Integer id, Hotel hotel, Apartment apartment, LocalDate inDate, LocalDate outDate,
-                     Short personNum, Short extraBeds, Double sum) {
+                     Short personNum, Double sum) {
         this.hotel = hotel;
         this.apartment = apartment;
         this.inDate = inDate;
         this.outDate = outDate;
         this.personNum = personNum;
-        this.extraBeds = extraBeds;
         this.sum = sum;
     }
 

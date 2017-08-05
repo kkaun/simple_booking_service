@@ -7,14 +7,12 @@ import com.kirak.model.UserRole;
 import com.kirak.service.*;
 import com.kirak.to.BookingTo;
 import com.kirak.to.HotelTo;
-import com.kirak.util.model.BookingUtil;
-import com.kirak.util.model.HotelUtil;
-import com.kirak.util.model.RegionUtil;
-import com.kirak.util.model.UserUtil;
+import com.kirak.util.model.*;
 import com.kirak.web.AuthorizedUser;
 import com.kirak.web.ModelUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +22,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -96,43 +95,43 @@ public class BookingController {
 
     @GetMapping(value = "/inspect_hotel")
     public String hotel(@RequestParam("id") String hotelId, Model model) {
-        model.addAttribute("apartments", HotelUtil.getHotelApartments(hotelId, hotelService));
-        model.addAttribute("uniquePersonNums", HotelUtil.getUniquePersonNums(HotelUtil.getHotelApartments(hotelId, hotelService)));
-        model.addAttribute("uniqueCategories", HotelUtil.getUniqueCategories(HotelUtil.getHotelApartments(hotelId, hotelService)));
-        model.addAttribute("hotel", HotelUtil.asTo(hotelService.get(Integer.parseInt(hotelId))));
+        HotelUtil.addUniqueHotelParams(hotelId, hotelService, model);
         ModelUtil.addUniqueFilterParams(model, aptTypeService);
+        model.addAttribute("apartments", HotelUtil.getHotelApartments(hotelId, hotelService));
+        model.addAttribute("hotel", HotelUtil.asTo(hotelService.get(Integer.parseInt(hotelId))));
         return "hotel";
     }
 
     @PostMapping(value = "/check_overall")
-    public String checkOverallAvailability(@RequestParam ("hotelId") String hotelId,
-                        @RequestParam ("inDate") String inDate, @RequestParam ("outDate") String outDate,
-                        @RequestParam ("personNum") String personNum, @RequestParam ("extraBeds") String extraBeds,
-                        Model model) {
+    public String checkOverallAvailability(@RequestParam ("hotelId") String hotelId, @RequestParam ("inDate") String inDate,
+                                           @RequestParam ("outDate") String outDate, @RequestParam ("category") String category,
+                                           @RequestParam ("personNum") String personNum, Model model) {
 
-        LocalDate checkInDate = LocalDate.parse(inDate);
-        LocalDate checkOutDate = LocalDate.parse(outDate);
+//        LocalDate checkInDate = LocalDate.parse(inDate);
+//        LocalDate checkOutDate = LocalDate.parse(outDate);
+        Map<Apartment, Integer> apartments = ApartmentUtil.filterAvailableApartmentsByRequest(hotelService.get(Integer.parseInt(hotelId)),
+                LocalDate.parse(inDate), LocalDate.parse(outDate), Short.parseShort(personNum), category);
 
         model.addAttribute("apartments", HotelUtil.getHotelApartments(hotelId, hotelService));
-        model.addAttribute("uniquePersonNums", HotelUtil.getUniquePersonNums(HotelUtil.getHotelApartments(hotelId, hotelService)));
-        model.addAttribute("uniqueCategories", HotelUtil.getUniqueCategories(HotelUtil.getHotelApartments(hotelId, hotelService)));
+        HotelUtil.addUniqueHotelParams(hotelId, hotelService, model);
 
         model.addAttribute("hotelId", hotelId);
         model.addAttribute("inDate", inDate);
         model.addAttribute("outDate", outDate);
         model.addAttribute("personNum", personNum);
-        model.addAttribute("extraBeds", extraBeds);
         ModelUtil.addUniqueFilterParams(model, aptTypeService);
         return "hotel";
     }
 
     @PostMapping(value = "/check_apt")
     public String checkApartmentAvailability(@RequestParam ("hotelId") String apartmentId, @RequestParam ("inDate") String inDate,
-                                           @RequestParam ("outDate") String outDate, @RequestParam ("extraBeds") String extraBeds,
-                                           Model model) {
+                                           @RequestParam ("outDate") String outDate, Model model) {
 
-        //TODO
 
+
+        model.addAttribute("apartment", apartmentService.get(Integer.parseInt(apartmentId)));
+        model.addAttribute("inDate", inDate);
+        model.addAttribute("outDate", outDate);
         return "hotel";
     }
 
@@ -149,16 +148,14 @@ public class BookingController {
     @PostMapping(value = "/check_booking")
     public String checkBooking(@RequestParam ("hotelId") String hotelId, @RequestParam ("apartmentId") String apartmentId,
                                       @RequestParam ("inDate") String inDate, @RequestParam ("outDate") String outDate,
-                                      @RequestParam ("personNum") String personNum, @RequestParam ("extraBeds") String extraBeds,
-                                      Model model) {
+                                      @RequestParam ("personNum") String personNum, Model model) {
 
         LocalDate checkInDate = LocalDate.parse(inDate);
         LocalDate checkOutDate = LocalDate.parse(outDate);
         double sum = BookingUtil.calculateBookingSum(apartmentService.get(Integer.parseInt(apartmentId)), checkInDate, checkOutDate);
 
         BookingTo bookingTo = new BookingTo(hotelService.get(Integer.parseInt(hotelId)),
-                apartmentService.get(Integer.parseInt(apartmentId)), checkInDate,
-                checkOutDate, Short.parseShort(personNum), Short.parseShort(extraBeds), sum);
+                apartmentService.get(Integer.parseInt(apartmentId)), checkInDate, checkOutDate, Short.parseShort(personNum), sum);
 
         model.addAttribute("booking", bookingTo);
         model.addAttribute("hotelId", hotelId);
@@ -166,7 +163,6 @@ public class BookingController {
         model.addAttribute("inDate", inDate);
         model.addAttribute("outDate", outDate);
         model.addAttribute("personNum", personNum);
-        model.addAttribute("extraBeds", extraBeds);
         ModelUtil.addUniqueFilterParams(model, aptTypeService);
         return "book";
     }
@@ -176,15 +172,14 @@ public class BookingController {
                                           @RequestParam ("inDate") String inDate, @RequestParam ("outDate") String outDate,
                                           @RequestParam ("userName") String userName, @RequestParam ("userPhone") String userPhone,
                                           @RequestParam ("userEmail") String userEmail, @RequestParam ("personNum") String personNum,
-                                          @RequestParam ("extraBeds") String extraBeds, @RequestParam ("sum") String sum,
-                                          Model model) {
+                                          @RequestParam ("sum") String sum, Model model) {
 
         User user = new User(userName, userEmail, userPhone, UserRole.ROLE_USER);
         userService.save(user);
 
         Booking booking = new Booking(true, LocalDateTime.now(), LocalDateTime.parse(inDate),
                 LocalDateTime.parse(outDate), Double.parseDouble(sum), Short.parseShort(personNum),
-                Short.parseShort(extraBeds), userService.get(AuthorizedUser.getId()),
+                (short) 0, userService.get(AuthorizedUser.getId()),
                 apartmentService.get(Integer.parseInt(apartmentId)), hotelService.get(Integer.parseInt(hotelId)));
 
         model.addAttribute("booking", bookingService.save(booking, AuthorizedUser.getId(),
@@ -195,13 +190,12 @@ public class BookingController {
     @PostMapping(value = "/confirm_customer_booking")
     public String confirmCustomerBooking(@RequestParam ("id") String hotelId, @RequestParam ("apartmentId") String apartmentId,
                                          @RequestParam ("inDate") String inDate, @RequestParam ("outDate") String outDate,
-                                         @RequestParam ("personNum") String personNum, @RequestParam ("extraBeds") String extraBeds,
-                                         @RequestParam ("sum") String sum, Model model) {
+                                         @RequestParam ("personNum") String personNum, @RequestParam ("sum") String sum, Model model) {
         int userId = AuthorizedUser.getId();
 
         Booking booking = new Booking(true, LocalDateTime.now(), LocalDateTime.parse(inDate),
                 LocalDateTime.parse(outDate), Double.parseDouble(sum), Short.parseShort(personNum),
-                Short.parseShort(extraBeds), userService.get(AuthorizedUser.getId()),
+                (short) 0, userService.get(AuthorizedUser.getId()),
                 apartmentService.get(Integer.parseInt(apartmentId)), hotelService.get(Integer.parseInt(hotelId)));
 
         //model.addAttribute("booking", bookingService.save(booking, ))

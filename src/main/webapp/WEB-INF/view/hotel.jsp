@@ -19,6 +19,7 @@
                 <form class="form-horizontal" method="get" action="check_overall">
                     <fieldset>
                         <legend>Check availability of this object's apartments</legend>
+                        <h5>Note that we are not supporting single bookings with duration of more than 30 nights</h5>
                         <input type="hidden" name="hotelId" value="${hotel.id}">
                         <div class="form-group">
                             <label for="person_num" class="control-label">No. of Persons</label>
@@ -35,12 +36,6 @@
                                     <option value="${param.category}">${category}</option>
                                 </c:forEach>
                             </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="extra_beds" class="control-label">Extra Beds</label>
-                            <div class="input-group">
-                                <input type="number" min="0" max="2" class="form-control" id="extra_beds" name="extraBeds" value="${param.extraBeds}">
-                            </div>
                         </div>
                         <div class="form-group">
                             <label for="in_date" class="control-label">From Date</label>
@@ -120,34 +115,29 @@
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             <h4 class="modal-title"> Please, specify enlisted parameters </h4>
+                                            <h6>Note that we are not supporting single bookings with duration of more than 30 nights</h6>
                                         </div>
+
                                         <div class="modal-body">
-                                            <input type="hidden" name="apartmentId" value="${apartment.id}">
-                                            <div class="form-group">
-                                                <label for="apt_in_date" class="control-label">Arrival Date</label>
-                                                <div class="input-group">
-                                                    <input type="date" class="form-control" id="apt_in_date" name="aptInDate" value="${param.aptInDate}">
+                                            <form class="form-horizontal" method="get" action="check_apt">
+                                                <input type="hidden" name="apartmentId" value="${apartment.id}">
+                                                <div class="form-group">
+                                                    <label for="apt_in_date" class="control-label">Arrival Date</label>
+                                                    <div class="input-group">
+                                                        <input type="date" class="form-control" id="apt_in_date" name="aptInDate" value="${param.aptInDate}">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="apt_out_date" class="control-label">Departure Date</label>
-                                                <div class="input-group">
-                                                    <input type="date" class="form-control" id="apt_out_date" name="aptOutDate" value="${param.aptOutDate}">
+                                                <div class="form-group">
+                                                    <label for="apt_out_date" class="control-label">Departure Date</label>
+                                                    <div class="input-group">
+                                                        <input type="date" class="form-control" id="apt_out_date" name="aptOutDate" value="${param.aptOutDate}">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="apt_extra_beds" class="control-label">Extra Beds</label>
-                                                <div class="input-group">
-                                                    <input type="number" min="0" max="2" class="form-control" id="apt_extra_beds"
-                                                           name="aptExtraBeds" value="${param.aptExtraBeds}">
-                                                </div>
-                                            </div>
-                                            <button type="button" href="check_apt?${apartment.id}"
-                                                    class="btn btn-default btn-lg btn-block"> Check </button>
+                                                <button type="submit" class="btn btn-default btn-lg btn-block"> Check </button>
+                                            </form>
                                         </div>
+
                                         <div class="modal-footer">
-                                            <a href="#" class="btn btn-default" data-dismiss="modal">Add to bag</a>
-                                            <a href="#" class="btn btn-default" data-dismiss="modal">Add To WishList</a>
                                         </div>
                                     </div>
                                 </div>

@@ -45,13 +45,13 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="in_date" class="control-label">Max Price</label>
+            <label for="in_date" class="control-label">Check-in</label>
             <div class="input-group">
                 <input type="date" class="form-control" id="in_date" name="inDate" value="${param.inDate}">
             </div>
         </div>
         <div class="form-group">
-            <label for="out_date" class="control-label">Max Price</label>
+            <label for="out_date" class="control-label">Check-out</label>
             <div class="input-group">
                 <input type="date" class="form-control" id="out_date" name="outDate" value="${param.outDate}">
             </div>

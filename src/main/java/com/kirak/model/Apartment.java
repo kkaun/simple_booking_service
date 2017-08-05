@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 /**
  * Created by Kir on 30.05.2017.
@@ -18,14 +19,6 @@ public class Apartment extends BaseIntEntity {
     @NotNull
     private AptType type;
 
-    @NotNull
-    @Column(name = "overall_quantity")
-    private Short overallQuantity;
-
-    @NotNull
-    @Column(name = "reserved_quantity")
-    private Short reservedQuantity;
-
     @Column(name = "price", precision=8, scale=2)
     @NotNull
     private Double price;
@@ -35,13 +28,14 @@ public class Apartment extends BaseIntEntity {
     @JoinColumn(name = "hotel_id", nullable = false)
     private Hotel hotel;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "apartment")
+    private Set<Booking> bookings;
+
     public Apartment(){}
 
-    public Apartment(Integer id, AptType type, Short overallQuantity, Short reservedQuantity, Double price, Hotel hotel) {
+    public Apartment(Integer id, AptType type, Short overallQuantity, Double price, Hotel hotel) {
         super(id);
         this.type = type;
-        this.overallQuantity = overallQuantity;
-        this.reservedQuantity = reservedQuantity;
         this.price = price;
         this.hotel = hotel;
     }
@@ -52,22 +46,6 @@ public class Apartment extends BaseIntEntity {
 
     public void setType(AptType type) {
         this.type = type;
-    }
-
-    public Short getOverallQuantity() {
-        return overallQuantity;
-    }
-
-    public void setOverallQuantity(Short overallQuantity) {
-        this.overallQuantity = overallQuantity;
-    }
-
-    public Short getReservedQuantity() {
-        return reservedQuantity;
-    }
-
-    public void setReservedQuantity(Short reservedQuantity) {
-        this.reservedQuantity = reservedQuantity;
     }
 
     public Hotel getHotel() {
@@ -86,14 +64,19 @@ public class Apartment extends BaseIntEntity {
         this.price = price;
     }
 
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Set<Booking> bookings) {
+        this.bookings = bookings;
+    }
 
     @Override
     public String toString() {
         return "Apartment{" +
                 "id='" + getId() + '\'' +
                 ", type='" + type + '\'' +
-                ", overall numbers quantity=" + overallQuantity +
-                ", reserved numbers quantity=" + reservedQuantity +
                 ", hotel=" + hotel +
                 ", price=" + price +
                 '}';
