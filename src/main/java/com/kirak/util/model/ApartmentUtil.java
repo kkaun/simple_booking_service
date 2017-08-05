@@ -1,10 +1,9 @@
 package com.kirak.util.model;
 
-import com.kirak.model.Apartment;
-import com.kirak.model.Booking;
-import com.kirak.model.Hotel;
+import com.kirak.model.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -16,24 +15,36 @@ public class ApartmentUtil {
 
     public static List<Apartment> filterApartmentsWithDuplicateTypes(Hotel hotel){
 
-        //Stub
-        return null;
+        List<Apartment> apartments = new ArrayList<>();
 
+        Map<AptType, Integer> uniqueApartmentIds = hotel.getApartments().stream()
+                .collect(Collectors.toMap(Apartment::getType, Apartment::getId, (t, id) -> t));
+
+        uniqueApartmentIds.values().forEach(id -> hotel.getApartments().stream()
+                .filter(apartment -> Objects.equals(apartment.getId(), id)).forEach(apartments::add));
+
+        return apartments;
     }
 
     public static Map<Integer, Boolean> apartmentAvailabilityForToday(List<Apartment> apartments){
 
+        LocalDate today = LocalDate.now();
+
         //Stub
         return null;
     }
 
-    public static boolean isApartmentAvailableByRequest(Apartment apartment, LocalDate inDate, LocalDate outDate){
+    public static boolean isHotelApartmentAvailableByRequest(Apartment apartment, LocalDate inDate, LocalDate outDate){
 
         //Stub
         return false;
     }
 
-    public static Map<Apartment, Integer> filterAvailableApartmentsByRequest(Hotel hotel, LocalDate inDate, LocalDate outDate,
+    public static boolean isAvailableApartmentAcceptedByPrice(Apartment apartment, Double minPrice, Double maxPrice){
+        return apartment.getPrice() >= minPrice && apartment.getPrice() <= maxPrice;
+    }
+
+    public static Map<Apartment, Integer> filterHotelApartmentByRequest(Hotel hotel, LocalDate inDate, LocalDate outDate,
                                                                      Short personNum, String category){
 
         final int[] daysOccupied = {0}; //Transformed to final effectively array
@@ -72,7 +83,16 @@ public class ApartmentUtil {
         int daysInRequestPeriod = apartmentsInTransitInterval.size()*requestPeriod;
         int apartmentsCount = (daysInRequestPeriod - daysOccupied[0])/requestPeriod;
 
-        return Collections.singletonMap(apartmentsInTransitInterval.get(0), apartmentsCount);
+        return !apartmentsInTransitInterval.isEmpty() ? Collections.singletonMap(apartmentsInTransitInterval.get(0), apartmentsCount) :
+                Collections.<Apartment, Integer>emptyMap();
+
+    }
+
+    public static Map<Apartment, Integer> filterAllAvailableApartmentsByRequest(City city, List<Hotel>hotels, LocalDate inDate,
+                                                                                LocalDate outDate, Short personNum, String category,
+                                                                                Double minPrice, Double maxPrice){
+        //Stub
+        return null;
 
     }
 

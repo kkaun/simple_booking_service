@@ -45,8 +45,6 @@ public class UserUtil {
 
         return users.stream()
                 .map(User::getPhone)
-                .collect(Collectors.toList())
-                .stream()
                 .filter(p -> p.equals(phone))
                 .count() >= 1;
     }
@@ -57,8 +55,6 @@ public class UserUtil {
 
         return users.stream()
                 .map(User::getEmail)
-                .collect(Collectors.toList())
-                .stream()
                 .filter(p -> p.equals(email))
                 .count() >= 1;
     }

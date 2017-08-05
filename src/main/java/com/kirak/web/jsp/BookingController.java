@@ -59,7 +59,7 @@ public class BookingController {
 
     @GetMapping(value = "/search")
     public String searchHotelsByRegion(@RequestParam("region") String region, Model model){
-        List<HotelTo> hotelsFound = HotelUtil.getAllByRegion(region, hotelService.getAll());
+        List<HotelTo> hotelsFound = HotelUtil.getAllByRegionAsTo(region, hotelService.getAll());
         if(!hotelsFound.isEmpty()) {
             model.addAttribute("hotels", hotelsFound);
             model.addAttribute("region", region);
@@ -102,14 +102,14 @@ public class BookingController {
         return "hotel";
     }
 
-    @PostMapping(value = "/check_overall")
+    @PostMapping(value = "/check_hotel_overall")
     public String checkOverallAvailability(@RequestParam ("hotelId") String hotelId, @RequestParam ("inDate") String inDate,
                                            @RequestParam ("outDate") String outDate, @RequestParam ("category") String category,
                                            @RequestParam ("personNum") String personNum, Model model) {
 
 //        LocalDate checkInDate = LocalDate.parse(inDate);
 //        LocalDate checkOutDate = LocalDate.parse(outDate);
-        Map<Apartment, Integer> apartments = ApartmentUtil.filterAvailableApartmentsByRequest(hotelService.get(Integer.parseInt(hotelId)),
+        Map<Apartment, Integer> apartments = ApartmentUtil.filterHotelAvailableApartmentsByRequest(hotelService.get(Integer.parseInt(hotelId)),
                 LocalDate.parse(inDate), LocalDate.parse(outDate), Short.parseShort(personNum), category);
 
         model.addAttribute("apartments", HotelUtil.getHotelApartments(hotelId, hotelService));
@@ -123,7 +123,7 @@ public class BookingController {
         return "hotel";
     }
 
-    @PostMapping(value = "/check_apt")
+    @PostMapping(value = "/check_hotel_apt")
     public String checkApartmentAvailability(@RequestParam ("hotelId") String apartmentId, @RequestParam ("inDate") String inDate,
                                            @RequestParam ("outDate") String outDate, Model model) {
 

@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="well">
-                <form class="form-horizontal" method="get" action="check_overall">
+                <form class="form-horizontal" method="get" action="check_hotel_overall">
                     <fieldset>
                         <legend>Check availability of this object's apartments</legend>
                         <h5>Note that we are not supporting single bookings with duration of more than 30 nights</h5>
@@ -119,7 +119,7 @@
                                         </div>
 
                                         <div class="modal-body">
-                                            <form class="form-horizontal" method="get" action="check_apt">
+                                            <form class="form-horizontal" method="get" action="check_hotel_apt">
                                                 <input type="hidden" name="apartmentId" value="${apartment.id}">
                                                 <div class="form-group">
                                                     <label for="apt_in_date" class="control-label">Arrival Date</label>

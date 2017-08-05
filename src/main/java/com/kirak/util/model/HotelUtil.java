@@ -3,10 +3,8 @@ package com.kirak.util.model;
 import com.kirak.model.*;
 import com.kirak.service.HotelService;
 import com.kirak.to.HotelTo;
+import javafx.scene.input.ScrollEvent;
 import org.springframework.ui.Model;
-import org.springframework.util.Assert;
-
-import java.sql.Time;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -33,12 +31,18 @@ public class HotelUtil {
                 .collect(Collectors.toList());
     }
 
-    public static List<HotelTo> getAllByRegion(String region, List<Hotel> hotels){
+    public static List<Hotel> getAllByRegion(String region, List<Hotel> hotels){
 
         return hotels.stream()
                 .filter(hotel -> hotel.getCity().getName().toLowerCase().equals(region.toLowerCase()) ||
                         hotel.getCountry().getName().toLowerCase().equals(region.toLowerCase()) ||
                         hotel.getAddress().toLowerCase().equals(region.toLowerCase()))
+                .collect(Collectors.toList());
+    }
+
+    public static List<HotelTo> getAllByRegionAsTo(String region, List<Hotel> hotels) {
+
+        return getAllByRegion(region, hotels).stream()
                 .map(HotelUtil::asTo)
                 .collect(Collectors.toList());
     }
@@ -47,7 +51,6 @@ public class HotelUtil {
 
         return hotels.stream()
                 .filter(hotel -> hotel.getCity().getId() == cityId)
-                .collect(Collectors.toList()).stream()
                 .map(HotelUtil::asTo)
                 .collect(Collectors.toList());
     }
@@ -56,7 +59,6 @@ public class HotelUtil {
 
         return hotels.stream()
                 .filter(hotel -> calculateHotelRating(hotel) >= minRating && calculateHotelRating(hotel) <= maxRating)
-                .collect(Collectors.toList()).stream()
                 .map(HotelUtil::asTo)
                 .collect(Collectors.toList());
     }
@@ -95,8 +97,6 @@ public class HotelUtil {
         return apartments.stream()
                 .map(Apartment::getType)
                 .map(AptType::getCategory)
-                .collect(Collectors.toList())
-                .stream()
                 .distinct()
                 .collect(Collectors.toList());
     }
@@ -107,8 +107,6 @@ public class HotelUtil {
                 .map(Apartment::getType)
                 .map(AptType::getPersonNum)
                 .map(Object::toString)
-                .collect(Collectors.toList())
-                .stream()
                 .distinct()
                 .collect(Collectors.toList());
     }
@@ -123,10 +121,23 @@ public class HotelUtil {
         model.addAttribute("uniqueCategories", HotelUtil.getUniqueCategories(HotelUtil.getHotelApartments(hotelId, hotelService)));
     }
 
-    public static Map<Hotel, Integer> filterAvailableHotelsByRequest(Hotel hotel, LocalDate inDate, LocalDate outDate, Short personNum,
+    public static Map<Hotel, Map<Apartment, Integer>> filterAvailableHotelsByRequest(String region, List<Hotel> hotels, LocalDate inDate,
+                                                                     LocalDate outDate, Short personNum,
                                                                      String category, Double minPrice, Double maxPrice){
-        //Stub
-        return null;
+
+        Map<Hotel, Map<Apartment, Integer>> availableHotelsWithApartments = new HashMap<>();
+        List<Hotel> foundHotels = getAllByRegion(region, hotels);
+
+        if(!foundHotels.isEmpty()) {
+
+            foundHotels.forEach(hotel -> ApartmentUtil.filterHotelApartmentByRequest(hotel, inDate, outDate, personNum, category)
+                .forEach((apartment, integer) -> {
+                    if (ApartmentUtil.isAvailableApartmentAcceptedByPrice(apartment, minPrice, maxPrice)) {
+                        availableHotelsWithApartments.put(hotel, Collections.singletonMap(apartment, integer));
+                    }
+                }));
+        }
+        return availableHotelsWithApartments;
     }
 
 }

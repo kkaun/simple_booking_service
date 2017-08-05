@@ -14,8 +14,6 @@ public class AptTypeUtil {
 
         return types.stream()
                 .map(AptType::getCategory)
-                .collect(Collectors.toList())
-                .stream()
                 .distinct()
                 .collect(Collectors.toList());
     }
@@ -24,8 +22,6 @@ public class AptTypeUtil {
 
         return types.stream()
                 .map(AptType::getPersonNum)
-                .collect(Collectors.toList())
-                .stream()
                 .distinct()
                 .collect(Collectors.toList());
     }

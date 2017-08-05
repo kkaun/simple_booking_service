@@ -1,9 +1,6 @@
 package com.kirak.util.model;
 
 import com.kirak.model.Apartment;
-import com.kirak.model.Hotel;
-import com.kirak.to.BookingTo;
-
 import java.time.LocalDate;
 
 import static java.time.temporal.ChronoUnit.DAYS;
