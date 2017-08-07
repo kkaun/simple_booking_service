@@ -24,5 +24,7 @@ public interface ApartmentService {
 
     List<Apartment> getAll();
 
+    List<Apartment> getAllByHotelAndType(int hotelId, short aptTypeId);
+
     void evictCache();//for tests
 }

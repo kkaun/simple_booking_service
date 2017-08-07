@@ -25,4 +25,5 @@ public interface ApartmentRepository {
 
     List<Apartment> getAll();
 
+    List<Apartment> getAllByHotelAndType(int hotelId, short aptTypeId);
 }

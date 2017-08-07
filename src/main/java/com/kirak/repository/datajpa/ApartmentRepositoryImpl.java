@@ -64,4 +64,9 @@ public class ApartmentRepositoryImpl implements ApartmentRepository {
     public List<Apartment> getAll() {
         return apartmentRepository.findAll(PRICE_SORT);
     }
+
+    @Override
+    public List<Apartment> getAllByHotelAndType(int hotelId, short aptTypeId) {
+        return apartmentRepository.getAllByHotelAndType(hotelId, aptTypeId);
+    }
 }

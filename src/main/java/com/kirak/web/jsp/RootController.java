@@ -1,9 +1,12 @@
 package com.kirak.web.jsp;
 
 import com.kirak.service.*;
+import com.kirak.util.model.UserUtil;
+import com.kirak.web.AuthorizedUser;
 import com.kirak.web.abstr.UserAbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
@@ -28,6 +31,12 @@ public class RootController extends UserAbstractController {
     @GetMapping("/admin")
     public String users() {
         return "admin";
+    }
+
+    //@PreAuthorize("hasRole('HOTEL_MANAGER')")
+    @GetMapping("/manager")
+    public String manager() {
+        return "manager";
     }
 
     @GetMapping("/cities")

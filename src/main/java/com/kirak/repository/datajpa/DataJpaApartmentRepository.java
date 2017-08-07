@@ -34,5 +34,8 @@ public interface DataJpaApartmentRepository extends JpaRepository<Apartment, Int
     @Override
     List<Apartment> findAll(Sort sort);
 
+    @Transactional
+    @Query("SELECT * FROM Apartment a WHERE a.hotel.id=:hotelId AND a.type.id=:aptTypeId")
+    List<Apartment> getAllByHotelAndType(@Param("hotelId") int hotelId, @Param("aptTypeId") short aptTypeId);
 
 }

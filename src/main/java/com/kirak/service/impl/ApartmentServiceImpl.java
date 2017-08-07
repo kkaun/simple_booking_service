@@ -67,6 +67,11 @@ public class ApartmentServiceImpl implements ApartmentService {
         return repository.getAll();
     }
 
+    @Override
+    public List<Apartment> getAllByHotelAndType(int hotelId, short aptTypeId) {
+        return repository.getAllByHotelAndType(hotelId, aptTypeId);
+    }
+
     @CacheEvict(value = "users", allEntries = true)
     @Override
     public void evictCache() {

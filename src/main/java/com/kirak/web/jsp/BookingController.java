@@ -57,6 +57,14 @@ public class BookingController {
         return "index";
     }
 
+    @GetMapping(value = "/get_by_city")
+    public String searchByCity(@RequestParam("city") String city, Model model) {
+        model.addAttribute("hotels", HotelUtil.getAllByCity(hotelService.getAll(), Integer.parseInt(city)));
+        model.addAttribute("city", cityService.get(Integer.parseInt(city)));
+        ModelUtil.addUniqueFilterParams(model, aptTypeService);
+        return "hotels";
+    }
+
     @GetMapping(value = "/search")
     public String searchHotelsByRegion(@RequestParam("region") String region, Model model){
         List<HotelTo> hotelsFound = HotelUtil.getAllByRegionAsTo(region, hotelService.getAll());
@@ -72,32 +80,21 @@ public class BookingController {
 
     @PostMapping(value = "/parametric_search")
     public String searchHotelsByParams(@RequestParam("location") String location, @RequestParam("personNum") String personNum,
+                                       @RequestParam("inDate") String inDate, @RequestParam("outDate") String outDate,
                                        @RequestParam("category") String category, @RequestParam("priceFrom") String priceFrom,
                                        @RequestParam("priceTo") String priceTo, Model model){
-
-        return null;
-    }
-
-    @GetMapping(value = "/get_by_city")
-    public String searchByCity(@RequestParam("city") String city, Model model) {
-        model.addAttribute("hotels", HotelUtil.getAllByCity(hotelService.getAll(), Integer.parseInt(city)));
-        model.addAttribute("city", cityService.get(Integer.parseInt(city)));
         ModelUtil.addUniqueFilterParams(model, aptTypeService);
+        model.addAttribute("hotels", HotelUtil.filterAvailableHotelsByRequest(location, hotelService.getAll(),
+                LocalDate.parse(inDate), LocalDate.parse(outDate), Short.parseShort(personNum), category,
+                Double.parseDouble(priceFrom), Double.parseDouble(priceTo)));
         return "hotels";
-    }
-
-    //@PreAuthorize("hasRole('HOTEL_MANAGER')")
-    @GetMapping("/manager")
-    public String manageObject(Model model) {
-        model.addAttribute(UserUtil.getManageableObjects(userService.get(AuthorizedUser.getId())));
-        return "manager";
     }
 
     @GetMapping(value = "/inspect_hotel")
     public String hotel(@RequestParam("id") String hotelId, Model model) {
-        HotelUtil.addUniqueHotelParams(hotelId, hotelService, model);
+        HotelUtil.addUniqueHotelParams(hotelService.get(Integer.parseInt(hotelId)), model);
         ModelUtil.addUniqueFilterParams(model, aptTypeService);
-        model.addAttribute("apartments", HotelUtil.getHotelApartments(hotelId, hotelService));
+        model.addAttribute("apartments", apartmentService.getAllByHotel(Integer.parseInt(hotelId)));
         model.addAttribute("hotel", HotelUtil.asTo(hotelService.get(Integer.parseInt(hotelId))));
         return "hotel";
     }
@@ -106,43 +103,39 @@ public class BookingController {
     public String checkOverallAvailability(@RequestParam ("hotelId") String hotelId, @RequestParam ("inDate") String inDate,
                                            @RequestParam ("outDate") String outDate, @RequestParam ("category") String category,
                                            @RequestParam ("personNum") String personNum, Model model) {
+        LocalDate checkInDate = LocalDate.parse(inDate);
+        LocalDate checkOutDate = LocalDate.parse(outDate);
 
-//        LocalDate checkInDate = LocalDate.parse(inDate);
-//        LocalDate checkOutDate = LocalDate.parse(outDate);
-        Map<Apartment, Integer> apartments = ApartmentUtil.filterHotelAvailableApartmentsByRequest(hotelService.get(Integer.parseInt(hotelId)),
-                LocalDate.parse(inDate), LocalDate.parse(outDate), Short.parseShort(personNum), category);
+        model.addAttribute("apartments", ApartmentUtil.findHotelApartmentsByRequest(hotelService
+                .get(Integer.parseInt(hotelId)), checkInDate, checkOutDate, Short.parseShort(personNum), category));
 
-        model.addAttribute("apartments", HotelUtil.getHotelApartments(hotelId, hotelService));
-        HotelUtil.addUniqueHotelParams(hotelId, hotelService, model);
-
+        HotelUtil.addUniqueHotelParams(hotelService.get(Integer.parseInt(hotelId)), model);
         model.addAttribute("hotelId", hotelId);
         model.addAttribute("inDate", inDate);
         model.addAttribute("outDate", outDate);
+        model.addAttribute("category", outDate);
         model.addAttribute("personNum", personNum);
         ModelUtil.addUniqueFilterParams(model, aptTypeService);
         return "hotel";
     }
 
     @PostMapping(value = "/check_hotel_apt")
-    public String checkApartmentAvailability(@RequestParam ("hotelId") String apartmentId, @RequestParam ("inDate") String inDate,
-                                           @RequestParam ("outDate") String outDate, Model model) {
+    public String checkApartmentAvailability(@RequestParam ("apartmentId") String apartmentId, @RequestParam("hotelId") String hotelId,
+                                             @RequestParam ("inDate") String inDate, @RequestParam ("outDate") String outDate, Model model) {
 
+        Map<Apartment, Integer> availableApartment = ApartmentUtil.isHotelApartmentAvailableByRequest(apartmentService
+                        .get(Integer.parseInt(apartmentId)), LocalDate.parse(inDate), LocalDate.parse(outDate));
 
-
-        model.addAttribute("apartment", apartmentService.get(Integer.parseInt(apartmentId)));
+        if(!availableApartment.isEmpty()){
+            model.addAttribute("availableApartment", availableApartment.keySet().iterator().next());
+            model.addAttribute("availableApartmentCount", availableApartment.entrySet().iterator().next());
+        } else {
+            model.addAttribute("requestedApartment", apartmentService.get(Integer.parseInt(apartmentId)));
+        }
+        model.addAttribute("hotel", hotelService.get(Integer.parseInt(hotelId)));
         model.addAttribute("inDate", inDate);
         model.addAttribute("outDate", outDate);
         return "hotel";
-    }
-
-    @GetMapping(value = "/book")
-    public String book(@RequestParam ("id") String apartmentId, Model model) {
-        model.addAttribute("hotel", HotelUtil.asTo
-                (hotelService.get(apartmentService.get(Integer.parseInt(apartmentId)).getHotel().getId())));
-        model.addAttribute("apartment", apartmentService.get(Integer.parseInt(apartmentId)));
-
-        ModelUtil.addUniqueFilterParams(model, aptTypeService);
-        return "book";
     }
 
     @PostMapping(value = "/check_booking")
@@ -163,6 +156,19 @@ public class BookingController {
         model.addAttribute("inDate", inDate);
         model.addAttribute("outDate", outDate);
         model.addAttribute("personNum", personNum);
+        ModelUtil.addUniqueFilterParams(model, aptTypeService);
+        return "book";
+    }
+
+    @GetMapping(value = "/book")
+    public String book(@RequestParam ("id") String apartmentId, Model model) {
+
+
+
+        model.addAttribute("hotel", HotelUtil.asTo
+                (hotelService.get(apartmentService.get(Integer.parseInt(apartmentId)).getHotel().getId())));
+        model.addAttribute("apartment", apartmentService.get(Integer.parseInt(apartmentId)));
+
         ModelUtil.addUniqueFilterParams(model, aptTypeService);
         return "book";
     }
@@ -201,4 +207,5 @@ public class BookingController {
         //model.addAttribute("booking", bookingService.save(booking, ))
         return "confirmation";
     }
+
 }

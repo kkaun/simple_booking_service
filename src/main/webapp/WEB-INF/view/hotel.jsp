@@ -14,7 +14,77 @@
     <jsp:useBean id="hotel" scope="page" type="com.kirak.to.HotelTo"/>
 
     <div class="row">
-        <div class="col-md-12">
+        <c:if test="${not empty availableApartment}">
+            <div class="col-md-12">
+                <div class="alert alert-success">
+                    <h4>
+                        Nice catch! ${availableApartment.type.personNum}-person ${availableApartment.type.category} with
+                        ${availableApartment.type.bedsArrangement} is available for ${inDate} - ${outDate}.
+                        <br>
+                        <br>
+                        <c:if test="${availableApartmentCount > 1}">
+                            By the way, ${hotel.name} has ${availableApartmentCount} similar apartments available for requested period.
+                            Choosing "Book Now", you can book even more numbers like this at a time.
+                        </c:if>
+                        <br>
+                        <br>
+                    </h4>
+
+                    <form class="form-horizontal" method="post" action="check_booking">
+                        <fieldset>
+                            <input type="hidden" name="hotelId" value="${hotel.id}">
+                            <input type="hidden" name="bookingAptCategory" value="${availableApartment.id}">
+                            <input type="hidden" name="bookingPersonNum" value="${personNum}">
+                            <input type="hidden" name="hotelId" value="${inDate}">
+                            <input type="hidden" name="hotelId" value="${outDate}">
+                            <button type="submit" class="btn btn-default btn-lg btn-primary"> Book Now </button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </c:if>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="well">
+
+                <div class="list-group">
+                    <div class="media col-md-3">
+                        <figure class="pull-left">
+                            <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" >
+                            <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" >
+                            <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" >
+                        </figure>
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="list-group-item-heading"> ${hotel.name} </h4>
+                        <p class="list-group-item-text"> ${hotel.description}
+                        </p>
+                    </div>
+                    <div class="col-md-5 text-center">
+                        <div class="stars">
+                            <c:if test="${not empty hotel.stars}">
+                                <c:forEach begin="0" end="${hotel.stars - 1}" varStatus="loop">
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </c:forEach>
+                            </c:if>
+                            <c:if test="${empty hotel.stars}">
+                                <p> No stars yet </p>
+                            </c:if>
+                        </div>
+                        <h3> Average ${hotel.rating} <small> / </small> 10 </h3>
+                        <h4> ${hotel.votesNum} <small> votes </small></h4>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+            <jsp:include page="fragments/searchfilter.jsp"/>
+        </div>
+
+
+        <div class="col-md-8">
             <div class="well">
                 <form class="form-horizontal" method="get" action="check_hotel_overall">
                     <fieldset>
@@ -53,45 +123,7 @@
                     </fieldset>
                 </form>
             </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-4">
-            <jsp:include page="fragments/searchfilter.jsp"/>
-        </div>
-
-        <div class="col-md-8">
-            <div class="well">
-                <div class="list-group">
-                    <div class="media col-md-3">
-                        <figure class="pull-left">
-                            <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" >
-                            <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" >
-                            <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" >
-                        </figure>
-                    </div>
-                    <div class="col-md-4">
-                        <h4 class="list-group-item-heading"> ${hotel.name} </h4>
-                        <p class="list-group-item-text"> ${hotel.description}
-                        </p>
-                    </div>
-                    <div class="col-md-5 text-center">
-                        <div class="stars">
-                            <c:if test="${not empty hotel.stars}">
-                                <c:forEach begin="0" end="${hotel.stars - 1}" varStatus="loop">
-                                    <span class="glyphicon glyphicon-star"></span>
-                                </c:forEach>
-                            </c:if>
-                            <c:if test="${empty hotel.stars}">
-                                <p> No stars yet </p>
-                            </c:if>
-                        </div>
-                        <h3> Average ${hotel.rating} <small> / </small> 10 </h3>
-                        <h4> ${hotel.votesNum} <small> votes </small></h4>
-                    </div>
-                </div>
-            </div>
             <hr>
             <c:forEach items="${apartments}" var="apartment" varStatus="vs">
                 <div class="well">
@@ -121,14 +153,15 @@
                                         <div class="modal-body">
                                             <form class="form-horizontal" method="get" action="check_hotel_apt">
                                                 <input type="hidden" name="apartmentId" value="${apartment.id}">
+                                                <input type="hidden" name="hotelId" value="${hotel.id}">
                                                 <div class="form-group">
-                                                    <label for="apt_in_date" class="control-label">Arrival Date</label>
+                                                    <label for="apt_in_date" class="control-label">From Date</label>
                                                     <div class="input-group">
                                                         <input type="date" class="form-control" id="apt_in_date" name="aptInDate" value="${param.aptInDate}">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="apt_out_date" class="control-label">Departure Date</label>
+                                                    <label for="apt_out_date" class="control-label">To Date</label>
                                                     <div class="input-group">
                                                         <input type="date" class="form-control" id="apt_out_date" name="aptOutDate" value="${param.aptOutDate}">
                                                     </div>
@@ -156,9 +189,12 @@
             </c:forEach>
         </div>
     </div>
+
 </div>
 
 </c:if>
+
+</div>
 
 </body>
 </html>
