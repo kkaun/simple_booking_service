@@ -25,8 +25,7 @@ public class HotelUtil {
 
     public static List<HotelTo> getAll(Collection<Hotel> hotels){
 
-        return hotels.stream().map(HotelUtil::asTo)
-                .collect(Collectors.toList());
+        return hotels.stream().map(HotelUtil::asTo).collect(Collectors.toList());
     }
 
     public static List<Hotel> getAllByRegion(String region, List<Hotel> hotels){
@@ -135,18 +134,21 @@ public class HotelUtil {
         List<Hotel> hotelsByPersonNum = filterHotelsAvailableByPersonNum(hotelsByRegion, personNum);
         List<Hotel> hotelsByApartmentNum = filterHotelsAvailableByApartmentNum(hotelsByPersonNum, apartmentNum);
 
-//        if (!hotelsByApartmentNum.isEmpty()) {
-//            for (Hotel hotel : hotelsByApartmentNum) {
+        if (!hotelsByApartmentNum.isEmpty()) {
+            for (Hotel hotel : hotelsByApartmentNum) {
+
+                Map<List<Apartment>, Integer> apartments = ApartmentUtil.aggregateDifferentAvailableApartmentsWithCount(ApartmentUtil.
+                        findHotelApartmentsByCategory(hotel, inDate, outDate, category), inDate, outDate, personNum, apartmentNum);
+
+
+//                for(Map.Entry<Apartment, Integer> entry : apartments.entrySet()) {
 //
-//                Map<Apartment, Integer> apartments = ApartmentUtil.findHotelApartmentsByCategory(hotel, inDate, outDate, category);
-//
-//                for(Map.Entry<Apartment, Integer>)
-//                if (ApartmentUtil.isApartmentAcceptedByPrice(hotels, key, minPrice, maxPrice)) {
-//                    availableHotelsWithApartments.put(hotel, Collections.singletonMap(key, value));
+//                    if (ApartmentUtil.isApartmentAcceptedByPrice(hotels, key, minPrice, maxPrice)) {
+//                        availableHotelsWithApartments.put(hotel, Collections.singletonMap(key, value));
+//                    }
 //                }
-//
-//            }
-//        }
+            }
+        }
 
         return availableHotelsWithApartments;
     }
