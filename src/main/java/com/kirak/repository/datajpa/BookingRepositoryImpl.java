@@ -27,39 +27,32 @@ public class BookingRepositoryImpl implements BookingRepository {
     private DataJpaBookingRepository bookingRepository;
 
     @Autowired
-    private DataJpaUserRepository userRepository;
+    private DataJpaApartmentRepository apartmentRepository;
 
     @Autowired
-    private DataJpaHotelRepository hotelRepository;
+    private DataJpaSuperBookingRepository superBookingRepository;
 
 
     @Override
-    public Booking save(Booking booking, int userId, int hotelId) {
-        if(!booking.isNew() && get(booking.getId(), userId, hotelId) == null){
+    public Booking save(Booking booking, int superBookingId, int apartmentId) {
+        if(!booking.isNew() && get(booking.getId(), superBookingId, apartmentId) == null){
             return null;
         }
-        booking.setUser(userRepository.findOne(userId));
-        booking.setHotel(hotelRepository.findOne(hotelId));
+        booking.setSuperBooking(superBookingRepository.findOne(superBookingId));
+        booking.setApartment(apartmentRepository.findOne(apartmentId));
         return bookingRepository.save(booking);
     }
 
-
-
     @Override
-    public Booking get(long id, int userId, int hotelId) {
+    public Booking get(long id, int superBookingId, int apartmentId) {
         Booking booking = bookingRepository.findOne(id);
-        return booking != null && booking.getUser().getId() == userId
-                && booking.getHotel().getId() == hotelId ? booking : null;
+        return booking != null && booking.getSuperBooking().getId() == superBookingId
+                && booking.getApartment().getId() == apartmentId ? booking : null;
     }
 
     @Override
     public List<Booking> getAll() {
         return bookingRepository.findAll(DATE_ADDED_SORT);
-    }
-
-    @Override
-    public List<Booking> getAllByUserId(int userId) {
-        return bookingRepository.getAllByUserId(userId);
     }
 
     @Override

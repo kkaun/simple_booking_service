@@ -29,9 +29,6 @@ public interface DataJpaBookingRepository extends JpaRepository<Booking, Long>{
     @Override
     List<Booking>findAll(Sort sort);
 
-    @Query("SELECT b FROM Booking b WHERE b.user.id=:userId ORDER BY b.dateAdded DESC")
-    List<Booking> getAllByUserId(@Param("userId") int userId);
-
     @Query("SELECT b FROM Booking b WHERE b.hotel.id=:hotelId AND b.dateAdded BETWEEN :startDate AND :endDate ORDER BY b.dateAdded DESC")
     List<Booking> getAllByHotelBetweenDates(@Param("hotelId") int hotelId,
                                             @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);

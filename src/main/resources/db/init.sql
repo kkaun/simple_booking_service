@@ -170,26 +170,44 @@ CREATE TABLE IF NOT EXISTS `apartment` (
   ENGINE = InnoDB;
 
 
+DROP TABLE IF EXISTS `super_booking`;
+CREATE TABLE IF NOT EXISTS `super_booking` (
+  'id'                  INT            NOT NULL,
+  `active`              BOOLEAN        DEFAULT TRUE,
+  `date_added`          TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
+  `extra_beds`          SMALLINT       NULL,
+  `overall_sum`         DECIMAL(11, 4) NOT NULL,
+  `overall_person_num`  SMALLINT       NOT NULL,
+  `user_id`             INT            NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_booking_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_booking_user1`
+  FOREIGN KEY (`user_id`)
+  REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+)
+  AUTO_INCREMENT = 100000,
+  ENGINE = InnoDB;
+
+
 DROP TABLE IF EXISTS `booking`;
 CREATE TABLE IF NOT EXISTS `booking` (
   `id`                 BIGINT         NOT NULL AUTO_INCREMENT,
-  `active`             BOOLEAN        DEFAULT TRUE,
-  `date_added`         TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
   `in_date`            TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
   `out_date`           TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
   `sum`                DECIMAL(11, 4) NOT NULL,
   `person_num`         SMALLINT       NOT NULL,
-  `extra_beds`         SMALLINT       NULL,
-  `user_id`            INT            NOT NULL,
+  `super_booking_id`   INT            NOT NULL,
   `apartment_id`       INT            NOT NULL,
   `apartment_hotel_id` INT            NOT NULL,
-  PRIMARY KEY (`id`, `user_id`, `apartment_id`, `apartment_hotel_id`),
-  INDEX `fk_booking_user1_idx` (`user_id` ASC),
+  PRIMARY KEY (`id`),
+  INDEX `fk_booking_super_booking1_idx` (`super_booking_id` ASC),
   INDEX `fk_booking_apartment1_idx` (`apartment_id` ASC),
   INDEX `fk_booking_apartment_hotel1_idx` (`apartment_hotel_id` ASC),
-  CONSTRAINT `fk_booking_user1`
-  FOREIGN KEY (`user_id`)
-  REFERENCES `user` (`id`)
+  CONSTRAINT `fk_booking_super_booking1`
+  FOREIGN KEY (`super_booking_id`)
+  REFERENCES `super_booking` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_booking_apartment1`
@@ -205,6 +223,7 @@ CREATE TABLE IF NOT EXISTS `booking` (
 )
   AUTO_INCREMENT = 100000,
   ENGINE = InnoDB;
+
 
 
 SET SQL_MODE = @OLD_SQL_MODE;

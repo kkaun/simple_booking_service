@@ -54,6 +54,7 @@ public class BookingController {
     public String index(Model model){
         model.addAttribute("citiesFive", RegionUtil.getFiveCitiesByHotelAmount(cityService.getAll()));
         model.addAttribute("hotelsFive", HotelUtil.getFiveHotelsByRating(hotelService.getAll()));
+        ModelUtil.addUniqueFilterParams(model, aptTypeService);
         return "index";
     }
 
@@ -82,11 +83,13 @@ public class BookingController {
     public String searchHotelsByParams(@RequestParam("location") String location, @RequestParam("personNum") String personNum,
                                        @RequestParam("inDate") String inDate, @RequestParam("outDate") String outDate,
                                        @RequestParam("category") String category, @RequestParam("priceFrom") String priceFrom,
-                                       @RequestParam("priceTo") String priceTo, Model model){
+                                       @RequestParam("apartmentNum") String apartmentNum, @RequestParam("priceTo") String priceTo, Model model){
         ModelUtil.addUniqueFilterParams(model, aptTypeService);
-        model.addAttribute("hotels", HotelUtil.filterAvailableHotelsByRequest(location, hotelService.getAll(),
-                LocalDate.parse(inDate), LocalDate.parse(outDate), Short.parseShort(personNum), category,
-                Double.parseDouble(priceFrom), Double.parseDouble(priceTo)));
+
+
+//        model.addAttribute("hotels", HotelUtil.filterAvailableHotelsByRequest(location, hotelService.getAll(),
+//                LocalDate.parse(inDate), LocalDate.parse(outDate), Short.parseShort(personNum), Integer.parseInt(apartmentNum),
+//                category, priceFrom, priceTo));
         return "hotels";
     }
 
@@ -106,8 +109,8 @@ public class BookingController {
         LocalDate checkInDate = LocalDate.parse(inDate);
         LocalDate checkOutDate = LocalDate.parse(outDate);
 
-        model.addAttribute("apartments", ApartmentUtil.findHotelApartmentsByRequest(hotelService
-                .get(Integer.parseInt(hotelId)), checkInDate, checkOutDate, Short.parseShort(personNum), category));
+//        model.addAttribute("apartments", ApartmentUtil.findHotelApartmentsByRequest(hotelService
+//                .get(Integer.parseInt(hotelId)), checkInDate, checkOutDate, Short.parseShort(personNum), category));
 
         HotelUtil.addUniqueHotelParams(hotelService.get(Integer.parseInt(hotelId)), model);
         model.addAttribute("hotelId", hotelId);
@@ -183,13 +186,12 @@ public class BookingController {
         User user = new User(userName, userEmail, userPhone, UserRole.ROLE_USER);
         userService.save(user);
 
-        Booking booking = new Booking(true, LocalDateTime.now(), LocalDateTime.parse(inDate),
-                LocalDateTime.parse(outDate), Double.parseDouble(sum), Short.parseShort(personNum),
-                (short) 0, userService.get(AuthorizedUser.getId()),
-                apartmentService.get(Integer.parseInt(apartmentId)), hotelService.get(Integer.parseInt(hotelId)));
-
-        model.addAttribute("booking", bookingService.save(booking, AuthorizedUser.getId(),
-                Integer.parseInt(hotelId)));
+//        Booking booking = new Booking(true, LocalDateTime.now(), LocalDateTime.parse(inDate),
+//                LocalDateTime.parse(outDate), Double.parseDouble(sum), Short.parseShort(personNum),
+//                (short) 0, userService.get(AuthorizedUser.getId()),
+//                apartmentService.get(Integer.parseInt(apartmentId)), hotelService.get(Integer.parseInt(hotelId)));
+//        model.addAttribute("booking", bookingService.save(booking, AuthorizedUser.getId(),
+//                Integer.parseInt(hotelId)));
         return "confirmation";
     }
 
@@ -199,10 +201,10 @@ public class BookingController {
                                          @RequestParam ("personNum") String personNum, @RequestParam ("sum") String sum, Model model) {
         int userId = AuthorizedUser.getId();
 
-        Booking booking = new Booking(true, LocalDateTime.now(), LocalDateTime.parse(inDate),
-                LocalDateTime.parse(outDate), Double.parseDouble(sum), Short.parseShort(personNum),
-                (short) 0, userService.get(AuthorizedUser.getId()),
-                apartmentService.get(Integer.parseInt(apartmentId)), hotelService.get(Integer.parseInt(hotelId)));
+//        Booking booking = new Booking(true, LocalDateTime.now(), LocalDateTime.parse(inDate),
+//                LocalDateTime.parse(outDate), Double.parseDouble(sum), Short.parseShort(personNum),
+//                (short) 0, userService.get(AuthorizedUser.getId()),
+//                apartmentService.get(Integer.parseInt(apartmentId)), hotelService.get(Integer.parseInt(hotelId)));
 
         //model.addAttribute("booking", bookingService.save(booking, ))
         return "confirmation";

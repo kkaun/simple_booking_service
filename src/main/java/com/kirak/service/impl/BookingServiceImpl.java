@@ -33,25 +33,20 @@ public class BookingServiceImpl implements BookingService {
 
 
     @Override
-    public Booking save(Booking booking, int userId, int hotelId) {
+    public Booking save(Booking booking, int superBookingId, int apartmentId) {
         Assert.notNull(booking, "Booking must not be null!");
-        return repository.save(booking, userId, hotelId);
+        return repository.save(booking, superBookingId, apartmentId);
     }
 
     @Override
-    public Booking update(Booking booking, int userId, int hotelId) {
+    public Booking update(Booking booking, int superBookingId, int apartmentId) {
         Assert.notNull(booking, "Booking must not be null!");
-        return checkNotFoundWithId(repository.save(booking, userId, hotelId), booking.getId());
+        return checkNotFoundWithId(repository.save(booking, superBookingId, apartmentId), booking.getId());
     }
 
     @Override
-    public Booking get(Long id, int userId, int hotelId) {
-        return checkNotFoundWithId(repository.get(id, userId, hotelId), id);
-    }
-
-    @Override
-    public List<Booking> getAllByUserId(int userId) {
-        return repository.getAllByUserId(userId);
+    public Booking get(Long id, int superBookingId, int apartmentId) {
+        return checkNotFoundWithId(repository.get(id, superBookingId, apartmentId), id);
     }
 
     @Override
@@ -65,12 +60,4 @@ public class BookingServiceImpl implements BookingService {
     public List<Booking> getAll() {
         return repository.getAll();
     }
-
-    @CacheEvict(value = "users", allEntries = true)
-    @Override
-    public void evictCache() {
-
-    }
-
-
 }

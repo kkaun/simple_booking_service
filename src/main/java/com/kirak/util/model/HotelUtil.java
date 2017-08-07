@@ -77,7 +77,11 @@ public class HotelUtil {
 
     public static List<String> getUniqueCategories(Hotel hotel){
 
-        return hotel.getApartments().stream().map(Apartment::getType).map(AptType::getCategory).distinct().collect(Collectors.toList());
+        List<String> categories = hotel.getApartments().stream().map(Apartment::getType).map(AptType::getCategory)
+                .collect(Collectors.toList());
+        categories.add("");
+
+        return categories.stream().distinct().collect(Collectors.toList());
     }
 
     public static List<String> getUniquePersonNums(Hotel hotel){
@@ -91,21 +95,63 @@ public class HotelUtil {
         model.addAttribute("uniqueCategories", HotelUtil.getUniqueCategories(hotel));
     }
 
-    public static Map<Hotel, Map<Apartment, Integer>> filterAvailableHotelsByRequest(String region, List<Hotel> hotels, LocalDate inDate,
-                                                                     LocalDate outDate, Short personNum,
-                                                                     String category, Double minPrice, Double maxPrice){
+
+    public static boolean isHotelSuitableByPersonNum(Hotel hotel, Short personNum){
+
+        return hotel.getApartments().stream()
+                .map(Apartment::getType)
+                .map(AptType::getPersonNum)
+                .collect(Collectors.toList())
+                .stream().mapToInt(Short::shortValue).sum() >= personNum;
+    }
+
+
+    public static boolean isHotelSuitableByApartmentNum(Hotel hotel, Integer apartmentNum){
+
+        return hotel.getApartments().size() >= apartmentNum;
+    }
+
+
+    public static List<Hotel> filterHotelsAvailableByPersonNum(List<Hotel> hotels, Short personNum){
+        return hotels.stream()
+                .filter(hotel -> isHotelSuitableByPersonNum(hotel, personNum))
+                .collect(Collectors.toList());
+    }
+
+    public static List<Hotel> filterHotelsAvailableByApartmentNum(List<Hotel> hotels, Integer apartmentNum){
+        return hotels.stream()
+                .filter(hotel -> isHotelSuitableByApartmentNum(hotel, apartmentNum))
+                .collect(Collectors.toList());
+    }
+
+
+    public static Map<Hotel, Map<Apartment, Integer>> filterAvailableHotelsByRequest(String region, List<Hotel> hotels,
+                                                                                     Short personNum, Integer apartmentNum,
+                                                                                     LocalDate inDate, LocalDate outDate,
+                                                                                     String category, String minPrice, String maxPrice) {
 
         Map<Hotel, Map<Apartment, Integer>> availableHotelsWithApartments = new HashMap<>();
-        List<Hotel> foundHotels = getAllByRegion(region, hotels);
+        List<Hotel> hotelsByRegion = getAllByRegion(region, hotels);
+        List<Hotel> hotelsByPersonNum = filterHotelsAvailableByPersonNum(hotelsByRegion, personNum);
+        List<Hotel> hotelsByApartmentNum = filterHotelsAvailableByApartmentNum(hotelsByPersonNum, apartmentNum);
 
-        if(!foundHotels.isEmpty())
-            foundHotels.forEach(hotel -> ApartmentUtil.findHotelApartmentsByRequest(hotel, inDate, outDate, personNum, category)
-                    .forEach((apartment, integer) -> {
-                        if (ApartmentUtil.isApartmentAcceptedByPrice(apartment, minPrice, maxPrice)) {
-                            availableHotelsWithApartments.put(hotel, Collections.singletonMap(apartment, integer));
-                        }}));
+//        if (!hotelsByApartmentNum.isEmpty()) {
+//            for (Hotel hotel : hotelsByApartmentNum) {
+//
+//                Map<Apartment, Integer> apartments = ApartmentUtil.findHotelApartmentsByCategory(hotel, inDate, outDate, category);
+//
+//                for(Map.Entry<Apartment, Integer>)
+//                if (ApartmentUtil.isApartmentAcceptedByPrice(hotels, key, minPrice, maxPrice)) {
+//                    availableHotelsWithApartments.put(hotel, Collections.singletonMap(key, value));
+//                }
+//
+//            }
+//        }
+
         return availableHotelsWithApartments;
     }
+
+
 
     public static List<Apartment> filterHotelApartmentsWithDuplicateTypes(Hotel hotel){
 
@@ -118,5 +164,13 @@ public class HotelUtil {
                 .filter(apartment -> Objects.equals(apartment.getId(), id)).forEach(apartments::add));
 
         return apartments;
+    }
+
+    public static Double getMaxOverallApartmentPrice(List<Hotel> hotels){
+
+        return hotels.stream()
+                .flatMap(hotel -> hotel.getApartments().stream())
+                .map(Apartment::getPrice)
+                .max(Double::compare).get();
     }
 }

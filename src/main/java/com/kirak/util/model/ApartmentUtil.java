@@ -13,18 +13,31 @@ public class ApartmentUtil {
     public static Map<Apartment, Integer> apartmentsAvailabilityForToday(List<Apartment> similarApartments){
 
         LocalDate today = LocalDate.now();
-        return availableApartmentsWithCount(similarApartments, today, today);
+        return availableSimilarApartmentsWithCount(similarApartments, today, today);
     }
 
     public static Map<Apartment, Integer> isHotelApartmentAvailableByRequest(Apartment apartment,
                                                              LocalDate inDate, LocalDate outDate){
 
-        return availableApartmentsWithCount(Collections.singletonList(apartment), inDate, outDate);
+        return availableSimilarApartmentsWithCount(Collections.singletonList(apartment), inDate, outDate);
     }
 
-    public static boolean isApartmentAcceptedByPrice(Apartment apartment, Double minPrice, Double maxPrice){
+    public static boolean isApartmentAcceptedByPrice(List<Hotel> hotels, Apartment apartment, String minPrice, String maxPrice){
 
-        return apartment.getPrice() >= minPrice && apartment.getPrice() <= maxPrice;
+        double overallMaxPrice;
+
+        if(minPrice.isEmpty() && maxPrice.isEmpty()){
+            return true;
+        }
+        if(!minPrice.isEmpty() && maxPrice.isEmpty()){
+            overallMaxPrice = HotelUtil.getMaxOverallApartmentPrice(hotels);
+            return apartment.getPrice() >= 0 && apartment.getPrice() <= overallMaxPrice;
+        }
+        if(minPrice.isEmpty() && !maxPrice.isEmpty()){
+            return apartment.getPrice() >= 0 && apartment.getPrice() <= Double.parseDouble(maxPrice);
+        }
+        return apartment.getPrice() >= Double.parseDouble(minPrice)
+                && apartment.getPrice() <= Double.parseDouble(maxPrice);
     }
 
     public static boolean isApartmentAcceptedByPersonNum(Apartment apartment, Short personNum){
@@ -34,22 +47,31 @@ public class ApartmentUtil {
 
     public static boolean isApartmentAcceptedByCategory(Apartment apartment, String category){
 
-        return apartment.getType().getCategory().equals(category);
+        return category.isEmpty() || apartment.getType().getCategory().equals(category);
     }
 
-    public static Map<Apartment, Integer> findHotelApartmentsByRequest(Hotel hotel, LocalDate inDate, LocalDate outDate,
-                                                                     Short personNum, String category){
+    public static Map<Apartment, Integer> findHotelApartmentsByPersonNum(Hotel hotel, LocalDate inDate, LocalDate outDate, Short personNum){
 
         List<Apartment> availableApartments = hotel.getApartments().stream()
                     .filter(apartment -> isApartmentAcceptedByPersonNum(apartment, personNum))
-                    .filter(apartment -> isApartmentAcceptedByCategory(apartment, category))
                     .collect(Collectors.toList());
 
-        return !availableApartments.isEmpty() ? availableApartmentsWithCount(availableApartments, inDate, outDate) : Collections.emptyMap();
+        return !availableApartments.isEmpty() ? availableSimilarApartmentsWithCount(availableApartments, inDate, outDate) : Collections.emptyMap();
     }
 
-    public static Map<Apartment, Integer> availableApartmentsWithCount(List<Apartment> availableApartments,
-                                                                            LocalDate inDate, LocalDate outDate){
+    public static Map<Apartment, Integer> findHotelApartmentsByCategory(Hotel hotel, LocalDate inDate, LocalDate outDate, String category){
+
+        List<Apartment> availableApartments = hotel.getApartments().stream()
+                .filter(apartment -> isApartmentAcceptedByCategory(apartment, category))
+                .collect(Collectors.toList());
+
+        return !availableApartments.isEmpty() ? availableSimilarApartmentsWithCount(availableApartments, inDate, outDate) : Collections.emptyMap();
+    }
+
+
+
+    public static Map<Apartment, Integer> availableSimilarApartmentsWithCount(List<Apartment> availableApartments,
+                                                                              LocalDate inDate, LocalDate outDate){
 
         Map<Apartment, Integer> apartmentListsWithAvailableCounts = new HashMap<>();
         Map<String, Apartment> arrangementsWithApartmentIds = new HashMap<>();
@@ -62,7 +84,26 @@ public class ApartmentUtil {
                     }}));
 
         arrangementsWithApartmentIds.forEach((key, value) -> apartmentListsWithAvailableCounts.put(value,
-                BookingUtil.calculateAvailableApartmentCount(value, inDate, outDate)));
+                BookingUtil.calculateAvailableSimilarApartmentsCount(value, inDate, outDate)));
+
+        return apartmentListsWithAvailableCounts;
+    }
+
+
+
+
+    public static Map<Apartment, Integer> availableDifferentApartmentsWithCount(List<Apartment> availableApartments,
+                                                                              LocalDate inDate, LocalDate outDate){
+
+        Map<Apartment, Integer> apartmentListsWithAvailableCounts = new HashMap<>();
+        Map<String, Apartment> arrangementsWithApartmentIds = new HashMap<>();
+        List<AptType> types = availableApartments.stream().map(Apartment::getType).collect(Collectors.toList());
+
+
+        /////////////////////////////////////
+
+        arrangementsWithApartmentIds.forEach((key, value) -> apartmentListsWithAvailableCounts.put(value,
+                BookingUtil.calculateAvailableSimilarApartmentsCount(value, inDate, outDate)));
 
         return apartmentListsWithAvailableCounts;
     }

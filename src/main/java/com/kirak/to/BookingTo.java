@@ -24,7 +24,6 @@ public class BookingTo {
     private LocalDate outDate;
 
     private Short personNum;
-    private Short extraBeds;
     private Double sum;
 
     public BookingTo(Hotel hotel, Apartment apartment, LocalDate inDate, LocalDate outDate,
@@ -70,14 +69,6 @@ public class BookingTo {
 
     public void setPersonNum(Short personNum) {
         this.personNum = personNum;
-    }
-
-    public Short getExtraBeds() {
-        return extraBeds;
-    }
-
-    public void setExtraBeds(Short extraBeds) {
-        this.extraBeds = extraBeds;
     }
 
     public Double getSum() {
@@ -136,7 +127,6 @@ public class BookingTo {
                 ", inDate=" + inDate +
                 ", outDate=" + outDate +
                 ", personNum=" + personNum +
-                ", extraBeds=" + extraBeds +
                 ", sum=" + sum +
                 '}';
     }

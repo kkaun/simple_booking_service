@@ -15,15 +15,6 @@ import java.time.LocalDateTime;
 @Table(name = "booking")
 public class Booking extends BaseLongEntity {
 
-    @NotNull
-    @Column(name = "active",  nullable = false, columnDefinition = "boolean default true")
-    private boolean active;
-
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    @NotNull
-    @Column(name = "date_added", nullable = false)
-    private LocalDateTime dateAdded;
-
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @NotNull
     @Column(name = "in_date", nullable = false)
@@ -43,13 +34,9 @@ public class Booking extends BaseLongEntity {
     @Column(name = "person_num")
     private Short personNum;
 
-    @Range(min = 0, max = 10)
-    @Column(name = "extra_beds")
-    private Short extraBeds = 0;
-
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "super_booking_id")
+    private SuperBooking superBooking;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "apartment_id")
@@ -61,41 +48,23 @@ public class Booking extends BaseLongEntity {
 
     public Booking(){}
 
-    public Booking(boolean active, LocalDateTime dateAdded, LocalDateTime inDate, LocalDateTime outDate,
-                   Double sum, Short personNum, Short extraBeds, User user, Apartment apartment, Hotel hotel) {
-        this(null, active, dateAdded, inDate, outDate, sum, personNum, extraBeds, user, apartment, hotel);
+    public Booking(LocalDateTime inDate, LocalDateTime outDate,
+                   Double sum, Short personNum, SuperBooking superBooking, Apartment apartment, Hotel hotel) {
+        this(null, inDate, outDate, sum, personNum, superBooking, apartment, hotel);
     }
 
-    public Booking(Long id, boolean active, LocalDateTime dateAdded, LocalDateTime inDate, LocalDateTime outDate,
-                   Double sum, Short personNum, Short extraBeds, User user, Apartment apartment, Hotel hotel) {
+    public Booking(Long id, LocalDateTime inDate, LocalDateTime outDate,
+                   Double sum, Short personNum, SuperBooking superBooking, Apartment apartment, Hotel hotel) {
         super(id);
-        this.active = active;
-        this.dateAdded = dateAdded;
         this.inDate = inDate;
         this.outDate = outDate;
         this.sum = sum;
         this.personNum = personNum;
-        this.extraBeds = extraBeds;
-        this.user = user;
+        this.superBooking = superBooking;
         this.apartment = apartment;
         this.hotel = hotel;
     }
 
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public LocalDateTime getDateAdded() {
-        return dateAdded;
-    }
-
-    public void setDateAdded(LocalDateTime dateAdded) {
-        this.dateAdded = dateAdded;
-    }
 
     public LocalDateTime getInDate() {
         return inDate;
@@ -119,14 +88,6 @@ public class Booking extends BaseLongEntity {
 
     public void setSum(Double sum) {
         this.sum = sum;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Apartment getApartment() {
@@ -153,12 +114,12 @@ public class Booking extends BaseLongEntity {
         this.personNum = personNum;
     }
 
-    public Short getExtraBeds() {
-        return extraBeds;
+    public SuperBooking getSuperBooking() {
+        return superBooking;
     }
 
-    public void setExtraBeds(Short extraBeds) {
-        this.extraBeds = extraBeds;
+    public void setSuperBooking(SuperBooking superBooking) {
+        this.superBooking = superBooking;
     }
 
     @Override

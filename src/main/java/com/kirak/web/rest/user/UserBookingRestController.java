@@ -2,6 +2,7 @@ package com.kirak.web.rest.user;
 
 import com.kirak.model.Booking;
 import com.kirak.service.BookingService;
+import com.kirak.service.SuperBookingService;
 import com.kirak.web.abstr.BookingAbstractController;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +20,8 @@ public class UserBookingRestController extends BookingAbstractController{
 
     static final String REST_URL = "/user";
 
-    protected UserBookingRestController(BookingService bookingService) {
-        super(bookingService);
+    protected UserBookingRestController(BookingService bookingService, SuperBookingService superBookingService) {
+        super(bookingService, superBookingService);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

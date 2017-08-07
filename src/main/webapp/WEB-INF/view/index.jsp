@@ -12,6 +12,7 @@
 
 <div class="container">
     <div class="row" style="margin-bottom: 10px">
+
         <div class="col-md-6">
         <h3>Book/Manage fake apartments around the world!</h3>
         </div>
@@ -28,6 +29,26 @@
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
                     </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapse1">Collapsible panel</a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <jsp:include page="fragments/searchfilter.jsp"/>
+                        </div>
+                        <div class="panel-footer"></div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -19,8 +19,8 @@ public class BookingUtil {
         return apartment.getPrice() * DAYS.between(startDate, endDate);
     }
 
-    public static Integer calculateAvailableApartmentCount(Apartment requestedApartment, LocalDate inDate,
-                                                       LocalDate outDate){
+    public static Integer calculateAvailableSimilarApartmentsCount(Apartment requestedApartment, LocalDate inDate,
+                                                                   LocalDate outDate){
 
         final int[] daysOccupied = {0};//Transformed to final effectively array
 
@@ -51,5 +51,6 @@ public class BookingUtil {
 
         return (daysInRequestPeriod - daysOccupied[0])/requestPeriod;
     }
+
 
 }

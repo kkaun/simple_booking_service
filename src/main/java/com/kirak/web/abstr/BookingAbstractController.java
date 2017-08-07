@@ -1,9 +1,10 @@
 package com.kirak.web.abstr;
 
 import com.kirak.model.Booking;
+import com.kirak.model.SuperBooking;
 import com.kirak.service.BookingService;
+import com.kirak.service.SuperBookingService;
 import com.kirak.web.AuthorizedUser;
-import javassist.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,34 +20,34 @@ public abstract class BookingAbstractController {
 
     private final BookingService bookingService;
 
-    protected BookingAbstractController(BookingService bookingService) {
+    private final SuperBookingService superBookingService;
+
+    protected BookingAbstractController(BookingService bookingService, SuperBookingService superBookingService) {
         this.bookingService = bookingService;
+        this.superBookingService = superBookingService;
     }
 
-    public Booking create(Booking booking, int hotelId){
-        int userId = AuthorizedUser.getId();
+    //-------------------------------------- Booking methods --------------------------------//
+
+    public Booking create(Booking booking, int apartmentId){
+        int superBookingId = AuthorizedUser.getId();
         LOG.info("Saving {}", booking);
-        return bookingService.save(booking, userId, hotelId);
+        return bookingService.save(booking, superBookingId, apartmentId);
     }
 
-    public Booking update(Booking booking, int userId, int hotelId){
+    public Booking update(Booking booking, int superBookingId, int apartmentId){
         LOG.info("Updating {}", booking);
-        return bookingService.update(booking, userId, hotelId);
+        return bookingService.update(booking, superBookingId, apartmentId);
     }
 
-    public Booking get(Long id, int userId, int hotelId){
+    public Booking get(Long id, int superBookingId, int apartmentId){
         LOG.info("Getting booking {}", id);
-        return bookingService.get(id, userId, hotelId);
+        return bookingService.get(id, superBookingId, apartmentId);
     }
 
-    public List<Booking> getAllByUserId(int userId){
-        LOG.info("Getting all bookings by user {}", userId);
-        return bookingService.getAllByUserId(userId);
-    }
-
-    public List<Booking> getAllByHotelBetweenDates(int hotelId, LocalDateTime startDate, LocalDateTime endDate){
-        LOG.info("Getting bookings between dates {} - {} for hotel {}", startDate, endDate, hotelId);
-        return bookingService.getAllByHotelBetweenDates(hotelId, startDate, endDate);
+    public List<Booking> getAllByHotelBetweenDates(int apartmentId, LocalDateTime startDate, LocalDateTime endDate){
+        LOG.info("Getting bookings between dates {} - {} for hotel {}", startDate, endDate, apartmentId);
+        return bookingService.getAllByHotelBetweenDates(apartmentId, startDate, endDate);
     }
 
     public List<Booking> getAll(){
@@ -54,4 +55,10 @@ public abstract class BookingAbstractController {
         return bookingService.getAll();
     }
 
+    //-------------------------------------- SuperBooking methods --------------------------------//
+
+    public List<SuperBooking> getAllByUserId(int userId){
+        LOG.info("Getting all SuperBookings by user {}", userId);
+        return superBookingService.getAllByUserId(userId);
+    }
 }

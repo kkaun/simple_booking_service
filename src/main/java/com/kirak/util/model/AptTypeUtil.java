@@ -2,6 +2,7 @@ package com.kirak.util.model;
 
 import com.kirak.model.AptType;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -10,7 +11,9 @@ import java.util.stream.Collectors;
 public class AptTypeUtil {
 
     public static List<String> getUniqueCategories(List<AptType> types){
-        return types.stream().map(AptType::getCategory).distinct().collect(Collectors.toList());
+        List<String> categories = types.stream().map(AptType::getCategory).collect(Collectors.toList());
+        categories.add("");
+        return categories.stream().distinct().collect(Collectors.toList());
     }
 
     public static List<Short> getUniquePersonNums(List<AptType> types){
@@ -21,5 +24,8 @@ public class AptTypeUtil {
         return types.stream().map(AptType::getBedsArrangement).distinct().collect(Collectors.toList());
     }
 
+//    public static boolean hasRequiredPersonNum(AptType type, Integer personNum){
+//        return Objects.equals(type.getPersonNum().intValue(), personNum);
+//    }
 
 }
