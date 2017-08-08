@@ -15,7 +15,6 @@ import java.util.stream.IntStream;
 public class ModelUtil {
 
     public static void addUniqueFilterParams(Model model, AptTypeService aptTypeService){
-
         model.addAttribute("categories", AptTypeUtil.getUniqueCategories(aptTypeService.getAll()));
         model.addAttribute("personNums", IntStream.rangeClosed(1, 20).boxed().collect(Collectors.toList()));
         model.addAttribute("apartmentNums", IntStream.rangeClosed(1, 10).boxed().collect(Collectors.toList()));

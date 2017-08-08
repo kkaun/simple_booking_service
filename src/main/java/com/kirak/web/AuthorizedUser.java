@@ -3,10 +3,16 @@ package com.kirak.web;
 import com.kirak.model.User;
 import com.kirak.model.abstraction.BaseEntity;
 import com.kirak.model.abstraction.BaseIntEntity;
+import com.kirak.to.Placement;
 import com.kirak.to.UserTo;
 import com.kirak.util.model.UserUtil;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static java.util.Objects.requireNonNull;
 
@@ -17,6 +23,8 @@ public class AuthorizedUser{
 
     public static int id = BaseIntEntity.START_SEQ;
 
+    public static Map<Integer, Placement> sessionPlacements = new HashMap<>();
+
     public static int getId() {
         return id;
     }
@@ -25,6 +33,13 @@ public class AuthorizedUser{
         AuthorizedUser.id = id;
     }
 
+    public static Map<Integer, Placement> getSessionPlacements() {
+        return sessionPlacements;
+    }
+
+    public static void setSessionPlacements(Map<Integer, Placement> sessionPlacements) {
+        AuthorizedUser.sessionPlacements = sessionPlacements;
+    }
 
     //    private static final long serialVersionUID = 1L;
 //
@@ -33,7 +48,7 @@ public class AuthorizedUser{
 //    public AuthorizedUser(User user) {
 //        super(user.getEmail(), user.getPassword(), true, true, true,
 //                true, user.getRoles());
-//        this.userTo = UserUtil.asTo(user);
+//        this.userTo = UserUtil.asHotelTo(user);
 //    }
 //
 //    public static AuthorizedUser safeGet() {

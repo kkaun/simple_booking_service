@@ -70,10 +70,10 @@ public class ApartmentUtil {
 
 
     //TODO:Write greedy algorithm for aggregating groups of available apartments of same type!
-    public static List<List<Apartment>> aggregateDifferentAvailableApartmentsWithCount(List<Apartment> hotelApartments,
+    public static Map<AptType, List<Apartment>> aggregateDifferentAvailableApartmentsWithCount(List<Apartment> hotelApartments,
                                                                                                LocalDate inDate, LocalDate outDate,
                                                                                                Short personNum, Integer apartmentNum){
-        List<List<Apartment>> aggregatedApartmentLists = new ArrayList<>();
+        Map<AptType, List<Apartment>> aggregatedApartmentLists = new HashMap<>();
 
         Comparator<Apartment> byPersonNum = (Apartment a1, Apartment a2)-> Integer.compare(a2.getType().getPersonNum(),
                 a1.getType().getPersonNum());
@@ -85,7 +85,8 @@ public class ApartmentUtil {
         List<Apartment> aggregatedApartments = new ArrayList<>();
         if(!availableApartmentsSortedByType.isEmpty()) {
             if (apartmentNum == 1 && Objects.equals(personNum, availableApartmentsSortedByType.get(0).getType().getPersonNum())) {
-                aggregatedApartmentLists.add(Collections.singletonList(availableApartmentsSortedByType.get(0)));
+                aggregatedApartmentLists.put(availableApartmentsSortedByType.get(0).getType(),
+                        Collections.singletonList(availableApartmentsSortedByType.get(0)));
             } else {
                 for (int i = 0; i < personNum; i++) {
                     for(Apartment a : availableApartmentsSortedByType) {
@@ -101,7 +102,7 @@ public class ApartmentUtil {
                     typedApts.add(apartment);
                 }
             });
-            aggregatedApartmentLists.add(typedApts);
+            aggregatedApartmentLists.put(aptType, typedApts);
         });
         return aggregatedApartmentLists;
     }

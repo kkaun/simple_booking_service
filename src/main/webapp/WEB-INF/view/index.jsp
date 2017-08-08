@@ -111,17 +111,22 @@
                         </div>
                         <div class="col-md-3 text-center">
                             <div class="stars">
-                                <c:if test="${not empty hotel.stars}">
+                                <c:if test="${hotel.stars > 0}">
                                     <c:forEach begin="0" end="${hotel.stars - 1}" varStatus="loop">
                                         <span class="glyphicon glyphicon-star"></span>
                                     </c:forEach>
                                 </c:if>
-                                <c:if test="${empty hotel.stars}">
+                                <c:if test="${empty hotel.stars || hotel.stars == 0}">
                                     <p> No stars yet </p>
                                 </c:if>
                             </div>
-                            <h3> Average ${hotel.rating} <small> / </small> 10 </h3>
-                            <h4> ${hotel.votesNum} <small> votes </small></h4>
+                            <c:if test="${hotel.votesNum > 0}">
+                                <h3> Average ${hotel.rating} <small> / </small> 10 </h3>
+                                <h4> ${hotel.votesNum} <small> votes </small></h4>
+                            </c:if>
+                            <c:if test="${empty hotel.votesNum || hotel.votesNum == 0}">
+                                <h4> No votes yet </h4>
+                            </c:if>
                             <button type="button" href="inspect_hotel?${hotel.id}" class="btn btn-default btn-lg btn-block"> Book Now </button>
                         </div>
                     </a>

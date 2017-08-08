@@ -2,6 +2,8 @@ package com.kirak.util.model;
 
 import com.kirak.model.*;
 import com.kirak.to.HotelTo;
+import com.kirak.to.Placement;
+import com.kirak.web.AuthorizedUser;
 import org.springframework.ui.Model;
 import java.time.LocalDate;
 import java.util.*;
@@ -17,7 +19,7 @@ public class HotelUtil {
 //    }
 
 
-    public static HotelTo asTo(Hotel hotel) {
+    public static HotelTo asHotelTo(Hotel hotel) {
         return new HotelTo(hotel.getId(), hotel.getName(), calculateHotelRating(hotel), hotel.getStars(),
                 hotel.getDescription(), calculateHotelVotesNum(hotel));
     }
@@ -25,7 +27,7 @@ public class HotelUtil {
 
     public static List<HotelTo> getAll(Collection<Hotel> hotels){
 
-        return hotels.stream().map(HotelUtil::asTo).collect(Collectors.toList());
+        return hotels.stream().map(HotelUtil::asHotelTo).collect(Collectors.toList());
     }
 
     public static List<Hotel> getAllByRegion(String region, List<Hotel> hotels){
@@ -39,18 +41,18 @@ public class HotelUtil {
 
     public static List<HotelTo> getAllByRegionAsTo(String region, List<Hotel> hotels) {
 
-        return getAllByRegion(region, hotels).stream().map(HotelUtil::asTo).collect(Collectors.toList());
+        return getAllByRegion(region, hotels).stream().map(HotelUtil::asHotelTo).collect(Collectors.toList());
     }
 
     public static List<HotelTo> getAllByCity(Collection<Hotel> hotels, int cityId){
 
-        return hotels.stream().filter(hotel -> hotel.getCity().getId() == cityId).map(HotelUtil::asTo).collect(Collectors.toList());
+        return hotels.stream().filter(hotel -> hotel.getCity().getId() == cityId).map(HotelUtil::asHotelTo).collect(Collectors.toList());
     }
 
     public static List<HotelTo> getBetweenRatings(Collection<Hotel> hotels, double minRating, double maxRating){
 
         return hotels.stream().filter(hotel -> calculateHotelRating(hotel) >= minRating && calculateHotelRating(hotel) <= maxRating)
-                .map(HotelUtil::asTo)
+                .map(HotelUtil::asHotelTo)
                 .collect(Collectors.toList());
     }
 
@@ -59,7 +61,7 @@ public class HotelUtil {
         Comparator<Hotel> byRating = (Hotel o1, Hotel o2)->
                 Integer.compare(calculateHotelVotesNum(o2), calculateHotelVotesNum(o1));
 
-        return hotels.stream().sorted(byRating).limit(5).map(HotelUtil::asTo).collect(Collectors.toList());
+        return hotels.stream().sorted(byRating).limit(5).map(HotelUtil::asHotelTo).collect(Collectors.toList());
     }
 
     public static synchronized Double calculateHotelRating(Hotel hotel){
@@ -99,8 +101,8 @@ public class HotelUtil {
         return hotel.getApartments().stream()
                 .map(Apartment::getType)
                 .map(AptType::getPersonNum)
-                .collect(Collectors.toList())
-                .stream().mapToInt(Short::shortValue).sum() >= (int)personNum;
+                .collect(Collectors.toList()).stream()
+                .mapToInt(Short::shortValue).sum() >= (int)personNum;
     }
 
     public static boolean isHotelSuitableByApartmentNum(Hotel hotel, Integer apartmentNum){
@@ -111,35 +113,33 @@ public class HotelUtil {
 
     public static List<Hotel> filterHotelsAvailableByPersonNum(List<Hotel> hotels, Short personNum){
         return hotels.stream()
-                .filter(hotel -> isHotelSuitableByPersonNum(hotel, personNum))
-                .collect(Collectors.toList());
+                .filter(hotel -> isHotelSuitableByPersonNum(hotel, personNum)).collect(Collectors.toList());
     }
 
     public static List<Hotel> filterHotelsAvailableByApartmentNum(List<Hotel> hotels, Integer apartmentNum){
         return hotels.stream()
-                .filter(hotel -> isHotelSuitableByApartmentNum(hotel, apartmentNum))
-                .collect(Collectors.toList());
+                .filter(hotel -> isHotelSuitableByApartmentNum(hotel, apartmentNum)).collect(Collectors.toList());
     }
 
+    public static List<Placement> filterAvailablePlacementsByRequest(String region, List<Hotel> hotels,
+                                                               Short personNum, Integer apartmentNum,
+                                                               LocalDate inDate, LocalDate outDate, String category) {
 
-
-    public static Map<Hotel, List<List<Apartment>>> filterAvailablePlacementsByRequest(String region, List<Hotel> hotels,
-                                                                                     Short personNum, Integer apartmentNum,
-                                                                                     LocalDate inDate, LocalDate outDate, String category) {
-
-        Map<Hotel, List<List<Apartment>>> availableHotelsWithApartments = new HashMap<>();
+        List<Placement> potentialPlacements = new ArrayList<>();
         List<Hotel> hotelsByRegion = getAllByRegion(region, hotels);
         List<Hotel> hotelsByPersonNum = filterHotelsAvailableByPersonNum(hotelsByRegion, personNum);
         List<Hotel> hotelsByApartmentNum = filterHotelsAvailableByApartmentNum(hotelsByPersonNum, apartmentNum);
 
         if (!hotelsByApartmentNum.isEmpty()) {
             for (Hotel hotel : hotelsByApartmentNum) {
-                List<List<Apartment>> apartments = ApartmentUtil.aggregateDifferentAvailableApartmentsWithCount(ApartmentUtil.
+                Map<AptType, List<Apartment>> apartments = ApartmentUtil.aggregateDifferentAvailableApartmentsWithCount(ApartmentUtil.
                         findHotelApartmentsByCategory(hotel, inDate, outDate, category), inDate, outDate, personNum, apartmentNum);
-                availableHotelsWithApartments.put(hotel, apartments);
+                Placement placement = new Placement(asHotelTo(hotel), apartments);
+                potentialPlacements.add(placement);
+                AuthorizedUser.sessionPlacements.put(placement.getId(), placement);
             }
         }
-        return availableHotelsWithApartments;
+        return !potentialPlacements.isEmpty() ? potentialPlacements : Collections.emptyList();
     }
 
     public static List<Apartment> filterHotelApartmentsWithDuplicateTypes(Hotel hotel){

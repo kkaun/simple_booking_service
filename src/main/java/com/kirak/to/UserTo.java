@@ -11,8 +11,6 @@ import java.io.Serializable;
  */
 public class UserTo implements BaseEntity, Serializable {
 
-    //Add UserTo
-
     private static final long serialVersionUID = 1L;
 
     private Integer id;

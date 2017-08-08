@@ -15,6 +15,7 @@
     <mvc:annotation-driven/>
 
     <context:component-scan base-package="com.kirak.**.web"/>
+    <context:component-scan base-package="com.kirak.to"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/view/"

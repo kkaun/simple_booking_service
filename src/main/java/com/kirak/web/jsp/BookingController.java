@@ -1,9 +1,6 @@
 package com.kirak.web.jsp;
 
-import com.kirak.model.Apartment;
-import com.kirak.model.Booking;
-import com.kirak.model.User;
-import com.kirak.model.UserRole;
+import com.kirak.model.*;
 import com.kirak.service.*;
 import com.kirak.to.BookingTo;
 import com.kirak.to.HotelTo;
@@ -11,25 +8,23 @@ import com.kirak.util.model.*;
 import com.kirak.web.AuthorizedUser;
 import com.kirak.web.ModelUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Created by Kir on 04.08.2017.
  */
 
 @Controller
+//@Scope("session")
 public class BookingController {
 
     @Autowired
@@ -80,17 +75,24 @@ public class BookingController {
     }
 
     @PostMapping(value = "/parametric_search")
-    public String searchHotelsByParams(@RequestParam("location") String location, @RequestParam("personNum") String personNum,
+    public String searchHotelPlacementsByParams(@RequestParam("location") String location, @RequestParam("personNum") String personNum,
                                        @RequestParam("inDate") String inDate, @RequestParam("outDate") String outDate,
-                                       @RequestParam("category") String category, @RequestParam("priceFrom") String priceFrom,
-                                       @RequestParam("apartmentNum") String apartmentNum, @RequestParam("priceTo") String priceTo, Model model){
+                                       @RequestParam("category") String category, @RequestParam("apartmentNum") String apartmentNum, Model model){
         ModelUtil.addUniqueFilterParams(model, aptTypeService);
 
-
-//        model.addAttribute("hotels", HotelUtil.filterAvailableHotelsByRequest(location, hotelService.getAll(),
-//                LocalDate.parse(inDate), LocalDate.parse(outDate), Short.parseShort(personNum), Integer.parseInt(apartmentNum),
-//                category, priceFrom, priceTo));
+        model.addAttribute("placements", HotelUtil.filterAvailablePlacementsByRequest(location, hotelService.getAll(),
+                Short.parseShort(personNum), Integer.parseInt(apartmentNum), LocalDate.parse(inDate), LocalDate.parse(outDate), category));
         return "hotels";
+    }
+
+    @GetMapping(value = "/inspect_placement")
+    public String placement(@RequestParam("id") String placementId, Model model) {
+        int hotelId = PlacementUtil.getHotelIdFromPlacementId(Integer.parseInt(placementId));
+        HotelUtil.addUniqueHotelParams(hotelService.get(hotelId), model);
+        ModelUtil.addUniqueFilterParams(model, aptTypeService);
+        model.addAttribute("placement", PlacementUtil.getPlacementFromId(Integer.parseInt(placementId)));
+        model.addAttribute("hotel", HotelUtil.asHotelTo(hotelService.get(hotelId)));
+        return "hotel";
     }
 
     @GetMapping(value = "/inspect_hotel")
@@ -98,7 +100,7 @@ public class BookingController {
         HotelUtil.addUniqueHotelParams(hotelService.get(Integer.parseInt(hotelId)), model);
         ModelUtil.addUniqueFilterParams(model, aptTypeService);
         model.addAttribute("apartments", apartmentService.getAllByHotel(Integer.parseInt(hotelId)));
-        model.addAttribute("hotel", HotelUtil.asTo(hotelService.get(Integer.parseInt(hotelId))));
+        model.addAttribute("hotel", HotelUtil.asHotelTo(hotelService.get(Integer.parseInt(hotelId))));
         return "hotel";
     }
 
@@ -168,7 +170,7 @@ public class BookingController {
 
 
 
-        model.addAttribute("hotel", HotelUtil.asTo
+        model.addAttribute("hotel", HotelUtil.asHotelTo
                 (hotelService.get(apartmentService.get(Integer.parseInt(apartmentId)).getHotel().getId())));
         model.addAttribute("apartment", apartmentService.get(Integer.parseInt(apartmentId)));
 
