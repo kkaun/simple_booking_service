@@ -11,24 +11,6 @@ import java.util.stream.Collectors;
  */
 public class ApartmentUtil {
 
-    public static boolean isApartmentAcceptedByPrice(List<Hotel> hotels, Apartment apartment, String minPrice, String maxPrice){
-
-        double overallMaxPrice;
-
-        if(minPrice.isEmpty() && maxPrice.isEmpty()){
-            return true;
-        }
-        if(!minPrice.isEmpty() && maxPrice.isEmpty()){
-            overallMaxPrice = HotelUtil.getMaxOverallApartmentPrice(hotels);
-            return apartment.getPrice() >= 0 && apartment.getPrice() <= overallMaxPrice;
-        }
-        if(minPrice.isEmpty() && !maxPrice.isEmpty()){
-            return apartment.getPrice() >= 0 && apartment.getPrice() <= Double.parseDouble(maxPrice);
-        }
-        return apartment.getPrice() >= Double.parseDouble(minPrice)
-                && apartment.getPrice() <= Double.parseDouble(maxPrice);
-    }
-
     public static boolean isApartmentAcceptedByPersonNum(Apartment apartment, Short personNum){
 
         return Objects.equals(apartment.getType().getPersonNum(), personNum);
@@ -87,56 +69,52 @@ public class ApartmentUtil {
     }
 
 
-
-
-    public static Map<List<Apartment>, Integer> aggregateDifferentAvailableApartmentsWithCount(List<Apartment> hotelApartments,
+    //TODO:Write greedy algorithm for aggregating groups of available apartments of same type!
+    public static List<List<Apartment>> aggregateDifferentAvailableApartmentsWithCount(List<Apartment> hotelApartments,
                                                                                                LocalDate inDate, LocalDate outDate,
                                                                                                Short personNum, Integer apartmentNum){
-        Map<List<Apartment>, Integer> aggregatedApartmentListsWithCounts = new HashMap<>();
+        List<List<Apartment>> aggregatedApartmentLists = new ArrayList<>();
 
-        Comparator<AptType> byPersonNum = Comparator.comparingInt(AptType::getPersonNum);
-        List<AptType> types = AptTypeUtil.getUniqueAptTypes(hotelApartments).stream().
-                sorted(byPersonNum).collect(Collectors.toList());
+        Comparator<Apartment> byPersonNum = (Apartment a1, Apartment a2)-> Integer.compare(a2.getType().getPersonNum(),
+                a1.getType().getPersonNum());
 
-        Map<AptType, Integer> availableTypesWithAptCounts = new HashMap<>();
-        types.forEach(aptType -> {
-            final int[] count = {0};
-            hotelApartments.forEach(apartment -> {
-                if(apartment.getType().equals(aptType)){
-                    count[0]++;
-                }});
-            availableTypesWithAptCounts.put(aptType, count[0]);
-        });
+        List<Apartment> availableApartmentsSortedByType = hotelApartments.stream()
+                .filter(apartment -> isSingleApartmentAvailable(apartment, inDate, outDate))
+                .sorted(byPersonNum).collect(Collectors.toList());
 
-        Map<List<Apartment>, Integer> typedApartmentListsWithCounts = new HashMap<>();
-        availableTypesWithAptCounts.forEach((aptType, integer) -> {
+        List<Apartment> aggregatedApartments = new ArrayList<>();
+        if(!availableApartmentsSortedByType.isEmpty()) {
+            if (apartmentNum == 1 && Objects.equals(personNum, availableApartmentsSortedByType.get(0).getType().getPersonNum())) {
+                aggregatedApartmentLists.add(Collections.singletonList(availableApartmentsSortedByType.get(0)));
+            } else {
+                for (int i = 0; i < personNum; i++) {
+                    for(Apartment a : availableApartmentsSortedByType) {
+                        if (i == a.getType().getPersonNum()) {
+                            if(!isAggregatedAptListCompleted(aggregatedApartments, personNum.intValue(), apartmentNum)) {
+                                aggregatedApartments.add(a);
+        }}}}}}
+
+        AptTypeUtil.getUniqueAptTypes(aggregatedApartments).forEach((aptType) -> {
             List<Apartment> typedApts = new ArrayList<>();
-            hotelApartments.forEach(apartment -> {
+            aggregatedApartments.forEach(apartment -> {
                 if(apartment.getType().equals(aptType)){
                     typedApts.add(apartment);
                 }
             });
-            typedApartmentListsWithCounts.put(Collections.unmodifiableList(typedApts), integer);
+            aggregatedApartmentLists.add(typedApts);
         });
-
-        //Assuming current map is sorted
-
-        typedApartmentListsWithCounts.forEach((apartments, integer) -> {
-
-            //Greedy algorithm!
-
-        });
-
-
-
-//        arrangementsWithApartmentIds.forEach((key, value) -> apartmentListsWithAvailableCounts.put
-//                (value, calculateAvailableSimilarApartmentsCount(value, inDate, outDate)));
-        return aggregatedApartmentListsWithCounts;
+        return aggregatedApartmentLists;
     }
 
 
+    public static boolean isSingleApartmentAvailable(Apartment apartment, LocalDate inDate, LocalDate outDate){
 
-    //Map <Apartment, Integer> instead?  !!!!!! DON'T FORGET TO RETURN ACTUAL APARTMENT OBJECT(S) TO CONTROLLER METHOD!
+        final int[] daysOccupied = {0};
+        apartment.getBookings().forEach(booking -> getOccupiedDaysForSingleApartmentInPeriod(booking, daysOccupied, inDate, outDate));
+        return daysOccupied[0] == 0;
+    }
+
+
     public static Integer calculateAvailableSimilarApartmentsCount(Apartment requestedApartment, LocalDate inDate, LocalDate outDate){
 
         final int[] daysOccupied = {0};//Transformed to final effectively array
@@ -146,22 +124,11 @@ public class ApartmentUtil {
                         Objects.equals(apartment.getType().getCategory(), requestedApartment.getType().getCategory()))
                 .collect(Collectors.toList());
 
-        similarApartments.stream()
+        List<Booking> apartmentBookings = similarApartments.stream()
                 .flatMap(apartment -> apartment.getBookings().stream())
-                .forEach(booking -> {
-                    if(booking.getInDate().toLocalDate().isBefore(inDate) &&
-                            booking.getOutDate().toLocalDate().isBefore(outDate)){
-                        daysOccupied[0] += (int) ChronoUnit.DAYS.between(booking.getOutDate().toLocalDate(), inDate);
-                    }
-                    if(booking.getInDate().toLocalDate().isAfter(inDate) &&
-                            booking.getOutDate().toLocalDate().isAfter(outDate)){
-                        daysOccupied[0] += (int)ChronoUnit.DAYS.between(outDate, booking.getInDate().toLocalDate());
-                    }
-                    if(booking.getInDate().toLocalDate().isAfter(inDate) &&
-                            booking.getOutDate().toLocalDate().isBefore(outDate)){
-                        daysOccupied[0] += (int)ChronoUnit.DAYS.between(booking.getInDate().toLocalDate(), booking.getOutDate().toLocalDate());
-                    }
-                });
+                .collect(Collectors.toList());
+
+        apartmentBookings.forEach(booking -> getOccupiedDaysForSingleApartmentInPeriod(booking, daysOccupied, inDate, outDate));
 
         int requestPeriod = (int)ChronoUnit.DAYS.between(inDate, outDate);
         int daysInRequestPeriod = similarApartments.size()*requestPeriod;
@@ -169,4 +136,29 @@ public class ApartmentUtil {
         return (daysInRequestPeriod - daysOccupied[0])/requestPeriod;
     }
 
+
+    public static int[] getOccupiedDaysForSingleApartmentInPeriod(Booking booking, int[] daysOccupied,
+                                                                  LocalDate inDate, LocalDate outDate){
+        if(booking.getInDate().toLocalDate().isBefore(inDate) &&
+                booking.getOutDate().toLocalDate().isBefore(outDate))
+            daysOccupied[0] += (int) ChronoUnit.DAYS.between(booking.getOutDate().toLocalDate(), inDate);
+        if(booking.getInDate().toLocalDate().isAfter(inDate) &&
+                booking.getOutDate().toLocalDate().isAfter(outDate))
+            daysOccupied[0] += (int) ChronoUnit.DAYS.between(outDate, booking.getInDate().toLocalDate());
+        if(booking.getInDate().toLocalDate().isAfter(inDate) &&
+                booking.getOutDate().toLocalDate().isBefore(outDate))
+            daysOccupied[0] += (int) ChronoUnit.DAYS.between(booking.getInDate().toLocalDate(), booking.getOutDate().toLocalDate());
+
+        return daysOccupied;
+    }
+
+
+    public static boolean isAggregatedAptListCompleted(List<Apartment> apartments, Integer personNum, Integer apartmentNum){
+
+        return (apartments.stream()
+                .map(Apartment::getType)
+                .map(AptType::getPersonNum)
+                .collect(Collectors.toList())
+                .stream().mapToInt(Short::shortValue).sum() == personNum) && apartments.size() == apartmentNum;
+    }
 }

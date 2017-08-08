@@ -5,6 +5,4 @@ package com.kirak.util.model;
  */
 public class VoteUtil {
 
-
-
 }
