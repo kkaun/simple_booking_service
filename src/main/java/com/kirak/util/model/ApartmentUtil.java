@@ -55,7 +55,6 @@ public class ApartmentUtil {
         Map<String, Apartment> arrangementsWithApartmentIds = new HashMap<>();
         List<AptType> types = AptTypeUtil.getUniqueAptTypes(availableApartments);
 
-        //Find unique bed arrangements to use them as keys
         AptTypeUtil.getUniqueBedArrangements(types)
                 .forEach(uniqueArrangement -> availableApartments.forEach(apartment -> {
                     if (apartment.getType().getBedsArrangement().equals(uniqueArrangement)) {
@@ -116,7 +115,7 @@ public class ApartmentUtil {
     }
 
 
-    public static Integer calculateAvailableSimilarApartmentsCount(Apartment requestedApartment, LocalDate inDate, LocalDate outDate){
+    public static int calculateAvailableSimilarApartmentsCount(Apartment requestedApartment, LocalDate inDate, LocalDate outDate){
 
         final int[] daysOccupied = {0};//Transformed to final effectively array
 

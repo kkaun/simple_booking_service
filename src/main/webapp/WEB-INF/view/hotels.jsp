@@ -123,7 +123,9 @@
                                     <c:if test="${empty placement.hotel.votesNum || placement.hotel.votesNum == 0}">
                                         <h4> No votes yet </h4>
                                     </c:if>
-                                    <button type="button" href="inspect_placement?${placement.id}" class="btn btn-default btn-lg btn-block"> Book Now </button>
+                                    <button type="button" href="inspect_placement?${placement.id}&${placementPersonNum}&
+                                    ${placementApartmentNum}&${placementInDate}&${placementOutDate}"
+                                            class="btn btn-default btn-lg btn-block"> Book Now </button>
                                 </div>
                         </c:forEach>
                     </c:if>

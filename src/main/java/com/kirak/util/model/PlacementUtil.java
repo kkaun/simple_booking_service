@@ -4,7 +4,10 @@ import com.kirak.model.Apartment;
 import com.kirak.to.Placement;
 import com.kirak.web.AuthorizedUser;
 
+import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Kir on 08.08.2017.
@@ -20,6 +23,25 @@ public class PlacementUtil {
 
         Placement placement = getPlacementFromId(id);
         return placement.getHotel().getId();
+    }
+
+    public static double calculateBookingSumForPlacement(Placement placement){
+
+        return placement.getOption().values().stream()
+                .mapToDouble(PlacementUtil::calculateSumForPlacementSublist).sum();
+    }
+
+    public static double calculateSumForPlacementSublist(List<Apartment> apartments){
+
+        return apartments.stream()
+                .map(Apartment::getPrice)
+                .mapToDouble(Double::intValue).sum();
+    }
+
+    public static Placement convertAvailableApartmentToPlacement(Apartment apartment){
+
+        return new Placement(HotelUtil.asHotelTo(apartment.getHotel()),
+                Collections.singletonMap(apartment.getType(), Collections.singletonList(apartment)));
     }
 
 

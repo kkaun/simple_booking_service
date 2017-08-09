@@ -10,13 +10,8 @@ import static java.time.temporal.ChronoUnit.DAYS;
  */
 public class BookingUtil {
 
-    public static Double calculateBookingSum(Apartment apartment, LocalDate startDate, LocalDate endDate){
+    public static double calculateBookingSumForSingleApt(Apartment apartment, LocalDate startDate, LocalDate endDate){
 
         return apartment.getPrice() * DAYS.between(startDate, endDate);
     }
-
-
-
-
-
 }

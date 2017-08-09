@@ -155,7 +155,7 @@ public class HotelUtil {
         return apartments;
     }
 
-    public static Double getMaxOverallApartmentPrice(List<Hotel> hotels) {
+    public static double getMaxOverallApartmentPrice(List<Hotel> hotels) {
 
         return hotels.stream()
                 .flatMap(hotel -> hotel.getApartments().stream())

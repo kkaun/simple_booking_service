@@ -19,4 +19,8 @@ public class ModelUtil {
         model.addAttribute("personNums", IntStream.rangeClosed(1, 20).boxed().collect(Collectors.toList()));
         model.addAttribute("apartmentNums", IntStream.rangeClosed(1, 10).boxed().collect(Collectors.toList()));
     }
+
+    public static void prepareHotelView(){
+
+    }
 }

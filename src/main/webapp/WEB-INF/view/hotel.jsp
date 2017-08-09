@@ -15,46 +15,11 @@
     <jsp:useBean id="hotel" scope="page" type="com.kirak.to.HotelTo"/>
 
     <div class="row">
-        <c:if test="${not empty availableApartment}">
-            <div class="col-md-12">
-                <div class="alert alert-success">
-                    <h4>
-                        Nice catch! ${availableApartment.type.personNum}-person ${availableApartment.type.category} with
-                        ${availableApartment.type.bedsArrangement} is available for ${inDate} - ${outDate}.
-                        <br>
-                        <br>
-                        <c:if test="${availableApartmentCount > 1}">
-                            By the way, ${hotel.name} has ${availableApartmentCount} similar apartments available for requested period.
-                            Choosing "Book Now", you can book even more numbers like this at a time.
-                        </c:if>
-                        <br>
-                        <br>
-                    </h4>
-
-                    <form class="form-horizontal" method="post" action="check_booking">
-                        <fieldset>
-                            <input type="hidden" name="hotelId" value="${hotel.id}">
-                            <input type="hidden" name="bookingAptCategory" value="${availableApartment.id}">
-                            <input type="hidden" name="bookingPersonNum" value="${personNum}">
-                            <input type="hidden" name="hotelId" value="${inDate}">
-                            <input type="hidden" name="hotelId" value="${outDate}">
-                            <button type="submit" class="btn btn-default btn-lg btn-primary"> Book Now </button>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-        </c:if>
-    </div>
-
-    <div class="row">
         <div class="col-md-4">
             <div class="well">
-
                 <div class="list-group">
                     <div class="media col-md-3">
                         <figure class="pull-left">
-                            <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" >
-                            <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" >
                             <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" >
                         </figure>
                     </div>
@@ -86,11 +51,118 @@
 
 
         <div class="col-md-8">
+            <c:if test="${not empty notAvailableApartment}">
+                <div class="alert-warning">
+                    Unfortunately, ${notAvailableApartment.type.personNum}-person ${notAvailableApartment.type.category} with
+                        ${notAvailableApartment.type.bedsArrangement} is not available for ${inDate} - ${outDate}.
+
+                    ---------------- Link to search apartments of similar type in other hotels in this region --------------
+                </div>
+            </c:if>
+            <c:if test="${not empty placement}">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="well">
+                            <div class="alert alert-success">
+                                <h4>
+                                    Nice catch! <strong>${placementPersonNum}</strong>-person placement solution in
+                                    <strong>${hotel.name}</strong> is available for the period between
+                                    <strong>${placementInDate}</strong> - <strong>${placementOutDate}</strong>.
+                                    Feel free to check it below and book it immediately.
+                                </h4>
+                                <br>
+                                <c:if test="${availableAptNum > 1}">
+                                    <h5>
+                                        By the way, ${hotel.name} has <strong>${availableAptNum - 1}</strong> more similar apartments available
+                                        for the requested period.
+                                    </h5>
+                                </c:if>
+                                <br>
+                            </div>
+                        </div>
+                        <br>
+                        <hr>
+                        <h3>Check optimal <strong>${placementPersonNum}</strong>-person placement in <strong>${hotel.name}</strong>
+                            between <strong>${placementInDate}</strong> and <strong>${placementOutDate}</strong></h3>
+                        <br>
+                    </div>
+                </div>
+                <div class="row>">
+                    <c:forEach items="${placement.option}" var="apartment">
+                        <div class="col-md-10">
+                            <div class="well">
+                                <div class="row">
+                                    <div class="media col-md-5">
+                                        <figure class="pull-left">
+                                            <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" >
+                                            <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" >
+                                        </figure>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <h4>
+                                            ${apartment.key.personNum}-person
+                                            ${apartment.key.category} with ${apartment.key.bedsArrangement}
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="well">
+                                <table class="table-responsive">
+                                    <tr>
+                                        <td>x<strong>${fn:length(apartment.value.size)}</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>RUB <strong>${apartment.value[0].price}</strong> / night</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="well">
+                        <div class="col-md-6">
+                            <table class="table-responsive">
+                                <tr>
+                                    <td>Total Price:</td>
+                                    <td>RUB <strong>${placementSum}</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Total No. of Rooms:</td>
+                                    <td><strong>${placementApartmentNum}</strong></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <form class="form-horizontal" method="post" action="check_booking">
+                                <fieldset>
+                                    <input type="hidden" name="bookingHotelId" value="${hotel.id}">
+                                    <input type="hidden" name="bookingPlacementId" value="${placement.id}">
+                                    <input type="hidden" name="bookingSum" value="${placementSum}">
+                                    <input type="hidden" name="bookingPersonNum" value="${placementPersonNum}">
+                                    <input type="hidden" name="bookingApartmentNum" value="${placementApartmentNum}">
+                                    <input type="hidden" name="bookingInDate" value="${placementInDate}">
+                                    <input type="hidden" name="bookingOutDate" value="${placementOutDate}">
+                                    <button type="submit" class="btn btn-default btn-lg btn-primary"> Book Now </button>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <hr>
+                <hr>
+                <br>
+            </c:if>
+
             <div class="well">
                 <form class="form-horizontal" method="get" action="check_hotel_overall">
                     <fieldset>
                         <legend>Check availability of this object's apartments</legend>
-                        <h5>Note that we are not supporting single bookings with duration of more than 30 nights</h5>
+                        <h5>Note that system doesn't provide single bookings with duration of more than 30 nights in a row</h5>
                         <input type="hidden" name="hotelId" value="${hotel.id}">
                         <div class="form-group">
                             <label for="person_num" class="control-label">No. of Persons</label>
@@ -130,11 +202,10 @@
                 <div class="well">
                     <div class="list-group">
                         <div class="col-md-6">
-                            <h4 class="list-group-item-heading"> ${apartment.type.category} </h4>
-                            <p class="list-group-item-text"> ${apartment.type.personNum}
-                            </p>
-                            <p class="list-group-item-text"> ${apartment.type.bedsArrangement}
-                            </p>
+                            <h4 class="list-group-item-text">
+                                    ${apartment.type.personNum}-person
+                                    ${apartment.type.category} with ${apartment.type.bedsArrangement}
+                            </h4>
                             <br>
 
                             <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
@@ -181,13 +252,12 @@
                         <figure class="pull-left">
                             <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" >
                             <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" >
-                            <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" >
-                            <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" >
                         </figure>
                     </div>
                 </div>
-
             </c:forEach>
+
+
         </div>
     </div>
 
