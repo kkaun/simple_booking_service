@@ -1,13 +1,12 @@
 package com.kirak.util.model;
 
 import com.kirak.model.Apartment;
+import com.kirak.model.AptType;
 import com.kirak.to.Placement;
 import com.kirak.web.AuthorizedUser;
-
-import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 /**
  * Created by Kir on 08.08.2017.

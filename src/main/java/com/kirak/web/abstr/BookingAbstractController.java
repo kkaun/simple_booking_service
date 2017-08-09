@@ -29,36 +29,57 @@ public abstract class BookingAbstractController {
 
     //-------------------------------------- Booking methods --------------------------------//
 
-    public Booking create(Booking booking, int apartmentId){
+    public Booking createBooking(Booking booking, int apartmentId){
         int superBookingId = AuthorizedUser.getId();
-        LOG.info("Saving {}", booking);
+        LOG.info("Saving booking {}", booking);
         return bookingService.save(booking, superBookingId, apartmentId);
     }
 
-    public Booking update(Booking booking, int superBookingId, int apartmentId){
-        LOG.info("Updating {}", booking);
+    public Booking updateBooking(Booking booking, int superBookingId, int apartmentId){
+        LOG.info("Updating booking {}", booking);
         return bookingService.update(booking, superBookingId, apartmentId);
     }
 
-    public Booking get(Long id, int superBookingId, int apartmentId){
+    public Booking getBooking(Long id, int superBookingId, int apartmentId){
         LOG.info("Getting booking {}", id);
         return bookingService.get(id, superBookingId, apartmentId);
     }
 
-    public List<Booking> getAllByHotelBetweenDates(int apartmentId, LocalDateTime startDate, LocalDateTime endDate){
+    public List<Booking> getAllBookingsByHotelBetweenDates(int apartmentId, LocalDateTime startDate, LocalDateTime endDate){
         LOG.info("Getting bookings between dates {} - {} for hotel {}", startDate, endDate, apartmentId);
         return bookingService.getAllByHotelBetweenDates(apartmentId, startDate, endDate);
     }
 
-    public List<Booking> getAll(){
+    public List<Booking> getAllBookings(){
         LOG.info("Getting all bookings");
         return bookingService.getAll();
     }
 
     //-------------------------------------- SuperBooking methods --------------------------------//
 
-    public List<SuperBooking> getAllByUserId(int userId){
-        LOG.info("Getting all SuperBookings by user {}", userId);
+    public SuperBooking createSuperBooking(SuperBooking superBooking, int userId){
+        LOG.info("Saving Super Booking {}", superBooking);
+        return superBookingService.save(superBooking, userId);
+    }
+
+    public SuperBooking updateSuperBooking(SuperBooking superBooking, int userId){
+        LOG.info("Saving Super Booking {}", superBooking);
+        return superBookingService.update(superBooking, userId);
+    }
+
+    public SuperBooking getSuperBooking(Integer id, int userId){
+        LOG.info("Saving Super Booking {}", id);
+        return superBookingService.get(id, userId);
+    }
+
+    public List<SuperBooking> getAllSuperBookings(){
+        LOG.info("Getting all Super Bookings {}");
+        return superBookingService.getAll();
+    }
+
+    public List<SuperBooking> getAllSuperBookingsByUserId(int userId){
+        LOG.info("Getting all Super Bookings by user {}", userId);
         return superBookingService.getAllByUserId(userId);
     }
+
 }

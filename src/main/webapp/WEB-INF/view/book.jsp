@@ -38,8 +38,11 @@
         <div class="row">
             <div class="well">
                 <div class="col-md-6">
-                    <h4>Booker Form</h4>
-                    <form class="form-horizontal" method="post" action="check_booking">
+                    <h4>Booker Info</h4>
+                    <h5>Please fill in your own fake information needed for fake booking confirmation
+                        and being informed about any (im)possible changes</h5>
+                    <hr>
+                    <form class="form-horizontal" method="post" action="confirm_anonymous_booking">
                         <fieldset>
                             <input type="hidden" name="bookingHotelId" value="${hotel.id}">
                             <input type="hidden" name="bookingPlacementId" value="${placement.id}">
@@ -48,51 +51,55 @@
                             <input type="hidden" name="bookingApartmentNum" value="${placementApartmentNum}">
                             <input type="hidden" name="bookingInDate" value="${placementInDate}">
                             <input type="hidden" name="bookingOutDate" value="${placementOutDate}">
-
-
-
-                            <button type="submit" class="btn btn-default btn-lg btn-primary"> Book Now</button>
+                            <div class="form-group">
+                                <label for="user_name" class="control-label">Name</label>
+                                <input type="text" name="userName" id="user_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="user_phone" class="control-label">Phone</label>
+                                <input type="text" name="userPhone" id="user_phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="user_email" class="control-label">Email</label>
+                                <input type="email" name="userEmail" id="user_email">
+                            </div>
+                            <button type="submit" class="btn btn-success btn-lg btn-primary"> Confirm Booking </button>
                         </fieldset>
                     </form>
-
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="well">
-                    <form class="form-horizontal">
-                        <fieldset>
-                            <legend>Check Your Booking:</legend>
-
-
-                        </fieldset>
-                    </form>
-
                     <table class="table table-responsive">
                         <caption>Summary</caption>
                         <tr>
-                            <td>
-                                Hotel:
-                            </td>
-                            <td>
-
-                            </td>
+                            <td>${hotel.name}</td>
                         </tr>
                         <tr>
-                            <td>
-                                Apt. category:
-                            </td>
+                            <td>No. of person</td>
+                            <td>${placementPersonNum}</td>
                         </tr>
                         <tr>
-                            <td>
-
-                            </td>
+                            <td>No. of rooms</td>
+                            <td>${placementApartmentNum}</td>
+                        </tr>
+                        <tr>
+                            <td>Check-in</td>
+                            <td>${placementInDate}</td>
+                        </tr>
+                        <tr>
+                            <td>Check-out</td>
+                            <td>${placementOutDate}</td>
+                        </tr>
+                        <tr>
+                            <td>Total sum</td>
+                            <td>${placementSum}</td>
                         </tr>
                     </table>
                 </div>
             </div>
         </div>
-
     </c:if>
 </div>
 

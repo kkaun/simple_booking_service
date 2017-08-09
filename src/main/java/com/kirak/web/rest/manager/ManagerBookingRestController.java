@@ -27,39 +27,42 @@ public class ManagerBookingRestController extends BookingAbstractController{
 
     @PutMapping(value = "/{superBookingId}&{apartmentId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @Override
-    public Booking update(@RequestBody Booking booking,
+    public Booking updateBooking(@RequestBody Booking booking,
                           @PathVariable("superBookingId") int superBookingId, @PathVariable("apartmentId")int apartmentId) {
-        return super.update(booking, superBookingId, apartmentId);
+        return super.updateBooking(booking, superBookingId, apartmentId);
     }
 
     @GetMapping(value = "/{id}&{superBookingId}&{apartmentId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
-    public Booking get(@PathVariable("id")Long id,
+    public Booking getBooking(@PathVariable("id")Long id,
                        @PathVariable("superBookingId") int superBookingId, @PathVariable("apartmentId") int apartmentId) {
-        return super.get(id, superBookingId, apartmentId);
+        return super.getBooking(id, superBookingId, apartmentId);
     }
 
     @GetMapping(value = "/by_hotel_between_dates")
     @Override
-    public List<Booking> getAllByHotelBetweenDates(
+    public List<Booking> getAllBookingsByHotelBetweenDates(
             @RequestParam("apartmentId") int apartmentId,
             @RequestParam("startDate") LocalDateTime startDate,
             @RequestParam("endDate") LocalDateTime endDate){
-        return super.getAllByHotelBetweenDates(apartmentId, startDate, endDate);
+        return super.getAllBookingsByHotelBetweenDates(apartmentId, startDate, endDate);
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
-    public List<Booking> getAll() {
-        return super.getAll();
+    public List<Booking> getAllBookings() {
+        return super.getAllBookings();
     }
 
 
 
+    // ------------------------ SuperBooking
+
+
     @GetMapping(value = "/by_user_id", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
-    public List<SuperBooking> getAllByUserId(@RequestParam("superBookingId") int userId){
-        return super.getAllByUserId(userId);
+    public List<SuperBooking> getAllSuperBookingsByUserId(@RequestParam("superBookingId") int userId){
+        return super.getAllSuperBookingsByUserId(userId);
     }
 
 }

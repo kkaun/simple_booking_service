@@ -19,34 +19,52 @@ public class AdminBookingRestController extends BookingAbstractController {
     }
 
     @Override
-    public Booking create(Booking booking, int apartmentId) {
-        return super.create(booking, apartmentId);
+    public Booking createBooking(Booking booking, int apartmentId) {
+        return super.createBooking(booking, apartmentId);
     }
 
     @Override
-    public Booking update(Booking booking, int superBookingId, int apartmentId) {
-        return super.update(booking, superBookingId, apartmentId);
+    public Booking updateBooking(Booking booking, int superBookingId, int apartmentId) {
+        return super.updateBooking(booking, superBookingId, apartmentId);
     }
 
     @Override
-    public Booking get(Long id, int superBookingId, int apartmentId) {
-        return super.get(id, superBookingId, apartmentId);
+    public Booking getBooking(Long id, int superBookingId, int apartmentId) {
+        return super.getBooking(id, superBookingId, apartmentId);
     }
 
     @Override
-    public List<Booking> getAllByHotelBetweenDates(int apartmentId, LocalDateTime startDate, LocalDateTime endDate) {
-        return super.getAllByHotelBetweenDates(apartmentId, startDate, endDate);
+    public List<Booking> getAllBookingsByHotelBetweenDates(int apartmentId, LocalDateTime startDate, LocalDateTime endDate) {
+        return super.getAllBookingsByHotelBetweenDates(apartmentId, startDate, endDate);
     }
 
     @Override
-    public List<Booking> getAll() {
-        return super.getAll();
+    public List<Booking> getAllBookings() {
+        return super.getAllBookings();
     }
 
-
+    @Override
+    public SuperBooking createSuperBooking(SuperBooking superBooking, int userId) {
+        return super.createSuperBooking(superBooking, userId);
+    }
 
     @Override
-    public List<SuperBooking> getAllByUserId(int superBookingId) {
-        return super.getAllByUserId(superBookingId);
+    public SuperBooking updateSuperBooking(SuperBooking superBooking, int userId) {
+        return super.updateSuperBooking(superBooking, userId);
+    }
+
+    @Override
+    public SuperBooking getSuperBooking(Integer id, int userId) {
+        return super.getSuperBooking(id, userId);
+    }
+
+    @Override
+    public List<SuperBooking> getAllSuperBookings() {
+        return super.getAllSuperBookings();
+    }
+
+    @Override
+    public List<SuperBooking> getAllSuperBookingsByUserId(int userId) {
+        return super.getAllSuperBookingsByUserId(userId);
     }
 }

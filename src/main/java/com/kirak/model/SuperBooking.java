@@ -49,12 +49,12 @@ public class SuperBooking extends BaseIntEntity {
     private Set<Booking> bookings;
 
     public SuperBooking(boolean active, LocalDateTime dateAdded, Short extraBeds, Double overallSum,
-                        Short overallPersonNum, User user, Set<Booking> bookings) {
-        this(null, active, dateAdded, extraBeds, overallSum, overallPersonNum, user, bookings);
+                        Short overallPersonNum, User user) {
+        this(null, active, dateAdded, extraBeds, overallSum, overallPersonNum, user);
     }
 
     public SuperBooking(Integer id, boolean active, LocalDateTime dateAdded, Short extraBeds, Double overallSum,
-                        Short overallPersonNum, User user, Set<Booking> bookings) {
+                        Short overallPersonNum, User user) {
         super(id);
         this.active = active;
         this.dateAdded = dateAdded;
@@ -62,7 +62,6 @@ public class SuperBooking extends BaseIntEntity {
         this.overallSum = overallSum;
         this.overallPersonNum = overallPersonNum;
         this.user = user;
-        this.bookings = bookings;
     }
 
     public boolean isActive() {

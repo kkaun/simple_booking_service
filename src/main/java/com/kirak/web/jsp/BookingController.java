@@ -8,6 +8,7 @@ import com.kirak.to.Placement;
 import com.kirak.util.model.*;
 import com.kirak.web.AuthorizedUser;
 import com.kirak.web.ModelUtil;
+import com.kirak.web.abstr.BookingAbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +27,7 @@ import java.util.Map;
 
 @Controller
 //@Scope("session")
-public class BookingController {
+public class BookingController extends BookingAbstractController {
 
     @Autowired
     private HotelService hotelService;
@@ -44,6 +46,10 @@ public class BookingController {
 
     @Autowired
     private ApartmentService apartmentService;
+
+    protected BookingController(BookingService bookingService, SuperBookingService superBookingService) {
+        super(bookingService, superBookingService);
+    }
 
     @GetMapping("/index")
     public String index(Model model){
@@ -193,25 +199,26 @@ public class BookingController {
         User user = new User(userName, userEmail, userPhone, UserRole.ROLE_USER);
         userService.save(user);
 
-        //        SuperBooking(boolean active, LocalDateTime dateAdded, Short extraBeds, Double overallSum,
-//                Short overallPersonNum, User user, Set<Booking> bookings)
+        SuperBooking superBooking = new SuperBooking(true, LocalDateTime.now(), (short)0, Double.parseDouble(sum),
+                Short.parseShort(personNum), user);
+        super.createSuperBooking(superBooking, user.getId());
 
-//        BookingTo bookingTo = new BookingTo(hotelService.get(Integer.parseInt(hotelId)),
-//                apartmentService.get(Integer.parseInt(apartmentId)), checkInDate, checkOutDate, Short.parseShort(personNum), sum);
+        Placement placement = PlacementUtil.getPlacementFromId(Integer.parseInt(placementId));
 
-//        Booking booking = new Booking(true, LocalDateTime.now(), LocalDateTime.parse(inDate),
-//                LocalDateTime.parse(outDate), Double.parseDouble(sum), Short.parseShort(personNum),
-//                (short) 0, userService.get(AuthorizedUser.getId()),
-//                apartmentService.get(Integer.parseInt(apartmentId)), hotelService.get(Integer.parseInt(hotelId)));
-//        model.addAttribute("booking", bookingService.save(booking, AuthorizedUser.getId(),
-//                Integer.parseInt(hotelId)));
+        placement.getOption().values().forEach(apartments -> apartments.forEach(apartment -> {
+
+            Booking booking = new Booking(LocalDateTime.parse(inDate), LocalDateTime.parse(outDate), apartment.getPrice(),
+                    apartment.getType().getPersonNum(), superBooking, apartment, hotelService.get(Integer.parseInt(hotelId)));
+            super.createBooking(booking, apartment.getId());
+        }));
+
+
+
         return "confirmation";
     }
 
 
 
-
-//
 //    @PostMapping(value = "/confirm_customer_booking")
 //    public String confirmCustomerBooking(@RequestParam ("id") String hotelId, @RequestParam ("apartmentId") String apartmentId,
 //                                         @RequestParam ("inDate") String inDate, @RequestParam ("outDate") String outDate,
@@ -227,14 +234,5 @@ public class BookingController {
 //        return "confirmation";
 //    }
 
-    //    @GetMapping(value = "/book")
-//    public String book(@RequestParam ("id") String apartmentId, Model model) {
-//        model.addAttribute("hotel", HotelUtil.asHotelTo
-//                (hotelService.get(apartmentService.get(Integer.parseInt(apartmentId)).getHotel().getId())));
-//        model.addAttribute("apartment", apartmentService.get(Integer.parseInt(apartmentId)));
-//
-//        ModelUtil.addUniqueFilterParams(model, aptTypeService);
-//        return "book";
-//    }
 
 }
