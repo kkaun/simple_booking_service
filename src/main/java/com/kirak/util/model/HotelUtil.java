@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Created by Kir on 25.06.2017.
@@ -82,7 +83,9 @@ public class HotelUtil {
                 .collect(Collectors.toList());
         categories.add("");
 
-        return categories.stream().distinct().collect(Collectors.toList());
+        Comparator<String> comparator = Comparator.comparingInt(String::length);
+
+        return categories.stream().sorted(comparator).distinct().collect(Collectors.toList());
     }
 
     public static List<String> getUniquePersonNums(Hotel hotel){
@@ -91,9 +94,15 @@ public class HotelUtil {
                 .distinct().collect(Collectors.toList());
     }
 
+    public static List<String> getUniqueApartmentNums(Hotel hotel){
+
+        return IntStream.rangeClosed(1, hotel.getApartments().size()).boxed().map(Object::toString).collect(Collectors.toList());
+    }
+
     public static void addUniqueHotelParams(Hotel hotel, Model model){
-        model.addAttribute("uniquePersonNums", HotelUtil.getUniquePersonNums(hotel));
-        model.addAttribute("uniqueCategories", HotelUtil.getUniqueCategories(hotel));
+        model.addAttribute("uniquePersonNums", getUniquePersonNums(hotel));
+        model.addAttribute("uniqueCategories", getUniqueCategories(hotel));
+        model.addAttribute("uniqueAptNums", getUniqueApartmentNums(hotel));
     }
 
     public static boolean isHotelSuitableByPersonNum(Hotel hotel, Short personNum){

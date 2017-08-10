@@ -2,6 +2,8 @@ package com.kirak.util.model;
 
 import com.kirak.model.Apartment;
 import com.kirak.model.AptType;
+
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,7 +15,10 @@ public class AptTypeUtil {
     public static List<String> getUniqueCategories(List<AptType> types){
         List<String> categories = types.stream().map(AptType::getCategory).collect(Collectors.toList());
         categories.add("");
-        return categories.stream().distinct().collect(Collectors.toList());
+
+        Comparator<String> comparator = Comparator.comparingInt(String::length);
+
+        return categories.stream().sorted(comparator).distinct().collect(Collectors.toList());
     }
 
     public static List<String> getUniqueBedArrangements(List<AptType> types){

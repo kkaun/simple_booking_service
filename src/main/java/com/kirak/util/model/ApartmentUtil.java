@@ -139,15 +139,24 @@ public class ApartmentUtil {
 
     public static int[] getOccupiedDaysForSingleApartmentInPeriod(Booking booking, int[] daysOccupied,
                                                                   LocalDate inDate, LocalDate outDate){
+
+
         if(booking.getInDate().toLocalDate().isBefore(inDate) &&
-                booking.getOutDate().toLocalDate().isBefore(outDate))
-            daysOccupied[0] += (int) ChronoUnit.DAYS.between(booking.getOutDate().toLocalDate(), inDate);
+                booking.getOutDate().toLocalDate().isBefore(outDate)) {
+            if (ChronoUnit.DAYS.between(booking.getOutDate().toLocalDate(), inDate) <= 0) {
+                daysOccupied[0] += (int) ChronoUnit.DAYS.between(booking.getOutDate().toLocalDate(), inDate);
+            }
+        }
         if(booking.getInDate().toLocalDate().isAfter(inDate) &&
-                booking.getOutDate().toLocalDate().isAfter(outDate))
-            daysOccupied[0] += (int) ChronoUnit.DAYS.between(outDate, booking.getInDate().toLocalDate());
+                booking.getOutDate().toLocalDate().isAfter(outDate)) {
+            if(ChronoUnit.DAYS.between(booking.getInDate().toLocalDate(), outDate) >= 0){
+                daysOccupied[0] += (int) ChronoUnit.DAYS.between(outDate, booking.getInDate().toLocalDate());
+            }
+        }
         if(booking.getInDate().toLocalDate().isAfter(inDate) &&
-                booking.getOutDate().toLocalDate().isBefore(outDate))
+                booking.getOutDate().toLocalDate().isBefore(outDate)) {
             daysOccupied[0] += (int) ChronoUnit.DAYS.between(booking.getInDate().toLocalDate(), booking.getOutDate().toLocalDate());
+        }
 
         return daysOccupied;
     }

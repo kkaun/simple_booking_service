@@ -90,6 +90,8 @@
         </div>
     </div>
 
+    <br>
+
     <div class="row">
         <div class="well">
             <h1 class="text-center">Inspect the most rated objects:</h1>
@@ -126,7 +128,7 @@
                             <c:if test="${empty hotel.votesNum || hotel.votesNum == 0}">
                                 <h4> No votes yet </h4>
                             </c:if>
-                            <button type="button" href="inspect_hotel?id=${hotel.id}" class="btn btn-default btn-lg btn-block"> Book Now </button>
+                            <button type="button" href="inspect_hotel?id=${hotel.id}" class="btn btn-default btn-lg btn-block"> View & Book </button>
                         </div>
                     </a>
                 </c:forEach>

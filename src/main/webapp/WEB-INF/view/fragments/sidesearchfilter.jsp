@@ -28,7 +28,7 @@
             <label for="person_num" class="control-label">No. of Persons</label>
             <select class="form-control" name="personNum" id="person_num">
                 <c:forEach items="${personNums}" var="personNum">
-                    <option value="${param.personNum}">${personNum}</option>
+                    <option value="${personNum}">${personNum}</option>
                 </c:forEach>
             </select>
         </div>
@@ -36,7 +36,7 @@
             <label for="apartment_num" class="control-label">Rooms (Apartments)</label>
             <select class="form-control" name="apartmentNum" id="apartment_num">
                 <c:forEach items="${apartmentNums}" var="apartmentNum">
-                    <option value="${param.apartmentNum}">${apartmentNum}</option>
+                    <option value="${apartmentNum}">${apartmentNum}</option>
                 </c:forEach>
             </select>
         </div>
@@ -44,11 +44,12 @@
             <label for="category" class="control-label">Room Type</label>
             <select class="form-control" name="category" id="category">
                 <c:forEach items="${categories}" var="category">
-                    <option value="${param.category}">${category}</option>
+                    <option value="${category}">${category}</option>
                 </c:forEach>
             </select>
         </div>
-        <p class="text-center"><a href="#" class="btn btn-danger glyphicon glyphicon-search" role="button"></a></p>
+        <button type="submit" class="btn btn-danger glyphicon glyphicon-search"
+                style="margin-top:21px; padding-left: 30px; padding-right: 30px"></button>
     </form>
 </div>
 </body>

@@ -94,31 +94,34 @@
                     <c:if test="${not empty placements && empty hotels}">
                         <c:forEach items="${placements}" var="placement">
                             <jsp:useBean id="placement" scope="page" type="com.kirak.to.Placement"/>
-                            <a class="list-group-item" href="inspect_placement?id=${placement.id}&personNum=${placementPersonNum}&
-                                        apartmentNum=${placementApartmentNum}&inDate=${placementInDate}&outDate=${placementOutDate}">
+                            <a class="list-group-item" style="padding-top: 10px; padding-bottom: 10px;"
+                               href="inspect_placement?id=${placement.id}&personNum=${placementPersonNum}&apartmentNum=${placementApartmentNum}&inDate=${placementInDate}&outDate=${placementOutDate}">
                                 <div class="media col-md-3">
                                     <figure class="pull-left">
                                         <img class="media-object img-rounded img-responsive"
                                              src="http://placehold.it/350x250" alt="placehold.it/350x250">
                                     </figure>
                                 </div>
-                                <div class="col-md-4">
-                                    <h4 class="list-group-item-heading"> ${placement.hotel.name} </h4>
-                                    <p class="list-group-item-text"> ${placement.hotel.description}</p>
-
-                                    <div class="well" style="background-color: lightgreen;">
-                                        <h5><strong> Optimal placement solution: </strong></h5>
-                                        <table class="table-responsive">
-                                            <c:forEach items="${placement.option}" var="option">
-                                                <tr>
-                                                    <td><strong>${option.key.category}</strong></td>
-                                                    <td>x<strong>${fn:length(option.value)}</strong></td>
-                                                </tr>
-                                            </c:forEach>
-                                        </table>
+                                <div class="col-md-6">
+                                    <div class="col-md-12">
+                                        <h4 class="list-group-item-heading"> ${placement.hotel.name} </h4>
+                                        <hr>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h5 style="margin-top: 7px;"><strong> Optimal placement solution: </strong></h5>
+                                        <div class="well" style="background-color: lightgreen; padding-top: 5px; padding-bottom: 5px;">
+                                            <table class="table-responsive">
+                                                <c:forEach items="${placement.option}" var="option">
+                                                    <tr>
+                                                        <td><h6><strong>${option.key.category} with ${option.key.bedsArrangement}</strong></h6></td>
+                                                        <td><h6>&nbsp;&nbsp;&nbsp;x<strong>${fn:length(option.value)}</strong></h6></td>
+                                                    </tr>
+                                                </c:forEach>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-5 text-center">
+                                <div class="col-md-3 text-center">
                                     <div class="stars">
                                         <c:if test="${placement.hotel.stars > 0}">
                                             <c:forEach begin="0" end="${placement.hotel.stars - 1}"

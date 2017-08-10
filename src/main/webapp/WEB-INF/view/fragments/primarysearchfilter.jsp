@@ -14,19 +14,19 @@
                         <div class="col-md-3">
                             <label for="location" class="control-label" style="border-radius: 3px">Location(City)</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" name="location" id="location" value="${param.city}">
+                                <input type="text" class="form-control" name="location" id="location" value="${city}">
                             </div>
                         </div>
                         <div class="col-md-2">
                             <label for="in_date" class="control-label">Check-in</label>
                             <div class="input-group">
-                                <input type="date" class="input-sm" id="in_date" name="inDate" value="${param.inDate}">
+                                <input type="date" class="input-sm" id="in_date" name="inDate" value="${inDate}">
                             </div>
                         </div>
                         <div class="col-md-2">
                             <label for="out_date" class="control-label">Check-out</label>
                             <div class="input-group">
-                                <input type="date" class="input-sm" id="out_date" name="outDate" value="${param.outDate}">
+                                <input type="date" class="input-sm" id="out_date" name="outDate" value="${outDate}">
                             </div>
                         </div>
                         <div class="col-md-1">
@@ -34,7 +34,7 @@
                             <div class="input-group">
                                 <select class="input-sm" name="personNum" id="person_num">
                                     <c:forEach items="${personNums}" var="personNum">
-                                        <option value="${param.personNum}">${personNum}</option>
+                                        <option value="${personNum}">${personNum}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -44,7 +44,7 @@
                             <div class="input-group">
                                 <select class="input-sm" name="apartmentNum" id="apartment_num">
                                     <c:forEach items="${apartmentNums}" var="apartmentNum">
-                                        <option value="${param.apartmentNum}">${apartmentNum}</option>
+                                        <option value="${apartmentNum}">${apartmentNum}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -54,7 +54,7 @@
                             <div class="input-group">
                                 <select class="input-sm" name="category" id="category">
                                     <c:forEach items="${categories}" var="category">
-                                        <option value="${param.category}">${category}</option>
+                                        <option value="${category}">${category}</option>
                                     </c:forEach>
                                 </select>
                             </div>

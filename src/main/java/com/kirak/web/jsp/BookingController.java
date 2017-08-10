@@ -81,8 +81,8 @@ public class BookingController extends BookingAbstractController{
                                                 @RequestParam("personNum") String personNum, @RequestParam("inDate") String inDate,
                                                 @RequestParam("outDate") String outDate, @RequestParam("category") String category,
                                                 @RequestParam("apartmentNum") String apartmentNum, Model model){
-        ModelUtil.addUniqueFilterParams(model, aptTypeService);
 
+        ModelUtil.addUniqueFilterParams(model, aptTypeService);
         model.addAttribute("placements", HotelUtil.aggregateAvailablePlacementsByRequest(location, hotelService.getAll(),
                 Short.parseShort(personNum), Integer.parseInt(apartmentNum),
                 LocalDate.parse(inDate), LocalDate.parse(outDate), category));
@@ -96,17 +96,20 @@ public class BookingController extends BookingAbstractController{
     @GetMapping(value = "/inspect_placement")
     public String placement(@RequestParam("id") String placementId, @RequestParam("personNum") String placementPersonNum,
                             @RequestParam("apartmentNum") String placementApartmentNum, @RequestParam("inDate") String inDate,
-                            @RequestParam("outDate") String outDate, @RequestParam Model model) {
+                            @RequestParam("outDate") String outDate, Model model) {
         int hotelId = PlacementUtil.getHotelIdFromPlacementId(Integer.parseInt(placementId));
         double placementSum = PlacementUtil.calculateBookingSumForPlacement(PlacementUtil.getPlacementFromId(Integer.parseInt(placementId)));
         HotelUtil.addUniqueHotelParams(hotelService.get(hotelId), model);
         ModelUtil.addUniqueFilterParams(model, aptTypeService);
-        model.addAttribute("placement", PlacementUtil.getPlacementFromId(Integer.parseInt(placementId)));
+
+        Placement placement = PlacementUtil.getPlacementFromId(Integer.parseInt(placementId));
+        model.addAttribute("options", placement.getOption().values());
+        model.addAttribute("placement", placement);
         model.addAttribute("placementSum", placementSum);
-        model.addAttribute("placementApartmentNum", placementApartmentNum);
-        model.addAttribute("placementPersonNum", placementPersonNum);
-        model.addAttribute("placementInDate", inDate);
-        model.addAttribute("placementOutDate", outDate);
+        model.addAttribute("placementApartmentNum", Integer.parseInt(placementApartmentNum));
+        model.addAttribute("placementPersonNum", Short.parseShort(placementPersonNum));
+        model.addAttribute("placementInDate", LocalDate.parse(inDate));
+        model.addAttribute("placementOutDate", LocalDate.parse(outDate));
         model.addAttribute("apartments", apartmentService.getAllByHotel(hotelId));
         model.addAttribute("hotel", HotelUtil.asHotelTo(hotelService.get(hotelId)));
         return "hotel";
@@ -160,6 +163,7 @@ public class BookingController extends BookingAbstractController{
 
             Placement placement = PlacementUtil.convertAvailableApartmentToPlacement(availableApartmentMap.keySet().iterator().next());
             model.addAttribute("placement", placement);
+            model.addAttribute("options", placement.getOption().values());
             model.addAttribute("placementSum", PlacementUtil.calculateBookingSumForPlacement(placement));
             model.addAttribute("placementApartmentNum", 1);
             model.addAttribute("placementPersonNum", apartmentService.get(Integer.parseInt(apartmentId)).getType().getPersonNum());
@@ -168,6 +172,8 @@ public class BookingController extends BookingAbstractController{
         } else {
             model.addAttribute("notAvailableApartment", apartmentService.get(Integer.parseInt(apartmentId)));
         }
+        HotelUtil.addUniqueHotelParams(hotelService.get(Integer.parseInt(hotelId)), model);
+        ModelUtil.addUniqueFilterParams(model, aptTypeService);
         model.addAttribute("apartments", apartmentService.getAllByHotel(Integer.parseInt(hotelId)));
         model.addAttribute("hotel", HotelUtil.asHotelTo(hotelService.get(Integer.parseInt(hotelId))));
         return "hotel";
