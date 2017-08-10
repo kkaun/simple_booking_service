@@ -4,12 +4,17 @@ import com.kirak.model.SuperBooking;
 import com.kirak.repository.SuperBookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
  * Created by Kir on 07.08.2017.
  */
+
+@Transactional
+@Repository
 public class SuperBookingRepositoryImpl implements SuperBookingRepository {
 
     private static final Sort DATE_ADDED_SORT = new Sort("dateAdded");

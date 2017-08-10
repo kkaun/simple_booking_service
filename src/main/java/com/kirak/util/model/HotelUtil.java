@@ -121,26 +121,49 @@ public class HotelUtil {
                 .filter(hotel -> isHotelSuitableByApartmentNum(hotel, apartmentNum)).collect(Collectors.toList());
     }
 
-    public static List<Placement> filterAvailablePlacementsByRequest(String region, List<Hotel> hotels,
-                                                               Short personNum, Integer apartmentNum,
-                                                               LocalDate inDate, LocalDate outDate, String category) {
 
+    public static List<Placement> aggregateAvailablePlacementsByRequest(String region, List<Hotel> hotels,
+                                                                        Short personNum, Integer apartmentNum,
+                                                                        LocalDate inDate, LocalDate outDate, String category) {
         List<Placement> potentialPlacements = new ArrayList<>();
         List<Hotel> hotelsByRegion = getAllByRegion(region, hotels);
         List<Hotel> hotelsByPersonNum = filterHotelsAvailableByPersonNum(hotelsByRegion, personNum);
         List<Hotel> hotelsByApartmentNum = filterHotelsAvailableByApartmentNum(hotelsByPersonNum, apartmentNum);
 
-        if (!hotelsByApartmentNum.isEmpty()) {
-            for (Hotel hotel : hotelsByApartmentNum) {
-                Map<AptType, List<Apartment>> apartments = ApartmentUtil.aggregateDifferentAvailableApartmentsWithCount(ApartmentUtil.
-                        findHotelApartmentsByCategory(hotel, inDate, outDate, category), inDate, outDate, personNum, apartmentNum);
-                Placement placement = new Placement(asHotelTo(hotel), apartments);
-                potentialPlacements.add(placement);
-                AuthorizedUser.sessionPlacements.put(placement.getId(), placement);
-            }
-        }
+        if (!hotelsByApartmentNum.isEmpty())
+            hotelsByApartmentNum.forEach(hotel -> createAggregatedPlacement(hotel, personNum, apartmentNum, inDate, outDate,
+                    category, potentialPlacements));
+
         return !potentialPlacements.isEmpty() ? potentialPlacements : Collections.emptyList();
     }
+
+
+    public static Placement aggregateSingleHotelPlacementByRequest(Hotel hotel, Short personNum, Integer apartmentNum,
+                                                               LocalDate inDate, LocalDate outDate, String category){
+        List<Placement> potentialPlacements = new ArrayList<>();
+        List<Hotel> currentHotelByPersonNum = filterHotelsAvailableByPersonNum(Collections.singletonList(hotel), personNum);
+        List<Hotel> currentHotelByAptNum = filterHotelsAvailableByApartmentNum(currentHotelByPersonNum, apartmentNum);
+
+        if(!currentHotelByAptNum.isEmpty())
+            createAggregatedPlacement(hotel, personNum, apartmentNum, inDate, outDate, category, potentialPlacements);
+
+        return !potentialPlacements.isEmpty() ? potentialPlacements.get(0) : new Placement(asHotelTo(hotel), Collections.emptyMap());
+    }
+
+
+    public static void createAggregatedPlacement(Hotel hotel, Short personNum, Integer apartmentNum,
+                                                                          LocalDate inDate, LocalDate outDate, String category,
+                                                                          List<Placement> potentialPlacements){
+
+        Map<AptType, List<Apartment>> apartments = ApartmentUtil.aggregateDifferentAvailableApartmentsWithCount(ApartmentUtil.
+                findHotelApartmentsByCategory(hotel, inDate, outDate, category), inDate, outDate, personNum, apartmentNum);
+        Placement placement = new Placement(asHotelTo(hotel), apartments);
+        if(!placement.getOption().isEmpty()) {
+            potentialPlacements.add(placement);
+            AuthorizedUser.sessionPlacements.put(placement.getId(), placement);
+        }
+    }
+
 
     public static List<Apartment> filterHotelApartmentsWithDuplicateTypes(Hotel hotel){
 

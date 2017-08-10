@@ -1,14 +1,12 @@
 package com.kirak.service.impl;
 
-
-import com.kirak.model.Booking;
 import com.kirak.model.SuperBooking;
 import com.kirak.repository.SuperBookingRepository;
 import com.kirak.service.SuperBookingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
-
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.kirak.util.ValidationUtil.checkNotFoundWithId;
@@ -16,6 +14,8 @@ import static com.kirak.util.ValidationUtil.checkNotFoundWithId;
 /**
  * Created by Kir on 07.08.2017.
  */
+@Transactional
+@Service
 public class SuperBookingServiceImpl implements SuperBookingService {
 
     private final SuperBookingRepository repository;

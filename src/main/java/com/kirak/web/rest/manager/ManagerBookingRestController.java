@@ -39,15 +39,6 @@ public class ManagerBookingRestController extends BookingAbstractController{
         return super.getBooking(id, superBookingId, apartmentId);
     }
 
-    @GetMapping(value = "/by_hotel_between_dates")
-    @Override
-    public List<Booking> getAllBookingsByHotelBetweenDates(
-            @RequestParam("apartmentId") int apartmentId,
-            @RequestParam("startDate") LocalDateTime startDate,
-            @RequestParam("endDate") LocalDateTime endDate){
-        return super.getAllBookingsByHotelBetweenDates(apartmentId, startDate, endDate);
-    }
-
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
     public List<Booking> getAllBookings() {

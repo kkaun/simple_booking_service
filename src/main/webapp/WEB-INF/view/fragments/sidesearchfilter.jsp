@@ -7,11 +7,10 @@
 <body>
 <div class="well">
     <h3 align="center">Search Filter</h3>
-    <h5>Specify parameters of your search below</h5>
-    <form class="form-horizontal" method="get" action="parametric_search">
+    <form class="form-horizontal" method="post" action="parametric_search">
         <div class="form-group">
             <label for="location" class="control-label">Location(City)</label>
-            <input type="text" class="form-control" name="location" id="location" value="${param.city}">
+            <input type="text" class="form-control" name="location" id="location" value="${param.region}">
         </div>
         <div class="form-group">
             <label for="in_date" class="control-label">Check-in</label>

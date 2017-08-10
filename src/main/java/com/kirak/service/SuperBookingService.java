@@ -2,6 +2,8 @@ package com.kirak.service;
 
 import com.kirak.model.SuperBooking;
 import com.kirak.util.exception.NotFoundException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;

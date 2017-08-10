@@ -7,6 +7,7 @@ import com.kirak.service.SuperBookingService;
 import com.kirak.web.AuthorizedUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,8 +19,10 @@ public abstract class BookingAbstractController {
 
     private final Logger LOG = LoggerFactory.getLogger(getClass());
 
+    @Autowired
     private final BookingService bookingService;
 
+    @Autowired
     private final SuperBookingService superBookingService;
 
     protected BookingAbstractController(BookingService bookingService, SuperBookingService superBookingService) {
@@ -29,8 +32,7 @@ public abstract class BookingAbstractController {
 
     //-------------------------------------- Booking methods --------------------------------//
 
-    public Booking createBooking(Booking booking, int apartmentId){
-        int superBookingId = AuthorizedUser.getId();
+    public Booking createBooking(Booking booking, int superBookingId, int apartmentId){
         LOG.info("Saving booking {}", booking);
         return bookingService.save(booking, superBookingId, apartmentId);
     }
@@ -43,11 +45,6 @@ public abstract class BookingAbstractController {
     public Booking getBooking(Long id, int superBookingId, int apartmentId){
         LOG.info("Getting booking {}", id);
         return bookingService.get(id, superBookingId, apartmentId);
-    }
-
-    public List<Booking> getAllBookingsByHotelBetweenDates(int apartmentId, LocalDateTime startDate, LocalDateTime endDate){
-        LOG.info("Getting bookings between dates {} - {} for hotel {}", startDate, endDate, apartmentId);
-        return bookingService.getAllByHotelBetweenDates(apartmentId, startDate, endDate);
     }
 
     public List<Booking> getAllBookings(){

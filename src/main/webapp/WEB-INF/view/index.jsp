@@ -40,14 +40,13 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse1">Collapsible panel</a>
+                            <a data-toggle="collapse" href="#collapse1"><h4 class="text-center">Advanced Search</h4></a>
                         </h4>
                     </div>
                     <div id="collapse1" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <jsp:include page="fragments/searchfilter.jsp"/>
+                        <div class="panel-body" style="padding: 5px">
+                            <jsp:include page="fragments/primarysearchfilter.jsp"/>
                         </div>
-                        <div class="panel-footer"></div>
                     </div>
                 </div>
             </div>
@@ -98,7 +97,7 @@
             <div class="list-group">
                 <c:forEach items="${hotelsFive}" var="hotel">
                 <jsp:useBean id="hotel" scope="page" type="com.kirak.to.HotelTo"/>
-                    <a href="inspect_hotel?${hotel.id}" class="list-group-item">
+                    <a href="inspect_hotel?id=${hotel.id}" class="list-group-item">
                         <div class="media col-md-3">
                             <figure class="pull-left">
                                 <img class="media-object img-rounded img-responsive" src="http://placehold.it/350x250" alt="placehold.it/350x250" >
@@ -127,7 +126,7 @@
                             <c:if test="${empty hotel.votesNum || hotel.votesNum == 0}">
                                 <h4> No votes yet </h4>
                             </c:if>
-                            <button type="button" href="inspect_hotel?${hotel.id}" class="btn btn-default btn-lg btn-block"> Book Now </button>
+                            <button type="button" href="inspect_hotel?id=${hotel.id}" class="btn btn-default btn-lg btn-block"> Book Now </button>
                         </div>
                     </a>
                 </c:forEach>

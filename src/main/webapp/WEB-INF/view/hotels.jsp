@@ -25,32 +25,34 @@
         </div>
     </div>
 
-
     <div class="row">
-
         <div class="col-md-4">
-            <jsp:include page="fragments/searchfilter.jsp"/>
+            <jsp:include page="fragments/sidesearchfilter.jsp"/>
         </div>
 
         <div class="col-md-8">
             <div class="well">
-                <div class="list-group">
+                <a class="list-group">
                     <c:if test="${not empty badRegion && empty hotels}">
-                        <h3>
-                            Unfortunately, searching by request "${badRegion}" brought no results.
-                            <br>
-                            Maybe there is a shortage of hotels in this region
-                            or we haven't include it yet.
-                            <br>
-                            You might try to specify your request in Search Filter.
-                        </h3>
+                        <div class="list-group-item">
+                            <h3>
+                                Unfortunately, searching by request "${badRegion}" brought no results.
+                                <br>
+                                Maybe there is a shortage of hotels in this region
+                                or we haven't include it yet.
+                                <br>
+                                You might try to specify your request in Search Filter.
+                            </h3>
+                        </div>
                     </c:if>
                     <c:if test="${not empty hotels}">
                         <c:forEach items="${hotels}" var="hotel">
                             <jsp:useBean id="hotel" scope="page" type="com.kirak.to.HotelTo"/>
+                            <a class="list-group-item" href="inspect_hotel?id=${hotel.id}">
                                 <div class="media col-md-3">
                                     <figure class="pull-left">
-                                        <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" >
+                                        <img class="media-object img-rounded img-responsive"
+                                             src="http://placehold.it/350x250" alt="placehold.it/350x250">
                                     </figure>
                                 </div>
                                 <div class="col-md-4">
@@ -70,23 +72,34 @@
                                         </c:if>
                                     </div>
                                     <c:if test="${hotel.votesNum > 0}">
-                                        <h3> Average ${hotel.rating} <small> / </small> 10 </h3>
-                                        <h4> ${hotel.votesNum} <small> votes </small></h4>
+                                        <h3> Average ${hotel.rating}
+                                            <small> /</small>
+                                            10
+                                        </h3>
+                                        <h4> ${hotel.votesNum}
+                                            <small> votes</small>
+                                        </h4>
                                     </c:if>
                                     <c:if test="${empty hotel.votesNum || hotel.votesNum == 0}">
                                         <h4> No votes yet </h4>
                                     </c:if>
-                                    <button type="button" href="inspect_hotel?${hotel.id}" class="btn btn-default btn-lg btn-block"> View & Book </button>
+                                    <button type="button" href="inspect_hotel?id=${hotel.id}"
+                                            class="btn btn-default btn-lg btn-block"> View & Book
+                                    </button>
                                 </div>
+                            </a>
                         </c:forEach>
                     </c:if>
 
                     <c:if test="${not empty placements && empty hotels}">
                         <c:forEach items="${placements}" var="placement">
                             <jsp:useBean id="placement" scope="page" type="com.kirak.to.Placement"/>
+                            <a class="list-group-item" href="inspect_placement?id=${placement.id}&personNum=${placementPersonNum}&
+                                        apartmentNum=${placementApartmentNum}&inDate=${placementInDate}&outDate=${placementOutDate}">
                                 <div class="media col-md-3">
                                     <figure class="pull-left">
-                                        <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" >
+                                        <img class="media-object img-rounded img-responsive"
+                                             src="http://placehold.it/350x250" alt="placehold.it/350x250">
                                     </figure>
                                 </div>
                                 <div class="col-md-4">
@@ -96,19 +109,20 @@
                                     <div class="well" style="background-color: lightgreen;">
                                         <h5><strong> Optimal placement solution: </strong></h5>
                                         <table class="table-responsive">
-                                        <c:forEach items="${placement.option}" var="option">
-                                            <tr>
-                                                <td><strong>${option.key.category}</strong></td>
-                                                <td>x<strong>${fn:length(option.value)}</strong></td>
-                                            </tr>
-                                        </c:forEach>
+                                            <c:forEach items="${placement.option}" var="option">
+                                                <tr>
+                                                    <td><strong>${option.key.category}</strong></td>
+                                                    <td>x<strong>${fn:length(option.value)}</strong></td>
+                                                </tr>
+                                            </c:forEach>
                                         </table>
                                     </div>
                                 </div>
                                 <div class="col-md-5 text-center">
                                     <div class="stars">
                                         <c:if test="${placement.hotel.stars > 0}">
-                                            <c:forEach begin="0" end="${placement.hotel.stars - 1}" varStatus="loop">
+                                            <c:forEach begin="0" end="${placement.hotel.stars - 1}"
+                                                       varStatus="loop">
                                                 <span class="glyphicon glyphicon-star"></span>
                                             </c:forEach>
                                         </c:if>
@@ -117,22 +131,29 @@
                                         </c:if>
                                     </div>
                                     <c:if test="${placement.hotel.votesNum > 0}">
-                                        <h3> Average ${hotel.rating} <small> / </small> 10 </h3>
-                                        <h4> ${placement.hotel.votesNum} <small> votes </small></h4>
+                                        <h3> Average ${hotel.rating}
+                                            <small> /</small>
+                                            10
+                                        </h3>
+                                        <h4> ${placement.hotel.votesNum}
+                                            <small> votes</small>
+                                        </h4>
                                     </c:if>
                                     <c:if test="${empty placement.hotel.votesNum || placement.hotel.votesNum == 0}">
                                         <h4> No votes yet </h4>
                                     </c:if>
-                                    <button type="button" href="inspect_placement?${placement.id}&${placementPersonNum}&
-                                    ${placementApartmentNum}&${placementInDate}&${placementOutDate}"
-                                            class="btn btn-default btn-lg btn-block"> Book Now </button>
+                                    <button type="button"
+                                            href="inspect_placement?id=${placement.id}&personNum=${placementPersonNum}&
+                                        apartmentNum=${placementApartmentNum}&inDate=${placementInDate}&outDate=${placementOutDate}"
+                                            class="btn btn-default btn-lg btn-block"> Book Now
+                                    </button>
                                 </div>
+                            </a>
                         </c:forEach>
                     </c:if>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 

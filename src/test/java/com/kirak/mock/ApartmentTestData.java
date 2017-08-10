@@ -26,20 +26,20 @@ public class ApartmentTestData {
     public static final Integer APARTMENT4_ID = START_SEQ + 3;
     public static final Integer APARTMENT5_ID = START_SEQ + 4;
 
-    public static final Apartment APARTMENT1 = new Apartment(APARTMENT1_ID, TYPE1, (short)2, (short)1, 1200.00, HOTEL1);
-    public static final Apartment APARTMENT2 = new Apartment(APARTMENT2_ID, TYPE2, (short)3, (short)3, 1500.00, HOTEL1);
-    public static final Apartment APARTMENT3 = new Apartment(APARTMENT3_ID, TYPE3, (short)4, (short)0, 3200.00, HOTEL2);
-    public static final Apartment APARTMENT4 = new Apartment(APARTMENT4_ID, TYPE4, (short)3, (short)1, 4600.00, HOTEL3);
-    public static final Apartment APARTMENT5 = new Apartment(APARTMENT5_ID, TYPE5, (short)6, (short)2, 5200.00, HOTEL4);
-
-    public static final List<Apartment> APARTMENTS = Arrays.asList(APARTMENT1, APARTMENT2, APARTMENT3, APARTMENT4, APARTMENT5);
-
-    public static Apartment getCreatedApartment() {
-        return new Apartment(null, TYPE3, (short)7, (short)3, 1850.00, HOTEL3);
-    }
-
-    public static Apartment getUpdatedApartment() {
-        return new Apartment(APARTMENT1_ID, APARTMENT1.getType(), APARTMENT1.getOverallQuantity(), (short)0, 1450.00, HOTEL1);
-    }
+//    public static final Apartment APARTMENT1 = new Apartment(APARTMENT1_ID, TYPE1, (short)2, (short)1, 1200.00, HOTEL1);
+//    public static final Apartment APARTMENT2 = new Apartment(APARTMENT2_ID, TYPE2, (short)3, (short)3, 1500.00, HOTEL1);
+//    public static final Apartment APARTMENT3 = new Apartment(APARTMENT3_ID, TYPE3, (short)4, (short)0, 3200.00, HOTEL2);
+//    public static final Apartment APARTMENT4 = new Apartment(APARTMENT4_ID, TYPE4, (short)3, (short)1, 4600.00, HOTEL3);
+//    public static final Apartment APARTMENT5 = new Apartment(APARTMENT5_ID, TYPE5, (short)6, (short)2, 5200.00, HOTEL4);
+//
+//    public static final List<Apartment> APARTMENTS = Arrays.asList(APARTMENT1, APARTMENT2, APARTMENT3, APARTMENT4, APARTMENT5);
+//
+//    public static Apartment getCreatedApartment() {
+//        return new Apartment(null, TYPE3, (short)7, (short)3, 1850.00, HOTEL3);
+//    }
+//
+//    public static Apartment getUpdatedApartment() {
+//        return new Apartment(APARTMENT1_ID, APARTMENT1.getType(), APARTMENT1.getOverallQuantity(), (short)0, 1450.00, HOTEL1);
+//    }
 
 }

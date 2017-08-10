@@ -55,8 +55,4 @@ public class BookingRepositoryImpl implements BookingRepository {
         return bookingRepository.findAll(DATE_ADDED_SORT);
     }
 
-    @Override
-    public List<Booking> getAllByHotelBetweenDates(int hotelId, LocalDateTime startDate, LocalDateTime endDate) {
-        return bookingRepository.getAllByHotelBetweenDates(hotelId, startDate, endDate);
-    }
 }

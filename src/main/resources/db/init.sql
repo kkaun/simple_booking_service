@@ -43,10 +43,10 @@ CREATE TABLE `country` (
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id`         INT         NOT NULL AUTO_INCREMENT,
-  `email`      VARCHAR(45) NOT NULL UNIQUE,
-  `phone`      VARCHAR(20) NOT NULL UNIQUE,
-  `name`       VARCHAR(45) NULL,
-  `password`   VARCHAR(45) NULL,
+  `email`      VARCHAR(45) NOT NULL,
+  `phone`      VARCHAR(20) NULL,
+  `name`       VARCHAR(45) NOT NULL,
+  `password`   VARCHAR(45) NOT NULL,
   `registered` TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
   INDEX `user_unique_email_idx`(`email`),
   PRIMARY KEY (`id`)
@@ -172,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `apartment` (
 
 DROP TABLE IF EXISTS `super_booking`;
 CREATE TABLE IF NOT EXISTS `super_booking` (
-  'id'                  INT            NOT NULL,
+  `id`                  INT            NOT NULL AUTO_INCREMENT,
   `active`              BOOLEAN        DEFAULT TRUE,
   `date_added`          TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
   `extra_beds`          SMALLINT       NULL,
@@ -185,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `super_booking` (
   FOREIGN KEY (`user_id`)
   REFERENCES `user` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE NO ACTION
 )
   AUTO_INCREMENT = 100000,
   ENGINE = InnoDB;

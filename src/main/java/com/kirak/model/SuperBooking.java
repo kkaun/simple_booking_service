@@ -48,6 +48,8 @@ public class SuperBooking extends BaseIntEntity {
     @OneToMany(mappedBy = "superBooking")
     private Set<Booking> bookings;
 
+    public SuperBooking(){}
+
     public SuperBooking(boolean active, LocalDateTime dateAdded, Short extraBeds, Double overallSum,
                         Short overallPersonNum, User user) {
         this(null, active, dateAdded, extraBeds, overallSum, overallPersonNum, user);

@@ -15,7 +15,7 @@ public class PlacementUtil {
 
     public static Placement getPlacementFromId(Integer id){
 
-        return AuthorizedUser.sessionPlacements.get(id);
+        return AuthorizedUser.getSessionPlacements().get(id);
     }
 
     public static int getHotelIdFromPlacementId(Integer id){

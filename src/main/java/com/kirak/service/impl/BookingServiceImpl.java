@@ -50,13 +50,6 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public List<Booking> getAllByHotelBetweenDates(int hotelId, LocalDateTime startDate, LocalDateTime endDate) {
-        Assert.notNull(startDate, "Incoming LocalDate must not be null!");
-        Assert.notNull(endDate, "Incoming LocalDate must not be null!");
-        return repository.getAllByHotelBetweenDates(hotelId, startDate, endDate);
-    }
-
-    @Override
     public List<Booking> getAll() {
         return repository.getAll();
     }

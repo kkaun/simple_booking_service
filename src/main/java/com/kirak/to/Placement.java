@@ -25,8 +25,20 @@ public class Placement implements Serializable {
 
     private Map<AptType, List<Apartment>> option;
 
+    public Placement(){}
+
+    public Placement(Placement placement){
+        this(placement.getId(), placement.getHotel(), placement.getOption());
+    }
+
     public Placement(HotelTo hotel, Map<AptType, List<Apartment>> option) {
         this.id = SessionObjectsIdGenerator.getNewId();
+        this.hotel = hotel;
+        this.option = option;
+    }
+
+    public Placement(Integer id, HotelTo hotel, Map<AptType, List<Apartment>> option) {
+        this.id = id;
         this.hotel = hotel;
         this.option = option;
     }

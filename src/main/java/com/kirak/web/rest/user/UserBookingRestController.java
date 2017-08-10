@@ -24,17 +24,17 @@ public class UserBookingRestController extends BookingAbstractController{
         super(bookingService, superBookingService);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Booking> createWithLocation(@RequestBody Booking booking,
-                                                      @RequestParam("hotelId") int hotelId) {
-        Booking created = super.create(booking, hotelId);
-
-        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path(REST_URL + "/{id}&{hotelId}")
-                .buildAndExpand(created.getId() + "&" + hotelId).toUri();
-
-        return ResponseEntity.created(uriOfNewResource).body(created);
-    }
+//    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<Booking> createBookingWithLocation(@RequestBody Booking booking,
+//                                                      @RequestParam("hotelId") int hotelId) {
+//        Booking created = super.createSuperBooking(booking, hotelId);
+//
+//        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
+//                .path(REST_URL + "/{id}&{hotelId}")
+//                .buildAndExpand(created.getId() + "&" + hotelId).toUri();
+//
+//        return ResponseEntity.created(uriOfNewResource).body(created);
+//    }
 
 
 }

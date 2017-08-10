@@ -19,8 +19,8 @@ public class AdminBookingRestController extends BookingAbstractController {
     }
 
     @Override
-    public Booking createBooking(Booking booking, int apartmentId) {
-        return super.createBooking(booking, apartmentId);
+    public Booking createBooking(Booking booking, int superBookingId, int apartmentId) {
+        return super.createBooking(booking, superBookingId, apartmentId);
     }
 
     @Override
@@ -31,11 +31,6 @@ public class AdminBookingRestController extends BookingAbstractController {
     @Override
     public Booking getBooking(Long id, int superBookingId, int apartmentId) {
         return super.getBooking(id, superBookingId, apartmentId);
-    }
-
-    @Override
-    public List<Booking> getAllBookingsByHotelBetweenDates(int apartmentId, LocalDateTime startDate, LocalDateTime endDate) {
-        return super.getAllBookingsByHotelBetweenDates(apartmentId, startDate, endDate);
     }
 
     @Override

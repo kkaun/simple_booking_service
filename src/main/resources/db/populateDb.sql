@@ -749,11 +749,11 @@ VALUES
 
 
 
-INSERT INTO user (name, email, password)
+INSERT INTO user (email, phone, name, password)
 VALUES
-  ('User1', 'user1@yandex.ru', 'password1'),
-  ('User2', 'user2@yandex.ru', 'password2'),
-  ('User3', 'user3@yandex.ru', 'password3');
+  ('user1@yandex.ru', '483748273423', 'User1', 'password1'),
+  ('user2@yandex.ru', '483711111123','User2', 'password2'),
+  ('user3@yandex.ru', '483333373423','User3', 'password3');
 
 INSERT INTO user (name, email, password)
 VALUES ('Manager', 'manager@gmail.com', 'manager');

@@ -21,8 +21,6 @@ public interface BookingService {
 
     Booking get(Long id, int superBookingId, int apartmentId) throws NotFoundException;
 
-    List<Booking> getAllByHotelBetweenDates(int hotelId, LocalDateTime startDate, LocalDateTime endDate);
-
     List<Booking> getAll();
 
 }

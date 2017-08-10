@@ -55,7 +55,7 @@ public class User extends NamedEntity {
 
     @OrderBy("dateAdded DESC")
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
-    private Set<Booking> bookings;
+    private Set<SuperBooking> superBookings;
 
     @OrderBy("dateAdded DESC")
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
@@ -89,7 +89,6 @@ public class User extends NamedEntity {
         this.email = email;
         this.password = password;
         this.phone = phone;
-        this.bookings = bookings;
         this.registered = registered;
         setRoles(roles);
     }
@@ -145,12 +144,12 @@ public class User extends NamedEntity {
         this.roles = CollectionUtils.isEmpty(roles) ? Collections.emptySet() : EnumSet.copyOf(roles);
     }
 
-    public Set<Booking> getBookings() {
-        return bookings;
+    public Set<SuperBooking> getSuperBookings() {
+        return superBookings;
     }
 
-    public void setBookings(Set<Booking> bookings) {
-        this.bookings = bookings;
+    public void setSuperBookings(Set<SuperBooking> superBookings) {
+        this.superBookings = superBookings;
     }
 
     public Set<Vote> getVotes() {
@@ -173,15 +172,18 @@ public class User extends NamedEntity {
         this.hotels = hotels;
     }
 
+
     @Override
     public String toString() {
         return "User{" +
-                "id='" + getId() + "\'" +
-                ", name='" + getName() + "\'" +
+                "email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
                 ", password='" + password + '\'' +
                 ", registered=" + registered +
-                ", roles=" + roles.toString() +
-                ", bookings=" + bookings.toString() +
+                ", roles=" + roles +
+                ", superBookings=" + superBookings +
+                ", votes=" + votes +
+                ", hotels=" + hotels +
                 '}';
     }
 }
