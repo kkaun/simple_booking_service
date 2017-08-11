@@ -1,7 +1,7 @@
 package com.kirak.web.jsp;
 
 import com.kirak.service.HotelService;
-import com.kirak.web.AuthorizedUser;
+import com.kirak.web.session.AuthorizedUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

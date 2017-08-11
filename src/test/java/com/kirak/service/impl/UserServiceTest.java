@@ -55,7 +55,7 @@ public class UserServiceTest extends AbstractServiceTest {
 //                of(2017, Month.JUNE, 19, 15, 12), USER1, HOTEL3)));
 //        updated.setRoles(Arrays.asList(UserRole.ROLE_USER, UserRole.ROLE_SYSTEM_ADMIN));
 //        service.update(updated);
-//        USER_MATCHER.assertEquals(updated, service.get(USER1_ID));
+//        USER_MATCHER.assertEquals(updated, service.getPlacementMap(USER1_ID));
 //    }
 
 //    @Test(expected = DataAccessException.class)
@@ -75,14 +75,14 @@ public class UserServiceTest extends AbstractServiceTest {
 //    }
 //
 //    @Test
-//    public void get() throws Exception {
-//        User user = service.get(ADMIN_ID);
+//    public void getPlacementMap() throws Exception {
+//        User user = service.getPlacementMap(ADMIN_ID);
 //        USER_MATCHER.assertEquals(ADMIN, user);
 //    }
 //
 //    @Test(expected = NotFoundException.class)
 //    public void getNotFound() throws Exception {
-//        service.get(ADMIN_ID + 11);
+//        service.getPlacementMap(ADMIN_ID + 11);
 //    }
 //
 //    @Test

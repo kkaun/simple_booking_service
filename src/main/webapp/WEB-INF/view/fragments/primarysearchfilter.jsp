@@ -14,19 +14,28 @@
                         <div class="col-md-3">
                             <label for="location" class="control-label" style="border-radius: 3px">Location(City)</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" name="location" id="location" value="${city}">
+                                <input type="text" class="form-control" name="location" id="location" value="${param.city}">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-globe"></span>
+                                </span>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <label for="in_date" class="control-label">Check-in</label>
                             <div class="input-group">
-                                <input type="date" class="input-sm" id="in_date" name="inDate" value="${inDate}">
+                                <input class="form-control in_date" name="inDate" id="in_date" value="${param.inDate}">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <label for="out_date" class="control-label">Check-out</label>
                             <div class="input-group">
-                                <input type="date" class="input-sm" id="out_date" name="outDate" value="${outDate}">
+                                <input class="form-control out_date" name="outDate" id="out_date" value="${param.outDate}">
+                                        <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
                             </div>
                         </div>
                         <div class="col-md-1">
@@ -61,7 +70,7 @@
                         </div>
                         <div class="col-md-1">
                             <button type="submit" class="btn btn-danger glyphicon glyphicon-search"
-                                    style="margin-top:21px; padding-left: 30px; padding-right: 30px"></button>
+                                    style="margin-top:22px; padding-left: 30px; padding-right: 30px"></button>
                         </div>
                     </div>
                 </div>
@@ -69,5 +78,6 @@
         </div>
     </div>
 </div>
+
 </body>
 </html>

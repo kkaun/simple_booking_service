@@ -55,7 +55,7 @@ public abstract class UserAbstractController {
     }
 
     public User get(int id) {
-        log.info("get {}", id);
+        log.info("getPlacementMap {}", id);
         return userService.get(id);
     }
 

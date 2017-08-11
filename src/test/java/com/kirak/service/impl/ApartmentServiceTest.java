@@ -56,22 +56,22 @@ public class ApartmentServiceTest extends AbstractServiceTest {
 //    }
 //
 //    @Test
-//    public void get() throws Exception {
-//        Apartment actual = service.get(APARTMENT2_ID, HOTEL1_ID);
+//    public void getPlacementMap() throws Exception {
+//        Apartment actual = service.getPlacementMap(APARTMENT2_ID, HOTEL1_ID);
 //        APARTMENT_MATCHER.assertEquals(APARTMENT2, actual);
 //    }
 //
 //    @Test
 //    public void getNotFound() throws Exception {
 //        thrown.expect(NotFoundException.class);
-//        service.get(APARTMENT3_ID, HOTEL4_ID);
+//        service.getPlacementMap(APARTMENT3_ID, HOTEL4_ID);
 //    }
 //
 //    @Test
 //    public void update() throws Exception {
 //        Apartment updated = getUpdatedApartment();
 //        service.update(updated, HOTEL1_ID);
-//        APARTMENT_MATCHER.assertEquals(updated, service.get(APARTMENT1_ID, HOTEL1_ID));
+//        APARTMENT_MATCHER.assertEquals(updated, service.getPlacementMap(APARTMENT1_ID, HOTEL1_ID));
 //    }
 //
 //    @Test

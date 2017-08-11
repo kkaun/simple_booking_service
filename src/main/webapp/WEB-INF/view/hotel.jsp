@@ -269,25 +269,35 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group pull-right">
-                                                            <label for="in_date" class="control-label text-center">From
-                                                                Date</label>
-                                                            <div class="input-group">
-                                                                <input type="date" class="input-sm" id="in_date"
-                                                                       name="inDate">
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <label for="hotel_in_date" class="control-label text-center">From
+                                                                    Date</label>
+                                                                <div class="input-group">
+                                                                    <input class="form-control in_date" id="hotel_in_date"
+                                                                           name="inDate">
+                                                                    <span class="input-group-addon">
+                                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                                    </span>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group pull-right">
-                                                            <label for="out_date" class="control-label text-center">To
-                                                                Date</label>
-                                                            <div class="input-group">
-                                                                <input type="date" class="input-sm" id="out_date"
-                                                                       name="outDate">
+                                                        <div class="col-md-1"></div>
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <label for="hotel_out_date" class="control-label text-center">To
+                                                                    Date</label>
+                                                                <div class="input-group">
+                                                                    <input class="form-control out_date" id="hotel_out_date"
+                                                                           name="outDate">
+                                                                    <span class="input-group-addon">
+                                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                                    </span>
+                                                                </div>
                                                             </div>
                                                         </div>
+                                                        <div class="col-md-1"></div>
                                                     </div>
                                                 </div>
                                                 <button type="submit" class="btn btn-default btn-lg btn-block"> Check
@@ -333,7 +343,7 @@
                                                     <button type="button" class="close" data-dismiss="modal">&times;
                                                     </button>
                                                     <h4 class="modal-title"> Please, specify enlisted parameters </h4>
-                                                    <h6>Note that we are not supporting single bookings with duration of
+                                                    <h6>Note that service is not supporting single bookings with duration of
                                                         more than 30 nights</h6>
                                                 </div>
 
@@ -342,25 +352,32 @@
                                                         <input type="hidden" name="apartmentId" value="${apartment.id}">
                                                         <input type="hidden" name="hotelId" value="${hotel.id}">
                                                         <div class="col-md-12">
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-5">
                                                                 <div class="form-group">
                                                                     <label for="apt_in_date" class="control-label">From
                                                                         Date</label>
                                                                     <div class="input-group">
-                                                                        <input type="date" class="form-control"
+                                                                        <input class="form-control"
                                                                                id="apt_in_date"
                                                                                name="aptInDate">
+                                                                        <span class="input-group-addon in_date">
+                                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                                        </span>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-2"></div>
+                                                            <div class="col-md-5">
                                                                 <div class="form-group">
                                                                     <label for="apt_out_date" class="control-label">To
                                                                         Date</label>
                                                                     <div class="input-group">
-                                                                        <input type="date" class="form-control"
+                                                                        <input class="form-control"
                                                                                id="apt_out_date"
                                                                                name="aptOutDate">
+                                                                        <span class="input-group-addon out_date">
+                                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                                        </span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -392,6 +409,8 @@
 
     </div>
 </div>
+
+
 
 </body>
 </html>

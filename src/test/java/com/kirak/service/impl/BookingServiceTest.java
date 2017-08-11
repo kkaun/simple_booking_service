@@ -42,7 +42,7 @@ public class BookingServiceTest extends AbstractServiceTest {
 //    public void update() throws Exception {
 //        Booking updated = getUpdatedBooking();
 //        service.update(updated, USER1_ID, HOTEL1_ID);
-//        BOOKING_MATCHER.assertEquals(updated, service.get(BOOKING1_ID, USER1_ID, HOTEL1_ID));
+//        BOOKING_MATCHER.assertEquals(updated, service.getPlacementMap(BOOKING1_ID, USER1_ID, HOTEL1_ID));
 //    }
 //
 //    @Test
@@ -53,15 +53,15 @@ public class BookingServiceTest extends AbstractServiceTest {
 //    }
 //
 //    @Test
-//    public void get() throws Exception {
-//        BOOKING_MATCHER.assertEquals(BOOKING3, service.get(BOOKING3_ID, USER3_ID, HOTEL2_ID));
+//    public void getPlacementMap() throws Exception {
+//        BOOKING_MATCHER.assertEquals(BOOKING3, service.getPlacementMap(BOOKING3_ID, USER3_ID, HOTEL2_ID));
 //    }
 //
 //    @Test
 //    public void getNotFound() throws Exception {
 //        thrown.expect(NotFoundException.class);
 //        thrown.expectMessage("Not found entity with id=" + BOOKING1_ID);
-//        service.get(BOOKING1_ID, USER3_ID, HOTEL2_ID);
+//        service.getPlacementMap(BOOKING1_ID, USER3_ID, HOTEL2_ID);
 //    }
 //
 //    @Test

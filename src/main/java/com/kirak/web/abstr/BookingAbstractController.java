@@ -4,12 +4,10 @@ import com.kirak.model.Booking;
 import com.kirak.model.SuperBooking;
 import com.kirak.service.BookingService;
 import com.kirak.service.SuperBookingService;
-import com.kirak.web.AuthorizedUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**

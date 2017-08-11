@@ -45,7 +45,7 @@ public class VoteServiceTest extends AbstractServiceTest {
 //    public void update() throws Exception {
 //        Vote updated = getUpdatedVote();
 //        service.update(updated, USER1_ID, HOTEL3_ID);
-//        VOTE_MATCHER.assertEquals(updated, service.get(VOTE1_ID, USER1_ID, HOTEL3_ID));
+//        VOTE_MATCHER.assertEquals(updated, service.getPlacementMap(VOTE1_ID, USER1_ID, HOTEL3_ID));
 //    }
 //
 //    @Test
@@ -56,15 +56,15 @@ public class VoteServiceTest extends AbstractServiceTest {
 //    }
 //
 //    @Test
-//    public void get() throws Exception {
-//        VOTE_MATCHER.assertEquals(VOTE2, service.get(VOTE2_ID, USER2_ID, HOTEL1_ID));
+//    public void getPlacementMap() throws Exception {
+//        VOTE_MATCHER.assertEquals(VOTE2, service.getPlacementMap(VOTE2_ID, USER2_ID, HOTEL1_ID));
 //    }
 //
 //    @Test
 //    public void getNotFound() throws Exception {
 //        thrown.expect(NotFoundException.class);
 //        thrown.expectMessage("Not found entity with id=" + VOTE2_ID);
-//        service.get(VOTE2_ID, USER1_ID, HOTEL1_ID);
+//        service.getPlacementMap(VOTE2_ID, USER1_ID, HOTEL1_ID);
 //    }
 
 //    @Test

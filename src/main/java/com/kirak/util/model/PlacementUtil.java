@@ -1,9 +1,9 @@
 package com.kirak.util.model;
 
 import com.kirak.model.Apartment;
-import com.kirak.model.AptType;
+import com.kirak.service.SessionPlacementsService;
 import com.kirak.to.Placement;
-import com.kirak.web.AuthorizedUser;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -13,14 +13,14 @@ import java.util.List;
  */
 public class PlacementUtil {
 
-    public static Placement getPlacementFromId(Integer id){
+    public static Placement getPlacementFromId(SessionPlacementsService sessionPlacementsService, Integer id){
 
-        return AuthorizedUser.getSessionPlacements().get(id);
+        return sessionPlacementsService.getPlacementMap().get(id);
     }
 
-    public static int getHotelIdFromPlacementId(Integer id){
+    public static int getHotelIdFromPlacementId(SessionPlacementsService sessionPlacementsService, Integer id){
 
-        Placement placement = getPlacementFromId(id);
+        Placement placement = getPlacementFromId(sessionPlacementsService, id);
         return placement.getHotel().getId();
     }
 
@@ -37,10 +37,14 @@ public class PlacementUtil {
                 .mapToDouble(Double::intValue).sum();
     }
 
-    public static Placement convertAvailableApartmentToPlacement(Apartment apartment){
+    public static Placement convertAvailableApartmentToPlacement(SessionPlacementsService sessionPlacementsService, Apartment apartment){
 
-        return new Placement(HotelUtil.asHotelTo(apartment.getHotel()),
+        Placement placement = new Placement(HotelUtil.asHotelTo(apartment.getHotel()),
                 Collections.singletonMap(apartment.getType(), Collections.singletonList(apartment)));
+
+        sessionPlacementsService.putPlacement(placement);
+
+        return placement;
     }
 
 

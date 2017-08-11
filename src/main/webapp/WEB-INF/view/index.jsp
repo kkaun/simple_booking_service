@@ -9,7 +9,6 @@
 <jsp:include page="fragments/header.jsp"/>
 <body>
 
-
 <div class="container">
     <div class="row" style="margin-bottom: 10px">
 
@@ -145,6 +144,7 @@
         });
         $('#cityCarousel').carousel('cycle');
     });
+
 </script>
 
 </body>

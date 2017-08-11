@@ -6,17 +6,12 @@ import com.kirak.model.UserRole;
 import com.kirak.to.UserTo;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Created by Kir on 26.06.2017.
  */
 public class UserUtil {
 
-    public static User createNewAnonymousFromTo(UserTo newUser) {
-        return new User(null, newUser.getName(), newUser.getEmail().toLowerCase(), newUser.getPhone(),
-                UserRole.ROLE_USER);
-    }
 
     public static User createNewRegisteredFromTo(UserTo newUser) {
         return new User(null, newUser.getName(), newUser.getEmail().toLowerCase(), newUser.getPhone(),
