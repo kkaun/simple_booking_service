@@ -21,9 +21,6 @@ public class BookingTo extends BaseLongEntity implements Serializable {
     private Hotel hotel;
     private Apartment apartment;
 
-    private LocalDateTime inDateTime;
-    private LocalDateTime outDateTime;
-
     private LocalDate inDate;
     private LocalDate outDate;
 
@@ -76,22 +73,6 @@ public class BookingTo extends BaseLongEntity implements Serializable {
         this.apartment = apartment;
     }
 
-    public LocalDateTime getInDateTime() {
-        return inDateTime;
-    }
-
-    public void setInDateTime(LocalDateTime inDateTime) {
-        this.inDateTime = inDateTime;
-    }
-
-    public LocalDateTime getOutDateTime() {
-        return outDateTime;
-    }
-
-    public void setOutDateTime(LocalDateTime outDateTime) {
-        this.outDateTime = outDateTime;
-    }
-
     public LocalDate getInDate() {
         return inDate;
     }
@@ -130,8 +111,6 @@ public class BookingTo extends BaseLongEntity implements Serializable {
                 "id=" + id +
                 ", hotel=" + hotel +
                 ", apartment=" + apartment +
-                ", inDateTime=" + inDateTime +
-                ", outDateTime=" + outDateTime +
                 ", inDate=" + inDate +
                 ", outDate=" + outDate +
                 ", personNum=" + personNum +

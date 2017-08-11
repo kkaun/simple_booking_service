@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -18,12 +19,12 @@ public class Booking extends BaseLongEntity {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @NotNull
     @Column(name = "in_date", nullable = false)
-    private LocalDateTime inDate;
+    private LocalDate inDate;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @NotNull
     @Column(name = "out_date", nullable = false)
-    private LocalDateTime outDate;
+    private LocalDate outDate;
 
     @NotNull
     @Column(name = "sum", precision=11, scale=2, nullable = false)
@@ -48,12 +49,12 @@ public class Booking extends BaseLongEntity {
 
     public Booking(){}
 
-    public Booking(LocalDateTime inDate, LocalDateTime outDate,
+    public Booking(LocalDate inDate, LocalDate outDate,
                    Double sum, Short personNum, SuperBooking superBooking, Apartment apartment, Hotel hotel) {
         this(null, inDate, outDate, sum, personNum, superBooking, apartment, hotel);
     }
 
-    public Booking(Long id, LocalDateTime inDate, LocalDateTime outDate,
+    public Booking(Long id, LocalDate inDate, LocalDate outDate,
                    Double sum, Short personNum, SuperBooking superBooking, Apartment apartment, Hotel hotel) {
         super(id);
         this.inDate = inDate;
@@ -66,19 +67,19 @@ public class Booking extends BaseLongEntity {
     }
 
 
-    public LocalDateTime getInDate() {
+    public LocalDate getInDate() {
         return inDate;
     }
 
-    public void setInDate(LocalDateTime inDate) {
+    public void setInDate(LocalDate inDate) {
         this.inDate = inDate;
     }
 
-    public LocalDateTime getOutDate() {
+    public LocalDate getOutDate() {
         return outDate;
     }
 
-    public void setOutDate(LocalDateTime outDate) {
+    public void setOutDate(LocalDate outDate) {
         this.outDate = outDate;
     }
 

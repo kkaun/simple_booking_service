@@ -4,6 +4,10 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+<style type="text/css">
+
+</style>
+
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <jsp:include page="fragments/header.jsp"/>
@@ -319,98 +323,86 @@
                 <c:if test="${not empty hotel && not empty apartments}">
                     <h3 class="text-center">Inspect all apartments of this object:</h3>
                     <br>
-                    <div class="list-group">
+
                         <c:forEach items="${apartments}" var="apartment" varStatus="vs">
-                            <a class="list-group-item">
-                                <div class="col-md-7">
-                                    <h4 class="list-group-item-text">
-                                         <c:out value="${apartment.type.personNum}"/>-person
-                                         <c:out value="${apartment.type.category}"/> with <c:out value="${apartment.type.bedsArrangement}"/>
-                                    </h4>
-                                    <br>
-
-                                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-                                            data-target="#myModal${vs.index}" id="viewDetailButton${vs.index}"> Check
-                                        Availability
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="myModal${vs.index}" role="dialog">
-                                        <div class="modal-dialog">
-                                            <!-- Modal content-->
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal">&times;
-                                                    </button>
-                                                    <h4 class="modal-title"> Please, specify enlisted parameters </h4>
-                                                    <h6>Note that service is not supporting single bookings with duration of
-                                                        more than 30 nights</h6>
-                                                </div>
-
-                                                <div class="modal-body">
-                                                    <form class="form-horizontal" method="get" action="check_hotel_apt">
-                                                        <input type="hidden" name="apartmentId" value="${apartment.id}">
-                                                        <input type="hidden" name="hotelId" value="${hotel.id}">
-                                                        <div class="col-md-12">
-                                                            <div class="col-md-5">
-                                                                <div class="form-group">
-                                                                    <label for="apt_in_date" class="control-label">From
-                                                                        Date</label>
-                                                                    <div class="input-group">
-                                                                        <input class="form-control"
-                                                                               id="apt_in_date"
-                                                                               name="aptInDate">
-                                                                        <span class="input-group-addon in_date">
-                                                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-2"></div>
-                                                            <div class="col-md-5">
-                                                                <div class="form-group">
-                                                                    <label for="apt_out_date" class="control-label">To
-                                                                        Date</label>
-                                                                    <div class="input-group">
-                                                                        <input class="form-control"
-                                                                               id="apt_out_date"
-                                                                               name="aptOutDate">
-                                                                        <span class="input-group-addon out_date">
-                                                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                                        </span>
-                                                                    </div>
+                            <div class="list-group">
+                            <a class="list-group-item apartmentListItem">
+                                <div class="row" style="padding-bottom: 10px;">
+                                    <div class="col-md-7">
+                                        <h4 class="list-group-item-text">
+                                             <c:out value="${apartment.type.personNum}"/>-person
+                                             <c:out value="${apartment.type.category}"/> with <c:out value="${apartment.type.bedsArrangement}"/>
+                                        </h4>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <button class="btn btn-info btn-lg" type="button" data-toggle="collapse"
+                                                data-target="#checkAvCollapseId${vs.index}"
+                                                aria-expanded="false" style="padding-left: 40px; padding-right: 40px;
+                                                 margin-bottom: 0; margin-left: 5px;"> Check Availability </button>
+                                    </div>
+                                    <div class="media col-md-5">
+                                        <figure class="pull-left">
+                                            <img class="media-object img-rounded img-responsive"
+                                                 src="http://placehold.it/350x250" alt="placehold.it/350x250">
+                                        </figure>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="collapse" id="checkAvCollapseId${vs.index}" style="margin-top: 10px; margin-left: 5px; margin-right: 10px">
+                                            <div class="well">
+                                                <form class="form-horizontal" method="get" action="check_hotel_apt">
+                                                    <input type="hidden" name="apartmentId" value="${apartment.id}">
+                                                    <input type="hidden" name="hotelId" value="${hotel.id}">
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <label for="apt_in_date" class="control-label">From
+                                                                    Date</label>
+                                                                <div class="input-group">
+                                                                    <input class="form-control in_date" readonly="readonly"
+                                                                           id="apt_in_date"
+                                                                           name="aptInDate">
+                                                                    <span class="input-group-addon">
+                                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <button type="submit" class="btn btn-default btn-lg btn-block">
-                                                            Check
-                                                        </button>
-                                                    </form>
-                                                </div>
-
-                                                <div class="modal-footer">
-                                                </div>
+                                                        <div class="col-md-2"></div>
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <label for="apt_out_date" class="control-label">To
+                                                                    Date</label>
+                                                                <div class="input-group">
+                                                                    <input class="form-control out_date" readonly="readonly"
+                                                                           id="apt_out_date"
+                                                                           name="aptOutDate">
+                                                                    <span class="input-group-addon">
+                                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-default btn-lg btn-block">
+                                                        Check
+                                                    </button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="media col-md-5">
-                                    <figure class="pull-left">
-                                        <img class="media-object img-rounded img-responsive"
-                                             src="http://placehold.it/350x250" alt="placehold.it/350x250">
-                                    </figure>
-                                </div>
                             </a>
-                        </c:forEach>
-                    </div>
+                            </div>
+                    </c:forEach>
                 </c:if>
             </div>
         </div>
-
     </div>
 </div>
-
-
 
 </body>
 </html>

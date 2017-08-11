@@ -1,13 +1,9 @@
 package com.kirak.to;
 
-import com.kirak.model.City;
-import com.kirak.model.Country;
-import com.kirak.model.Vote;
 import com.kirak.model.abstraction.NamedEntity;
 
 import java.io.Serializable;
 import java.sql.Time;
-import java.util.Set;
 
 /**
  * Created by Kir on 24.06.2017.
@@ -30,13 +26,26 @@ public class HotelTo extends NamedEntity implements Serializable {
 
     private final Integer votesNum;
 
-    public HotelTo(Integer id, String name, Double rating, Short stars, String description, int votesNum) {
+    private Time checkIn;
+
+    private Time checkOut;
+
+    private String address;
+
+    private String phone;
+
+    public HotelTo(Integer id, String name, Double rating, Short stars, String description, int votesNum,
+                   Time checkIn, Time outTime, String address, String phone) {
         this.id = id;
         this.name = name;
         this.rating = rating;
         this.stars = stars;
         this.description = description;
         this.votesNum = votesNum;
+        this.checkIn = checkIn;
+        this.checkOut = outTime;
+        this.address = address;
+        this.phone = phone;
     }
 
     @Override
@@ -63,6 +72,38 @@ public class HotelTo extends NamedEntity implements Serializable {
 
     public Integer getVotesNum() {
         return votesNum;
+    }
+
+    public Time getCheckIn() {
+        return checkIn;
+    }
+
+    public void setCheckIn(Time checkIn) {
+        this.checkIn = checkIn;
+    }
+
+    public Time getCheckOut() {
+        return checkOut;
+    }
+
+    public void setCheckOut(Time checkOut) {
+        this.checkOut = checkOut;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     @Override

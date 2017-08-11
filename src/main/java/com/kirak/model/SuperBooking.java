@@ -1,10 +1,8 @@
 package com.kirak.model;
 
 import com.kirak.model.abstraction.BaseIntEntity;
-import com.kirak.model.abstraction.BaseLongEntity;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -44,7 +42,6 @@ public class SuperBooking extends BaseIntEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @NotNull
     @OneToMany(mappedBy = "superBooking")
     private Set<Booking> bookings;
 

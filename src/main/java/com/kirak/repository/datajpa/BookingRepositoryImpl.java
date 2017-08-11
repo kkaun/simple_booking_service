@@ -21,8 +21,6 @@ import java.util.List;
 @Repository
 public class BookingRepositoryImpl implements BookingRepository {
 
-    private Sort DATE_ADDED_SORT = new Sort(Sort.Direction.DESC, "dateAdded");
-
     @Autowired
     private DataJpaBookingRepository bookingRepository;
 
@@ -52,7 +50,7 @@ public class BookingRepositoryImpl implements BookingRepository {
 
     @Override
     public List<Booking> getAll() {
-        return bookingRepository.findAll(DATE_ADDED_SORT);
+        return bookingRepository.findAll();
     }
 
 }

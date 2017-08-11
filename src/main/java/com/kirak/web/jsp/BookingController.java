@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -212,7 +213,7 @@ public class BookingController extends BookingAbstractController{
                                           @RequestParam ("bookingPlacementId") String placementId,
                                           @RequestParam ("bookingInDate") String inDate, @RequestParam ("bookingOutDate") String outDate,
                                           @RequestParam ("bookingPersonNum") String personNum, @RequestParam ("userName") String userName,
-                                          @RequestParam ("userPhone") String userPhone, @RequestParam ("userEmail") String userEmail, Model model) {
+                                          @RequestParam ("userEmail") String userEmail, @RequestParam ("userPhone") String userPhone, Model model) {
 
         User user = new User(userName, userEmail, userPhone, UserRole.ROLE_USER);
         userService.save(user);
@@ -224,7 +225,7 @@ public class BookingController extends BookingAbstractController{
         Placement placement = PlacementUtil.getPlacementFromId(sessionPlacementsService, Integer.parseInt(placementId));
 
         placement.getOption().values().forEach(apartments -> apartments.forEach(apartment -> {
-            Booking booking = new Booking(LocalDateTime.parse(inDate), LocalDateTime.parse(outDate), apartment.getPrice(),
+            Booking booking = new Booking(LocalDate.parse(inDate), LocalDate.parse(outDate), apartment.getPrice(),
                     apartment.getType().getPersonNum(), superBooking, apartment, hotelService.get(Integer.parseInt(hotelId)));
             super.createBooking(booking, superBooking.getId(), apartment.getId());
         }));
@@ -238,7 +239,6 @@ public class BookingController extends BookingAbstractController{
         model.addAttribute("placementPersonNum", personNum);
         model.addAttribute("placementInDate", inDate);
         model.addAttribute("placementOutDate", outDate);
-
         return "confirmation";
     }
 

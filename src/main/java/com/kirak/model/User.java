@@ -32,12 +32,9 @@ public class User extends NamedEntity {
     private String email;
 
     @Column(name = "phone", nullable = false, unique = true)
-    @Email
-    @NotBlank
     private String phone;
 
     @Column(name = "password", nullable = false)
-    @NotBlank
     @Length(min = 5)
     private String password;
 
@@ -84,7 +81,7 @@ public class User extends NamedEntity {
         this(id, name, email, phone, password, new Date(), EnumSet.of(role, roles));
     }
 
-    public User(Integer id, String name, String email,String phone, String password, Date registered, Collection<UserRole> roles) {
+    public User(Integer id, String name, String email, String phone, String password, Date registered, Collection<UserRole> roles) {
         super(id, name);
         this.email = email;
         this.password = password;

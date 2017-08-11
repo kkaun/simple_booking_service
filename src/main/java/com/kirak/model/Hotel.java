@@ -2,6 +2,7 @@ package com.kirak.model;
 
 import com.kirak.model.abstraction.NamedEntity;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
@@ -52,14 +53,17 @@ public class Hotel extends NamedEntity {
 
     @Length(max = 15)
     @Column(name = "phone")
+    @NotNull
     private String phone;
 
     @Column(name = "description", columnDefinition = "TINYTEXT")
     private String description;
 
+    @NotNull
     @Column(name = "check_in")
     private Time checkIn;
 
+    @NotNull
     @Column(name = "check_out")
     private Time checkOut;
 

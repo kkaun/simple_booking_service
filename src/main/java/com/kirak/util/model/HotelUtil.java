@@ -7,7 +7,6 @@ import com.kirak.to.Placement;
 import org.springframework.ui.Model;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -23,7 +22,8 @@ public class HotelUtil {
 
     public static HotelTo asHotelTo(Hotel hotel) {
         return new HotelTo(hotel.getId(), hotel.getName(), calculateHotelRating(hotel), hotel.getStars(),
-                hotel.getDescription(), calculateHotelVotesNum(hotel));
+                hotel.getDescription(), calculateHotelVotesNum(hotel), hotel.getCheckIn(),
+                hotel.getCheckOut(), hotel.getAddress(), hotel.getPhone());
     }
 
 
