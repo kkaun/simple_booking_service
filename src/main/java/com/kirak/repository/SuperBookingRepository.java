@@ -2,6 +2,8 @@ package com.kirak.repository;
 
 import com.kirak.model.SuperBooking;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -9,18 +11,27 @@ import java.util.List;
  */
 public interface SuperBookingRepository {
 
-    // null if updated superSuperBooking does not belong to superSuperBookingId
+    SuperBooking save(SuperBooking superBooking);
+
     SuperBooking save(SuperBooking superBooking, int userId);
 
     default boolean delete(long id, int userId){
         throw new UnsupportedOperationException("SuperBooking cannot be deleted, only modified!");
     }
 
-    // null if superSuperBooking does not belong to superSuperBookingId
+    SuperBooking get(Integer id);
+
     SuperBooking get(int id, int userId);
 
     List<SuperBooking> getAll();
 
-    List<SuperBooking> getAllByUserId(int superBookingId);
+    List<SuperBooking> getAllByUserId(int userId);
 
+    List<SuperBooking> getAllByHotelId(int hotelId);
+
+    List<SuperBooking> getAllBetweenCreatedDateTimes(LocalDateTime startDateTime, LocalDateTime endDateTime);
+
+    List<SuperBooking> getAllByInDate(LocalDate inDate);
+
+    List<SuperBooking> getAllByOutDate(LocalDate outDate);
 }

@@ -6,7 +6,6 @@ import com.kirak.service.BookingService;
 import com.kirak.service.SuperBookingService;
 import com.kirak.web.abstr.BookingAbstractController;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -43,29 +42,4 @@ public class OverallBookingsAjaxController extends BookingAbstractController {
     // ----------------------- SuperBooking methods ----------------------- //
 
 
-
-    @Override
-    public SuperBooking createSuperBooking(SuperBooking superBooking, int userId) {
-        return super.createSuperBooking(superBooking, userId);
-    }
-
-    @Override
-    public SuperBooking updateSuperBooking(SuperBooking superBooking, int userId) {
-        return super.updateSuperBooking(superBooking, userId);
-    }
-
-    @Override
-    public SuperBooking getSuperBooking(Integer id, int userId) {
-        return super.getSuperBooking(id, userId);
-    }
-
-    @Override
-    public List<SuperBooking> getAllSuperBookings() {
-        return super.getAllSuperBookings();
-    }
-
-    @Override
-    public List<SuperBooking> getAllSuperBookingsByUserId(int userId) {
-        return super.getAllSuperBookingsByUserId(userId);
-    }
 }

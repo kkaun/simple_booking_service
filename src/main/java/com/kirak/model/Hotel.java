@@ -85,6 +85,9 @@ public class Hotel extends NamedEntity {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "hotel")
     private Set<Vote> votes;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel")
+    private Set<SuperBooking> superBookings;
+
     public Hotel(){}
 
     public Hotel(Hotel h) {
@@ -228,6 +231,14 @@ public class Hotel extends NamedEntity {
 
     public void setBookings(Set<Booking> bookings) {
         this.bookings = bookings;
+    }
+
+    public Set<SuperBooking> getSuperBookings() {
+        return superBookings;
+    }
+
+    public void setSuperBookings(Set<SuperBooking> superBookings) {
+        this.superBookings = superBookings;
     }
 
     @Override

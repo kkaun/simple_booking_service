@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -25,6 +26,16 @@ public class SuperBooking extends BaseIntEntity {
     @Column(name = "date_added", nullable = false)
     private LocalDateTime dateAdded;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @NotNull
+    @Column(name = "in_date", nullable = false)
+    private LocalDate inDate;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @NotNull
+    @Column(name = "out_date", nullable = false)
+    private LocalDate outDate;
+
     @Range(min = 0, max = 10)
     @Column(name = "extra_beds")
     private Short extraBeds = 0;
@@ -42,7 +53,7 @@ public class SuperBooking extends BaseIntEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
@@ -51,16 +62,38 @@ public class SuperBooking extends BaseIntEntity {
 
     public SuperBooking(){}
 
-    public SuperBooking(boolean active, LocalDateTime dateAdded, Short extraBeds, Double overallSum,
-                        Short overallPersonNum, User user, Hotel hotel) {
-        this(null, active, dateAdded, extraBeds, overallSum, overallPersonNum, user, hotel);
+    //For manager/admin bookings
+    public SuperBooking(boolean active, LocalDateTime dateAdded, LocalDate inDate, LocalDate outDate, Short extraBeds, Double overallSum,
+                        Short overallPersonNum, Hotel hotel) {
+        this(null, active, dateAdded, inDate, outDate, extraBeds, overallSum, overallPersonNum, hotel);
     }
 
-    public SuperBooking(Integer id, boolean active, LocalDateTime dateAdded, Short extraBeds, Double overallSum,
-                        Short overallPersonNum, User user, Hotel hotel) {
+    public SuperBooking(Integer id, boolean active, LocalDateTime dateAdded, LocalDate inDate, LocalDate outDate,
+                        Short extraBeds, Double overallSum, Short overallPersonNum, Hotel hotel) {
         super(id);
         this.active = active;
         this.dateAdded = dateAdded;
+        this.inDate = inDate;
+        this.outDate = outDate;
+        this.extraBeds = extraBeds;
+        this.overallSum = overallSum;
+        this.overallPersonNum = overallPersonNum;
+        this.hotel = hotel;
+    }
+
+    //For registered user's bookings
+    public SuperBooking(boolean active, LocalDateTime dateAdded, LocalDate inDate, LocalDate outDate, Short extraBeds,
+                        Double overallSum, Short overallPersonNum, User user, Hotel hotel) {
+        this(null, active, dateAdded, inDate, outDate, extraBeds, overallSum, overallPersonNum, user, hotel);
+    }
+
+    public SuperBooking(Integer id, boolean active, LocalDateTime dateAdded,  LocalDate inDate, LocalDate outDate,
+                        Short extraBeds, Double overallSum, Short overallPersonNum, User user, Hotel hotel) {
+        super(id);
+        this.active = active;
+        this.dateAdded = dateAdded;
+        this.inDate = inDate;
+        this.outDate = outDate;
         this.extraBeds = extraBeds;
         this.overallSum = overallSum;
         this.overallPersonNum = overallPersonNum;
@@ -132,12 +165,30 @@ public class SuperBooking extends BaseIntEntity {
         this.hotel = hotel;
     }
 
+    public LocalDate getInDate() {
+        return inDate;
+    }
+
+    public void setInDate(LocalDate inDate) {
+        this.inDate = inDate;
+    }
+
+    public LocalDate getOutDate() {
+        return outDate;
+    }
+
+    public void setOutDate(LocalDate outDate) {
+        this.outDate = outDate;
+    }
+
     @Override
     public String toString() {
         return "SuperBooking{" +
                 "id='" + getId() + '\'' +
-                "active=" + active +
+                ", active=" + active +
                 ", dateAdded=" + dateAdded +
+                ", inDate=" + inDate +
+                ", outDate=" + outDate +
                 ", extraBeds=" + extraBeds +
                 ", overallSum=" + overallSum +
                 ", overallPersonNum=" + overallPersonNum +

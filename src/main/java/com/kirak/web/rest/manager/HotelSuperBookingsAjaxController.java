@@ -38,11 +38,14 @@ public class HotelSuperBookingsAjaxController extends BookingAbstractController 
     }
 
     @Override
-    public List<SuperBooking> getAllSuperBookingsByUserId(int userId) {
-        return super.getAllSuperBookingsByUserId(userId);
+    public List<SuperBooking> getSuperBookingsByUserId(int userId) {
+        return super.getSuperBookingsByUserId(userId);
     }
 
-
+    @Override
+    public List<SuperBooking> getSuperBookingsByHotelId(int hotelId) {
+        return super.getSuperBookingsByHotelId(hotelId);
+    }
 
     // ----------------------- Booking methods ----------------------- //
 

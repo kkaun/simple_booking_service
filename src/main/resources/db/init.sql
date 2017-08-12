@@ -48,6 +48,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `name`       VARCHAR(45) NOT NULL,
   `password`   VARCHAR(45) NULL,
   `registered` TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
+  `enabled`    BOOLEAN     DEFAULT TRUE,
   INDEX `user_unique_email_idx`(`email`),
   PRIMARY KEY (`id`)
 )
@@ -178,10 +179,12 @@ CREATE TABLE IF NOT EXISTS `super_booking` (
   `id`                  INT            NOT NULL AUTO_INCREMENT,
   `active`              BOOLEAN        DEFAULT TRUE,
   `date_added`          TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
+  `in_date`             TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
+  `out_date`            TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
   `extra_beds`          SMALLINT       NULL,
   `overall_sum`         DECIMAL(11, 4) NOT NULL,
   `overall_person_num`  SMALLINT       NOT NULL,
-  `user_id`             INT            NOT NULL,
+  `user_id`             INT            NULL,
   `hotel_id`            INT            NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_super_booking_user1_idx` (`user_id` ASC),

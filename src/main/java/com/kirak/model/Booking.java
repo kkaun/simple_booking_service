@@ -16,12 +16,12 @@ import java.time.LocalDateTime;
 @Table(name = "booking")
 public class Booking extends BaseLongEntity {
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @NotNull
     @Column(name = "in_date", nullable = false)
     private LocalDate inDate;
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @NotNull
     @Column(name = "out_date", nullable = false)
     private LocalDate outDate;

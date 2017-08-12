@@ -13,7 +13,6 @@ import java.util.*;
  */
 public class UserUtil {
 
-
     public static User createNewRegisteredFromTo(UserTo newUser) {
         return new User(null, newUser.getName(), newUser.getEmail().toLowerCase(), newUser.getPhone(),
                 newUser.getPassword(), UserRole.ROLE_USER);

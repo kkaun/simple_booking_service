@@ -38,6 +38,9 @@ public class User extends NamedEntity {
     @Length(min = 5)
     private String password;
 
+    @Column(name = "enabled", nullable = false)
+    private boolean enabled = true;
+
     @Column(name = "registered", columnDefinition = "timestamp default now()")
     private Date registered = new Date();
 
@@ -64,39 +67,41 @@ public class User extends NamedEntity {
     public User(){}
 
     //For anonymous user
-    public User(String name, String email, String phone, UserRole role, UserRole... roles) {
-        this(null, name, email, phone, new Date(), EnumSet.of(role, roles));
+    public User(String name, String email, String phone) {
+        this(null, name, email, phone, new Date(), false, EnumSet.of(UserRole.ROLE_USER));
     }
 
-    public User(Integer id, String name, String email, String phone, UserRole role, UserRole... roles) {
-        this(id, name, email, phone, new Date(), EnumSet.of(role, roles));
+    public User(Integer id, String name, String email, String phone) {
+        this(id, name, email, phone, new Date(), false, EnumSet.of(UserRole.ROLE_USER));
     }
 
-    //For registered user
-    public User(User u) {
-        this(u.getId(), u.getName(), u.getEmail(), u.getPhone(), u.getPassword(), u.getRegistered(), u.getRoles());
-    }
-
-    public User(Integer id, String name, String email, String phone, String password, UserRole role, UserRole... roles) {
-        this(id, name, email, phone, password, new Date(), EnumSet.of(role, roles));
-    }
-
-    public User(Integer id, String name, String email, String phone, String password, Date registered, Collection<UserRole> roles) {
-        super(id, name);
-        this.email = email;
-        this.password = password;
-        this.phone = phone;
-        this.registered = registered;
-        setRoles(roles);
-    }
-
-
-    public User(Integer id, String name, String email, String phone, Date registered, Collection<UserRole> roles) {
+    public User(Integer id, String name, String email, String phone, Date registered, boolean enabled, Collection<UserRole> roles) {
         super(id, name);
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.registered = registered;
+        this.enabled = enabled;
+        setRoles(roles);
+    }
+
+    //For registered user
+    public User(User u) {
+        this(u.getId(), u.getName(), u.getEmail(), u.getPhone(), u.getPassword(), u.getRegistered(), u.isEnabled(), u.getRoles());
+    }
+
+    public User(Integer id, String name, String email, String phone, String password, UserRole role, UserRole... roles) {
+        this(id, name, email, phone, password, new Date(), true, EnumSet.of(role, roles));
+    }
+
+    public User(Integer id, String name, String email, String phone, String password, Date registered,
+                boolean enabled, Collection<UserRole> roles) {
+        super(id, name);
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.registered = registered;
+        this.enabled = enabled;
         setRoles(roles);
     }
 
@@ -169,6 +174,13 @@ public class User extends NamedEntity {
         this.hotels = hotels;
     }
 
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 
     @Override
     public String toString() {
@@ -176,6 +188,7 @@ public class User extends NamedEntity {
                 "email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", password='" + password + '\'' +
+                ", enabled=" + enabled +
                 ", registered=" + registered +
                 ", roles=" + roles +
                 ", superBookings=" + superBookings +

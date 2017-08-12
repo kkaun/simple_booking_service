@@ -13,8 +13,6 @@ import java.util.Map;
  * Created by Kir on 08.08.2017.
  */
 
-//@Component
-//@Scope("session")
 public class Placement implements Serializable {
 
     private static final long serialVersionUID = 1L;

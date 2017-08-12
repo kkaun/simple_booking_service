@@ -220,10 +220,10 @@ public class BookingController extends BookingAbstractController{
                                           @RequestParam ("bookingPersonNum") String personNum, @RequestParam ("userName") String userName,
                                           @RequestParam ("userEmail") String userEmail, @RequestParam ("userPhone") String userPhone, Model model) {
 
-        User user = new User(userName, userEmail, userPhone, UserRole.ROLE_USER);
+        User user = new User(userName, userEmail, userPhone);
         userService.save(user);
-        SuperBooking superBooking = new SuperBooking(true, LocalDateTime.now(), (short)0, Double.parseDouble(sum),
-                Short.parseShort(personNum), user, hotelService.get(Integer.parseInt(hotelId)));
+        SuperBooking superBooking = new SuperBooking(true, LocalDateTime.now(), LocalDate.parse(inDate), LocalDate.parse(outDate),
+                (short)0, Double.parseDouble(sum), Short.parseShort(personNum), user, hotelService.get(Integer.parseInt(hotelId)));
         super.createSuperBooking(superBooking, user.getId());
         Placement placement = PlacementUtil.getPlacementFromId(sessionPlacementsService, Integer.parseInt(placementId));
         placement.getOption().values().forEach(apartments -> apartments.forEach(apartment -> {

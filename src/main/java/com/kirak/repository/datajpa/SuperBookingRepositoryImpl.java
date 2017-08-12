@@ -7,6 +7,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -26,12 +28,25 @@ public class SuperBookingRepositoryImpl implements SuperBookingRepository {
     private DataJpaUserRepository userRepository;
 
     @Override
+    public SuperBooking save(SuperBooking superBooking) {
+        if(!superBooking.isNew() && get(superBooking.getId()) == null){
+            return null;
+        }
+        return superBookingRepository.save(superBooking);
+    }
+
+    @Override
     public SuperBooking save(SuperBooking superBooking, int userId) {
         if(!superBooking.isNew() && get(superBooking.getId(), userId) == null){
             return null;
         }
         superBooking.setUser(userRepository.findOne(userId));
         return superBookingRepository.save(superBooking);
+    }
+
+    @Override
+    public SuperBooking get(Integer id) {
+        return superBookingRepository.findOne(id);
     }
 
     @Override
@@ -49,4 +64,26 @@ public class SuperBookingRepositoryImpl implements SuperBookingRepository {
     public List<SuperBooking> getAllByUserId(int userId) {
         return superBookingRepository.getAllByUserId(userId);
     }
+
+    @Override
+    public List<SuperBooking> getAllByHotelId(int hotelId) {
+        return superBookingRepository.getAllByHotelId(hotelId);
+    }
+
+    @Override
+    public List<SuperBooking> getAllBetweenCreatedDateTimes(LocalDateTime startDateTime, LocalDateTime endDateTime) {
+        return superBookingRepository.getAllBetweenCreatedDateTimes(startDateTime, endDateTime);
+    }
+
+    @Override
+    public List<SuperBooking> getAllByInDate(LocalDate inDate) {
+        return superBookingRepository.findAllByInDate(inDate);
+    }
+
+    @Override
+    public List<SuperBooking> getAllByOutDate(LocalDate outDate) {
+        return superBookingRepository.findAllByOutDate(outDate);
+    }
+
+
 }

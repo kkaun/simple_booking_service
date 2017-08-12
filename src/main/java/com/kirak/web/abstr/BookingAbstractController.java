@@ -4,11 +4,15 @@ import com.kirak.model.Booking;
 import com.kirak.model.SuperBooking;
 import com.kirak.service.BookingService;
 import com.kirak.service.SuperBookingService;
+import com.kirak.to.booking.AdminSuperBookingTo;
+import com.kirak.util.model.SuperBookingUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Kir on 09.06.2017.
@@ -27,6 +31,63 @@ public abstract class BookingAbstractController {
         this.bookingService = bookingService;
         this.superBookingService = superBookingService;
     }
+
+    //-------------------------------------- SuperBooking methods --------------------------------//
+
+    public SuperBooking createSuperBooking(SuperBooking superBooking, int userId){
+        LOG.info("Saving Super Booking {}", superBooking);
+        return superBookingService.save(superBooking, userId);
+    }
+
+    public SuperBooking createSuperBooking(SuperBooking superBooking){
+        LOG.info("Saving Super Booking {}", superBooking);
+        return superBookingService.save(superBooking);
+    }
+
+    public SuperBooking updateSuperBooking(SuperBooking superBooking){
+        LOG.info("Saving Super Booking {}", superBooking);
+        return superBookingService.update(superBooking);
+    }
+
+    public SuperBooking getSuperBooking(int id){
+        LOG.info("Saving Super Booking {}", id);
+        return superBookingService.get(id);
+    }
+
+    public List<AdminSuperBookingTo> getAllSuperBookingsForAdmin(){
+        LOG.info("Getting all Super Bookings {}");
+        return superBookingService.getAll().stream()
+                .map(SuperBookingUtil::asAdminSuperBookingTo).collect(Collectors.toList());
+    }
+
+    public List<AdminSuperBookingTo> getSuperBookingsByUserIdForAdmin(int userId){
+        LOG.info("Getting all Super Bookings by user {}", userId);
+        return superBookingService.getAllByUserId(userId).stream()
+                .map(SuperBookingUtil::asAdminSuperBookingTo).collect(Collectors.toList());
+    }
+
+    public List<AdminSuperBookingTo> getSuperBookingsByHotelIdForAdmin(int hotelId){
+        LOG.info("Getting all Super Bookings by hotel {}", hotelId);
+        return superBookingService.getAllByHotelId(hotelId).stream()
+                .map(SuperBookingUtil::asAdminSuperBookingTo).collect(Collectors.toList());
+    }
+
+    public List<AdminSuperBookingTo> getSuperBookingsBetweenDatesForAdmin(LocalDate startDate, LocalDate endDate) {
+        return superBookingService.getAllBetweenCreatedDates(startDate, endDate).stream()
+                .map(SuperBookingUtil::asAdminSuperBookingTo).collect(Collectors.toList());
+    }
+
+    public List<AdminSuperBookingTo> getSuperBookingsByInDateForAdmin(LocalDate inDate){
+        return superBookingService.getAllByInDate(inDate).stream()
+                .map(SuperBookingUtil::asAdminSuperBookingTo).collect(Collectors.toList());
+    }
+
+    public List<AdminSuperBookingTo> getSuperBookingsByOutDateForAdmin(LocalDate outDate){
+        return superBookingService.getAllByOutDate(outDate).stream()
+                .map(SuperBookingUtil::asAdminSuperBookingTo).collect(Collectors.toList());
+    }
+
+
 
     //-------------------------------------- Booking methods --------------------------------//
 
@@ -50,31 +111,5 @@ public abstract class BookingAbstractController {
         return bookingService.getAll();
     }
 
-    //-------------------------------------- SuperBooking methods --------------------------------//
-
-    public SuperBooking createSuperBooking(SuperBooking superBooking, int userId){
-        LOG.info("Saving Super Booking {}", superBooking);
-        return superBookingService.save(superBooking, userId);
-    }
-
-    public SuperBooking updateSuperBooking(SuperBooking superBooking, int userId){
-        LOG.info("Saving Super Booking {}", superBooking);
-        return superBookingService.update(superBooking, userId);
-    }
-
-    public SuperBooking getSuperBooking(Integer id, int userId){
-        LOG.info("Saving Super Booking {}", id);
-        return superBookingService.get(id, userId);
-    }
-
-    public List<SuperBooking> getAllSuperBookings(){
-        LOG.info("Getting all Super Bookings {}");
-        return superBookingService.getAll();
-    }
-
-    public List<SuperBooking> getAllSuperBookingsByUserId(int userId){
-        LOG.info("Getting all Super Bookings by user {}", userId);
-        return superBookingService.getAllByUserId(userId);
-    }
 
 }

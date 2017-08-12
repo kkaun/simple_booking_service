@@ -140,7 +140,9 @@ public class ApartmentUtil {
     public static int[] getOccupiedDaysForSingleApartmentInPeriod(Booking booking, int[] daysOccupied,
                                                                   LocalDate inDate, LocalDate outDate){
 
-
+        if(booking.getInDate().isBefore(inDate) && booking.getOutDate().isAfter(outDate)){
+            daysOccupied[0] += (int) ChronoUnit.DAYS.between(inDate, outDate);
+        }
         if(booking.getInDate().isBefore(inDate) &&
                 booking.getOutDate().isBefore(outDate)) {
             if (ChronoUnit.DAYS.between(booking.getOutDate(), inDate) <= 0) {
@@ -157,7 +159,6 @@ public class ApartmentUtil {
                 booking.getOutDate().isBefore(outDate)) {
             daysOccupied[0] += (int) ChronoUnit.DAYS.between(booking.getInDate(), booking.getOutDate());
         }
-
         return daysOccupied;
     }
 

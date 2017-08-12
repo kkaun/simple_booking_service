@@ -15,7 +15,7 @@ import java.net.URI;
  * Created by Kir on 03.08.2017.
  */
 
-@Controller
+@RestController
 @RequestMapping(value = CitiesAjaxController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class CitiesAjaxController extends CityAbstractController{
 

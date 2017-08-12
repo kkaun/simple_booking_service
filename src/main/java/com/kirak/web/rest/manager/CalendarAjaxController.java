@@ -8,7 +8,6 @@ import com.kirak.web.abstr.BookingAbstractController;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -52,8 +51,8 @@ public class CalendarAjaxController extends BookingAbstractController{
 
     @GetMapping(value = "/by_user_id", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
-    public List<SuperBooking> getAllSuperBookingsByUserId(@RequestParam("superBookingId") int userId){
-        return super.getAllSuperBookingsByUserId(userId);
+    public List<SuperBooking> getSuperBookingsByUserId(@RequestParam("superBookingId") int userId){
+        return super.getSuperBookingsByUserId(userId);
     }
 
 }

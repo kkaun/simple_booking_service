@@ -1,6 +1,8 @@
 package com.kirak.to;
 
 import com.kirak.model.abstraction.BaseEntity;
+import com.kirak.model.abstraction.BaseIntEntity;
+import com.kirak.to.abstr.BasicIntTo;
 import org.hibernate.validator.constraints.*;
 
 import javax.validation.constraints.NotNull;
@@ -9,20 +11,21 @@ import java.io.Serializable;
 /**
  * Created by Kir on 16.06.2017.
  */
-public class UserTo implements BaseEntity, Serializable {
+public class UserTo extends BasicIntTo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Integer id;
-
     @NotBlank
+    @SafeHtml
     private String name;
 
     @Email
     @NotBlank
+    @SafeHtml
     private String email;
 
     @NotBlank
+    @SafeHtml
     private String phone;
 
     @Length(min = 5, max = 32)
@@ -31,34 +34,11 @@ public class UserTo implements BaseEntity, Serializable {
 
 
     public UserTo(Integer id, String name, String email, String phone, String password) {
-        this.id = id;
+        super(id);
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.password = password;
-    }
-
-    protected UserTo(Integer id){
-        this.id = id;
-    }
-
-    @Override
-    public boolean isNew() {
-        return (getId() == null);
-    }
-
-    @Override
-    public void setId(Number id) {
-        this.id = id.intValue();
-    }
-
-    @Override
-    public Number getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -96,7 +76,6 @@ public class UserTo implements BaseEntity, Serializable {
     @Override
     public String toString() {
         return "UserTo{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +

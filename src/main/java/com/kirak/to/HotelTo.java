@@ -1,6 +1,8 @@
 package com.kirak.to;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kirak.model.abstraction.NamedEntity;
+import com.kirak.to.abstr.BasicIntTo;
 
 import java.io.Serializable;
 import java.sql.Time;
@@ -9,12 +11,9 @@ import java.sql.Time;
  * Created by Kir on 24.06.2017.
  */
 
-
-public class HotelTo extends NamedEntity implements Serializable {
+public class HotelTo extends BasicIntTo implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    private final Integer id;
 
     private final String name;
 
@@ -26,17 +25,25 @@ public class HotelTo extends NamedEntity implements Serializable {
 
     private final Integer votesNum;
 
-    private Time checkIn;
+    private final Time checkIn;
 
-    private Time checkOut;
+    private final Time checkOut;
 
-    private String address;
+    private final String address;
 
-    private String phone;
+    private final String phone;
 
-    public HotelTo(Integer id, String name, Double rating, Short stars, String description, int votesNum,
-                   Time checkIn, Time outTime, String address, String phone) {
-        this.id = id;
+    public HotelTo(@JsonProperty Integer id,
+                   @JsonProperty String name,
+                   @JsonProperty Double rating,
+                   @JsonProperty Short stars,
+                   @JsonProperty String description,
+                   @JsonProperty int votesNum,
+                   @JsonProperty Time checkIn,
+                   @JsonProperty Time outTime,
+                   @JsonProperty String address,
+                   @JsonProperty String phone) {
+        super(id);
         this.name = name;
         this.rating = rating;
         this.stars = stars;
@@ -48,12 +55,6 @@ public class HotelTo extends NamedEntity implements Serializable {
         this.phone = phone;
     }
 
-    @Override
-    public Integer getId() {
-        return id;
-    }
-
-    @Override
     public String getName() {
         return name;
     }
@@ -78,32 +79,16 @@ public class HotelTo extends NamedEntity implements Serializable {
         return checkIn;
     }
 
-    public void setCheckIn(Time checkIn) {
-        this.checkIn = checkIn;
-    }
-
     public Time getCheckOut() {
         return checkOut;
-    }
-
-    public void setCheckOut(Time checkOut) {
-        this.checkOut = checkOut;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getPhone() {
         return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     @Override

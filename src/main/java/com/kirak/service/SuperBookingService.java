@@ -5,13 +5,19 @@ import com.kirak.util.exception.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 /**
  * Created by Kir on 07.08.2017.
  */
 public interface SuperBookingService {
+
+    SuperBooking save(SuperBooking superBooking);
+
+    SuperBooking update(SuperBooking superBooking);
 
     SuperBooking save(SuperBooking superBooking, int userId);
 
@@ -23,8 +29,21 @@ public interface SuperBookingService {
 
     SuperBooking get(Integer id, int userId) throws NotFoundException;
 
-    List<SuperBooking> getAllByUserId(int userId);
+    SuperBooking get(Integer id) throws NotFoundException;
 
     List<SuperBooking> getAll();
 
+    List<SuperBooking> getAllByUserId(int userId);
+
+    List<SuperBooking> getAllByHotelId(int hotelId);
+
+    default List<SuperBooking> getAllBetweenCreatedDates(LocalDate startDate, LocalDate endDate){
+        return getAllBetweenCreatedDateTimes(LocalDateTime.of(startDate, LocalTime.MIN), LocalDateTime.of(endDate, LocalTime.MAX));
+    }
+
+    List<SuperBooking> getAllBetweenCreatedDateTimes(LocalDateTime startDate, LocalDateTime endDate);
+
+    List<SuperBooking> getAllByInDate(LocalDate inDate);
+
+    List<SuperBooking> getAllByOutDate(LocalDate outDate);
 }
