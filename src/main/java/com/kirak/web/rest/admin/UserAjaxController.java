@@ -16,12 +16,12 @@ import java.util.List;
  * Created by Kir on 15.06.2017.
  */
 @Controller
-@RequestMapping(value = UserRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
-public class UserRestController extends UserAbstractController {
+@RequestMapping(value = UserAjaxController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
+public class UserAjaxController extends UserAbstractController {
 
     static final String REST_URL = "/users";
 
-    public UserRestController(UserService service) {
+    public UserAjaxController(UserService service) {
         super(service);
     }
 

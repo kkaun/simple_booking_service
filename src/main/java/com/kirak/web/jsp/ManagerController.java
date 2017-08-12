@@ -26,6 +26,4 @@ public class ManagerController {
         model.addAttribute("object", hotelService.get(Integer.parseInt(id), AuthorizedUser.getId()));
         return "/manager/hotel";
     }
-
-
 }

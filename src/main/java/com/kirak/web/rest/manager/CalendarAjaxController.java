@@ -14,13 +14,13 @@ import java.util.List;
 /**
  * Created by Kir on 18.06.2017.
  */
-public class ManagerBookingRestController extends BookingAbstractController{
+public class CalendarAjaxController extends BookingAbstractController{
 
     //!!! ONLY FOR OWN HOTEL
 
     static final String REST_URL = "/manager/booking";
 
-    protected ManagerBookingRestController(BookingService bookingService, SuperBookingService superBookingService) {
+    protected CalendarAjaxController(BookingService bookingService, SuperBookingService superBookingService) {
         super(bookingService, superBookingService);
     }
 

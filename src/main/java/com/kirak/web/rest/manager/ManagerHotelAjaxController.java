@@ -18,12 +18,12 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping(value = ManagerHotelRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
-public class ManagerHotelRestController extends HotelAbstractController {
+@RequestMapping(value = ManagerHotelAjaxController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
+public class ManagerHotelAjaxController extends HotelAbstractController {
 
     static final String REST_URL = "/hotels";
 
-    private ManagerHotelRestController(HotelService hotelService) {
+    private ManagerHotelAjaxController(HotelService hotelService) {
         super(hotelService);
     }
 

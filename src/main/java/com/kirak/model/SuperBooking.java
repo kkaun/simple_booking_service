@@ -42,18 +42,22 @@ public class SuperBooking extends BaseIntEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @OneToOne
+    @JoinColumn(name = "hotel_id")
+    private Hotel hotel;
+
     @OneToMany(mappedBy = "superBooking")
     private Set<Booking> bookings;
 
     public SuperBooking(){}
 
     public SuperBooking(boolean active, LocalDateTime dateAdded, Short extraBeds, Double overallSum,
-                        Short overallPersonNum, User user) {
-        this(null, active, dateAdded, extraBeds, overallSum, overallPersonNum, user);
+                        Short overallPersonNum, User user, Hotel hotel) {
+        this(null, active, dateAdded, extraBeds, overallSum, overallPersonNum, user, hotel);
     }
 
     public SuperBooking(Integer id, boolean active, LocalDateTime dateAdded, Short extraBeds, Double overallSum,
-                        Short overallPersonNum, User user) {
+                        Short overallPersonNum, User user, Hotel hotel) {
         super(id);
         this.active = active;
         this.dateAdded = dateAdded;
@@ -61,6 +65,7 @@ public class SuperBooking extends BaseIntEntity {
         this.overallSum = overallSum;
         this.overallPersonNum = overallPersonNum;
         this.user = user;
+        this.hotel = hotel;
     }
 
     public boolean isActive() {
@@ -119,6 +124,14 @@ public class SuperBooking extends BaseIntEntity {
         this.bookings = bookings;
     }
 
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+    }
+
     @Override
     public String toString() {
         return "SuperBooking{" +
@@ -129,6 +142,7 @@ public class SuperBooking extends BaseIntEntity {
                 ", overallSum=" + overallSum +
                 ", overallPersonNum=" + overallPersonNum +
                 ", user=" + user +
+                ", hotel=" + hotel +
                 ", bookings=" + bookings +
                 '}';
     }

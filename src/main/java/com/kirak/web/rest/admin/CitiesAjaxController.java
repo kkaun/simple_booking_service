@@ -16,12 +16,12 @@ import java.net.URI;
  */
 
 @Controller
-@RequestMapping(value = CityRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
-public class CityRestController extends CityAbstractController{
+@RequestMapping(value = CitiesAjaxController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
+public class CitiesAjaxController extends CityAbstractController{
 
     static final String REST_URL = "/admin/cities";
 
-    public CityRestController(CityService cityService) {
+    public CitiesAjaxController(CityService cityService) {
         super(cityService);
     }
 

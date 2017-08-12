@@ -127,16 +127,13 @@ public class Booking extends BaseLongEntity {
     public String toString() {
         return "Booking{" +
                 "id='" + getId() + '\'' +
-//                ", active=" + active +
-//                ", dateAdded=" + dateAdded +
-//                ", inDate=" + inDate +
-//                ", outDate=" + outDate +
-//                ", sum=" + sum +
-//                ", person number=" + personNum +
-//                ", extra beds=" + extraBeds +
-//                ", user=" + user +
-//                ", apartment=" + apartment +
-//                ", hotel=" + hotel +
+                "inDate=" + inDate +
+                ", outDate=" + outDate +
+                ", sum=" + sum +
+                ", personNum=" + personNum +
+                ", superBooking=" + superBooking +
+                ", apartment=" + apartment +
+                ", hotel=" + hotel +
                 '}';
     }
 }

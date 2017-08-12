@@ -10,7 +10,6 @@ USE `booking_service`;
 
 --  //////////////////////////////////////
 
-
 DROP TABLE IF EXISTS `city`;
 CREATE TABLE `city` (
   `id`          INT NOT NULL AUTO_INCREMENT,
@@ -26,6 +25,7 @@ CREATE TABLE `city` (
   DEFAULT CHARSET = utf8
   COLLATE = utf8_bin;
 
+--   //////////////////////////////////////////
 
 DROP TABLE IF EXISTS `country`;
 CREATE TABLE `country` (
@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   AUTO_INCREMENT = 100000,
   ENGINE = InnoDB;
 
+--   //////////////////////////////////////////
 
 DROP TABLE IF EXISTS `user_role`;
 CREATE TABLE IF NOT EXISTS `user_role` (
@@ -68,7 +69,6 @@ CREATE TABLE IF NOT EXISTS `user_role` (
   ENGINE = InnoDB;
 
 --    /////////////////////////////////////////
-
 
 DROP TABLE IF EXISTS `vote`;
 CREATE TABLE IF NOT EXISTS `vote` (
@@ -134,6 +134,7 @@ CREATE TABLE IF NOT EXISTS `hotel` (
   AUTO_INCREMENT = 100000,
   ENGINE = InnoDB;
 
+--   //////////////////////////////////////////
 
 DROP TABLE IF EXISTS `apt_type`;
 CREATE TABLE IF NOT EXISTS `apt_type` (
@@ -145,6 +146,7 @@ CREATE TABLE IF NOT EXISTS `apt_type` (
 )
   ENGINE = InnoDB;
 
+--   //////////////////////////////////////////
 
 DROP TABLE IF EXISTS `apartment`;
 CREATE TABLE IF NOT EXISTS `apartment` (
@@ -169,6 +171,7 @@ CREATE TABLE IF NOT EXISTS `apartment` (
   AUTO_INCREMENT = 100000,
   ENGINE = InnoDB;
 
+--   //////////////////////////////////////////
 
 DROP TABLE IF EXISTS `super_booking`;
 CREATE TABLE IF NOT EXISTS `super_booking` (
@@ -179,17 +182,25 @@ CREATE TABLE IF NOT EXISTS `super_booking` (
   `overall_sum`         DECIMAL(11, 4) NOT NULL,
   `overall_person_num`  SMALLINT       NOT NULL,
   `user_id`             INT            NOT NULL,
+  `hotel_id`            INT            NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_booking_user1_idx` (`user_id` ASC),
-  CONSTRAINT `fk_booking_user1`
+  INDEX `fk_super_booking_user1_idx` (`user_id` ASC),
+  INDEX `fk_super_booking_hotel1_idx` (`hotel_id` ASC),
+  CONSTRAINT `fk_super_booking_user1`
   FOREIGN KEY (`user_id`)
   REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_super_booking_hotel1`
+  FOREIGN KEY (`hotel_id`)
+  REFERENCES `hotel` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 )
   AUTO_INCREMENT = 100000,
   ENGINE = InnoDB;
 
+--   //////////////////////////////////////////
 
 DROP TABLE IF EXISTS `booking`;
 CREATE TABLE IF NOT EXISTS `booking` (
@@ -224,7 +235,7 @@ CREATE TABLE IF NOT EXISTS `booking` (
   AUTO_INCREMENT = 100000,
   ENGINE = InnoDB;
 
-
+--   //////////////////////////////////////////
 
 SET SQL_MODE = @OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS = @OLD_FOREIGN_KEY_CHECKS;

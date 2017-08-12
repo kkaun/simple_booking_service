@@ -12,7 +12,7 @@
         <div class="col-md-1">
         </div>
         <div class="col-md-10">
-            <form class="form-horizontal" method="post" action="parametric_search">
+            <form class="form-horizontal" method="get" action="parametric_search">
                 <div class="form-group">
                     <label for="location" class="control-label">Location(City)</label>
                     <div class="input-group">

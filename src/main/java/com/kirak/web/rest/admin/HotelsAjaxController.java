@@ -10,9 +10,9 @@ import java.util.List;
 /**
  * Created by Kir on 03.08.2017.
  */
-public class AdminHotelRestController extends HotelAbstractController {
+public class HotelsAjaxController extends HotelAbstractController {
 
-    public AdminHotelRestController(HotelService hotelService) {
+    public HotelsAjaxController(HotelService hotelService) {
         super(hotelService);
     }
 

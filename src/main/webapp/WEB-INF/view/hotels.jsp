@@ -39,16 +39,26 @@
                                 Unfortunately, searching by request "${badRegion}" brought no results.
                                 <br>
                                 Maybe there is a shortage of hotels in this region
-                                or we haven't include it yet.
+                                or they haven't been included yet. You might try to make more specific request in Search Filter.
                                 <br>
-                                You might try to specify your request in Search Filter.
+                                Also you can check list of cities or create your own in Admin mode.
                             </h3>
                         </div>
+                    </c:if>
+                    <c:if test="${not empty notAvailablePlacementList && empty hotels}">
+                        <h3><c:out value="${notAvailablePlacementList}"/></h3>
+                        <br>
+                        <h5>Maybe there is a shortage of available placement options/hotels in this region right now
+                            or they haven't been included yet. You might try to make more specific request in Search Filter.
+                            <br>
+                            Also you can check list of cities or create your own in Admin mode.
+                            ------------------------------- Link to Cities ---------------------------
+                        </h5>
                     </c:if>
                     <c:if test="${not empty hotels}">
                         <c:forEach items="${hotels}" var="hotel">
                             <jsp:useBean id="hotel" scope="page" type="com.kirak.to.HotelTo"/>
-                            <a class="list-group-item" href="inspect_hotel?id=${hotel.id}">
+                            <a class="list-group-item" href="inspect_hotel?id=${hotel.id}" style="padding-top: 20px;">
                                 <div class="media col-md-3">
                                     <figure class="pull-left">
                                         <img class="media-object img-rounded img-responsive"
@@ -94,7 +104,7 @@
                     <c:if test="${not empty placements && empty hotels}">
                         <c:forEach items="${placements}" var="placement">
                             <jsp:useBean id="placement" scope="page" type="com.kirak.to.Placement"/>
-                            <a class="list-group-item" style="padding-top: 10px; padding-bottom: 10px;"
+                            <a class="list-group-item" style="padding-top: 20px; padding-bottom: 10px;"
                                href="inspect_placement?id=${placement.id}&personNum=${placementPersonNum}&apartmentNum=${placementApartmentNum}&inDate=${placementInDate}&outDate=${placementOutDate}">
                                 <div class="media col-md-3">
                                     <figure class="pull-left">

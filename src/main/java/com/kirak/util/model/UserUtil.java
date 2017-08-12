@@ -4,6 +4,7 @@ import com.kirak.model.Hotel;
 import com.kirak.model.User;
 import com.kirak.model.UserRole;
 import com.kirak.to.UserTo;
+import com.kirak.util.PasswordUtil;
 
 import java.util.*;
 
@@ -25,7 +26,14 @@ public class UserUtil {
     public static User updateFromTo(User user, UserTo userTo) {
         user.setName(userTo.getName());
         user.setEmail(userTo.getEmail().toLowerCase());
+        //!!!!!!!!!!!!!!!!
         user.setPassword(userTo.getPassword());
+        return user;
+    }
+
+    public static User prepareToSave(User user) {
+        user.setPassword(PasswordUtil.encode(user.getPassword()));
+        user.setEmail(user.getEmail().toLowerCase());
         return user;
     }
 
@@ -35,23 +43,15 @@ public class UserUtil {
     }
 
     public static boolean isPhoneDuplicated(String phone, List<User> users){
-
         //TODO: Try to use commons validator
-
-        return users.stream()
-                .map(User::getPhone)
-                .filter(p -> p.equals(phone))
-                .count() >= 1;
+        return users.stream().map(User::getPhone).filter(p -> p.equals(phone)).count() >= 1;
     }
 
     public static boolean isEmailDuplicated(String email, List<User> users){
-
         //TODO: Try to use commons validator
-
-        return users.stream()
-                .map(User::getEmail)
-                .filter(p -> p.equals(email))
-                .count() >= 1;
+        return users.stream().map(User::getEmail).filter(p -> p.equals(email)).count() >= 1;
     }
+
+
 
 }

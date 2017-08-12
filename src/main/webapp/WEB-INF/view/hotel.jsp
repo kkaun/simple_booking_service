@@ -359,11 +359,11 @@
                                                     <div class="col-md-12">
                                                         <div class="col-md-5">
                                                             <div class="form-group">
-                                                                <label for="apt_in_date" class="control-label">From
+                                                                <label for="apt_in_date${vs.index}" class="control-label">From
                                                                     Date</label>
                                                                 <div class="input-group">
-                                                                    <input class="form-control in_date" readonly="readonly"
-                                                                           id="apt_in_date"
+                                                                    <input class="form-control in_date"
+                                                                           id="apt_in_date${vs.index}"
                                                                            name="aptInDate">
                                                                     <span class="input-group-addon">
                                                                         <span class="glyphicon glyphicon-calendar"></span>
@@ -374,11 +374,11 @@
                                                         <div class="col-md-2"></div>
                                                         <div class="col-md-5">
                                                             <div class="form-group">
-                                                                <label for="apt_out_date" class="control-label">To
+                                                                <label for="apt_out_date${vs.index}" class="control-label">To
                                                                     Date</label>
                                                                 <div class="input-group">
-                                                                    <input class="form-control out_date" readonly="readonly"
-                                                                           id="apt_out_date"
+                                                                    <input class="form-control out_date"
+                                                                           id="apt_out_date${vs.index}"
                                                                            name="aptOutDate">
                                                                     <span class="input-group-addon">
                                                                         <span class="glyphicon glyphicon-calendar"></span>

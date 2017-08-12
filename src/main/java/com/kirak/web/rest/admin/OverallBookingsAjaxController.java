@@ -12,9 +12,9 @@ import java.util.List;
 /**
  * Created by Kir on 03.08.2017.
  */
-public class AdminBookingRestController extends BookingAbstractController {
+public class OverallBookingsAjaxController extends BookingAbstractController {
 
-    protected AdminBookingRestController(BookingService bookingService, SuperBookingService superBookingService) {
+    protected OverallBookingsAjaxController(BookingService bookingService, SuperBookingService superBookingService) {
         super(bookingService, superBookingService);
     }
 
@@ -37,6 +37,12 @@ public class AdminBookingRestController extends BookingAbstractController {
     public List<Booking> getAllBookings() {
         return super.getAllBookings();
     }
+
+
+
+    // ----------------------- SuperBooking methods ----------------------- //
+
+
 
     @Override
     public SuperBooking createSuperBooking(SuperBooking superBooking, int userId) {
