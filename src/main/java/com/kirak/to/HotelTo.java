@@ -1,7 +1,6 @@
 package com.kirak.to;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kirak.model.abstraction.NamedEntity;
 import com.kirak.to.abstr.BasicIntTo;
 
 import java.io.Serializable;
@@ -33,6 +32,12 @@ public class HotelTo extends BasicIntTo implements Serializable {
 
     private final String phone;
 
+    private final Integer cityId;
+
+    private final String cityName;
+
+    private final String countryName;
+
     public HotelTo(@JsonProperty Integer id,
                    @JsonProperty String name,
                    @JsonProperty Double rating,
@@ -42,7 +47,10 @@ public class HotelTo extends BasicIntTo implements Serializable {
                    @JsonProperty Time checkIn,
                    @JsonProperty Time outTime,
                    @JsonProperty String address,
-                   @JsonProperty String phone) {
+                   @JsonProperty String phone,
+                   @JsonProperty Integer cityId,
+                   @JsonProperty String cityName,
+                   @JsonProperty String countryName) {
         super(id);
         this.name = name;
         this.rating = rating;
@@ -53,6 +61,9 @@ public class HotelTo extends BasicIntTo implements Serializable {
         this.checkOut = outTime;
         this.address = address;
         this.phone = phone;
+        this.cityId = cityId;
+        this.cityName = cityName;
+        this.countryName = countryName;
     }
 
     public String getName() {
@@ -91,6 +102,18 @@ public class HotelTo extends BasicIntTo implements Serializable {
         return phone;
     }
 
+    public String getCityName() {
+        return cityName;
+    }
+
+    public String getCountryName() {
+        return countryName;
+    }
+
+    public Integer getCityId() {
+        return cityId;
+    }
+
     @Override
     public String toString() {
         return "HotelTo{" +
@@ -99,7 +122,14 @@ public class HotelTo extends BasicIntTo implements Serializable {
                 ", rating=" + rating +
                 ", stars=" + stars +
                 ", description='" + description + '\'' +
-                ", votes number=" + votesNum +
+                ", votesNum=" + votesNum +
+                ", checkIn=" + checkIn +
+                ", checkOut=" + checkOut +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", cityId=" + cityId +
+                ", cityName='" + cityName + '\'' +
+                ", countryName='" + countryName + '\'' +
                 '}';
     }
 }

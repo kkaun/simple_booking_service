@@ -13,7 +13,7 @@ public interface CityService {
 
     City get(Integer id) throws NotFoundException;
 
-    List<City> getAllByRegion(short countryId);
+    List<City> getAllByRegionId(short countryId);
 
     List<City> getAll();
 

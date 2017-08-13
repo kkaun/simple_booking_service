@@ -222,8 +222,9 @@ public class BookingController extends BookingAbstractController{
 
         User user = new User(userName, userEmail, userPhone);
         userService.save(user);
-        SuperBooking superBooking = new SuperBooking(true, LocalDateTime.now(), LocalDate.parse(inDate), LocalDate.parse(outDate),
-                (short)0, Double.parseDouble(sum), Short.parseShort(personNum), user, hotelService.get(Integer.parseInt(hotelId)));
+        SuperBooking superBooking = new SuperBooking(true, LocalDateTime.now(), (short)0, Double.parseDouble(sum),
+                Short.parseShort(personNum), user, hotelService.get(Integer.parseInt(hotelId)),
+                user.getName(), user.getEmail(), user.getPhone());
         super.createSuperBooking(superBooking, user.getId());
         Placement placement = PlacementUtil.getPlacementFromId(sessionPlacementsService, Integer.parseInt(placementId));
         placement.getOption().values().forEach(apartments -> apartments.forEach(apartment -> {

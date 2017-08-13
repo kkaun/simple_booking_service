@@ -64,8 +64,8 @@ CREATE TABLE IF NOT EXISTS `user_role` (
   CONSTRAINT `fk_user_role_user1`
   FOREIGN KEY (`user_id`)
   REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 )
   ENGINE = InnoDB;
 
@@ -85,13 +85,13 @@ CREATE TABLE IF NOT EXISTS `vote` (
   CONSTRAINT `fk_vote_hotel1`
   FOREIGN KEY (`hotel_id`)
   REFERENCES `hotel` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_vote_user1`
   FOREIGN KEY (`user_id`)
   REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 )
   AUTO_INCREMENT = 100000,
   ENGINE = InnoDB;
@@ -119,18 +119,18 @@ CREATE TABLE IF NOT EXISTS `hotel` (
   CONSTRAINT `fk_hotel_country1`
   FOREIGN KEY (`country_id`)
   REFERENCES `country` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_hotel_city1`
   FOREIGN KEY (`city_id`)
   REFERENCES `city` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_hotel_manager1`
   FOREIGN KEY (`manager`)
   REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 )
   AUTO_INCREMENT = 100000,
   ENGINE = InnoDB;
@@ -161,13 +161,13 @@ CREATE TABLE IF NOT EXISTS `apartment` (
   CONSTRAINT `fk_apartment_hotel1`
   FOREIGN KEY (`hotel_id`)
   REFERENCES `hotel` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_apartment_apt_type1`
   FOREIGN KEY (`apt_type_id`)
   REFERENCES `apt_type` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 )
   AUTO_INCREMENT = 100000,
   ENGINE = InnoDB;
@@ -186,19 +186,22 @@ CREATE TABLE IF NOT EXISTS `super_booking` (
   `overall_person_num`  SMALLINT       NOT NULL,
   `user_id`             INT            NULL,
   `hotel_id`            INT            NOT NULL,
+  `booker_name`         VARCHAR(45)    NULL,
+  `booker_email`        VARCHAR(45)    NULL,
+  `booker_phone`        VARCHAR(20)    NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_super_booking_user1_idx` (`user_id` ASC),
   INDEX `fk_super_booking_hotel1_idx` (`hotel_id` ASC),
   CONSTRAINT `fk_super_booking_user1`
   FOREIGN KEY (`user_id`)
   REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE ,
   CONSTRAINT `fk_super_booking_hotel1`
   FOREIGN KEY (`hotel_id`)
   REFERENCES `hotel` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 )
   AUTO_INCREMENT = 100000,
   ENGINE = InnoDB;
@@ -222,18 +225,18 @@ CREATE TABLE IF NOT EXISTS `booking` (
   CONSTRAINT `fk_booking_super_booking1`
   FOREIGN KEY (`super_booking_id`)
   REFERENCES `super_booking` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_booking_apartment1`
   FOREIGN KEY (`apartment_id`)
   REFERENCES `apartment` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_booking_apartment_hotel1`
   FOREIGN KEY (`apartment_hotel_id`)
   REFERENCES `apartment` (`hotel_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 )
   AUTO_INCREMENT = 100000,
   ENGINE = InnoDB;

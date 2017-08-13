@@ -110,7 +110,8 @@ public class ApartmentUtil {
     public static boolean isSingleApartmentAvailable(Apartment apartment, LocalDate inDate, LocalDate outDate){
 
         final int[] daysOccupied = {0};
-        apartment.getBookings().forEach(booking -> getOccupiedDaysForSingleApartmentInPeriod(booking, daysOccupied, inDate, outDate));
+        apartment.getBookings().stream().filter(booking -> booking.getSuperBooking().isActive())
+                .forEach(booking -> getOccupiedDaysForSingleApartmentInPeriod(booking, daysOccupied, inDate, outDate));
         return daysOccupied[0] == 0;
     }
 
@@ -126,6 +127,7 @@ public class ApartmentUtil {
 
         List<Booking> apartmentBookings = similarApartments.stream()
                 .flatMap(apartment -> apartment.getBookings().stream())
+                .filter(booking -> booking.getSuperBooking().isActive())
                 .collect(Collectors.toList());
 
         apartmentBookings.forEach(booking -> getOccupiedDaysForSingleApartmentInPeriod(booking, daysOccupied, inDate, outDate));

@@ -15,15 +15,28 @@ import java.util.stream.IntStream;
  */
 public class HotelUtil {
 
-//    public static Hotel createNewFromTo(HotelTo newHotel) {
-//        return new Hotel(null, newHotel.getName(), newHotel.getRating(), newHotel.getStars(), newHotel.getDescription());
-//    }
+    public static Hotel createNewFromTo(HotelTo newHotel, List<Country> countries, List<City> cities) {
+        return new Hotel(newHotel.getId(), newHotel.getName(), newHotel.getStars(),
+                RegionUtil.findCountryByName(countries, newHotel.getCountryName()),
+                RegionUtil.findCityByName(cities, newHotel.getCityName(), newHotel.getCountryName()), newHotel.getAddress(),
+                newHotel.getPhone(), newHotel.getDescription(), newHotel.getCheckIn(), newHotel.getCheckOut());
+    }
 
+    public static Hotel updateFromTo(Hotel hotel, HotelTo hotelTo) {
+        hotel.setName(hotelTo.getName());
+        hotel.setStars(hotelTo.getStars());
+        hotel.setAddress(hotelTo.getAddress());
+        hotel.setPhone(hotelTo.getPhone());
+        hotel.setDescription(hotelTo.getDescription());
+        hotel.setCheckIn(hotelTo.getCheckIn());
+        hotel.setCheckOut(hotelTo.getCheckOut());
+        return hotel;
+    }
 
     public static HotelTo asHotelTo(Hotel hotel) {
         return new HotelTo(hotel.getId(), hotel.getName(), calculateHotelRating(hotel), hotel.getStars(),
                 hotel.getDescription(), calculateHotelVotesNum(hotel), hotel.getCheckIn(),
-                hotel.getCheckOut(), hotel.getAddress(), hotel.getPhone());
+                hotel.getCheckOut(), hotel.getAddress(), hotel.getPhone(), hotel.getCity().getId(), hotel.getCity().getName(), hotel.getCountry().getName());
     }
 
 
@@ -48,12 +61,17 @@ public class HotelUtil {
 
     public static List<HotelTo> getAllByCity(Collection<Hotel> hotels, int cityId){
 
-        return hotels.stream().filter(hotel -> hotel.getCity().getId() == cityId).map(HotelUtil::asHotelTo).collect(Collectors.toList());
+        return hotels.stream().filter(hotel -> hotel.getCity().getId() == cityId).map(HotelUtil::asHotelTo)
+                .collect(Collectors.toList());
     }
 
-    public static List<HotelTo> getBetweenRatings(Collection<Hotel> hotels, double minRating, double maxRating){
+    public static List<HotelTo> getBetweenRatings(Collection<Hotel> hotels, Double minRating, Double maxRating){
 
-        return hotels.stream().filter(hotel -> calculateHotelRating(hotel) >= minRating && calculateHotelRating(hotel) <= maxRating)
+        double minRatingValid = minRating != null ? minRating : 0;
+        double maxRatingValid = maxRating != null ? maxRating : 0;
+
+        return hotels.stream().filter(hotel -> calculateHotelRating(hotel) >= minRatingValid
+                && calculateHotelRating(hotel) <= maxRatingValid)
                 .map(HotelUtil::asHotelTo)
                 .collect(Collectors.toList());
     }

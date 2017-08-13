@@ -1,15 +1,22 @@
 package com.kirak.web.abstr;
 
+import com.kirak.model.City;
+import com.kirak.model.Country;
 import com.kirak.model.Hotel;
+import com.kirak.service.CityService;
+import com.kirak.service.CountryService;
 import com.kirak.service.HotelService;
 import com.kirak.to.HotelTo;
 import com.kirak.util.model.HotelUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 import static com.kirak.util.ValidationUtil.checkId;
+import static com.kirak.util.ValidationUtil.checkIdConsistency;
+import static com.kirak.util.ValidationUtil.checkNew;
 
 /**
  * Created by Kir on 16.06.2017.
@@ -20,28 +27,32 @@ public abstract class HotelAbstractController {
 
     private final HotelService hotelService;
 
-    public HotelAbstractController(HotelService hotelService){
+    private final CountryService countryService;
+
+    private final CityService cityService;
+
+    @Autowired
+    public HotelAbstractController(HotelService hotelService, CountryService countryService, CityService cityService){
         this.hotelService = hotelService;
+        this.countryService = countryService;
+        this.cityService = cityService;
     }
 
-    public Hotel create(Hotel hotel, int cityId){
+    public Hotel create(Hotel hotel){
         LOG.info("Saving {}", hotel);
-        return hotelService.save(hotel, cityId);
+        checkNew(hotel);
+        return hotelService.save(hotel);
     }
 
-    public Hotel update(Hotel hotel, int id, int cityId){
-        LOG.info("Updating {}", hotel);
-        checkId(hotel, id);
-        return hotelService.update(hotel, cityId);
+    public void update(HotelTo hotelTo, int id){
+        LOG.info("Updating {}", hotelTo);
+        checkIdConsistency(hotelTo, id);
+        hotelService.update(hotelTo);
     }
 
-    public void delete(Integer id, int cityId){
-
-    }
-
-    public Hotel get(Integer id, int cityId){
+    public HotelTo get(Integer id){
         LOG.info("Getting hotel {}", id);
-        return hotelService.get(id, cityId);
+        return hotelService.getTo(id);
     }
 
     public List<HotelTo> getAllByCity(int cityId){
@@ -49,7 +60,7 @@ public abstract class HotelAbstractController {
         return HotelUtil.getAllByCity(hotelService.getAll(), cityId);
     }
 
-    public List<HotelTo> getBetweenRatings(double minRating, double maxRating){
+    public List<HotelTo> getBetweenRatings(Double minRating, Double maxRating){
         LOG.info("Getting all hotels between ratings {} - {}", minRating, maxRating);
         return HotelUtil.getBetweenRatings(hotelService.getAll(), minRating, maxRating);
     }
@@ -59,5 +70,16 @@ public abstract class HotelAbstractController {
         return HotelUtil.getAll(hotelService.getAll());
     }
 
+    public List<Country> getAllCountries() {
+        return countryService.getAll();
+    }
+
+    public List<City> getAllCities() {
+        return cityService.getAll();
+    }
+
+    //    public void delete(Integer id, int cityId){
+//
+//    }
 
 }

@@ -19,8 +19,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-import static com.kirak.util.ValidationUtil.checkId;
-import static com.kirak.util.ValidationUtil.checkNew;
+import static com.kirak.util.ValidationUtil.*;
 
 /**
  * Created by Kir on 15.06.2017.
@@ -45,6 +44,7 @@ public abstract class UserAbstractController {
         modificationRestriction = environment.acceptsProfiles(Profile.HEROKU);
     }
 
+    @Autowired
     public UserAbstractController(UserService service) {
         this.userService = service;
     }
@@ -73,15 +73,13 @@ public abstract class UserAbstractController {
 
     public void update(User user, int id) {
         log.info("update {} with id={}", user, id);
-        checkId(user, id);
-        checkModificationAllowed(id);
+        checkIdConsistency(user, id);
         userService.update(user);
     }
 
     public void update(UserTo userTo, int id) {
         log.info("update {} with id={}", userTo, id);
-        checkId(userTo, id);
-        checkModificationAllowed(id);
+        checkIdConsistency(userTo, id);
         userService.update(userTo);
     }
 
@@ -90,11 +88,11 @@ public abstract class UserAbstractController {
         return userService.getByEmail(email);
     }
 
-//    public void enable(int id, boolean enabled) {
-//        log.info((enabled ? "enable " : "disable ") + id);
-//        checkModificationAllowed(id);
-//        userService.enable(id, enabled);
-//    }
+    public void enable(int id, boolean enabled) {
+        log.info((enabled ? "enable " : "disable ") + id);
+        checkModificationAllowed(id);
+        userService.enable(id, enabled);
+    }
 
     public void checkModificationAllowed(int id) {
         if (modificationRestriction) {

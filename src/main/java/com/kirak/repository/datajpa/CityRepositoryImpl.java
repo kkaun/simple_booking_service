@@ -30,8 +30,8 @@ public class CityRepositoryImpl implements CityRepository {
     }
 
     @Override
-    public List<City> getAllByRegion(short countryId) {
-        return cityRepository.getAllByRegion(countryId);
+    public List<City> getAllByRegionId(short countryId) {
+        return cityRepository.getAllByRegionId(countryId);
     }
 
     @Override

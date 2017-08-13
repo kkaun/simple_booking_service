@@ -3,7 +3,9 @@ package com.kirak.service.impl;
 import com.kirak.model.SuperBooking;
 import com.kirak.repository.SuperBookingRepository;
 import com.kirak.service.SuperBookingService;
+import com.kirak.to.booking.ManagerSuperBookingTo;
 import com.kirak.util.exception.NotFoundException;
+import com.kirak.util.model.SuperBookingUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,6 +43,11 @@ public class SuperBookingServiceImpl implements SuperBookingService {
     }
 
     @Override
+    public SuperBooking update(ManagerSuperBookingTo managerSuperBookingTo) {
+        //SuperBooking superBooking = SuperBookingUtil.updateFromManagerSuperBookingTo(managerSuperBookingTo, )
+    }
+
+    @Override
     public SuperBooking save(SuperBooking booking, int userId) {
         Assert.notNull(booking, "SuperBooking must not be null!");
         return repository.save(booking, userId);
@@ -53,8 +60,8 @@ public class SuperBookingServiceImpl implements SuperBookingService {
     }
 
     @Override
-    public SuperBooking get(Integer id, int userId) {
-        return checkNotFoundWithId(repository.get(id, userId), id);
+    public ManagerSuperBookingTo getForManager(Integer id) {
+        return checkNotFoundWithId(SuperBookingUtil.asManagerSuperBookingTo(repository.get(id)), id);
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.kirak.model;
 
 import com.kirak.model.abstraction.BaseIntEntity;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
@@ -57,12 +59,22 @@ public class SuperBooking extends BaseIntEntity {
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
+    @Column(name = "booker_name")
+    private String bookerName;
+
+    @Column(name = "booker_email")
+    @Email
+    private String bookerEmail;
+
+    @Column(name = "booker_phone")
+    private String bookerPhone;
+
     @OneToMany(mappedBy = "superBooking")
     private Set<Booking> bookings;
 
     public SuperBooking(){}
 
-    //For manager/admin bookings
+    //For calendar bookings
     public SuperBooking(boolean active, LocalDateTime dateAdded, LocalDate inDate, LocalDate outDate, Short extraBeds, Double overallSum,
                         Short overallPersonNum, Hotel hotel) {
         this(null, active, dateAdded, inDate, outDate, extraBeds, overallSum, overallPersonNum, hotel);
@@ -81,14 +93,18 @@ public class SuperBooking extends BaseIntEntity {
         this.hotel = hotel;
     }
 
-    //For registered user's bookings
-    public SuperBooking(boolean active, LocalDateTime dateAdded, LocalDate inDate, LocalDate outDate, Short extraBeds,
-                        Double overallSum, Short overallPersonNum, User user, Hotel hotel) {
-        this(null, active, dateAdded, inDate, outDate, extraBeds, overallSum, overallPersonNum, user, hotel);
+    //For named manager/admin bookings
+    //!!!!!!!
+
+    //For anonymous user's bookings
+    public SuperBooking(boolean active, LocalDateTime dateAdded, LocalDate inDate, LocalDate outDate, Short extraBeds, Double overallSum,
+                        Short overallPersonNum, User user, Hotel hotel, String bookerName, String bookerEmail, String bookerPhone) {
+        this(null, active, dateAdded, inDate, outDate, extraBeds, overallSum, overallPersonNum, user, hotel, bookerName, bookerEmail, bookerPhone);
     }
 
     public SuperBooking(Integer id, boolean active, LocalDateTime dateAdded,  LocalDate inDate, LocalDate outDate,
-                        Short extraBeds, Double overallSum, Short overallPersonNum, User user, Hotel hotel) {
+                        Short extraBeds, Double overallSum, Short overallPersonNum, User user, Hotel hotel,
+                        String bookerName, String bookerEmail, String bookerPhone) {
         super(id);
         this.active = active;
         this.dateAdded = dateAdded;
@@ -99,6 +115,9 @@ public class SuperBooking extends BaseIntEntity {
         this.overallPersonNum = overallPersonNum;
         this.user = user;
         this.hotel = hotel;
+        this.bookerName = bookerName;
+        this.bookerEmail = bookerEmail;
+        this.bookerPhone = bookerPhone;
     }
 
     public boolean isActive() {
@@ -179,6 +198,30 @@ public class SuperBooking extends BaseIntEntity {
 
     public void setOutDate(LocalDate outDate) {
         this.outDate = outDate;
+    }
+
+    public String getBookerName() {
+        return bookerName;
+    }
+
+    public void setBookerName(String bookerName) {
+        this.bookerName = bookerName;
+    }
+
+    public String getBookerEmail() {
+        return bookerEmail;
+    }
+
+    public void setBookerEmail(String bookerEmail) {
+        this.bookerEmail = bookerEmail;
+    }
+
+    public String getBookerPhone() {
+        return bookerPhone;
+    }
+
+    public void setBookerPhone(String bookerPhone) {
+        this.bookerPhone = bookerPhone;
     }
 
     @Override

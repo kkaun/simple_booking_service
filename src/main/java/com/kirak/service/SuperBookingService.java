@@ -1,6 +1,7 @@
 package com.kirak.service;
 
 import com.kirak.model.SuperBooking;
+import com.kirak.to.booking.ManagerSuperBookingTo;
 import com.kirak.util.exception.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,8 @@ public interface SuperBookingService {
 
     SuperBooking update(SuperBooking superBooking);
 
+    SuperBooking update(ManagerSuperBookingTo managerSuperBookingTo);
+
     SuperBooking save(SuperBooking superBooking, int userId);
 
     SuperBooking update(SuperBooking superBooking, int userId) throws NotFoundException;
@@ -27,7 +30,7 @@ public interface SuperBookingService {
         throw new UnsupportedOperationException("SuperBooking cannot be deleted, only modified!");
     }
 
-    SuperBooking get(Integer id, int userId) throws NotFoundException;
+    ManagerSuperBookingTo getForManager(Integer id) throws NotFoundException;
 
     SuperBooking get(Integer id) throws NotFoundException;
 

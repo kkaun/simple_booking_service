@@ -26,5 +26,7 @@ public interface UserService {
 
     void update(User user);
 
+    void enable(int id, boolean enable);
+
     void evictCache();//for tests
 }

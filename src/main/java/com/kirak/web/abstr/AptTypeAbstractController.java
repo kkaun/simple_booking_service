@@ -5,25 +5,27 @@ import com.kirak.service.AptTypeService;
 import com.kirak.util.exception.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 /**
  * Created by Kir on 03.08.2017.
  */
-public class AptTypeAbstractController {
+public abstract class AptTypeAbstractController {
 
     private final Logger LOG = LoggerFactory.getLogger(getClass());
 
-    private AptTypeService aptTypeService;
+    private final AptTypeService aptTypeService;
 
+    @Autowired
     public AptTypeAbstractController(AptTypeService aptTypeService) {
         this.aptTypeService = aptTypeService;
     }
 
-    public AptType save(AptType type){
+    public void save(AptType type){
         LOG.info("Saving {}", type);
-        return aptTypeService.save(type);
+        aptTypeService.save(type);
     }
 
     public void update(AptType type){

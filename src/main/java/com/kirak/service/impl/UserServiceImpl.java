@@ -6,9 +6,13 @@ import com.kirak.repository.UserRepository;
 import com.kirak.service.UserService;
 import com.kirak.to.UserTo;
 import com.kirak.util.exception.NotFoundException;
+import com.kirak.web.session.AuthorizedUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -23,7 +27,7 @@ import java.util.List;
  */
 @Transactional
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
 
     private final UserRepository repository;
@@ -44,6 +48,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public void update(User user) {
         Assert.notNull(user, "user must not be null");
+        repository.save(user);
+    }
+
+    @CacheEvict(value = "users", allEntries = true)
+    @Override
+    public void evictCache() {
+        // only for evicting cache
+    }
+
+    @CacheEvict(value = "users", allEntries = true)
+    @Override
+    @Transactional
+    public void enable(int id, boolean enabled) {
+        User user = get(id);
+        user.setEnabled(enabled);
         repository.save(user);
     }
 
@@ -75,11 +94,12 @@ public class UserServiceImpl implements UserService {
 
     }
 
-
-    @CacheEvict(value = "users", allEntries = true)
     @Override
-    public void evictCache() {
-        // only for evict cache
+    public AuthorizedUser loadUserByUsername(String email) throws UsernameNotFoundException {
+        User u = repository.getByEmail(email.toLowerCase());
+        if (u == null) {
+            throw new UsernameNotFoundException("User " + email + " is not found");
+        }
+        return new AuthorizedUser(u);
     }
-
 }

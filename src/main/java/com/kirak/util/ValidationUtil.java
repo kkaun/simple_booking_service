@@ -1,9 +1,12 @@
 package com.kirak.util;
 
 import com.kirak.model.abstraction.BaseEntity;
+import com.kirak.model.abstraction.HasId;
 import com.kirak.util.exception.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Objects;
 
 /**
  * Created by Kir on 14.06.2017.
@@ -14,9 +17,9 @@ public class ValidationUtil {
 
     private ValidationUtil(){}
 
-    public static void checkNew(BaseEntity entity) {
-        if (!entity.isNew()) {
-            throw new IllegalArgumentException(entity + " must be new (id=null)");
+    public static void checkNew(HasId bean) {
+        if (!bean.isNew()) {
+            throw new IllegalArgumentException(bean + " must be new (id=null)");
         }
     }
 
@@ -39,17 +42,22 @@ public class ValidationUtil {
         checkNotFound(found, "id=" + id);
     }
 
+    public static void checkIdConsistency(HasId bean, Number id) {
+        if (bean.isNew()) {
+            bean.setId(id);
+        } else if (!Objects.equals(bean.getId(), id)) {
+            throw new IllegalArgumentException(bean + " must be with id=" + id);
+        }
+    }
 
-    public static void checkId(BaseEntity baseEntity, Number id){
+    public static void checkId(HasId bean, Number id){
 
         try {
-            if(baseEntity.isNew()){
-                    baseEntity.setId(id);
-
-            } else if (!baseEntity.getId().equals(id)) {
-                throw new IllegalArgumentException(baseEntity + " must be with id=" + id);
+            if(bean.isNew()){
+                    bean.setId(id);
+            } else if (!bean.getId().equals(id)) {
+                throw new IllegalArgumentException(bean + " must be with id=" + id);
             }
-
         } catch(NumberFormatException|NullPointerException ex) {
             LOG.error(ex.toString());
         }

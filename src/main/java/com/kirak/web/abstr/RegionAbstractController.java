@@ -2,9 +2,12 @@ package com.kirak.web.abstr;
 
 import com.kirak.model.City;
 import com.kirak.service.CityService;
-import javassist.NotFoundException;
+import com.kirak.util.model.RegionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 import static com.kirak.util.ValidationUtil.checkId;
 import static com.kirak.util.ValidationUtil.checkNew;
@@ -12,13 +15,14 @@ import static com.kirak.util.ValidationUtil.checkNew;
 /**
  * Created by Kir on 03.08.2017.
  */
-public class CityAbstractController {
+public abstract class RegionAbstractController {
     
     private final Logger LOG = LoggerFactory.getLogger(getClass());
 
     private final CityService cityService;
 
-    public CityAbstractController(CityService cityService){
+    @Autowired
+    public RegionAbstractController(CityService cityService){
         this.cityService = cityService;
     }
 
@@ -39,7 +43,15 @@ public class CityAbstractController {
         return cityService.get(id);
     }
 
-//    public void delete(Integer id, int cityId){
-//
-//    }
+    public List<City> getAll(){
+        LOG.info("Getting all cities");
+        return cityService.getAll();
+    }
+
+    public List<City> getAllByRegion(String region){
+        LOG.info("Getting cities by region {}", region);
+        return RegionUtil.getCitiesByRegionName(region, cityService.getAll());
+    }
+
+
 }

@@ -24,8 +24,6 @@ public class AdminSuperBookingTo extends BasicIntTo {
 
     private final Integer userId;
 
-    private final String userName;
-
     public AdminSuperBookingTo(@JsonProperty Integer id,
                                @JsonProperty boolean active,
                                @JsonProperty LocalDateTime dateAdded,
@@ -33,8 +31,7 @@ public class AdminSuperBookingTo extends BasicIntTo {
                                @JsonProperty LocalDate outDate,
                                @JsonProperty Integer hotelId,
                                @JsonProperty String hotelName,
-                               @JsonProperty Integer userId,
-                               @JsonProperty String userName) {
+                               @JsonProperty Integer userId) {
         super(id);
         this.active = active;
         this.dateAdded = dateAdded;
@@ -42,7 +39,6 @@ public class AdminSuperBookingTo extends BasicIntTo {
         this.outDate = outDate;
         this.hotelId = hotelId;
         this.hotelName = hotelName;
-        this.userName = userName;
         this.userId = userId;
     }
 
@@ -70,10 +66,6 @@ public class AdminSuperBookingTo extends BasicIntTo {
         return hotelName;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
     public Integer getUserId() {
         return userId;
     }
@@ -88,7 +80,6 @@ public class AdminSuperBookingTo extends BasicIntTo {
                 ", outDate=" + outDate +
                 ", hotelId=" + hotelId +
                 ", hotelName='" + hotelName + '\'' +
-                ", userName='" + userName + '\'' +
                 ", userId=" + userId +
                 '}';
     }

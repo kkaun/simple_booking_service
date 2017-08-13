@@ -23,13 +23,19 @@ public class ManagerSuperBookingTo extends BasicIntTo {
 
     private final String userName;
 
+    private final String userEmail;
+
+    private final String userPhone;
+
     public ManagerSuperBookingTo(@JsonProperty Integer id,
                                  @JsonProperty boolean active,
                                  @JsonProperty LocalDateTime dateAdded,
                                  @JsonProperty LocalDate inDate,
                                  @JsonProperty LocalDate outDate,
                                  @JsonProperty Short apartmentsNum,
-                                 @JsonProperty String userName) {
+                                 @JsonProperty String userName,
+                                 @JsonProperty String userEmail,
+                                 @JsonProperty String userPhone) {
         super(id);
         this.active = active;
         this.dateAdded = dateAdded;
@@ -37,6 +43,8 @@ public class ManagerSuperBookingTo extends BasicIntTo {
         this.outDate = outDate;
         this.apartmentsNum = apartmentsNum;
         this.userName = userName;
+        this.userEmail = userEmail;
+        this.userPhone = userPhone;
     }
 
     public boolean isActive() {
@@ -63,6 +71,14 @@ public class ManagerSuperBookingTo extends BasicIntTo {
         return userName;
     }
 
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
     @Override
     public String toString() {
         return "ManagerSuperBookingTo{" +
@@ -73,6 +89,8 @@ public class ManagerSuperBookingTo extends BasicIntTo {
                 ", outDate=" + outDate +
                 ", apartmentsNum=" + apartmentsNum +
                 ", userName='" + userName + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", userPhone='" + userPhone + '\'' +
                 '}';
     }
 }

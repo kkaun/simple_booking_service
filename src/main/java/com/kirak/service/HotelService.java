@@ -1,7 +1,9 @@
 package com.kirak.service;
 
 import com.kirak.model.Hotel;
+import com.kirak.to.HotelTo;
 import com.kirak.util.exception.NotFoundException;
+import net.sf.ehcache.search.expression.Not;
 
 import java.util.List;
 
@@ -10,13 +12,17 @@ import java.util.List;
  */
 public interface HotelService {
 
-    Hotel save(Hotel hotel, int cityId);
+    Hotel save(Hotel hotel);
 
-    Hotel update(Hotel hotel, int cityId) throws NotFoundException;
+    Hotel update(Hotel hotel) throws NotFoundException;
 
-    void delete(Integer id, int cityId) throws NotFoundException;
+    void update(HotelTo hotelTo);
 
-    Hotel get(Integer id, int cityId) throws NotFoundException;
+    default boolean delete(Integer id) throws NotFoundException{
+        throw new UnsupportedOperationException("SuperBooking cannot be deleted, only modified!");
+    }
+
+    HotelTo getTo(Integer id) throws NotFoundException;
 
     Hotel get(Integer id) throws NotFoundException;
 

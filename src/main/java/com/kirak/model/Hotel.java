@@ -116,8 +116,8 @@ public class Hotel extends NamedEntity {
         this.description = description;
     }
 
-    public Hotel(Integer id, String name, Short stars, Country country,
-                 City city, String address, String phone, String description, Time checkIn, Time checkOut) {
+    public Hotel(Integer id, String name, Short stars, Country country, City city, String address,
+                 String phone, String description, Time checkIn, Time checkOut) {
         super(id, name);
         this.stars = stars;
         this.country = country;

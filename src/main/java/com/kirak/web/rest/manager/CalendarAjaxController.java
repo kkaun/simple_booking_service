@@ -13,6 +13,9 @@ import java.util.List;
 /**
  * Created by Kir on 18.06.2017.
  */
+
+@RestController
+@RequestMapping("/manager/calendar")
 public class CalendarAjaxController extends BookingAbstractController{
 
     //!!! ONLY FOR OWN HOTEL
@@ -44,15 +47,5 @@ public class CalendarAjaxController extends BookingAbstractController{
         return super.getAllBookings();
     }
 
-
-
-    // ------------------------ SuperBooking
-
-
-    @GetMapping(value = "/by_user_id", produces = MediaType.APPLICATION_JSON_VALUE)
-    @Override
-    public List<SuperBooking> getSuperBookingsByUserId(@RequestParam("superBookingId") int userId){
-        return super.getSuperBookingsByUserId(userId);
-    }
 
 }

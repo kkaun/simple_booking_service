@@ -1,72 +1,68 @@
 package com.kirak.web.rest.admin;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.kirak.model.User;
 import com.kirak.service.UserService;
+import com.kirak.to.UserTo;
+import com.kirak.util.model.UserUtil;
+import com.kirak.web.View;
 import com.kirak.web.abstr.UserAbstractController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
 /**
  * Created by Kir on 15.06.2017.
  */
-@Controller
-@RequestMapping(value = UserAjaxController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
+@RestController
+@RequestMapping("admin/users")
 public class UserAjaxController extends UserAbstractController {
 
-    static final String REST_URL = "/users";
-
+    @Autowired
     public UserAjaxController(UserService service) {
         super(service);
     }
 
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @JsonView(View.JsonUI.class)
     public List<User> getAll() {
         return super.getAll();
     }
 
     @Override
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @JsonView(View.JsonUI.class)
     public User get(@PathVariable("id") int id) {
         return super.get(id);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> createWithLocation(@RequestBody User user) {
-        User created = super.create(user);
-
-//        HttpHeaders httpHeaders = new HttpHeaders();
-//        httpHeaders.setLocation(uriOfNewResource);
-
-        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path(REST_URL + "/{id}")
-                .buildAndExpand(created.getId()).toUri();
-
-        return ResponseEntity.created(uriOfNewResource).body(created);
-    }
-
     @Override
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") int id) {
         super.delete(id);
     }
 
-    @Override
-    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@RequestBody User user, @PathVariable("id") int id) {
-        super.update(user, id);
+    @PostMapping
+    public void createOrUpdate(@Valid UserTo userTo) {
+        if (userTo.isNew()) {
+            super.create(UserUtil.createNewRegisteredFromTo(userTo));
+        } else {
+            super.update(userTo, userTo.getId());
+        }
     }
 
     @Override
-    @GetMapping(value = "/by", produces = MediaType.APPLICATION_JSON_VALUE)
-    public User getByMail(@RequestParam("email") String email) {
-        return super.getByMail(email);
+    @PostMapping(value = "/{id}")
+    public void enable(@PathVariable("id") int id, @RequestParam("enabled") boolean enabled) {
+        super.enable(id, enabled);
     }
 
 }

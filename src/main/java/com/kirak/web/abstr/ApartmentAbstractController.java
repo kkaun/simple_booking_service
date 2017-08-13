@@ -5,6 +5,7 @@ import com.kirak.service.ApartmentService;
 import javassist.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public abstract class ApartmentAbstractController {
 
     private final ApartmentService apartmentService;
 
+    @Autowired
     public ApartmentAbstractController(ApartmentService apartmentService){
         this.apartmentService = apartmentService;
     }
@@ -29,10 +31,6 @@ public abstract class ApartmentAbstractController {
     Apartment update(Apartment apt, int hotelId) throws NotFoundException{
         LOG.info("Updating {}", apt);
         return apartmentService.update(apt, hotelId);
-    }
-
-    void delete(int id, int hotelId){
-
     }
 
     Apartment get(int id, int hotelId){
@@ -49,5 +47,9 @@ public abstract class ApartmentAbstractController {
         LOG.info("Getting all apartments by hotel {}", hotelId);
         return apartmentService.getAllByHotel(hotelId);
     }
+
+    //    void delete(int id, int hotelId){
+//
+//    }
 
 }

@@ -3,6 +3,9 @@ package com.kirak.service.impl;
 import com.kirak.model.Hotel;
 import com.kirak.repository.HotelRepository;
 import com.kirak.service.HotelService;
+import com.kirak.to.HotelTo;
+import com.kirak.util.exception.NotFoundException;
+import com.kirak.util.model.HotelUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
@@ -10,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import static com.kirak.util.ValidationUtil.checkNotFoundWithId;
+import static com.kirak.util.model.HotelUtil.updateFromTo;
 
 import java.util.List;
 
@@ -28,25 +32,28 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public Hotel save(Hotel hotel, int cityId) {
+    public Hotel save(Hotel hotel) {
         Assert.notNull(hotel, "Hotel must not be null!");
-        return repository.save(hotel, cityId);
+        return repository.save(hotel, hotel.getCity().getId());
     }
 
     @Override
-    public Hotel update(Hotel hotel, int cityId) {
+    public Hotel update(Hotel hotel) {
         Assert.notNull(hotel, "Hotel must not be null!");
-        return checkNotFoundWithId(repository.save(hotel, cityId), hotel.getId());
+        return checkNotFoundWithId(repository.save(hotel, hotel.getCity().getId()), hotel.getId());
+    }
+
+    @CacheEvict(value = "hotels", allEntries = true)
+    @Transactional
+    @Override
+    public void update(HotelTo hotelTo) {
+        Hotel hotel = updateFromTo(get(hotelTo.getId()), hotelTo);
+        repository.save(hotel, hotelTo.getCityId());
     }
 
     @Override
-    public void delete(Integer id, int cityId) {
-        checkNotFoundWithId(repository.delete(id, cityId), id);
-    }
-
-    @Override
-    public Hotel get(Integer id, int cityId) {
-        return checkNotFoundWithId(repository.get(id, cityId), id);
+    public HotelTo getTo(Integer id) throws NotFoundException {
+        return checkNotFoundWithId(HotelUtil.asHotelTo(repository.get(id)), id);
     }
 
     @Override
@@ -74,5 +81,10 @@ public class HotelServiceImpl implements HotelService {
     public void evictCache() {
 
     }
+
+//    @Override
+//    public void delete(Integer id) throws NotFoundException {
+//
+//    }
 
 }

@@ -1,9 +1,11 @@
 package com.kirak.to.abstr;
 
+import com.kirak.model.abstraction.HasId;
+
 /**
  * Created by Kir on 13.08.2017.
  */
-public abstract class BasicLongTo implements HasId{
+public abstract class BasicLongTo implements HasId {
 
     protected Long id;
 
