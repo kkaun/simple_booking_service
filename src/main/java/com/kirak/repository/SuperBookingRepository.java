@@ -31,7 +31,4 @@ public interface SuperBookingRepository {
 
     List<SuperBooking> getAllBetweenCreatedDateTimes(LocalDateTime startDateTime, LocalDateTime endDateTime);
 
-    List<SuperBooking> getAllByInDate(LocalDate inDate);
-
-    List<SuperBooking> getAllByOutDate(LocalDate outDate);
 }

@@ -118,12 +118,6 @@ public class HotelUtil {
         return IntStream.rangeClosed(1, hotel.getApartments().size()).boxed().map(Object::toString).collect(Collectors.toList());
     }
 
-    public static void addUniqueHotelParams(Hotel hotel, Model model){
-        model.addAttribute("uniquePersonNums", getUniquePersonNums(hotel));
-        model.addAttribute("uniqueCategories", getUniqueCategories(hotel));
-        model.addAttribute("uniqueAptNums", getUniqueApartmentNums(hotel));
-    }
-
     public static boolean isHotelSuitableByPersonNum(Hotel hotel, Short personNum){
 
         return hotel.getApartments().stream()
@@ -212,6 +206,7 @@ public class HotelUtil {
         return hotels.stream()
                 .flatMap(hotel -> hotel.getApartments().stream())
                 .map(Apartment::getPrice)
-                .max(Double::compare).get();
+                .max(Double::compare)
+                .orElse(null);
     }
 }

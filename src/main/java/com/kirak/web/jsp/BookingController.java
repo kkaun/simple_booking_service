@@ -27,7 +27,7 @@ import java.util.Map;
 
 @Controller
 //@Scope("session")
-public class BookingController extends BookingAbstractController{
+public class BookingController{
 
     @Autowired
     private HotelService hotelService;
@@ -45,12 +45,14 @@ public class BookingController extends BookingAbstractController{
     private ApartmentService apartmentService;
 
     @Autowired
+    private BookingService bookingService;
+
+    @Autowired
+    private SuperBookingService superBookingService;
+
+    @Autowired
     @Qualifier("sessionPlacementsService")
     private SessionPlacementsService sessionPlacementsService;
-
-    protected BookingController(BookingService bookingService, SuperBookingService superBookingService) {
-        super(bookingService, superBookingService);
-    }
 
 
     @GetMapping("/index")
@@ -113,7 +115,7 @@ public class BookingController extends BookingAbstractController{
         int hotelId = PlacementUtil.getHotelIdFromPlacementId(sessionPlacementsService, Integer.parseInt(placementId));
         double placementSum = PlacementUtil.calculateBookingSumForPlacement(PlacementUtil.getPlacementFromId(sessionPlacementsService,
                 Integer.parseInt(placementId)));
-        HotelUtil.addUniqueHotelParams(hotelService.get(hotelId), model);
+        ModelUtil.addUniqueHotelParams(hotelService.get(hotelId), model);
         ModelUtil.addUniqueFilterParams(model, aptTypeService);
         Placement placement = PlacementUtil.getPlacementFromId(sessionPlacementsService, Integer.parseInt(placementId));
         model.addAttribute("options", placement.getOption().values());
@@ -130,7 +132,7 @@ public class BookingController extends BookingAbstractController{
 
     @GetMapping(value = "/inspect_hotel")
     public String hotel(@RequestParam("id") String hotelId, Model model) {
-        HotelUtil.addUniqueHotelParams(hotelService.get(Integer.parseInt(hotelId)), model);
+        ModelUtil.addUniqueHotelParams(hotelService.get(Integer.parseInt(hotelId)), model);
         ModelUtil.addUniqueFilterParams(model, aptTypeService);
         model.addAttribute("apartments", apartmentService.getAllByHotel(Integer.parseInt(hotelId)));
         model.addAttribute("hotel", HotelUtil.asHotelTo(hotelService.get(Integer.parseInt(hotelId))));
@@ -158,7 +160,7 @@ public class BookingController extends BookingAbstractController{
                     "available for this object right now.");
         }
         model.addAttribute("hotel", HotelUtil.asHotelTo(hotelService.get(Integer.parseInt(hotelId))));
-        HotelUtil.addUniqueHotelParams(hotelService.get(Integer.parseInt(hotelId)), model);
+        ModelUtil.addUniqueHotelParams(hotelService.get(Integer.parseInt(hotelId)), model);
         ModelUtil.addUniqueFilterParams(model, aptTypeService);
         return "hotel";
     }
@@ -186,7 +188,7 @@ public class BookingController extends BookingAbstractController{
         } else {
             model.addAttribute("notAvailableApartment", apartmentService.get(Integer.parseInt(apartmentId)));
         }
-        HotelUtil.addUniqueHotelParams(hotelService.get(Integer.parseInt(hotelId)), model);
+        ModelUtil.addUniqueHotelParams(hotelService.get(Integer.parseInt(hotelId)), model);
         ModelUtil.addUniqueFilterParams(model, aptTypeService);
         model.addAttribute("apartments", apartmentService.getAllByHotel(Integer.parseInt(hotelId)));
         model.addAttribute("hotel", HotelUtil.asHotelTo(hotelService.get(Integer.parseInt(hotelId))));
@@ -225,12 +227,12 @@ public class BookingController extends BookingAbstractController{
         SuperBooking superBooking = new SuperBooking(true, LocalDateTime.now(), (short)0, Double.parseDouble(sum),
                 Short.parseShort(personNum), user, hotelService.get(Integer.parseInt(hotelId)),
                 user.getName(), user.getEmail(), user.getPhone());
-        super.createSuperBooking(superBooking, user.getId());
+        superBookingService.save(superBooking, user.getId());
         Placement placement = PlacementUtil.getPlacementFromId(sessionPlacementsService, Integer.parseInt(placementId));
         placement.getOption().values().forEach(apartments -> apartments.forEach(apartment -> {
             Booking booking = new Booking(LocalDate.parse(inDate), LocalDate.parse(outDate), apartment.getPrice(),
                     apartment.getType().getPersonNum(), superBooking, apartment, hotelService.get(Integer.parseInt(hotelId)));
-            super.createBooking(booking, superBooking.getId(), apartment.getId());
+            bookingService.save(booking, superBooking.getId(), apartment.getId());
         }));
         model.addAttribute("user", user);
         model.addAttribute("superBooking", superBooking);

@@ -179,8 +179,6 @@ CREATE TABLE IF NOT EXISTS `super_booking` (
   `id`                  INT            NOT NULL AUTO_INCREMENT,
   `active`              BOOLEAN        DEFAULT TRUE,
   `date_added`          TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
-  `in_date`             TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
-  `out_date`            TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
   `extra_beds`          SMALLINT       NULL,
   `overall_sum`         DECIMAL(11, 4) NOT NULL,
   `overall_person_num`  SMALLINT       NOT NULL,

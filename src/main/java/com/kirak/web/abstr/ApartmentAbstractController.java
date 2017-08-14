@@ -2,6 +2,7 @@ package com.kirak.web.abstr;
 
 import com.kirak.model.Apartment;
 import com.kirak.service.ApartmentService;
+import com.kirak.web.session.AuthorizedUser;
 import javassist.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,30 +24,31 @@ public abstract class ApartmentAbstractController {
         this.apartmentService = apartmentService;
     }
 
-    Apartment save(Apartment apt, int hotelId){
-        LOG.info("Saving {}", apt);
-        return apartmentService.save(apt, hotelId);
-    }
-
-    Apartment update(Apartment apt, int hotelId) throws NotFoundException{
-        LOG.info("Updating {}", apt);
-        return apartmentService.update(apt, hotelId);
-    }
-
-    Apartment get(int id, int hotelId){
-        LOG.info("Getting apartment {}", id);
-        return apartmentService.get(id, hotelId);
-    }
-
-    List<Apartment> getAllSortedByPrice() {
-        LOG.info("Getting all sorted apartments by price");
-        return apartmentService.getAll();
-    }
-
-    List<Apartment> getAllByHotel(int hotelId){
-        LOG.info("Getting all apartments by hotel {}", hotelId);
-        return apartmentService.getAllByHotel(hotelId);
-    }
+//    public Apartment save(Apartment apt, int hotelId){
+//        LOG.info("Saving {}", apt);
+//        return apartmentService.save(apt, hotelId);
+//    }
+//
+//    public Apartment update(Apartment apt, int hotelId) throws NotFoundException{
+//        LOG.info("Updating {}", apt);
+//        return apartmentService.update(apt, hotelId);
+//    }
+//
+//    public Apartment get(int id, int hotelId){
+//        LOG.info("Getting apartment {}", id);
+//        return apartmentService.get(id, hotelId);
+//    }
+//
+//    public List<Apartment> getAllByHotel(int hotelId){
+//        LOG.info("Getting all apartments by hotel {}", hotelId);
+//        return apartmentService.getAllByHotel(hotelId);
+//    }
+//
+//    public List<Apartment> getAllForHotelManager(){
+//        int hotelManagerId = AuthorizedUser.getId();
+//        LOG.info("Getting all apartments for hotel manager {}", hotelManagerId);
+//        return apartmentService.getAllByHotel(hotelId);
+//    }
 
     //    void delete(int id, int hotelId){
 //

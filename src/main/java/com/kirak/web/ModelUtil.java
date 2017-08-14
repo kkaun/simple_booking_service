@@ -1,7 +1,9 @@
 package com.kirak.web;
 
+import com.kirak.model.Hotel;
 import com.kirak.service.AptTypeService;
 import com.kirak.util.model.AptTypeUtil;
+import com.kirak.util.model.HotelUtil;
 import org.springframework.ui.Model;
 
 import java.util.ArrayList;
@@ -20,7 +22,9 @@ public class ModelUtil {
         model.addAttribute("apartmentNums", IntStream.rangeClosed(1, 10).boxed().collect(Collectors.toList()));
     }
 
-    public static void prepareHotelView(){
-
+    public static void addUniqueHotelParams(Hotel hotel, Model model){
+        model.addAttribute("uniquePersonNums", HotelUtil.getUniquePersonNums(hotel));
+        model.addAttribute("uniqueCategories", HotelUtil.getUniqueCategories(hotel));
+        model.addAttribute("uniqueAptNums", HotelUtil.getUniqueApartmentNums(hotel));
     }
 }

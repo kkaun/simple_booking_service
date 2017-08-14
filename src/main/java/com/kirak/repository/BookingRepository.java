@@ -14,12 +14,16 @@ public interface BookingRepository {
     // null if updated booking does not belong to superBookingId
     Booking save(Booking booking, int superBookingId, int apartmentId);
 
+    Booking save(Booking booking);
+
     default boolean delete(long id, int superBookingId, int apartmentId){
         throw new UnsupportedOperationException("Booking cannot be deleted, only modified!");
     }
 
     // null if booking does not belong to superBookingId
     Booking get(long id, int superBookingId, int apartmentId);
+
+    Booking get(long id);
 
     List<Booking> getAll();
 

@@ -42,10 +42,25 @@ public class BookingRepositoryImpl implements BookingRepository {
     }
 
     @Override
+    public Booking save(Booking booking) {
+        if(!booking.isNew() && get(booking.getId()) == null){
+            return null;
+        }
+        return bookingRepository.save(booking);
+    }
+
+    @Override
     public Booking get(long id, int superBookingId, int apartmentId) {
         Booking booking = bookingRepository.findOne(id);
         return booking != null && booking.getSuperBooking().getId() == superBookingId
                 && booking.getApartment().getId() == apartmentId ? booking : null;
+    }
+
+    @Override
+    public Booking get(long id) {
+        Booking booking = bookingRepository.findOne(id);
+        return booking != null && booking.getId() != null && booking.getSuperBooking() != null
+                && booking.getApartment() != null ? booking : null;
     }
 
     @Override

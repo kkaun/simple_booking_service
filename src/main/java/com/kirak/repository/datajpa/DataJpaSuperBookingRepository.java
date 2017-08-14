@@ -38,12 +38,4 @@ public interface DataJpaSuperBookingRepository extends JpaRepository<SuperBookin
     List<SuperBooking> getAllBetweenCreatedDateTimes(@Param("startDateTime") LocalDateTime startDateTime,
                                           @Param("endDateTime") LocalDateTime endDateTime);
 
-    List<SuperBooking> findAllByInDate(LocalDate inDate);
-
-    List<SuperBooking> findAllByOutDate(LocalDate outDate);
-
-
-//    @Query("SELECT b FROM SuperBooking b WHERE b.inDate BETWEEN :startDate AND :endDate OR b.outDate BETWEEN :startDate " +
-//            "AND :endDate OR b.inDate <= :startDate AND b.outDate >= :endDate")
-//    List<SuperBooking> getAllBetweenDates(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDateTime endDate);
 }

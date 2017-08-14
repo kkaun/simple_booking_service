@@ -44,7 +44,8 @@ public class SuperBookingServiceImpl implements SuperBookingService {
 
     @Override
     public SuperBooking update(ManagerSuperBookingTo managerSuperBookingTo) {
-        //SuperBooking superBooking = SuperBookingUtil.updateFromManagerSuperBookingTo(managerSuperBookingTo, )
+        return checkNotFoundWithId(repository.save(SuperBookingUtil.updateFromManagerSuperBookingTo(managerSuperBookingTo,
+                repository.get(managerSuperBookingTo.getId()))), managerSuperBookingTo.getId());
     }
 
     @Override
@@ -57,11 +58,6 @@ public class SuperBookingServiceImpl implements SuperBookingService {
     public SuperBooking update(SuperBooking booking, int userId) {
         Assert.notNull(booking, "SuperBooking must not be null!");
         return checkNotFoundWithId(repository.save(booking, userId), booking.getId());
-    }
-
-    @Override
-    public ManagerSuperBookingTo getForManager(Integer id) {
-        return checkNotFoundWithId(SuperBookingUtil.asManagerSuperBookingTo(repository.get(id)), id);
     }
 
     @Override
@@ -83,16 +79,6 @@ public class SuperBookingServiceImpl implements SuperBookingService {
         Assert.notNull(startDateTime, "startDateTime must not be null");
         Assert.notNull(endDateTime, "endDateTime  must not be null");
         return repository.getAllBetweenCreatedDateTimes(startDateTime, endDateTime);
-    }
-
-    @Override
-    public List<SuperBooking> getAllByInDate(LocalDate inDate) {
-        return repository.getAllByInDate(inDate);
-    }
-
-    @Override
-    public List<SuperBooking> getAllByOutDate(LocalDate outDate) {
-        return repository.getAllByOutDate(outDate);
     }
 
     @Override

@@ -75,15 +75,4 @@ public class SuperBookingRepositoryImpl implements SuperBookingRepository {
         return superBookingRepository.getAllBetweenCreatedDateTimes(startDateTime, endDateTime);
     }
 
-    @Override
-    public List<SuperBooking> getAllByInDate(LocalDate inDate) {
-        return superBookingRepository.findAllByInDate(inDate);
-    }
-
-    @Override
-    public List<SuperBooking> getAllByOutDate(LocalDate outDate) {
-        return superBookingRepository.findAllByOutDate(outDate);
-    }
-
-
 }

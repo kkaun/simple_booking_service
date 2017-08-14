@@ -18,13 +18,15 @@ public class BookingTo extends BasicLongTo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private final Integer aptId;
+
     private final String aptCategory;
 
     private final String aptArrangement;
 
     private final Short aptPersonNum;
 
-    private final Short aptPrice;
+    private final Double aptPrice;
 
     private final LocalDate inDate;
 
@@ -32,12 +34,12 @@ public class BookingTo extends BasicLongTo implements Serializable {
 
     private final Double sum;
 
-
     public BookingTo(@JsonProperty Long id,
+                     @JsonProperty Integer aptId,
                      @JsonProperty String aptCategory,
                      @JsonProperty String aptArrangement,
                      @JsonProperty Short aptPersonNum,
-                     @JsonProperty Short aptPrice,
+                     @JsonProperty Double aptPrice,
                      @JsonProperty LocalDate inDate,
                      @JsonProperty LocalDate outDate,
                      @JsonProperty Double sum) {
@@ -49,6 +51,7 @@ public class BookingTo extends BasicLongTo implements Serializable {
         this.inDate = inDate;
         this.outDate = outDate;
         this.sum = sum;
+        this.aptId = aptId;
     }
 
     public String getAptCategory() {
@@ -63,7 +66,7 @@ public class BookingTo extends BasicLongTo implements Serializable {
         return aptPersonNum;
     }
 
-    public Short getAptPrice() {
+    public Double getAptPrice() {
         return aptPrice;
     }
 
@@ -79,10 +82,15 @@ public class BookingTo extends BasicLongTo implements Serializable {
         return sum;
     }
 
+    public Integer getAptId() {
+        return aptId;
+    }
+
     @Override
     public String toString() {
         return "BookingTo{" +
                 "id=" + id +
+                ", aptId=" + aptId +
                 ", aptCategory='" + aptCategory + '\'' +
                 ", aptArrangement='" + aptArrangement + '\'' +
                 ", aptPersonNum=" + aptPersonNum +

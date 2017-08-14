@@ -2,10 +2,11 @@ package com.kirak.web.rest.admin;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.kirak.model.Booking;
-import com.kirak.model.SuperBooking;
+import com.kirak.service.ApartmentService;
 import com.kirak.service.BookingService;
 import com.kirak.service.SuperBookingService;
 import com.kirak.to.booking.AdminSuperBookingTo;
+import com.kirak.to.booking.BookingTo;
 import com.kirak.to.booking.ManagerSuperBookingTo;
 import com.kirak.web.View;
 import com.kirak.web.abstr.BookingAbstractController;
@@ -14,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -23,15 +25,16 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/admin/bookings")
-public class SuperBookingsAjaxController extends BookingAbstractController {
+public class BookingsAjaxController extends BookingAbstractController {
 
     @Autowired
-    protected SuperBookingsAjaxController(BookingService bookingService, SuperBookingService superBookingService) {
-        super(bookingService, superBookingService);
+    protected BookingsAjaxController(BookingService bookingService, SuperBookingService superBookingService,
+                                     ApartmentService apartmentService) {
+        super(bookingService, superBookingService, apartmentService);
     }
 
     @PostMapping
-    public void updateSuperBookingByAdmin(@Validated(View.ValidatedUIGroup.class) ManagerSuperBookingTo managerSuperBookingTo) {
+    public void updateSuperBookingByAdmin(@Valid ManagerSuperBookingTo managerSuperBookingTo) {
             super.updateSuperBooking(managerSuperBookingTo);
     }
 
@@ -88,28 +91,19 @@ public class SuperBookingsAjaxController extends BookingAbstractController {
 
 
 
-
     // ----------------------- Booking methods ----------------------- //
 
-
     @Override
-    public Booking createBooking(Booking booking, int superBookingId, int apartmentId) {
-        return super.createBooking(booking, superBookingId, apartmentId);
+    @PostMapping(value = "/update_booking", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void updateBooking(@Valid BookingTo bookingTo) {
+        super.updateBooking(bookingTo);
     }
 
     @Override
-    public Booking updateBooking(Booking booking, int superBookingId, int apartmentId) {
-        return super.updateBooking(booking, superBookingId, apartmentId);
-    }
-
-    @Override
-    public Booking getBooking(Long id, int superBookingId, int apartmentId) {
-        return super.getBooking(id, superBookingId, apartmentId);
-    }
-
-    @Override
-    public List<Booking> getAllBookings() {
-        return super.getAllBookings();
+    @JsonView(View.JsonUI.class)
+    @PostMapping(value = "/all_bookings", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<BookingTo> getAllBookingsBySBId(@RequestParam("sbId") int superBookingId) {
+        return super.getAllBookingsBySBId(superBookingId);
     }
 
 }

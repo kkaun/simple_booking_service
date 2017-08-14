@@ -2,6 +2,7 @@ package com.kirak.web.rest.manager;
 
 import com.kirak.model.Booking;
 import com.kirak.model.SuperBooking;
+import com.kirak.service.ApartmentService;
 import com.kirak.service.BookingService;
 import com.kirak.service.SuperBookingService;
 import com.kirak.web.abstr.BookingAbstractController;
@@ -18,34 +19,32 @@ import java.util.List;
 @RequestMapping("/manager/calendar")
 public class CalendarAjaxController extends BookingAbstractController{
 
-    //!!! ONLY FOR OWN HOTEL
-
-    static final String REST_URL = "/manager/booking";
-
-    protected CalendarAjaxController(BookingService bookingService, SuperBookingService superBookingService) {
-        super(bookingService, superBookingService);
+    protected CalendarAjaxController(BookingService bookingService, SuperBookingService superBookingService,
+                                     ApartmentService apartmentService) {
+        super(bookingService, superBookingService, apartmentService);
     }
 
 
-    @PutMapping(value = "/{superBookingId}&{apartmentId}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    @Override
-    public Booking updateBooking(@RequestBody Booking booking,
-                          @PathVariable("superBookingId") int superBookingId, @PathVariable("apartmentId")int apartmentId) {
-        return super.updateBooking(booking, superBookingId, apartmentId);
-    }
-
-    @GetMapping(value = "/{id}&{superBookingId}&{apartmentId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    @Override
-    public Booking getBooking(@PathVariable("id")Long id,
-                       @PathVariable("superBookingId") int superBookingId, @PathVariable("apartmentId") int apartmentId) {
-        return super.getBooking(id, superBookingId, apartmentId);
-    }
-
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    @Override
-    public List<Booking> getAllBookings() {
-        return super.getAllBookings();
-    }
+//
+//    @PutMapping(value = "/{superBookingId}&{apartmentId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+//    @Override
+//    public Booking updateBooking(@RequestBody Booking booking,
+//                          @PathVariable("superBookingId") int superBookingId, @PathVariable("apartmentId")int apartmentId) {
+//        return super.updateBooking(booking, superBookingId, apartmentId);
+//    }
+//
+//    @GetMapping(value = "/{id}&{superBookingId}&{apartmentId}", produces = MediaType.APPLICATION_JSON_VALUE)
+//    @Override
+//    public Booking getBooking(@PathVariable("id")Long id,
+//                       @PathVariable("superBookingId") int superBookingId, @PathVariable("apartmentId") int apartmentId) {
+//        return super.getBooking(id, superBookingId, apartmentId);
+//    }
+//
+//    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+//    @Override
+//    public List<Booking> getAllBookings() {
+//        return super.getAllBookings();
+//    }
 
 
 }

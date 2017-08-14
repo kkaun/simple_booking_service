@@ -30,8 +30,6 @@ public interface SuperBookingService {
         throw new UnsupportedOperationException("SuperBooking cannot be deleted, only modified!");
     }
 
-    ManagerSuperBookingTo getForManager(Integer id) throws NotFoundException;
-
     SuperBooking get(Integer id) throws NotFoundException;
 
     List<SuperBooking> getAll();
@@ -45,8 +43,4 @@ public interface SuperBookingService {
     }
 
     List<SuperBooking> getAllBetweenCreatedDateTimes(LocalDateTime startDate, LocalDateTime endDate);
-
-    List<SuperBooking> getAllByInDate(LocalDate inDate);
-
-    List<SuperBooking> getAllByOutDate(LocalDate outDate);
 }
