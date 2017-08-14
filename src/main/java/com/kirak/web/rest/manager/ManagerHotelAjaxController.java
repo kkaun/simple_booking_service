@@ -1,10 +1,13 @@
 package com.kirak.web.rest.manager;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.kirak.model.Hotel;
 import com.kirak.service.CityService;
 import com.kirak.service.CountryService;
 import com.kirak.service.HotelService;
 import com.kirak.to.HotelTo;
+import com.kirak.util.model.HotelUtil;
+import com.kirak.web.View;
 import com.kirak.web.abstr.HotelAbstractController;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -27,42 +31,15 @@ public class ManagerHotelAjaxController extends HotelAbstractController {
         super(hotelService, countryService, cityService);
     }
 
+    @PostMapping
+    public void update(@Valid HotelTo hotelTo) {
+        super.update(hotelTo, hotelTo.getId());
+    }
 
-
-//    @PutMapping(value = "/{id}&{cityId}", consumes = MediaType.APPLICATION_JSON_VALUE)
-//    @Override
-//    public Hotel update(@RequestBody Hotel hotel, @PathVariable("id") int id, @PathVariable("cityId")int cityId) {
-//        return super.update(hotel, id, cityId);
-//    }
-//
-//    @Override
-//    public void delete(Integer id, int cityId) throws NotFoundException {
-//        super.delete(id, cityId);
-//    }
-//
-//    @GetMapping(value = "/{id}&{cityId}")
-//    @Override
-//    public Hotel get(@PathVariable("id")Integer id,@PathVariable("cityId") int cityId) {
-//        return super.get(id,  cityId);
-//    }
-//
-//    @GetMapping(value = "/by_city", produces = MediaType.APPLICATION_JSON_VALUE)
-//    @Override
-//    public List<HotelTo> getAllByCity(@RequestParam int cityId) {
-//        return super.getAllByCity(cityId);
-//    }
-//
-//    @GetMapping(value = "/between", produces = MediaType.APPLICATION_JSON_VALUE)
-//    @Override
-//    public List<HotelTo> getBetweenRatings(
-//            @RequestParam(value = "minRating") double minRating,
-//            @RequestParam(value = "maxRating") double maxRating) {
-//        return super.getBetweenRatings(minRating, maxRating);
-//    }
-//
-//    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-//    @Override
-//    public List<HotelTo> getAll() {
-//        return super.getAll();
-//    }
+    @Override
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @JsonView(View.JsonUI.class)
+    public HotelTo getHotelForManager() {
+        return super.getHotelForManager();
+    }
 }

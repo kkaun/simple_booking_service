@@ -37,17 +37,17 @@ public abstract class ApartmentAbstractController {
         this.hotelService = hotelService;
     }
 
-    public void createOrUpdate(ApartmentTo apartmentTo){
-        if (apartmentTo.isNew()) {
-            Hotel ownHotel = hotelService.getAll().stream().filter(hotel ->
-                    Objects.equals(hotel.getManager().getId(), AuthorizedUser.getId()))
-                    .findFirst().orElse(null);
-            LOG.info("Saving {}", apartmentTo);
-            apartmentService.save(apartmentTo, ownHotel, aptTypeService.getAll());
-        } else{
-            LOG.info("Updating {}", apartmentTo);
-            apartmentService.update(apartmentTo, aptTypeService.getAll());
-        }
+    public void create(ApartmentTo apartmentTo){
+        LOG.info("Saving {}", apartmentTo);
+        Hotel ownHotel = hotelService.getAll().stream().filter(hotel ->
+                Objects.equals(hotel.getManager().getId(), AuthorizedUser.getId()))
+                .findFirst().orElse(null);
+        apartmentService.save(apartmentTo, ownHotel, aptTypeService.getAll());
+    }
+
+    public void update(ApartmentTo apartmentTo){
+        LOG.info("Updating {}", apartmentTo);
+        apartmentService.update(apartmentTo, aptTypeService.getAll());
     }
 
     public ApartmentTo get(int id){

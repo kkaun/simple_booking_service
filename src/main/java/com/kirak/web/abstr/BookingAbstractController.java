@@ -1,14 +1,12 @@
 package com.kirak.web.abstr;
 
+import com.kirak.model.Apartment;
 import com.kirak.model.Booking;
 import com.kirak.model.SuperBooking;
 import com.kirak.service.ApartmentService;
 import com.kirak.service.BookingService;
 import com.kirak.service.SuperBookingService;
-import com.kirak.to.booking.AdminSuperBookingTo;
-import com.kirak.to.booking.BookingTo;
-import com.kirak.to.booking.BookingToList;
-import com.kirak.to.booking.ManagerSuperBookingTo;
+import com.kirak.to.booking.*;
 import com.kirak.util.model.BookingUtil;
 import com.kirak.util.model.SuperBookingUtil;
 import com.kirak.web.session.AuthorizedUser;
@@ -18,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static com.kirak.util.model.SuperBookingUtil.*;
@@ -36,7 +35,7 @@ public abstract class BookingAbstractController {
     private final ApartmentService apartmentService;
 
     @Autowired
-    protected BookingAbstractController(BookingService bookingService, SuperBookingService superBookingService,
+    public BookingAbstractController(BookingService bookingService, SuperBookingService superBookingService,
                                         ApartmentService apartmentService) {
         this.bookingService = bookingService;
         this.superBookingService = superBookingService;
@@ -159,6 +158,22 @@ public abstract class BookingAbstractController {
         return BookingUtil.generateBookingTos(superBookingService.get(superBookingId));
     }
 
+
+    // ------------------------------- Chart TO methods --------------------------- ---- //
+
+
+    public List<ChartTo> getAllChartBookingsForManager() {
+        Integer hotelManagerId = AuthorizedUser.getId();
+        LOG.info("Getting all apartments for hotel manager {}", hotelManagerId);
+        List<Booking> activeHotelBookings = bookingService.getAll().stream()
+                .filter(booking -> Objects.equals(booking.getHotel().getManager().getId(), hotelManagerId))
+                .filter(booking -> booking.getSuperBooking().isActive())
+                .collect(Collectors.toList());
+        List<Apartment> hotelApartments = apartmentService.getAll().stream()
+                .filter(apartment -> Objects.equals(apartment.getHotel().getManager().getId(), hotelManagerId))
+                .collect(Collectors.toList());
+        return BookingUtil.getChartBookingsForManager(hotelApartments, activeHotelBookings);
+    }
 
 
     //-------------------------------------- JSP methods --------------------------------//

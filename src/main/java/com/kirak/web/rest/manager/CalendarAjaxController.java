@@ -25,26 +25,7 @@ public class CalendarAjaxController extends BookingAbstractController{
     }
 
 
-//
-//    @PutMapping(value = "/{superBookingId}&{apartmentId}", consumes = MediaType.APPLICATION_JSON_VALUE)
-//    @Override
-//    public Booking updateBooking(@RequestBody Booking booking,
-//                          @PathVariable("superBookingId") int superBookingId, @PathVariable("apartmentId")int apartmentId) {
-//        return super.updateBooking(booking, superBookingId, apartmentId);
-//    }
-//
-//    @GetMapping(value = "/{id}&{superBookingId}&{apartmentId}", produces = MediaType.APPLICATION_JSON_VALUE)
-//    @Override
-//    public Booking getBooking(@PathVariable("id")Long id,
-//                       @PathVariable("superBookingId") int superBookingId, @PathVariable("apartmentId") int apartmentId) {
-//        return super.getBooking(id, superBookingId, apartmentId);
-//    }
-//
-//    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-//    @Override
-//    public List<Booking> getAllBookings() {
-//        return super.getAllBookings();
-//    }
+
 
 
 }

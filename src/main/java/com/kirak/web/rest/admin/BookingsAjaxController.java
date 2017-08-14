@@ -1,7 +1,6 @@
 package com.kirak.web.rest.admin;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.kirak.model.Booking;
 import com.kirak.service.ApartmentService;
 import com.kirak.service.BookingService;
 import com.kirak.service.SuperBookingService;
@@ -12,7 +11,6 @@ import com.kirak.web.View;
 import com.kirak.web.abstr.BookingAbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

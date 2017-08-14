@@ -4,9 +4,14 @@ import com.kirak.model.Apartment;
 import com.kirak.model.Booking;
 import com.kirak.model.SuperBooking;
 import com.kirak.to.booking.BookingTo;
-import com.kirak.to.booking.BookingToList;
+import com.kirak.to.booking.ChartTo;
+import com.kirak.to.booking.ChartValue;
+import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneOffset;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -81,6 +86,54 @@ public class BookingUtil {
     public static double calculateBookingSumForApt(Apartment apartment, LocalDate startDate, LocalDate endDate){
 
         return apartment.getPrice() * DAYS.between(startDate, endDate);
+    }
+
+
+    // ------------------------------- Chart TO methods ----------------------------------- //
+
+    public static List<ChartTo> getChartBookingsForManager(List<Apartment> hotelApartments,
+                                                            List<Booking> activeHotelBookings) {
+
+        Map<Apartment, List<Booking>> apartmentsWithOwnBookings = new HashMap<>();
+
+        List<ChartTo> chartBookingTos = new ArrayList<>();
+
+        hotelApartments.forEach(apartment -> {
+            List<Booking> ownBookings = new ArrayList<>();
+            activeHotelBookings.forEach(booking -> {
+                if(booking.getApartment().equals(apartment))
+                    ownBookings.add(booking);
+            });
+            apartmentsWithOwnBookings.put(apartment, ownBookings);
+        });
+
+        apartmentsWithOwnBookings.forEach((apartment, bookings) -> {
+
+            List<ChartValue> chartValues = new ArrayList<>();
+
+            String name = String.valueOf(apartment.getType().getPersonNum()) + "-person "
+                    + StringUtils.capitalize(apartment.getType().getCategory());
+            String descPrimary = StringUtils.capitalize(apartment.getType().getBedsArrangement().toLowerCase());
+
+            bookings.forEach(booking -> {
+                String to = String.valueOf(LocalDateTime.of(booking.getOutDate(), LocalTime.MIN)
+                        .toInstant(ZoneOffset.UTC).toEpochMilli());
+                String from = String.valueOf(LocalDateTime.of(booking.getInDate(), LocalTime.MIN)
+                        .toInstant(ZoneOffset.UTC).toEpochMilli());
+                String descSecondary = booking.getSuperBooking().getBookerName();
+                String label = "Email: " + booking.getSuperBooking().getBookerEmail();
+                if(booking.getSuperBooking().getBookerPhone() != null && !booking.getSuperBooking().getBookerPhone().isEmpty()){
+                    label += " ------ Phone: " + booking.getSuperBooking().getBookerPhone();
+                }
+                String customClass = "ganttGreen";
+                String dataObj = "";
+                chartValues.add(new ChartValue(to, from, descSecondary, label, customClass, dataObj));
+            });
+
+            chartBookingTos.add(new ChartTo(name, descPrimary, chartValues));
+        });
+
+        return chartBookingTos;
     }
 
 }

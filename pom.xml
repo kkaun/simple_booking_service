@@ -51,6 +51,7 @@
         <!-- Commons File Upload -->
         <commons-fileupload.version>1.3.3</commons-fileupload.version>
         <commons-io.version>2.5</commons-io.version>
+        <commons-lang.version>2.6</commons-lang.version>
     </properties>
 
 
@@ -380,6 +381,14 @@
             <artifactId>commons-io</artifactId>
             <version>${commons-io.version}</version>
         </dependency>
+
+        <!-- commons-lang -->
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>${commons-lang.version}</version>
+        </dependency>
+
 
     </dependencies>
 

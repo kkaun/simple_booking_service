@@ -8,11 +8,13 @@ import com.kirak.service.CountryService;
 import com.kirak.service.HotelService;
 import com.kirak.to.HotelTo;
 import com.kirak.util.model.HotelUtil;
+import com.kirak.web.session.AuthorizedUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Objects;
 
 import static com.kirak.util.ValidationUtil.checkId;
 import static com.kirak.util.ValidationUtil.checkIdConsistency;
@@ -37,6 +39,16 @@ public abstract class HotelAbstractController {
         this.countryService = countryService;
         this.cityService = cityService;
     }
+
+    // -------------------------------------- Manager methods ------------------------------------- //
+
+    public HotelTo getHotelForManager() {
+        return HotelUtil.asHotelTo(hotelService.getAll().stream().filter(hotel ->
+                Objects.equals(hotel.getManager().getId(), AuthorizedUser.getId()))
+                .findFirst().orElse(null));
+    }
+
+    // -------------------------------------- Admin methods ------------------------------------- //
 
     public Hotel create(Hotel hotel){
         LOG.info("Saving {}", hotel);

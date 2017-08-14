@@ -1,14 +1,12 @@
 package com.kirak.web.rest.manager;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.kirak.model.Apartment;
 import com.kirak.service.ApartmentService;
 import com.kirak.service.AptTypeService;
 import com.kirak.service.HotelService;
 import com.kirak.to.ApartmentTo;
 import com.kirak.web.View;
 import com.kirak.web.abstr.ApartmentAbstractController;
-import javassist.NotFoundException;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,11 +25,14 @@ public class ApartmentAjaxController extends ApartmentAbstractController {
         super(apartmentService, aptTypeService, hotelService);
     }
 
-    @Override
     @PostMapping
     @JsonView(View.JsonUI.class)
     public void createOrUpdate(@Valid ApartmentTo apartmentTo) {
-        super.createOrUpdate(apartmentTo);
+        if(apartmentTo.isNew()) {
+            super.create(apartmentTo);
+        }else {
+            super.update(apartmentTo);
+        }
     }
 
     @Override

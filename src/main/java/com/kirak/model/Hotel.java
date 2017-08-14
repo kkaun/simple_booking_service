@@ -20,7 +20,11 @@ public class Hotel extends NamedEntity {
 
     //TODO: add photo uploading feature to entity and business logic
     /**
-     * Интерфейс MultipartResolver используется для загрузки файлов. Существуют две реализации: CommonsMultipartResolver и StandardServletMultipartResolver, которые позволяют фреймворку загружать файлы. По умолчанию этот интерфейс не включается в приложении и необходимо указывать его в файле конфигурации. После настройки любой запрос о загрузке будет отправляться этому интерфейсу.
+     * Интерфейс MultipartResolver используется для загрузки файлов.
+     * Существуют две реализации: CommonsMultipartResolver и StandardServletMultipartResolver,
+     * которые позволяют фреймворку загружать файлы.
+     * По умолчанию этот интерфейс не включается в приложении и необходимо указывать его в файле конфигурации.
+     * После настройки любой запрос о загрузке будет отправляться этому интерфейсу.
 
      <beans:bean id="multipartResolver"
      class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
