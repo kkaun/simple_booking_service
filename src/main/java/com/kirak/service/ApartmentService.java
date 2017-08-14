@@ -1,6 +1,9 @@
 package com.kirak.service;
 
 import com.kirak.model.Apartment;
+import com.kirak.model.AptType;
+import com.kirak.model.Hotel;
+import com.kirak.to.ApartmentTo;
 import com.kirak.util.exception.NotFoundException;
 
 import java.util.List;
@@ -10,9 +13,11 @@ import java.util.List;
  */
 public interface ApartmentService {
 
-    Apartment save(Apartment apt, int hotelId);
+    Apartment save(ApartmentTo apartmentTo, Hotel hotel, List<AptType> existingTypes);
 
     Apartment update(Apartment apt, int hotelId) throws NotFoundException;
+
+    Apartment update(ApartmentTo apartmentTo, List<AptType> existingTypes) throws NotFoundException;
 
     void delete(Integer id, int hotelId) throws NotFoundException;
 

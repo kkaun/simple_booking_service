@@ -1,7 +1,12 @@
 package com.kirak.web.abstr;
 
 import com.kirak.model.Apartment;
+import com.kirak.model.Hotel;
 import com.kirak.service.ApartmentService;
+import com.kirak.service.AptTypeService;
+import com.kirak.service.HotelService;
+import com.kirak.to.ApartmentTo;
+import com.kirak.util.model.ApartmentUtil;
 import com.kirak.web.session.AuthorizedUser;
 import javassist.NotFoundException;
 import org.slf4j.Logger;
@@ -9,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Created by Kir on 18.06.2017.
@@ -19,36 +26,44 @@ public abstract class ApartmentAbstractController {
 
     private final ApartmentService apartmentService;
 
+    private final AptTypeService aptTypeService;
+
+    private final HotelService hotelService;
+
     @Autowired
-    public ApartmentAbstractController(ApartmentService apartmentService){
+    public ApartmentAbstractController(ApartmentService apartmentService, AptTypeService aptTypeService, HotelService hotelService){
         this.apartmentService = apartmentService;
+        this.aptTypeService = aptTypeService;
+        this.hotelService = hotelService;
     }
 
-//    public Apartment save(Apartment apt, int hotelId){
-//        LOG.info("Saving {}", apt);
-//        return apartmentService.save(apt, hotelId);
-//    }
-//
-//    public Apartment update(Apartment apt, int hotelId) throws NotFoundException{
-//        LOG.info("Updating {}", apt);
-//        return apartmentService.update(apt, hotelId);
-//    }
-//
-//    public Apartment get(int id, int hotelId){
-//        LOG.info("Getting apartment {}", id);
-//        return apartmentService.get(id, hotelId);
-//    }
-//
-//    public List<Apartment> getAllByHotel(int hotelId){
-//        LOG.info("Getting all apartments by hotel {}", hotelId);
-//        return apartmentService.getAllByHotel(hotelId);
-//    }
-//
-//    public List<Apartment> getAllForHotelManager(){
-//        int hotelManagerId = AuthorizedUser.getId();
-//        LOG.info("Getting all apartments for hotel manager {}", hotelManagerId);
-//        return apartmentService.getAllByHotel(hotelId);
-//    }
+    public void createOrUpdate(ApartmentTo apartmentTo){
+        if (apartmentTo.isNew()) {
+            Hotel ownHotel = hotelService.getAll().stream().filter(hotel ->
+                    Objects.equals(hotel.getManager().getId(), AuthorizedUser.getId()))
+                    .findFirst().orElse(null);
+            LOG.info("Saving {}", apartmentTo);
+            apartmentService.save(apartmentTo, ownHotel, aptTypeService.getAll());
+        } else{
+            LOG.info("Updating {}", apartmentTo);
+            apartmentService.update(apartmentTo, aptTypeService.getAll());
+        }
+    }
+
+    public ApartmentTo get(int id){
+        LOG.info("Getting apartment {}", id);
+        return ApartmentUtil.asApartmentTo(apartmentService.get(id));
+    }
+
+    public List<ApartmentTo> getAllForHotelManager(){
+        Integer hotelManagerId = AuthorizedUser.getId();
+        LOG.info("Getting all apartments for hotel manager {}", hotelManagerId);
+        List<Apartment> hotelApartments = apartmentService.getAll().stream()
+                .filter(apartment -> Objects.equals(apartment.getHotel().getManager().getId(), hotelManagerId))
+                .collect(Collectors.toList());
+        return ApartmentUtil.getApartmentTos(hotelApartments);
+    }
+
 
     //    void delete(int id, int hotelId){
 //

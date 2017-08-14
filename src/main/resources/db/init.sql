@@ -166,8 +166,8 @@ CREATE TABLE IF NOT EXISTS `apartment` (
   CONSTRAINT `fk_apartment_apt_type1`
   FOREIGN KEY (`apt_type_id`)
   REFERENCES `apt_type` (`id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION
 )
   AUTO_INCREMENT = 100000,
   ENGINE = InnoDB;

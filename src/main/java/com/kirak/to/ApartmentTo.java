@@ -1,9 +1,14 @@
 package com.kirak.to;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.kirak.to.abstr.BasicIntTo;
+
+import java.io.Serializable;
+
 /**
  * Created by Kir on 14.08.2017.
  */
-public class ApartmentTo {
+public class ApartmentTo extends BasicIntTo implements Serializable {
 
     private final Double price;
 
@@ -13,7 +18,12 @@ public class ApartmentTo {
 
     private final String bedsArrangement;
 
-    public ApartmentTo(Double price, Short personNum, String category, String bedsArrangement) {
+    public ApartmentTo(@JsonProperty Integer id,
+                       @JsonProperty Double price,
+                       @JsonProperty Short personNum,
+                       @JsonProperty String category,
+                       @JsonProperty String bedsArrangement) {
+        super(id);
         this.price = price;
         this.personNum = personNum;
         this.category = category;

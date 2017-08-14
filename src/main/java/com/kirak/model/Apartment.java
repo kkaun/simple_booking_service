@@ -33,7 +33,11 @@ public class Apartment extends BaseIntEntity {
 
     public Apartment(){}
 
-    public Apartment(Integer id, AptType type, Short overallQuantity, Double price, Hotel hotel) {
+    public Apartment(AptType type, Double price, Hotel hotel){
+        this(null, type, price, hotel);
+    }
+
+    public Apartment(Integer id, AptType type, Double price, Hotel hotel) {
         super(id);
         this.type = type;
         this.price = price;

@@ -2,9 +2,11 @@ package com.kirak.util.model;
 
 import com.kirak.model.Apartment;
 import com.kirak.model.AptType;
+import com.kirak.to.ApartmentTo;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -28,6 +30,15 @@ public class AptTypeUtil {
     public static List<AptType> getUniqueAptTypes(List<Apartment> apartments){
         //Comparator<AptType> byPersonNum = Comparator.comparingInt(AptType::getPersonNum);
         return apartments.stream().map(Apartment::getType).distinct().collect(Collectors.toList());
+    }
+
+    public static AptType getExistingType(ApartmentTo apartmentTo, List<AptType> existingTypes){
+
+        return existingTypes.stream().filter(aptType ->
+                Objects.equals(aptType.getPersonNum(), apartmentTo.getPersonNum())
+                        && Objects.equals(aptType.getCategory(), apartmentTo.getCategory())
+                        && Objects.equals(aptType.getBedsArrangement(), apartmentTo.getBedsArrangement()))
+                .findFirst().orElse(null);
     }
 
 //    public static boolean hasRequiredPersonNum(AptType type, Integer personNum){

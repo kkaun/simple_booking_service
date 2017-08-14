@@ -1,8 +1,12 @@
 package com.kirak.service.impl;
 
 import com.kirak.model.Apartment;
+import com.kirak.model.AptType;
+import com.kirak.model.Hotel;
 import com.kirak.repository.ApartmentRepository;
 import com.kirak.service.ApartmentService;
+import com.kirak.to.ApartmentTo;
+import com.kirak.util.model.ApartmentUtil;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -31,15 +35,25 @@ public class ApartmentServiceImpl implements ApartmentService {
 
 
     @Override
-    public Apartment save(Apartment apt, int hotelId) {
-        Assert.notNull(apt, "Apartment must not be null!");
-        return repository.save(apt, hotelId);
+    public Apartment save(ApartmentTo apartmentTo, Hotel hotel, List<AptType> existingTypes) {
+        Assert.notNull(apartmentTo, "Apartment must not be null!");
+        return repository.save(ApartmentUtil.createFromTo(apartmentTo, hotel, existingTypes), hotel.getId());
     }
 
     @Override
     public Apartment update(Apartment apt, int hotelId) {
         Assert.notNull(apt, "Apartment must not be null!");
         return checkNotFoundWithId(repository.save(apt, hotelId), apt.getId());
+    }
+
+    @Override
+    public Apartment update(ApartmentTo apartmentTo, List<AptType> existingTypes) {
+        Assert.notNull(apartmentTo, "Apartment must not be null!");
+        Apartment toUpdate = checkNotFoundWithId(repository.get(apartmentTo.getId()), apartmentTo.getId());
+
+        return ApartmentUtil.isApartmentAcceptedForEditing(toUpdate) ?
+                checkNotFoundWithId(repository.save(ApartmentUtil.updateFromTo(apartmentTo, toUpdate, existingTypes),
+                        toUpdate.getHotel().getId()), toUpdate.getId()) : repository.save(toUpdate, toUpdate.getHotel().getId());
     }
 
     @Override
@@ -53,7 +67,7 @@ public class ApartmentServiceImpl implements ApartmentService {
     }
 
     @Override
-    public Apartment get(Integer id) throws com.kirak.util.exception.NotFoundException {
+    public Apartment get(Integer id) {
         return checkNotFoundWithId(repository.get(id), id);
     }
 

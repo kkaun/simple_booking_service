@@ -1,6 +1,8 @@
 package com.kirak.util.model;
 
 import com.kirak.model.*;
+import com.kirak.to.ApartmentTo;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -10,6 +12,46 @@ import java.util.stream.Collectors;
  * Created by Kir on 04.08.2017.
  */
 public class ApartmentUtil {
+
+    // --------------------------- TO Methods ----------------------- //
+
+    public static ApartmentTo asApartmentTo(Apartment apartment){
+
+        return new ApartmentTo(apartment.getId(), apartment.getPrice(), apartment.getType().getPersonNum(),
+                apartment.getType().getCategory(), apartment.getType().getBedsArrangement());
+    }
+
+    public static List<ApartmentTo> getApartmentTos(List<Apartment> apartments){
+
+        return apartments.stream().map(ApartmentUtil::asApartmentTo).collect(Collectors.toList());
+    }
+
+    public static Apartment createFromTo(ApartmentTo apartmentTo, Hotel hotel, List<AptType> existingTypes){
+
+        AptType existingType = AptTypeUtil.getExistingType(apartmentTo, existingTypes);
+
+        if(existingType != null && apartmentTo.getPrice() != null)
+            return new Apartment(existingType, apartmentTo.getPrice(), hotel);
+
+        return null;
+    }
+
+    public static Apartment updateFromTo(ApartmentTo apartmentTo, Apartment apartment, List<AptType> existingTypes){
+
+        AptType existingType = AptTypeUtil.getExistingType(apartmentTo, existingTypes);
+
+        if(existingType != null) apartment.setType(existingType);
+        if(apartmentTo.getPrice() != null) apartment.setPrice(apartmentTo.getPrice());
+
+        return apartment;
+    }
+
+    // --------------------------- General Methods ----------------------- //
+
+    public static boolean isApartmentAcceptedForEditing(Apartment apartment){
+
+        return isSingleApartmentAvailable(apartment, LocalDate.now(), LocalDate.now().plusYears(2));
+    }
 
     public static boolean isApartmentAcceptedByPersonNum(Apartment apartment, Short personNum){
 

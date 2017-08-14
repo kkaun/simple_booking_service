@@ -11,6 +11,7 @@ $(function() {
     $('.in_date').datepicker({
         dateFormat: 'yy-mm-dd',
         minDate: 'today',
+        maxDate: '+1y +10m',
         onSelect: function (dateText, inst) {
             var nyd = new Date(dateText);
             nyd.setDate(nyd.getDate() + 31);
