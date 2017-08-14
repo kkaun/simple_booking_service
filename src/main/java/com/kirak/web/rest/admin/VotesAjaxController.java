@@ -1,4 +1,4 @@
-package com.kirak.web.rest.user;
+package com.kirak.web.rest.admin;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.kirak.model.Vote;
@@ -12,27 +12,15 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.awt.*;
 import java.util.List;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-
 /**
- * Created by Kir on 03.08.2017.
+ * Created by Kir on 14.08.2017.
  */
-public class UserVoteRestController extends VoteAbstractController {
+public class VotesAjaxController extends VoteAbstractController {
 
-    public UserVoteRestController(VoteService voteService, HotelService hotelService) {
+    public VotesAjaxController(VoteService voteService, HotelService hotelService) {
         super(voteService, hotelService);
-    }
-
-    @Override
-    @PostMapping
-    public void create(@Validated(View.ValidatedUIGroup.class) Vote vote,
-                       @RequestParam("hotelId") int hotelId) {
-        super.create(vote, hotelId);
     }
 
     @Override
@@ -50,7 +38,13 @@ public class UserVoteRestController extends VoteAbstractController {
 
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Vote> getVotesForUser() {
-        return super.getVotesForUser();
+    public List<Vote> getAll() {
+        return super.getAll();
     }
+
+//    @Override
+//    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+//    public List<Vote> getHotelVotesForAdmin(@RequestParam("id") int hotelId) {
+//        return super.getHotelVotesForAdmin(hotelId);
+//    }
 }

@@ -54,6 +54,12 @@ public class VoteRepositoryImpl implements VoteRepository {
     }
 
     @Override
+    public Vote get(int id, int userId) {
+        Vote vote = voteRepository.findOne(id);
+        return vote != null && vote.getUser().getId() == userId ? vote : null;
+    }
+
+    @Override
     public List<Vote> getAllByHotel(int hotelId) {
         return voteRepository.getAllByHotel(hotelId);
     }

@@ -46,6 +46,11 @@ public class VoteServiceImpl implements VoteService {
     }
 
     @Override
+    public Vote get(Integer id, int userId) {
+        return checkNotFoundWithId(repository.get(id, userId), id);
+    }
+
+    @Override
     public List<Vote> getAllByHotel(int hotelId) {
         return repository.getAllByHotel(hotelId);
     }

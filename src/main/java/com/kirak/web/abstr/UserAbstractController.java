@@ -27,6 +27,7 @@ import static com.kirak.util.ValidationUtil.*;
 
 
 public abstract class UserAbstractController {
+
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
     public static final String EXCEPTION_DUPLICATE_EMAIL = "exception.user.duplicateEmail";

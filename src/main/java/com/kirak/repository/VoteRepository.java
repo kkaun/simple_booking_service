@@ -10,13 +10,13 @@ import java.util.List;
  */
 public interface VoteRepository{
 
-    // null if updated vote do not belong to userId
     Vote save(Vote vote, int userId, int hotelId);
 
     boolean delete(int id, int userId, int hotelId);
 
-    // null if vote do not belong to userId
     Vote get(int id, int userId, int hotelId);
+
+    Vote get(int id, int userId);
 
     List<Vote> getAllByHotel(int hotelId);
 

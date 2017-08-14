@@ -25,13 +25,6 @@ public class AptTypeAjaxController extends AptTypeAbstractController{
         super(aptTypeService);
     }
 
-    @Override
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    @JsonView(View.JsonUI.class)
-    public List<AptType> getAll() {
-        return super.getAll();
-    }
-
     @PostMapping
     public void createOrUpdate(@Validated(View.ValidatedUIGroup.class) AptType type) {
         if (type.isNew()) {
@@ -46,5 +39,12 @@ public class AptTypeAjaxController extends AptTypeAbstractController{
     @JsonView(View.JsonUI.class)
     public AptType get(@PathVariable("id") Short id) {
         return super.get(id);
+    }
+
+    @Override
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @JsonView(View.JsonUI.class)
+    public List<AptType> getAll() {
+        return super.getAll();
     }
 }

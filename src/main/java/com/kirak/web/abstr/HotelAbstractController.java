@@ -3,9 +3,11 @@ package com.kirak.web.abstr;
 import com.kirak.model.City;
 import com.kirak.model.Country;
 import com.kirak.model.Hotel;
+import com.kirak.model.Vote;
 import com.kirak.service.CityService;
 import com.kirak.service.CountryService;
 import com.kirak.service.HotelService;
+import com.kirak.service.VoteService;
 import com.kirak.to.HotelTo;
 import com.kirak.util.model.HotelUtil;
 import com.kirak.web.session.AuthorizedUser;
@@ -13,8 +15,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static com.kirak.util.ValidationUtil.checkId;
 import static com.kirak.util.ValidationUtil.checkIdConsistency;
@@ -40,16 +44,6 @@ public abstract class HotelAbstractController {
         this.cityService = cityService;
     }
 
-    // -------------------------------------- Manager methods ------------------------------------- //
-
-    public HotelTo getHotelForManager() {
-        return HotelUtil.asHotelTo(hotelService.getAll().stream().filter(hotel ->
-                Objects.equals(hotel.getManager().getId(), AuthorizedUser.getId()))
-                .findFirst().orElse(null));
-    }
-
-    // -------------------------------------- Admin methods ------------------------------------- //
-
     public Hotel create(Hotel hotel){
         LOG.info("Saving {}", hotel);
         checkNew(hotel);
@@ -67,6 +61,12 @@ public abstract class HotelAbstractController {
         return hotelService.getTo(id);
     }
 
+    public HotelTo getHotelForManager() {
+        return HotelUtil.asHotelTo(hotelService.getAll().stream().filter(hotel ->
+                Objects.equals(hotel.getManager().getId(), AuthorizedUser.getId()))
+                .findFirst().orElse(null));
+    }
+
     public List<HotelTo> getAllByCity(int cityId){
         LOG.info("Getting all hotels by city {}", cityId);
         return HotelUtil.getAllByCity(hotelService.getAll(), cityId);
@@ -81,6 +81,9 @@ public abstract class HotelAbstractController {
         LOG.info("Getting all hotels sorted by rating");
         return HotelUtil.getAll(hotelService.getAll());
     }
+
+
+
 
     public List<Country> getAllCountries() {
         return countryService.getAll();

@@ -44,25 +44,9 @@ public abstract class BookingAbstractController {
 
     //-------------------------------------- General SuperBooking methods --------------------------------//
 
-
-    public void createSuperBookingForCalendar(SuperBooking superBooking, BookingToList bookingTos){
-
-//        LOG.info("Saving Super Booking {}", superBooking);
-//        for(BookingTo b : bookingTos){
-//            bookingService.save(b);
-//        }
-//        superBookingService.save(superBooking);
-    }
-
     public void updateSuperBooking(ManagerSuperBookingTo managerSuperBookingTo){
         LOG.info("Saving Super Booking {}", managerSuperBookingTo);
         superBookingService.update(managerSuperBookingTo);
-    }
-
-    public ManagerSuperBookingTo getManagerSuperBooking(int id){
-        LOG.info("Saving Super Booking {}", id);
-        SuperBooking superBooking = superBookingService.get(id);
-        return asManagerSuperBookingTo(superBooking, getSuperBookingInDate(superBooking), getSuperBookingOutDate(superBooking));
     }
 
     //-------------------------------------- Admin SuperBooking methods --------------------------------//
@@ -101,6 +85,12 @@ public abstract class BookingAbstractController {
 
     //-------------------------------------- Manager SuperBooking methods --------------------------------//
 
+    public ManagerSuperBookingTo getManagerSuperBooking(int id){
+        LOG.info("Saving Super Booking {}", id);
+        SuperBooking superBooking = superBookingService.get(id);
+        return asManagerSuperBookingTo(superBooking, getSuperBookingInDate(superBooking), getSuperBookingOutDate(superBooking));
+    }
+
     public List<ManagerSuperBookingTo> getAllSuperBookingsForManager(){
         LOG.info("Getting all Super Bookings {}");
         return SuperBookingUtil.generateManagerSuperBookingTos(superBookingService.getAll(), AuthorizedUser.getId());
@@ -135,7 +125,13 @@ public abstract class BookingAbstractController {
     }
 
 
-//-------------------------------------- Booking methods --------------------------------//
+    //-------------------------------------- User methods --------------------------------//
+
+
+
+
+
+    //-------------------------------------- Booking methods --------------------------------//
 
 
     public void createBooking(BookingTo bookingTo, int superBookingId){

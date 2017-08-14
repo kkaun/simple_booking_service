@@ -33,8 +33,6 @@ public class Vote extends BaseIntEntity {
 
     public Vote(){}
 
-
-
     public Vote(Integer id, Double rate, String userComment, LocalDateTime dateAdded, User user, Hotel hotel) {
         super(id);
         this.rate = rate;
