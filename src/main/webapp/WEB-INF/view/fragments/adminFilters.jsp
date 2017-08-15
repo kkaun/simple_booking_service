@@ -7,7 +7,6 @@
 <body>
 
 
-
 <h3><spring:message code="super_bookings.title"/></h3>
 
 <div class="row">
@@ -17,14 +16,14 @@
                 <form:form class="form-horizontal" id="filter">
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="startDate"><spring:message
-                                code="super_booking.fromDate"/>:</label>
+                                code="super_bookings.fromDate"/>:</label>
 
                         <div class="col-sm-3">
                             <input class="form-control" name="startDate" id="startDate">
                         </div>
 
                         <label class="control-label col-sm-4" for="endDate"><spring:message
-                                code="super_booking.toDate"/>:</label>
+                                code="super_bookings.toDate"/>:</label>
 
                         <div class="col-sm-3">
                             <input class="form-control" name="endDate" id="endDate">
@@ -34,7 +33,7 @@
 
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="inDate"><spring:message
-                                code="super_booking.inDate"/>:</label>
+                                code="super_bookings.inDate"/>:</label>
 
                         <div class="col-sm-3">
                             <input class="form-control" name="inDate" id="inDate">
@@ -43,7 +42,7 @@
 
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="outDate"><spring:message
-                                code="super_booking.outDate"/>:</label>
+                                code="super_bookings.outDate"/>:</label>
 
                         <div class="col-sm-3">
                             <input class="form-control" name="outDate" id="outDate">
@@ -52,7 +51,7 @@
 
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="userId"><spring:message
-                                code="super_booking.byUser"/>:</label>
+                                code="super_bookings.byUser"/>:</label>
 
                         <div class="col-sm-2">
                             <input class="form-control" name="userId" id="userId">
@@ -61,7 +60,7 @@
 
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="hotelId"><spring:message
-                                code="super_booking.byHotel"/>:</label>
+                                code="super_bookings.byHotel"/>:</label>
 
                         <div class="col-sm-2">
                             <input class="form-control" name="hotelId" id="hotelId">
@@ -80,11 +79,6 @@
         </div>
     </div>
 </div>
-<a class="btn btn-primary" onclick="add()">
-    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-    <spring:message code="common.add"/>
-</a>
-
 
 
 <h3><spring:message code="hotels.title"/></h3>
@@ -131,11 +125,6 @@
         </div>
     </div>
 </div>
-<a class="btn btn-primary" onclick="add()">
-    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-    <spring:message code="common.add"/>
-</a>
-
 
 
 <h3><spring:message code="cities.title"/></h3>
@@ -166,11 +155,6 @@
         </div>
     </div>
 </div>
-<a class="btn btn-primary" onclick="add()">
-    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-    <spring:message code="common.add"/>
-</a>
-
 
 </body>
 </html>

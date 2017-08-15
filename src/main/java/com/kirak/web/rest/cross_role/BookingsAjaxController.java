@@ -29,6 +29,13 @@ public class BookingsAjaxController extends BookingAbstractController {
 
     @Override
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createBooking(@Valid BookingTo bookingTo,
+                              @RequestParam("sbId") int superBookingId) {
+        super.createBooking(bookingTo, superBookingId);
+    }
+
+    @Override
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateBooking(@Valid BookingTo bookingTo) {
         super.updateBooking(bookingTo);
     }

@@ -17,14 +17,59 @@
 
         <div class="col-md-9">
 
+            <c:if test="${not empty apartmentsAddBtn}">
+                <a class="btn btn-primary" onclick="addApartment()">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    <spring:message code="common.add"/>
+                </a>
+            </c:if>
 
 
+            <table class="table table-striped display" id="apartmentsDatatable">
+                <thead>
+                <tr>
+                    <th><spring:message code="apt_type.personNum"/></th>
+                    <th><spring:message code="apt_type.category"/></th>
+                    <th><spring:message code="apt_type.bedsArrangement"/></th>
+                    <th><spring:message code="common.pricePerNight"/></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+            </table>
+
+            <table class="table table-striped display" id="hotelSuperBookingsDatatable">
+                <thead>
+                <tr>
+                    <th><spring:message code="common.id"/></th>
+                    <th><spring:message code="common.dateAdded"/></th>
+                    <th><spring:message code="super_bookings.inDate"/></th>
+                    <th><spring:message code="super_bookings.outDate"/></th>
+                    <th><spring:message code="user.name"/></th>
+                    <th><spring:message code="user.email"/></th>
+                    <th><spring:message code="user.phone"/></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+            </table>
+
+            <table class="table table-striped display" id="hotelVotesDatatable">
+                <thead>
+                <tr>
+                    <th><spring:message code="common.dateAdded"/></th>
+                    <th><spring:message code="common.rate"/></th>
+                    <th><spring:message code="common.comment"/></th>
+                    <th><spring:message code="common.bookerName"/></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+            </table>
 
 
 
         </div>
-
-
     </div>
 </div>
 <jsp:include page="fragments/footer.jsp"/>

@@ -29,7 +29,7 @@ public class RegionsAjaxController extends RegionAbstractController {
     }
 
     @PostMapping
-    public void updateOrCreate(@Valid PlaceTo placeTo) {
+    public void createOrUpdate(@Valid PlaceTo placeTo) {
         if (placeTo.isNew()) {
             super.create(placeTo);
         } else {

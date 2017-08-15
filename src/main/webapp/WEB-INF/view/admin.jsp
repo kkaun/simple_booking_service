@@ -18,16 +18,44 @@
         <div class="col-md-9">
             <jsp:include page="fragments/adminFilters.jsp"/>
 
+            <c:if test="${not empty aptTypeAddBtn}">
+            <a class="btn btn-primary" onclick="addAptType()">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                <spring:message code="common.add"/>
+            </a>
+            </c:if>
+
+            <c:if test="${not empty hotelAddBtn}">
+            <a class="btn btn-primary" onclick="addHotel()">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                <spring:message code="common.add"/>
+            </a>
+            </c:if>
+
+            <c:if test="${not empty regionAddBtn}">
+            <a class="btn btn-primary" onclick="addRegion()">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                <spring:message code="common.add"/>
+            </a>
+            </c:if>
+
+            <c:if test="${not empty userAddBtn}">
+            <a class="btn btn-primary" onclick="addUser()">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                <spring:message code="common.add"/>
+            </a>
+            </c:if>
+
 
             <table class="table table-striped display" id="aptTypesDatatable">
                 <thead>
                 <tr>
                     <th><spring:message code="common.id"/></th>
-                    <th><spring:message code="aptType.personNum"/></th>
-                    <th><spring:message code="aptType.category"/></th>
-                    <th><spring:message code="aptType.bedsArrangement"/></th>
-                    <th><spring:message code="aptType.hotelsUsing"/></th>
-                    <th><spring:message code="aptType.apartmentsAppliedTo"/></th>
+                    <th><spring:message code="apt_type.personNum"/></th>
+                    <th><spring:message code="apt_type.category"/></th>
+                    <th><spring:message code="apt_type.bedsArrangement"/></th>
+                    <th><spring:message code="apt_type.hotelsUsing"/></th>
+                    <th><spring:message code="apt_type.apartmentsAppliedTo"/></th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -72,7 +100,7 @@
                 <tr>
                     <th><spring:message code="common.id"/></th>
                     <th><spring:message code="common.dateAdded"/></th>
-                    <th><spring:message code="commod.inDate"/></th>
+                    <th><spring:message code="common.inDate"/></th>
                     <th><spring:message code="common.outDate"/></th>
                     <th><spring:message code="super_bookings.hotelId"/></th>
                     <th><spring:message code="super_bookings.hotelName"/></th>
@@ -88,6 +116,7 @@
                 <tr>
                     <th><spring:message code="user.name"/></th>
                     <th><spring:message code="user.email"/></th>
+                    <th><spring:message code="user.phone"/></th>
                     <th><spring:message code="user.roles"/></th>
                     <th><spring:message code="user.active"/></th>
                     <th><spring:message code="user.registered"/></th>
@@ -114,208 +143,10 @@
                 </thead>
             </table>
 
-
-            <div class="modal fade" id="editRow">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h2 class="modal-title" id="modalTitle"></h2>
-                        </div>
-                        <div class="modal-body">
-                            <form:form class="form-horizontal" id="detailsForm">
-                            <input type="hidden" id="id" name="id">
-
-                            <div class="form-group">
-                                <label for="dateTime" class="control-label col-xs-3"><spring:message
-                                        code="meal.dateTime"/></label>
-
-                                <div class="col-xs-9">
-                                    <input class="form-control" id="dateTime" name="dateTimeUI"
-                                           placeholder="<spring:message code="meal.dateTime"/>">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-offset-3 col-xs-9">
-                                <button class="btn btn-primary" type="button" onclick="save()">
-                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                                </button>
-                            </div>
-                        </div>
-                        </form:form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal fade" id="editRow">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h2 class="modal-title" id="modalTitle"></h2>
-                        </div>
-                        <div class="modal-body">
-                            <form:form class="form-horizontal" id="detailsForm">
-                            <input type="hidden" id="id" name="id">
-
-                            <div class="form-group">
-                                <label for="dateTime" class="control-label col-xs-3"><spring:message
-                                        code="meal.dateTime"/></label>
-
-                                <div class="col-xs-9">
-                                    <input class="form-control" id="dateTime" name="dateTimeUI"
-                                           placeholder="<spring:message code="meal.dateTime"/>">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-offset-3 col-xs-9">
-                                <button class="btn btn-primary" type="button" onclick="save()">
-                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                                </button>
-                            </div>
-                        </div>
-                        </form:form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal fade" id="editRow">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h2 class="modal-title" id="modalTitle"></h2>
-                        </div>
-                        <div class="modal-body">
-                            <form:form class="form-horizontal" id="detailsForm">
-                            <input type="hidden" id="id" name="id">
-
-                            <div class="form-group">
-                                <label for="dateTime" class="control-label col-xs-3"><spring:message
-                                        code="meal.dateTime"/></label>
-
-                                <div class="col-xs-9">
-                                    <input class="form-control" id="dateTime" name="dateTimeUI"
-                                           placeholder="<spring:message code="meal.dateTime"/>">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-offset-3 col-xs-9">
-                                <button class="btn btn-primary" type="button" onclick="save()">
-                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                                </button>
-                            </div>
-                        </div>
-                        </form:form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal fade" id="editRow">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h2 class="modal-title" id="modalTitle"></h2>
-                        </div>
-                        <div class="modal-body">
-                            <form:form class="form-horizontal" id="detailsForm">
-                            <input type="hidden" id="id" name="id">
-
-                            <div class="form-group">
-                                <label for="dateTime" class="control-label col-xs-3"><spring:message
-                                        code="meal.dateTime"/></label>
-
-                                <div class="col-xs-9">
-                                    <input class="form-control" id="dateTime" name="dateTimeUI"
-                                           placeholder="<spring:message code="meal.dateTime"/>">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-offset-3 col-xs-9">
-                                <button class="btn btn-primary" type="button" onclick="save()">
-                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                                </button>
-                            </div>
-                        </div>
-                        </form:form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal fade" id="editRow">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h2 class="modal-title" id="modalTitle"></h2>
-                        </div>
-                        <div class="modal-body">
-                            <form:form class="form-horizontal" id="detailsForm">
-                            <input type="hidden" id="id" name="id">
-
-                            <div class="form-group">
-                                <label for="dateTime" class="control-label col-xs-3"><spring:message
-                                        code="meal.dateTime"/></label>
-
-                                <div class="col-xs-9">
-                                    <input class="form-control" id="dateTime" name="dateTimeUI"
-                                           placeholder="<spring:message code="meal.dateTime"/>">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-offset-3 col-xs-9">
-                                <button class="btn btn-primary" type="button" onclick="save()">
-                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                                </button>
-                            </div>
-                        </div>
-                        </form:form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal fade" id="editRow">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h2 class="modal-title" id="modalTitle"></h2>
-                        </div>
-                        <div class="modal-body">
-                            <form:form class="form-horizontal" id="detailsForm">
-                            <input type="hidden" id="id" name="id">
-
-                            <div class="form-group">
-                                <label for="dateTime" class="control-label col-xs-3"><spring:message
-                                        code="meal.dateTime"/></label>
-
-                                <div class="col-xs-9">
-                                    <input class="form-control" id="dateTime" name="dateTimeUI"
-                                           placeholder="<spring:message code="meal.dateTime"/>">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-offset-3 col-xs-9">
-                                <button class="btn btn-primary" type="button" onclick="save()">
-                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                                </button>
-                            </div>
-                        </div>
-                        </form:form>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 </div>
+
 
 <jsp:include page="fragments/footer.jsp"/>
 

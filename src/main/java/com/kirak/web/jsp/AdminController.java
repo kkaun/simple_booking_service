@@ -2,6 +2,7 @@ package com.kirak.web.jsp;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -10,47 +11,51 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 
 @Controller
-@RequestMapping(value = "/admin/")
+@RequestMapping(value = "/admin")
 public class AdminController {
 
     @PreAuthorize("hasRole('SYSTEM_ADMIN')")
-    @GetMapping("/admin/apt_types")
-    public String aptTypes() {
+    @GetMapping("/apt_types")
+    public String aptTypes(Model model) {
+        model.addAttribute("aptTypeAddBtn", "aptTypeAddBtn");
         return "admin";
     }
 
     @PreAuthorize("hasRole('SYSTEM_ADMIN')")
-    @GetMapping("/admin/hotels")
-    public String objects() {
+    @GetMapping("/hotels")
+    public String hotels(Model model) {
+        model.addAttribute("hotelAddBtn", "hotelAddBtn");
         return "admin";
     }
 
     @PreAuthorize("hasRole('SYSTEM_ADMIN')")
-    @GetMapping("/admin/regions")
-    public String cities() {
+    @GetMapping("/regions")
+    public String regions(Model model) {
+        model.addAttribute("regionAddBtn", "regionAddBtn");
         return "admin";
     }
 
     @PreAuthorize("hasRole('SYSTEM_ADMIN')")
-    @GetMapping("/admin/super_bookings")
+    @GetMapping("/super_bookings")
     public String superBookings () {
         return "admin";
     }
 
     @PreAuthorize("hasRole('SYSTEM_ADMIN')")
-    @GetMapping("/admin/bookings")
+    @GetMapping("/bookings")
     public String bookings () {
         return "admin";
     }
 
     @PreAuthorize("hasRole('SYSTEM_ADMIN')")
-    @GetMapping("/admin/users")
-    public String users() {
+    @GetMapping("/users")
+    public String users(Model model) {
+        model.addAttribute("userAddBtn", "userAddBtn");
         return "admin";
     }
 
     @PreAuthorize("hasRole('SYSTEM_ADMIN')")
-    @GetMapping("/admin/votes")
+    @GetMapping("/votes")
     public String votes(){
         return "admin";
     }

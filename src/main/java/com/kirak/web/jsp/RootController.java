@@ -41,13 +41,13 @@ public class RootController extends UserAbstractController {
     @PreAuthorize("hasRole('SYSTEM_ADMIN')")
     @GetMapping("/admin")
     public String users() {
-        return "admin";
+        return "redirect:admin";
     }
 
     @PreAuthorize("hasRole('HOTEL_MANAGER')")
     @GetMapping("/manager")
     public String manager() {
-        return "manager";
+        return "redirect:manager";
     }
 
 
