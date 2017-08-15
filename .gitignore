@@ -1,3 +1,5 @@
 # Created by .ignore support plugin (hsz.mobi)
-.idea
+.idea/
 /src/main/resources/properties
+lib/
+target/

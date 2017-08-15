@@ -24,6 +24,9 @@ exclude_paths:
   - .bundle/
   - spec/**/*
   - benchmarks/**/*
+  - resources/**/*
+  - .idea/**/*
+  - webapp/resources/gantt/**/*
   - '*.min.js'
   - '*.jsp'
   - '.*sql'

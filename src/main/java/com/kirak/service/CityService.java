@@ -1,7 +1,9 @@
 package com.kirak.service;
 
 import com.kirak.model.City;
+import com.kirak.model.Country;
 import com.kirak.model.Hotel;
+import com.kirak.to.PlaceTo;
 import com.kirak.util.exception.NotFoundException;
 
 import java.util.List;
@@ -19,5 +21,9 @@ public interface CityService {
 
     City save(City city);
 
+    void save(PlaceTo placeTo, List<Country> countries);
+
     void update(City city);
+
+    void update(PlaceTo placeTo);
 }

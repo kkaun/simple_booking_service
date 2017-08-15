@@ -1,7 +1,8 @@
 package com.kirak.web.abstr;
 
-import com.kirak.model.City;
 import com.kirak.service.CityService;
+import com.kirak.service.CountryService;
+import com.kirak.to.PlaceTo;
 import com.kirak.util.model.RegionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,36 +22,39 @@ public abstract class RegionAbstractController {
 
     private final CityService cityService;
 
+    private final CountryService countryService;
+
     @Autowired
-    public RegionAbstractController(CityService cityService){
+    public RegionAbstractController(CityService cityService, CountryService countryService){
         this.cityService = cityService;
+        this.countryService = countryService;
     }
 
-    public City create(City city){
-        LOG.info("Saving {}", city);
-        checkNew(city);
-        return cityService.save(city);
+    public void create(PlaceTo placeTo){
+        LOG.info("Saving {}", placeTo);
+        checkNew(placeTo);
+        cityService.save(placeTo, countryService.getAll());
     }
 
-    public void update(City city, int id){
-        LOG.info("Updating {}", city);
-        checkId(city, id);
-        cityService.update(city);
+    public void update(PlaceTo placeTo, int id){
+        LOG.info("Updating {}", placeTo);
+        checkId(placeTo, id);
+        cityService.update(placeTo);
     }
 
-    public City get(Integer id) {
+    public PlaceTo get(Integer id) {
         LOG.info("Getting city {}", id);
-        return cityService.get(id);
+        return RegionUtil.asPlaceTo(cityService.get(id));
     }
 
-    public List<City> getAll(){
+    public List<PlaceTo> getAll(){
         LOG.info("Getting all cities");
-        return cityService.getAll();
+        return RegionUtil.getPlaceTos(cityService.getAll());
     }
 
-    public List<City> getAllByRegion(String region){
+    public List<PlaceTo> getAllByRegion(String region){
         LOG.info("Getting cities by region {}", region);
-        return RegionUtil.getCitiesByRegionName(region, cityService.getAll());
+        return RegionUtil.getPlaceTos(RegionUtil.getCitiesByRegionName(region, cityService.getAll()));
     }
 
 

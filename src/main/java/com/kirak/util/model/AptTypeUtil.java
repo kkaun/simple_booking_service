@@ -47,7 +47,7 @@ public class AptTypeUtil {
                         .filter(type -> Objects.equals(aptType, type)).count() > 1)
                 .count());
 
-        return new AptTypeTo(aptType.getId(), aptType.getBedsArrangement(), aptType.getCategory(), aptType.getPersonNum(),
+        return new AptTypeTo(aptType.getId(), aptType.getPersonNum(), aptType.getCategory(), aptType.getBedsArrangement(),
                 hotelsUsing, apartmentsAppliedTo);
     }
 

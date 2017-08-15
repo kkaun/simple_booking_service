@@ -22,7 +22,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping(value = "/admin/bookings")
+@RequestMapping(value = "/admin/super_bookings")
 public class SuperBookingsAjaxController extends BookingAbstractController {
 
     @Autowired

@@ -10,40 +10,40 @@ import java.io.Serializable;
  */
 public class AptTypeTo extends BasicShortTo implements Serializable {
 
-    private final String bedsArrangement;
+    private final Short personNum;
 
     private final String category;
 
-    private final Short personNum;
+    private final String bedsArrangement;
 
     private final Integer hotelsUsing;
 
     private final Integer apartmentsAppliedTo;
 
     public AptTypeTo(@JsonProperty Short id,
-                     @JsonProperty String bedsArrangement,
-                     @JsonProperty String category,
                      @JsonProperty Short personNum,
+                     @JsonProperty String category,
+                     @JsonProperty String bedsArrangement,
                      @JsonProperty Integer hotelsUsing,
                      @JsonProperty Integer apartmentsAppliedTo) {
         super(id);
-        this.bedsArrangement = bedsArrangement;
-        this.category = category;
         this.personNum = personNum;
+        this.category = category;
+        this.bedsArrangement = bedsArrangement;
         this.hotelsUsing = hotelsUsing;
         this.apartmentsAppliedTo = apartmentsAppliedTo;
     }
 
-    public String getBedsArrangement() {
-        return bedsArrangement;
+    public Short getPersonNum() {
+        return personNum;
     }
 
     public String getCategory() {
         return category;
     }
 
-    public Short getPersonNum() {
-        return personNum;
+    public String getBedsArrangement() {
+        return bedsArrangement;
     }
 
     public Integer getHotelsUsing() {
@@ -58,9 +58,9 @@ public class AptTypeTo extends BasicShortTo implements Serializable {
     public String toString() {
         return "AptTypeTo{" +
                 "id=" + id +
-                ", bedsArrangement='" + bedsArrangement + '\'' +
-                ", category='" + category + '\'' +
                 ", personNum=" + personNum +
+                ", category='" + category + '\'' +
+                ", bedsArrangement='" + bedsArrangement + '\'' +
                 ", hotelsUsing=" + hotelsUsing +
                 ", apartmentsAppliedTo=" + apartmentsAppliedTo +
                 '}';

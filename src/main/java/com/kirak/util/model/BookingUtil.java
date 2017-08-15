@@ -86,6 +86,7 @@ public class BookingUtil {
     }
 
 
+
     // ------------------------------- Chart TO methods ----------------------------------- //
 
     public static List<ChartTo> getChartBookingsForManager(List<Apartment> hotelApartments,
@@ -117,12 +118,19 @@ public class BookingUtil {
                         .toInstant(ZoneOffset.UTC).toEpochMilli());
                 String from = String.valueOf(LocalDateTime.of(booking.getInDate(), LocalTime.MIN)
                         .toInstant(ZoneOffset.UTC).toEpochMilli());
-                String descSecondary = booking.getSuperBooking().getBookerName();
-                String label = "Email: " + booking.getSuperBooking().getBookerEmail();
+
+                String label = booking.getSuperBooking().getBookerName();
+                String descSecondary  = "Email: " + booking.getSuperBooking().getBookerEmail();
                 if(booking.getSuperBooking().getBookerPhone() != null && !booking.getSuperBooking().getBookerPhone().isEmpty()){
-                    label += " ------ Phone: " + booking.getSuperBooking().getBookerPhone();
+                    descSecondary  += " ------ Phone: " + booking.getSuperBooking().getBookerPhone();
                 }
-                String customClass = "ganttGreen";
+
+                String customClass = "";
+                if(booking.getSuperBooking().getUser().getEmail().equals(booking.getSuperBooking().getHotel().getManager().getEmail())) {
+                    customClass = "ganttRed";
+                } else {
+                    customClass = "ganttGreen";
+                }
                 String dataObj = "";
                 chartValues.add(new ChartValue(to, from, descSecondary, label, customClass, dataObj));
             });

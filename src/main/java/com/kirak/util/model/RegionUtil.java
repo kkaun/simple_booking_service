@@ -2,6 +2,8 @@ package com.kirak.util.model;
 
 import com.kirak.model.City;
 import com.kirak.model.Country;
+import com.kirak.to.PlaceTo;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,6 +12,31 @@ import java.util.stream.Collectors;
  * Created by Kir on 02.08.2017.
  */
 public class RegionUtil {
+
+    public static PlaceTo asPlaceTo(City city){
+
+        return new PlaceTo(city.getId(), "", city.getName(), city.getCountry().getName(), city.getDescription(),
+                city.getHotels().size());
+    }
+
+    public static City createCityFromPlaceTo(PlaceTo placeTo, List<Country> countries){
+
+        Country country = countries.stream().filter(c -> c.getName().equals(placeTo.getCountryName()))
+                .findFirst().orElse(null);
+        return new City(placeTo.getId(), placeTo.getName(), country);
+    }
+
+    public static City updateCityFromPlaceTo(PlaceTo placeTo, City city){
+
+        city.setDescription(placeTo.getDescription());
+        city.setName(placeTo.getName());
+        city.setImgPath(placeTo.getImgPath());
+        return city;
+    }
+
+    public static List<PlaceTo> getPlaceTos(List<City> cities){
+        return cities.stream().map(RegionUtil::asPlaceTo).collect(Collectors.toList());
+    }
 
     public static List<City> getFiveCitiesByHotelAmount(List<City> cities){
 
