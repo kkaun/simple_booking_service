@@ -9,10 +9,7 @@ import com.kirak.web.View;
 import com.kirak.web.abstr.VoteAbstractController;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
 import java.util.List;
@@ -22,9 +19,12 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 /**
  * Created by Kir on 03.08.2017.
  */
-public class UserVoteRestController extends VoteAbstractController {
 
-    public UserVoteRestController(VoteService voteService, HotelService hotelService) {
+@RestController
+@RequestMapping("/user/own_votes")
+public class UserVotesAjaxController extends VoteAbstractController {
+
+    public UserVotesAjaxController(VoteService voteService, HotelService hotelService) {
         super(voteService, hotelService);
     }
 

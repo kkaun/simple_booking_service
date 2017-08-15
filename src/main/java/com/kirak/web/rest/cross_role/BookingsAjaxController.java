@@ -1,4 +1,4 @@
-package com.kirak.web.rest.manager;
+package com.kirak.web.rest.cross_role;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.kirak.service.ApartmentService;
@@ -18,18 +18,11 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/manager/bookings")
-public class HotelBookingsAjaxController extends BookingAbstractController {
+@RequestMapping("/bookings")
+public class BookingsAjaxController extends BookingAbstractController {
 
-    public HotelBookingsAjaxController(BookingService bookingService, SuperBookingService superBookingService, ApartmentService apartmentService) {
+    public BookingsAjaxController(BookingService bookingService, SuperBookingService superBookingService, ApartmentService apartmentService) {
         super(bookingService, superBookingService, apartmentService);
-    }
-
-    @Override
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createBooking(@Valid BookingTo bookingTo,
-                              @RequestParam("sbId") int superBookingId) {
-        super.createBooking(bookingTo, superBookingId);
     }
 
     @Override

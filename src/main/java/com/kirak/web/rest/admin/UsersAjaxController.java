@@ -18,10 +18,10 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("admin/users")
-public class UserAjaxController extends UserAbstractController {
+public class UsersAjaxController extends UserAbstractController {
 
     @Autowired
-    public UserAjaxController(UserService service) {
+    public UsersAjaxController(UserService service) {
         super(service);
     }
 

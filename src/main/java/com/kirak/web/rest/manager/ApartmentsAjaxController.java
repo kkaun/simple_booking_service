@@ -19,9 +19,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/manager/apartments")
-public class ApartmentAjaxController extends ApartmentAbstractController {
+public class ApartmentsAjaxController extends ApartmentAbstractController {
 
-    public ApartmentAjaxController(ApartmentService apartmentService, AptTypeService aptTypeService, HotelService hotelService) {
+    public ApartmentsAjaxController(ApartmentService apartmentService, AptTypeService aptTypeService, HotelService hotelService) {
         super(apartmentService, aptTypeService, hotelService);
     }
 

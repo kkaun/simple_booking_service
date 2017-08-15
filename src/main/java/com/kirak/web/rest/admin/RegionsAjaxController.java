@@ -17,11 +17,11 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("admin/cities")
-public class RegionAjaxController extends RegionAbstractController {
+@RequestMapping("/admin/cities")
+public class RegionsAjaxController extends RegionAbstractController {
 
     @Autowired
-    public RegionAjaxController(CityService cityService) {
+    public RegionsAjaxController(CityService cityService) {
         super(cityService);
     }
 

@@ -128,7 +128,16 @@ public abstract class BookingAbstractController {
     //-------------------------------------- User methods --------------------------------//
 
 
+    public UserSuperBookingTo getUserSuperBooking(int id){
+        LOG.info("Saving Super Booking {}", id);
+        SuperBooking superBooking = superBookingService.get(id);
+        return asUserSuperBookingTo(superBooking, getSuperBookingInDate(superBooking), getSuperBookingOutDate(superBooking));
+    }
 
+    public List<UserSuperBookingTo> getOwnSuperBookingsForUser(){
+        LOG.info("Getting all Super Bookings {}");
+        return SuperBookingUtil.generateUserSuperBookingTos(superBookingService.getAll(), AuthorizedUser.getId());
+    }
 
 
     //-------------------------------------- Booking methods --------------------------------//

@@ -23,25 +23,24 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/admin/bookings")
-public class BookingsAjaxController extends BookingAbstractController {
+public class SuperBookingsAjaxController extends BookingAbstractController {
 
     @Autowired
-    protected BookingsAjaxController(BookingService bookingService, SuperBookingService superBookingService,
-                                     ApartmentService apartmentService) {
+    protected SuperBookingsAjaxController(BookingService bookingService, SuperBookingService superBookingService,
+                                          ApartmentService apartmentService) {
         super(bookingService, superBookingService, apartmentService);
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateSuperBookingByAdmin(@Valid ManagerSuperBookingTo managerSuperBookingTo) {
             super.updateSuperBooking(managerSuperBookingTo);
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @JsonView(View.JsonUI.class)
     public ManagerSuperBookingTo getManagerSuperBookingForAdmin(@PathVariable("id") int id) {
         return super.getManagerSuperBooking(id);
     }
-
 
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -84,24 +83,6 @@ public class BookingsAjaxController extends BookingAbstractController {
     @PostMapping(value = "/by_hotel_id", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<AdminSuperBookingTo> getSuperBookingsByHotelIdForAdmin(@RequestParam("hotelId")int hotelId) {
         return super.getSuperBookingsByHotelIdForAdmin(hotelId);
-    }
-
-
-
-
-    // ----------------------- Booking methods ----------------------- //
-
-    @Override
-    @PostMapping(value = "/update_booking", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateBooking(@Valid BookingTo bookingTo) {
-        super.updateBooking(bookingTo);
-    }
-
-    @Override
-    @JsonView(View.JsonUI.class)
-    @PostMapping(value = "/all_bookings", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<BookingTo> getAllBookingsBySBId(@RequestParam("sbId") int superBookingId) {
-        return super.getAllBookingsBySBId(superBookingId);
     }
 
 }

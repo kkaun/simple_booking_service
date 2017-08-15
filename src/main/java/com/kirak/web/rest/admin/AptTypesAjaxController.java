@@ -18,10 +18,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/admin/apt_types")
-public class AptTypeAjaxController extends AptTypeAbstractController{
+public class AptTypesAjaxController extends AptTypeAbstractController{
 
     @Autowired
-    public AptTypeAjaxController(AptTypeService aptTypeService) {
+    public AptTypesAjaxController(AptTypeService aptTypeService) {
         super(aptTypeService);
     }
 

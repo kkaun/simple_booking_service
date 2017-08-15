@@ -25,9 +25,9 @@ import java.util.List;
 
 @Controller
 @RequestMapping("manager/object")
-public class ManagerHotelAjaxController extends HotelAbstractController {
+public class ManagerHotelRestController extends HotelAbstractController {
 
-    private ManagerHotelAjaxController(HotelService hotelService, CountryService countryService, CityService cityService) {
+    private ManagerHotelRestController(HotelService hotelService, CountryService countryService, CityService cityService) {
         super(hotelService, countryService, cityService);
     }
 

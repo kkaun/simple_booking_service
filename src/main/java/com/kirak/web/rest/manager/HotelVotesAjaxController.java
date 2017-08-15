@@ -8,12 +8,17 @@ import com.kirak.service.VoteService;
 import com.kirak.web.View;
 import com.kirak.web.abstr.VoteAbstractController;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 /**
  * Created by Kir on 14.08.2017.
  */
+
+@RestController
+@RequestMapping("/manager/hotel_votes")
 public class HotelVotesAjaxController extends VoteAbstractController{
 
     public HotelVotesAjaxController(VoteService voteService, HotelService hotelService) {

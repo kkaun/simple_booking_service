@@ -33,6 +33,12 @@ public class SuperBookingUtil {
                 superBooking.getUser().getName(), superBooking.getUser().getEmail(), superBooking.getUser().getPhone());
     }
 
+    public static UserSuperBookingTo asUserSuperBookingTo(SuperBooking superBooking, LocalDate inDate, LocalDate outDate){
+
+        return new UserSuperBookingTo(superBooking.getId(), superBooking.isActive(), superBooking.getDateAdded(), inDate, outDate,
+                superBooking.getHotel().getId(), superBooking.getHotel().getName(), (short)superBooking.getBookings().size());
+    }
+
     public static SuperBooking updateFromManagerSuperBookingTo(ManagerSuperBookingTo managerSBTo, SuperBooking superBooking){
 
         superBooking.setActive(managerSBTo.isActive());
@@ -53,14 +59,12 @@ public class SuperBookingUtil {
     public static LocalDate getSuperBookingInDate(SuperBooking superBooking){
 
         Comparator<Booking> dateNaturalComparator = Comparator.comparing(Booking::getInDate);
-
         return superBooking.getBookings().stream().min(dateNaturalComparator).orElse(null).getInDate();
     }
 
     public static LocalDate getSuperBookingOutDate(SuperBooking superBooking){
 
         Comparator<Booking> dateNaturalComparator = Comparator.comparing(Booking::getInDate);
-
         return superBooking.getBookings().stream().max(dateNaturalComparator).orElse(null).getOutDate();
     }
 
@@ -78,33 +82,35 @@ public class SuperBookingUtil {
 
     public static List<AdminSuperBookingTo> generateAdminSuperBookingTos(List<SuperBooking> superBookings){
         return superBookings.stream().map(superBooking -> asAdminSuperBookingTo(superBooking,
-                SuperBookingUtil.getSuperBookingInDate(superBooking),
-                SuperBookingUtil.getSuperBookingOutDate(superBooking)))
+                getSuperBookingInDate(superBooking), getSuperBookingOutDate(superBooking)))
                 .collect(Collectors.toList());
     }
 
     public static List<ManagerSuperBookingTo> generateManagerSuperBookingTos(List<SuperBooking> superBookings, int managerId){
         return superBookings.stream().filter(superBooking -> Objects.equals(superBooking.getHotel().getManager().getId(), managerId))
                 .map(superBooking -> asManagerSuperBookingTo(superBooking,
-                SuperBookingUtil.getSuperBookingInDate(superBooking),
-                SuperBookingUtil.getSuperBookingOutDate(superBooking)))
+                getSuperBookingInDate(superBooking), getSuperBookingOutDate(superBooking)))
+                .collect(Collectors.toList());
+    }
+
+    public static List<UserSuperBookingTo> generateUserSuperBookingTos(List<SuperBooking> superBookings, int userId){
+        return superBookings.stream().filter(superBooking -> Objects.equals(superBooking.getUser().getId(), userId))
+                .map(superBooking -> asUserSuperBookingTo(superBooking,
+                        getSuperBookingInDate(superBooking), getSuperBookingOutDate(superBooking)))
                 .collect(Collectors.toList());
     }
 
 
 
     public static SuperBooking checkSuperBookingInOutDates(SuperBooking superBooking){
-
         //Stub
         return null;
     }
-
 
     public static SuperBooking updateFromUserSuperBookingTo(UserSuperBookingTo userSuperBookingTo, SuperBooking superBooking){
         //Stub
         return null;
     }
-
 
     public static ManagerSuperBookingTo AdminToManagerSuperBookingTo(AdminSuperBookingTo adminSuperBookingTo){
         //Stub
