@@ -20,7 +20,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/admin/cities")
+@RequestMapping("/admin/regions")
 public class RegionsAjaxController extends RegionAbstractController {
 
     @Autowired

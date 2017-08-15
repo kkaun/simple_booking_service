@@ -3,6 +3,7 @@ package com.kirak.web.jsp;
 import com.kirak.service.HotelService;
 import com.kirak.web.session.AuthorizedUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,16 +15,46 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 
 @Controller
-@RequestMapping(value = "/manager")
+@RequestMapping(value = "/manager/")
 public class ManagerController {
 
     @Autowired
     private HotelService hotelService;
 
-    //@PreAuthorize("hasRole('HOTEL_MANAGER')")
-    @GetMapping("/manage")
-    public String manage(@RequestParam("id") String id, Model model){
-        model.addAttribute("object", hotelService.get(Integer.parseInt(id), AuthorizedUser.getId()));
-        return "/manager/hotel";
-    }
+//    @PreAuthorize("hasRole('HOTEL_MANAGER')")
+//    @GetMapping("/manager/object")
+//    public String object(){
+//        return "manager";
+//    }
+//
+//    @PreAuthorize("hasRole('HOTEL_MANAGER')")
+//    @GetMapping("/manager/apartments")
+//    public String apartments(){
+//        return "manager";
+//    }
+//
+//    @PreAuthorize("hasRole('HOTEL_MANAGER')")
+//    @GetMapping("/manager/chart")
+//    public String chart(){
+//        return "manager";
+//    }
+//
+//    @PreAuthorize("hasRole('HOTEL_MANAGER')")
+//    @GetMapping("/manager/bookings")
+//    public String hotelBookings(){
+//        return "manager";
+//    }
+//
+//    @PreAuthorize("hasRole('HOTEL_MANAGER')")
+//    @GetMapping("/manager/super_bookings")
+//    public String hotelSuperBookings(){
+//        return "manager";
+//    }
+//
+//    @PreAuthorize("hasRole('HOTEL_MANAGER')")
+//    @GetMapping("/manager/hotel_votes")
+//    public String hotelVotes(){
+//        return "manager";
+//    }
+
 }

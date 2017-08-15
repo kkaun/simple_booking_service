@@ -2,7 +2,7 @@
  * Created by Кира on 15.08.2017.
  */
 
-var ajaxUrl = "/admin/cities";
+var ajaxUrl = "/admin/regions";
 var datatableApi;
 
 function updateTable() {

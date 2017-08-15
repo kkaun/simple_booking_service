@@ -177,3 +177,103 @@ header, footer {
     padding: 5px 20px;
     margin: 6px 0;
 }
+
+
+
+/* Admin ----------------------------------------- */
+
+
+
+.adminSideBar
+{
+    background: white;
+    position: absolute;
+    min-height: 1500px;
+    height: 100%;
+    width: 220px;
+    color: black;
+    transition: margin-left 0.5s;
+}
+
+
+.admMenuPoint{
+    text-transform: uppercase;
+    color: #575757;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+.adminSideBar ul
+{
+
+    list-style: none;
+    padding: 0px;
+
+}
+
+.adminSideBar ul li.menu-head
+{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+
+}
+
+
+.adminSideBar ul li.menu-head a
+{
+    color: black;
+    text-decoration: none;
+    height: 50px;
+}
+
+
+.adminSideBar ul .menu-head  a
+{
+    color:black;
+    text-decoration:none;
+    height:50px;
+}
+
+.adminSideBar ul .menu li  a
+{
+    color:black;
+    text-decoration:none;
+    display:inline-table;
+    width:100%;
+    padding: 8px 20px;
+}
+
+.adminSideBar ul .menu li  a:hover
+{
+    background-color: gainsboro;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left:3px solid black;
+    padding-left:17px;
+}
+
+
+
+.adminSideBar ul .menu li  a.active
+{
+    padding-left:17px;
+    background:#D9853B;
+    border-left:3px solid #ECECEA;
+}
+
+.adminSideBar ul .menu li  a.active:before {
+    content:"";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 7px solid #D9853B;
+    margin-top: -10px;
+    margin-left: 180px;
+}
+
+
+

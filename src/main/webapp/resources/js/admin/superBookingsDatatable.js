@@ -19,7 +19,6 @@ function clearFilter() {
     $.get(ajaxUrl, updateTableByData);
 }
 
-
 $(function () {
     datatableApi = $('#datatable').DataTable(extendsOpts({
         "columns": [

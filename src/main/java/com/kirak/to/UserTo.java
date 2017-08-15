@@ -1,5 +1,6 @@
 package com.kirak.to;
 
+import com.kirak.model.User;
 import com.kirak.model.abstraction.BaseEntity;
 import com.kirak.model.abstraction.BaseIntEntity;
 import com.kirak.to.abstr.BasicIntTo;
@@ -32,6 +33,7 @@ public class UserTo extends BasicIntTo implements Serializable {
     @SafeHtml
     private String password;
 
+    public UserTo(){}
 
     public UserTo(Integer id, String name, String email, String phone, String password) {
         super(id);

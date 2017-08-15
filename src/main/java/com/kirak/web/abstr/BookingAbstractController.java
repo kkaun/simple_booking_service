@@ -101,11 +101,6 @@ public abstract class BookingAbstractController {
         return SuperBookingUtil.generateManagerSuperBookingTos(superBookingService.getAllByUserId(userId), AuthorizedUser.getId());
     }
 
-    public List<ManagerSuperBookingTo> getSuperBookingsByHotelIdForManager(int hotelId){
-        LOG.info("Getting all Super Bookings by hotel {}", hotelId);
-        return SuperBookingUtil.generateManagerSuperBookingTos(superBookingService.getAllByHotelId(hotelId), AuthorizedUser.getId());
-    }
-
     public List<ManagerSuperBookingTo> getSuperBookingsBetweenDatesForManager(LocalDate startDate, LocalDate endDate) {
         LOG.info("Getting all Super Bookings between dates {}", startDate, endDate);
         return SuperBookingUtil.generateManagerSuperBookingTos(superBookingService.getAllBetweenCreatedDates(startDate, endDate),

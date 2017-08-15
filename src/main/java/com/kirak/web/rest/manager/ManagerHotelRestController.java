@@ -25,7 +25,7 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping("manager/object")
+@RequestMapping("/manager/object")
 public class ManagerHotelRestController extends HotelAbstractController {
 
     @Autowired

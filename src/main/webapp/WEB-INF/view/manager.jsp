@@ -8,16 +8,22 @@
 <jsp:include page="fragments/header.jsp"/>
 <body>
 
-<div class="container">
-    <div class="row" style="text-align: center">
+<div class="container-fluid">
+    <div class="row">
 
-        <c:forEach items="${managableObjects}" var="object">
-            <div class="col-md-12">
-            <div class="well">
+        <div class="col-md-3">
+            <jsp:include page="fragments/managerSidebar.jsp"/>
+        </div>
 
-            </div>
-            </div>
-        </c:forEach>
+        <div class="col-md-9">
+
+
+
+
+
+
+        </div>
+
 
     </div>
 </div>

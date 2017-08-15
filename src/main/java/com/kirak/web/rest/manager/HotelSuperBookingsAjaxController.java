@@ -77,11 +77,4 @@ public class HotelSuperBookingsAjaxController extends BookingAbstractController 
         return super.getSuperBookingsByUserIdForManager(userId);
     }
 
-    @Override
-    @JsonView(View.JsonUI.class)
-    @PostMapping(value = "/by_hotel_id", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ManagerSuperBookingTo> getSuperBookingsByHotelIdForManager(@RequestParam("hotelId")int hotelId) {
-        return super.getSuperBookingsByHotelIdForManager(hotelId);
-    }
-
 }
