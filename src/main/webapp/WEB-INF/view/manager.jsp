@@ -5,8 +5,8 @@
 
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
-<jsp:include page="fragments/header.jsp"/>
 <body>
+<jsp:include page="fragments/header.jsp"/>
 
 <div class="container-fluid">
     <div class="row">
@@ -16,6 +16,7 @@
         </div>
 
         <div class="col-md-9">
+            <jsp:include page="fragments/managerFilters.jsp"/>
 
             <c:if test="${not empty apartmentsAddBtn}">
                 <a class="btn btn-primary" onclick="addApartment()">
@@ -67,7 +68,8 @@
                 </thead>
             </table>
 
-
+            <jsp:include page="fragments/managerEditModals.jsp"/>
+            <jsp:include page="fragments/superBookingEditModal.jsp"/>
 
         </div>
     </div>

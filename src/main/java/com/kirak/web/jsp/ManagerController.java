@@ -1,5 +1,8 @@
 package com.kirak.web.jsp;
 
+import com.kirak.service.AptTypeService;
+import com.kirak.service.CityService;
+import com.kirak.service.CountryService;
 import com.kirak.service.HotelService;
 import com.kirak.web.session.AuthorizedUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.jws.WebParam;
+
 /**
  * Created by Kir on 03.08.2017.
  */
@@ -19,7 +24,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ManagerController {
 
     @Autowired
-    private HotelService hotelService;
+    private AptTypeService aptTypeService;
+
+    @Autowired
+    private CountryService countryService;
+
+    @Autowired
+    private CityService cityService;
 
     @PreAuthorize("hasRole('HOTEL_MANAGER')")
     @GetMapping("/object")
@@ -30,6 +41,9 @@ public class ManagerController {
     @PreAuthorize("hasRole('HOTEL_MANAGER')")
     @GetMapping("/apartments")
     public String apartments(Model model){
+        model.addAttribute("aptTypes", aptTypeService.getAll());
+        model.addAttribute("countries", countryService.getAll());
+        model.addAttribute("cities", cityService.getAll());
         model.addAttribute("apartmentsAddBtn", "apartmentsAddBtn");
         return "manager";
     }
@@ -42,13 +56,19 @@ public class ManagerController {
 
     @PreAuthorize("hasRole('HOTEL_MANAGER')")
     @GetMapping("/bookings")
-    public String hotelBookings(){
+    public String hotelBookings(Model model){
+        model.addAttribute("aptTypes", aptTypeService.getAll());
+        model.addAttribute("countries", countryService.getAll());
+        model.addAttribute("cities", cityService.getAll());
         return "manager";
     }
 
     @PreAuthorize("hasRole('HOTEL_MANAGER')")
     @GetMapping("/super_bookings")
-    public String hotelSuperBookings(){
+    public String hotelSuperBookings(Model model){
+        model.addAttribute("aptTypes", aptTypeService.getAll());
+        model.addAttribute("countries", countryService.getAll());
+        model.addAttribute("cities", cityService.getAll());
         return "manager";
     }
 

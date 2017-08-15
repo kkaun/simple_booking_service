@@ -3,9 +3,10 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<body>
 
+<html>
+<jsp:include page="../fragments/headTag.jsp"/>
+<body>
 
 <h3><spring:message code="super_bookings.title"/></h3>
 

@@ -6,8 +6,8 @@
 
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
-<jsp:include page="fragments/header.jsp"/>
 <body>
+<jsp:include page="fragments/header.jsp"/>
 
 <div class="container">
     <c:if test="${not empty placement}">

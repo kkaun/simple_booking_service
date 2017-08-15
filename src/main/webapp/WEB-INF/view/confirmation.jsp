@@ -6,8 +6,8 @@
 
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
-<jsp:include page="fragments/header.jsp"/>
 <body>
+<jsp:include page="fragments/header.jsp"/>
 
 <div class="container" style="background-color: lightgreen; margin-top: -30px; padding-top: 10px;">
     <div class="row">

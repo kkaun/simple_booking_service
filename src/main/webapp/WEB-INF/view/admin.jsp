@@ -5,8 +5,8 @@
 
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
-<jsp:include page="fragments/header.jsp"/>
 <body>
+<jsp:include page="fragments/header.jsp"/>
 
 <div class="container-fluid">
     <div class="row">
@@ -142,6 +142,9 @@
                 </tr>
                 </thead>
             </table>
+
+            <jsp:include page="fragments/adminEditModals.jsp.jsp"/>
+            <jsp:include page="fragments/superBookingEditModal.jsp"/>
 
         </div>
     </div>
