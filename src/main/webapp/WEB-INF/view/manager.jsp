@@ -29,9 +29,9 @@
             <table class="table table-striped display" id="apartmentsDatatable">
                 <thead>
                 <tr>
-                    <th><spring:message code="apt_type.personNum"/></th>
-                    <th><spring:message code="apt_type.category"/></th>
-                    <th><spring:message code="apt_type.bedsArrangement"/></th>
+                    <th><spring:message code="apt_types.personNum"/></th>
+                    <th><spring:message code="apt_types.category"/></th>
+                    <th><spring:message code="apt_types.bedsArrangement"/></th>
                     <th><spring:message code="common.pricePerNight"/></th>
                     <th></th>
                     <th></th>

@@ -31,28 +31,28 @@
 
                 <div class="form-group">
                     <label for="apartmentPersonNum" class="control-label col-xs-3"><spring:message
-                            code="apt_type.personNum"/></label>
+                            code="apt_types.personNum"/></label>
                     <div class="col-xs-9">
                         <input class="form-control" id="apartmentPersonNum" name="personNum"
-                               placeholder="<spring:message code="apt_type.personNum"/>">
+                               placeholder="<spring:message code="apt_types.personNum"/>">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="apartmentCategory" class="control-label col-xs-3"><spring:message
-                            code="apt_type.category"/></label>
+                            code="apt_types.category"/></label>
                     <div class="col-xs-9">
                         <input class="form-control" id="apartmentCategory" name="category"
-                               placeholder="<spring:message code="apt_type.category"/>">
+                               placeholder="<spring:message code="apt_types.category"/>">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="apartmentBedsArrangement" class="control-label col-xs-3"><spring:message
-                            code="apt_type.bedsArrangement"/></label>
+                            code="apt_types.bedsArrangement"/></label>
                     <div class="col-xs-9">
                         <input class="form-control" id="apartmentBedsArrangement" name="bedsArrangement"
-                               placeholder="<spring:message code="apt_type.bedsArrangement"/>">
+                               placeholder="<spring:message code="apt_types.bedsArrangement"/>">
                     </div>
                 </div>
             </div>
