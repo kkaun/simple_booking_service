@@ -2,17 +2,59 @@ package com.kirak.util.model;
 
 import com.kirak.model.Apartment;
 import com.kirak.model.AptType;
+import com.kirak.model.Hotel;
 import com.kirak.to.ApartmentTo;
+import com.kirak.to.AptTypeTo;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
  * Created by Kir on 03.08.2017.
  */
 public class AptTypeUtil {
+
+    public static AptType createNewFromTo(AptTypeTo aptTypeTo){
+
+        return new AptType(aptTypeTo.getId(), aptTypeTo.getBedsArrangement(), aptTypeTo.getCategory(), aptTypeTo.getPersonNum());
+    }
+
+    public static Map<AptType, Boolean> updateFromToWithResult(AptTypeTo aptTypeTo, AptType aptType, List<Hotel> hotels){
+
+        int hotelsUsing = Math.toIntExact(hotels.stream()
+                .filter(hotel -> hotel.getApartments().stream().map(Apartment::getType)
+                        .filter(type -> Objects.equals(aptType.getId(), type.getId())).count() > 1)
+                .count());
+
+        if(hotelsUsing < 1){
+            aptType.setBedsArrangement(aptTypeTo.getBedsArrangement());
+            aptType.setCategory(aptTypeTo.getCategory());
+            aptType.setPersonNum(aptTypeTo.getPersonNum());
+            return Collections.singletonMap(aptType, true);
+        }
+        return Collections.singletonMap(aptType, false);
+    }
+
+    public static AptTypeTo asTo(AptType aptType, List<Hotel> hotels){
+
+        int apartmentsAppliedTo = Math.toIntExact(hotels.stream()
+                .flatMap(hotel -> hotel.getApartments().stream()).map(Apartment::getType)
+                .filter(type -> Objects.equals(aptType, type))
+                .count());
+
+        int hotelsUsing = Math.toIntExact(hotels.stream()
+                .filter(hotel -> hotel.getApartments().stream().map(Apartment::getType)
+                        .filter(type -> Objects.equals(aptType, type)).count() > 1)
+                .count());
+
+        return new AptTypeTo(aptType.getId(), aptType.getBedsArrangement(), aptType.getCategory(), aptType.getPersonNum(),
+                hotelsUsing, apartmentsAppliedTo);
+    }
+
+    public static List<AptTypeTo> getToList(List<AptType> types, List<Hotel> hotels){
+        return types.stream().map(aptType -> asTo(aptType, hotels))
+                .collect(Collectors.toList());
+    }
 
     public static List<String> getUniqueCategories(List<AptType> types){
         List<String> categories = types.stream().map(AptType::getCategory).collect(Collectors.toList());
@@ -28,7 +70,6 @@ public class AptTypeUtil {
     }
 
     public static List<AptType> getUniqueAptTypes(List<Apartment> apartments){
-        //Comparator<AptType> byPersonNum = Comparator.comparingInt(AptType::getPersonNum);
         return apartments.stream().map(Apartment::getType).distinct().collect(Collectors.toList());
     }
 
@@ -40,9 +81,5 @@ public class AptTypeUtil {
                         && Objects.equals(aptType.getBedsArrangement(), apartmentTo.getBedsArrangement()))
                 .findFirst().orElse(null);
     }
-
-//    public static boolean hasRequiredPersonNum(AptType type, Integer personNum){
-//        return Objects.equals(type.getPersonNum().intValue(), personNum);
-//    }
 
 }

@@ -1,9 +1,12 @@
 package com.kirak.service.impl;
 
 import com.kirak.model.AptType;
+import com.kirak.model.Hotel;
 import com.kirak.repository.AptTypeRepository;
 import com.kirak.service.AptTypeService;
+import com.kirak.to.AptTypeTo;
 import com.kirak.util.ValidationUtil;
+import com.kirak.util.model.AptTypeUtil;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -12,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.List;
+import java.util.Map;
 
 import static com.kirak.util.ValidationUtil.checkId;
 import static com.kirak.util.ValidationUtil.checkNotFoundWithId;
@@ -40,6 +44,22 @@ public class AptTypeServiceImpl implements AptTypeService {
     public void update(AptType type) {
         Assert.notNull(type, "Apartment Type must not be null!");
         repository.save(type);
+    }
+
+    @Override
+    public AptType save(AptTypeTo typeTo) {
+        Assert.notNull(typeTo, "Apartment Type must not be null!");
+        return repository.save(AptTypeUtil.createNewFromTo(typeTo));
+    }
+
+    @Override
+    public AptType update(AptTypeTo typeTo, AptType aptType, List<Hotel> hotels) throws com.kirak.util.exception.NotFoundException {
+        Assert.notNull(typeTo, "Apartment Type must not be null!");
+        AptType expectedAptType = repository.get(typeTo.getId());
+        Map<AptType, Boolean> actualResult = AptTypeUtil.updateFromToWithResult(typeTo, expectedAptType, hotels);
+
+        return actualResult.values().iterator().next() ? repository.save(actualResult.keySet().iterator().next()) :
+                repository.save(repository.get(expectedAptType.getId()));
     }
 
     @Override

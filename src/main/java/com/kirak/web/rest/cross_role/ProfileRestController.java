@@ -17,10 +17,8 @@ import javax.validation.Valid;
  */
 
 @RestController
-@RequestMapping(ProfileRestController.REST_URL)
+@RequestMapping("/profile")
 public class ProfileRestController extends UserAbstractController {
-
-    static final String REST_URL = "/rest/profile";
 
     @Autowired
     public ProfileRestController(UserService service) {

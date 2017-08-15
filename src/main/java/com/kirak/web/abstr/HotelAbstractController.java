@@ -44,10 +44,10 @@ public abstract class HotelAbstractController {
         this.cityService = cityService;
     }
 
-    public Hotel create(Hotel hotel){
+    public void create(Hotel hotel){
         LOG.info("Saving {}", hotel);
         checkNew(hotel);
-        return hotelService.save(hotel);
+        hotelService.save(hotel);
     }
 
     public void update(HotelTo hotelTo, int id){

@@ -8,6 +8,7 @@ import com.kirak.to.booking.BookingTo;
 import com.kirak.to.booking.UserSuperBookingTo;
 import com.kirak.web.View;
 import com.kirak.web.abstr.BookingAbstractController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +23,7 @@ import java.util.List;
 @RequestMapping("/user/super_bookings")
 public class UserSuperBookingsAjaxController extends BookingAbstractController{
 
+    @Autowired
     protected UserSuperBookingsAjaxController(BookingService bookingService, SuperBookingService superBookingService,
                                               ApartmentService apartmentService) {
         super(bookingService, superBookingService, apartmentService);

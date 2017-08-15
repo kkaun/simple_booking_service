@@ -6,13 +6,14 @@ package com.kirak.to.booking;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * TO-to-JSON object for view based on <a href="https://github.com/mbielanczuk/jQuery.Gantt/> Gantt chart
  */
 
-public class ChartTo {
+public class ChartTo implements Serializable {
 
     private final String name;
 

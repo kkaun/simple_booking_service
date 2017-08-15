@@ -7,6 +7,7 @@ import com.kirak.service.UserService;
 import com.kirak.service.VoteService;
 import com.kirak.web.View;
 import com.kirak.web.abstr.VoteAbstractController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +22,7 @@ import java.util.List;
 @RequestMapping("/manager/hotel_votes")
 public class HotelVotesAjaxController extends VoteAbstractController{
 
+    @Autowired
     public HotelVotesAjaxController(VoteService voteService, HotelService hotelService) {
         super(voteService, hotelService);
     }

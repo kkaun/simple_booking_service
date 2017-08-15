@@ -5,14 +5,12 @@ import com.kirak.model.SuperBooking;
 import com.kirak.to.booking.AdminSuperBookingTo;
 import com.kirak.to.booking.ManagerSuperBookingTo;
 import com.kirak.to.booking.UserSuperBookingTo;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Created by Kir on 13.08.2017.

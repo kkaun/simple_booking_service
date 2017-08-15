@@ -46,7 +46,6 @@ public class BookingServiceImpl implements BookingService {
     }
 
 
-
     @Override
     public Booking save(BookingTo bookingTo, int superBookingId, List<Apartment> apartments, List<SuperBooking> superBookings) {
         Assert.notNull(bookingTo, "BookingTo must not be null!");
@@ -62,6 +61,7 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public Booking update(BookingTo bookingTo) {
         Assert.notNull(bookingTo, "BookingTo must not be null!");
+
         Booking expectedBooking = repository.get(bookingTo.getId());
         Map<Booking, Boolean> actualResult = BookingUtil.updateFromBookingToWithResult(bookingTo, expectedBooking,
                 new ArrayList<>(expectedBooking.getHotel().getApartments()));
@@ -70,7 +70,6 @@ public class BookingServiceImpl implements BookingService {
                 checkNotFoundWithId(repository.save(actualResult.keySet().iterator().next()), expectedBooking.getId())
         : repository.save(repository.get(expectedBooking.getId()));
     }
-
 
 
     @Override

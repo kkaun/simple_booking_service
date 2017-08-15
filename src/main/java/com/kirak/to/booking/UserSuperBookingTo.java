@@ -3,13 +3,14 @@ package com.kirak.to.booking;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kirak.to.abstr.BasicIntTo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
  * Created by Kir on 13.08.2017.
  */
-public class UserSuperBookingTo extends BasicIntTo {
+public class UserSuperBookingTo extends BasicIntTo implements Serializable {
 
     private final boolean active;
 

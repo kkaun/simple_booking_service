@@ -4,7 +4,6 @@ import com.kirak.model.*;
 import com.kirak.service.SessionPlacementsService;
 import com.kirak.to.HotelTo;
 import com.kirak.to.Placement;
-import org.springframework.ui.Model;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;

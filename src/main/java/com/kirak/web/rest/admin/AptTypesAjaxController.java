@@ -3,6 +3,8 @@ package com.kirak.web.rest.admin;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.kirak.model.AptType;
 import com.kirak.service.AptTypeService;
+import com.kirak.service.HotelService;
+import com.kirak.to.AptTypeTo;
 import com.kirak.web.View;
 import com.kirak.web.abstr.AptTypeAbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -21,30 +24,30 @@ import java.util.List;
 public class AptTypesAjaxController extends AptTypeAbstractController{
 
     @Autowired
-    public AptTypesAjaxController(AptTypeService aptTypeService) {
-        super(aptTypeService);
+    public AptTypesAjaxController(AptTypeService aptTypeService, HotelService hotelService) {
+        super(aptTypeService, hotelService);
     }
 
-    @PostMapping
-    public void createOrUpdate(@Validated(View.ValidatedUIGroup.class) AptType type) {
-        if (type.isNew()) {
-            super.save(type);
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createOrUpdate(@Valid AptTypeTo aptTypeTo) {
+        if (aptTypeTo.isNew()) {
+            super.save(aptTypeTo);
         } else {
-            super.update(type);
+            super.update(aptTypeTo);
         }
     }
 
     @Override
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @JsonView(View.JsonUI.class)
-    public AptType get(@PathVariable("id") Short id) {
+    public AptTypeTo get(@PathVariable("id") Short id) {
         return super.get(id);
     }
 
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @JsonView(View.JsonUI.class)
-    public List<AptType> getAll() {
+    public List<AptTypeTo> getAll() {
         return super.getAll();
     }
 }

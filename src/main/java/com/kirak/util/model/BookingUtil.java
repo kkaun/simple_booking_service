@@ -7,14 +7,12 @@ import com.kirak.to.booking.BookingTo;
 import com.kirak.to.booking.ChartTo;
 import com.kirak.to.booking.ChartValue;
 import org.apache.commons.lang3.StringUtils;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.util.*;
 import java.util.stream.Collectors;
-
 import static java.time.temporal.ChronoUnit.DAYS;
 
 /**
@@ -51,7 +49,6 @@ public class BookingUtil {
 
     public static Map<Booking, Boolean> updateFromBookingToWithResult(BookingTo bookingTo, Booking booking,
                                                                       List<Apartment> apartments){
-
         LocalDate requestedInDate = bookingTo.getInDate();
         LocalDate requestedOutDate = bookingTo.getOutDate();
 

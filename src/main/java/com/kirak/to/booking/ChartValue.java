@@ -4,6 +4,8 @@ package com.kirak.to.booking;
  * Created by Kir on 14.08.2017.
  */
 
+import java.io.Serializable;
+
 /**
  * TO-to-JSON array for ChartTo for view based on <a href="https://github.com/mbielanczuk/jQuery.Gantt/> Gantt chart:
  *
@@ -16,7 +18,7 @@ package com.kirak.to.booking;
  *
  */
 
-public class ChartValue {
+public class ChartValue implements Serializable {
 
     /**
      * to: "/Date(1328832000000)/",

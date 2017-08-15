@@ -2,7 +2,10 @@ package com.kirak.web.abstr;
 
 import com.kirak.model.AptType;
 import com.kirak.service.AptTypeService;
+import com.kirak.service.HotelService;
+import com.kirak.to.AptTypeTo;
 import com.kirak.util.exception.NotFoundException;
+import com.kirak.util.model.AptTypeUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,19 +21,22 @@ public abstract class AptTypeAbstractController {
 
     private final AptTypeService aptTypeService;
 
+    private final HotelService hotelService;
+
     @Autowired
-    public AptTypeAbstractController(AptTypeService aptTypeService) {
+    public AptTypeAbstractController(AptTypeService aptTypeService, HotelService hotelService) {
         this.aptTypeService = aptTypeService;
+        this.hotelService = hotelService;
     }
 
-    public void save(AptType type){
-        LOG.info("Saving {}", type);
-        aptTypeService.save(type);
+    public void save(AptTypeTo aptTypeTo){
+        LOG.info("Saving {}", aptTypeTo);
+        aptTypeService.save(aptTypeTo);
     }
 
-    public void update(AptType type){
-        LOG.info("Updating {}", type);
-        aptTypeService.update(type);
+    public void update(AptTypeTo aptTypeTo){
+        LOG.info("Updating {}", aptTypeTo);
+        aptTypeService.update(aptTypeTo, aptTypeService.get(aptTypeTo.getId()), hotelService.getAll());
     }
 
     public void delete(Short id){
@@ -38,14 +44,14 @@ public abstract class AptTypeAbstractController {
         aptTypeService.delete(id);
     }
 
-    public AptType get(Short id){
+    public AptTypeTo get(Short id){
         LOG.info("Getting aptType {}", id);
-        return aptTypeService.get(id);
+        return AptTypeUtil.asTo(aptTypeService.get(id), hotelService.getAll());
     }
 
-    public List<AptType> getAll(){
+    public List<AptTypeTo> getAll(){
         LOG.info("Getting all aptTypes");
-        return aptTypeService.getAll();
+        return AptTypeUtil.getToList(aptTypeService.getAll(), hotelService.getAll());
     }
 
 }

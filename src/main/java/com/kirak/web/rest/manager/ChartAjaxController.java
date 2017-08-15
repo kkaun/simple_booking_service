@@ -5,6 +5,7 @@ import com.kirak.service.BookingService;
 import com.kirak.service.SuperBookingService;
 import com.kirak.to.booking.ChartTo;
 import com.kirak.web.abstr.BookingAbstractController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,7 @@ import java.util.List;
 @RequestMapping("/manager/chart")
 public class ChartAjaxController extends BookingAbstractController{
 
+    @Autowired
     protected ChartAjaxController(BookingService bookingService, SuperBookingService superBookingService,
                                   ApartmentService apartmentService) {
         super(bookingService, superBookingService, apartmentService);

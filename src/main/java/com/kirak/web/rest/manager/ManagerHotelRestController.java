@@ -9,6 +9,7 @@ import com.kirak.to.HotelTo;
 import com.kirak.util.model.HotelUtil;
 import com.kirak.web.View;
 import com.kirak.web.abstr.HotelAbstractController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,7 @@ import java.util.List;
 @RequestMapping("manager/object")
 public class ManagerHotelRestController extends HotelAbstractController {
 
+    @Autowired
     private ManagerHotelRestController(HotelService hotelService, CountryService countryService, CityService cityService) {
         super(hotelService, countryService, cityService);
     }
