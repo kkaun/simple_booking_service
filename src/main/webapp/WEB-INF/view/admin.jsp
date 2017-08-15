@@ -143,7 +143,7 @@
                 </thead>
             </table>
 
-            <jsp:include page="fragments/adminEditModals.jsp.jsp"/>
+            <jsp:include page="fragments/adminEditModals.jsp"/>
             <jsp:include page="fragments/superBookingEditModal.jsp"/>
 
         </div>
