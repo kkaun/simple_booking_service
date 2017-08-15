@@ -21,10 +21,10 @@
             <spring:message code="user.email" var="userEmail"/>
             <custom:inputField label='${userEmail}' name="email"/>
 
-            <spring:message code="user.password" var="userPhone"/>
+            <spring:message code="users.password" var="userPhone"/>
             <custom:inputField label='${userPhone}' name="password" inputType="password"/>
 
-            <spring:message code="user.password" var="userPassword"/>
+            <spring:message code="users.password" var="userPassword"/>
             <custom:inputField label='${userPassword}' name="password" inputType="password"/>
 
 

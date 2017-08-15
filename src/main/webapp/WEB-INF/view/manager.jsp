@@ -48,7 +48,7 @@
                     <th><spring:message code="super_bookings.outDate"/></th>
                     <th><spring:message code="user.name"/></th>
                     <th><spring:message code="user.email"/></th>
-                    <th><spring:message code="user.phone"/></th>
+                    <th><spring:message code="users.phone"/></th>
                     <th></th>
                     <th></th>
                 </tr>

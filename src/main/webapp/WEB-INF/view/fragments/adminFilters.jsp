@@ -91,14 +91,14 @@
                 <form:form class="form-horizontal" id="filter">
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="minRating"><spring:message
-                                code="hotel.minRating"/>:</label>
+                                code="hotels.minRating"/>:</label>
 
                         <div class="col-sm-3">
                             <input class="form-control" name="minRating" id="minRating">
                         </div>
 
                         <label class="control-label col-sm-3" for="maxRating"><spring:message
-                                code="hotel.maxRating"/>:</label>
+                                code="hotels.maxRating"/>:</label>
 
                         <div class="col-sm-2">
                             <input class="form-control" name="maxRating" id="maxRating">
@@ -107,7 +107,7 @@
 
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="cityName"><spring:message
-                                code="hotel.byCity"/>:</label>
+                                code="hotels.byCity"/>:</label>
 
                         <div class="col-sm-2">
                             <input class="form-control" name="cityName" id="cityName">

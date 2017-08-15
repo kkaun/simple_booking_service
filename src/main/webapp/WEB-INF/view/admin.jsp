@@ -54,8 +54,8 @@
                     <th><spring:message code="apt_types.personNum"/></th>
                     <th><spring:message code="apt_types.category"/></th>
                     <th><spring:message code="apt_types.bedsArrangement"/></th>
-                    <th><spring:message code="apt_type.hotelsUsing"/></th>
-                    <th><spring:message code="apt_type.apartmentsAppliedTo"/></th>
+                    <th><spring:message code="apt_types.hotelsUsing"/></th>
+                    <th><spring:message code="apt_types.apartmentsAppliedTo"/></th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -116,10 +116,10 @@
                 <tr>
                     <th><spring:message code="user.name"/></th>
                     <th><spring:message code="user.email"/></th>
-                    <th><spring:message code="user.phone"/></th>
-                    <th><spring:message code="user.roles"/></th>
+                    <th><spring:message code="users.phone"/></th>
+                    <th><spring:message code="users.roles"/></th>
                     <th><spring:message code="user.active"/></th>
-                    <th><spring:message code="user.registered"/></th>
+                    <th><spring:message code="users.registered"/></th>
                     <th></th>
                     <th></th>
                 </tr>

@@ -238,17 +238,17 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="phone" class="control-label col-xs-3"><spring:message code="user.phone"/></label>
+                        <label for="phone" class="control-label col-xs-3"><spring:message code="users.phone"/></label>
 
                         <div class="col-xs-9">
                             <input type="email" class="form-control" id="phone" name="phone" placeholder="<spring:message code="user.email"/>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="password" class="control-label col-xs-3"><spring:message code="user.password"/></label>
+                        <label for="password" class="control-label col-xs-3"><spring:message code="users.password"/></label>
 
                         <div class="col-xs-9">
-                            <input type="password" class="form-control" id="password" name="password" placeholder="<spring:message code="user.password"/>">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="<spring:message code="users.password"/>">
                         </div>
                     </div>
                     <div class="form-group">
