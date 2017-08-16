@@ -20,7 +20,7 @@ function clearFilter() {
 }
 
 $(function () {
-    datatableApi = $('#datatable').DataTable(extendsOpts({
+    datatableApi = $('#hotelsDatatable').DataTable(extendsOpts({
         "columns": [
             {
                 "data": "id"
@@ -53,7 +53,7 @@ $(function () {
                 "data": "countryName"
             },
             {
-                "render": renderEditBtn,
+                "render": renderHotelEditBtn,
                 "defaultContent": "",
                 "orderable": false
             },

@@ -5,7 +5,7 @@
 var form;
 
 function makeEditable() {
-    form = $('#detailsForm');
+    form = $('.detailsForm');
     $(document).ajaxError(function (event, jqXHR, options, jsExc) {
         failNoty(jqXHR);
     });
@@ -38,21 +38,244 @@ function extendsOpts(opts) {
     return opts;
 }
 
-function add() {
-    $('#modalTitle').html(i18n["addTitle"]);
+
+/* -----------------------------------------------  Admin DT functions ---------------------------------------------- */
+
+function addRegion() {
+    $('#regionModalTitle').html(i18n["addTitle"]);
     form.find(":input").val("");
-    $('#editRow').modal();
+    $('#regionEditRow').modal();
 }
 
-function updateRow(id) {
-    $('#modalTitle').html(i18n["editTitle"]);
+function updateRegionRow(id) {
+    $('#regionModalTitle').html(i18n["editTitle"]);
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(value);
         });
-        $('#editRow').modal();
+        $('#regionEditRow').modal();
     });
 }
+
+function renderRegionEditBtn(data, type, row) {
+    if (type === 'display') {
+        return '<a onclick="updateRegionRow(' + row.id + ');">' +
+            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+    }
+}
+
+function saveRegion() {
+    $.ajax({
+        type: "POST",
+        url: ajaxUrl,
+        data: form.serialize(),
+        success: function () {
+            $('#regionEditRow').modal('hide');
+            updateTable();
+            successNoty('common.saved');
+        }
+    });
+}
+
+/* -----------------  Admin DT functions ------------------- */
+
+function addAptType() {
+    $('#aptTypeModalTitle').html(i18n["addTitle"]);
+    form.find(":input").val("");
+    $('#regionEditRow').modal();
+}
+
+function updateAptTypeRow(id) {
+    $('#aptTypeModalTitle').html(i18n["editTitle"]);
+    $.get(ajaxUrl + id, function (data) {
+        $.each(data, function (key, value) {
+            form.find("input[name='" + key + "']").val(value);
+        });
+        $('#aptTypeEditRow').modal();
+    });
+}
+
+function renderAptTypeEditBtn(data, type, row) {
+    if (type === 'display') {
+        return '<a onclick="updateAptTypeRow(' + row.id + ');">' +
+            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+    }
+}
+
+function saveAptType() {
+    $.ajax({
+        type: "POST",
+        url: ajaxUrl,
+        data: form.serialize(),
+        success: function () {
+            $('#aptTypeEditRow').modal('hide');
+            updateTable();
+            successNoty('common.saved');
+        }
+    });
+}
+
+/* -----------------  Admin DT functions ------------------- */
+
+function addHotel() {
+    $('#regionModalTitle').html(i18n["addTitle"]);
+    form.find(":input").val("");
+    $('#hotelEditRow').modal();
+}
+
+function updateHotelRow(id) {
+    $('#hotelModalTitle').html(i18n["editTitle"]);
+    $.get(ajaxUrl + id, function (data) {
+        $.each(data, function (key, value) {
+            form.find("input[name='" + key + "']").val(value);
+        });
+        $('#hotelEditRow').modal();
+    });
+}
+
+function renderHotelEditBtn(data, type, row) {
+    if (type === 'display') {
+        return '<a onclick="updateHotelRow(' + row.id + ');">' +
+            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+    }
+}
+
+function saveHotel() {
+    $.ajax({
+        type: "POST",
+        url: ajaxUrl,
+        data: form.serialize(),
+        success: function () {
+            $('#hotelEditRow').modal('hide');
+            updateTable();
+            successNoty('common.saved');
+        }
+    });
+}
+
+/* -----------------  Admin DT functions ------------------- */
+
+
+function addUser() {
+    $('#userModalTitle').html(i18n["addTitle"]);
+    form.find(":input").val("");
+    $('#userEditRow').modal();
+}
+
+function updateUserRow(id) {
+    $('#userModalTitle').html(i18n["editTitle"]);
+    $.get(ajaxUrl + id, function (data) {
+        $.each(data, function (key, value) {
+            form.find("input[name='" + key + "']").val(value);
+        });
+        $('#userEditRow').modal();
+    });
+}
+
+function renderUserEditBtn(data, type, row) {
+    if (type === 'display') {
+        return '<a onclick="updateUserRow(' + row.id + ');">' +
+            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+    }
+}
+
+function saveUser() {
+    $.ajax({
+        type: "POST",
+        url: ajaxUrl,
+        data: form.serialize(),
+        success: function () {
+            $('#userEditRow').modal('hide');
+            updateTable();
+            successNoty('common.saved');
+        }
+    });
+}
+
+
+
+
+
+
+/* -----------------------------------------------  Manager DT functions -------------------------------------------- */
+
+
+function addApartment() {
+    $('#apartmentModalTitle').html(i18n["addTitle"]);
+    form.find(":input").val("");
+    $('#apartmentEditRow').modal();
+}
+
+function renderApartmentEditBtn(data, type, row) {
+    if (type === 'display') {
+        return '<a onclick="updateApartmentRow(' + row.id + ');">' +
+            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+    }
+}
+
+function updateApartmentRow(id) {
+    $('#apartmentModalTitle').html(i18n["editTitle"]);
+    $.get(ajaxUrl + id, function (data) {
+        $.each(data, function (key, value) {
+            form.find("input[name='" + key + "']").val(value);
+        });
+        $('#apartmentEditRow').modal();
+    });
+}
+
+function saveApartment() {
+    $.ajax({
+        type: "POST",
+        url: ajaxUrl,
+        data: form.serialize(),
+        success: function () {
+            $('#apartmentEditRow').modal('hide');
+            updateTable();
+            successNoty('common.saved');
+        }
+    });
+}
+
+/* -----------------  Manager DT functions ------------------- */
+
+
+function renderHotelVoteViewBtn(data, type, row) {
+    if (type === 'display') {
+        return '<a onclick="hotelVoteViewRow(' + row.id + ');">' +
+            '<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>';
+    }
+}
+
+function hotelVoteViewRow(id) {
+    $('#hotelVoteModalTitle').html(i18n["viewTitle"]);
+    $.get(ajaxUrl + id, function (data) {
+        $.each(data, function (key, value) {
+            form.find("input[name='" + key + "']").val(value);
+        });
+        $('#hotelVoteViewRow').modal();
+    });
+}
+
+
+
+
+
+/* -------------------------------------------------  User DT functions --------------------------------------------- */
+
+
+
+
+
+
+
+
+function renderDeleteBtn(data, type, row) {
+    if (type === 'display') {
+        return '<a onclick="deleteRow(' + row.id + ');" disabled="disabled">'+
+            '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
+    }
+}
+
 
 function deleteRow(id) {
     $.ajax({
@@ -65,22 +288,12 @@ function deleteRow(id) {
     });
 }
 
+
 function updateTableByData(data) {
     datatableApi.clear().rows.add(data).draw();
 }
 
-function save() {
-    $.ajax({
-        type: "POST",
-        url: ajaxUrl,
-        data: form.serialize(),
-        success: function () {
-            $('#editRow').modal('hide');
-            updateTable();
-            successNoty('common.saved');
-        }
-    });
-}
+
 
 var failedNote;
 
@@ -111,16 +324,6 @@ function failNoty(jqXHR) {
     });
 }
 
-function renderEditBtn(data, type, row) {
-    if (type === 'display') {
-        return '<a onclick="updateRow(' + row.id + ');">' +
-            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
-    }
-}
 
-function renderDeleteBtn(data, type, row) {
-    if (type === 'display') {
-        return '<a onclick="deleteRow(' + row.id + ');">'+
-            '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
-    }
-}
+
+

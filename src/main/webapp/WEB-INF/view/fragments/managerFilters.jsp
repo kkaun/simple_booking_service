@@ -18,54 +18,46 @@
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="startDate"><spring:message
                                 code="super_bookings.fromDate"/>:</label>
-
                         <div class="col-sm-3">
-                            <input class="form-control" name="startDate" id="startDate">
+                            <input class="form-control in_date" name="startDate" id="startDate">
                         </div>
 
                         <label class="control-label col-sm-4" for="endDate"><spring:message
                                 code="super_bookings.toDate"/>:</label>
 
                         <div class="col-sm-3">
-                            <input class="form-control" name="endDate" id="endDate">
+                            <input class="form-control out_date" name="endDate" id="endDate">
                         </div>
                     </div>
-
-
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="inDate"><spring:message
                                 code="super_bookings.inDate"/>:</label>
 
                         <div class="col-sm-3">
-                            <input class="form-control" name="inDate" id="inDate">
+                            <input class="form-control in_date" name="inDate" id="inDate">
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="outDate"><spring:message
                                 code="super_bookings.outDate"/>:</label>
-
                         <div class="col-sm-3">
-                            <input class="form-control" name="outDate" id="outDate">
+                            <input class="form-control out_date" name="outDate" id="outDate">
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="userId"><spring:message
                                 code="super_bookings.byUser"/>:</label>
-
                         <div class="col-sm-2">
                             <input class="form-control" name="userId" id="userId">
                         </div>
                     </div>
-
                 </form:form>
             </div>
             <div class="panel-footer text-right">
                 <a class="btn btn-danger" type="button" onclick="clearFilter()">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </a>
-                <a class="btn btn-primary" type="button" onclick="updateTable()">
+                <a class="btn btn-primary" type="button" onclick="updateSuperBookingsTable()">
                     <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
                 </a>
             </div>

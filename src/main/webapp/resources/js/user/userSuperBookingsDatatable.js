@@ -2,7 +2,7 @@
  * Created by Кира on 15.08.2017.
  */
 
-var ajaxUrl = "/user/super_bookings";
+var ajaxUrl = "/user/data";
 var datatableApi;
 
 function updateTable() {
@@ -20,7 +20,7 @@ function clearFilter() {
 }
 
 $(function () {
-    datatableApi = $('#datatable').DataTable(extendsOpts({
+    datatableApi = $('#userSuperBookingsDatatable').DataTable(extendsOpts({
         "columns": [
             {
                 "data": "id"
@@ -45,11 +45,6 @@ $(function () {
             },
             {
                 "render": renderEditBtn,
-                "defaultContent": "",
-                "orderable": false
-            },
-            {
-                "render": renderDeleteBtn,
                 "defaultContent": "",
                 "orderable": false
             }

@@ -137,8 +137,6 @@
                     <th><spring:message code="common.userId"/></th>
                     <th><spring:message code="common.hotelId"/></th>
                     <th><spring:message code="common.hotelName"/></th>
-                    <th></th>
-                    <th></th>
                 </tr>
                 </thead>
             </table>

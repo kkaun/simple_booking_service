@@ -26,7 +26,7 @@ function enable(chkbox, id) {
 
 // $(document).ready(function () {
 $(function () {
-    datatableApi = $('#datatable').DataTable(extendsOpts({
+    datatableApi = $('#usersDatatable').DataTable(extendsOpts({
         "columns": [
             {
                 "data": "id"
@@ -70,7 +70,7 @@ $(function () {
             {
                 "orderable": false,
                 "defaultContent": "",
-                "render": renderEditBtn
+                "render": renderUserEditBtn
             },
             {
                 "orderable": false,

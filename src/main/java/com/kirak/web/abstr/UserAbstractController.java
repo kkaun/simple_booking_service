@@ -51,7 +51,7 @@ public abstract class UserAbstractController {
     }
 
     public List<User> getAll() {
-        log.info("getAll");
+        log.info("getAllHotelTos");
         return userService.getAll();
     }
 

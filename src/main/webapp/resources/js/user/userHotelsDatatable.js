@@ -1,9 +1,9 @@
 /**
- * Created by Кира on 15.08.2017.
+ * Created by Кира on 17.08.2017.
  */
 
 
-var ajaxUrl = "/manager/super_bookings";
+var ajaxUrl = "/user/data";
 var datatableApi;
 
 function updateTable() {
@@ -20,38 +20,41 @@ function clearFilter() {
     $.get(ajaxUrl, updateTableByData);
 }
 
-
 $(function () {
-    datatableApi = $('#hotelSuperBookingsDatatable').DataTable(extendsOpts({
+    datatableApi = $('#userHotelsDatatable').DataTable(extendsOpts({
         "columns": [
             {
                 "data": "id"
             },
             {
-                "data": "dateAdded"
+                "data": "name"
             },
             {
-                "data": "inDate"
+                "data": "rating"
             },
             {
-                "data": "outDate"
+                "data": "stars"
             },
             {
-                "data": "userName"
+                "data": "description"
             },
             {
-                "data": "userEmail"
+                "data": "votesNum"
             },
             {
-                "data": "userPhone"
+                "data": "checkIn"
             },
             {
-                "render": renderHotelSuperBookingsEditBtn,
-                "defaultContent": "",
-                "orderable": false
+                "data": "checkOut"
             },
             {
-                "render": renderDeleteBtn,
+                "data": "cityName"
+            },
+            {
+                "data": "countryName"
+            },
+            {
+                "render": renderUserHotelViewBtn,
                 "defaultContent": "",
                 "orderable": false
             }
@@ -61,11 +64,6 @@ $(function () {
                 0,
                 "desc"
             ]
-        ],
-        "createdRow": function (row, data, dataIndex) {
-            if (!data.active) {
-                $(row).addClass("disabled");
-            }
-        }
+        ]
     }));
 });

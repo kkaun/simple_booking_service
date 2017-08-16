@@ -39,7 +39,7 @@ public class HotelUtil {
     }
 
 
-    public static List<HotelTo> getAll(Collection<Hotel> hotels){
+    public static List<HotelTo> getAllHotelTos(Collection<Hotel> hotels){
 
         return hotels.stream().map(HotelUtil::asHotelTo).collect(Collectors.toList());
     }

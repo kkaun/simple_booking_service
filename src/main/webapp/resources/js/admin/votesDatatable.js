@@ -10,7 +10,7 @@ function updateTable() {
 }
 
 $(function () {
-    datatableApi = $('#datatable').DataTable(extendsOpts({
+    datatableApi = $('#votesDatatable').DataTable(extendsOpts({
         "columns": [
             {
                 "data": "id"
@@ -35,16 +35,6 @@ $(function () {
             },
             {
                 "data": "hotel.name"
-            },
-            {
-                "render": renderEditBtn,
-                "defaultContent": "",
-                "orderable": false
-            },
-            {
-                "render": renderDeleteBtn,
-                "defaultContent": "",
-                "orderable": false
             }
         ],
         "order": [

@@ -3,29 +3,23 @@ package com.kirak.web.rest.user;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.kirak.model.Vote;
 import com.kirak.service.HotelService;
-import com.kirak.service.UserService;
 import com.kirak.service.VoteService;
 import com.kirak.web.View;
 import com.kirak.web.abstr.VoteAbstractController;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
 import java.util.List;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-
 /**
- * Created by Kir on 03.08.2017.
+ * Created by Kir on 17.08.2017.
  */
 
 @RestController
-@RequestMapping("/user/own_votes")
-public class UserVotesAjaxController extends VoteAbstractController {
+@RequestMapping("/user/votes")
+public class UserVotesAjaxController  extends VoteAbstractController {
 
-    @Autowired
     public UserVotesAjaxController(VoteService voteService, HotelService hotelService) {
         super(voteService, hotelService);
     }
@@ -39,7 +33,7 @@ public class UserVotesAjaxController extends VoteAbstractController {
 
     @Override
     @PostMapping
-    public void update(@Validated(View.ValidatedUIGroup.class)Vote vote) {
+    public void update(@Validated(View.ValidatedUIGroup.class) Vote vote) {
         super.update(vote);
     }
 
@@ -55,4 +49,5 @@ public class UserVotesAjaxController extends VoteAbstractController {
     public List<Vote> getVotesForUser() {
         return super.getVotesForUser();
     }
+
 }

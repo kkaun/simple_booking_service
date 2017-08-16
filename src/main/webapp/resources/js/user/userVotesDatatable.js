@@ -2,7 +2,7 @@
  * Created by Кира on 15.08.2017.
  */
 
-var ajaxUrl = "/user/own_votes";
+var ajaxUrl = "/user/data";
 var datatableApi;
 
 function updateTable() {
@@ -10,7 +10,7 @@ function updateTable() {
 }
 
 $(function () {
-    datatableApi = $('#datatable').DataTable(extendsOpts({
+    datatableApi = $('#userVotesDatatable').DataTable(extendsOpts({
         "columns": [
             {
                 "data": "dateAdded"
@@ -28,7 +28,7 @@ $(function () {
                 "data": "hotel.name"
             },
             {
-                "render": renderEditBtn,
+                "render": renderUserVoteEditBtn,
                 "defaultContent": "",
                 "orderable": false
             },

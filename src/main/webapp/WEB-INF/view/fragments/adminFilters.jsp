@@ -20,14 +20,14 @@
                                 code="super_bookings.fromDate"/>:</label>
 
                         <div class="col-sm-3">
-                            <input class="form-control" name="startDate" id="startDate">
+                            <input class="form-control in_date" name="startDate" id="startDate">
                         </div>
 
                         <label class="control-label col-sm-4" for="endDate"><spring:message
                                 code="super_bookings.toDate"/>:</label>
 
                         <div class="col-sm-3">
-                            <input class="form-control" name="endDate" id="endDate">
+                            <input class="form-control out_date" name="endDate" id="endDate">
                         </div>
                     </div>
 
@@ -37,7 +37,7 @@
                                 code="super_bookings.inDate"/>:</label>
 
                         <div class="col-sm-3">
-                            <input class="form-control" name="inDate" id="inDate">
+                            <input class="form-control in_date" name="inDate" id="inDate">
                         </div>
                     </div>
 
@@ -46,7 +46,7 @@
                                 code="super_bookings.outDate"/>:</label>
 
                         <div class="col-sm-3">
-                            <input class="form-control" name="outDate" id="outDate">
+                            <input class="form-control out_date" name="outDate" id="outDate">
                         </div>
                     </div>
 
@@ -73,7 +73,7 @@
                 <a class="btn btn-danger" type="button" onclick="clearFilter()">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </a>
-                <a class="btn btn-primary" type="button" onclick="updateTable()">
+                <a class="btn btn-primary" type="button" onclick="updateSuperBookingsTable()">
                     <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
                 </a>
             </div>
@@ -108,10 +108,17 @@
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="cityName"><spring:message
                                 code="hotels.byCity"/>:</label>
-
-                        <div class="col-sm-2">
-                            <input class="form-control" name="cityName" id="cityName">
-                        </div>
+                        <c:if test="${not empty cities}">
+                            <div class="form-group">
+                                <div class="col-xs-9">
+                                    <select class="form-control" name="cityName" id="cityName">
+                                        <c:forEach items="${cities}" var="city">
+                                            <option value="${city.name}">${city.name}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                        </c:if>
                     </div>
                 </form:form>
             </div>
@@ -119,7 +126,7 @@
                 <a class="btn btn-danger" type="button" onclick="clearFilter()">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </a>
-                <a class="btn btn-primary" type="button" onclick="updateTable()">
+                <a class="btn btn-primary" type="button" onclick="updateHotelsTable()">
                     <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
                 </a>
             </div>
@@ -149,7 +156,7 @@
                 <a class="btn btn-danger" type="button" onclick="clearFilter()">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </a>
-                <a class="btn btn-primary" type="button" onclick="updateTable()">
+                <a class="btn btn-primary" type="button" onclick="updateCitiesTable()">
                     <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
                 </a>
             </div>

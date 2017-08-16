@@ -9,7 +9,7 @@ function updateTable() {
 }
 
 $(function () {
-    datatableApi = $('#datatable').DataTable(extendsOpts({
+    datatableApi = $('#aptTypesDatatable').DataTable(extendsOpts({
         "columns": [
             {
                 "data": "id"
@@ -30,7 +30,7 @@ $(function () {
                 "data": "apartmentsAppliedTo"
             },
             {
-                "render": renderEditBtn,
+                "render": renderAptTypeEditBtn,
                 "defaultContent": "",
                 "orderable": false
             },

@@ -16,105 +16,47 @@
                 <h2 class="modal-title" id="apartmentModalTitle"></h2>
             </div>
             <div class="modal-body">
-                <form:form class="form-horizontal" id="detailsForm">
-                <input type="hidden" id="id" name="id">
-                <div class="form-group">
-                    <label for="aptPrice" class="control-label col-xs-3"><spring:message
-                            code="apartments.price"/></label>
-                    <div class="col-xs-9">
-                        <input class="form-control" type="number" step="any" min="1" id="aptPrice" name="price"
-                               placeholder="<spring:message code="apartments.price"/>">
+                <form:form class="form-horizontal detailsForm">
+                    <input type="hidden" id="id" name="id">
+                    <div class="form-group">
+                        <label for="aptPrice" class="control-label col-xs-3"><spring:message
+                                code="apartments.price"/></label>
+                        <div class="col-xs-9">
+                            <input class="form-control" type="number" step="any" min="1" id="aptPrice" name="price"
+                                   placeholder="<spring:message code="apartments.price"/>">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="apartmentType" class="control-label col-xs-3"><spring:message
-                            code="apt_types.category"/></label>
-                    <div class="col-xs-9">
-                        <input class="form-control" id="apartmentType" name="category"
-                               placeholder="<spring:message code="apt_types.category"/>">
-
-                        <c:if test="${not empty hotelApartments}">
-                            <div class="form-group">
-                                <label for="bookingPersonNum" class="control-label col-xs-3"><spring:message
-                                        code="apt_types.personNum"/>-<spring:message
-                                        code="apt_types.category"/>-<spring:message
-                                        code="apt_types.bedsArrangement"/></label>
-                                <div class="col-xs-9">
-                                    <select class="form-control" name="personNum" id="bookingPersonNum">
-                                        <c:forEach items="${hotelApartments}" var="hotelApartment">
-                                            <option value="${hotelApartment.stringAptType}">${hotelApartment.stringAptType}
-                                                ; ${hotelApartment.price}0 $ / night
-                                            </option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="apartmentType" class="control-label col-xs-3"><spring:message
+                                    code="apt_types.personNum"/> - <spring:message
+                                    code="apt_types.category"/> - <spring:message
+                                    code="apt_types.bedsArrangement"/></label>
+                            <div class="col-xs-9">
+                                <select class="form-control" name="stringAptType" id="apartmentType">
+                                    <c:if test="${not empty hotelApartments}">
+                                    <c:forEach items="${hotelApartments}" var="hotelApartment">
+                                        <option value="${hotelApartment.stringAptType}">${hotelApartment.stringAptType}
+                                            ; ${hotelApartment.price}0 $ / night
+                                        </option>
+                                    </c:forEach>
+                                </select>
+                                </c:if>
                             </div>
-                        </c:if>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-xs-offset-3 col-xs-9">
-                    <button class="btn btn-primary" type="button" onclick="save()">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    </button>
-                </div>
-            </div>
-            </form:form>
-        </div>
-    </div>
-</div>
-
-
-<div class="modal fade" id="hotelVotesEditRow">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h2 class="modal-title" id="hotelVotesModalTitle"></h2>
-            </div>
-            <div class="modal-body">
-
-                <div class="form-group">
-                    <label for="voteDateAdded" class="control-label col-xs-3"><spring:message
-                            code="common.dateAdded"/></label>
-                    <div class="col-xs-9">
-                        <input class="form-control" id="voteDateAdded" name="dateAdded"
-                               placeholder="<spring:message code="common.dateAdded"/>">
+                    <div class="form-group">
+                        <div class="col-xs-offset-3 col-xs-9">
+                            <button class="btn btn-primary" type="button" onclick="saveApartment()">
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                            </button>
+                        </div>
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="voteRate" class="control-label col-xs-3"><spring:message
-                            code="common.rate"/></label>
-                    <div class="col-xs-9">
-                        <input class="form-control" id="voteRate" name="rate"
-                               placeholder="<spring:message code="common.rate"/>">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="voteUserComment" class="control-label col-xs-3"><spring:message
-                            code="common.comment"/></label>
-                    <div class="col-xs-9">
-                        <input class="form-control" id="voteUserComment" name="userComment"
-                               placeholder="<spring:message code="common.comment"/>">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="voteUName" class="control-label col-xs-3"><spring:message
-                            code="common.bookerName"/></label>
-                    <div class="col-xs-9">
-                        <input class="form-control" id="voteUName" name="user.name"
-                               placeholder="<spring:message code="common.bookerName"/>">
-                    </div>
-                </div>
+                </form:form>
             </div>
         </div>
     </div>
 </div>
-
 
 </body>
 </html>

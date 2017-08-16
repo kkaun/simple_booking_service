@@ -1,13 +1,9 @@
 package com.kirak.web.abstr;
 
-import com.kirak.model.City;
-import com.kirak.model.Country;
-import com.kirak.model.Hotel;
-import com.kirak.model.Vote;
+import com.kirak.model.*;
 import com.kirak.service.CityService;
 import com.kirak.service.CountryService;
 import com.kirak.service.HotelService;
-import com.kirak.service.VoteService;
 import com.kirak.to.HotelTo;
 import com.kirak.util.model.HotelUtil;
 import com.kirak.web.session.AuthorizedUser;
@@ -15,12 +11,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static com.kirak.util.ValidationUtil.checkId;
 import static com.kirak.util.ValidationUtil.checkIdConsistency;
 import static com.kirak.util.ValidationUtil.checkNew;
 
@@ -56,7 +50,7 @@ public abstract class HotelAbstractController {
         hotelService.update(hotelTo);
     }
 
-    public HotelTo get(Integer id){
+    public HotelTo get(int id){
         LOG.info("Getting hotel {}", id);
         return hotelService.getTo(id);
     }
@@ -79,9 +73,19 @@ public abstract class HotelAbstractController {
 
     public List<HotelTo> getAll(){
         LOG.info("Getting all hotels sorted by rating");
-        return HotelUtil.getAll(hotelService.getAll());
+        return HotelUtil.getAllHotelTos(hotelService.getAll());
     }
 
+
+
+    public List<HotelTo> getAllForUser(){
+        LOG.info("Getting all hotels visiting by user");
+        return HotelUtil.getAllHotelTos(hotelService.getAll().stream().flatMap(hotel -> hotel.getSuperBookings().stream())
+                .filter(superBooking -> Objects.equals(superBooking.getUser().getId(), AuthorizedUser.getId()))
+                .distinct()
+                .map(SuperBooking::getHotel)
+                .collect(Collectors.toList()));
+    }
 
 
 

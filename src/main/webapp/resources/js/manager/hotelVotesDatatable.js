@@ -11,7 +11,7 @@ function updateTable() {
 }
 
 $(function () {
-    datatableApi = $('#datatable').DataTable(extendsOpts({
+    datatableApi = $('#hotelVotesDatatable').DataTable(extendsOpts({
         "columns": [
             {
                 "data": "dateAdded"

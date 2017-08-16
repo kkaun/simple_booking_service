@@ -16,7 +16,7 @@
                 <h2 class="modal-title" id="aptTypeModalTitle"></h2>
             </div>
             <div class="modal-body">
-                <form:form class="form-horizontal" id="detailsForm">
+                <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
                     <div class="form-group">
                         <label for="personNum" class="control-label col-xs-3"><spring:message
@@ -63,7 +63,7 @@
                 <h2 class="modal-title" id="hotelModalTitle"></h2>
             </div>
             <div class="modal-body">
-                <form:form class="form-horizontal" id="detailsForm">
+                <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
                     <div class="form-group">
                         <label for="hotelName" class="control-label col-xs-3"><spring:message
@@ -144,7 +144,7 @@
                 <h2 class="modal-title" id="regionModalTitle"></h2>
             </div>
             <div class="modal-body">
-                <form:form class="form-horizontal" id="detailsForm">
+                <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
                     <div class="form-group">
                         <label for="name" class="control-label col-xs-3"><spring:message
@@ -192,7 +192,7 @@
                 <h2 class="modal-title" id="regionCreateModalTitle"></h2>
             </div>
             <div class="modal-body">
-                <form:form class="form-horizontal" id="detailsForm">
+                <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
 
                     <div class="form-group">
@@ -203,19 +203,19 @@
                                    placeholder="<spring:message code="common.placeName"/>">
                         </div>
                     </div>
-                    <c:if test="${not empty countries}">
-                        <div class="form-group">
-                            <label for="countryName" class="control-label col-xs-3"><spring:message
-                                    code="common.countryName"/></label>
+                    <div class="form-group">
+                        <label for="countryName" class="control-label col-xs-3"><spring:message
+                                code="common.countryName"/></label>
+                        <c:if test="${not empty countries}">
                             <div class="col-xs-9">
-                                <select class="form-control" name="personNum" id="createdRegionCountryName">
+                                <select class="form-control" name="countryName" id="createdRegionCountryName">
                                     <c:forEach items="${countries}" var="country">
                                         <option value="${country.name}">${country.name}</option>
                                     </c:forEach>
                                 </select>
                             </div>
-                        </div>
-                    </c:if>
+                        </c:if>
+                    </div>
                     <div class="form-group">
                         <label for="regionDescription" class="control-label col-xs-3"><spring:message
                                 code="common.description"/></label>
@@ -247,7 +247,7 @@
                 <h2 class="modal-title" id="userModalTitle"></h2>
             </div>
             <div class="modal-body">
-                <form:form class="form-horizontal" id="detailsForm">
+                <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
                     <div class="form-group">
                         <label for="name" class="control-label col-xs-3"><spring:message code="user.name"/></label>

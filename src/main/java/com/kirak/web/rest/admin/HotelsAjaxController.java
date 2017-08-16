@@ -37,7 +37,6 @@ public class HotelsAjaxController extends HotelAbstractController {
         }
     }
 
-    @Override
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @JsonView(View.JsonUI.class)
     public HotelTo get(@PathVariable("id") Integer id) {

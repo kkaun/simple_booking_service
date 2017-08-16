@@ -10,22 +10,16 @@ function updateTable() {
 }
 
 $(function () {
-    datatableApi = $('#datatable').DataTable(extendsOpts({
+    datatableApi = $('#apartmentsDatatable').DataTable(extendsOpts({
         "columns": [
             {
-                "data": "personNum"
-            },
-            {
-                "data": "category"
-            },
-            {
-                "data": "bedsArrangement"
+                "data": "stringAptType"
             },
             {
                 "data": "price"
             },
             {
-                "render": renderEditBtn,
+                "render": renderApartmentEditBtn,
                 "defaultContent": "",
                 "orderable": false
             },

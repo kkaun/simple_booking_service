@@ -50,36 +50,30 @@
                                 <h2 class="modal-title" id="modalTitle"></h2>
                             </div>
                             <div class="modal-body">
-                                <form:form class="form-horizontal" id="detailsForm">
-
+                                <form:form class="form-horizontal detailsForm">
                                     <input type="hidden" id="id" name="id">
-
                                     <div class="form-group">
                                         <label for="bookingInDate" class="control-label col-xs-3"><spring:message
                                                 code="common.inDate"/></label>
-
                                         <div class="col-xs-9">
                                             <input class="form-control in_date" id="bookingInDate" name="inDate"
                                                    placeholder="<spring:message code="common.inDate"/>">
                                         </div>
                                     </div>
-
                                     <div class="form-group">
                                         <label for="bookingOutDate" class="control-label col-xs-3"><spring:message
                                                 code="common.outDate"/></label>
-
                                         <div class="col-xs-9">
                                             <input class="form-control out_date" id="bookingOutDate" name="outDate"
                                                    placeholder="<spring:message code="common.outDate"/>">
                                         </div>
                                     </div>
-
-                                    <c:if test="${not empty hotelApartments}">
-                                        <div class="form-group">
-                                            <label for="bookingPersonNum" class="control-label col-xs-3"><spring:message
-                                                    code="apt_types.personNum"/></label>
+                                    <div class="form-group">
+                                        <c:if test="${not empty hotelApartments}">
+                                            <label for="bookingApt" class="control-label col-xs-3"><spring:message
+                                                code="apt_types.personNum"/></label>
                                             <div class="col-xs-9">
-                                                <select class="form-control" name="personNum" id="bookingPersonNum">
+                                                <select class="form-control" name="aptId" id="bookingApt">
                                                     <c:forEach items="${hotelApartments}" var="hotelApartment">
                                                         <option value="${hotelApartment.id}">${hotelApartment.stringAptType}
                                                             ; ${hotelApartment.price}0 $ / night
@@ -87,9 +81,16 @@
                                                     </c:forEach>
                                                 </select>
                                             </div>
-                                        </div>
-                                    </c:if>
-
+                                        </c:if>
+                                        <c:if test="${empty hotelApartments}">
+                                            <label for="existingBookingApt" class="control-label col-xs-3"><spring:message
+                                                    code="bookings.apartment"/></label>
+                                            <div class="col-xs-9">
+                                                <input class="form-control out_date" id="existingBookingApt" name="aptId"
+                                                       placeholder="<spring:message code="bookings.apartment"/>" readonly>
+                                            </div>
+                                        </c:if>
+                                    </div>
                                     <div class="form-group">
                                         <label for="bookingAptPrice" class="control-label col-xs-3"><spring:message
                                                 code="apartments.price"/></label>
@@ -98,7 +99,6 @@
                                                    placeholder="<spring:message code="apartments.price"/>" readonly>
                                         </div>
                                     </div>
-
                                     <div class="form-group">
                                         <label for="bookingSum" class="control-label col-xs-3"><spring:message
                                                 code="bookings.sum"/></label>
@@ -107,11 +107,10 @@
                                                    placeholder="<spring:message code="bookings.sum"/>" readonly>
                                         </div>
                                     </div>
-
                                     <div class="form-group">
                                         <div class="col-xs-offset-3 col-xs-9">
                                             <button class="btn btn-primary" type="button"
-                                                    onclick="save()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                                    onclick="saveBooking()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                                             </button>
                                         </div>
                                     </div>
@@ -121,7 +120,7 @@
                     </div>
                 </div>
 
-                <form:form class="form-horizontal" id="detailsForm">
+                <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
 
                     <div class="form-group">
@@ -189,7 +188,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-xs-offset-3 col-xs-9">
-                            <button class="btn btn-primary" type="button" onclick="save()">
+                            <button class="btn btn-primary" type="button" onclick="saveSuperBooking()">
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                             </button>
                         </div>

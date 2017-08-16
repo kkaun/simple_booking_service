@@ -44,7 +44,7 @@ public class AptTypeServiceTest extends AbstractServiceTest {
 //    @Test
 //    public void delete() throws Exception {
 //        service.delete(TYPE1_ID);
-//        APT_TYPE_MATCHER.assertCollectionEquals(Arrays.asList(TYPE2, TYPE3, TYPE4, TYPE5), service.getAll());
+//        APT_TYPE_MATCHER.assertCollectionEquals(Arrays.asList(TYPE2, TYPE3, TYPE4, TYPE5), service.getAllHotelTos());
 //    }
 
     @Test

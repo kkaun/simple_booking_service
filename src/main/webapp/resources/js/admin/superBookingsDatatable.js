@@ -20,7 +20,7 @@ function clearFilter() {
 }
 
 $(function () {
-    datatableApi = $('#datatable').DataTable(extendsOpts({
+    datatableApi = $('#superBookingsDatatable').DataTable(extendsOpts({
         "columns": [
             {
                 "data": "id"
@@ -44,7 +44,7 @@ $(function () {
                 "data": "userId"
             },
             {
-                "render": renderEditBtn,
+                "render": renderSuperBookingEditBtn,
                 "defaultContent": "",
                 "orderable": false
             },

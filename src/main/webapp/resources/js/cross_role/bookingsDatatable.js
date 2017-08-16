@@ -10,7 +10,7 @@ function updateTable() {
 }
 
 $(function () {
-    datatableApi = $('#datatable').DataTable(extendsOpts({
+    datatableApi = $('#bookingsDatatable').DataTable(extendsOpts({
         "columns": [
             {
                 "data": "id"
@@ -34,12 +34,7 @@ $(function () {
                 "data": "aptArrangement"
             },
             {
-                "render": renderEditBtn,
-                "defaultContent": "",
-                "orderable": false
-            },
-            {
-                "render": renderDeleteBtn,
+                "render": renderBookingEditBtn,
                 "defaultContent": "",
                 "orderable": false
             }

@@ -12,6 +12,8 @@
 
         <div class="row">
 
+
+
             <form:form class="navbar-form" role="form" action="create_object" method="post">
                 <div class="form-group">
                     <input type="text" placeholder="Email" class="form-control" name="username">
@@ -23,6 +25,8 @@
                     <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
                 </button>
             </form:form>
+
+
 
         </div>
     </div>
