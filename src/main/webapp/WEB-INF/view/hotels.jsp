@@ -27,7 +27,7 @@
 
     <div class="row">
         <div class="col-md-4">
-            <jsp:include page="fragments/sidesearchfilter.jsp"/>
+            <jsp:include page="fragments/sideSearchFilter.jsp"/>
         </div>
 
         <div class="col-md-8">

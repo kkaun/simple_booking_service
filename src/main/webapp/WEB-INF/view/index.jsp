@@ -44,7 +44,7 @@
                     </div>
                     <div id="collapse1" class="panel-collapse collapse">
                         <div class="panel-body" style="padding: 5px">
-                            <jsp:include page="fragments/primarysearchfilter.jsp"/>
+                            <jsp:include page="fragments/primarySearchFilter.jsp"/>
                         </div>
                     </div>
                 </div>

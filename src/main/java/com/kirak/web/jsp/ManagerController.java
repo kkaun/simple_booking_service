@@ -32,13 +32,13 @@ public class ManagerController {
     @Autowired
     private CityService cityService;
 
-    @PreAuthorize("hasRole('HOTEL_MANAGER')")
+    @PreAuthorize("hasRole('ROLE_HOTEL_MANAGER')")
     @GetMapping("/object")
     public String object(){
         return "manager";
     }
 
-    @PreAuthorize("hasRole('HOTEL_MANAGER')")
+    @PreAuthorize("hasRole('ROLE_HOTEL_MANAGER')")
     @GetMapping("/apartments")
     public String apartments(Model model){
         model.addAttribute("aptTypes", aptTypeService.getAll());
@@ -48,13 +48,13 @@ public class ManagerController {
         return "manager";
     }
 
-    @PreAuthorize("hasRole('HOTEL_MANAGER')")
+    @PreAuthorize("hasRole('ROLE_HOTEL_MANAGER')")
     @GetMapping("/chart")
     public String chart(){
         return "manager";
     }
 
-    @PreAuthorize("hasRole('HOTEL_MANAGER')")
+    @PreAuthorize("hasRole('ROLE_HOTEL_MANAGER')")
     @GetMapping("/bookings")
     public String hotelBookings(Model model){
         model.addAttribute("aptTypes", aptTypeService.getAll());
@@ -63,7 +63,7 @@ public class ManagerController {
         return "manager";
     }
 
-    @PreAuthorize("hasRole('HOTEL_MANAGER')")
+    @PreAuthorize("hasRole('ROLE_HOTEL_MANAGER')")
     @GetMapping("/super_bookings")
     public String hotelSuperBookings(Model model){
         model.addAttribute("aptTypes", aptTypeService.getAll());
@@ -72,7 +72,7 @@ public class ManagerController {
         return "manager";
     }
 
-    @PreAuthorize("hasRole('HOTEL_MANAGER')")
+    @PreAuthorize("hasRole('ROLE_HOTEL_MANAGER')")
     @GetMapping("/hotel_votes")
     public String hotelVotes(){
         return "manager";

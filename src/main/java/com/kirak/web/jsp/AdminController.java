@@ -14,47 +14,47 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/admin")
 public class AdminController {
 
-    @PreAuthorize("hasRole('SYSTEM_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_SYSTEM_ADMIN')")
     @GetMapping("/apt_types")
     public String aptTypes(Model model) {
         model.addAttribute("aptTypeAddBtn", "aptTypeAddBtn");
         return "admin";
     }
 
-    @PreAuthorize("hasRole('SYSTEM_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_SYSTEM_ADMIN')")
     @GetMapping("/hotels")
     public String hotels(Model model) {
         model.addAttribute("hotelAddBtn", "hotelAddBtn");
         return "admin";
     }
 
-    @PreAuthorize("hasRole('SYSTEM_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_SYSTEM_ADMIN')")
     @GetMapping("/regions")
     public String regions(Model model) {
         model.addAttribute("regionAddBtn", "regionAddBtn");
         return "admin";
     }
 
-    @PreAuthorize("hasRole('SYSTEM_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_SYSTEM_ADMIN')")
     @GetMapping("/super_bookings")
     public String superBookings () {
         return "admin";
     }
 
-    @PreAuthorize("hasRole('SYSTEM_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_SYSTEM_ADMIN')")
     @GetMapping("/bookings")
     public String bookings () {
         return "admin";
     }
 
-    @PreAuthorize("hasRole('SYSTEM_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_SYSTEM_ADMIN')")
     @GetMapping("/users")
     public String users(Model model) {
         model.addAttribute("userAddBtn", "userAddBtn");
         return "admin";
     }
 
-    @PreAuthorize("hasRole('SYSTEM_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_SYSTEM_ADMIN')")
     @GetMapping("/votes")
     public String votes(){
         return "admin";

@@ -61,7 +61,7 @@
                 </div>
             </div>
             <hr>
-            <jsp:include page="fragments/sidesearchfilter.jsp"/>
+            <jsp:include page="fragments/sideSearchFilter.jsp"/>
         </div>
         </c:if>
 

@@ -26,7 +26,7 @@ import java.util.List;
  * Created by Kir on 01.06.2017.
  */
 @Transactional
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepository repository;
