@@ -49,11 +49,11 @@
 
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="headBtnHolder"><button type="button" class="btn btn-default btn-md btn-block headBtn">
+                    <li class="headBtnHolder"><button type="button" href="newobject" class="btn btn-default btn-md btn-block headBtn">
                         <spring:message code="common.listobject"/></button></li>
-                    <li class="headBtnHolder"><button type="button" class="btn btn-default btn-md btn-block headBtn">
+                    <li class="headBtnHolder"><button type="button" href="register" class="btn btn-default btn-md btn-block headBtn">
                         <spring:message code="common.register"/></button></li>
-                    <li class="headBtnHolder"><button type="button" class="btn btn-default btn-md btn-block headBtn">
+                    <li class="headBtnHolder"><button type="button" href="" class="btn btn-default btn-md btn-block headBtn">
                         <spring:message code="common.login_as"/></button></li>
                 </ul>
             </div>

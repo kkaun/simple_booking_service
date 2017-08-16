@@ -37,17 +37,17 @@
 
         <div class="row">
 
-                    <form:form class="navbar-form" role="form" action="spring_security_check" method="post">
-                        <div class="form-group">
-                            <input type="text" placeholder="Email" class="form-control" name="username">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" placeholder="Password" class="form-control" name="password">
-                        </div>
-                        <button type="submit" class="btn btn-success">
-                            <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
-                        </button>
-                    </form:form>
+            <form:form class="navbar-form" role="form" action="spring_security_check" method="post">
+                <div class="form-group">
+                    <input type="text" placeholder="Email" class="form-control" name="username">
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" class="form-control" name="password">
+                </div>
+                <button type="submit" class="btn btn-success">
+                    <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+                </button>
+            </form:form>
 
         </div>
     </div>
@@ -63,5 +63,7 @@
         $('input[name="password"]').val(password);
     }
 </script>
+
 </body>
 </html>
+<jsp:include page="fragments/footer.jsp"/>

@@ -1,9 +1,11 @@
-package com.kirak.web.jsp;
+package com.kirak.web.handlers;
 
+import com.kirak.service.ApartmentService;
 import com.kirak.service.AptTypeService;
 import com.kirak.service.CityService;
 import com.kirak.service.CountryService;
-import com.kirak.service.HotelService;
+import com.kirak.util.model.ApartmentUtil;
+import com.kirak.web.ModelUtil;
 import com.kirak.web.session.AuthorizedUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -11,9 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.jws.WebParam;
 
 /**
  * Created by Kir on 03.08.2017.
@@ -32,6 +31,9 @@ public class ManagerController {
     @Autowired
     private CityService cityService;
 
+    @Autowired
+    private ApartmentService apartmentService;
+
     @PreAuthorize("hasRole('ROLE_HOTEL_MANAGER')")
     @GetMapping("/object")
     public String object(){
@@ -41,10 +43,8 @@ public class ManagerController {
     @PreAuthorize("hasRole('ROLE_HOTEL_MANAGER')")
     @GetMapping("/apartments")
     public String apartments(Model model){
-        model.addAttribute("aptTypes", aptTypeService.getAll());
-        model.addAttribute("countries", countryService.getAll());
-        model.addAttribute("cities", cityService.getAll());
-        model.addAttribute("apartmentsAddBtn", "apartmentsAddBtn");
+        ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
+                apartmentService.getAll(), AuthorizedUser.getId());
         return "manager";
     }
 
@@ -57,18 +57,16 @@ public class ManagerController {
     @PreAuthorize("hasRole('ROLE_HOTEL_MANAGER')")
     @GetMapping("/bookings")
     public String hotelBookings(Model model){
-        model.addAttribute("aptTypes", aptTypeService.getAll());
-        model.addAttribute("countries", countryService.getAll());
-        model.addAttribute("cities", cityService.getAll());
+        ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
+                apartmentService.getAll(), AuthorizedUser.getId());
         return "manager";
     }
 
     @PreAuthorize("hasRole('ROLE_HOTEL_MANAGER')")
     @GetMapping("/super_bookings")
     public String hotelSuperBookings(Model model){
-        model.addAttribute("aptTypes", aptTypeService.getAll());
-        model.addAttribute("countries", countryService.getAll());
-        model.addAttribute("cities", cityService.getAll());
+        ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
+                apartmentService.getAll(), AuthorizedUser.getId());
         return "manager";
     }
 

@@ -150,6 +150,8 @@
     </div>
 </div>
 
+</body>
+</html>
 
 <jsp:include page="fragments/footer.jsp"/>
 

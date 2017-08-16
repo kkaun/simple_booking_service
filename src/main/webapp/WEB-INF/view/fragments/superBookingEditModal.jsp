@@ -59,7 +59,7 @@
                                                 code="common.inDate"/></label>
 
                                         <div class="col-xs-9">
-                                            <input class="form-control" id="bookingInDate" name="inDate"
+                                            <input class="form-control in_date" id="bookingInDate" name="inDate"
                                                    placeholder="<spring:message code="common.inDate"/>">
                                         </div>
                                     </div>
@@ -69,37 +69,26 @@
                                                 code="common.outDate"/></label>
 
                                         <div class="col-xs-9">
-                                            <input class="form-control" id="bookingOutDate" name="outDate"
+                                            <input class="form-control out_date" id="bookingOutDate" name="outDate"
                                                    placeholder="<spring:message code="common.outDate"/>">
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="bookingPersonNum" class="control-label col-xs-3"><spring:message
-                                                code="apt_types.personNum"/></label>
-                                        <div class="col-xs-9">
-                                            <input class="form-control" id="bookingPersonNum" name="personNum"
-                                                   placeholder="<spring:message code="apt_types.personNum"/>">
+                                    <c:if test="${not empty hotelApartments}">
+                                        <div class="form-group">
+                                            <label for="bookingPersonNum" class="control-label col-xs-3"><spring:message
+                                                    code="apt_types.personNum"/></label>
+                                            <div class="col-xs-9">
+                                                <select class="form-control" name="personNum" id="bookingPersonNum">
+                                                    <c:forEach items="${hotelApartments}" var="hotelApartment">
+                                                        <option value="${hotelApartment.id}">${hotelApartment.stringAptType}
+                                                            ; ${hotelApartment.price}0 $ / night
+                                                        </option>
+                                                    </c:forEach>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="bookingCategory" class="control-label col-xs-3"><spring:message
-                                                code="apt_types.category"/></label>
-                                        <div class="col-xs-9">
-                                            <input class="form-control" id="bookingCategory" name="category"
-                                                   placeholder="<spring:message code="apt_types.category"/>">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="bookingBedsArrangement" class="control-label col-xs-3"><spring:message
-                                                code="apt_types.bedsArrangement"/></label>
-                                        <div class="col-xs-9">
-                                            <input class="form-control" id="bookingBedsArrangement" name="bedsArrangement"
-                                                   placeholder="<spring:message code="apt_types.bedsArrangement"/>">
-                                        </div>
-                                    </div>
+                                    </c:if>
 
                                     <div class="form-group">
                                         <label for="bookingAptPrice" class="control-label col-xs-3"><spring:message

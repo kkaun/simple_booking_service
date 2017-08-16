@@ -56,6 +56,11 @@ public class AptTypeUtil {
                 .collect(Collectors.toList());
     }
 
+    public static String getToStringFromAptType(AptType aptType){
+
+        return String.valueOf(aptType.getPersonNum()) + ", " + aptType.getCategory() + ", " + aptType.getBedsArrangement();
+    }
+
     public static List<String> getUniqueCategories(List<AptType> types){
         List<String> categories = types.stream().map(AptType::getCategory).collect(Collectors.toList());
         categories.add("");
@@ -75,10 +80,12 @@ public class AptTypeUtil {
 
     public static AptType getExistingType(ApartmentTo apartmentTo, List<AptType> existingTypes){
 
+        String[] aptTypes = apartmentTo.getStringAptType().split(" - ");
+
         return existingTypes.stream().filter(aptType ->
-                Objects.equals(aptType.getPersonNum(), apartmentTo.getPersonNum())
-                        && Objects.equals(aptType.getCategory(), apartmentTo.getCategory())
-                        && Objects.equals(aptType.getBedsArrangement(), apartmentTo.getBedsArrangement()))
+                Objects.equals(aptType.getPersonNum(), Short.valueOf(aptTypes[0]))
+                        && Objects.equals(aptType.getCategory(), aptTypes[1])
+                        && Objects.equals(aptType.getBedsArrangement(), aptTypes[2]))
                 .findFirst().orElse(null);
     }
 

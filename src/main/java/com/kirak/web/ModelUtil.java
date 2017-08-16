@@ -1,13 +1,16 @@
 package com.kirak.web;
 
-import com.kirak.model.Hotel;
+import com.kirak.model.*;
 import com.kirak.service.AptTypeService;
+import com.kirak.util.model.ApartmentUtil;
 import com.kirak.util.model.AptTypeUtil;
 import com.kirak.util.model.HotelUtil;
+import com.kirak.web.session.AuthorizedUser;
 import org.springframework.ui.Model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -26,5 +29,24 @@ public class ModelUtil {
         model.addAttribute("uniquePersonNums", HotelUtil.getUniquePersonNums(hotel));
         model.addAttribute("uniqueCategories", HotelUtil.getUniqueCategories(hotel));
         model.addAttribute("uniqueAptNums", HotelUtil.getUniqueApartmentNums(hotel));
+    }
+
+    public static void getManagerView(Model model, List<AptType> aptTypes, List<Country> countries,
+                                      List<City> cities, List<Apartment> apartments, int hotelManagerId){
+        model.addAttribute("aptTypes", aptTypes);
+        model.addAttribute("countries", countries);
+        model.addAttribute("cities", cities);
+        model.addAttribute("hotelApartments",
+                ApartmentUtil.getApartmentTosForHotelManager(apartments, hotelManagerId));
+        model.addAttribute("apartmentsAddBtn", "apartmentsAddBtn");
+    }
+
+    public static void getAdminView(Model model, List<AptType> aptTypes, List<Country> countries,
+                                      List<City> cities, List<Apartment> apartments){
+        model.addAttribute("aptTypes", aptTypes);
+        model.addAttribute("countries", countries);
+        model.addAttribute("cities", cities);
+        model.addAttribute("apartments", ApartmentUtil.getApartmentTos(apartments));
+        model.addAttribute("apartmentsAddBtn", "apartmentsAddBtn");
     }
 }

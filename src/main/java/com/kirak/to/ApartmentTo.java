@@ -12,47 +12,36 @@ public class ApartmentTo extends BasicIntTo implements Serializable {
 
     private final Double price;
 
-    private final Short personNum;
+//    private final Short personNum;
+//
+//    private final String category;
+//
+//    private final String bedsArrangement;
 
-    private final String category;
-
-    private final String bedsArrangement;
+    private final String stringAptType;
 
     public ApartmentTo(@JsonProperty Integer id,
                        @JsonProperty Double price,
-                       @JsonProperty Short personNum,
-                       @JsonProperty String category,
-                       @JsonProperty String bedsArrangement) {
+                       @JsonProperty String stringAptType) {
         super(id);
         this.price = price;
-        this.personNum = personNum;
-        this.category = category;
-        this.bedsArrangement = bedsArrangement;
+        this.stringAptType = stringAptType;
     }
 
     public Double getPrice() {
         return price;
     }
 
-    public Short getPersonNum() {
-        return personNum;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public String getBedsArrangement() {
-        return bedsArrangement;
+    public String getStringAptType() {
+        return stringAptType;
     }
 
     @Override
     public String toString() {
         return "ApartmentTo{" +
-                "price=" + price +
-                ", personNum=" + personNum +
-                ", category='" + category + '\'' +
-                ", bedsArrangement='" + bedsArrangement + '\'' +
+                "id=" + id +
+                ", price=" + price +
+                ", stringAptType='" + stringAptType + '\'' +
                 '}';
     }
 }

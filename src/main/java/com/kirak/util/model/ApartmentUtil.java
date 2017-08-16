@@ -2,6 +2,7 @@ package com.kirak.util.model;
 
 import com.kirak.model.*;
 import com.kirak.to.ApartmentTo;
+import com.kirak.web.session.AuthorizedUser;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -17,8 +18,10 @@ public class ApartmentUtil {
 
     public static ApartmentTo asApartmentTo(Apartment apartment){
 
-        return new ApartmentTo(apartment.getId(), apartment.getPrice(), apartment.getType().getPersonNum(),
-                apartment.getType().getCategory(), apartment.getType().getBedsArrangement());
+        String stringAptType = String.valueOf(apartment.getType().getPersonNum()) + " - " + apartment.getType().getCategory() +
+                " - " + apartment.getType().getBedsArrangement();
+
+        return new ApartmentTo(apartment.getId(), apartment.getPrice(), stringAptType);
     }
 
     public static List<ApartmentTo> getApartmentTos(List<Apartment> apartments){
@@ -45,6 +48,16 @@ public class ApartmentUtil {
 
         return apartment;
     }
+
+    public static List<ApartmentTo> getApartmentTosForHotelManager(List<Apartment> apartments, int hotelManagerId){
+
+        List<Apartment> hotelApartments = apartments.stream()
+                .filter(apartment -> Objects.equals(apartment.getHotel().getManager().getId(), hotelManagerId))
+                .collect(Collectors.toList());
+        return ApartmentUtil.getApartmentTos(hotelApartments);
+    }
+
+
 
     // --------------------------- General Methods ----------------------- //
 

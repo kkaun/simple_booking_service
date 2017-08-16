@@ -17,42 +17,39 @@
             </div>
             <div class="modal-body">
                 <form:form class="form-horizontal" id="detailsForm">
-
                 <input type="hidden" id="id" name="id">
-
                 <div class="form-group">
                     <label for="aptPrice" class="control-label col-xs-3"><spring:message
                             code="apartments.price"/></label>
                     <div class="col-xs-9">
-                        <input class="form-control" id="aptPrice" name="price"
-                               placeholder="<spring:message code="apartments.price"/>" readonly>
+                        <input class="form-control" type="number" step="any" min="1" id="aptPrice" name="price"
+                               placeholder="<spring:message code="apartments.price"/>">
                     </div>
                 </div>
-
                 <div class="form-group">
-                    <label for="apartmentPersonNum" class="control-label col-xs-3"><spring:message
-                            code="apt_types.personNum"/></label>
-                    <div class="col-xs-9">
-                        <input class="form-control" id="apartmentPersonNum" name="personNum"
-                               placeholder="<spring:message code="apt_types.personNum"/>">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="apartmentCategory" class="control-label col-xs-3"><spring:message
+                    <label for="apartmentType" class="control-label col-xs-3"><spring:message
                             code="apt_types.category"/></label>
                     <div class="col-xs-9">
-                        <input class="form-control" id="apartmentCategory" name="category"
+                        <input class="form-control" id="apartmentType" name="category"
                                placeholder="<spring:message code="apt_types.category"/>">
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    <label for="apartmentBedsArrangement" class="control-label col-xs-3"><spring:message
-                            code="apt_types.bedsArrangement"/></label>
-                    <div class="col-xs-9">
-                        <input class="form-control" id="apartmentBedsArrangement" name="bedsArrangement"
-                               placeholder="<spring:message code="apt_types.bedsArrangement"/>">
+                        <c:if test="${not empty hotelApartments}">
+                            <div class="form-group">
+                                <label for="bookingPersonNum" class="control-label col-xs-3"><spring:message
+                                        code="apt_types.personNum"/>-<spring:message
+                                        code="apt_types.category"/>-<spring:message
+                                        code="apt_types.bedsArrangement"/></label>
+                                <div class="col-xs-9">
+                                    <select class="form-control" name="personNum" id="bookingPersonNum">
+                                        <c:forEach items="${hotelApartments}" var="hotelApartment">
+                                            <option value="${hotelApartment.stringAptType}">${hotelApartment.stringAptType}
+                                                ; ${hotelApartment.price}0 $ / night
+                                            </option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                        </c:if>
                     </div>
                 </div>
             </div>

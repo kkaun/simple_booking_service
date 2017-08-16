@@ -58,10 +58,7 @@ public abstract class ApartmentAbstractController {
     public List<ApartmentTo> getAllForHotelManager(){
         Integer hotelManagerId = AuthorizedUser.getId();
         LOG.info("Getting all apartments for hotel manager {}", hotelManagerId);
-        List<Apartment> hotelApartments = apartmentService.getAll().stream()
-                .filter(apartment -> Objects.equals(apartment.getHotel().getManager().getId(), hotelManagerId))
-                .collect(Collectors.toList());
-        return ApartmentUtil.getApartmentTos(hotelApartments);
+        return ApartmentUtil.getApartmentTosForHotelManager(apartmentService.getAll(), hotelManagerId);
     }
 
 
