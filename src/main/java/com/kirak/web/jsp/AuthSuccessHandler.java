@@ -1,4 +1,4 @@
-package com.kirak.web.handlers;
+package com.kirak.web.jsp;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;

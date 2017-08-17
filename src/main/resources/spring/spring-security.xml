@@ -33,7 +33,7 @@
         <!--<csrf disabled="true"/>-->
     </http>
 
-    <beans:bean id="customSuccessHandler" class="com.kirak.web.handlers.AuthSuccessHandler" />
+    <beans:bean id="customSuccessHandler" class="com.kirak.web.jsp.AuthSuccessHandler" />
     <beans:bean class="com.kirak.util.PasswordUtil" id="passwordEncoder" factory-method="getPasswordEncoder"/>
 
     <authentication-manager>

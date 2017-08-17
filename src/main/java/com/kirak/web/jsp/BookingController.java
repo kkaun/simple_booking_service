@@ -1,4 +1,4 @@
-package com.kirak.web.handlers;
+package com.kirak.web.jsp;
 
 import com.kirak.model.*;
 import com.kirak.service.*;

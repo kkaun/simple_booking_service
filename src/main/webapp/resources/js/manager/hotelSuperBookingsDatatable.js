@@ -3,20 +3,56 @@
  */
 
 
-var ajaxUrl = "/manager/super_bookings";
+var ajaxUrl = "/manager/super_bookings/";
 var datatableApi;
 
-function updateTable() {
+function updateManagerSBTableByDatesAdded() {
     $.ajax({
         type: "POST",
-        url: ajaxUrl + "filter",
-        data: $("#filter").serialize(),
+        url: ajaxUrl + "between_dates",
+        data: $("#superBookingsManagerDatesAddedFilter").serialize(),
+        success: updateTableByData
+    });
+}
+function updateManagerSBTableByInDate() {
+    $.ajax({
+        type: "POST",
+        url: ajaxUrl + "by_in_date",
+        data: $("#superBookingsManagerInDateFilter").serialize(),
+        success: updateTableByData
+    });
+}
+function updateManagerSBTableByOutDate() {
+    $.ajax({
+        type: "POST",
+        url: ajaxUrl + "by_out_date",
+        data: $("#superBookingsManagerOutDateFilter").serialize(),
+        success: updateTableByData
+    });
+}
+function updateManagerSBTableByUserId() {
+    $.ajax({
+        type: "POST",
+        url: ajaxUrl + "by_user_id",
+        data: $("#superBookingsManagerUserIdFilter").serialize(),
         success: updateTableByData
     });
 }
 
-function clearFilter() {
-    $("#filter")[0].reset();
+function clearSBDatesAddedManagerFilter() {
+    $("#superBookingsManagerDatesAddedFilter")[0].reset();
+    $.get(ajaxUrl, updateTableByData);
+}
+function clearSBInDateManagerFilter() {
+    $("#superBookingsManagerInDateFilter")[0].reset();
+    $.get(ajaxUrl, updateTableByData);
+}
+function clearSBOutDateManagerFilter() {
+    $("#superBookingsManagerOutDateFilter")[0].reset();
+    $.get(ajaxUrl, updateTableByData);
+}
+function clearSBUserIdManagerFilter() {
+    $("#superBookingsManagerUserIdFilter")[0].reset();
     $.get(ajaxUrl, updateTableByData);
 }
 

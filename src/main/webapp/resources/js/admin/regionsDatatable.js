@@ -2,25 +2,25 @@
  * Created by Кира on 15.08.2017.
  */
 
-var ajaxUrl = "/admin/regions";
+var ajaxUrl = "/admin/regions/";
 var datatableApi;
 
-function updateTable() {
+function updatePlacesTable() {
     $.ajax({
         type: "POST",
-        url: ajaxUrl + "filter",
-        data: $("#filter").serialize(),
+        url: ajaxUrl + "by_region",
+        data: $("#placesAdminFilter").serialize(),
         success: updateTableByData
     });
 }
 
-function clearFilter() {
-    $("#filter")[0].reset();
+function clearPlacesFilter() {
+    $("#placesAdminFilter")[0].reset();
     $.get(ajaxUrl, updateTableByData);
 }
 
 $(function () {
-    datatableApi = $('#regionsDatatable').DataTable(extendsOpts({
+    datatableApi = $('#placesDatatable').DataTable(extendsOpts({
         "columns": [
             {
                 "data": "id"

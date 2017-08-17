@@ -47,6 +47,5 @@ public class ModelUtil {
         model.addAttribute("countries", countries);
         model.addAttribute("cities", cities);
         model.addAttribute("apartments", ApartmentUtil.getApartmentTos(apartments));
-        model.addAttribute("apartmentsAddBtn", "apartmentsAddBtn");
     }
 }

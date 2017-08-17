@@ -2,20 +2,34 @@
  * Created by Кира on 15.08.2017.
  */
 
-var ajaxUrl = "/admin/hotels";
+var ajaxUrl = "/admin/hotels/";
 var datatableApi;
 
-function updateTable() {
+function updateHotelsTableByCity() {
     $.ajax({
         type: "POST",
-        url: ajaxUrl + "filter",
-        data: $("#filter").serialize(),
+        url: ajaxUrl + "by_city",
+        data: $("#hotelsByCityAdminFilter").serialize(),
         success: updateTableByData
     });
 }
 
-function clearFilter() {
-    $("#filter")[0].reset();
+function updateHotelsTableByRating() {
+    $.ajax({
+        type: "POST",
+        url: ajaxUrl + "between_ratings",
+        data: $("#hotelsByRatingAdminFilter").serialize(),
+        success: updateTableByData
+    });
+}
+
+function clearHotelsByCityFilter() {
+    $("#hotelsByCityAdminFilter")[0].reset();
+    $.get(ajaxUrl, updateTableByData);
+}
+
+function clearHotelsByRatingFilter() {
+    $("#hotelsByCityAdminFilter")[0].reset();
     $.get(ajaxUrl, updateTableByData);
 }
 

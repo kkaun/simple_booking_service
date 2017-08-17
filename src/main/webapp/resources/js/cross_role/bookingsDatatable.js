@@ -2,10 +2,10 @@
  * Created by Кира on 15.08.2017.
  */
 
-var ajaxUrl = "/bookings";
+var ajaxUrl = "/bookings/";
 var datatableApi;
 
-function updateTable() {
+function updateBookingsTable() {
     $.get(ajaxUrl, updateTableByData);
 }
 

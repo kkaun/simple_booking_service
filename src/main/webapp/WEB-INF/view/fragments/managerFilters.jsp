@@ -8,62 +8,146 @@
 <jsp:include page="../fragments/headTag.jsp"/>
 <body>
 
-<h3><spring:message code="super_bookings.title"/></h3>
+<c:if test="${not empty managerSuperBookingsFilterCheck}">
 
-<div class="row">
-    <div class="col-sm-12">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <form:form class="form-horizontal" id="filter">
-                    <div class="form-group">
-                        <label class="control-label col-sm-3" for="startDate"><spring:message
-                                code="super_bookings.fromDate"/>:</label>
-                        <div class="col-sm-3">
-                            <input class="form-control in_date" name="startDate" id="startDate">
-                        </div>
+    <h3><spring:message code="super_bookings.title"/></h3>
 
-                        <label class="control-label col-sm-4" for="endDate"><spring:message
-                                code="super_bookings.toDate"/>:</label>
-
-                        <div class="col-sm-3">
-                            <input class="form-control out_date" name="endDate" id="endDate">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form:form class="form-horizontal filter" id="superBookingsManagerDatesAddedFilter">
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="startDate"><spring:message
+                                    code="super_bookings.fromDate"/>:</label>
+                            <div class="col-sm-3">
+                                <input class="form-control in_date" name="startDate" id="startDate">
+                            </div>
+                            <label class="control-label col-sm-4" for="endDate"><spring:message
+                                    code="super_bookings.toDate"/>:</label>
+                            <div class="col-sm-3">
+                                <input class="form-control out_date" name="endDate" id="endDate">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-3" for="inDate"><spring:message
-                                code="super_bookings.inDate"/>:</label>
-
-                        <div class="col-sm-3">
-                            <input class="form-control in_date" name="inDate" id="inDate">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-4" for="outDate"><spring:message
-                                code="super_bookings.outDate"/>:</label>
-                        <div class="col-sm-3">
-                            <input class="form-control out_date" name="outDate" id="outDate">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-4" for="userId"><spring:message
-                                code="super_bookings.byUser"/>:</label>
-                        <div class="col-sm-2">
-                            <input class="form-control" name="userId" id="userId">
-                        </div>
-                    </div>
-                </form:form>
-            </div>
-            <div class="panel-footer text-right">
-                <a class="btn btn-danger" type="button" onclick="clearFilter()">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                </a>
-                <a class="btn btn-primary" type="button" onclick="updateSuperBookingsTable()">
-                    <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
-                </a>
+                    </form:form>
+                </div>
+                <div class="panel-footer text-right">
+                    <a class="btn btn-danger" type="button" onclick="clearSBDatesAddedManagerFilter()">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </a>
+                    <a class="btn btn-primary" type="button" onclick="updateManagerSBTableByDatesAdded()">
+                        <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form:form class="form-horizontal filter" id="superBookingsManagerInDateFilter">
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="inDate"><spring:message
+                                    code="super_bookings.inDate"/>:</label>
+                            <div class="col-sm-3">
+                                <input class="form-control in_date" name="inDate" id="inDate">
+                            </div>
+                        </div>
+                    </form:form>
+                </div>
+                <div class="panel-footer text-right">
+                    <a class="btn btn-danger" type="button" onclick="clearSBInDateManagerFilter()">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </a>
+                    <a class="btn btn-primary" type="button" onclick="updateManagerSBTableByInDate()">
+                        <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form:form class="form-horizontal filter" id="superBookingsManagerOutDateFilter">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="outDate"><spring:message
+                                    code="super_bookings.outDate"/>:</label>
+                            <div class="col-sm-3">
+                                <input class="form-control out_date" name="outDate" id="outDate">
+                            </div>
+                        </div>
+                    </form:form>
+                </div>
+                <div class="panel-footer text-right">
+                    <a class="btn btn-danger" type="button" onclick="clearSBOutDateManagerFilter()">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </a>
+                    <a class="btn btn-primary" type="button" onclick="updateManagerSBTableByOutDate()">
+                        <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form:form class="form-horizontal filter" id="superBookingsManagerUserIdFilter">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="userId"><spring:message
+                                    code="super_bookings.byUser"/>:</label>
+                            <div class="col-sm-2">
+                                <input class="form-control" name="userId" id="userId">
+                            </div>
+                        </div>
+                    </form:form>
+                </div>
+                <div class="panel-footer text-right">
+                    <a class="btn btn-danger" type="button" onclick="clearSBUserIdManagerFilter()">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </a>
+                    <a class="btn btn-primary" type="button" onclick="updateManagerSBTableByUserId()">
+                        <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form:form class="form-horizontal filter" id="superBookingsManagerHotelIdFilter">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="hotelId"><spring:message
+                                    code="super_bookings.byHotel"/>:</label>
+                            <div class="col-sm-2">
+                                <input class="form-control" name="hotelId" id="hotelId">
+                            </div>
+                        </div>
+                    </form:form>
+                </div>
+                <div class="panel-footer text-right">
+                    <a class="btn btn-danger" type="button" onclick="clearSBHotelIdManagerFilter()">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </a>
+                    <a class="btn btn-primary" type="button" onclick="updateManagerSBTableByHotelId()">
+                        <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</c:if>
 
 </body>
 </html>

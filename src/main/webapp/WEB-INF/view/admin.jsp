@@ -18,34 +18,33 @@
         <div class="col-md-9">
             <jsp:include page="fragments/adminFilters.jsp"/>
 
-            <c:if test="${not empty aptTypeAddBtn}">
+            <c:if test="${not empty aptTypeAddBtnCheck}">
             <a class="btn btn-primary" onclick="addAptType()">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 <spring:message code="common.add"/>
             </a>
             </c:if>
 
-            <c:if test="${not empty hotelAddBtn}">
+            <c:if test="${not empty hotelAddBtnCheck}">
             <a class="btn btn-primary" onclick="addHotel()">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 <spring:message code="common.add"/>
             </a>
             </c:if>
 
-            <c:if test="${not empty regionAddBtn}">
+            <c:if test="${not empty regionAddBtnCheck}">
             <a class="btn btn-primary" onclick="addRegion()">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 <spring:message code="common.add"/>
             </a>
             </c:if>
 
-            <c:if test="${not empty userAddBtn}">
+            <c:if test="${not empty userAddBtnCheck}">
             <a class="btn btn-primary" onclick="addUser()">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 <spring:message code="common.add"/>
             </a>
             </c:if>
-
 
             <table class="table table-striped display" id="aptTypesDatatable">
                 <thead>

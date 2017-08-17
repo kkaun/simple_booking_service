@@ -1,10 +1,10 @@
 /**
  * Created by Кира on 15.08.2017.
  */
-var ajaxUrl = "/admin/apt_types";
+var ajaxUrl = "/admin/apt_types/";
 var datatableApi;
 
-function updateTable() {
+function updateAptTypesTable() {
     $.get(ajaxUrl, updateTableByData);
 }
 

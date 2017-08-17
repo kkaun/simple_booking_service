@@ -186,6 +186,7 @@
                                    placeholder="<spring:message code="booker.phone"/>" readonly>
                         </div>
                     </div>
+
                     <div class="form-group">
                         <div class="col-xs-offset-3 col-xs-9">
                             <button class="btn btn-primary" type="button" onclick="saveSuperBooking()">

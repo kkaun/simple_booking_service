@@ -2,9 +2,9 @@
  * Created by Кира on 15.08.2017.
  */
 
-var ajaxUrl = "/manager/chart";
+var ajaxUrl = "/manager/chart/";
 
-$(".selector").gantt({
+$("#ganttTable").gantt({
     source: ajaxUrl,
     scale: "weeks",
     minScale: "weeks",

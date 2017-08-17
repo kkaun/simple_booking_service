@@ -1,10 +1,10 @@
 /**
  * Created by Кира on 15.08.2017.
  */
-var ajaxUrl = "admin/users";
+var ajaxUrl = "admin/users/";
 var datatableApi;
 
-function updateTable() {
+function updateUsersTable() {
     $.get(ajaxUrl, updateTableByData);
 }
 

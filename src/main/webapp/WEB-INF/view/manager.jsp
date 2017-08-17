@@ -18,13 +18,15 @@
         <div class="col-md-9">
             <jsp:include page="fragments/managerFilters.jsp"/>
 
-            <c:if test="${not empty apartmentsAddBtn}">
+            <c:if test="${not empty apartmentsAddBtnCheck}">
                 <a class="btn btn-primary" onclick="addApartment()">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     <spring:message code="common.add"/>
                 </a>
             </c:if>
 
+            <table class="table ganttTable" id="ganttTable">
+            </table>
 
             <table class="table table-striped display" id="apartmentsDatatable">
                 <thead>

@@ -36,7 +36,7 @@
             </li>
             <li>
                 <hr>
-                <a href="<c:url value='/manager/object'/>">Manage Object Info
+                <a href="<c:url value='/object'/>">Manage Object Info
                     <i class="fa fa-commenting-o fa-pull-right" aria-hidden="true"></i></a>
             </li>
             <li>

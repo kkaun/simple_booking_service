@@ -3,10 +3,10 @@
  */
 
 
-var ajaxUrl = "ajax/profile/meals/";
+var ajaxUrl = "/manager/hotel_votes/";
 var datatableApi;
 
-function updateTable() {
+function updateHotelVotesTable() {
     $.get(ajaxUrl, updateTableByData);
 }
 

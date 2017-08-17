@@ -1,10 +1,9 @@
-package com.kirak.web.handlers;
+package com.kirak.web.jsp;
 
 import com.kirak.service.ApartmentService;
 import com.kirak.service.AptTypeService;
 import com.kirak.service.CityService;
 import com.kirak.service.CountryService;
-import com.kirak.util.model.ApartmentUtil;
 import com.kirak.web.ModelUtil;
 import com.kirak.web.session.AuthorizedUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +44,7 @@ public class ManagerController {
     public String apartments(Model model){
         ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
                 apartmentService.getAll(), AuthorizedUser.getId());
+        model.addAttribute("apartmentsAddBtnCheck", "apartmentsAddBtnCheck");
         return "manager";
     }
 
@@ -67,6 +67,7 @@ public class ManagerController {
     public String hotelSuperBookings(Model model){
         ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
                 apartmentService.getAll(), AuthorizedUser.getId());
+        model.addAttribute("managerSuperBookingsFilterCheck", "managerSuperBookingsFilterCheck");
         return "manager";
     }
 

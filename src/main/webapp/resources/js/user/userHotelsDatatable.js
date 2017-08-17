@@ -3,20 +3,10 @@
  */
 
 
-var ajaxUrl = "/user/data";
+var ajaxUrl = "/user/hotels/";
 var datatableApi;
 
-function updateTable() {
-    $.ajax({
-        type: "POST",
-        url: ajaxUrl + "filter",
-        data: $("#filter").serialize(),
-        success: updateTableByData
-    });
-}
-
-function clearFilter() {
-    $("#filter")[0].reset();
+function updateUserHotelsTable() {
     $.get(ajaxUrl, updateTableByData);
 }
 

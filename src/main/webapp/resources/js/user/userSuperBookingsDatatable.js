@@ -2,20 +2,10 @@
  * Created by Кира on 15.08.2017.
  */
 
-var ajaxUrl = "/user/data";
+var ajaxUrl = "/user/super_bookings/";
 var datatableApi;
 
 function updateTable() {
-    $.ajax({
-        type: "POST",
-        url: ajaxUrl + "filter",
-        data: $("#filter").serialize(),
-        success: updateTableByData
-    });
-}
-
-function clearFilter() {
-    $("#filter")[0].reset();
     $.get(ajaxUrl, updateTableByData);
 }
 

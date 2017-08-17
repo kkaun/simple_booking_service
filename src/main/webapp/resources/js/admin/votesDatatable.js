@@ -2,10 +2,10 @@
  * Created by Кира on 15.08.2017.
  */
 
-var ajaxUrl = "/admin/votes";
+var ajaxUrl = "/admin/votes/";
 var datatableApi;
 
-function updateTable() {
+function updateVotesTable() {
     $.get(ajaxUrl, updateTableByData);
 }
 

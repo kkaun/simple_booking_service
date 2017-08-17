@@ -1,4 +1,4 @@
-package com.kirak.web.handlers;
+package com.kirak.web.jsp;
 
 import com.kirak.service.ApartmentService;
 import com.kirak.service.AptTypeService;
@@ -35,14 +35,15 @@ public class AdminController {
     @PreAuthorize("hasRole('ROLE_SYSTEM_ADMIN')")
     @GetMapping("/apt_types")
     public String aptTypes(Model model) {
-        model.addAttribute("aptTypeAddBtn", "aptTypeAddBtn");
+        model.addAttribute("aptTypeAddBtnCheck", "aptTypeAddBtnCheck");
         return "admin";
     }
 
     @PreAuthorize("hasRole('ROLE_SYSTEM_ADMIN')")
     @GetMapping("/hotels")
     public String hotels(Model model) {
-        model.addAttribute("hotelAddBtn", "hotelAddBtn");
+        model.addAttribute("hotelAddBtnCheck", "hotelAddBtnCheck");
+        model.addAttribute("adminHotelsFilterCheck", "adminHotelsFilterCheck");
         return "admin";
     }
 
@@ -51,7 +52,8 @@ public class AdminController {
     public String regions(Model model) {
         ModelUtil.getAdminView(model, aptTypeService.getAll(), countryService.getAll(),
                 cityService.getAll(), apartmentService.getAll());
-        model.addAttribute("regionAddBtn", "regionAddBtn");
+        model.addAttribute("regionAddBtnCheck", "regionAddBtnCheck");
+        model.addAttribute("adminCitiesFilterCheck", "adminCitiesFilterCheck");
         return "admin";
     }
 
@@ -60,6 +62,7 @@ public class AdminController {
     public String superBookings (Model model) {
         ModelUtil.getAdminView(model, aptTypeService.getAll(), countryService.getAll(),
                 cityService.getAll(), apartmentService.getAll());
+        model.addAttribute("adminSuperBookingsFilterCheck", "adminSuperBookingsFilterCheck");
         return "admin";
     }
 
@@ -74,7 +77,7 @@ public class AdminController {
     @PreAuthorize("hasRole('ROLE_SYSTEM_ADMIN')")
     @GetMapping("/users")
     public String users(Model model) {
-        model.addAttribute("userAddBtn", "userAddBtn");
+        model.addAttribute("userAddBtnCheck", "userAddBtnCheck");
         return "admin";
     }
 

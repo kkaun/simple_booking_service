@@ -39,6 +39,90 @@ function extendsOpts(opts) {
 }
 
 
+
+
+/* -----------------------------------------------  SuperBooking DT functions --------------------------------------- */
+
+
+function updateSuperBookingRow(id) {
+    $('#superBookingModalTitle').html(i18n["editTitle"]);
+    $.get(ajaxUrl + id, function (data) {
+        $.each(data, function (key, value) {
+            form.find("input[name='" + key + "']").val(value);
+        });
+        $('#superBookingEditRow').modal();
+    });
+}
+
+function renderSuperBookingEditBtn(data, type, row) {
+    if (type === 'display') {
+        return '<a onclick="updateSuperBookingRow(' + row.id + ');">' +
+            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+    }
+}
+
+function saveSuperBooking() {
+    $.ajax({
+        type: "POST",
+        url: ajaxUrl,
+        data: form.serialize(),
+        success: function () {
+            $('#superBookingEditRow').modal('hide');
+            updateAdminSBTableByDatesAdded();
+            updateAdminSBTableByInDate();
+            updateAdminSBTableByOutDate();
+            updateAdminSBTableByUserId();
+            updateAdminSBTableByHotelId();
+
+            updateManagerSBTableByDatesAdded();
+            updateManagerSBTableByInDate();
+            updateManagerSBTableByOutDate();
+            updateManagerSBTableByUserId();
+
+            successNoty('common.saved');
+        }
+    });
+}
+
+
+
+/* ----------------------------------------------- Booking DT functions --------------------------------------------- */
+
+
+function updateBookingRow(id) {
+    $('#bookingModalTitle').html(i18n["editTitle"]);
+    $.get(ajaxUrl + id, function (data) {
+        $.each(data, function (key, value) {
+            form.find("input[name='" + key + "']").val(value);
+        });
+        $('#bookingEditRow').modal();
+    });
+}
+
+function renderBookingEditBtn(data, type, row) {
+    if (type === 'display') {
+        return '<a onclick="updateBookingRow(' + row.id + ');">' +
+            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+    }
+}
+
+function saveBooking() {
+    $.ajax({
+        type: "POST",
+        url: ajaxUrl,
+        data: form.serialize(),
+        success: function () {
+            $('#bookingEditRow').modal('hide');
+            updateBookingsTable()
+            successNoty('common.saved');
+        }
+    });
+}
+
+
+
+
+
 /* -----------------------------------------------  Admin DT functions ---------------------------------------------- */
 
 function addRegion() {
@@ -71,7 +155,7 @@ function saveRegion() {
         data: form.serialize(),
         success: function () {
             $('#regionEditRow').modal('hide');
-            updateTable();
+            updatePlacesTable();
             successNoty('common.saved');
         }
     });
@@ -82,7 +166,7 @@ function saveRegion() {
 function addAptType() {
     $('#aptTypeModalTitle').html(i18n["addTitle"]);
     form.find(":input").val("");
-    $('#regionEditRow').modal();
+    $('#aptTypeEditRow').modal();
 }
 
 function updateAptTypeRow(id) {
@@ -109,7 +193,7 @@ function saveAptType() {
         data: form.serialize(),
         success: function () {
             $('#aptTypeEditRow').modal('hide');
-            updateTable();
+            updateAptTypesTable();
             successNoty('common.saved');
         }
     });
@@ -147,7 +231,8 @@ function saveHotel() {
         data: form.serialize(),
         success: function () {
             $('#hotelEditRow').modal('hide');
-            updateTable();
+            updateHotelsTableByRating();
+            updateHotelsTableByCity();
             successNoty('common.saved');
         }
     });
@@ -186,7 +271,7 @@ function saveUser() {
         data: form.serialize(),
         success: function () {
             $('#userEditRow').modal('hide');
-            updateTable();
+            updateUsersTable();
             successNoty('common.saved');
         }
     });
@@ -230,31 +315,12 @@ function saveApartment() {
         data: form.serialize(),
         success: function () {
             $('#apartmentEditRow').modal('hide');
-            updateTable();
+            updateApartmentsTable();
             successNoty('common.saved');
         }
     });
 }
 
-/* -----------------  Manager DT functions ------------------- */
-
-
-function renderHotelVoteViewBtn(data, type, row) {
-    if (type === 'display') {
-        return '<a onclick="hotelVoteViewRow(' + row.id + ');">' +
-            '<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>';
-    }
-}
-
-function hotelVoteViewRow(id) {
-    $('#hotelVoteModalTitle').html(i18n["viewTitle"]);
-    $.get(ajaxUrl + id, function (data) {
-        $.each(data, function (key, value) {
-            form.find("input[name='" + key + "']").val(value);
-        });
-        $('#hotelVoteViewRow').modal();
-    });
-}
 
 
 
@@ -263,9 +329,48 @@ function hotelVoteViewRow(id) {
 /* -------------------------------------------------  User DT functions --------------------------------------------- */
 
 
+function addUserVote() {
+    $('#userVoteModalTitle').html(i18n["addTitle"]);
+    form.find(":input").val("");
+    $('#userVoteEditRow').modal();
+}
+
+function renderUserVoteEditBtn(data, type, row) {
+    if (type === 'display') {
+        return '<a onclick="updateUserVoteRow(' + row.id + ');">' +
+            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+    }
+}
+
+function updateUserVoteRow(id) {
+    $('#userVoteModalTitle').html(i18n["editTitle"]);
+    $.get(ajaxUrl + id, function (data) {
+        $.each(data, function (key, value) {
+            form.find("input[name='" + key + "']").val(value);
+        });
+        $('#userVoteEditRow').modal();
+    });
+}
+
+function saveUserVote() {
+    $.ajax({
+        type: "POST",
+        url: ajaxUrl,
+        data: form.serialize(),
+        success: function () {
+            $('#apartmentEditRow').modal('hide');
+            updateUserVotesTable();
+            successNoty('common.saved');
+        }
+    });
+}
 
 
 
+
+
+
+/* -------------------------------------------------  Util functions --------------------------------------------- */
 
 
 
@@ -292,7 +397,6 @@ function deleteRow(id) {
 function updateTableByData(data) {
     datatableApi.clear().rows.add(data).draw();
 }
-
 
 
 var failedNote;

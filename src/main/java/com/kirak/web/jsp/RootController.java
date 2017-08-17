@@ -1,4 +1,4 @@
-package com.kirak.web.handlers;
+package com.kirak.web.jsp;
 
 import com.kirak.service.*;
 import com.kirak.to.UserTo;
@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -88,7 +86,6 @@ public class RootController extends UserAbstractController {
     }
 
 
-
     @GetMapping("/register")
     public String register(ModelMap model) {
         model.addAttribute("userTo", new UserTo());
@@ -109,6 +106,19 @@ public class RootController extends UserAbstractController {
         }
         model.addAttribute("register", true);
         return "profile";
+    }
+
+
+
+    @GetMapping("/new_object")
+    public String registerObject(){
+        return "/register_object";
+    }
+
+
+    @GetMapping("/object")
+    public String object(){
+        return "/edit_object";
     }
 
 }
