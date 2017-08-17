@@ -6,7 +6,7 @@ var ajaxUrl = "/bookings/";
 var datatableApi;
 
 function updateBookingsTable() {
-    $.get(ajaxUrl, updateTableByData);
+    $.get(ajaxUrl + getSbId(), updateTableByData);
 }
 
 $(function () {

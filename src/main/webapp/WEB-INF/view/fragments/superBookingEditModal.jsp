@@ -19,7 +19,7 @@
             </div>
             <div class="modal-body">
 
-                <a class="btn btn-primary" href="bookings">
+                <a class="btn btn-primary" onclick="viewBookings()">
                     <span class="" aria-hidden="true"></span>
                     <spring:message code="bookings.view"/>
                 </a>

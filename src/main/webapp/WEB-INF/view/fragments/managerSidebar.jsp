@@ -15,34 +15,25 @@
                 MANAGER MENU <a href="#" class="push_menu"><span
                     class="glyphicon glyphicon-align-justify pull-right"></span></a>
             </li>
-
             <li>
-                <a href="<c:url value='/manager/chart'/>">Calendar
-                    <i class="fa fa-user-circle fa-pull-right" aria-hidden="true"></i>
-                    <i class="fa fa-bell-o fa-pull-right" aria-hidden="true"></i>
+                <a onclick="showHotelChart()">Calendar/Chart
                 </a>
             </li>
             <li>
-                <a href="<c:url value='/manager/super_bookings'/>">Bookings
-                    <i class="fa fa-cube fa-pull-right" aria-hidden="true"></i>
-                    <i class="fa fa-bell-o fa-pull-right" aria-hidden="true"></i>
+                <a onclick="showManagerSuperBookings()">Bookings
                 </a>
             </li>
             <li>
-                <a href="<c:url value='/manager/hotel_votes'/>">Feedback
-                    <i class="fa fa-envelope-open-o fa-pull-right" aria-hidden="true"></i>
-                    <i class="fa fa-bell-o fa-pull-right" aria-hidden="true"></i>
+                <a onclick="showManagerHotelVotes()">Feedback
                 </a>
             </li>
             <li>
                 <hr>
-                <a href="<c:url value='/object'/>">Manage Object Info
-                    <i class="fa fa-commenting-o fa-pull-right" aria-hidden="true"></i></a>
+                <a href="<c:url value='/object'/>">Manage Object Info</a>
             </li>
             <li>
                 <hr>
-                <a href="<c:url value='/manager/apartments'/>">Manage Apartments
-                    <i class="fa fa-paper-plane-o fa-pull-right" aria-hidden="true"></i></a>
+                <a onclick="showManagerApartments()">Manage Apartments</a>
             </li>
         </ul>
     </div>

@@ -33,48 +33,12 @@ public class ManagerController {
     @Autowired
     private ApartmentService apartmentService;
 
-    @PreAuthorize("hasRole('ROLE_HOTEL_MANAGER')")
-    @GetMapping("/object")
-    public String object(){
-        return "manager";
-    }
 
     @PreAuthorize("hasRole('ROLE_HOTEL_MANAGER')")
-    @GetMapping("/apartments")
-    public String apartments(Model model){
-        ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
-                apartmentService.getAll(), AuthorizedUser.getId());
-        model.addAttribute("apartmentsAddBtnCheck", "apartmentsAddBtnCheck");
-        return "manager";
-    }
-
-    @PreAuthorize("hasRole('ROLE_HOTEL_MANAGER')")
-    @GetMapping("/chart")
-    public String chart(){
-        return "manager";
-    }
-
-    @PreAuthorize("hasRole('ROLE_HOTEL_MANAGER')")
-    @GetMapping("/bookings")
-    public String hotelBookings(Model model){
+    @GetMapping("/manage_object")
+    public String manageObject(Model model){
         ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
                 apartmentService.getAll(), AuthorizedUser.getId());
         return "manager";
     }
-
-    @PreAuthorize("hasRole('ROLE_HOTEL_MANAGER')")
-    @GetMapping("/super_bookings")
-    public String hotelSuperBookings(Model model){
-        ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
-                apartmentService.getAll(), AuthorizedUser.getId());
-        model.addAttribute("managerSuperBookingsFilterCheck", "managerSuperBookingsFilterCheck");
-        return "manager";
-    }
-
-    @PreAuthorize("hasRole('ROLE_HOTEL_MANAGER')")
-    @GetMapping("/hotel_votes")
-    public String hotelVotes(){
-        return "manager";
-    }
-
 }

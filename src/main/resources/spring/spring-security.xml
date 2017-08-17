@@ -14,11 +14,10 @@
         <intercept-url pattern="/rest/admin/**" access="hasRole('ROLE_SYSTEM_ADMIN')"/>
         <intercept-url pattern="/rest/manager/**" access="hasRole('ROLE_HOTEL_MANAGER')"/>
         <intercept-url pattern="/rest/user/**" access="hasRole('ROLE_USER')"/>
-        <intercept-url pattern="/rest/cross_role/**" access="isAuthenticated()"/>
-
         <csrf disabled="true"/>
     </http>
 
+    <!--<intercept-url pattern="/rest/cross_role/**" access="isAuthenticated()"/>-->
     <!--<intercept-url pattern="/**" access="isAuthenticated()"/>-->
 
     <http>

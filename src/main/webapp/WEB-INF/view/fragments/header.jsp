@@ -29,10 +29,10 @@
                         <form:form class="navbar-form" action="logout" method="post">
                             <sec:authorize access="isAuthenticated()">
                                 <sec:authorize access="hasRole('ROLE_SYSTEM_ADMIN')">
-                                    <a class="btn btn-info" href="admin"><spring:message code="common.admin"/></a>
+                                    <a class="btn btn-info" href="administrate"><spring:message code="common.admin"/></a>
                                 </sec:authorize>
                                 <sec:authorize access="hasRole('ROLE_HOTEL_MANAGER')">
-                                    <a class="btn btn-info" href="manager"><spring:message code="common.manager"/></a>
+                                    <a class="btn btn-info" href="manage"><spring:message code="common.manager"/></a>
                                 </sec:authorize>
 
                                 <a class="btn btn-info" href="profile"><sec:authentication

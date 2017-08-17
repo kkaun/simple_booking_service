@@ -176,12 +176,4 @@ public abstract class BookingAbstractController {
     }
 
 
-    //-------------------------------------- JSP methods --------------------------------//
-
-    public Booking createBooking(Booking booking, int superBookingId, int apartmentId){
-        LOG.info("Saving booking {}", booking);
-        return bookingService.save(booking, superBookingId, apartmentId);
-    }
-
-
 }

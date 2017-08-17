@@ -27,17 +27,14 @@ public class BookingsAjaxController extends BookingAbstractController {
         super(bookingService, superBookingService, apartmentService);
     }
 
-    @Override
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createBooking(@Valid BookingTo bookingTo,
+    public void createOrUpdateBooking(@Valid BookingTo bookingTo,
                               @RequestParam("sbId") int superBookingId) {
-        super.createBooking(bookingTo, superBookingId);
-    }
-
-    @Override
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateBooking(@Valid BookingTo bookingTo) {
-        super.updateBooking(bookingTo);
+        if (bookingTo.isNew()) {
+            super.createBooking(bookingTo, superBookingId);
+        } else {
+            super.updateBooking(bookingTo);
+        }
     }
 
     @Override
@@ -49,8 +46,8 @@ public class BookingsAjaxController extends BookingAbstractController {
 
     @Override
     @JsonView(View.JsonUI.class)
-    @PostMapping(value = "/all_bookings", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<BookingTo> getAllBookingsBySBId(@RequestParam("sbId") int superBookingId) {
+    @GetMapping(value = "/{sbId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<BookingTo> getAllBookingsBySBId(@PathVariable("sbId") int superBookingId) {
         return super.getAllBookingsBySBId(superBookingId);
     }
 }

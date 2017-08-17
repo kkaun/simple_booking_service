@@ -33,58 +33,10 @@ public class AdminController {
     private ApartmentService apartmentService;
 
     @PreAuthorize("hasRole('ROLE_SYSTEM_ADMIN')")
-    @GetMapping("/apt_types")
-    public String aptTypes(Model model) {
-        model.addAttribute("aptTypeAddBtnCheck", "aptTypeAddBtnCheck");
-        return "admin";
-    }
-
-    @PreAuthorize("hasRole('ROLE_SYSTEM_ADMIN')")
-    @GetMapping("/hotels")
-    public String hotels(Model model) {
-        model.addAttribute("hotelAddBtnCheck", "hotelAddBtnCheck");
-        model.addAttribute("adminHotelsFilterCheck", "adminHotelsFilterCheck");
-        return "admin";
-    }
-
-    @PreAuthorize("hasRole('ROLE_SYSTEM_ADMIN')")
     @GetMapping("/regions")
-    public String regions(Model model) {
-        ModelUtil.getAdminView(model, aptTypeService.getAll(), countryService.getAll(),
-                cityService.getAll(), apartmentService.getAll());
-        model.addAttribute("regionAddBtnCheck", "regionAddBtnCheck");
-        model.addAttribute("adminCitiesFilterCheck", "adminCitiesFilterCheck");
-        return "admin";
-    }
-
-    @PreAuthorize("hasRole('ROLE_SYSTEM_ADMIN')")
-    @GetMapping("/super_bookings")
-    public String superBookings (Model model) {
-        ModelUtil.getAdminView(model, aptTypeService.getAll(), countryService.getAll(),
-                cityService.getAll(), apartmentService.getAll());
-        model.addAttribute("adminSuperBookingsFilterCheck", "adminSuperBookingsFilterCheck");
-        return "admin";
-    }
-
-    @PreAuthorize("hasRole('ROLE_SYSTEM_ADMIN')")
-    @GetMapping("/bookings")
-    public String bookings (Model model) {
+    public String adminPanel(Model model) {
         ModelUtil.getAdminView(model, aptTypeService.getAll(), countryService.getAll(),
                 cityService.getAll(), apartmentService.getAll());
         return "admin";
     }
-
-    @PreAuthorize("hasRole('ROLE_SYSTEM_ADMIN')")
-    @GetMapping("/users")
-    public String users(Model model) {
-        model.addAttribute("userAddBtnCheck", "userAddBtnCheck");
-        return "admin";
-    }
-
-    @PreAuthorize("hasRole('ROLE_SYSTEM_ADMIN')")
-    @GetMapping("/votes")
-    public String votes(){
-        return "admin";
-    }
-
 }
