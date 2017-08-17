@@ -1,5 +1,6 @@
 package com.kirak.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kirak.model.abstraction.NamedEntity;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
@@ -80,15 +81,19 @@ public class Hotel extends NamedEntity {
     @JoinColumn(name = "manager", nullable = false)
     private User manager;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "hotel")
     private Set<Apartment> apartments;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel")
     private Set<Booking> bookings;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "hotel")
     private Set<Vote> votes;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel")
     private Set<SuperBooking> superBookings;
 

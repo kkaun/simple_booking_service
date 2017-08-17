@@ -1,5 +1,6 @@
 package com.kirak.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kirak.model.abstraction.BaseIntEntity;
 import org.hibernate.validator.constraints.Range;
 
@@ -28,6 +29,7 @@ public class Apartment extends BaseIntEntity {
     @JoinColumn(name = "hotel_id", nullable = false)
     private Hotel hotel;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "apartment")
     private Set<Booking> bookings;
 

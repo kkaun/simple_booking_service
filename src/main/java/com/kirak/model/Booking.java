@@ -1,5 +1,6 @@
 package com.kirak.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kirak.model.abstraction.BaseLongEntity;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -35,14 +36,17 @@ public class Booking extends BaseLongEntity {
     @Column(name = "person_num")
     private Short personNum;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "super_booking_id")
     private SuperBooking superBooking;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "apartment_id")
     private Apartment apartment;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "apartment_hotel_id")
     private Hotel hotel;

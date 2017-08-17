@@ -1,5 +1,6 @@
 package com.kirak.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kirak.model.abstraction.BaseShortEntity;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ public class Country extends BaseShortEntity {
     @Column(name = "name")
     private String name;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "country")
     private Set<City> cities;
 

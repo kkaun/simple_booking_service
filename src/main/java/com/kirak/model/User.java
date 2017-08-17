@@ -1,5 +1,6 @@
 package com.kirak.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kirak.model.abstraction.NamedEntity;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
@@ -44,6 +45,7 @@ public class User extends NamedEntity {
     @Column(name = "registered", columnDefinition = "timestamp default now()")
     private Date registered = new Date();
 
+    @JsonIgnore
     //@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
@@ -53,14 +55,17 @@ public class User extends NamedEntity {
     @BatchSize(size = 200)
     private Set<UserRole> roles;
 
+    @JsonIgnore
     @OrderBy("dateAdded DESC")
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private Set<SuperBooking> superBookings;
 
+    @JsonIgnore
     @OrderBy("dateAdded DESC")
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private Set<Vote> votes;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "manager")
     private Set<Hotel> hotels;
 

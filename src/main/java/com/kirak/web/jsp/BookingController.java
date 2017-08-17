@@ -8,6 +8,7 @@ import com.kirak.util.model.*;
 import com.kirak.web.ModelUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,7 @@ import java.util.Map;
  */
 
 @Controller
-//@Scope("session")
+@Scope("session")
 public class BookingController{
 
     @Autowired

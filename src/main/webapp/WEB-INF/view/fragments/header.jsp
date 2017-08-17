@@ -4,6 +4,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
+<jsp:include page="headTag.jsp"/>
 <body>
 
 <div class="container">
@@ -49,17 +50,16 @@
 
 
                 <ul class="nav navbar-nav navbar-right">
-
                     <li class="headBtnHolder">
-                        <a type="button" href="new_object" class="btn btn-default btn-md btn-block headBtn">
+                        <a href="new_object" class="btn btn-default btn-md btn-block headBtn">
                         <spring:message code="common.listobject"/></a></li>
 
                     <li class="headBtnHolder">
-                        <a type="button" href="register" class="btn btn-default btn-md btn-block headBtn">
+                        <a href="register" class="btn btn-default btn-md btn-block headBtn">
                         <spring:message code="common.register"/></a></li>
 
                     <li class="headBtnHolder">
-                        <a type="button" href="login" class="btn btn-default btn-md btn-block headBtn">
+                        <a href="login" class="btn btn-default btn-md btn-block headBtn">
                         <spring:message code="common.login_as"/></a></li>
                 </ul>
             </div>
@@ -69,5 +69,5 @@
 </div>
 
 </body>
-<jsp:include page="i18nUtil.jsp"/>;
+<jsp:include page="i18nUtil.jsp"/>
 </html>

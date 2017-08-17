@@ -1,5 +1,6 @@
 package com.kirak.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kirak.model.abstraction.BaseIntEntity;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
@@ -28,6 +29,7 @@ public class City extends BaseIntEntity {
     @Column(name = "img_path")
     private String imgPath;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "city")
     @NotNull
     private List<Hotel> hotels;

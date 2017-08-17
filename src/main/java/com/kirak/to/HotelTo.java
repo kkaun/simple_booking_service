@@ -47,7 +47,7 @@ public class HotelTo extends BasicIntTo implements Serializable {
                    @JsonProperty("description") String description,
                    @JsonProperty("votesNum") int votesNum,
                    @JsonProperty("checkIn") Time checkIn,
-                   @JsonProperty("checkOut") Time outTime,
+                   @JsonProperty("checkOut") Time checkOut,
                    @JsonProperty("address") String address,
                    @JsonProperty("phone") String phone,
                    @JsonProperty("cityId") Integer cityId,
@@ -60,7 +60,7 @@ public class HotelTo extends BasicIntTo implements Serializable {
         this.description = description;
         this.votesNum = votesNum;
         this.checkIn = checkIn;
-        this.checkOut = outTime;
+        this.checkOut = checkOut;
         this.address = address;
         this.phone = phone;
         this.cityId = cityId;

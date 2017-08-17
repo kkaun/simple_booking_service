@@ -287,4 +287,5 @@
 </div>
 
 </body>
+<jsp:include page="i18nUtil.jsp"/>
 </html>

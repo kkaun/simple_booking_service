@@ -12,7 +12,7 @@
     </jdbc:initialize-database>
 
     <beans profile="mysql">
-        <context:property-placeholder location="classpath:properties/application.properties" system-properties-mode="OVERRIDE"/>
+        <context:property-placeholder location="classpath:properties/mysql.properties" system-properties-mode="OVERRIDE"/>
 
         <bean id="dataSource"
               class="org.apache.tomcat.jdbc.pool.DataSource"

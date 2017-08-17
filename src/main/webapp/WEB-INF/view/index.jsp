@@ -13,7 +13,7 @@
     <div class="row" style="margin-bottom: 10px">
 
         <div class="col-md-6">
-        <h3>Book/Manage fake apartments around the world!</h3>
+            <h3><spring:message code="app.moto"/></h3>
         </div>
 
         <div class="col-md-6">
@@ -39,7 +39,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse1"><h4 class="text-center">Advanced Search</h4></a>
+                            <a data-toggle="collapse" href="#collapse1"><h4 class="text-center"><spring:message code="app.advanced_search"/></h4></a>
                         </h4>
                     </div>
                     <div id="collapse1" class="panel-collapse collapse">
@@ -93,7 +93,7 @@
 
     <div class="row">
         <div class="well">
-            <h1 class="text-center">Inspect the most rated objects:</h1>
+            <h1 class="text-center"><spring:message code="app.inspect_top_5"/></h1>
             <hr>
             <div class="list-group">
                 <c:forEach items="${hotelsFive}" var="hotel">
@@ -127,7 +127,8 @@
                             <c:if test="${empty hotel.votesNum || hotel.votesNum == 0}">
                                 <h4> No votes yet </h4>
                             </c:if>
-                            <button type="button" href="inspect_hotel?id=${hotel.id}" class="btn btn-default btn-lg btn-block"> View & Book </button>
+                            <button type="button" href="inspect_hotel?id=${hotel.id}" class="btn btn-default btn-lg btn-block">
+                                <spring:message code="app.view_and_book"/></button>
                         </div>
                     </a>
                 </c:forEach>
