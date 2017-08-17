@@ -10,7 +10,6 @@
 <body>
 <jsp:include page="fragments/header.jsp"/>
 
-<div class="jumbotron">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -138,7 +137,6 @@
 
         </div>
     </div>
-</div>
 
 </body>
 </html>

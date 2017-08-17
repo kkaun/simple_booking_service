@@ -8,7 +8,7 @@
 <body>
 <jsp:include page="fragments/header.jsp"/>
 
-<div class="container-fluid">
+<div class="container" style="margin-top: 20px;">
     <div class="row">
 
         <div class="col-md-3">

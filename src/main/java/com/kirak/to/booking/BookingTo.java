@@ -34,15 +34,15 @@ public class BookingTo extends BasicLongTo implements Serializable {
 
     private final Double sum;
 
-    public BookingTo(@JsonProperty Long id,
-                     @JsonProperty Integer aptId,
-                     @JsonProperty String aptCategory,
-                     @JsonProperty String aptArrangement,
-                     @JsonProperty Short aptPersonNum,
-                     @JsonProperty Double aptPrice,
-                     @JsonProperty LocalDate inDate,
-                     @JsonProperty LocalDate outDate,
-                     @JsonProperty Double sum) {
+    public BookingTo(@JsonProperty("id") Long id,
+                     @JsonProperty("aptId") Integer aptId,
+                     @JsonProperty("aptCategory") String aptCategory,
+                     @JsonProperty("aptArrangement") String aptArrangement,
+                     @JsonProperty("aptPersonNum") Short aptPersonNum,
+                     @JsonProperty("aptPrice") Double aptPrice,
+                     @JsonProperty("inDate") LocalDate inDate,
+                     @JsonProperty("outDate") LocalDate outDate,
+                     @JsonProperty("sum") Double sum) {
         super(id);
         this.aptCategory = aptCategory;
         this.aptArrangement = aptArrangement;

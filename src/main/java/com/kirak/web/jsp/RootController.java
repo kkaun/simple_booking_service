@@ -57,11 +57,6 @@ public class RootController extends UserAbstractController {
         return "login";
     }
 
-    @GetMapping(value = "/registerObject")
-    public String addObject() {
-        return "newobject";
-    }
-
 
 
     @GetMapping("/profile")

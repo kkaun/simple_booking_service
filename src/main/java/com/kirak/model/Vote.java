@@ -1,6 +1,8 @@
 package com.kirak.model;
 
 import com.kirak.model.abstraction.BaseIntEntity;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -13,9 +15,13 @@ import java.time.LocalDateTime;
 @Table(name = "vote")
 public class Vote extends BaseIntEntity {
 
+    @NotBlank
+    @SafeHtml
     @Column (name = "rate", nullable = false)
     private Double rate;
 
+    @NotBlank
+    @SafeHtml
     @Column (name = "user_comment", columnDefinition = "TINYTEXT")
     private String userComment;
 

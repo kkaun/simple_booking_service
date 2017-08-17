@@ -4,6 +4,8 @@ package com.kirak.to.booking;
  * Created by Kir on 14.08.2017.
  */
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 
 /**
@@ -41,7 +43,12 @@ public class ChartValue implements Serializable {
 
     private final String dataObj;
 
-    public ChartValue(String to, String from, String desc, String label, String customClass, String dataObj) {
+    public ChartValue(@JsonProperty("to") String to,
+                      @JsonProperty("from") String from,
+                      @JsonProperty("desc") String desc,
+                      @JsonProperty("label") String label,
+                      @JsonProperty("customClass") String customClass,
+                      @JsonProperty("dataObj") String dataObj) {
         this.to = to;
         this.from = from;
         this.desc = desc;

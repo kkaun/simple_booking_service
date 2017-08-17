@@ -11,10 +11,15 @@
 
     <http pattern="/rest/**" use-expressions="true" name="restSecurityFilterChain" create-session="stateless">
         <http-basic/>
-        <intercept-url pattern="/rest/admin/**" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/**" access="isAuthenticated()"/>
+        <intercept-url pattern="/rest/admin/**" access="hasRole('ROLE_SYSTEM_ADMIN')"/>
+        <intercept-url pattern="/rest/manager/**" access="hasRole('ROLE_HOTEL_MANAGER')"/>
+        <intercept-url pattern="/rest/user/**" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/rest/cross_role/**" access="isAuthenticated()"/>
+
         <csrf disabled="true"/>
     </http>
+
+    <!--<intercept-url pattern="/**" access="isAuthenticated()"/>-->
 
     <http>
         <intercept-url pattern="/login" access="isAnonymous()"/>
@@ -26,14 +31,15 @@
 
         <form-login login-page="/login"
                     default-target-url="/profile"
-                    authentication-success-handler-ref="customSuccessHandler"
+
                     authentication-failure-url="/login?error=true"
                     login-processing-url="/spring_security_check"/>
         <logout logout-success-url="/index"/>
         <!--<csrf disabled="true"/>-->
     </http>
 
-    <beans:bean id="customSuccessHandler" class="com.kirak.web.jsp.AuthSuccessHandler" />
+    <!--authentication-success-handler-ref="customSuccessHandler"-->
+    <!--<beans:bean id="customSuccessHandler" class="com.kirak.web.jsp.AuthSuccessHandler" />-->
     <beans:bean class="com.kirak.util.PasswordUtil" id="passwordEncoder" factory-method="getPasswordEncoder"/>
 
     <authentication-manager>

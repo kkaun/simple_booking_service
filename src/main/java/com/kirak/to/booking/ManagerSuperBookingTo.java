@@ -28,15 +28,15 @@ public class ManagerSuperBookingTo extends BasicIntTo implements Serializable {
 
     private final String userPhone;
 
-    public ManagerSuperBookingTo(@JsonProperty Integer id,
-                                 @JsonProperty boolean active,
-                                 @JsonProperty LocalDateTime dateAdded,
-                                 @JsonProperty LocalDate inDate,
-                                 @JsonProperty LocalDate outDate,
-                                 @JsonProperty Short apartmentsNum,
-                                 @JsonProperty String userName,
-                                 @JsonProperty String userEmail,
-                                 @JsonProperty String userPhone) {
+    public ManagerSuperBookingTo(@JsonProperty("id") Integer id,
+                                 @JsonProperty("active") boolean active,
+                                 @JsonProperty("dateAdded") LocalDateTime dateAdded,
+                                 @JsonProperty("inDate") LocalDate inDate,
+                                 @JsonProperty("outDate") LocalDate outDate,
+                                 @JsonProperty("apartmentsNum") Short apartmentsNum,
+                                 @JsonProperty("userName") String userName,
+                                 @JsonProperty("userEmail") String userEmail,
+                                 @JsonProperty("userPhone") String userPhone) {
         super(id);
         this.active = active;
         this.dateAdded = dateAdded;

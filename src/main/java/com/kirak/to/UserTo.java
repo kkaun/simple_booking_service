@@ -1,5 +1,6 @@
 package com.kirak.to;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kirak.model.User;
 import com.kirak.model.abstraction.BaseEntity;
 import com.kirak.model.abstraction.BaseIntEntity;
@@ -35,7 +36,11 @@ public class UserTo extends BasicIntTo implements Serializable {
 
     public UserTo(){}
 
-    public UserTo(Integer id, String name, String email, String phone, String password) {
+    public UserTo(@JsonProperty Integer id,
+                  @JsonProperty String name,
+                  @JsonProperty String email,
+                  @JsonProperty String phone,
+                  @JsonProperty String password) {
         super(id);
         this.name = name;
         this.email = email;

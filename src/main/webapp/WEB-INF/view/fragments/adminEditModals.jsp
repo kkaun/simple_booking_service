@@ -93,7 +93,7 @@
                         <label for="checkIn" class="control-label col-xs-3"><spring:message
                                 code="hotels.checkIn"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="checkIn" name="checkIn"
+                            <input class="form-control in_time" id="checkIn" name="checkIn"
                                    placeholder="<spring:message code="hotels.checkIn"/>">
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                         <label for="checkOut" class="control-label col-xs-3"><spring:message
                                 code="hotels.checkOut"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="checkOut" name="checkOut"
+                            <input class="form-control out_time" id="checkOut" name="checkOut"
                                    placeholder="<spring:message code="hotels.checkOut"/>">
                         </div>
                     </div>

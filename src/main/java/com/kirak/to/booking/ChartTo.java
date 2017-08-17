@@ -21,9 +21,9 @@ public class ChartTo implements Serializable {
 
     private final List<ChartValue> values;
 
-    public ChartTo(@JsonProperty String name,
-                   @JsonProperty String desc,
-                   @JsonProperty List<ChartValue> values) {
+    public ChartTo(@JsonProperty("name") String name,
+                   @JsonProperty("desc") String desc,
+                   @JsonProperty("values") List<ChartValue> values) {
         this.name = name;
         this.desc = desc;
         this.values = values;

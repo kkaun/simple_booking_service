@@ -50,14 +50,17 @@
 
                 <ul class="nav navbar-nav navbar-right">
 
-                    <li class="headBtnHolder"><button type="button" href="new_object" class="btn btn-default btn-md btn-block headBtn">
-                        <spring:message code="common.listobject"/></button></li>
+                    <li class="headBtnHolder">
+                        <a type="button" href="new_object" class="btn btn-default btn-md btn-block headBtn">
+                        <spring:message code="common.listobject"/></a></li>
 
-                    <li class="headBtnHolder"><button type="button" href="register" class="btn btn-default btn-md btn-block headBtn">
-                        <spring:message code="common.register"/></button></li>
+                    <li class="headBtnHolder">
+                        <a type="button" href="register" class="btn btn-default btn-md btn-block headBtn">
+                        <spring:message code="common.register"/></a></li>
 
-                    <li class="headBtnHolder"><button type="button" href="" class="btn btn-default btn-md btn-block headBtn">
-                        <spring:message code="common.login_as"/></button></li>
+                    <li class="headBtnHolder">
+                        <a type="button" href="login" class="btn btn-default btn-md btn-block headBtn">
+                        <spring:message code="common.login_as"/></a></li>
                 </ul>
             </div>
         </nav>

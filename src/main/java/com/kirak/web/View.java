@@ -8,4 +8,7 @@ public class View {
     public interface JsonUI {}
 
     public interface ValidatedUIGroup {}
+
+    //Fot Tests
+    public interface JsonREST {}
 }

@@ -20,9 +20,9 @@ public class ApartmentTo extends BasicIntTo implements Serializable {
 
     private final String stringAptType;
 
-    public ApartmentTo(@JsonProperty Integer id,
-                       @JsonProperty Double price,
-                       @JsonProperty String stringAptType) {
+    public ApartmentTo(@JsonProperty("id") Integer id,
+                       @JsonProperty("price") Double price,
+                       @JsonProperty("stringAptType") String stringAptType) {
         super(id);
         this.price = price;
         this.stringAptType = stringAptType;

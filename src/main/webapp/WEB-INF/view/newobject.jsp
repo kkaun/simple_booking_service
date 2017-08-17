@@ -7,28 +7,22 @@
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
 
-<div class="jumbotron">
-    <div class="container">
+<div class="container">
 
-        <div class="row">
+    <div class="row">
 
+        <%--<form:form class="navbar-form" role="form" action="create_object" method="post">--%>
+            <%--<div class="form-group">--%>
+                <%--<input type="text" placeholder="Email" class="form-control" name="username">--%>
+            <%--</div>--%>
+            <%--<div class="form-group">--%>
+                <%--<input type="password" placeholder="Password" class="form-control" name="password">--%>
+            <%--</div>--%>
+            <%--<button type="submit" class="btn btn-success">--%>
+                <%--<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>--%>
+            <%--</button>--%>
+        <%--</form:form>--%>
 
-
-            <form:form class="navbar-form" role="form" action="create_object" method="post">
-                <div class="form-group">
-                    <input type="text" placeholder="Email" class="form-control" name="username">
-                </div>
-                <div class="form-group">
-                    <input type="password" placeholder="Password" class="form-control" name="password">
-                </div>
-                <button type="submit" class="btn btn-success">
-                    <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
-                </button>
-            </form:form>
-
-
-
-        </div>
     </div>
 </div>
 

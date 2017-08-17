@@ -2,6 +2,8 @@ package com.kirak.to;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kirak.to.abstr.BasicIntTo;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.SafeHtml;
 
 import java.io.Serializable;
 import java.sql.Time;
@@ -38,19 +40,19 @@ public class HotelTo extends BasicIntTo implements Serializable {
 
     private final String countryName;
 
-    public HotelTo(@JsonProperty Integer id,
-                   @JsonProperty String name,
-                   @JsonProperty Double rating,
-                   @JsonProperty Short stars,
-                   @JsonProperty String description,
-                   @JsonProperty int votesNum,
-                   @JsonProperty Time checkIn,
-                   @JsonProperty Time outTime,
-                   @JsonProperty String address,
-                   @JsonProperty String phone,
-                   @JsonProperty Integer cityId,
-                   @JsonProperty String cityName,
-                   @JsonProperty String countryName) {
+    public HotelTo(@JsonProperty("id") Integer id,
+                   @JsonProperty("name") String name,
+                   @JsonProperty("rating") Double rating,
+                   @JsonProperty("stars") Short stars,
+                   @JsonProperty("description") String description,
+                   @JsonProperty("votesNum") int votesNum,
+                   @JsonProperty("checkIn") Time checkIn,
+                   @JsonProperty("checkOut") Time outTime,
+                   @JsonProperty("address") String address,
+                   @JsonProperty("phone") String phone,
+                   @JsonProperty("cityId") Integer cityId,
+                   @JsonProperty("cityName") String cityName,
+                   @JsonProperty("countryName") String countryName) {
         super(id);
         this.name = name;
         this.rating = rating;

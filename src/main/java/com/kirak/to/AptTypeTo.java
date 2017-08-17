@@ -20,12 +20,12 @@ public class AptTypeTo extends BasicShortTo implements Serializable {
 
     private final Integer apartmentsAppliedTo;
 
-    public AptTypeTo(@JsonProperty Short id,
-                     @JsonProperty Short personNum,
-                     @JsonProperty String category,
-                     @JsonProperty String bedsArrangement,
-                     @JsonProperty Integer hotelsUsing,
-                     @JsonProperty Integer apartmentsAppliedTo) {
+    public AptTypeTo(@JsonProperty("id") Short id,
+                     @JsonProperty("personNum") Short personNum,
+                     @JsonProperty("country") String category,
+                     @JsonProperty("bedsArrangement") String bedsArrangement,
+                     @JsonProperty("hotelsUsing") Integer hotelsUsing,
+                     @JsonProperty("apartmentsAppliedTo") Integer apartmentsAppliedTo) {
         super(id);
         this.personNum = personNum;
         this.category = category;
