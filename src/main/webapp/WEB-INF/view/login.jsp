@@ -22,7 +22,9 @@
             </c:if>
             <br/>
             <p>
-                <a class="btn btn-lg btn-success" href="register"><spring:message code="app.register"/> &raquo;</a>
+                <a class="btn btn-lg btn-success" href="register">
+                    <spring:message code="app.register"/> &raquo;
+                </a>
                 <button type="submit" class="btn btn-lg btn-primary" onclick="setCredentials('user1@yandex.ru', 'password1')">
                     <spring:message code="app.enter"/> User
                 </button>
@@ -65,5 +67,6 @@
 </script>
 
 </body>
+<jsp:include page="fragments/i18nUtil.jsp"/>
 </html>
 <jsp:include page="fragments/footer.jsp"/>

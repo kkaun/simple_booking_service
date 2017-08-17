@@ -61,14 +61,17 @@ public abstract class HotelAbstractController {
                 .findFirst().orElse(null));
     }
 
-    public List<HotelTo> getAllByCity(int cityId){
+    public List<HotelTo> getAllByCity(Integer cityId){
         LOG.info("Getting all hotels by city {}", cityId);
-        return HotelUtil.getAllByCity(hotelService.getAll(), cityId);
+        return cityId != null ? HotelUtil.getAllByCity(hotelService.getAll(), cityId)
+                : HotelUtil.getAllHotelTos(hotelService.getAll());
     }
 
     public List<HotelTo> getBetweenRatings(Double minRating, Double maxRating){
         LOG.info("Getting all hotels between ratings {} - {}", minRating, maxRating);
-        return HotelUtil.getBetweenRatings(hotelService.getAll(), minRating, maxRating);
+        return HotelUtil.getBetweenRatings(hotelService.getAll(),
+                minRating != null ? minRating : 0,
+                maxRating != null ? maxRating : 10);
     }
 
     public List<HotelTo> getAll(){

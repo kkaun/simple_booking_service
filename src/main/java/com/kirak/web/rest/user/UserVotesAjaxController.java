@@ -24,17 +24,14 @@ public class UserVotesAjaxController  extends VoteAbstractController {
         super(voteService, hotelService);
     }
 
-    @Override
     @PostMapping
-    public void create(@Validated(View.ValidatedUIGroup.class) Vote vote,
+    public void createOrUpdate(@Validated(View.ValidatedUIGroup.class) Vote vote,
                        @RequestParam("hotelId") int hotelId) {
-        super.create(vote, hotelId);
-    }
-
-    @Override
-    @PostMapping
-    public void update(@Validated(View.ValidatedUIGroup.class) Vote vote) {
-        super.update(vote);
+        if (vote.isNew()) {
+            super.create(vote, hotelId);
+        } else {
+            super.update(vote);
+        }
     }
 
     @Override

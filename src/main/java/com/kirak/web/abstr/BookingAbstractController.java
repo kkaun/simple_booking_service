@@ -56,31 +56,39 @@ public abstract class BookingAbstractController {
         return generateAdminSuperBookingTos(superBookingService.getAll());
     }
 
-    public List<AdminSuperBookingTo> getSuperBookingsByUserIdForAdmin(int userId){
+    public List<AdminSuperBookingTo> getSuperBookingsByUserIdForAdmin(Integer userId){
         LOG.info("Getting all Super Bookings by user {}", userId);
-        return generateAdminSuperBookingTos(superBookingService.getAllByUserId(userId));
+        return userId != null ?
+                generateAdminSuperBookingTos(superBookingService.getAllByUserId(userId))
+                : generateAdminSuperBookingTos(superBookingService.getAll());
     }
 
-    public List<AdminSuperBookingTo> getSuperBookingsByHotelIdForAdmin(int hotelId){
+    public List<AdminSuperBookingTo> getSuperBookingsByHotelIdForAdmin(Integer hotelId){
         LOG.info("Getting all Super Bookings by hotel {}", hotelId);
-        return generateAdminSuperBookingTos(superBookingService.getAllByHotelId(hotelId));
+        return hotelId != null ?
+                generateAdminSuperBookingTos(superBookingService.getAllByHotelId(hotelId))
+                : generateAdminSuperBookingTos(superBookingService.getAll());
     }
 
     public List<AdminSuperBookingTo> getSuperBookingsBetweenDatesForAdmin(LocalDate startDate, LocalDate endDate) {
         LOG.info("Getting all Super Bookings between dates {}", startDate, endDate);
-        return generateAdminSuperBookingTos(superBookingService.getAllBetweenCreatedDates(startDate, endDate));
+        return generateAdminSuperBookingTos(superBookingService.getAllBetweenCreatedDates(
+                startDate != null ? startDate : LocalDate.MIN,
+                endDate != null ? endDate : LocalDate.MAX));
     }
 
     public List<AdminSuperBookingTo> getSuperBookingsByInDateForAdmin(LocalDate inDate){
         LOG.info("Getting all Super Bookings by in date {}", inDate);
-        return generateAdminSuperBookingTos(SuperBookingUtil
-                .getAllSuperBookingsByInDate(superBookingService.getAll(), inDate));
+        return inDate != null ? generateAdminSuperBookingTos(SuperBookingUtil
+                .getAllSuperBookingsByInDate(superBookingService.getAll(), inDate))
+                : generateAdminSuperBookingTos(superBookingService.getAll());
     }
 
     public List<AdminSuperBookingTo> getSuperBookingsByOutDateForAdmin(LocalDate outDate){
         LOG.info("Getting all Super Bookings by out date {}", outDate);
-        return generateAdminSuperBookingTos(SuperBookingUtil
-                .getAllSuperBookingsByOutDate(superBookingService.getAll(), outDate));
+        return outDate != null ? generateAdminSuperBookingTos(SuperBookingUtil
+                .getAllSuperBookingsByOutDate(superBookingService.getAll(), outDate))
+                : generateAdminSuperBookingTos(superBookingService.getAll());
     }
 
     //-------------------------------------- Manager SuperBooking methods --------------------------------//
@@ -96,27 +104,33 @@ public abstract class BookingAbstractController {
         return SuperBookingUtil.generateManagerSuperBookingTos(superBookingService.getAll(), AuthorizedUser.getId());
     }
 
-    public List<ManagerSuperBookingTo> getSuperBookingsByUserIdForManager(int userId){
+    public List<ManagerSuperBookingTo> getSuperBookingsByUserIdForManager(Integer userId){
         LOG.info("Getting all Super Bookings by user {}", userId);
-        return SuperBookingUtil.generateManagerSuperBookingTos(superBookingService.getAllByUserId(userId), AuthorizedUser.getId());
+        return userId != null ? SuperBookingUtil.generateManagerSuperBookingTos(
+                superBookingService.getAllByUserId(userId), AuthorizedUser.getId())
+                : SuperBookingUtil.generateManagerSuperBookingTos(superBookingService.getAll(), AuthorizedUser.getId());
     }
 
     public List<ManagerSuperBookingTo> getSuperBookingsBetweenDatesForManager(LocalDate startDate, LocalDate endDate) {
         LOG.info("Getting all Super Bookings between dates {}", startDate, endDate);
-        return SuperBookingUtil.generateManagerSuperBookingTos(superBookingService.getAllBetweenCreatedDates(startDate, endDate),
+        return SuperBookingUtil.generateManagerSuperBookingTos(superBookingService.getAllBetweenCreatedDates(
+                startDate != null ? startDate : LocalDate.MIN,
+                endDate != null ? endDate : LocalDate.MAX),
                 AuthorizedUser.getId());
     }
 
     public List<ManagerSuperBookingTo> getSuperBookingsByInDateForManager(LocalDate inDate){
         LOG.info("Getting all Super Bookings by in date {}", inDate);
-        return SuperBookingUtil.generateManagerSuperBookingTos(SuperBookingUtil
-                .getAllSuperBookingsByInDate(superBookingService.getAll(), inDate), AuthorizedUser.getId());
+        return inDate != null ? SuperBookingUtil.generateManagerSuperBookingTos(SuperBookingUtil
+                .getAllSuperBookingsByOutDate(superBookingService.getAll(), inDate), AuthorizedUser.getId())
+                : SuperBookingUtil.generateManagerSuperBookingTos(superBookingService.getAll(), AuthorizedUser.getId());
     }
 
     public List<ManagerSuperBookingTo> getSuperBookingsByOutDateForManager(LocalDate outDate){
         LOG.info("Getting all Super Bookings by out date {}", outDate);
-        return SuperBookingUtil.generateManagerSuperBookingTos(SuperBookingUtil
-                .getAllSuperBookingsByOutDate(superBookingService.getAll(), outDate), AuthorizedUser.getId());
+        return outDate != null ? SuperBookingUtil.generateManagerSuperBookingTos(SuperBookingUtil
+                .getAllSuperBookingsByOutDate(superBookingService.getAll(), outDate), AuthorizedUser.getId())
+                : SuperBookingUtil.generateManagerSuperBookingTos(superBookingService.getAll(), AuthorizedUser.getId());
     }
 
 

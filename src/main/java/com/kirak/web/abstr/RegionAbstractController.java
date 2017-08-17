@@ -54,7 +54,9 @@ public abstract class RegionAbstractController {
 
     public List<PlaceTo> getAllByRegion(String region){
         LOG.info("Getting cities by region {}", region);
-        return RegionUtil.getPlaceTos(RegionUtil.getCitiesByRegionName(region, cityService.getAll()));
+        return region != null && !region.isEmpty() ?
+                RegionUtil.getPlaceTos(RegionUtil.getCitiesByRegionName(region, cityService.getAll()))
+                : RegionUtil.getPlaceTos(cityService.getAll());
     }
 
 

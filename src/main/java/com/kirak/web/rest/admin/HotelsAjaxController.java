@@ -45,7 +45,7 @@ public class HotelsAjaxController extends HotelAbstractController {
 
     @Override
     @PostMapping(value = "/by_city", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<HotelTo> getAllByCity(@RequestParam("cityId") int cityId) {
+    public List<HotelTo> getAllByCity(@RequestParam("cityId") Integer cityId) {
         return super.getAllByCity(cityId);
     }
 

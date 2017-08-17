@@ -8,6 +8,7 @@ import com.kirak.to.booking.BookingTo;
 import com.kirak.to.booking.ManagerSuperBookingTo;
 import com.kirak.web.View;
 import com.kirak.web.abstr.BookingAbstractController;
+import org.omg.CORBA.INTERNAL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -73,7 +74,7 @@ public class HotelSuperBookingsAjaxController extends BookingAbstractController 
     @Override
     @JsonView(View.JsonUI.class)
     @PostMapping(value = "/by_user_id", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ManagerSuperBookingTo> getSuperBookingsByUserIdForManager(@RequestParam("userId") int userId) {
+    public List<ManagerSuperBookingTo> getSuperBookingsByUserIdForManager(@RequestParam("userId") Integer userId) {
         return super.getSuperBookingsByUserIdForManager(userId);
     }
 

@@ -71,16 +71,18 @@ public class SuperBookingsAjaxController extends BookingAbstractController {
         return super.getSuperBookingsByOutDateForAdmin(outDate);
     }
 
+    @Override
     @JsonView(View.JsonUI.class)
     @PostMapping(value = "/by_user_id", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<AdminSuperBookingTo> getSuperBookingsByUserIdForAdmin(@RequestParam("userId") String userId) {
-        return super.getSuperBookingsByUserIdForAdmin(Integer.parseInt(userId));
+    public List<AdminSuperBookingTo> getSuperBookingsByUserIdForAdmin(@RequestParam("userId") Integer userId) {
+        return super.getSuperBookingsByUserIdForAdmin(userId);
     }
 
+    @Override
     @JsonView(View.JsonUI.class)
     @PostMapping(value = "/by_hotel_id", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<AdminSuperBookingTo> getSuperBookingsByHotelIdForAdmin(@RequestParam("hotelId") String hotelId) {
-        return super.getSuperBookingsByHotelIdForAdmin(Integer.parseInt(hotelId));
+    public List<AdminSuperBookingTo> getSuperBookingsByHotelIdForAdmin(@RequestParam("hotelId") Integer hotelId) {
+        return super.getSuperBookingsByHotelIdForAdmin(hotelId);
     }
 
 }
