@@ -13,6 +13,8 @@
     <meta name="_csrf" content="${_csrf.token}"/>
     <meta name="_csrf_header" content="${_csrf.headerName}"/>
 
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+
     <link rel="stylesheet" href="webjars/jquery-ui/1.9.2/css/smoothness/jquery-ui-1.9.2.custom.min.css">
     <link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
     <link rel="stylesheet" href="webjars/datatables/1.10.15/media/css/dataTables.bootstrap.min.css">
@@ -30,6 +32,7 @@
     <script type="text/javascript" src="webjars/datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js" defer></script>
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/datepicker.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/datetimepicker.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/scripts.js"></script>
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/dataDays.js"></script>

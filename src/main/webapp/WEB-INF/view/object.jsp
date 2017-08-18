@@ -6,7 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
-<jsp:include page="fragments/headTag.jsp"/>
+<jsp:include page="fragments/restHeadTag.jsp"/>
 <body>
 <jsp:include page="fragments/header.jsp"/>
 
@@ -103,9 +103,6 @@
     </div>
 </div>
 
-
-
 </body>
-<jsp:include page="fragments/i18nUtil.jsp"/>
 </html>
 <jsp:include page="fragments/footer.jsp"/>

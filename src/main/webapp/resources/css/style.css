@@ -1,12 +1,9 @@
 
 
-.mainNavbar{
+#navBrand{
+    font-family: 'Pacifico', cursive;
 }
 
-.headBtnHolder{
-    margin-top: 7px;
-    margin-right: 7px;
-}
 
 .glyphicon-star{
     color: gold;

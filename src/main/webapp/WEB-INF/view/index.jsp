@@ -5,7 +5,7 @@
 <%@ taglib uri="http://kirak.com.functions" prefix="f" %>
 
 <html>
-<jsp:include page="fragments/headTag.jsp"/>
+<jsp:include page="fragments/jspHeadTag.jsp"/>
 <body>
 <jsp:include page="fragments/header.jsp"/>
 
@@ -104,12 +104,12 @@
                                 <img class="media-object img-rounded img-responsive" src="http://placehold.it/350x250" alt="placehold.it/350x250" >
                             </figure>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <h4 class="list-group-item-heading"> ${hotel.name} </h4>
                             <p class="list-group-item-text"> ${hotel.description}
                             </p>
                         </div>
-                        <div class="col-md-3 text-center">
+                        <div class="col-md-4 text-center">
                             <div class="stars">
                                 <c:if test="${hotel.stars > 0}">
                                     <c:forEach begin="0" end="${hotel.stars - 1}" varStatus="loop">

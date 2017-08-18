@@ -4,13 +4,15 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
-<jsp:include page="headTag.jsp"/>
+<jsp:include page="jspHeadTag.jsp"/>
 <body>
 
 <div class="container">
     <div class="row">
 
-        <nav class="navbar navbar-default mainNavbar" role="navigation">
+        <nav class="navbar navbar-default mainNavbar" role="navigation" style="padding-top:12px !important;
+        padding-bottom:1px !important;">
+
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -18,7 +20,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index"><spring:message code="app.title"/></a>
+
+                <a class="navbar-brand" href="index" style="font-family:Pacifico, serif;font-size: 30px; color: #555">
+                    <spring:message code="app.title"/></a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -50,18 +54,26 @@
 
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="headBtnHolder">
-                        <a href="new_object" class="btn btn-default btn-md btn-block headBtn">
-                        <spring:message code="common.listobject"/></a></li>
-
-                    <li class="headBtnHolder">
-                        <a href="register" class="btn btn-default btn-md btn-block headBtn">
-                        <spring:message code="common.register"/></a></li>
-
-                    <li class="headBtnHolder">
-                        <a href="login" class="btn btn-default btn-md btn-block headBtn">
-                        <spring:message code="common.login_as"/></a></li>
+                    <li style="margin-right: 10px;">
+                        <form>
+                        <a href="new_object" class="btn btn-warning navbar-btn" style="border-radius: 12px">
+                            <spring:message code="common.listobject"/></a>
+                        </form>
+                    </li>
+                    <li style="margin-right: 10px;">
+                        <form>
+                        <a href="register" class="btn btn-success navbar-btn" style="border-radius: 12px">
+                            <spring:message code="common.register"/></a>
+                        </form>
+                    <li>
+                    <li>
+                        <form>
+                        <a href="login" class="btn btn-primary navbar-btn" style="border-radius: 12px">
+                            <spring:message code="common.login_as"/></a>
+                        </form>
+                    </li>
                 </ul>
+
             </div>
         </nav>
 

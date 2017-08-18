@@ -7,10 +7,3 @@ function goBack() {
     window.history.back();
 }
 
-
-$('.in_time, .out_time').datetimepicker({
-    datepicker: false,
-    format: 'H:i'
-});
-
-
