@@ -12,7 +12,7 @@ USE `booking_service`;
 
 DROP TABLE IF EXISTS `city`;
 CREATE TABLE `city` (
-  `id`          INT NOT NULL AUTO_INCREMENT,
+  `id`          INT          NOT NULL AUTO_INCREMENT,
   `name`        VARCHAR(45),
   `country_id`  VARCHAR(45),
   `description` TEXT,
@@ -42,13 +42,13 @@ CREATE TABLE `country` (
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
-  `id`         INT         NOT NULL AUTO_INCREMENT,
-  `email`      VARCHAR(45) NOT NULL,
-  `phone`      VARCHAR(20) NULL,
-  `name`       VARCHAR(45) NOT NULL,
-  `password`   VARCHAR(45) NULL,
-  `registered` TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
-  `enabled`    BOOLEAN     DEFAULT TRUE,
+  `id`         INT          NOT NULL AUTO_INCREMENT,
+  `email`      VARCHAR(45)  NOT NULL,
+  `phone`      VARCHAR(20)  NULL,
+  `name`       VARCHAR(45)  NOT NULL,
+  `password`   VARCHAR(61)  NULL,
+  `registered` TIMESTAMP             DEFAULT CURRENT_TIMESTAMP,
+  `enabled`    BOOLEAN               DEFAULT TRUE,
   INDEX `user_unique_email_idx`(`email`),
   PRIMARY KEY (`id`)
 )
@@ -100,18 +100,18 @@ CREATE TABLE IF NOT EXISTS `vote` (
 
 DROP TABLE IF EXISTS `hotel`;
 CREATE TABLE IF NOT EXISTS `hotel` (
-  `id`                INT           NOT NULL AUTO_INCREMENT,
-  `name`              VARCHAR(45)   NOT NULL,
-  `stars`             SMALLINT      NULL,
-  `country_id`        SMALLINT      NOT NULL,
-  `city_id`           INT           NOT NULL,
-  `address`           VARCHAR(45)   NOT NULL,
-  `phone`             VARCHAR(15)   NULL,
-  `description`       TINYTEXT      NULL,
-  `check_in`          TIME          NOT NULL,
-  `check_out`         TIME          NOT NULL,
-  `max_extra_per_day` SMALLINT      NOT NULL,
-  `manager`           INT           NOT NULL,
+  `id`                INT         NOT NULL AUTO_INCREMENT,
+  `name`              VARCHAR(45) NOT NULL,
+  `stars`             SMALLINT    NULL,
+  `country_id`        SMALLINT    NOT NULL,
+  `city_id`           INT         NOT NULL,
+  `address`           VARCHAR(45) NOT NULL,
+  `phone`             VARCHAR(15) NULL,
+  `description`       TINYTEXT    NULL,
+  `check_in`          TIME        NOT NULL,
+  `check_out`         TIME        NOT NULL,
+  `max_extra_per_day` SMALLINT    NOT NULL,
+  `manager`           INT         NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_hotel_country1_idx` (`country_id` ASC),
   INDEX `fk_hotel_city1_idx` (`city_id` ASC),
@@ -151,10 +151,10 @@ CREATE TABLE IF NOT EXISTS `apt_type` (
 
 DROP TABLE IF EXISTS `apartment`;
 CREATE TABLE IF NOT EXISTS `apartment` (
-  `id`                INT            NOT NULL AUTO_INCREMENT,
-  `apt_type_id`       SMALLINT       NOT NULL,
-  `price`             DECIMAL(11, 4) NULL,
-  `hotel_id`          INT            NOT NULL,
+  `id`          INT            NOT NULL AUTO_INCREMENT,
+  `apt_type_id` SMALLINT       NOT NULL,
+  `price`       DECIMAL(11, 4) NULL,
+  `hotel_id`    INT            NOT NULL,
   PRIMARY KEY (`id`, `hotel_id`),
   INDEX `fk_apartment_hotel1_idx` (`hotel_id` ASC),
   INDEX `fk_apartment_apt_type1_idx` (`apt_type_id` ASC),
@@ -166,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `apartment` (
   CONSTRAINT `fk_apartment_apt_type1`
   FOREIGN KEY (`apt_type_id`)
   REFERENCES `apt_type` (`id`)
-    ON DELETE NO ACTION 
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION
 )
   AUTO_INCREMENT = 100000,
@@ -176,17 +176,17 @@ CREATE TABLE IF NOT EXISTS `apartment` (
 
 DROP TABLE IF EXISTS `super_booking`;
 CREATE TABLE IF NOT EXISTS `super_booking` (
-  `id`                  INT            NOT NULL AUTO_INCREMENT,
-  `active`              BOOLEAN        DEFAULT TRUE,
-  `date_added`          TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
-  `extra_beds`          SMALLINT       NULL,
-  `overall_sum`         DECIMAL(11, 4) NOT NULL,
-  `overall_person_num`  SMALLINT       NOT NULL,
-  `user_id`             INT            NULL,
-  `hotel_id`            INT            NOT NULL,
-  `booker_name`         VARCHAR(45)    NULL,
-  `booker_email`        VARCHAR(45)    NULL,
-  `booker_phone`        VARCHAR(20)    NULL,
+  `id`                 INT            NOT NULL AUTO_INCREMENT,
+  `active`             BOOLEAN                 DEFAULT TRUE,
+  `date_added`         TIMESTAMP               DEFAULT CURRENT_TIMESTAMP,
+  `extra_beds`         SMALLINT       NULL,
+  `overall_sum`        DECIMAL(11, 4) NOT NULL,
+  `overall_person_num` SMALLINT       NOT NULL,
+  `user_id`            INT            NULL,
+  `hotel_id`           INT            NOT NULL,
+  `booker_name`        VARCHAR(45)    NULL,
+  `booker_email`       VARCHAR(45)    NULL,
+  `booker_phone`       VARCHAR(20)    NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_super_booking_user1_idx` (`user_id` ASC),
   INDEX `fk_super_booking_hotel1_idx` (`hotel_id` ASC),
@@ -194,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `super_booking` (
   FOREIGN KEY (`user_id`)
   REFERENCES `user` (`id`)
     ON DELETE CASCADE
-    ON UPDATE CASCADE ,
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_super_booking_hotel1`
   FOREIGN KEY (`hotel_id`)
   REFERENCES `hotel` (`id`)
@@ -209,8 +209,8 @@ CREATE TABLE IF NOT EXISTS `super_booking` (
 DROP TABLE IF EXISTS `booking`;
 CREATE TABLE IF NOT EXISTS `booking` (
   `id`                 BIGINT         NOT NULL AUTO_INCREMENT,
-  `in_date`            TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
-  `out_date`           TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
+  `in_date`            TIMESTAMP               DEFAULT CURRENT_TIMESTAMP,
+  `out_date`           TIMESTAMP               DEFAULT CURRENT_TIMESTAMP,
   `sum`                DECIMAL(11, 4) NOT NULL,
   `person_num`         SMALLINT       NOT NULL,
   `super_booking_id`   INT            NOT NULL,

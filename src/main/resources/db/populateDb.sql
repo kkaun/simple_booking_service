@@ -751,15 +751,15 @@ VALUES
 
 INSERT INTO user (name, email, phone, password)
 VALUES
-  ('User1', 'user1@yandex.ru', '483748273423', 'password1'),
-  ('User2', 'user2@yandex.ru', '483711111123', 'password2'),
-  ('User3', 'user3@yandex.ru', '483333373423', 'password3');
+  ('User1', 'user1@yandex.ru', '483748273423', '$2a$04$LSa4NOGDwRsAomYMG10tdebOfo9BfrAjV9FvymxMt/IORffJ1tJmy'),
+  ('User2', 'user2@yandex.ru', '483711111123', '$2a$04$LptUR6XmDAiZH76ojCdNi.M8BPhAyBN8D2uvEPplrPStLwEIXYPvm'),
+  ('User3', 'user3@yandex.ru', '483333373423', '$2a$04$cxtnaMTgA/zkzqu5abBmd.Hj5B.Dp9Wfk1iP7ONomAApluyVyqOSa');
 
 INSERT INTO user (name, email, password)
-VALUES ('Manager', 'manager@gmail.com', 'manager');
+VALUES ('Manager', 'manager@gmail.com', '$2a$04$GVGrIytqazsQlpU7wPgyUuoaWukZoTSJCUVfuXmaRugERWuD0l18q');
 
 INSERT INTO user (name, email, password)
-VALUES ('Admin', 'admin@gmail.com', 'admin');
+VALUES ('Admin', 'admin@gmail.com', '$2a$04$8pwICPDZ3IsZnKFuvZ2MBe5zqR6DOA20turCpBv9.jy/2Un5SpfZ2');
 
 INSERT INTO user_role (user_id, role) VALUES
   (100000, 'ROLE_USER'),

@@ -9,7 +9,7 @@
 <jsp:include page="fragments/header.jsp"/>
 
 <div class="container">
-    <div class="row">
+    <div class="row text-center">
         <c:if test="${param.error}">
             <div class="error">
                     ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
@@ -26,19 +26,18 @@
                 <spring:message code="app.register"/> &raquo;
             </a>
             <button type="submit" class="btn btn-lg btn-primary" onclick="setCredentials('user1@yandex.ru', 'password1')">
-                <spring:message code="app.enter"/> User
+                <spring:message code="app.enter"/> <spring:message code="app.user"/>
             </button>
             <button type="submit" class="btn btn-lg btn-primary" onclick="setCredentials('admin@gmail.com', 'admin')">
-                <spring:message code="app.enter"/> Admin
+                <spring:message code="app.enter"/> <spring:message code="app.admin"/>
             </button>
             <button type="submit" class="btn btn-lg btn-primary" onclick="setCredentials('manager@gmail.com', 'manager')">
-                <spring:message code="app.enter"/> Manager
+                <spring:message code="app.enter"/> <spring:message code="app.manager"/>
             </button>
         </p>
     </div>
 
-    <div class="row">
-
+    <div class="row text-center" style="padding-top: 20px">
         <form:form class="navbar-form" role="form" action="spring_security_check" method="post">
             <div class="form-group">
                 <input type="text" placeholder="Email" class="form-control" name="username">
@@ -50,8 +49,8 @@
                 <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
             </button>
         </form:form>
-
     </div>
+
 </div>
 
 <script type="text/javascript">

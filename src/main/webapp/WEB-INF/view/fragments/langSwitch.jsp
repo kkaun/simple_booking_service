@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
-<div id="navbar" class="navbar-collapse collapse navbar-left">
-    <ul class="list-unstyled btn navbar-btn btn-default">
+<div class="navbar-nav navbar-left">
+    <ul class="list-unstyled btn navbar-btn btn-default" style="margin-bottom: 10px">
         <li class="dropdown">
         <a href="#" style="color:#000000 !important; text-decoration:none; text-transform: capitalize;"
            class="dropdown-toggle" data-toggle="dropdown">${pageContext.response.locale} <b class="caret"></b></a>

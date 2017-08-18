@@ -26,8 +26,6 @@
 
 
 #custom-search-input {
-    margin-top: 15px;
-    padding: 0;
 }
 
 #custom-search-input .search-query {
@@ -40,7 +38,7 @@
     margin-bottom: 0;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
-    border-radius: 3px;
+    border-radius: 12px;
 }
 
 #custom-search-input button {

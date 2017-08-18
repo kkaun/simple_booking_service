@@ -24,7 +24,7 @@ public class UserUtil {
     public static User updateFromTo(User user, UserTo userTo) {
         user.setName(userTo.getName());
         user.setEmail(userTo.getEmail().toLowerCase());
-        //!!!!!!!!!!!!!!!!
+        user.setPhone(userTo.getPhone() != null && !userTo.getPhone().isEmpty() ? userTo.getPhone() : "");
         user.setPassword(userTo.getPassword());
         return user;
     }
@@ -33,11 +33,6 @@ public class UserUtil {
         user.setPassword(PasswordUtil.encode(user.getPassword()));
         user.setEmail(user.getEmail().toLowerCase());
         return user;
-    }
-
-    public static List<Hotel> getManageableObjects(User user){
-
-        return new ArrayList<>(user.getHotels());
     }
 
     public static boolean isPhoneDuplicated(String phone, List<User> users){

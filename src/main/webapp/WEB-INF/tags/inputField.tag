@@ -10,7 +10,7 @@
     <div class="form-group ${status.error ? 'error' : '' }">
         <label class="control-label col-sm-2">${label}</label>
 
-        <div class="col-sm-3">
+        <div class="col-sm-9">
             <c:choose>
                 <c:when test="${inputType == 'password'}">
                     <form:password path="${name}" class="form-control"/>
@@ -23,7 +23,7 @@
                 </c:otherwise>
             </c:choose>
         </div>
-        <div class="col-sm-7">
+        <div class="col-sm-12">
             <span class="help-inline">${status.errorMessage}</span>
         </div>
     </div>

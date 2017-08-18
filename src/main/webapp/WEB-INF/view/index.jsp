@@ -13,7 +13,7 @@
     <div class="row" style="margin-bottom: 10px">
 
         <div class="col-md-6">
-            <h3><spring:message code="app.moto"/></h3>
+            <h3 style="margin-top: 3px"><spring:message code="app.moto"/></h3>
         </div>
 
         <div class="col-md-6">
@@ -21,7 +21,7 @@
                 <div class="input-group col-md-12">
                     <form method = "get" id="search_form" action="search">
                         <input type="text" class="search-query form-control"
-                               name="region" placeholder="Search hotels by Country, City or Region" />
+                               name="region" placeholder="<spring:message code="app.search_fast"/>" />
                     </form>
                     <span class="input-group-btn">
                         <button class="btn btn-danger" form="search_form" type="submit">

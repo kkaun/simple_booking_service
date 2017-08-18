@@ -13,34 +13,36 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <div class="panel panel-default">
-                    <h2>${userTo.name}'s <spring:message code="${register ? 'app.register' : 'app.profile'}"/></h2>
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <h2>${userTo.name} <spring:message code="${register ? 'app.register' : 'app.profile'}"/></h2>
+                    </div>
+                    <div class="panel-body">
+                        <form:form modelAttribute="userTo" class="form-horizontal" method="post"
+                                   action="${register ? 'register' : 'profile'}"
+                                   charset="utf-8" accept-charset="UTF-8">
 
-                    <form:form modelAttribute="userTo" class="form-horizontal" method="post"
-                               action="${register ? 'register' : 'profile'}"
-                               charset="utf-8" accept-charset="UTF-8">
+                            <spring:message code="user.name" var="userName"/>
+                            <custom:inputField label='${userName}' name="name"/>
 
-                        <spring:message code="user.name" var="userName"/>
-                        <custom:inputField label='${userName}' name="name"/>
+                            <spring:message code="user.email" var="userEmail"/>
+                            <custom:inputField label='${userEmail}' name="email"/>
 
-                        <spring:message code="user.email" var="userEmail"/>
-                        <custom:inputField label='${userEmail}' name="email"/>
+                            <spring:message code="users.password" var="userPhone"/>
+                            <custom:inputField label='${userPhone}' name="password" inputType="password"/>
 
-                        <spring:message code="users.password" var="userPhone"/>
-                        <custom:inputField label='${userPhone}' name="password" inputType="password"/>
+                            <spring:message code="users.password" var="userPassword"/>
+                            <custom:inputField label='${userPassword}' name="password" inputType="password"/>
 
-                        <spring:message code="users.password" var="userPassword"/>
-                        <custom:inputField label='${userPassword}' name="password" inputType="password"/>
-
-
-                        <div class="form-group">
-                            <div class="col-xs-offset-2 col-xs-10">
-                                <button type="submit" class="btn btn-primary">
-                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                                </button>
+                            <div class="form-group">
+                                <div class="col-xs-offset-2 col-xs-10">
+                                    <button type="submit" class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </form:form>
+                        </form:form>
+                    </div>
                 </div>
             </div>
 
