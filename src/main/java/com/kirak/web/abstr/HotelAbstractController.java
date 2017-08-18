@@ -55,12 +55,6 @@ public abstract class HotelAbstractController {
         return hotelService.getTo(id);
     }
 
-    public HotelTo getHotelForManager() {
-        return HotelUtil.asHotelTo(hotelService.getAll().stream().filter(hotel ->
-                Objects.equals(hotel.getManager().getId(), AuthorizedUser.getId()))
-                .findFirst().orElse(null));
-    }
-
     public List<HotelTo> getAllByCity(Integer cityId){
         LOG.info("Getting all hotels by city {}", cityId);
         return cityId != null ? HotelUtil.getAllByCity(hotelService.getAll(), cityId)
@@ -81,12 +75,19 @@ public abstract class HotelAbstractController {
 
 
 
-    public List<HotelTo> getAllForUser(){
+    public List<HotelTo> getHotelsForUser(){
         LOG.info("Getting all hotels visiting by user");
         return HotelUtil.getAllHotelTos(hotelService.getAll().stream().flatMap(hotel -> hotel.getSuperBookings().stream())
                 .filter(superBooking -> Objects.equals(superBooking.getUser().getId(), AuthorizedUser.getId()))
                 .distinct()
                 .map(SuperBooking::getHotel)
+                .collect(Collectors.toList()));
+    }
+
+
+    public List<HotelTo> getHotelsForManager() {
+        return HotelUtil.getAllHotelTos(hotelService.getAll().stream()
+                .filter(hotel -> Objects.equals(hotel.getManager().getId(), AuthorizedUser.getId()))
                 .collect(Collectors.toList()));
     }
 
