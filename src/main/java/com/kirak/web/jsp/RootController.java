@@ -38,13 +38,13 @@ public class RootController extends UserAbstractController {
 
 
 
-    @PreAuthorize("hasRole('ROLE_SYSTEM_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/administrate")
     public String users() {
         return "/admin_panel";
     }
 
-    @PreAuthorize("hasRole('ROLE_HOTEL_MANAGER')")
+    @PreAuthorize("hasRole('ROLE_MANAGER')")
     @GetMapping("/manage")
     public String manager() {
         return "/manage_object";
@@ -110,7 +110,8 @@ public class RootController extends UserAbstractController {
         return "/register_object";
     }
 
-    @PreAuthorize("hasRole('ROLE_HOTEL_MANAGER')")
+
+    @PreAuthorize("hasRole('ROLE_MANAGER')")
     @GetMapping("/object")
     public String object(){
         return "/edit_object";

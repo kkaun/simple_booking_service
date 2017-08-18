@@ -8,11 +8,11 @@ import org.springframework.security.core.GrantedAuthority;
 public enum UserRole implements GrantedAuthority {
 
     ROLE_USER,
-    ROLE_HOTEL_MANAGER,
-    ROLE_SYSTEM_ADMIN;
+    ROLE_MANAGER,
+    ROLE_ADMIN;
 
     @Override
     public String getAuthority() {
-        return null;
+        return name();
     }
 }

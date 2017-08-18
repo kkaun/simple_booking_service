@@ -31,11 +31,13 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <sec:authorize access="hasAnyAuthority('ROLE_HOTEL_MANAGER')">
-                            <a class="btn btn-info" href="administrate"><spring:message code="common.admin"/></a>
-                        </sec:authorize>
-                        <sec:authorize access="hasAnyAuthority('ROLE_HOTEL_MANAGER')">
-                            <a class="btn btn-info" href="manage"><spring:message code="common.manager"/></a>
+                        <sec:authorize access="isAuthenticated()">
+                            <sec:authorize access="hasAuthority('ROLE_ADMIN')">
+                                <a class="btn navbar-btn btn-danger" href="administrate"><spring:message code="common.admin"/></a>
+                            </sec:authorize>
+                            <sec:authorize access="hasAuthority('ROLE_MANAGER')">
+                                <a class="btn navbar-btn btn-danger" href="manage"><spring:message code="common.manager"/></a>
+                            </sec:authorize>
                         </sec:authorize>
                     </li>
                     <li>
@@ -44,7 +46,7 @@
                                 <a class="btn btn-info" href="profile"><sec:authentication
                                         property="principal.userTo.name"/>
                                     <spring:message code="app.profile"/></a>
-                                <button class="btn btn-primary" type="submit">
+                                <button class="btn btn-default" type="submit">
                                     <spring:message code="common.logout"/>
                                     <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
                                 </button>

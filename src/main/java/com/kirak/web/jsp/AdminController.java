@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 
 @Controller
-@RequestMapping(value = "/admin")
 public class AdminController {
 
     @Autowired
@@ -32,8 +31,8 @@ public class AdminController {
     @Autowired
     private ApartmentService apartmentService;
 
-    @PreAuthorize("hasRole('ROLE_SYSTEM_ADMIN')")
-    @GetMapping("/regions")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/admin_panel")
     public String adminPanel(Model model) {
         ModelUtil.getAdminView(model, aptTypeService.getAll(), countryService.getAll(),
                 cityService.getAll(), apartmentService.getAll());

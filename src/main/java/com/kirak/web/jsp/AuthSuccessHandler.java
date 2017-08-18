@@ -59,11 +59,11 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
     }
 
     private boolean isAdmin(List<String> roles) {
-        return roles.contains("ROLE_SYSTEM_ADMIN");
+        return roles.contains("ROLE_ADMIN");
     }
 
     private boolean isManager(List<String> roles) {
-        return roles.contains("ROLE_HOTEL_MANAGER");
+        return roles.contains("ROLE_MANAGER");
     }
 
     public void setRedirectStrategy(RedirectStrategy redirectStrategy) {

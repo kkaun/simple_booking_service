@@ -13,7 +13,7 @@
 <div class="container" style="margin-top: 20px;">
     <div class="row">
 
-        <sec:authorize access="hasRole('ROLE_HOTEL_MANAGER')">
+        <sec:authorize access="hasRole('ROLE_MANAGER')">
 
             <div class="col-md-3">
                 <jsp:include page="fragments/managerSidebar.jsp"/>

@@ -10,46 +10,51 @@
 <body>
 <jsp:include page="fragments/header.jsp"/>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="panel panel-default text-center">
-                    <div class="panel-heading">
-                        <h2>${userTo.name} <spring:message code="${register ? 'app.register' : 'app.profile'}"/></h2>
-                    </div>
-                    <div class="panel-body">
-                        <form:form modelAttribute="userTo" class="form-horizontal" method="post"
-                                   action="${register ? 'register' : 'profile'}"
-                                   charset="utf-8" accept-charset="UTF-8">
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <h2><spring:message code="${register ? 'app.register' : 'app.profile'}"/> ${userTo.name}</h2>
+                </div>
+                <div class="panel-body">
+                    <form:form modelAttribute="userTo" class="form-horizontal" method="post"
+                               action="${register ? 'register' : 'profile'}"
+                               charset="utf-8" accept-charset="UTF-8">
 
-                            <spring:message code="user.name" var="userName"/>
-                            <custom:inputField label='${userName}' name="name"/>
+                        <spring:message code="user.name" var="userName"/>
+                        <custom:inputField label='${userName}' name="name"/>
 
-                            <spring:message code="user.email" var="userEmail"/>
-                            <custom:inputField label='${userEmail}' name="email"/>
+                        <spring:message code="user.email" var="userEmail"/>
+                        <custom:inputField label='${userEmail}' name="email"/>
 
-                            <spring:message code="users.password" var="userPhone"/>
-                            <custom:inputField label='${userPhone}' name="password" inputType="password"/>
+                        <spring:message code="users.phone" var="userPhone"/>
+                        <custom:inputField label='${userPhone}' name="phone" inputType="text"/>
 
-                            <spring:message code="users.password" var="userPassword"/>
-                            <custom:inputField label='${userPassword}' name="password" inputType="password"/>
+                        <spring:message code="users.password" var="userPassword"/>
+                        <custom:inputField label='${userPassword}' name="password" inputType="password"/>
 
-                            <div class="form-group">
-                                <div class="col-xs-offset-2 col-xs-10">
-                                    <button type="submit" class="btn btn-primary">
-                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                                    </button>
-                                </div>
+                        <div class="form-group">
+                            <div class="col-xs-offset-2 col-xs-10">
+                                <button type="submit" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                </button>
                             </div>
-                        </form:form>
-                    </div>
+                        </div>
+                    </form:form>
                 </div>
             </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
 
+    <div class="row">
 
-            <sec:authorize access="hasRole('ROLE_USER')">
+        <sec:authorize access="isAuthenticated()">
+            <sec:authorize access="hasAuthority('ROLE_USER')">
 
-                <div class="col-md-6 pull-right">
+                <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading"><h3>Your Bookings</h3></div>
                         <div class="panel-body">
@@ -72,73 +77,69 @@
                 </div>
 
                 <div class="col-md-12">
-                    <div class="row">
-
-                        <div class="col-md-6 pull-left">
-                            <div class="panel panel-default">
-                                <div class="panel-heading"><h4>Visited Hotels</h4></div>
-                                <div class="panel-body">
-                                    <table class="table table-striped display" id="userHotelsDatatable">
-                                        <thead>
-                                        <tr>
-                                            <th><spring:message code="common.id"/></th>
-                                            <th><spring:message code="common.name"/></th>
-                                            <th><spring:message code="hotels.rating"/></th>
-                                            <th><spring:message code="hotels.stars"/></th>
-                                            <th><spring:message code="common.description"/></th>
-                                            <th><spring:message code="hotels.votesNum"/></th>
-                                            <th><spring:message code="hotels.checkIn"/></th>
-                                            <th><spring:message code="hotels.checkOut"/></th>
-                                            <th><spring:message code="hotels.city"/></th>
-                                            <th><spring:message code="common.country"/></th>
-                                            <th></th>
-                                        </tr>
-                                        </thead>
-                                    </table>
-                                </div>
-                            </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><h4>Visited Hotels</h4></div>
+                        <div class="panel-body">
+                            <table class="table table-striped display" id="userHotelsDatatable">
+                                <thead>
+                                <tr>
+                                    <th><spring:message code="common.id"/></th>
+                                    <th><spring:message code="common.name"/></th>
+                                    <th><spring:message code="hotels.rating"/></th>
+                                    <th><spring:message code="hotels.stars"/></th>
+                                    <th><spring:message code="common.description"/></th>
+                                    <th><spring:message code="hotels.votesNum"/></th>
+                                    <th><spring:message code="hotels.checkIn"/></th>
+                                    <th><spring:message code="hotels.checkOut"/></th>
+                                    <th><spring:message code="hotels.city"/></th>
+                                    <th><spring:message code="common.country"/></th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                            </table>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="col-md-6 pull-right">
-                            <div class="panel panel-default">
-                                <div class="panel-heading"><h4>Your Feedback &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
-                                    <c:if test="${not empty userVoteAddBtn}">
-                                        <a class="btn btn-primary" onclick="addUserVote()">
-                                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                            <spring:message code="common.add"/>
-                                        </a>
-                                    </c:if>
-                                </div>
-                                <div class="panel-body">
-                                    <table class="table table-striped display" id="userVotesDatatable">
-                                        <thead>
-                                        <tr>
-                                            <th><spring:message code="common.id"/></th>
-                                            <th><spring:message code="common.dateAdded"/></th>
-                                            <th><spring:message code="common.rate"/></th>
-                                            <th><spring:message code="common.comment"/></th>
-                                            <th><spring:message code="common.bookerName"/></th>
-                                            <th><spring:message code="common.hotelId"/></th>
-                                            <th><spring:message code="common.hotelName"/></th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                        </thead>
-                                    </table>
-                                </div>
-                            </div>
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><h4>Your Feedback &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+
+                        <a class="btn btn-primary" onclick="addUserVote()">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            <spring:message code="common.add"/>
+                        </a>
+
                         </div>
-
-                        <jsp:include page="fragments/userEditModals.jsp"/>
-                        <jsp:include page="fragments/superBookingEditModal.jsp"/>
-
+                        <div class="panel-body">
+                            <table class="table table-striped display" id="userVotesDatatable">
+                                <thead>
+                                <tr>
+                                    <th><spring:message code="common.id"/></th>
+                                    <th><spring:message code="common.dateAdded"/></th>
+                                    <th><spring:message code="common.rate"/></th>
+                                    <th><spring:message code="common.comment"/></th>
+                                    <th><spring:message code="common.bookerName"/></th>
+                                    <th><spring:message code="common.hotelId"/></th>
+                                    <th><spring:message code="common.hotelName"/></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
             </sec:authorize>
+        </sec:authorize>
 
-        </div>
     </div>
+</div>
+
+<jsp:include page="fragments/userEditModals.jsp"/>
+<jsp:include page="fragments/superBookingEditModal.jsp"/>
+
 
 </body>
 <jsp:include page="fragments/i18nUtil.jsp"/>

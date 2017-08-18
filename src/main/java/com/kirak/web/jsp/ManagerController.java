@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 
 @Controller
-@RequestMapping(value = "/manager")
 public class ManagerController {
 
     @Autowired
@@ -34,7 +33,7 @@ public class ManagerController {
     private ApartmentService apartmentService;
 
 
-    @PreAuthorize("hasRole('ROLE_HOTEL_MANAGER')")
+    @PreAuthorize("hasRole('ROLE_MANAGER')")
     @GetMapping("/manage_object")
     public String manageObject(Model model){
         ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
