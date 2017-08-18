@@ -12,5 +12,3 @@
 <script type="text/javascript">
     var localeCode = "${pageContext.response.locale}";
 </script>
-
-<jsp:include page="i18nUtil.jsp"/>

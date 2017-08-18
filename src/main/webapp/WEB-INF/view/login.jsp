@@ -68,6 +68,5 @@
 </script>
 
 </body>
-<jsp:include page="fragments/i18nUtil.jsp"/>
 </html>
 <jsp:include page="fragments/footer.jsp"/>

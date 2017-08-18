@@ -8,9 +8,6 @@
 <jsp:include page="../fragments/headTag.jsp"/>
 <body>
 
-
-<c:if test="${not empty adminSuperBookingsFilterCheck}">
-
     <h3><spring:message code="super_bookings.title"/></h3>
 
     <div class="row">
@@ -148,11 +145,6 @@
         </div>
     </div>
 
-</c:if>
-
-
-<c:if test="${not empty adminHotelsFilterCheck}">
-
     <h3><spring:message code="hotels.title"/></h3>
 
     <div class="row">
@@ -221,11 +213,6 @@
         </div>
     </div>
 
-</c:if>
-
-
-<c:if test="${not empty adminCitiesFilterCheck}">
-
     <h3><spring:message code="cities.title"/></h3>
 
     <div class="row">
@@ -253,8 +240,6 @@
             </div>
         </div>
     </div>
-
-</c:if>
 
 </body>
 <jsp:include page="i18nUtil.jsp"/>
