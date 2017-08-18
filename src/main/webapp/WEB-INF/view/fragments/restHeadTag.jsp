@@ -31,34 +31,34 @@
     <script type="text/javascript" src="webjars/noty/2.4.1/js/noty/packaged/jquery.noty.packaged.min.js" defer></script>
     <script type="text/javascript" src="webjars/datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js" defer></script>
 
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/datepicker.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/datetimepicker.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/scripts.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/datepicker.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/datetimepicker.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/scripts.js" defer></script>
 
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/dataDays.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/dataDaysEnh.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/dataHours.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/jquery.cookie.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/jquery.fn.gantt.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/dataDays.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/dataDaysEnh.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/dataHours.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/jquery.cookie.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/jquery.fn.gantt.js" defer></script>
 
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/aptTypesDatatable.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/hotelsDatatable.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/regionsDatatable.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/superBookingsDatatable.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/usersDatatable.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/votesDatatable.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/aptTypesDatatable.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/hotelsDatatable.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/regionsDatatable.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/superBookingsDatatable.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/usersDatatable.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/votesDatatable.js" defer></script>
 
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/apartmentsDatatable.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/hotelChart.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/hotelSuperBookingsDatatable.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/hotelVotesDatatable.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/apartmentsDatatable.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/hotelChart.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/hotelSuperBookingsDatatable.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/hotelVotesDatatable.js" defer></script>
 
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user/userHotelsDatatable.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user/userSuperBookingsDatatable.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user/userVotesDatatable.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user/userHotelsDatatable.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user/userSuperBookingsDatatable.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user/userVotesDatatable.js" defer></script>
 
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/cross_role/bookingsDatatable.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/cross_role/bookingsDatatable.js" defer></script>
 
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/datatablesUtil.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/datatablesUtil.js" defer></script>
 
 </head>

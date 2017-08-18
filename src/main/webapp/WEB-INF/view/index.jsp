@@ -17,7 +17,7 @@
         </div>
 
         <div class="col-md-6">
-            <div id="custom-search-input">
+            <div id="custom-search-input" style="margin-right: -20px">
                 <div class="input-group col-md-12">
                     <form method = "get" id="search_form" action="search">
                         <input type="text" class="search-query form-control"

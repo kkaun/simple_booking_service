@@ -766,7 +766,6 @@ INSERT INTO user_role (user_id, role) VALUES
   (100001, 'ROLE_USER'),
   (100002, 'ROLE_USER'),
   (100003, 'ROLE_MANAGER'),
-  (100004, 'ROLE_USER'),
   (100004, 'ROLE_ADMIN');
 
 

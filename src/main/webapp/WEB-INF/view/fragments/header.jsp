@@ -3,6 +3,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <jsp:include page="jspHeadTag.jsp"/>
@@ -30,22 +31,32 @@
                 <jsp:include page="langSwitch.jsp"/>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <sec:authorize access="isAuthenticated()">
-                            <sec:authorize access="hasAuthority('ROLE_ADMIN')">
-                                <a class="btn navbar-btn btn-danger" href="administrate"><spring:message code="common.admin"/></a>
-                            </sec:authorize>
-                            <sec:authorize access="hasAuthority('ROLE_MANAGER')">
-                                <a class="btn navbar-btn btn-danger" href="manage"><spring:message code="common.manager"/></a>
-                            </sec:authorize>
+                    <sec:authorize access="isAuthenticated()">
+                        <sec:authorize access="hasAuthority('ROLE_ADMIN')">
+                            <li style="margin-left: 10px;">
+                                <form>
+                                    <a class="btn navbar-btn btn-danger" href="administrate" style="border-radius: 15px">
+                                        <spring:message code="common.admin"/></a>
+                                </form>
+                            </li>
                         </sec:authorize>
-                    </li>
-                    <li>
+                        <sec:authorize access="hasAuthority('ROLE_MANAGER')">
+                            <li style="margin-left: 10px;">
+                                <form>
+                                    <a class="btn navbar-btn btn-danger" href="manage" style="border-radius: 15px">
+                                        <spring:message code="common.manager"/></a>
+                                </form>
+                            </li>
+                        </sec:authorize>
+                    </sec:authorize>
+                    <li style="margin-left: 10px;">
                         <form:form class="navbar-form" action="logout" method="post">
                             <sec:authorize access="isAuthenticated()">
-                                <a class="btn btn-info" href="profile"><sec:authentication
-                                        property="principal.userTo.name"/>
-                                    <spring:message code="app.profile"/></a>
+                                <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/profile'}">
+                                    <a class="btn btn-info" href="profile" style="border-bottom-left-radius: 15px; border-top-left-radius: 15px;">
+                                        <sec:authentication property="principal.userTo.name"/>
+                                        <spring:message code="app.profile"/></a>
+                                </c:if>
                                 <button class="btn btn-default" type="submit">
                                     <spring:message code="common.logout"/>
                                     <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
@@ -55,26 +66,28 @@
                     </li>
                 </ul>
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li style="margin-left: 10px;">
-                        <form>
-                        <a href="new_object" class="btn btn-warning navbar-btn" style="border-radius: 12px">
-                            <spring:message code="common.listobject"/></a>
-                        </form>
-                    </li>
-                    <li style="margin-left: 10px;">
-                        <form>
-                        <a href="register" class="btn btn-success navbar-btn" style="border-radius: 12px">
-                            <spring:message code="common.register"/></a>
-                        </form>
-                    <li>
-                    <li style="margin-left: 10px;">
-                        <form>
-                        <a href="login" class="btn btn-primary navbar-btn" style="border-radius: 12px">
-                            <spring:message code="common.login_as"/></a>
-                        </form>
-                    </li>
-                </ul>
+                <sec:authorize access="isAnonymous()">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li style="margin-left: 10px;">
+                            <form>
+                                <a href="new_object" class="btn btn-warning navbar-btn" style="border-radius: 15px">
+                                    <spring:message code="common.listobject"/></a>
+                            </form>
+                        </li>
+                        <li style="margin-left: 10px;">
+                            <form>
+                                <a href="register" class="btn btn-success navbar-btn" style="border-radius: 15px">
+                                    <spring:message code="common.register"/></a>
+                            </form>
+                        <li>
+                        <li style="margin-left: 10px;">
+                            <form>
+                                <a href="login" class="btn btn-primary navbar-btn" style="border-radius: 15px">
+                                    <spring:message code="common.login_as"/></a>
+                            </form>
+                        </li>
+                    </ul>
+                </sec:authorize>
 
             </div>
         </nav>

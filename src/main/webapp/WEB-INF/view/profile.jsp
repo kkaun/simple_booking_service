@@ -52,7 +52,7 @@
     <div class="row">
 
         <sec:authorize access="isAuthenticated()">
-            <sec:authorize access="hasAuthority('ROLE_USER')">
+            <sec:authorize access="hasRole('ROLE_USER')">
 
                 <div class="col-md-12">
                     <div class="panel panel-default">
@@ -134,11 +134,11 @@
             </sec:authorize>
         </sec:authorize>
 
+        <jsp:include page="fragments/userEditModals.jsp"/>
+        <jsp:include page="fragments/superBookingEditModal.jsp"/>
+
     </div>
 </div>
-
-<jsp:include page="fragments/userEditModals.jsp"/>
-<jsp:include page="fragments/superBookingEditModal.jsp"/>
 
 
 </body>
