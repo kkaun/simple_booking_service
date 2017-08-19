@@ -15,7 +15,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * Created by Kir on 19.08.2017.
  */
 
-@Component("sessionPlacementsService")
+@Component("managerObjectService")
 @Service
 public class ManagerObjectServiceImpl implements ManagerObjectService {
 

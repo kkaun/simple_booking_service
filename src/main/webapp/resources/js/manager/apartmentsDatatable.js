@@ -2,7 +2,7 @@
  * Created by Кира on 15.08.2017.
  */
 
-var ajaxUrl = "/manager/apartments/";
+var ajaxUrl = "/object/apartments/";
 var datatableApi;
 
 function updateApartmentsTable() {

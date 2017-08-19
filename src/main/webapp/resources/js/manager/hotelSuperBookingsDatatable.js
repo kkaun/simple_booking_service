@@ -3,7 +3,7 @@
  */
 
 
-var ajaxUrl = "/manager/super_bookings/";
+var ajaxUrl = "/object/super_bookings/";
 var datatableApi;
 
 function updateManagerSBTableByDatesAdded() {

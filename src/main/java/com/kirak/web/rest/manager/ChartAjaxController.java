@@ -1,10 +1,9 @@
 package com.kirak.web.rest.manager;
 
-import com.kirak.service.ApartmentService;
-import com.kirak.service.BookingService;
-import com.kirak.service.SuperBookingService;
+import com.kirak.service.*;
 import com.kirak.to.booking.ChartTo;
 import com.kirak.web.abstr.BookingAbstractController;
+import com.kirak.web.abstr.ManagerObjectAbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -16,13 +15,13 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/manager/chart")
-public class ChartAjaxController extends BookingAbstractController{
+@RequestMapping("/object/chart")
+public class ChartAjaxController extends ManagerObjectAbstractController{
 
-    @Autowired
-    protected ChartAjaxController(BookingService bookingService, SuperBookingService superBookingService,
-                                  ApartmentService apartmentService) {
-        super(bookingService, superBookingService, apartmentService);
+    public ChartAjaxController(ApartmentService apartmentService, AptTypeService aptTypeService, HotelService hotelService,
+                               BookingService bookingService, SuperBookingService superBookingService,
+                               VoteService voteService, ManagerObjectService managerObjectService) {
+        super(apartmentService, aptTypeService, hotelService, bookingService, superBookingService, voteService, managerObjectService);
     }
 
     @Override

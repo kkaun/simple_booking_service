@@ -1,13 +1,12 @@
 package com.kirak.web.rest.manager;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.kirak.service.ApartmentService;
-import com.kirak.service.BookingService;
-import com.kirak.service.SuperBookingService;
+import com.kirak.service.*;
 import com.kirak.to.booking.BookingTo;
 import com.kirak.to.booking.ManagerSuperBookingTo;
 import com.kirak.web.View;
 import com.kirak.web.abstr.BookingAbstractController;
+import com.kirak.web.abstr.ManagerObjectAbstractController;
 import org.omg.CORBA.INTERNAL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -22,18 +21,18 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/manager/super_bookings")
-public class HotelSuperBookingsAjaxController extends BookingAbstractController {
+@RequestMapping("/object/super_bookings")
+public class HotelSuperBookingsAjaxController extends ManagerObjectAbstractController {
 
-    @Autowired
-    protected HotelSuperBookingsAjaxController(BookingService bookingService, SuperBookingService superBookingService,
-                                               ApartmentService apartmentService) {
-        super(bookingService, superBookingService, apartmentService);
+    public HotelSuperBookingsAjaxController(ApartmentService apartmentService, AptTypeService aptTypeService, HotelService hotelService,
+                                            BookingService bookingService, SuperBookingService superBookingService,
+                                            VoteService voteService, ManagerObjectService managerObjectService) {
+        super(apartmentService, aptTypeService, hotelService, bookingService, superBookingService, voteService, managerObjectService);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateSuperBookingByManager(@Valid ManagerSuperBookingTo managerSuperBookingTo) {
-        super.updateSuperBooking(managerSuperBookingTo);
+        super.updateManagerObjectBooking(managerSuperBookingTo);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

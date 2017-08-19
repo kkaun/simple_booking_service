@@ -2,7 +2,7 @@
  * Created by Кира on 15.08.2017.
  */
 
-var ajaxUrl = "/manager/chart/";
+var ajaxUrl = "/object/chart/";
 
 $("#ganttTable").gantt({
     source: ajaxUrl,

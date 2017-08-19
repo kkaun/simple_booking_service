@@ -58,11 +58,7 @@ public abstract class VoteAbstractController {
         return new ArrayList<>(hotelService.get(hotelId).getVotes());
     }
 
-    public List<Vote> getHotelVotesForManager(){
-        LOG.info("Getting all hotel votes");
-        return new ArrayList<>(voteService.getAll().stream().filter(vote ->
-                Objects.equals(vote.getHotel().getManager().getId(), AuthorizedUser.getId())).collect(Collectors.toList()));
-    }
+
 
     public List<Vote> getVotesByUser(int userId){
         LOG.info("Getting all user's votes");

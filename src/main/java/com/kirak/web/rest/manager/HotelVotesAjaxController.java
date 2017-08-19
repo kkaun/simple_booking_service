@@ -2,10 +2,9 @@ package com.kirak.web.rest.manager;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.kirak.model.Vote;
-import com.kirak.service.HotelService;
-import com.kirak.service.UserService;
-import com.kirak.service.VoteService;
+import com.kirak.service.*;
 import com.kirak.web.View;
+import com.kirak.web.abstr.ManagerObjectAbstractController;
 import com.kirak.web.abstr.VoteAbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,12 +18,13 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/manager/hotel_votes")
-public class HotelVotesAjaxController extends VoteAbstractController{
+@RequestMapping("/object/hotel_votes")
+public class HotelVotesAjaxController extends ManagerObjectAbstractController{
 
-    @Autowired
-    public HotelVotesAjaxController(VoteService voteService, HotelService hotelService) {
-        super(voteService, hotelService);
+    public HotelVotesAjaxController(ApartmentService apartmentService, AptTypeService aptTypeService, HotelService hotelService,
+                                    BookingService bookingService, SuperBookingService superBookingService,
+                                    VoteService voteService, ManagerObjectService managerObjectService) {
+        super(apartmentService, aptTypeService, hotelService, bookingService, superBookingService, voteService, managerObjectService);
     }
 
     @Override

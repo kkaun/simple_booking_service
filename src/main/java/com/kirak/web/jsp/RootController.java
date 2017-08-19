@@ -13,7 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
@@ -44,10 +46,11 @@ public class RootController extends UserAbstractController {
         return "/admin_panel";
     }
 
+
     @PreAuthorize("hasRole('ROLE_MANAGER')")
-    @GetMapping("/manage")
-    public String manager() {
-        return "/manage_objects";
+    @GetMapping("/object")
+    public String manager(@RequestParam("id") int hotelId) {
+        return "/manage_object&id=" + String.valueOf(hotelId);
     }
 
 

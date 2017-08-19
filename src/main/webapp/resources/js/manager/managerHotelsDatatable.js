@@ -18,7 +18,13 @@ $(function () {
     datatableApi = $('#hotelsDatatable').DataTable(extendsOpts({
         "columns": [
             {
-                "data": "id"
+                "data": "id",
+                "render": function (data, type, row) {
+                    if (type === 'display') {
+                        return '<a href="/object/' + data + '">' + data + '</a>';
+                    }
+                    return data;
+                }
             },
             {
                 "data": "name"

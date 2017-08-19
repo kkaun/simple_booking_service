@@ -1,12 +1,10 @@
 package com.kirak.web.rest.manager;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.kirak.service.ApartmentService;
-import com.kirak.service.AptTypeService;
-import com.kirak.service.HotelService;
+import com.kirak.service.*;
 import com.kirak.to.ApartmentTo;
 import com.kirak.web.View;
-import com.kirak.web.abstr.ApartmentAbstractController;
+import com.kirak.web.abstr.ManagerObjectAbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -19,12 +17,13 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/manager/apartments")
-public class ApartmentsAjaxController extends ApartmentAbstractController {
+@RequestMapping("/object/apartments")
+public class ApartmentsAjaxController extends ManagerObjectAbstractController{
 
-    @Autowired
-    public ApartmentsAjaxController(ApartmentService apartmentService, AptTypeService aptTypeService, HotelService hotelService) {
-        super(apartmentService, aptTypeService, hotelService);
+    public ApartmentsAjaxController(ApartmentService apartmentService, AptTypeService aptTypeService, HotelService hotelService,
+                                    BookingService bookingService, SuperBookingService superBookingService,
+                                    VoteService voteService, ManagerObjectService managerObjectService) {
+        super(apartmentService, aptTypeService, hotelService, bookingService, superBookingService, voteService, managerObjectService);
     }
 
     @PostMapping
