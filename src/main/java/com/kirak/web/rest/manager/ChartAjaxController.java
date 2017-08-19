@@ -2,9 +2,7 @@ package com.kirak.web.rest.manager;
 
 import com.kirak.service.*;
 import com.kirak.to.booking.ChartTo;
-import com.kirak.web.abstr.BookingAbstractController;
 import com.kirak.web.abstr.ManagerObjectAbstractController;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +24,7 @@ public class ChartAjaxController extends ManagerObjectAbstractController{
 
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ChartTo> getAllChartBookingsForManager() {
-        return super.getAllChartBookingsForManager();
+    public List<ChartTo> getAllChartBookingsFromCurrentObject() {
+        return super.getAllChartBookingsFromCurrentObject();
     }
 }

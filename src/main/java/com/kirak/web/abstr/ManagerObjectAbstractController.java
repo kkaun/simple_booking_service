@@ -3,10 +3,12 @@ package com.kirak.web.abstr;
 import com.kirak.model.*;
 import com.kirak.service.*;
 import com.kirak.to.ApartmentTo;
+import com.kirak.to.ManagerObject;
 import com.kirak.to.booking.ChartTo;
 import com.kirak.to.booking.ManagerSuperBookingTo;
 import com.kirak.util.model.ApartmentUtil;
 import com.kirak.util.model.BookingUtil;
+import com.kirak.util.model.ManagerObjectUtil;
 import com.kirak.util.model.SuperBookingUtil;
 import com.kirak.web.session.AuthorizedUser;
 import org.slf4j.Logger;
@@ -44,6 +46,8 @@ public abstract class ManagerObjectAbstractController {
 
     private final ManagerObjectService managerObjectService;
 
+
+
     @Autowired
     public ManagerObjectAbstractController(ApartmentService apartmentService, AptTypeService aptTypeService, HotelService hotelService,
                                            BookingService bookingService, SuperBookingService superBookingService,
@@ -63,48 +67,66 @@ public abstract class ManagerObjectAbstractController {
 
     public void updateManagerObjectBooking(ManagerSuperBookingTo managerSuperBookingTo){
         LOG.info("Saving Super Booking {}", managerSuperBookingTo);
+
+
         superBookingService.update(managerSuperBookingTo);
     }
 
 
-    public ManagerSuperBookingTo getManagerSuperBooking(int id){
+    public ManagerSuperBookingTo getObjectSuperBooking(int id){
         LOG.info("Saving Super Booking {}", id);
         SuperBooking superBooking = superBookingService.get(id);
         return asManagerSuperBookingTo(superBooking, getSuperBookingInDate(superBooking), getSuperBookingOutDate(superBooking));
     }
 
-    public List<ManagerSuperBookingTo> getAllSuperBookingsForManager(){
+    public List<ManagerSuperBookingTo> getAllSuperBookingsFromCurrentObject(){
         LOG.info("Getting all Super Bookings {}");
-        return SuperBookingUtil.generateManagerSuperBookingTos(superBookingService.getAll(), AuthorizedUser.getId());
+        Integer hotelManagerId = AuthorizedUser.getId();
+        ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
+                managerObjectService.getManagerObjects());
+        return managerObject.getObjectManagerSuperBookingTos();
     }
 
-    public List<ManagerSuperBookingTo> getSuperBookingsByUserIdForManager(Integer userId){
+    public List<ManagerSuperBookingTo> getSuperBookingsFromCurrentObject(Integer userId){
         LOG.info("Getting all Super Bookings by user {}", userId);
-        return userId != null ? SuperBookingUtil.generateManagerSuperBookingTos(
-                superBookingService.getAllByUserId(userId), AuthorizedUser.getId())
-                : SuperBookingUtil.generateManagerSuperBookingTos(superBookingService.getAll(), AuthorizedUser.getId());
+        Integer hotelManagerId = AuthorizedUser.getId();
+        ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
+                managerObjectService.getManagerObjects());
+        List<SuperBooking> superBookings = userId != null ? superBookingService.getAllByUserId(userId) : superBookingService.getAll();
+        return SuperBookingUtil.getObjectManagerSuperBookingTos(superBookings, managerObject, hotelManagerId);
     }
 
-    public List<ManagerSuperBookingTo> getSuperBookingsBetweenDatesForManager(LocalDate startDate, LocalDate endDate) {
+    public List<ManagerSuperBookingTo> getSuperBookingsBetweenDatesFromCurrentObject(LocalDate startDate, LocalDate endDate) {
         LOG.info("Getting all Super Bookings between dates {}", startDate, endDate);
-        return SuperBookingUtil.generateManagerSuperBookingTos(superBookingService.getAllBetweenCreatedDates(
+        Integer hotelManagerId = AuthorizedUser.getId();
+        ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
+                managerObjectService.getManagerObjects());
+        List<SuperBooking> superBookings = superBookingService.getAllBetweenCreatedDates(
                 startDate != null ? startDate : LocalDate.MIN,
-                endDate != null ? endDate : LocalDate.MAX),
-                AuthorizedUser.getId());
+                endDate != null ? endDate : LocalDate.MAX);
+        return SuperBookingUtil.getObjectManagerSuperBookingTos(superBookings, managerObject, hotelManagerId);
     }
 
-    public List<ManagerSuperBookingTo> getSuperBookingsByInDateForManager(LocalDate inDate){
+    public List<ManagerSuperBookingTo> getSuperBookingsByInDateFromCurrentObject(LocalDate inDate){
         LOG.info("Getting all Super Bookings by in date {}", inDate);
-        return inDate != null ? SuperBookingUtil.generateManagerSuperBookingTos(SuperBookingUtil
-                .getAllSuperBookingsByOutDate(superBookingService.getAll(), inDate), AuthorizedUser.getId())
-                : SuperBookingUtil.generateManagerSuperBookingTos(superBookingService.getAll(), AuthorizedUser.getId());
+        Integer hotelManagerId = AuthorizedUser.getId();
+        ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
+                managerObjectService.getManagerObjects());
+        List<SuperBooking> superBookings = inDate != null ?
+                SuperBookingUtil.getAllSuperBookingsByInDate(superBookingService.getAll(), inDate)
+                : superBookingService.getAll();
+        return SuperBookingUtil.getObjectManagerSuperBookingTos(superBookings, managerObject, hotelManagerId);
     }
 
-    public List<ManagerSuperBookingTo> getSuperBookingsByOutDateForManager(LocalDate outDate){
+    public List<ManagerSuperBookingTo> getSuperBookingsByOutDateFromCurrentObject(LocalDate outDate){
         LOG.info("Getting all Super Bookings by out date {}", outDate);
-        return outDate != null ? SuperBookingUtil.generateManagerSuperBookingTos(SuperBookingUtil
-                .getAllSuperBookingsByOutDate(superBookingService.getAll(), outDate), AuthorizedUser.getId())
-                : SuperBookingUtil.generateManagerSuperBookingTos(superBookingService.getAll(), AuthorizedUser.getId());
+        Integer hotelManagerId = AuthorizedUser.getId();
+        ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
+                managerObjectService.getManagerObjects());
+        List<SuperBooking> superBookings = outDate != null ?
+                SuperBookingUtil.getAllSuperBookingsByOutDate(superBookingService.getAll(), outDate)
+                : superBookingService.getAll();
+        return SuperBookingUtil.getObjectManagerSuperBookingTos(superBookings, managerObject, hotelManagerId);
     }
 
 
@@ -130,10 +152,12 @@ public abstract class ManagerObjectAbstractController {
         return ApartmentUtil.asApartmentTo(apartmentService.get(id));
     }
 
-    public List<ApartmentTo> getAllForHotelManager(){
+    public List<ApartmentTo> getAllApartmentsFromCurrentObject(){
+        LOG.info("Getting all apartments from current object");
         Integer hotelManagerId = AuthorizedUser.getId();
-        LOG.info("Getting all apartments for hotel manager {}", hotelManagerId);
-        return ApartmentUtil.getApartmentTosForHotelManager(apartmentService.getAll(), hotelManagerId);
+        ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
+                managerObjectService.getManagerObjects());
+        return managerObject.getObjectApartmentTos();
     }
 
 
@@ -144,12 +168,13 @@ public abstract class ManagerObjectAbstractController {
 
 
 
-    public List<Vote> getHotelVotesForManager(){
-        LOG.info("Getting all hotel votes");
-        return new ArrayList<>(voteService.getAll().stream().filter(vote ->
-                Objects.equals(vote.getHotel().getManager().getId(), AuthorizedUser.getId())).collect(Collectors.toList()));
+    public List<Vote> getHotelVotesFromCurrentObject(){
+        LOG.info("Getting all current object votes");
+        Integer hotelManagerId = AuthorizedUser.getId();
+        ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
+                managerObjectService.getManagerObjects());
+        return managerObject.getObjectVotes();
     }
-
 
 
 
@@ -157,16 +182,11 @@ public abstract class ManagerObjectAbstractController {
 
 
 
-    public List<ChartTo> getAllChartBookingsForManager() {
+    public List<ChartTo> getAllChartBookingsFromCurrentObject() {
         Integer hotelManagerId = AuthorizedUser.getId();
         LOG.info("Getting all apartments for hotel manager {}", hotelManagerId);
-        List<Booking> activeHotelBookings = bookingService.getAll().stream()
-                .filter(booking -> Objects.equals(booking.getHotel().getManager().getId(), hotelManagerId))
-                .filter(booking -> booking.getSuperBooking().isActive())
-                .collect(Collectors.toList());
-        List<Apartment> hotelApartments = apartmentService.getAll().stream()
-                .filter(apartment -> Objects.equals(apartment.getHotel().getManager().getId(), hotelManagerId))
-                .collect(Collectors.toList());
-        return BookingUtil.getChartBookingsForManager(hotelApartments, activeHotelBookings);
+        ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
+                managerObjectService.getManagerObjects());
+        return managerObject.getObjectChartTos();
     }
 }

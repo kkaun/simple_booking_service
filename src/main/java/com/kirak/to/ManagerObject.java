@@ -18,6 +18,8 @@ public class ManagerObject implements Serializable {
 
     private Integer id;
 
+    private Integer managerId;
+
     private List<ApartmentTo> objectApartmentTos;
 
     private List<ManagerSuperBookingTo> objectManagerSuperBookingTos;
@@ -26,11 +28,13 @@ public class ManagerObject implements Serializable {
 
     private List<Vote> objectVotes;
 
-    public ManagerObject(List<ApartmentTo> objectApartmentTos,
+    public ManagerObject(Integer managerId,
+                         List<ApartmentTo> objectApartmentTos,
                          List<ManagerSuperBookingTo> objectManagerSuperBookingTos,
                          List<ChartTo> objectChartTos,
                          List<Vote> objectVotes) {
         this.id = SessionObjectsIdGenerator.getNewId();
+        this.managerId = managerId;
         this.objectApartmentTos = objectApartmentTos;
         this.objectManagerSuperBookingTos = objectManagerSuperBookingTos;
         this.objectChartTos = objectChartTos;
@@ -77,10 +81,19 @@ public class ManagerObject implements Serializable {
         this.objectVotes = objectVotes;
     }
 
+    public Integer getManagerId() {
+        return managerId;
+    }
+
+    public void setManagerId(Integer managerId) {
+        this.managerId = managerId;
+    }
+
     @Override
     public String toString() {
         return "ManagerObject{" +
                 "id=" + id +
+                ", managerId=" + managerId +
                 ", objectApartmentTos=" + objectApartmentTos +
                 ", objectManagerSuperBookingTos=" + objectManagerSuperBookingTos +
                 ", objectChartTos=" + objectChartTos +

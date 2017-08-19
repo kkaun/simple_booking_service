@@ -22,6 +22,8 @@ public class ManagerSuperBookingTo extends BasicIntTo implements Serializable {
 
     private final Short apartmentsNum;
 
+    private final Integer userId;
+
     private final String userName;
 
     private final String userEmail;
@@ -34,6 +36,7 @@ public class ManagerSuperBookingTo extends BasicIntTo implements Serializable {
                                  @JsonProperty("inDate") LocalDate inDate,
                                  @JsonProperty("outDate") LocalDate outDate,
                                  @JsonProperty("apartmentsNum") Short apartmentsNum,
+                                 @JsonProperty("userId") Integer userId,
                                  @JsonProperty("userName") String userName,
                                  @JsonProperty("userEmail") String userEmail,
                                  @JsonProperty("userPhone") String userPhone) {
@@ -43,6 +46,7 @@ public class ManagerSuperBookingTo extends BasicIntTo implements Serializable {
         this.inDate = inDate;
         this.outDate = outDate;
         this.apartmentsNum = apartmentsNum;
+        this.userId = userId;
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPhone = userPhone;
@@ -80,6 +84,10 @@ public class ManagerSuperBookingTo extends BasicIntTo implements Serializable {
         return userPhone;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
     @Override
     public String toString() {
         return "ManagerSuperBookingTo{" +
@@ -89,6 +97,7 @@ public class ManagerSuperBookingTo extends BasicIntTo implements Serializable {
                 ", inDate=" + inDate +
                 ", outDate=" + outDate +
                 ", apartmentsNum=" + apartmentsNum +
+                ", userId=" + userId +
                 ", userName='" + userName + '\'' +
                 ", userEmail='" + userEmail + '\'' +
                 ", userPhone='" + userPhone + '\'' +

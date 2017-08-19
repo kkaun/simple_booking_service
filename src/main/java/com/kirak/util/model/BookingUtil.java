@@ -89,14 +89,14 @@ public class BookingUtil {
 
     // ------------------------------- Chart TO methods ----------------------------------- //
 
-    public static List<ChartTo> getChartBookingsForManager(List<Apartment> hotelApartments,
-                                                            List<Booking> activeHotelBookings) {
+    public static List<ChartTo> getChartBookingsFromObject(List<Apartment> objectApartments,
+                                                           List<Booking> activeHotelBookings) {
 
         Map<Apartment, List<Booking>> apartmentsWithOwnBookings = new HashMap<>();
 
         List<ChartTo> chartBookingTos = new ArrayList<>();
 
-        hotelApartments.forEach(apartment -> {
+        objectApartments.forEach(apartment -> {
             List<Booking> ownBookings = new ArrayList<>();
             activeHotelBookings.forEach(booking -> {
                 if(booking.getApartment().equals(apartment))

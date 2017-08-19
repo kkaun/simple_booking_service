@@ -2,9 +2,12 @@ package com.kirak.util.model;
 
 import com.kirak.model.Booking;
 import com.kirak.model.SuperBooking;
+import com.kirak.to.ManagerObject;
 import com.kirak.to.booking.AdminSuperBookingTo;
 import com.kirak.to.booking.ManagerSuperBookingTo;
 import com.kirak.to.booking.UserSuperBookingTo;
+import com.kirak.web.session.AuthorizedUser;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Comparator;
@@ -27,7 +30,7 @@ public class SuperBookingUtil {
     public static ManagerSuperBookingTo asManagerSuperBookingTo(SuperBooking superBooking, LocalDate inDate, LocalDate outDate){
 
         return new ManagerSuperBookingTo(superBooking.getId(), superBooking.isActive(), superBooking.getDateAdded(),
-                inDate, outDate, (short)superBooking.getBookings().size(),
+                inDate, outDate, (short)superBooking.getBookings().size(), superBooking.getUser().getId(),
                 superBooking.getUser().getName(), superBooking.getUser().getEmail(), superBooking.getUser().getPhone());
     }
 
@@ -53,6 +56,17 @@ public class SuperBookingUtil {
         }
         return superBooking;
     }
+
+
+    public static List<ManagerSuperBookingTo> getObjectManagerSuperBookingTos(List<SuperBooking> superBookings,
+                                                                       ManagerObject managerObject, int managerId) {
+
+        List<ManagerSuperBookingTo> managerSuperBookingTos = generateManagerSuperBookingTos(superBookings, managerId);
+
+        return managerSuperBookingTos.stream().filter(managerSuperBookingTo ->
+                managerObject.getObjectManagerSuperBookingTos().contains(managerSuperBookingTo)).collect(Collectors.toList());
+    }
+
 
     public static LocalDate getSuperBookingInDate(SuperBooking superBooking){
 

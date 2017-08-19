@@ -49,13 +49,13 @@ public class ApartmentUtil {
         return apartment;
     }
 
-    public static List<ApartmentTo> getApartmentTosForHotelManager(List<Apartment> apartments, int hotelManagerId){
-
-        List<Apartment> hotelApartments = apartments.stream()
-                .filter(apartment -> Objects.equals(apartment.getHotel().getManager().getId(), hotelManagerId))
-                .collect(Collectors.toList());
-        return ApartmentUtil.getApartmentTos(hotelApartments);
-    }
+//    public static List<ApartmentTo> getApartmentTosForHotelManager(List<Apartment> apartments, int hotelManagerId){
+//
+//        List<Apartment> hotelApartments = apartments.stream()
+//                .filter(apartment -> Objects.equals(apartment.getHotel().getManager().getId(), hotelManagerId))
+//                .collect(Collectors.toList());
+//        return ApartmentUtil.getApartmentTos(hotelApartments);
+//    }
 
 
 
