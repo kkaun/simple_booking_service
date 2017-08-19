@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.kirak.service.CityService;
 import com.kirak.service.CountryService;
 import com.kirak.service.HotelService;
+import com.kirak.service.UserService;
 import com.kirak.to.HotelTo;
 import com.kirak.util.model.HotelUtil;
 import com.kirak.web.View;
@@ -24,6 +25,9 @@ import java.util.List;
 public class HotelsAjaxController extends HotelAbstractController {
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     public HotelsAjaxController(HotelService hotelService, CountryService countryService, CityService cityService) {
         super(hotelService, countryService, cityService);
     }
@@ -31,7 +35,8 @@ public class HotelsAjaxController extends HotelAbstractController {
     @PostMapping
     public void createOrUpdate(@Valid HotelTo hotelTo) {
         if (hotelTo.isNew()) {
-            super.create(HotelUtil.createNewFromTo(hotelTo, super.getAllCountries(), super.getAllCities()));
+            super.create(HotelUtil.createNewFromTo(hotelTo, super.getAllCountries(), super.getAllCities(),
+                    userService.get(hotelTo.getManagerId())));
         } else {
             super.update(hotelTo, hotelTo.getId());
         }

@@ -5,10 +5,6 @@
 var ajaxUrl = "/admin/votes/";
 var datatableApi;
 
-function updateVotesTable() {
-    $.get(ajaxUrl, updateTableByData);
-}
-
 $(function () {
     datatableApi = $('#votesDatatable').DataTable(extendsOpts({
         "columns": [

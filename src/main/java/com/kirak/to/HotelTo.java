@@ -16,6 +16,8 @@ public class HotelTo extends BasicIntTo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private final Integer managerId;
+
     private final String name;
 
     private final Double rating;
@@ -41,6 +43,7 @@ public class HotelTo extends BasicIntTo implements Serializable {
     private final String countryName;
 
     public HotelTo(@JsonProperty("id") Integer id,
+                   @JsonProperty("managerId") Integer managerId,
                    @JsonProperty("name") String name,
                    @JsonProperty("rating") Double rating,
                    @JsonProperty("stars") Short stars,
@@ -54,6 +57,7 @@ public class HotelTo extends BasicIntTo implements Serializable {
                    @JsonProperty("cityName") String cityName,
                    @JsonProperty("countryName") String countryName) {
         super(id);
+        this.managerId = managerId;
         this.name = name;
         this.rating = rating;
         this.stars = stars;
@@ -116,10 +120,15 @@ public class HotelTo extends BasicIntTo implements Serializable {
         return cityId;
     }
 
+    public Integer getManagerId() {
+        return managerId;
+    }
+
     @Override
     public String toString() {
         return "HotelTo{" +
                 "id=" + id +
+                ", managerId=" + managerId +
                 ", name='" + name + '\'' +
                 ", rating=" + rating +
                 ", stars=" + stars +

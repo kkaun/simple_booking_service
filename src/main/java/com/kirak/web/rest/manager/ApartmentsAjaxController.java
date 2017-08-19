@@ -5,6 +5,7 @@ import com.kirak.service.*;
 import com.kirak.to.ApartmentTo;
 import com.kirak.web.View;
 import com.kirak.web.abstr.ManagerObjectAbstractController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +20,7 @@ import java.util.List;
 @RequestMapping("/object/apartments")
 public class ApartmentsAjaxController extends ManagerObjectAbstractController{
 
+    @Autowired
     public ApartmentsAjaxController(ApartmentService apartmentService, AptTypeService aptTypeService, HotelService hotelService,
                                     BookingService bookingService, SuperBookingService superBookingService,
                                     VoteService voteService, ManagerObjectService managerObjectService) {

@@ -14,11 +14,11 @@ import java.util.stream.IntStream;
  */
 public class HotelUtil {
 
-    public static Hotel createNewFromTo(HotelTo newHotel, List<Country> countries, List<City> cities) {
+    public static Hotel createNewFromTo(HotelTo newHotel, List<Country> countries, List<City> cities, User manager) {
         return new Hotel(newHotel.getId(), newHotel.getName(), newHotel.getStars(),
                 RegionUtil.findCountryByName(countries, newHotel.getCountryName()),
                 RegionUtil.findCityByName(cities, newHotel.getCityName(), newHotel.getCountryName()), newHotel.getAddress(),
-                newHotel.getPhone(), newHotel.getDescription(), newHotel.getCheckIn(), newHotel.getCheckOut());
+                newHotel.getPhone(), newHotel.getDescription(), newHotel.getCheckIn(), newHotel.getCheckOut(), manager);
     }
 
     public static Hotel updateFromTo(Hotel hotel, HotelTo hotelTo) {
@@ -33,9 +33,9 @@ public class HotelUtil {
     }
 
     public static HotelTo asHotelTo(Hotel hotel) {
-        return new HotelTo(hotel.getId(), hotel.getName(), calculateHotelRating(hotel), hotel.getStars(),
-                hotel.getDescription(), calculateHotelVotesNum(hotel), hotel.getCheckIn(),
-                hotel.getCheckOut(), hotel.getAddress(), hotel.getPhone(), hotel.getCity().getId(), hotel.getCity().getName(), hotel.getCountry().getName());
+        return new HotelTo(hotel.getId(), hotel.getManager().getId(), hotel.getName(), calculateHotelRating(hotel), hotel.getStars(),
+                hotel.getDescription(), calculateHotelVotesNum(hotel), hotel.getCheckIn(), hotel.getCheckOut(),
+                hotel.getAddress(), hotel.getPhone(), hotel.getCity().getId(), hotel.getCity().getName(), hotel.getCountry().getName());
     }
 
 

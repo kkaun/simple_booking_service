@@ -35,7 +35,7 @@ $(function () {
                 "orderable": false
             },
             {
-                "render": renderDeleteBtn,
+                "render": renderAptTypeDeleteBtn,
                 "defaultContent": "",
                 "orderable": false
             }

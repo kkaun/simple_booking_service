@@ -2,6 +2,7 @@ package com.kirak.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kirak.model.abstraction.NamedEntity;
+import com.kirak.web.session.AuthorizedUser;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
@@ -101,12 +102,12 @@ public class Hotel extends NamedEntity {
 
     public Hotel(Hotel h) {
         this(h.getId(), h.getName(), h.getStars(), h.getCountry(), h.getCity(), h.getAddress(),
-                h.getPhone(), h.getDescription(), h.getCheckIn(), h.getCheckOut(), h.getVotes());
+                h.getPhone(), h.getDescription(), h.getCheckIn(), h.getCheckOut(), h.getVotes(), h.getManager());
     }
 
 
     public Hotel(Integer id, String name, Short stars, Country country, City city, String address,
-                 String phone, String description, Time checkIn, Time checkOut, Set<Vote> votes) {
+                 String phone, String description, Time checkIn, Time checkOut, Set<Vote> votes, User manager) {
         super(id, name);
         this.stars = stars;
         this.country = country;
@@ -117,6 +118,7 @@ public class Hotel extends NamedEntity {
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.votes = votes;
+        this.manager = manager;
     }
 
     public Hotel(Integer id, String name, Short stars, String description) {
@@ -126,7 +128,7 @@ public class Hotel extends NamedEntity {
     }
 
     public Hotel(Integer id, String name, Short stars, Country country, City city, String address,
-                 String phone, String description, Time checkIn, Time checkOut) {
+                 String phone, String description, Time checkIn, Time checkOut, User manager) {
         super(id, name);
         this.stars = stars;
         this.country = country;
@@ -136,6 +138,7 @@ public class Hotel extends NamedEntity {
         this.description = description;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
+        this.manager = manager;
     }
 
     public Country getCountry() {

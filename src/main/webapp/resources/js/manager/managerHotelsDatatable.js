@@ -15,16 +15,10 @@ function updateManagerHotelsTable() {
 }
 
 $(function () {
-    datatableApi = $('#hotelsDatatable').DataTable(extendsOpts({
+    datatableApi = $('#managerHotelsDatatable').DataTable(extendsOpts({
         "columns": [
             {
-                "data": "id",
-                "render": function (data, type, row) {
-                    if (type === 'display') {
-                        return '<a href="/object/' + data + '">' + data + '</a>';
-                    }
-                    return data;
-                }
+                "data": "id"
             },
             {
                 "data": "name"
@@ -54,12 +48,7 @@ $(function () {
                 "data": "countryName"
             },
             {
-                "render": renderHotelEditBtn,
-                "defaultContent": "",
-                "orderable": false
-            },
-            {
-                "render": renderDeleteBtn,
+                "render": renderManagerHotelEditBtn,
                 "defaultContent": "",
                 "orderable": false
             }

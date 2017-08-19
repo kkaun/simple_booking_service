@@ -43,7 +43,7 @@ $(function () {
                 "orderable": false
             },
             {
-                "render": renderDeleteBtn,
+                "render": renderRegionDeleteBtn,
                 "defaultContent": "",
                 "orderable": false
             }

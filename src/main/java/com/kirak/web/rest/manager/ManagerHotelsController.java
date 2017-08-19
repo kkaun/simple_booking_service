@@ -5,13 +5,14 @@ import com.kirak.model.Hotel;
 import com.kirak.service.CityService;
 import com.kirak.service.CountryService;
 import com.kirak.service.HotelService;
+import com.kirak.service.UserService;
 import com.kirak.to.HotelTo;
 import com.kirak.util.model.HotelUtil;
 import com.kirak.web.View;
 import com.kirak.web.abstr.HotelAbstractController;
+import com.kirak.web.session.AuthorizedUser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -25,6 +26,10 @@ import java.util.List;
 @RequestMapping("/manager/objects")
 public class ManagerHotelsController extends HotelAbstractController {
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
     public ManagerHotelsController(HotelService hotelService, CountryService countryService, CityService cityService) {
         super(hotelService, countryService, cityService);
     }
@@ -32,7 +37,8 @@ public class ManagerHotelsController extends HotelAbstractController {
     @PostMapping
     public void createOrUpdate(@Valid HotelTo hotelTo) {
         if (hotelTo.isNew()) {
-            super.create(HotelUtil.createNewFromTo(hotelTo, super.getAllCountries(), super.getAllCities()));
+            super.create(HotelUtil.createNewFromTo(hotelTo, super.getAllCountries(), super.getAllCities(),
+                    userService.get(AuthorizedUser.getId())));
         } else {
             super.update(hotelTo, hotelTo.getId());
         }

@@ -98,11 +98,6 @@ $(function () {
                 "render": renderSuperBookingEditBtn,
                 "defaultContent": "",
                 "orderable": false
-            },
-            {
-                "render": renderDeleteBtn,
-                "defaultContent": "",
-                "orderable": false
             }
         ],
         "order": [

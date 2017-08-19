@@ -85,11 +85,6 @@ $(function () {
                 "render": renderHotelSuperBookingsEditBtn,
                 "defaultContent": "",
                 "orderable": false
-            },
-            {
-                "render": renderDeleteBtn,
-                "defaultContent": "",
-                "orderable": false
             }
         ],
         "order": [

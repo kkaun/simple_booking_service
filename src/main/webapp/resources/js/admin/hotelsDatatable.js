@@ -72,7 +72,7 @@ $(function () {
                 "orderable": false
             },
             {
-                "render": renderDeleteBtn,
+                "render": renderHotelDeleteBtn,
                 "defaultContent": "",
                 "orderable": false
             }

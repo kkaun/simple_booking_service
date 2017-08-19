@@ -34,7 +34,7 @@ $(function () {
                 "data": "apartmentsNum"
             },
             {
-                "render": renderEditBtn,
+                "render": renderUserVoteEditBtn,
                 "defaultContent": "",
                 "orderable": false
             }

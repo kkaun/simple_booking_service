@@ -33,7 +33,7 @@ $(function () {
                 "orderable": false
             },
             {
-                "render": renderDeleteBtn,
+                "render": renderUserVoteDeleteBtn,
                 "defaultContent": "",
                 "orderable": false
             }

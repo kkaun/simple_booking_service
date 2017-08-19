@@ -11,8 +11,6 @@
 <div class="container" style="margin-top: 20px;">
     <div class="row">
 
-        List of manager's objects!!! Try to make as datatable with create function!
-
         <div class="col-md-3">
             <jsp:include page="fragments/managerSidebar.jsp"/>
         </div>
