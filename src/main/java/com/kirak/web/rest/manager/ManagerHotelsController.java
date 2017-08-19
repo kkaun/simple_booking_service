@@ -22,7 +22,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/manager/hotels")
+@RequestMapping("/manager/objects")
 public class ManagerHotelsController extends HotelAbstractController {
 
     public ManagerHotelsController(HotelService hotelService, CountryService countryService, CityService cityService) {

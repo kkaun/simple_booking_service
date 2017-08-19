@@ -47,7 +47,7 @@ public class RootController extends UserAbstractController {
     @PreAuthorize("hasRole('ROLE_MANAGER')")
     @GetMapping("/manage")
     public String manager() {
-        return "/manage_object";
+        return "/manage_objects";
     }
 
 

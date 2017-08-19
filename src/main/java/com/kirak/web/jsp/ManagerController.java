@@ -34,10 +34,10 @@ public class ManagerController {
 
 
     @PreAuthorize("hasRole('ROLE_MANAGER')")
-    @GetMapping("/manage_object")
+    @GetMapping("/manage_objects")
     public String manageObject(Model model){
         ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
                 apartmentService.getAll(), AuthorizedUser.getId());
-        return "manager";
+        return "objects";
     }
 }

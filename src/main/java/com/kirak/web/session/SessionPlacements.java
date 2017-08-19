@@ -30,6 +30,13 @@ public class SessionPlacements {
     public void setPlacements(ConcurrentHashMap<Integer, Placement> placements) {
         this.placements = placements;
     }
+
+    @Override
+    public String toString() {
+        return "SessionPlacements{" +
+                "placements=" + placements +
+                '}';
+    }
 }
 
 

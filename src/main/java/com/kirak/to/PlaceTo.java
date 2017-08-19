@@ -13,7 +13,6 @@ import java.io.Serializable;
  */
 public class PlaceTo extends BasicIntTo implements Serializable {
 
-
     private final String imgPath;
 
     private final String name;
