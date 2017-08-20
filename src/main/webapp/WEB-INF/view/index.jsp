@@ -5,7 +5,7 @@
 <%@ taglib uri="http://kirak.com.functions" prefix="f" %>
 
 <html>
-<jsp:include page="fragments/jspHeadTag.jsp"/>
+<jsp:include page="fragments/head_tags/jspHeadTag.jsp"/>
 <body>
 <jsp:include page="fragments/header.jsp"/>
 
@@ -44,7 +44,7 @@
                     </div>
                     <div id="collapse1" class="panel-collapse collapse">
                         <div class="panel-body" style="padding: 5px">
-                            <jsp:include page="fragments/primarySearchFilter.jsp"/>
+                            <jsp:include page="fragments/filters/primarySearchFilter.jsp"/>
                         </div>
                     </div>
                 </div>

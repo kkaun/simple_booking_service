@@ -9,7 +9,7 @@
 </style>
 
 <html>
-<jsp:include page="fragments/jspHeadTag.jsp"/>
+<jsp:include page="fragments/head_tags/jspHeadTag.jsp"/>
 <body>
 <jsp:include page="fragments/header.jsp"/>
 
@@ -61,7 +61,7 @@
                 </div>
             </div>
             <hr>
-            <jsp:include page="fragments/sideSearchFilter.jsp"/>
+            <jsp:include page="fragments/filters/sideSearchFilter.jsp"/>
         </div>
         </c:if>
 

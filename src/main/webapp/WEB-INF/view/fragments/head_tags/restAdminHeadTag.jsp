@@ -35,11 +35,10 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/datetimepicker.js" defer></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/scripts.js" defer></script>
 
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/dataDays.js" defer></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/dataDaysEnh.js" defer></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/dataHours.js" defer></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/jquery.cookie.js" defer></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/jquery.fn.gantt.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ajaxUtil.js" defer></script>
+
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util_dt/adminDatatablesUtil.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util_dt/crossRoleDatatablesUtil.js" defer></script>
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/aptTypesDatatable.js" defer></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/hotelsDatatable.js" defer></script>
@@ -48,17 +47,6 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/usersDatatable.js" defer></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/votesDatatable.js" defer></script>
 
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/apartmentsDatatable.js" defer></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/hotelChart.js" defer></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/hotelSuperBookingsDatatable.js" defer></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/hotelVotesDatatable.js" defer></script>
-
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user/userHotelsDatatable.js" defer></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user/userSuperBookingsDatatable.js" defer></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user/userVotesDatatable.js" defer></script>
-
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/cross_role/bookingsDatatable.js" defer></script>
-
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ajaxUtil.js" defer></script>
 
 </head>

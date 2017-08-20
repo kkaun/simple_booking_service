@@ -4,7 +4,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
-<jsp:include page="fragments/restHeadTag.jsp"/>
+<jsp:include page="fragments/head_tags/restObjectHeadTag.jsp"/>
 <body>
 <jsp:include page="fragments/header.jsp"/>
 
@@ -12,11 +12,11 @@
     <div class="row">
 
         <div class="col-md-3">
-            <jsp:include page="fragments/managerSidebar.jsp"/>
+            <jsp:include page="fragments/sidebars/managerSidebar.jsp"/>
         </div>
 
         <div class="col-md-9">
-            <jsp:include page="fragments/managerFilters.jsp"/>
+            <jsp:include page="fragments/filters/managerFilters.jsp"/>
 
             <a id="managerApartmentAddBtn" class="btn btn-primary" onclick="addApartment()">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"> Add Apartment</span>
@@ -104,10 +104,10 @@
                                     code="apt_types.bedsArrangement"/></label>
                             <div class="col-xs-9">
                                 <select class="form-control" name="stringAptType" id="apartmentType">
-                                    <c:if test="${not empty hotelApartments}">
-                                    <c:forEach items="${hotelApartments}" var="hotelApartment">
-                                        <option value="${hotelApartment.stringAptType}">${hotelApartment.stringAptType}
-                                            ; ${hotelApartment.price}0 $ / night
+                                    <c:if test="${not empty objectApartments}">
+                                    <c:forEach items="${objectApartments}" var="objectApartment">
+                                        <option value="${objectApartment.stringAptType}">${objectApartment.stringAptType}
+                                            ; ${objectApartment.price}0 $ / night
                                         </option>
                                     </c:forEach>
                                 </select>

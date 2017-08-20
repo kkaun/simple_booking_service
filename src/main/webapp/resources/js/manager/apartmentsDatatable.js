@@ -24,7 +24,7 @@ $(function () {
                 "orderable": false
             },
             {
-                "render": renderApartmentsDeleteBtn,
+                "render": renderApartmentDeleteBtn,
                 "defaultContent": "",
                 "orderable": false
             }

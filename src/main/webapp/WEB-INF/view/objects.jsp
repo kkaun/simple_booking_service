@@ -4,7 +4,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
-<jsp:include page="fragments/restHeadTag.jsp"/>
+<jsp:include page="fragments/head_tags/restObjectsHeadTag.jsp"/>
 <body>
 <jsp:include page="fragments/header.jsp"/>
 
@@ -12,10 +12,16 @@
     <div class="row">
 
         <div class="col-md-3">
-            <jsp:include page="fragments/managerSidebar.jsp"/>
+            <jsp:include page="fragments/sidebars/managerSidebar.jsp"/>
         </div>
 
         <div class="col-md-9">
+
+            <a id="adminAptTypeAddBtn" class="btn btn-primary" onclick="addManagerHotel()">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"> Add Object </span>
+                <spring:message code="common.add"/>
+            </a>
+
             <table class="table table-striped display" id="managerHotelsDatatable">
                 <thead>
                 <tr>

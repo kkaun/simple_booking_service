@@ -74,7 +74,7 @@ public class ManagerController {
         managerObjectService.addManagerObject(managerObject);
 
         ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
-                apartmentService.getAll(), AuthorizedUser.getId());
-        return "objects";
+                managerObject.getObjectApartmentTos());
+        return "object";
     }
 }

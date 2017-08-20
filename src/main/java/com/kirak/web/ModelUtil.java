@@ -2,6 +2,7 @@ package com.kirak.web;
 
 import com.kirak.model.*;
 import com.kirak.service.AptTypeService;
+import com.kirak.to.ApartmentTo;
 import com.kirak.util.model.ApartmentUtil;
 import com.kirak.util.model.AptTypeUtil;
 import com.kirak.util.model.HotelUtil;
@@ -32,13 +33,11 @@ public class ModelUtil {
     }
 
     public static void getManagerView(Model model, List<AptType> aptTypes, List<Country> countries,
-                                      List<City> cities, List<Apartment> apartments, int hotelManagerId){
+                                      List<City> cities, List<ApartmentTo> objectApartments){
         model.addAttribute("aptTypes", aptTypes);
         model.addAttribute("countries", countries);
         model.addAttribute("cities", cities);
-        model.addAttribute("hotelApartments",
-                ApartmentUtil.getApartmentTosForHotelManager(apartments, hotelManagerId));
-        model.addAttribute("apartmentsAddBtn", "apartmentsAddBtn");
+        model.addAttribute("objectApartments", objectApartments);
     }
 
     public static void getAdminView(Model model, List<AptType> aptTypes, List<Country> countries,

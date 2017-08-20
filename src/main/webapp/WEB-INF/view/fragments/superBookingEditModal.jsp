@@ -5,7 +5,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
-<jsp:include page="../fragments/restHeadTag.jsp"/>
 <body>
 
 <div class="modal fade" id="superBookingEditRow">
@@ -19,10 +18,10 @@
             </div>
             <div class="modal-body">
 
-                <a class="btn btn-primary" onclick="viewBookings()">
-                    <span class="" aria-hidden="true"></span>
-                    <spring:message code="bookings.view"/>
-                </a>
+                <%--<a class="btn btn-primary" onclick="viewBookings()">--%>
+                    <%--<span class="" aria-hidden="true"></span>--%>
+                    <%--<spring:message code="bookings.view"/>--%>
+                <%--</a>--%>
 
                 <table class="table table-striped display" id="bookingsDatatable">
                     <thead>
@@ -69,20 +68,20 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <c:if test="${not empty hotelApartments}">
+                                        <c:if test="${not empty objectApartments}">
                                             <label for="bookingApt" class="control-label col-xs-3"><spring:message
                                                 code="apt_types.personNum"/></label>
                                             <div class="col-xs-9">
                                                 <select class="form-control" name="aptId" id="bookingApt">
-                                                    <c:forEach items="${hotelApartments}" var="hotelApartment">
-                                                        <option value="${hotelApartment.id}">${hotelApartment.stringAptType}
-                                                            ; ${hotelApartment.price}0 $ / night
+                                                    <c:forEach items="${objectApartments}" var="objectApartment">
+                                                        <option value="${objectApartment.id}">${objectApartment.stringAptType}
+                                                            ; ${objectApartment.price}0 $ / night
                                                         </option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
                                         </c:if>
-                                        <c:if test="${empty hotelApartments}">
+                                        <c:if test="${empty objectApartments}">
                                             <label for="existingBookingApt" class="control-label col-xs-3"><spring:message
                                                     code="bookings.apartment"/></label>
                                             <div class="col-xs-9">

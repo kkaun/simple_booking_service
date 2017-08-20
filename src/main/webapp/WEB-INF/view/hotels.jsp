@@ -5,7 +5,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
-<jsp:include page="fragments/jspHeadTag.jsp"/>
+<jsp:include page="fragments/head_tags/jspHeadTag.jsp"/>
 <body>
 <jsp:include page="fragments/header.jsp"/>
 
@@ -27,7 +27,7 @@
 
     <div class="row">
         <div class="col-md-4">
-            <jsp:include page="fragments/sideSearchFilter.jsp"/>
+            <jsp:include page="fragments/filters/sideSearchFilter.jsp"/>
         </div>
 
         <div class="col-md-8">

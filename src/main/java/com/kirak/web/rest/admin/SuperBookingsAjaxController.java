@@ -39,7 +39,7 @@ public class SuperBookingsAjaxController extends BookingAbstractController {
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @JsonView(View.JsonUI.class)
     public ManagerSuperBookingTo getManagerSuperBookingForAdmin(@PathVariable("id") int id) {
-        return super.getManagerSuperBooking(id);
+        return super.getManagerSuperBookingForAdmin(id);
     }
 
     @Override

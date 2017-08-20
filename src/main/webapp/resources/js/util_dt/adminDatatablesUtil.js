@@ -145,6 +145,17 @@ function renderRegionDeleteBtn(data, type, row) {
     }
 }
 
+function deleteRegionRow(id) {
+    $.ajax({
+        url: ajaxUrl + id,
+        type: 'DELETE',
+        success: function () {
+            updatePlacesTable();
+            successNoty('common.deleted');
+        }
+    });
+}
+
 /* -----------------  Admin DT functions ------------------- */
 
 function addAptType() {
@@ -195,7 +206,7 @@ function deleteAptTypeRow(id) {
         url: ajaxUrl + id,
         type: 'DELETE',
         success: function () {
-            updateTableByData();
+            updateAptTypesTable();
             successNoty('common.deleted');
         }
     });

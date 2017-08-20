@@ -102,6 +102,24 @@ function saveApartment() {
     });
 }
 
+function renderApartmentDeleteBtn(data, type, row) {
+    if (type === 'display') {
+        return '<a onclick="deleteApartmentRow(' + row.id + ');" disabled="disabled">'+
+            '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
+    }
+}
+
+function deleteApartmentRow(id) {
+    $.ajax({
+        url: ajaxUrl + id,
+        type: 'DELETE',
+        success: function () {
+            updateApartmentsTable();
+            successNoty('common.deleted');
+        }
+    });
+}
+
 
 /* -----------------------------------------------  Manager DT functions -------------------------------------------- */
 
@@ -114,7 +132,7 @@ function addManagerHotel() {
 
 function renderManagerHotelEditBtn(data, type, row) {
     if (type === 'display') {
-        return '<a onclick="updateApartmentRow(' + row.id + ');">' +
+        return '<a onclick="updateManagerHotelRow(' + row.id + ');">' +
             '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
     }
 }
@@ -136,7 +154,7 @@ function saveManagerHotel() {
         data: form.serialize(),
         success: function () {
             $('#apartmentEditRow').modal('hide');
-            updateManagerHotelsTable()
+            updateManagerHotelsTable();
             successNoty('common.saved');
         }
     });

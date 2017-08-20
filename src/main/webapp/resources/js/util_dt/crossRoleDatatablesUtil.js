@@ -7,7 +7,9 @@
 /* ----------------------------------------------- Other Views Display functions ------------------------------------ */
 
 
-function ShowBookings() {}
+function viewBookings() {
+
+}
 
 
 /* -----------------------------------------------  SuperBooking DT functions --------------------------------------- */
@@ -37,28 +39,40 @@ function renderSuperBookingEditBtn(data, type, row) {
 }
 
 function saveSuperBooking() {
-    $.ajax({
-        type: "POST",
-        url: ajaxUrl,
-        data: form.serialize(),
-        success: function () {
-            $('#superBookingEditRow').modal('hide');
-            updateAdminSBTableByDatesAdded();
-            updateAdminSBTableByInDate();
-            updateAdminSBTableByOutDate();
-            updateAdminSBTableByUserId();
-            updateAdminSBTableByHotelId();
+    if ($('#superBookingsDatatable').length > 0
+        || $('#hotelSuperBookingsDatatable').length > 0
+        || $('#userSuperBookingsDatatable').length > 0) {
 
-            updateManagerSBTableByDatesAdded();
-            updateManagerSBTableByInDate();
-            updateManagerSBTableByOutDate();
-            updateManagerSBTableByUserId();
+        $.ajax({
+            type: "POST",
+            url: ajaxUrl,
+            data: form.serialize(),
+            success: function () {
+                $('#superBookingEditRow').modal('hide');
 
-            updateUserSuperBookingsTable();
+                if ($('#superBookingsDatatable').length > 0) {
+                    updateAdminSBTableByDatesAdded();
+                    updateAdminSBTableByInDate();
+                    updateAdminSBTableByOutDate();
+                    updateAdminSBTableByUserId();
+                    updateAdminSBTableByHotelId();
+                }
 
-            successNoty('common.saved');
-        }
-    });
+                if ($('#hotelSuperBookingsDatatable').length > 0) {
+                    updateManagerSBTableByDatesAdded();
+                    updateManagerSBTableByInDate();
+                    updateManagerSBTableByOutDate();
+                    updateManagerSBTableByUserId();
+                }
+
+                if ($('#userSuperBookingsDatatable').length > 0) {
+                    updateUserSuperBookingsTable();
+                }
+
+                successNoty('common.saved');
+            }
+        });
+    }
 }
 
 

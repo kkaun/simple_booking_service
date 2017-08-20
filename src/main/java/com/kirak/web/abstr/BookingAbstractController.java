@@ -51,6 +51,12 @@ public abstract class BookingAbstractController {
 
     //-------------------------------------- Admin SuperBooking methods --------------------------------//
 
+    public ManagerSuperBookingTo getManagerSuperBookingForAdmin(int id){
+        LOG.info("Saving Super Booking {}", id);
+        SuperBooking superBooking = superBookingService.get(id);
+        return asManagerSuperBookingTo(superBooking, getSuperBookingInDate(superBooking), getSuperBookingOutDate(superBooking));
+    }
+
     public List<AdminSuperBookingTo> getAllSuperBookingsForAdmin() {
         LOG.info("Getting all Super Bookings {}");
         return generateAdminSuperBookingTos(superBookingService.getAll());
