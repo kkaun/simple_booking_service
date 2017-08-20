@@ -82,7 +82,7 @@ $(function () {
                 "data": "userPhone"
             },
             {
-                "render": renderHotelSuperBookingsEditBtn,
+                "render": renderSuperBookingEditBtn,
                 "defaultContent": "",
                 "orderable": false
             }

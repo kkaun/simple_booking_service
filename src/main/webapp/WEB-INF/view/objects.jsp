@@ -11,15 +11,11 @@
 <div class="container" style="margin-top: 20px;">
     <div class="row">
 
-        <div class="col-md-3">
-            <jsp:include page="fragments/sidebars/managerSidebar.jsp"/>
-        </div>
-
-        <div class="col-md-9">
+        <div class="col-md-12">
 
             <a id="adminAptTypeAddBtn" class="btn btn-primary" onclick="addManagerHotel()">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"> Add Object </span>
-                <spring:message code="common.add"/>
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"><spring:message code="common.add"/>
+                <spring:message code="common.object"/></span>
             </a>
 
             <table class="table table-striped display" id="managerHotelsDatatable">

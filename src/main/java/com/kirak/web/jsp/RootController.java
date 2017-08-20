@@ -10,6 +10,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,15 +43,20 @@ public class RootController extends UserAbstractController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/administrate")
-    public String users() {
+    public String getAdminPanel() {
         return "/admin_panel";
     }
 
-
     @PreAuthorize("hasRole('ROLE_MANAGER')")
-    @GetMapping("/object")
-    public String manager(@RequestParam("id") int hotelId) {
-        return "/manage_object&id=" + String.valueOf(hotelId);
+    @GetMapping("/manage")
+    public String getManagerObjects() {
+        return "objects";
+    }
+
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @GetMapping("/user_activity")
+    public String getUserOwnActivity() {
+        return "user";
     }
 
 
@@ -107,17 +113,10 @@ public class RootController extends UserAbstractController {
     }
 
 
-
-    @GetMapping("/new_object")
-    public String registerObject(){
-        return "/register_object";
-    }
-
-
-    @PreAuthorize("hasRole('ROLE_MANAGER')")
-    @GetMapping("/object")
-    public String object(){
-        return "/edit_object";
+    @GetMapping(value = "/list_object")
+    public String list_object(Model model) {
+        model.addAttribute("enterAsManager", "enterAsManager");
+        return "login";
     }
 
 }

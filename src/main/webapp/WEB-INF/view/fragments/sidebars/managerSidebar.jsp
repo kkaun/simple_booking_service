@@ -19,16 +19,12 @@
                 </a>
             </li>
             <li>
-                <a onclick="showManagerSuperBookings()">Bookings
+                <a onclick="showManagerSuperBookings()">Manage Bookings
                 </a>
             </li>
             <li>
-                <a onclick="showManagerHotelVotes()">Feedback
+                <a onclick="showManagerHotelVotes()">View Feedback
                 </a>
-            </li>
-            <li>
-                <hr>
-                <a href="<c:url value='/object'/>">Manage Object Info</a>
             </li>
             <li>
                 <hr>

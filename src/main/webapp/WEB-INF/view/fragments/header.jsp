@@ -33,20 +33,34 @@
                 <ul class="nav navbar-nav navbar-right">
                     <sec:authorize access="isAuthenticated()">
                         <sec:authorize access="hasAuthority('ROLE_ADMIN')">
-                            <li style="margin-left: 10px;">
-                                <form>
-                                    <a class="btn navbar-btn btn-danger" href="administrate" style="border-radius: 15px">
-                                        <spring:message code="common.admin"/></a>
-                                </form>
-                            </li>
+                            <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/admin'}">
+                                <li style="margin-left: 10px;">
+                                    <form>
+                                        <a class="btn navbar-btn btn-danger" href="administrate" style="border-radius: 15px">
+                                            <spring:message code="common.admin"/></a>
+                                    </form>
+                                </li>
+                            </c:if>
                         </sec:authorize>
                         <sec:authorize access="hasAuthority('ROLE_MANAGER')">
-                            <li style="margin-left: 10px;">
-                                <form>
-                                    <a class="btn navbar-btn btn-danger" href="manage" style="border-radius: 15px">
-                                        <spring:message code="common.manager"/></a>
-                                </form>
-                            </li>
+                            <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/objects'}">
+                                <li style="margin-left: 10px;">
+                                    <form>
+                                        <a class="btn navbar-btn btn-danger" href="manage" style="border-radius: 15px">
+                                            <spring:message code="common.manager"/></a>
+                                    </form>
+                                </li>
+                            </c:if>
+                        </sec:authorize>
+                        <sec:authorize access="hasAuthority('ROLE_USER')">
+                            <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/user'}">
+                                <li style="margin-left: 10px;">
+                                    <form>
+                                        <a class="btn navbar-btn btn-success" href="manage" style="border-radius: 15px">
+                                            <spring:message code="common.user"/></a>
+                                    </form>
+                                </li>
+                            </c:if>
                         </sec:authorize>
                     </sec:authorize>
                     <li style="margin-left: 10px;">
@@ -70,7 +84,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li style="margin-left: 10px;">
                             <form>
-                                <a href="new_object" class="btn btn-warning navbar-btn" style="border-radius: 15px">
+                                <a href="list_object" class="btn btn-warning navbar-btn" style="border-radius: 15px">
                                     <spring:message code="common.listobject"/></a>
                             </form>
                         </li>

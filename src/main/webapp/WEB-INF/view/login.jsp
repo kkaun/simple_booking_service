@@ -20,20 +20,25 @@
                 <spring:message code="${param.message}"/>
             </div>
         </c:if>
+        <c:if test="${not empty enterAsManager}">
+            <div>
+                <spring:message code="common.enter_as"/>&nbsp;<spring:message code="app.manager"/>
+            </div>
+        </c:if>
         <br/>
         <p>
-            <a class="btn btn-lg btn-success" href="register">
-                <spring:message code="app.register"/> &raquo;
-            </a>
             <button type="submit" class="btn btn-lg btn-primary" onclick="setCredentials('user1@yandex.ru', 'password1')">
                 <spring:message code="app.enter"/> <spring:message code="app.user"/>
-            </button>
-            <button type="submit" class="btn btn-lg btn-primary" onclick="setCredentials('admin@gmail.com', 'admin')">
-                <spring:message code="app.enter"/> <spring:message code="app.admin"/>
             </button>
             <button type="submit" class="btn btn-lg btn-primary" onclick="setCredentials('manager@gmail.com', 'manager')">
                 <spring:message code="app.enter"/> <spring:message code="app.manager"/>
             </button>
+            <button type="submit" class="btn btn-lg btn-primary" onclick="setCredentials('admin@gmail.com', 'admin')">
+                <spring:message code="app.enter"/> <spring:message code="app.admin"/>
+            </button>
+            <a class="btn btn-lg btn-success" href="register">
+                <spring:message code="app.register"/> &raquo;
+            </a>
         </p>
     </div>
 

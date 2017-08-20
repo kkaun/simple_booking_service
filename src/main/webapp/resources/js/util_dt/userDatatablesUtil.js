@@ -43,6 +43,24 @@ function saveUserVote() {
     });
 }
 
+function renderUserVoteDeleteBtn(data, type, row) {
+    if (type === 'display') {
+        return '<a onclick="deleteUserVoteRow(' + row.id + ');" disabled="disabled">'+
+            '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
+    }
+}
+
+function deleteUserVoteRow(id) {
+    $.ajax({
+        url: ajaxUrl + id,
+        type: 'DELETE',
+        success: function () {
+            updateUserVotesTable();
+            successNoty('common.deleted');
+        }
+    });
+}
+
 
 
 

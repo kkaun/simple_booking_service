@@ -166,7 +166,7 @@ $(document).ready(function() {
 
     $(table).find('tbody').on('click', 'tr', function () {
         var hotelId = table.row(this).data().id;
-        return '<a href="/object/' + hotelId + '"></a>';
+        return '<a href="/manage_object&id=' + hotelId + '"></a>';
     });
 });
 

@@ -38,12 +38,12 @@ $(function () {
             },
             {
                 "data": "countryName"
-            },
-            {
-                "render": renderUserHotelViewBtn,
-                "defaultContent": "",
-                "orderable": false
             }
+            // {
+            //     "render": renderUserHotelViewBtn,
+            //     "defaultContent": "",
+            //     "orderable": false
+            // }
         ],
         "order": [
             [

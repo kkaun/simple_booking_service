@@ -34,7 +34,7 @@ $(function () {
                 "data": "apartmentsNum"
             },
             {
-                "render": renderUserVoteEditBtn,
+                "render": renderSuperBookingEditBtn,
                 "defaultContent": "",
                 "orderable": false
             }

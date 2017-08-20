@@ -37,9 +37,6 @@ public class ManagerController {
     private CityService cityService;
 
     @Autowired
-    private ApartmentService apartmentService;
-
-    @Autowired
     private HotelService hotelService;
 
     @Autowired
@@ -52,9 +49,8 @@ public class ManagerController {
 
     @PreAuthorize("hasRole('ROLE_MANAGER')")
     @GetMapping("/manage_object")
-    public String manageObject(Model model, @RequestParam("id") String id){
-
-        int hotelId = Integer.parseInt(id);
+    public String manageObject(Model model, @RequestParam("id") int hotelId){
+        //int hotelId = Integer.parseInt(id);
         Hotel hotel = hotelService.get(hotelId);
 
         int managerId = AuthorizedUser.getId();
