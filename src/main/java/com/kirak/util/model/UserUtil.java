@@ -49,11 +49,13 @@ public class UserUtil {
 
         List<String> roles = user.getRoles().stream()
                 .map(userRole -> StringUtils.capitalize(userRole.name()
-                        .substring(userRole.name().indexOf("_"), userRole.name().length()-1).toLowerCase()))
+                        .substring(userRole.name().indexOf("_")+1, userRole.name().length()).toLowerCase()))
                 .collect(Collectors.toList());
 
-        return new UserTo(user.getId(), user.getName(), user.getEmail(), user.getPhone(), String.join(", ", roles),
+        return new UserTo(user.getId(), user.getName(), user.getEmail(),
+                user.getPhone(), String.join(", ", roles),
                 user.getRegistered(), user.getPassword(), user.isEnabled());
+
     }
 
     public static User updateFromTo(User user, UserTo userTo) {

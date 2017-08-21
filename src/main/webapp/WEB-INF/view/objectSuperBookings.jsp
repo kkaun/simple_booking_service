@@ -12,11 +12,11 @@
 <div class="container" style="margin-top: 20px;">
     <div class="row">
 
-        <div class="col-md-3">
+        <div class="col-md-2">
             <jsp:include page="fragments/sidebars/managerSidebar.jsp"/>
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-10">
             <h3><spring:message code="super_bookings.title"/></h3>
 
             <div class="row">
@@ -30,7 +30,7 @@
                                     <div class="col-sm-3">
                                         <input class="form-control in_date" name="startDate" id="startDate">
                                     </div>
-                                    <label class="control-label col-sm-4" for="endDate"><spring:message
+                                    <label class="control-label col-sm-3" for="endDate"><spring:message
                                             code="super_bookings.toDate"/>:</label>
                                     <div class="col-sm-3">
                                         <input class="form-control out_date" name="endDate" id="endDate">
@@ -124,23 +124,31 @@
                 </div>
             </div>
 
+            <br>
+            <br>
+            <div class="panel panel-default">
+                <div class="panel-heading" style="padding: 10px;">
+                    <h3>Object Bookings</h3>
+                </div>
 
+                <div class="panel-body">
 
-            <table class="table table-striped display" id="hotelSuperBookingsDatatable">
-                <thead>
-                <tr>
-                    <th><spring:message code="common.id"/></th>
-                    <th><spring:message code="common.dateAdded"/></th>
-                    <th><spring:message code="super_bookings.inDate"/></th>
-                    <th><spring:message code="super_bookings.outDate"/></th>
-                    <th><spring:message code="user.name"/></th>
-                    <th><spring:message code="user.email"/></th>
-                    <th><spring:message code="users.phone"/></th>
-                    <th></th>
-                </tr>
-                </thead>
-            </table>
-
+                    <table class="table table-striped display" id="hotelSuperBookingsDatatable">
+                        <thead>
+                        <tr>
+                            <th><spring:message code="common.id"/></th>
+                            <th><spring:message code="common.dateAdded"/></th>
+                            <th><spring:message code="super_bookings.inDate"/></th>
+                            <th><spring:message code="super_bookings.outDate"/></th>
+                            <th><spring:message code="user.name"/></th>
+                            <th><spring:message code="user.email"/></th>
+                            <th><spring:message code="users.phone"/></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
 
         </div>
     </div>

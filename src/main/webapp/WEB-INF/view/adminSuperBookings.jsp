@@ -18,7 +18,6 @@
 
         <div class="col-md-10">
 
-
             <h3><spring:message code="super_bookings.title"/></h3>
 
             <div class="row">
@@ -32,7 +31,7 @@
                                     <div class="col-sm-3">
                                         <input class="form-control in_date" name="startDate" id="startDate">
                                     </div>
-                                    <label class="control-label col-sm-4" for="endDate"><spring:message
+                                    <label class="control-label col-sm-3" for="endDate"><spring:message
                                             code="super_bookings.toDate"/>:</label>
                                     <div class="col-sm-3">
                                         <input class="form-control out_date" name="endDate" id="endDate">
@@ -54,62 +53,11 @@
                 <div class="col-sm-3">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <form:form class="form-horizontal filter" id="superBookingsAdminInDateFilter">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-3" for="inDate"><spring:message
-                                            code="super_bookings.inDate"/>:</label>
-                                    <div class="col-sm-3">
-                                        <input class="form-control in_date" name="inDate" id="inDate">
-                                    </div>
-                                </div>
-                            </form:form>
-                        </div>
-                        <div class="panel-footer text-right">
-                            <a class="btn btn-danger" type="button" onclick="clearSBInDateAdminFilter()">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            </a>
-                            <a class="btn btn-primary" type="button" onclick="updateAdminSBTableByInDate()">
-                                <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-3">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <form:form class="form-horizontal filter" id="superBookingsAdminOutDateFilter">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-4" for="outDate"><spring:message
-                                            code="super_bookings.outDate"/>:</label>
-                                    <div class="col-sm-3">
-                                        <input class="form-control out_date" name="outDate" id="outDate">
-                                    </div>
-                                </div>
-                            </form:form>
-                        </div>
-                        <div class="panel-footer text-right">
-                            <a class="btn btn-danger" type="button" onclick="clearSBOutDateAdminFilter()">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            </a>
-                            <a class="btn btn-primary" type="button" onclick="updateAdminSBTableByOutDate()">
-                                <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
                             <form:form class="form-horizontal filter" id="superBookingsAdminUserIdFilter">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-4" for="userId"><spring:message
+                                    <label class="control-label col-sm-8" for="userId"><spring:message
                                             code="super_bookings.byUser"/>:</label>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-4">
                                         <input class="form-control" name="userId" id="userId">
                                     </div>
                                 </div>
@@ -126,14 +74,14 @@
                     </div>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-3">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <form:form class="form-horizontal filter" id="superBookingsAdminHotelIdFilter">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-4" for="hotelId"><spring:message
+                                    <label class="control-label col-sm-8" for="hotelId"><spring:message
                                             code="super_bookings.byHotel"/>:</label>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-4">
                                         <input class="form-control" name="hotelId" id="hotelId">
                                     </div>
                                 </div>
@@ -151,20 +99,79 @@
                 </div>
             </div>
 
-            <table class="table table-striped display" id="superBookingsDatatable">
-                <thead>
-                <tr>
-                    <th><spring:message code="common.id"/></th>
-                    <th><spring:message code="common.dateAdded"/></th>
-                    <th><spring:message code="common.inDate"/></th>
-                    <th><spring:message code="common.outDate"/></th>
-                    <th><spring:message code="super_bookings.hotelId"/></th>
-                    <th><spring:message code="super_bookings.hotelName"/></th>
-                    <th><spring:message code="super_bookings.userId"/></th>
-                    <th></th>
-                </tr>
-                </thead>
-            </table>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form:form class="form-horizontal filter" id="superBookingsAdminInDateFilter">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4" for="inDate"><spring:message
+                                            code="super_bookings.inDate"/>:</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control in_date" name="inDate" id="inDate">
+                                    </div>
+                                </div>
+                            </form:form>
+                        </div>
+                        <div class="panel-footer text-right">
+                            <a class="btn btn-danger" type="button" onclick="clearSBInDateAdminFilter()">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            </a>
+                            <a class="btn btn-primary" type="button" onclick="updateAdminSBTableByInDate()">
+                                <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form:form class="form-horizontal filter" id="superBookingsAdminOutDateFilter">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4" for="outDate"><spring:message
+                                            code="super_bookings.outDate"/>:</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control out_date" name="outDate" id="outDate">
+                                    </div>
+                                </div>
+                            </form:form>
+                        </div>
+                        <div class="panel-footer text-right">
+                            <a class="btn btn-danger" type="button" onclick="clearSBOutDateAdminFilter()">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            </a>
+                            <a class="btn btn-primary" type="button" onclick="updateAdminSBTableByOutDate()">
+                                <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading" style="padding: 10px;">
+
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped display" id="superBookingsDatatable">
+                        <thead>
+                        <tr>
+                            <th><spring:message code="common.id"/></th>
+                            <th><spring:message code="common.dateAdded"/></th>
+                            <th><spring:message code="common.inDate"/></th>
+                            <th><spring:message code="common.outDate"/></th>
+                            <th><spring:message code="super_bookings.hotelId"/></th>
+                            <th><spring:message code="super_bookings.hotelName"/></th>
+                            <th><spring:message code="super_bookings.userId"/></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+
+            </div>
 
         </div>
     </div>

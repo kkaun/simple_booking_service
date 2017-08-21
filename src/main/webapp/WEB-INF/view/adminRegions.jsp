@@ -47,25 +47,29 @@
             </div>
 
             <div class="panel panel-default">
-                <a id="adminRegionAddBtn" class="btn btn-primary" onclick="addRegion()">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"><spring:message code="common.add_region"/></span>
-                </a>
+
+                <div class="panel-heading" style="padding: 10px;">
+                    <a id="adminRegionAddBtn" class="btn btn-primary" onclick="addRegion()">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"><spring:message code="common.add_region"/></span>
+                    </a>
+                </div>
+
+                <div class="panel-body">
+                    <table class="table table-striped display" id="placesDatatable">
+                        <thead>
+                        <tr>
+                            <th><spring:message code="common.id"/></th>
+                            <th><spring:message code="common.name"/></th>
+                            <th><spring:message code="common.country"/></th>
+                            <th><spring:message code="common.description"/></th>
+                            <th><spring:message code="regions.hotelNum"/></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
-
-
-            <table class="table table-striped display" id="regionsDatatable">
-                <thead>
-                <tr>
-                    <th><spring:message code="common.id"/></th>
-                    <th><spring:message code="common.name"/></th>
-                    <th><spring:message code="common.country"/></th>
-                    <th><spring:message code="common.description"/></th>
-                    <th><spring:message code="regions.hotelNum"/></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                </thead>
-            </table>
 
         </div>
     </div>

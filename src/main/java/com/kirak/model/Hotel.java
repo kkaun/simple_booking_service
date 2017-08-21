@@ -37,7 +37,7 @@ public class Hotel extends NamedEntity {
      </beans:bean>
      */
 
-
+    @NotNull
     @Range(min = 1, max = 5)
     @Column(name = "stars")
     private Short stars;

@@ -16,19 +16,26 @@
 <div class="container" style="margin-top: 20px;">
     <div class="row">
 
-        <div class="col-md-3">
+        <div class="col-md-2">
             <jsp:include page="fragments/sidebars/managerSidebar.jsp"/>
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-10">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="padding: 10px;">
+                    <h3>Hotel Bookings Chart</h3>
+                </div>
 
-            <table class="table ganttTable" id="ganttTable">
+                <div class="panel-body">
+                    <table class="table ganttTable" id="ganttTable">
 
-            </table>
-
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
 </body>
 <jsp:include page="fragments/i18nUtil.jsp"/>
 </html>

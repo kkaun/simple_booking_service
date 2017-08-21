@@ -23,7 +23,7 @@ public class AptTypeUtil {
 
         int hotelsUsing = Math.toIntExact(hotels.stream()
                 .filter(hotel -> hotel.getApartments().stream().map(Apartment::getType)
-                        .filter(type -> Objects.equals(aptType.getId(), type.getId())).count() > 1)
+                        .filter(type -> Objects.equals(aptType.getId(), type.getId())).count() >= 1)
                 .count());
 
         if(hotelsUsing < 1){
@@ -43,8 +43,9 @@ public class AptTypeUtil {
                 .count());
 
         int hotelsUsing = Math.toIntExact(hotels.stream()
-                .filter(hotel -> hotel.getApartments().stream().map(Apartment::getType)
-                        .filter(type -> Objects.equals(aptType, type)).count() > 1)
+                .filter(hotel -> hotel.getApartments().stream()
+                        .map(Apartment::getType)
+                        .filter(type -> Objects.equals(aptType, type)).count() >= 1)
                 .count());
 
         return new AptTypeTo(aptType.getId(), aptType.getPersonNum(), aptType.getCategory(), aptType.getBedsArrangement(),

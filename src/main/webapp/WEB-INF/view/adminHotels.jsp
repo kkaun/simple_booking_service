@@ -17,8 +17,7 @@
         </div>
 
         <div class="col-md-10">
-
-
+            
             <h3><spring:message code="hotels.title"/></h3>
 
             <div class="row">
@@ -35,7 +34,7 @@
                                     <label class="control-label col-sm-3" for="maxRating"><spring:message
                                             code="hotels.maxRating"/>:</label>
 
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-3">
                                         <input class="form-control" name="maxRating" id="maxRating">
                                     </div>
                                 </div>
@@ -57,11 +56,11 @@
                         <div class="panel-body">
                             <form:form class="form-horizontal filter" id="hotelsByCityAdminFilter">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-4" for="cityName"><spring:message
+                                    <label class="control-label col-sm-5" for="cityName"><spring:message
                                             code="hotels.byCity"/>:</label>
                                     <c:if test="${not empty cities}">
                                         <div class="form-group">
-                                            <div class="col-xs-9">
+                                            <div class="col-xs-7">
                                                 <select class="form-control" name="cityName" id="cityName">
                                                     <c:forEach items="${cities}" var="city">
                                                         <option value="${city.name}">${city.name}</option>
@@ -87,31 +86,31 @@
 
             <div class="panel panel-default">
 
-                <a id="adminHotelAddBtn" class="btn btn-primary" onclick="addHotel()">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"><spring:message code="common.add_hotel"/></span>
-                </a>
+                <div class="panel-heading" style="padding: 10px;">
+                    <a id="adminHotelAddBtn" class="btn btn-primary" onclick="addHotel()">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"><spring:message code="common.add_hotel"/></span>
+                    </a>
+                </div>
 
+                <div class="panel-body">
+                    <table class="table table-striped display" id="hotelsDatatable">
+                        <thead>
+                        <tr>
+                            <th><spring:message code="common.id"/></th>
+                            <th><spring:message code="common.name"/></th>
+                            <th><spring:message code="hotels.rating"/></th>
+                            <th><spring:message code="hotels.stars"/></th>
+                            <th><spring:message code="common.description"/></th>
+                            <th><spring:message code="hotels.votesNum"/></th>
+                            <th><spring:message code="hotels.city"/></th>
+                            <th><spring:message code="common.country"/></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
-
-
-            <table class="table table-striped display" id="hotelsDatatable">
-                <thead>
-                <tr>
-                    <th><spring:message code="common.id"/></th>
-                    <th><spring:message code="common.name"/></th>
-                    <th><spring:message code="hotels.rating"/></th>
-                    <th><spring:message code="hotels.stars"/></th>
-                    <th><spring:message code="common.description"/></th>
-                    <th><spring:message code="hotels.votesNum"/></th>
-                    <th><spring:message code="hotels.checkIn"/></th>
-                    <th><spring:message code="hotels.checkOut"/></th>
-                    <th><spring:message code="hotels.city"/></th>
-                    <th><spring:message code="common.country"/></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                </thead>
-            </table>
 
         </div>
     </div>

@@ -56,12 +56,6 @@ $(function () {
                 "data": "votesNum"
             },
             {
-                "data": "checkIn"
-            },
-            {
-                "data": "checkOut"
-            },
-            {
                 "data": "cityName"
             },
             {

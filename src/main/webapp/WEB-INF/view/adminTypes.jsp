@@ -19,25 +19,32 @@
         <div class="col-md-10">
 
             <div class="panel panel-default">
-                <a id="adminAptTypeAddBtn" class="btn btn-primary" onclick="addAptType()">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"><spring:message code="common.add_apt_type"/></span>
-                </a>
-            </div>
+                <div class="panel-heading" style="padding: 10px;">
+                    <h3>Apartment Types Data</h3>
+                    <br>
+                    <a id="adminAptTypeAddBtn" class="btn btn-primary" onclick="addAptType()">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"><spring:message code="common.add_apt_type"/></span>
+                    </a>
+                </div>
 
-            <table class="table table-striped display" id="aptTypesDatatable">
-                <thead>
-                <tr>
-                    <th><spring:message code="common.id"/></th>
-                    <th><spring:message code="apt_types.personNum"/></th>
-                    <th><spring:message code="apt_types.category"/></th>
-                    <th><spring:message code="apt_types.bedsArrangement"/></th>
-                    <th><spring:message code="apt_types.hotelsUsing"/></th>
-                    <th><spring:message code="apt_types.apartmentsAppliedTo"/></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                </thead>
-            </table>
+                <div class="panel-body">
+                    <table class="table table-striped display" id="aptTypesDatatable">
+                        <thead>
+                        <tr>
+                            <th><spring:message code="common.id"/></th>
+                            <th><spring:message code="apt_types.personNum"/></th>
+                            <th><spring:message code="apt_types.category"/></th>
+                            <th><spring:message code="apt_types.bedsArrangement"/></th>
+                            <th><spring:message code="apt_types.hotelsUsing"/></th>
+                            <th><spring:message code="apt_types.apartmentsAppliedTo"/></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+
+             </div>
 
         </div>
     </div>

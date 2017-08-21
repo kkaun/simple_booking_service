@@ -755,8 +755,8 @@ VALUES
   ('User2', 'user2@yandex.ru', '483711111123', '$2a$04$LptUR6XmDAiZH76ojCdNi.M8BPhAyBN8D2uvEPplrPStLwEIXYPvm'),
   ('User3', 'user3@yandex.ru', '483333373423', '$2a$04$cxtnaMTgA/zkzqu5abBmd.Hj5B.Dp9Wfk1iP7ONomAApluyVyqOSa');
 
-INSERT INTO user (name, email, password)
-VALUES ('Manager', 'manager@gmail.com', '$2a$04$GVGrIytqazsQlpU7wPgyUuoaWukZoTSJCUVfuXmaRugERWuD0l18q');
+INSERT INTO user (name, email, phone, password)
+VALUES ('Manager', 'manager@gmail.com', '432523522352', '$2a$04$GVGrIytqazsQlpU7wPgyUuoaWukZoTSJCUVfuXmaRugERWuD0l18q');
 
 INSERT INTO user (name, email, password)
 VALUES ('Admin', 'admin@gmail.com', '$2a$04$8pwICPDZ3IsZnKFuvZ2MBe5zqR6DOA20turCpBv9.jy/2Un5SpfZ2');
@@ -774,9 +774,9 @@ INSERT INTO user_role (user_id, role) VALUES
 
 INSERT INTO hotel (name, stars, country_id, city_id, address, phone, description, check_in, check_out, max_extra_per_day, manager)
 VALUES
-  ('HOTEL1', 3, 87, 100009, 'Address1', '89431543453', null, '14:00:00', '12:00:00', 3, 100003),
+  ('HOTEL1', 3, 87, 100009, 'Address1', '89431543453', '', '14:00:00', '12:00:00', 3, 100003),
   ('HOTEL2', 4, 87, 100041, 'Address2', '89431564565', 'Description2', '14:00:00', '12:00:00', 3, 100003),
-  ('HOTEL3', null, 111, 100519, 'Address3', '894312223222', 'Description3', '14:00:00', '12:00:00', 3, 100003),
+  ('HOTEL3', 0, 111, 100519, 'Address3', '894312223222', 'Description3', '14:00:00', '12:00:00', 3, 100003),
   ('HOTEL4', 4, 111, 100082, 'Address4', '894312223222', 'Description4', '14:00:00', '12:00:00', 3, 100003),
   ('HOTEL5', 3, 109, 100570, 'Address5', '894312223222', 'Description5', '14:00:00', '12:00:00', 3, 100003),
   ('HOTEL6', 3, 36, 100573, 'Address6', '894312223222', 'Description6', '14:00:00', '12:00:00', 3, 100003),
@@ -784,9 +784,9 @@ VALUES
   ('HOTEL8', 3, 13, 100029, 'Address8', '894312223222', 'Description8', '14:00:00', '12:00:00', 3, 100003),
   ('HOTEL9', 3, 36, 100552, 'Address9', '894312223222', 'Description9', '14:00:00', '12:00:00', 3, 100003),
   ('HOTEL10', 3, 13, 100029, 'Address10', '894312223222', 'Description10', '14:00:00', '12:00:00', 3, 100003),
-  ('HOTEL11', null, 27, 100313, 'Address11', '89431222367', 'Description11', '14:00:00', '12:00:00', 3, 100003),
+  ('HOTEL11', 0, 27, 100313, 'Address11', '89431222367', 'Description11', '14:00:00', '12:00:00', 3, 100003),
   ('HOTEL12', 3, 18, 100099, 'Address12', '894312227546', 'Description12', '14:00:00', '12:00:00', 3, 100003),
-  ('HOTEL13', null, 10, 100153, 'Address13', '894312223423', 'Description13', '14:00:00', '12:00:00', 3, 100003),
+  ('HOTEL13', 0, 10, 100153, 'Address13', '894312223423', 'Description13', '14:00:00', '12:00:00', 3, 100003),
   ('HOTEL14', 3, 109, 100462, 'Address14', '89431222377', 'Description14', '14:00:00', '12:00:00', 3, 100003),
   ('HOTEL15', 3, 108, 100572, 'Address15', '89431245622', 'Description15', '14:00:00', '12:00:00', 3, 100003),
   ('HOTEL16', 3, 101, 100096, 'Address16', '894312223762', 'Description16', '14:00:00', '12:00:00', 3, 100003),

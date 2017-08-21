@@ -47,8 +47,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `phone`      VARCHAR(20)  NULL,
   `name`       VARCHAR(45)  NOT NULL,
   `password`   VARCHAR(61)  NULL,
-  `registered` TIMESTAMP             DEFAULT CURRENT_TIMESTAMP,
-  `enabled`    BOOLEAN               DEFAULT TRUE,
+  `registered` TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+  `enabled`    BOOLEAN      DEFAULT TRUE,
   INDEX `user_unique_email_idx`(`email`),
   PRIMARY KEY (`id`)
 )
@@ -102,11 +102,11 @@ DROP TABLE IF EXISTS `hotel`;
 CREATE TABLE IF NOT EXISTS `hotel` (
   `id`                INT         NOT NULL AUTO_INCREMENT,
   `name`              VARCHAR(45) NOT NULL,
-  `stars`             SMALLINT    NULL,
+  `stars`             SMALLINT    NOT NULL,
   `country_id`        SMALLINT    NOT NULL,
   `city_id`           INT         NOT NULL,
   `address`           VARCHAR(45) NOT NULL,
-  `phone`             VARCHAR(15) NULL,
+  `phone`             VARCHAR(15) NOT NULL,
   `description`       TINYTEXT    NULL,
   `check_in`          TIME        NOT NULL,
   `check_out`         TIME        NOT NULL,

@@ -6,40 +6,45 @@
 <html>
 <jsp:include page="fragments/head_tags/restAdmHeadTag.jsp"/>
 <body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/apartmentsDatatable.js" defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/apartmentsDatatable.js"
+        defer></script>
 <jsp:include page="fragments/header.jsp"/>
 
 <div class="container" style="margin-top: 20px;">
     <div class="row">
 
-        <div class="col-md-3">
+        <div class="col-md-2">
             <jsp:include page="fragments/sidebars/managerSidebar.jsp"/>
         </div>
 
-        <div class="col-md-9">
-
+        <div class="col-md-10">
             <div class="panel panel-default">
-                <a id="managerApartmentAddBtn" class="btn btn-primary" onclick="addApartment()">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"> Add Apartment</span>
-                    <spring:message code="common.add"/>
-                </a>
+                <h3>Object Apartments</h3>
+                <br>
+                <div class="panel-heading" style="padding: 10px;">
+                    <a id="managerApartmentAddBtn" class="btn btn-primary" onclick="addApartment()">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"> Add Apartment</span>
+                        <spring:message code="common.add"/>
+                    </a>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped display" id="apartmentsDatatable">
+                        <thead>
+                        <tr>
+                            <th><spring:message code="apt_types.personNum"/>
+                                , <spring:message code="apt_types.category"/>
+                                , <spring:message code="apt_types.bedsArrangement"/>
+                            </th>
+                            <th><spring:message code="common.pricePerNight"/></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
-
-            <table class="table table-striped display" id="apartmentsDatatable">
-                <thead>
-                <tr>
-                    <th><spring:message code="apt_types.personNum"/>
-                        , <spring:message code="apt_types.category"/>
-                        , <spring:message code="apt_types.bedsArrangement"/>
-                    </th>
-                    <th><spring:message code="common.pricePerNight"/></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                </thead>
-            </table>
-
         </div>
+
     </div>
 </div>
 

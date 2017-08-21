@@ -19,28 +19,35 @@
         <div class="col-md-10">
 
             <div class="panel panel-default">
-                <a id="adminUserAddBtn" class="btn btn-primary" onclick="addUser()">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"><spring:message code="common.add_user"/></span>
-                </a>
+                <div class="panel-heading" style="padding: 10px;">
+                    <h3>Users Data</h3>
+                    <br>
+                    <a id="adminUserAddBtn" class="btn btn-primary" onclick="addUser()">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"><spring:message code="common.add_user"/></span>
+                    </a>
+                </div>
+
+                <div class="panel-body">
+                    <table class="table table-striped display" id="usersDatatable">
+                        <thead>
+                        <tr>
+                            <th><spring:message code="common.id"/></th>
+                            <th><spring:message code="user.name"/></th>
+                            <th><spring:message code="user.email"/></th>
+                            <th><spring:message code="users.phone"/></th>
+                            <th><spring:message code="users.roles"/></th>
+                            <th><spring:message code="user.active"/></th>
+                            <th><spring:message code="users.registered"/></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
 
-            <table class="table table-striped display" id="usersDatatable">
-                <thead>
-                <tr>
-                    <th><spring:message code="common.id"/></th>
-                    <th><spring:message code="user.name"/></th>
-                    <th><spring:message code="user.email"/></th>
-                    <th><spring:message code="users.phone"/></th>
-                    <th><spring:message code="users.roles"/></th>
-                    <th><spring:message code="user.active"/></th>
-                    <th><spring:message code="users.registered"/></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                </thead>
-            </table>
-
         </div>
+
     </div>
 </div>
 

@@ -371,9 +371,9 @@ function deleteApartmentRow(id) {
 
 
 function addManagerHotel() {
-    $('#ModalTitle').html(i18n["addTitle"]);
+    $('#managerHotelModalTitle').html(i18n["addTitle"]);
     form.find(":input").val("");
-    $('#apartmentEditRow').modal();
+    $('#managerHotelEditRow').modal();
 }
 
 function renderManagerHotelEditBtn(data, type, row) {
@@ -384,12 +384,12 @@ function renderManagerHotelEditBtn(data, type, row) {
 }
 
 function updateManagerHotelRow(id) {
-    $('#apartmentModalTitle').html(i18n["editTitle"]);
+    $('#managerHotelModalTitle').html(i18n["editTitle"]);
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(value);
         });
-        $('#apartmentEditRow').modal();
+        $('#managerHotelEditRow').modal();
     });
 }
 
@@ -399,7 +399,7 @@ function saveManagerHotel() {
         url: ajaxUrl,
         data: form.serialize(),
         success: function () {
-            $('#apartmentEditRow').modal('hide');
+            $('#managerHotelEditRow').modal('hide');
             updateManagerHotelsTable();
             successNoty('common.saved');
         }
@@ -419,7 +419,7 @@ $(document).ready(function () {
 
 
 
-// USER               -----------------------------------------------------------------------------------------------------
+// USER  ---------------------------------------------------------------------------------------------------------------
 
 
 

@@ -16,20 +16,28 @@
             <jsp:include page="fragments/sidebars/adminSidebar.jsp"/>
         </div>
 
+
         <div class="col-md-10">
-            <table class="table table-striped display" id="votesDatatable">
-                <thead>
-                <tr>
-                    <th><spring:message code="common.id"/></th>
-                    <th><spring:message code="common.dateAdded"/></th>
-                    <th><spring:message code="common.rate"/></th>
-                    <th><spring:message code="common.comment"/></th>
-                    <th><spring:message code="common.bookerName"/></th>
-                    <th><spring:message code="common.userId"/></th>
-                    <th><spring:message code="common.hotelId"/></th>
-                    <th><spring:message code="common.hotelName"/></th>
-                </thead>
-            </table>
+            <div class="panel panel-default">
+                <div class="panel-heading" style="padding: 10px;">
+                    <h3>Overall Votes Data</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped display" id="votesDatatable">
+                        <thead>
+                        <tr>
+                            <th><spring:message code="common.id"/></th>
+                            <th><spring:message code="common.dateAdded"/></th>
+                            <th><spring:message code="common.rate"/></th>
+                            <th><spring:message code="common.comment"/></th>
+                            <th><spring:message code="common.bookerName"/></th>
+                            <th><spring:message code="common.userId"/></th>
+                            <th><spring:message code="common.hotelId"/></th>
+                            <th><spring:message code="common.hotelName"/></th>
+                        </thead>
+                    </table>
+                </div>
+            </div>
 
         </div>
     </div>

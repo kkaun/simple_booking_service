@@ -28,12 +28,12 @@
                                         <h4 class="list-group-item-heading"> ${hotel.name} </h4>
                                     </div>
                                     <div class="col-md-5">
-                                        <c:if test="${not empty hotel.stars}">
+                                        <c:if test="${not empty hotel.stars > 0}">
                                             <c:forEach begin="0" end="${hotel.stars - 1}" varStatus="loop">
                                                 <span class="glyphicon glyphicon-star"></span>
                                             </c:forEach>
                                         </c:if>
-                                        <c:if test="${empty hotel.stars}">
+                                        <c:if test="${empty hotel.stars || hotel.stars == 0}">
                                             <p> No stars yet </p>
                                         </c:if>
                                     </div>

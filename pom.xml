@@ -405,13 +405,6 @@
             <version>${commons-lang.version}</version>
         </dependency>
 
-        <!-- bootstrap-languages -->
-        <dependency>
-            <groupId>org.webjars.bower</groupId>
-            <artifactId>bootstrap-languages</artifactId>
-            <version>1.5.2</version>
-        </dependency>
-
 
     </dependencies>
 

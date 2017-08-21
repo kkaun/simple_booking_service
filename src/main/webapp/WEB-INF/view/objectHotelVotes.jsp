@@ -12,27 +12,33 @@
 <div class="container" style="margin-top: 20px;">
     <div class="row">
 
-        <div class="col-md-3">
+        <div class="col-md-2">
             <jsp:include page="fragments/sidebars/managerSidebar.jsp"/>
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-10">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="padding: 10px;">
+                    <h3>Object Feedback</h3>
+                </div>
 
-            <table class="table table-striped display" id="hotelVotesDatatable">
-                <thead>
-                <tr>
-                    <th><spring:message code="common.dateAdded"/></th>
-                    <th><spring:message code="common.rate"/></th>
-                    <th><spring:message code="common.comment"/></th>
-                    <th><spring:message code="common.bookerName"/></th>
-                </tr>
-                </thead>
-            </table>
-
+                <div class="panel-body">
+                    <table class="table table-striped display" id="hotelVotesDatatable">
+                        <thead>
+                        <tr>
+                            <th><spring:message code="common.dateAdded"/></th>
+                            <th><spring:message code="common.rate"/></th>
+                            <th><spring:message code="common.comment"/></th>
+                            <th><spring:message code="common.bookerName"/></th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
         </div>
+
     </div>
 </div>
-
 
 </body>
 <jsp:include page="fragments/i18nUtil.jsp"/>
