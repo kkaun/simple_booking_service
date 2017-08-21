@@ -9,33 +9,32 @@
 
 <div class="sidebar-nav-fixed affix adminSideBar">
     <div class="well">
-        <ul class="nav ">
+        <ul class="nav navbar-fixed-top">
             <li class="menu-head">
                 ADMIN MENU
             </li>
             <li>
-                <hr>
-                <a onclick="showAdminHotels()">Hotels
+                <a href="admin/show_hotels">Hotels
                 </a>
             </li>
             <li>
-                <a onclick="showAdminUsers()">Users
+                <a href="admin/show_users">Users
                 </a>
             </li>
             <li>
-                <a onclick="showAdminSuperBookings()">Bookings
+                <a href="admin/show_super_bookings">Bookings
                 </a>
             </li>
             <li>
-                <a onclick="showAdminVotes()">Feedback
+                <a href="admin/show_votes">Feedback
                 </a>
             </li>
             <li>
-                <a onclick="showAdminAptTypes()">Apt. Types
+                <a href="admin/show_apt_types">Apt. Types
                 </a>
             </li>
             <li>
-                <a onclick="showAdminRegions()">Regions
+                <a href="admin/show_regions">Regions
                 </a>
             </li>
         </ul>

@@ -73,4 +73,52 @@ public class ManagerController {
                 managerObject.getObjectApartmentTos());
         return "object";
     }
+
+
+
+    @PreAuthorize("hasRole('ROLE_MANAGER')")
+    @GetMapping("object/show_chart")
+    public String showChart(Model model) {
+        int hotelManagerId = AuthorizedUser.getId();
+        ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
+                managerObjectService.getManagerObjects());
+        ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
+                managerObject.getObjectApartmentTos());
+        return "adminHotels";
+    }
+
+    @PreAuthorize("hasRole('ROLE_MANAGER')")
+    @GetMapping("object/show_super_bookings")
+    public String showBookings(Model model) {
+        int hotelManagerId = AuthorizedUser.getId();
+        ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
+                managerObjectService.getManagerObjects());
+        ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
+                managerObject.getObjectApartmentTos());
+        return "adminHotels";
+    }
+
+    @PreAuthorize("hasRole('ROLE_MANAGER')")
+    @GetMapping("object/show_hotel_votes")
+    public String showObjectVotes(Model model) {
+        int hotelManagerId = AuthorizedUser.getId();
+        ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
+                managerObjectService.getManagerObjects());
+        ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
+                managerObject.getObjectApartmentTos());
+        return "adminHotels";
+    }
+
+    @PreAuthorize("hasRole('ROLE_MANAGER')")
+    @GetMapping("object/show_apartments")
+    public String showApartments(Model model) {
+        int hotelManagerId = AuthorizedUser.getId();
+        ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
+                managerObjectService.getManagerObjects());
+        ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
+                managerObject.getObjectApartmentTos());
+        return "adminHotels";
+    }
+
+
 }

@@ -9,25 +9,24 @@
 
 <div class="sidebar-nav-fixed affix adminSideBar">
     <div class="well">
-        <ul class="nav ">
+        <ul class="nav navbar-fixed-top">
             <li class="menu-head">
                 MANAGER MENU
             </li>
             <li>
-                <a onclick="showHotelChart()">Calendar/Chart
+                <a href="object/show_chart">Calendar/Chart
                 </a>
             </li>
             <li>
-                <a onclick="showManagerSuperBookings()">Manage Bookings
+                <a href="object/show_super_bookings">Manage Bookings
                 </a>
             </li>
             <li>
-                <a onclick="showManagerHotelVotes()">View Feedback
+                <a href="object/show_hotel_votes">View Feedback
                 </a>
             </li>
             <li>
-                <hr>
-                <a onclick="showManagerApartments()">Manage Apartments</a>
+                <a href="object/show_apartments">Manage Apartments</a>
             </li>
         </ul>
     </div>

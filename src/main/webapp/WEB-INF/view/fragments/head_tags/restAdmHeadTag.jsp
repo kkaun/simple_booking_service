@@ -31,11 +31,13 @@
     <script type="text/javascript" src="webjars/noty/2.4.1/js/noty/packaged/jquery.noty.packaged.min.js" defer></script>
     <script type="text/javascript" src="webjars/datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js" defer></script>
 
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/datepicker.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/datetimepicker.js" defer></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/scripts.js" defer></script>
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ajaxUtil.js" defer></script>
 
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util_dt/managerDatatablesUtil.js" defer></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/managerHotelsDatatable.js" defer></script>
+
+    <%--<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/cross_role/bookingsDatatable.js" defer></script>--%>
 
 </head>

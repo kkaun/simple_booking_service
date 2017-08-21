@@ -4,8 +4,13 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
-<jsp:include page="fragments/head_tags/restObjectHeadTag.jsp"/>
+<jsp:include page="fragments/head_tags/restAdmHeadTag.jsp"/>
 <body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/dataDays.js" defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/dataDaysEnh.js" defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/dataHours.js" defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/jquery.cookie.js" defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/jquery.fn.gantt.js" defer></script>
 <jsp:include page="fragments/header.jsp"/>
 
 <div class="container" style="margin-top: 20px;">

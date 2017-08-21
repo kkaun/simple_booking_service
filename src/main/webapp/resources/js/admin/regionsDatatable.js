@@ -19,6 +19,64 @@ function clearPlacesFilter() {
     $.get(ajaxUrl, updateTableByData);
 }
 
+
+
+function addRegion() {
+    $('#regionModalTitle').html(i18n["addTitle"]);
+    form.find(":input").val("");
+    $('#regionEditRow').modal();
+}
+
+function updateRegionRow(id) {
+    $('#regionModalTitle').html(i18n["editTitle"]);
+    $.get(ajaxUrl + id, function (data) {
+        $.each(data, function (key, value) {
+            form.find("input[name='" + key + "']").val(value);
+        });
+        $('#regionEditRow').modal();
+    });
+}
+
+function renderRegionEditBtn(data, type, row) {
+    if (type === 'display') {
+        return '<a onclick="updateRegionRow(' + row.id + ');">' +
+            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+    }
+}
+
+function saveRegion() {
+    $.ajax({
+        type: "POST",
+        url: ajaxUrl,
+        data: form.serialize(),
+        success: function () {
+            $('#regionEditRow').modal('hide');
+            updatePlacesTable();
+            successNoty('common.saved');
+        }
+    });
+}
+
+function renderRegionDeleteBtn(data, type, row) {
+    if (type === 'display') {
+        return '<a onclick="deleteRegionRow(' + row.id + ');" disabled="disabled">'+
+            '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
+    }
+}
+
+function deleteRegionRow(id) {
+    $.ajax({
+        url: ajaxUrl + id,
+        type: 'DELETE',
+        success: function () {
+            updatePlacesTable();
+            successNoty('common.deleted');
+        }
+    });
+}
+
+
+
 $(function () {
     datatableApi = $('#placesDatatable').DataTable(extendsOpts({
         "columns": [
@@ -56,3 +114,5 @@ $(function () {
         ]
     }));
 });
+
+

@@ -37,9 +37,6 @@
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ajaxUtil.js" defer></script>
 
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util_dt/userDatatablesUtil.js" defer></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util_dt/crossRoleDatatablesUtil.js" defer></script>
-
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user/userHotelsDatatable.js" defer></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user/userSuperBookingsDatatable.js" defer></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user/userVotesDatatable.js" defer></script>

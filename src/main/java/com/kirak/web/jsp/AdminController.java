@@ -34,8 +34,63 @@ public class AdminController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/admin_panel")
     public String adminPanel(Model model) {
+        return "admin";
+    }
+
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("admin/show_hotels")
+    public String showHotels(Model model) {
+        ModelUtil.getAdminView(model, aptTypeService.getAll(), countryService.getAll(),
+                cityService.getAll(), apartmentService.getAll());
+        return "adminHotels";
+    }
+
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("admin/show_users")
+    public String showUsers(Model model) {
+        ModelUtil.getAdminView(model, aptTypeService.getAll(), countryService.getAll(),
+                cityService.getAll(), apartmentService.getAll());
+        return "adminUsers";
+    }
+
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("admin/show_super_bookings")
+    public String showBookings(Model model) {
+        ModelUtil.getAdminView(model, aptTypeService.getAll(), countryService.getAll(),
+                cityService.getAll(), apartmentService.getAll());
+        return "adminSuperBookings";
+    }
+
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("admin/show_votes")
+    public String showVotes(Model model) {
+        ModelUtil.getAdminView(model, aptTypeService.getAll(), countryService.getAll(),
+                cityService.getAll(), apartmentService.getAll());
+        return "adminTypes";
+    }
+
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("admin/show_apt_types")
+    public String showAptTypes(Model model) {
         ModelUtil.getAdminView(model, aptTypeService.getAll(), countryService.getAll(),
                 cityService.getAll(), apartmentService.getAll());
         return "admin";
     }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("admin/show_regions")
+    public String showRegions(Model model) {
+        ModelUtil.getAdminView(model, aptTypeService.getAll(), countryService.getAll(),
+                cityService.getAll(), apartmentService.getAll());
+        return "adminRegions";
+    }
+
+
+
+
 }

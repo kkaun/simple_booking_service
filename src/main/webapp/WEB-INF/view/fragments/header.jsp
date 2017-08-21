@@ -67,17 +67,17 @@
                     <li style="margin-left: 10px;">
                         <form:form class="navbar-form" action="logout" method="post">
                             <sec:authorize access="isAuthenticated()">
-                            <sec:authorize access="!hasRole('ROLE_ADMIN')">
-                                <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/profile'}">
-                                    <a class="btn btn-info" href="profile" style="border-bottom-left-radius: 15px; border-top-left-radius: 15px;">
-                                        <sec:authentication property="principal.userTo.name"/>
-                                        <spring:message code="app.profile"/></a>
-                                </c:if>
+                                <sec:authorize access="!hasRole('ROLE_ADMIN')">
+                                    <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/profile'}">
+                                        <a class="btn btn-info" href="profile" style="border-bottom-left-radius: 15px; border-top-left-radius: 15px;">
+                                            <sec:authentication property="principal.userTo.name"/>
+                                            <spring:message code="app.profile"/></a>
+                                    </c:if>
+                                </sec:authorize>
                                 <button class="btn btn-default" type="submit">
                                     <spring:message code="common.logout"/>
                                     <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
                                 </button>
-                            </sec:authorize>
                             </sec:authorize>
                         </form:form>
                     </li>
