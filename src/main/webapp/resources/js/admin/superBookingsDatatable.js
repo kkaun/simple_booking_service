@@ -105,6 +105,7 @@ $(function () {
                 "desc"
             ]
         ],
+        "pageLength": 50,
         "createdRow": function (row, data, dataIndex) {
             if (!data.active) {
                 $(row).addClass("disabled");

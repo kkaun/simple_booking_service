@@ -17,7 +17,7 @@ import javax.validation.Valid;
  */
 
 @RestController
-@RequestMapping("/profile")
+@RequestMapping(value = "/profile")
 public class ProfileRestController extends UserAbstractController {
 
     @Autowired

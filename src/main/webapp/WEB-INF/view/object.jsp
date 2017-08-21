@@ -6,8 +6,6 @@
 <html>
 <jsp:include page="fragments/head_tags/restAdmHeadTag.jsp"/>
 <body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/managerHotelsDatatable.js"
-        defer></script>
 <jsp:include page="fragments/header.jsp"/>
 
 <div class="container" style="margin-top: 20px;">
@@ -15,9 +13,11 @@
 
         <div class="col-md-3">
             <a href="object/show_chart">
-                <div class="panel-default text-center">
-                    <div class="panel-body">
-                        <h2>Hotels</h2>
+                <div class="panel-group">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-body">
+                            <h2>Hotels</h2>
+                        </div>
                     </div>
                 </div>
             </a>
@@ -25,9 +25,11 @@
 
         <div class="col-md-3">
             <a href="object/show_super_bookings">
-                <div class="panel-default text-center">
-                    <div class="panel-body">
-                        <h2>Hotels</h2>
+                <div class="panel-group">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-body">
+                            <h2>Hotels</h2>
+                        </div>
                     </div>
                 </div>
             </a>
@@ -35,9 +37,11 @@
 
         <div class="col-md-3">
             <a href="object/show_hotel_votes">
-                <div class="panel-default text-center">
-                    <div class="panel-body">
-                        <h2>Hotels</h2>
+                <div class="panel-group">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-body">
+                            <h2>Hotels</h2>
+                        </div>
                     </div>
                 </div>
             </a>
@@ -45,9 +49,11 @@
 
         <div class="col-md-3">
             <a href="object/show_apartments">
-                <div class="panel-default text-center">
-                    <div class="panel-body">
-                        <h2>Hotels</h2>
+                <div class="panel-group">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-body">
+                            <h2>Hotels</h2>
+                        </div>
                     </div>
                 </div>
             </a>

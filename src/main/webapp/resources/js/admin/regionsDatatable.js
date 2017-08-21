@@ -54,7 +54,8 @@ $(function () {
                 0,
                 "desc"
             ]
-        ]
+        ],
+        "pageLength": 50
     }));
 
 });

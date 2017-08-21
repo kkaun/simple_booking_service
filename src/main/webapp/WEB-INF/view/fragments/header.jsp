@@ -44,7 +44,7 @@
                             </c:if>
                         </sec:authorize>
                         <sec:authorize access="hasAuthority('ROLE_MANAGER')">
-                            <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/objects'}">
+                            <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/managerObjects'}">
                                 <li style="margin-left: 10px;">
                                     <form>
                                         <a class="btn navbar-btn btn-danger" href="manage" style="border-radius: 15px">

@@ -86,6 +86,7 @@ $(function () {
                 "asc"
             ]
         ],
+        "pageLength": 50,
         "createdRow": function (row, data, dataIndex) {
             if (!data.enabled) {
                 $(row).addClass("disabled");

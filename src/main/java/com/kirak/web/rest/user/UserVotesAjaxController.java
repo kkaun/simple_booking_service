@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/user/votes")
+@RequestMapping(value = "/user/votes")
 public class UserVotesAjaxController  extends VoteAbstractController {
 
     public UserVotesAjaxController(VoteService voteService, HotelService hotelService) {

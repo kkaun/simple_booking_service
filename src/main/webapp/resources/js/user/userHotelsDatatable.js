@@ -5,6 +5,10 @@
 var ajaxUrl = "/user/hotels/";
 var datatableApi;
 
+// $(function() {
+//     $.get(ajaxUrl, updateTableByData);
+// });
+
 $(function () {
     datatableApi = $('#userHotelsDatatable').DataTable(extendsOpts({
         "columns": [
@@ -44,6 +48,7 @@ $(function () {
                 0,
                 "desc"
             ]
-        ]
+        ],
+        "pageLength": 20
     }));
 });

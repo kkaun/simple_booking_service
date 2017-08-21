@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/user/hotels")
+@RequestMapping(value = "/user/hotels")
 public class UserHotelsAjaxController extends HotelAbstractController {
 
     public UserHotelsAjaxController(HotelService hotelService, CountryService countryService, CityService cityService) {

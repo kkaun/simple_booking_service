@@ -47,6 +47,13 @@ public class ManagerController {
     private ManagerObjectService managerObjectService;
 
 
+//    @PreAuthorize("hasRole('ROLE_MANAGER')")
+//    @GetMapping("/manage_objects")
+//    public String manageObject() {
+//        return "redirect:managerObjects";
+//    }
+
+
     @PreAuthorize("hasRole('ROLE_MANAGER')")
     @GetMapping("/manage_object")
     public String manageObject(Model model, @RequestParam("id") int hotelId){
@@ -84,7 +91,7 @@ public class ManagerController {
                 managerObjectService.getManagerObjects());
         ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
                 managerObject.getObjectApartmentTos());
-        return "adminHotels";
+        return "objectHotelChart";
     }
 
     @PreAuthorize("hasRole('ROLE_MANAGER')")
@@ -95,7 +102,7 @@ public class ManagerController {
                 managerObjectService.getManagerObjects());
         ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
                 managerObject.getObjectApartmentTos());
-        return "adminHotels";
+        return "objectSuperBookings";
     }
 
     @PreAuthorize("hasRole('ROLE_MANAGER')")
@@ -106,7 +113,7 @@ public class ManagerController {
                 managerObjectService.getManagerObjects());
         ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
                 managerObject.getObjectApartmentTos());
-        return "adminHotels";
+        return "objectHotelVotes";
     }
 
     @PreAuthorize("hasRole('ROLE_MANAGER')")
@@ -117,7 +124,7 @@ public class ManagerController {
                 managerObjectService.getManagerObjects());
         ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
                 managerObject.getObjectApartmentTos());
-        return "adminHotels";
+        return "objectApartments";
     }
 
 

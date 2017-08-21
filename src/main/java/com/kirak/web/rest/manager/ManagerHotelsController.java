@@ -1,7 +1,6 @@
 package com.kirak.web.rest.manager;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.kirak.model.Hotel;
 import com.kirak.service.CityService;
 import com.kirak.service.CountryService;
 import com.kirak.service.HotelService;
@@ -14,7 +13,6 @@ import com.kirak.web.session.AuthorizedUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -23,7 +21,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/manager/objects")
+@RequestMapping(value = "/manager/objects")
 public class ManagerHotelsController extends HotelAbstractController {
 
     @Autowired
@@ -51,6 +49,7 @@ public class ManagerHotelsController extends HotelAbstractController {
     }
 
     @Override
+    @JsonView(View.JsonUI.class)
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<HotelTo> getHotelsForManager() {
         return super.getHotelsForManager();

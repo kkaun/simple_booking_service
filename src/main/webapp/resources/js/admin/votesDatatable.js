@@ -5,6 +5,9 @@
 var ajaxUrl = "/admin/votes/";
 var datatableApi;
 
+// $(function() {
+//     $.get(ajaxUrl, updateTableByData);
+// });
 
 $(function () {
     datatableApi = $('#votesDatatable').DataTable(extendsOpts({
@@ -39,6 +42,7 @@ $(function () {
                 0,
                 "desc"
             ]
-        ]
+        ],
+        "pageLength": 50
     }));
 });

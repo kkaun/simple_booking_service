@@ -13,9 +13,11 @@
 
         <div class="col-md-4">
             <a href="admin/show_hotels">
-                <div class="panel-default text-center">
-                    <div class="panel-body">
-                        <h2>Hotels</h2>
+                <div class="panel-group">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-body">
+                            <h2>Hotels</h2>
+                        </div>
                     </div>
                 </div>
             </a>
@@ -23,9 +25,11 @@
 
         <div class="col-md-4">
             <a href="admin/show_users">
-                <div class="panel-default text-center">
-                    <div class="panel-body">
-                        <h2>Users</h2>
+                <div class="panel-group">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-body">
+                            <h2>Users</h2>
+                        </div>
                     </div>
                 </div>
             </a>
@@ -33,9 +37,11 @@
 
         <div class="col-md-4">
             <a href="admin/show_super_bookings">
-                <div class="panel-default text-center">
-                    <div class="panel-body">
-                        <h2>Bookings</h2>
+                <div class="panel-group">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-body">
+                            <h2>Bookings</h2>
+                        </div>
                     </div>
                 </div>
             </a>
@@ -43,9 +49,11 @@
 
         <div class="col-md-4">
             <a href="admin/show_votes">
-                <div class="panel-default text-center">
-                    <div class="panel-body">
-                        <h2>Feedback</h2>
+                <div class="panel-group">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-body">
+                            <h2>Feedback</h2>
+                        </div>
                     </div>
                 </div>
             </a>
@@ -53,9 +61,11 @@
 
         <div class="col-md-4">
             <a href="admin/show_apt_types">
-                <div class="panel-default text-center">
-                    <div class="panel-body">
-                        <h2>Apt. Types</h2>
+                <div class="panel-group">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-body">
+                            <h2>Apt. Types</h2>
+                        </div>
                     </div>
                 </div>
             </a>
@@ -63,9 +73,11 @@
 
         <div class="col-md-4">
             <a href="admin/show_regions">
-                <div class="panel-default text-center">
-                    <div class="panel-body">
-                        <h2>Regions</h2>
+                <div class="panel-group">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-body">
+                            <h2>Regions</h2>
+                        </div>
                     </div>
                 </div>
             </a>

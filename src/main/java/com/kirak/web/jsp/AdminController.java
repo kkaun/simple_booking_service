@@ -70,7 +70,7 @@ public class AdminController {
     public String showVotes(Model model) {
         ModelUtil.getAdminView(model, aptTypeService.getAll(), countryService.getAll(),
                 cityService.getAll(), apartmentService.getAll());
-        return "adminTypes";
+        return "adminVotes";
     }
 
 

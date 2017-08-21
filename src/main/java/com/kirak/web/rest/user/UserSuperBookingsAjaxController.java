@@ -18,7 +18,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/user/super_bookings")
+@RequestMapping(value = "/user/super_bookings")
 public class UserSuperBookingsAjaxController extends BookingAbstractController {
 
     protected UserSuperBookingsAjaxController(BookingService bookingService, SuperBookingService superBookingService,
