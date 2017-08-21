@@ -14,13 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
-import java.util.Date;
 
 
 /**
@@ -51,7 +48,7 @@ public class RootController extends UserAbstractController {
     @PreAuthorize("hasRole('ROLE_MANAGER')")
     @GetMapping("/manage")
     public String getManagerObjects() {
-        return "objects";
+        return "managerObjects";
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
@@ -76,7 +73,8 @@ public class RootController extends UserAbstractController {
     }
 
     @PostMapping("/profile")
-    public String updateProfile(@Valid UserTo userTo, BindingResult result, SessionStatus status, @AuthenticationPrincipal AuthorizedUser authorizedUser) {
+    public String updateProfile(@Valid UserTo userTo, BindingResult result, SessionStatus status,
+                                @AuthenticationPrincipal AuthorizedUser authorizedUser) {
         if (!result.hasErrors()) {
             try {
                 super.update(userTo, AuthorizedUser.getId());
@@ -91,30 +89,53 @@ public class RootController extends UserAbstractController {
     }
 
 
-    @GetMapping("/register")
-    public String register(ModelMap model) {
-        UserTo userTo = new UserTo();
-        userTo.setRegistered(new Date());
-        userTo.setEnabled(true);
+    @GetMapping("/register_user")
+    public String registerUser(ModelMap model) {
         model.addAttribute("userTo", new UserTo());
-        model.addAttribute("register", true);
+        model.addAttribute("registerUserAction", true);
         return "profile";
     }
 
-    @PostMapping("/register")
-    public String saveRegister(@Valid UserTo userTo, BindingResult result, SessionStatus status, ModelMap model) {
+    @PostMapping("/register_user")
+    public String saveRegisterUser(@Valid UserTo userTo, BindingResult result, SessionStatus status, ModelMap model) {
         if (!result.hasErrors()) {
             try {
-                super.create(UserUtil.createNewRegisteredFromTo(userTo));
+                super.create(UserUtil.createNewRegisteredUserFromTo(userTo));
                 status.setComplete();
                 return "redirect:login?message=app.registered&username=" + userTo.getEmail();
             } catch (DataIntegrityViolationException ex) {
                 result.rejectValue("email", EXCEPTION_DUPLICATE_EMAIL);
             }
         }
-        model.addAttribute("register", true);
+        model.addAttribute("registerUserAction", true);
         return "profile";
     }
+
+
+    @GetMapping("/register_manager")
+    public String registerManager(ModelMap model) {
+        model.addAttribute("userTo", new UserTo());
+        model.addAttribute("registerManagerAction", true);
+        return "profile";
+    }
+
+    @PostMapping("/register_manager")
+    public String saveRegisterManager(@Valid UserTo userTo, BindingResult result, SessionStatus status, ModelMap model) {
+        if (!result.hasErrors()) {
+            try {
+                super.create(UserUtil.createNewRegisteredManagerFromTo(userTo));
+                status.setComplete();
+                return "redirect:login?message=app.registered&username=" + userTo.getEmail();
+            } catch (DataIntegrityViolationException ex) {
+                result.rejectValue("email", EXCEPTION_DUPLICATE_EMAIL);
+            }
+        }
+        model.addAttribute("registerManagerAction", true);
+        return "profile";
+    }
+
+
+
 
 
     @GetMapping(value = "/list_object")

@@ -11,15 +11,23 @@
 <div class="container" style="margin-top: 20px;">
     <div class="row">
 
+        <div class="col-md-3">
+            <jsp:include page="fragments/sidebars/managerSidebar.jsp"/>
+        </div>
 
+        <div class="col-md-9">
 
+            <table class="table ganttTable" id="ganttTable">
+
+            </table>
+
+        </div>
     </div>
 </div>
-
-
 </body>
 <jsp:include page="fragments/i18nUtil.jsp"/>
 </html>
 <jsp:include page="fragments/footer.jsp"/>
+
 
 

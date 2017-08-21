@@ -36,7 +36,8 @@
                             <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/admin'}">
                                 <li style="margin-left: 10px;">
                                     <form>
-                                        <a class="btn navbar-btn btn-danger" href="administrate" style="border-radius: 15px">
+                                        <a class="btn navbar-btn btn-danger" href="administrate"
+                                           style="border-bottom-left-radius: 15px; border-top-left-radius: 15px;">
                                             <spring:message code="common.admin"/></a>
                                     </form>
                                 </li>
@@ -66,6 +67,7 @@
                     <li style="margin-left: 10px;">
                         <form:form class="navbar-form" action="logout" method="post">
                             <sec:authorize access="isAuthenticated()">
+                            <sec:authorize access="!hasRole('ROLE_ADMIN')">
                                 <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/profile'}">
                                     <a class="btn btn-info" href="profile" style="border-bottom-left-radius: 15px; border-top-left-radius: 15px;">
                                         <sec:authentication property="principal.userTo.name"/>
@@ -76,6 +78,7 @@
                                     <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
                                 </button>
                             </sec:authorize>
+                            </sec:authorize>
                         </form:form>
                     </li>
                 </ul>
@@ -83,19 +86,19 @@
                 <sec:authorize access="isAnonymous()">
                     <ul class="nav navbar-nav navbar-right">
                         <li style="margin-left: 10px;">
-                            <form>
-                                <a href="list_object" class="btn btn-warning navbar-btn" style="border-radius: 15px">
+                            <form method="get">
+                                <a href="register_manager" class="btn btn-warning navbar-btn" style="border-radius: 15px">
                                     <spring:message code="common.listobject"/></a>
                             </form>
                         </li>
                         <li style="margin-left: 10px;">
-                            <form>
-                                <a href="register" class="btn btn-success navbar-btn" style="border-radius: 15px">
+                            <form method="get">
+                                <a href="register_user" class="btn btn-success navbar-btn" style="border-radius: 15px">
                                     <spring:message code="common.register"/></a>
                             </form>
                         <li>
                         <li style="margin-left: 10px;">
-                            <form>
+                            <form method="get">
                                 <a href="login" class="btn btn-primary navbar-btn" style="border-radius: 15px">
                                     <spring:message code="common.login_as"/></a>
                             </form>

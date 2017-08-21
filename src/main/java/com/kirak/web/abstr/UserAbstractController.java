@@ -60,9 +60,14 @@ public abstract class UserAbstractController {
                 .collect(Collectors.toList()));
     }
 
-    public UserTo get(int id) {
+    public UserTo getTo(int id) {
         log.info("getPlacementMap {}", id);
         return UserUtil.asTo(userService.get(id));
+    }
+
+    public User getUser(int id) {
+        log.info("getPlacementMap {}", id);
+        return userService.get(id);
     }
 
     public User create(User user) {

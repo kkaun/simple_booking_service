@@ -1,7 +1,6 @@
 package com.kirak.web.rest.admin;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.kirak.model.User;
 import com.kirak.service.UserService;
 import com.kirak.to.UserTo;
 import com.kirak.util.model.UserUtil;
@@ -35,8 +34,8 @@ public class UsersAjaxController extends UserAbstractController {
     @Override
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @JsonView(View.JsonUI.class)
-    public UserTo get(@PathVariable("id") int id) {
-        return super.get(id);
+    public UserTo getTo(@PathVariable("id") int id) {
+        return super.getTo(id);
     }
 
     @Override

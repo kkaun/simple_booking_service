@@ -16,9 +16,19 @@ import java.util.stream.Collectors;
  */
 public class UserUtil {
 
-    public static User createNewRegisteredFromTo(UserTo newUser) {
+    public static User createNewFromTo(UserTo newUser) {
         return new User(null, newUser.getName(), newUser.getEmail().toLowerCase(), newUser.getPhone(),
                 newUser.getPassword(), UserRole.ROLE_USER);
+    }
+
+    public static User createNewRegisteredUserFromTo(UserTo newUser) {
+        return new User(null, newUser.getName(), newUser.getEmail().toLowerCase(), newUser.getPhone(),
+                newUser.getPassword(), UserRole.ROLE_USER);
+    }
+
+    public static User createNewRegisteredManagerFromTo(UserTo newUser) {
+        return new User(null, newUser.getName(), newUser.getEmail().toLowerCase(), newUser.getPhone(),
+                newUser.getPassword(), UserRole.ROLE_MANAGER);
     }
 
     public static User createNewByAdminFromTo(UserTo newUser) {
@@ -39,7 +49,7 @@ public class UserUtil {
 
         List<String> roles = user.getRoles().stream()
                 .map(userRole -> StringUtils.capitalize(userRole.name()
-                        .substring(userRole.name().indexOf("_", userRole.name().length())).toLowerCase()))
+                        .substring(userRole.name().indexOf("_"), userRole.name().length()-1).toLowerCase()))
                 .collect(Collectors.toList());
 
         return new UserTo(user.getId(), user.getName(), user.getEmail(), user.getPhone(), String.join(", ", roles),
