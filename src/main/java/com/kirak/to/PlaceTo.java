@@ -38,27 +38,27 @@ public class PlaceTo extends BasicIntTo implements Serializable {
         this.hotelNum = hotelNum;
     }
 
-    @JsonValue
+    
     public String getImgPath() {
         return imgPath;
     }
 
-    @JsonValue
+    
     public String getName() {
         return name;
     }
 
-    @JsonValue
+    
     public String getCountryName() {
         return countryName;
     }
 
-    @JsonValue
+    
     public String getDescription() {
         return description;
     }
 
-    @JsonValue
+    
     public Integer getHotelNum() {
         return hotelNum;
     }

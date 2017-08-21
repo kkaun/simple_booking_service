@@ -2,7 +2,6 @@
  * Created by Кира on 17.08.2017.
  */
 
-
 var ajaxUrl = "/user/hotels/";
 var datatableApi;
 

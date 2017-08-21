@@ -79,7 +79,7 @@ public class AdminController {
     public String showAptTypes(Model model) {
         ModelUtil.getAdminView(model, aptTypeService.getAll(), countryService.getAll(),
                 cityService.getAll(), apartmentService.getAll());
-        return "admin";
+        return "adminTypes";
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")

@@ -42,7 +42,7 @@ public class RootController extends UserAbstractController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/administrate")
     public String getAdminPanel() {
-        return "redirect:admin_panel";
+        return "admin";
     }
 
     @PreAuthorize("hasRole('ROLE_MANAGER')")

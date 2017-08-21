@@ -59,47 +59,47 @@ public class ManagerSuperBookingTo extends BasicIntTo implements Serializable {
         this.userPhone = userPhone;
     }
 
-    @JsonValue
+    
     public boolean isActive() {
         return active;
     }
 
-    @JsonValue
+    
     public LocalDateTime getDateAdded() {
         return dateAdded;
     }
 
-    @JsonValue
+    
     public LocalDate getInDate() {
         return inDate;
     }
 
-    @JsonValue
+    
     public LocalDate getOutDate() {
         return outDate;
     }
 
-    @JsonValue
+    
     public Short getApartmentsNum() {
         return apartmentsNum;
     }
 
-    @JsonValue
+    
     public String getUserName() {
         return userName;
     }
 
-    @JsonValue
+    
     public String getUserEmail() {
         return userEmail;
     }
 
-    @JsonValue
+    
     public String getUserPhone() {
         return userPhone;
     }
 
-    @JsonValue
+    
     public Integer getUserId() {
         return userId;
     }

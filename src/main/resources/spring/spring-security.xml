@@ -17,7 +17,7 @@
         <intercept-url pattern="/user/**" access="isAuthenticated()"/>
 
         <form-login login-page="/login"
-                    default-target-url="/profile"
+                    default-target-url="/index"
 
                     authentication-failure-url="/login?error=true"
                     login-processing-url="/spring_security_check"/>

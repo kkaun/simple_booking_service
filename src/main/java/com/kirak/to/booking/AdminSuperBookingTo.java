@@ -51,37 +51,37 @@ public class AdminSuperBookingTo extends BasicIntTo implements Serializable {
         this.userId = userId;
     }
 
-    @JsonValue
+    
     public boolean isActive() {
         return active;
     }
 
-    @JsonValue
+    
     public LocalDateTime getDateAdded() {
         return dateAdded;
     }
 
-    @JsonValue
+    
     public LocalDate getInDate() {
         return inDate;
     }
 
-    @JsonValue
+    
     public LocalDate getOutDate() {
         return outDate;
     }
 
-    @JsonValue
+    
     public Integer getHotelId() {
         return hotelId;
     }
 
-    @JsonValue
+    
     public String getHotelName() {
         return hotelName;
     }
 
-    @JsonValue
+    
     public Integer getUserId() {
         return userId;
     }

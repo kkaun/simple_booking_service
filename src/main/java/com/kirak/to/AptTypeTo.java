@@ -35,27 +35,27 @@ public class AptTypeTo extends BasicShortTo implements Serializable {
         this.apartmentsAppliedTo = apartmentsAppliedTo;
     }
 
-    @JsonValue
+    
     public Short getPersonNum() {
         return personNum;
     }
 
-    @JsonValue
+    
     public String getCategory() {
         return category;
     }
 
-    @JsonValue
+    
     public String getBedsArrangement() {
         return bedsArrangement;
     }
 
-    @JsonValue
+    
     public Integer getHotelsUsing() {
         return hotelsUsing;
     }
 
-    @JsonValue
+    
     public Integer getApartmentsAppliedTo() {
         return apartmentsAppliedTo;
     }

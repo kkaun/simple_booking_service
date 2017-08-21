@@ -5,6 +5,7 @@
 var ajaxUrl = "/admin/votes/";
 var datatableApi;
 
+
 $(function () {
     datatableApi = $('#votesDatatable').DataTable(extendsOpts({
         "columns": [

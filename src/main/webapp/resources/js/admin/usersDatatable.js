@@ -1,8 +1,10 @@
 /**
  * Created by Кира on 15.08.2017.
  */
+
 var ajaxUrl = "admin/users/";
 var datatableApi;
+
 
 function updateUsersTable() {
     $.get(ajaxUrl, updateTableByData);
@@ -23,66 +25,6 @@ function enable(chkbox, id) {
         }
     });
 }
-
-
-
-function addUser() {
-    $('#userCreateModalTitle').html(i18n["addTitle"]);
-    form.find(":input").val("");
-    $('#userCreateRow').modal();
-}
-
-function updateUserRow(id) {
-    $('#userUpdateModalTitle').html(i18n["editTitle"]);
-    $.get(ajaxUrl + id, function (data) {
-        $.each(data, function (key, value) {
-            form.find("input[name='" + key + "']").val(value);
-        });
-        $('#userEditRow').modal();
-    });
-}
-
-function renderUserEditBtn(data, type, row) {
-    if (type === 'display') {
-        return '<a onclick="updateUserRow(' + row.id + ');">' +
-            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
-    }
-}
-
-function saveUser() {
-    $.ajax({
-        type: "POST",
-        url: ajaxUrl,
-        data: form.serialize(),
-        success: function () {
-            $('#userEditRow').modal('hide');
-            updateUsersTable();
-            successNoty('common.saved');
-        }
-    });
-}
-
-function renderUserDeleteBtn(data, type, row) {
-    if (type === 'display') {
-        return '<a onclick="deleteUserRow(' + row.id + ');" disabled="disabled">'+
-            '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
-    }
-}
-
-function deleteUserRow(id) {
-    $.ajax({
-        url: ajaxUrl + id,
-        type: 'DELETE',
-        success: function () {
-            updateUsersTable();
-            successNoty('common.deleted');
-        }
-    });
-}
-
-
-
-
 
 // $(document).ready(function () {
 $(function () {

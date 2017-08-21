@@ -9,7 +9,7 @@
 
 <div class="sidebar-nav-fixed affix adminSideBar">
     <div class="well">
-        <ul class="nav navbar-fixed-top">
+        <ul class="nav navbar">
             <li class="menu-head">
                 ADMIN MENU
             </li>

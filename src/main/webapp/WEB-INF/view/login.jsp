@@ -36,13 +36,11 @@
             <button type="submit" class="btn btn-lg btn-primary" onclick="setCredentials('admin@gmail.com', 'admin')">
                 <spring:message code="app.enter"/> <spring:message code="app.admin"/>
             </button>
-            <a class="btn btn-lg btn-success" href="register">
-                <spring:message code="app.register"/> &raquo;
-            </a>
         </p>
     </div>
 
     <div class="row text-center" style="padding-top: 20px">
+
         <form:form class="navbar-form" role="form" action="spring_security_check" method="post">
             <div class="form-group">
                 <input type="text" placeholder="Email" class="form-control" name="username">
@@ -54,6 +52,15 @@
                 <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
             </button>
         </form:form>
+
+        <br>
+        <br>
+        <a class="btn btn-lg btn-success" href="register_user">
+            <spring:message code="app.register"/> as user &raquo;
+        </a>
+        <a class="btn btn-lg btn-success" href="register_manager">
+            <spring:message code="app.register"/> as manager &raquo;
+        </a>
     </div>
 
 </div>
