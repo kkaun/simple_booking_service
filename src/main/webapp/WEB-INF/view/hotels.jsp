@@ -72,7 +72,7 @@
                                 </div>
                                 <div class="col-md-5 text-center">
                                     <div class="stars">
-                                        <c:if test="${hotel.stars > 0}">
+                                        <c:if test="${not empty hotel.stars && hotel.stars > 0}">
                                             <c:forEach begin="0" end="${hotel.stars - 1}" varStatus="loop">
                                                 <span class="glyphicon glyphicon-star"></span>
                                             </c:forEach>

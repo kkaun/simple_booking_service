@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping(value = "/object/chart")
+@RequestMapping(value = "/hotel_manager/object/chart")
 public class ChartAjaxController extends ManagerObjectAbstractController{
 
     @Autowired

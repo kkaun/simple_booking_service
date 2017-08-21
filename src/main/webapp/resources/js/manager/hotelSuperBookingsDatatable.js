@@ -3,7 +3,7 @@
  */
 
 
-var ajaxUrl = "/object/super_bookings/";
+var ajaxUrl = "/hotel_manager/object/super_bookings/";
 var datatableApi;
 
 

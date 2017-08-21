@@ -2,7 +2,7 @@
  * Created by Кира on 15.08.2017.
  */
 
-var ajaxUrl = "/manager/objects/";
+var ajaxUrl = "/hotel_manager/objects/";
 var datatableApi;
 
 

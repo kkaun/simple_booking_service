@@ -13,7 +13,7 @@
         <intercept-url pattern="/login" access="isAnonymous()"/>
         <intercept-url pattern="/register" access="isAnonymous()"/>
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/manager/**" access="hasRole('ROLE_MANAGER')"/>
+        <intercept-url pattern="/hotel_manager/**" access="hasRole('ROLE_MANAGER')"/>
         <intercept-url pattern="/user/**" access="isAuthenticated()"/>
 
         <form-login login-page="/login"

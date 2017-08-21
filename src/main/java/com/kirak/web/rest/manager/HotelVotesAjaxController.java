@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping(value = "/object/hotel_votes")
+@RequestMapping(value = "/hotel_manager/object/hotel_votes")
 public class HotelVotesAjaxController extends ManagerObjectAbstractController{
 
     @Autowired

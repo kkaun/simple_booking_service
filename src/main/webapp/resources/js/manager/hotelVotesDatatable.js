@@ -3,7 +3,7 @@
  */
 
 
-var ajaxUrl = "/object/hotel_votes/";
+var ajaxUrl = "/hotel_manager/object/hotel_votes/";
 var datatableApi;
 
 // $(function() {

@@ -47,15 +47,8 @@ public class ManagerController {
     private ManagerObjectService managerObjectService;
 
 
-//    @PreAuthorize("hasRole('ROLE_MANAGER')")
-//    @GetMapping("/manage_objects")
-//    public String manageObject() {
-//        return "redirect:managerObjects";
-//    }
-
-
     @PreAuthorize("hasRole('ROLE_MANAGER')")
-    @GetMapping("/manage_object")
+    @GetMapping("/hotel_manager/manage_object")
     public String manageObject(Model model, @RequestParam("id") int hotelId){
         //int hotelId = Integer.parseInt(id);
         Hotel hotel = hotelService.get(hotelId);
@@ -84,7 +77,7 @@ public class ManagerController {
 
 
     @PreAuthorize("hasRole('ROLE_MANAGER')")
-    @GetMapping("object/show_chart")
+    @GetMapping("/hotel_manager/object/show_chart")
     public String showChart(Model model) {
         int hotelManagerId = AuthorizedUser.getId();
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
@@ -95,7 +88,7 @@ public class ManagerController {
     }
 
     @PreAuthorize("hasRole('ROLE_MANAGER')")
-    @GetMapping("object/show_super_bookings")
+    @GetMapping("/hotel_manager/object/show_super_bookings")
     public String showBookings(Model model) {
         int hotelManagerId = AuthorizedUser.getId();
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
@@ -106,7 +99,7 @@ public class ManagerController {
     }
 
     @PreAuthorize("hasRole('ROLE_MANAGER')")
-    @GetMapping("object/show_hotel_votes")
+    @GetMapping("/hotel_manager/object/show_hotel_votes")
     public String showObjectVotes(Model model) {
         int hotelManagerId = AuthorizedUser.getId();
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
@@ -117,7 +110,7 @@ public class ManagerController {
     }
 
     @PreAuthorize("hasRole('ROLE_MANAGER')")
-    @GetMapping("object/show_apartments")
+    @GetMapping("/hotel_manager/object/show_apartments")
     public String showApartments(Model model) {
         int hotelManagerId = AuthorizedUser.getId();
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,

@@ -12,7 +12,7 @@
     <div class="row">
 
         <div class="col-md-3">
-            <a href="object/show_chart">
+            <a href="hotel_manager/object/show_chart">
                 <div class="panel-group">
                     <div class="panel panel-default text-center">
                         <div class="panel-body">
@@ -24,7 +24,7 @@
         </div>
 
         <div class="col-md-3">
-            <a href="object/show_super_bookings">
+            <a href="hotel_manager/object/show_super_bookings">
                 <div class="panel-group">
                     <div class="panel panel-default text-center">
                         <div class="panel-body">
@@ -36,7 +36,7 @@
         </div>
 
         <div class="col-md-3">
-            <a href="object/show_hotel_votes">
+            <a href="hotel_manager/object/show_hotel_votes">
                 <div class="panel-group">
                     <div class="panel panel-default text-center">
                         <div class="panel-body">
@@ -48,7 +48,7 @@
         </div>
 
         <div class="col-md-3">
-            <a href="object/show_apartments">
+            <a href="hotel_manager/object/show_apartments">
                 <div class="panel-group">
                     <div class="panel panel-default text-center">
                         <div class="panel-body">

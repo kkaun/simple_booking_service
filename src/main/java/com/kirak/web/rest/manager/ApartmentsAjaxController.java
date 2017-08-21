@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping(value = "/object/apartments")
+@RequestMapping(value = "/hotel_manager/object/apartments")
 public class ApartmentsAjaxController extends ManagerObjectAbstractController{
 
     @Autowired
