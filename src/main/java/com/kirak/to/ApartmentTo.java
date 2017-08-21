@@ -1,6 +1,7 @@
 package com.kirak.to;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.kirak.to.abstr.BasicIntTo;
 
 import java.io.Serializable;
@@ -28,10 +29,12 @@ public class ApartmentTo extends BasicIntTo implements Serializable {
         this.stringAptType = stringAptType;
     }
 
+    @JsonValue
     public Double getPrice() {
         return price;
     }
 
+    @JsonValue
     public String getStringAptType() {
         return stringAptType;
     }

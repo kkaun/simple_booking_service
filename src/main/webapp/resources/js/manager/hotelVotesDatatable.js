@@ -21,11 +21,6 @@ $(function () {
             {
                 "data": "user.name"
             }
-            // {
-            //     "render": renderHotelVotesViewBtn,
-            //     "defaultContent": "",
-            //     "orderable": false
-            // }
         ],
         "order": [
             [

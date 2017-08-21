@@ -2,6 +2,7 @@ package com.kirak.to;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.kirak.to.abstr.BasicIntTo;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
@@ -37,22 +38,27 @@ public class PlaceTo extends BasicIntTo implements Serializable {
         this.hotelNum = hotelNum;
     }
 
+    @JsonValue
     public String getImgPath() {
         return imgPath;
     }
 
+    @JsonValue
     public String getName() {
         return name;
     }
 
+    @JsonValue
     public String getCountryName() {
         return countryName;
     }
 
+    @JsonValue
     public String getDescription() {
         return description;
     }
 
+    @JsonValue
     public Integer getHotelNum() {
         return hotelNum;
     }

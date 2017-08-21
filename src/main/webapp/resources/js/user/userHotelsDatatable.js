@@ -39,11 +39,6 @@ $(function () {
             {
                 "data": "countryName"
             }
-            // {
-            //     "render": renderUserHotelViewBtn,
-            //     "defaultContent": "",
-            //     "orderable": false
-            // }
         ],
         "order": [
             [

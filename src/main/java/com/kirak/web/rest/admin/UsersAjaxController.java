@@ -28,14 +28,14 @@ public class UsersAjaxController extends UserAbstractController {
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @JsonView(View.JsonUI.class)
-    public List<User> getAll() {
+    public List<UserTo> getAll() {
         return super.getAll();
     }
 
     @Override
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @JsonView(View.JsonUI.class)
-    public User get(@PathVariable("id") int id) {
+    public UserTo get(@PathVariable("id") int id) {
         return super.get(id);
     }
 
@@ -48,7 +48,7 @@ public class UsersAjaxController extends UserAbstractController {
     @PostMapping
     public void createOrUpdate(@Valid UserTo userTo) {
         if (userTo.isNew()) {
-            super.create(UserUtil.createNewRegisteredFromTo(userTo));
+            super.create(UserUtil.createNewByAdminFromTo(userTo));
         } else {
             super.update(userTo, userTo.getId());
         }

@@ -4,13 +4,14 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
 
 /**
  * Created by Kir on 01.06.2017.
  */
 
 @MappedSuperclass
-public class NamedEntity extends BaseIntEntity {
+public class NamedEntity extends BaseIntEntity implements Serializable {
 
     @NotBlank
     @Column(name = "name", nullable = false)

@@ -1,6 +1,7 @@
 package com.kirak.to;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.kirak.to.abstr.BasicShortTo;
 
 import java.io.Serializable;
@@ -34,22 +35,27 @@ public class AptTypeTo extends BasicShortTo implements Serializable {
         this.apartmentsAppliedTo = apartmentsAppliedTo;
     }
 
+    @JsonValue
     public Short getPersonNum() {
         return personNum;
     }
 
+    @JsonValue
     public String getCategory() {
         return category;
     }
 
+    @JsonValue
     public String getBedsArrangement() {
         return bedsArrangement;
     }
 
+    @JsonValue
     public Integer getHotelsUsing() {
         return hotelsUsing;
     }
 
+    @JsonValue
     public Integer getApartmentsAppliedTo() {
         return apartmentsAppliedTo;
     }

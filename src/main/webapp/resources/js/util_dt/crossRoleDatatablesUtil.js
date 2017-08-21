@@ -79,34 +79,34 @@ function saveSuperBooking() {
 
 /* ----------------------------------------------- Booking DT functions --------------------------------------------- */
 
-
-function updateBookingRow(id) {
-    $('#bookingModalTitle').html(i18n["editTitle"]);
-    $.get(ajaxUrl + id, function (data) {
-        $.each(data, function (key, value) {
-            form.find("input[name='" + key + "']").val(value);
-        });
-        $('#bookingEditRow').modal();
-    });
-}
-
-function renderBookingEditBtn(data, type, row) {
-    if (type === 'display') {
-        return '<a onclick="updateBookingRow(' + row.id + ');">' +
-            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
-    }
-}
-
-function saveBooking() {
-    $.ajax({
-        type: "POST",
-        url: ajaxUrl + getSbId(),
-        data: form.serialize(),
-        success: function () {
-            $('#bookingEditRow').modal('hide');
-            updateBookingsTable();
-            successNoty('common.saved');
-        }
-    });
-}
-
+//
+// function updateBookingRow(id) {
+//     $('#bookingModalTitle').html(i18n["editTitle"]);
+//     $.get(ajaxUrl + id, function (data) {
+//         $.each(data, function (key, value) {
+//             form.find("input[name='" + key + "']").val(value);
+//         });
+//         $('#bookingEditRow').modal();
+//     });
+// }
+//
+// function renderBookingEditBtn(data, type, row) {
+//     if (type === 'display') {
+//         return '<a onclick="updateBookingRow(' + row.id + ');">' +
+//             '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+//     }
+// }
+//
+// function saveBooking() {
+//     $.ajax({
+//         type: "POST",
+//         url: ajaxUrl + getSbId(),
+//         data: form.serialize(),
+//         success: function () {
+//             $('#bookingEditRow').modal('hide');
+//             updateBookingsTable();
+//             successNoty('common.saved');
+//         }
+//     });
+// }
+//

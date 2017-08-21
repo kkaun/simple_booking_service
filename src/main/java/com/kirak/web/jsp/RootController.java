@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
+import java.util.Date;
 
 
 /**
@@ -44,7 +45,7 @@ public class RootController extends UserAbstractController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/administrate")
     public String getAdminPanel() {
-        return "/admin_panel";
+        return "redirect:admin_panel";
     }
 
     @PreAuthorize("hasRole('ROLE_MANAGER')")
@@ -92,6 +93,9 @@ public class RootController extends UserAbstractController {
 
     @GetMapping("/register")
     public String register(ModelMap model) {
+        UserTo userTo = new UserTo();
+        userTo.setRegistered(new Date());
+        userTo.setEnabled(true);
         model.addAttribute("userTo", new UserTo());
         model.addAttribute("register", true);
         return "profile";

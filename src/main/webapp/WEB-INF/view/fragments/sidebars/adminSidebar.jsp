@@ -11,8 +11,7 @@
     <div class="well">
         <ul class="nav ">
             <li class="menu-head">
-                ADMIN MENU <a href="#" class="push_menu"><span
-                    class="glyphicon glyphicon-align-justify pull-right"></span></a>
+                ADMIN MENU
             </li>
             <li>
                 <hr>

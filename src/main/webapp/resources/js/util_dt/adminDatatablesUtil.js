@@ -274,13 +274,13 @@ function deleteHotelRow(id) {
 
 
 function addUser() {
-    $('#userModalTitle').html(i18n["addTitle"]);
+    $('#userCreateModalTitle').html(i18n["addTitle"]);
     form.find(":input").val("");
-    $('#userEditRow').modal();
+    $('#userCreateRow').modal();
 }
 
 function updateUserRow(id) {
-    $('#userModalTitle').html(i18n["editTitle"]);
+    $('#userUpdateModalTitle').html(i18n["editTitle"]);
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(value);

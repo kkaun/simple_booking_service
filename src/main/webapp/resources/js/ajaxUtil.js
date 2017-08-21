@@ -40,35 +40,6 @@ function extendsOpts(opts) {
 
 
 
-
-
-
-
-
-/* -------------------------------------------------  Util functions --------------------------------------------- */
-
-
-
-function renderDeleteBtn(data, type, row) {
-    if (type === 'display') {
-        return '<a onclick="deleteRow(' + row.id + ');" disabled="disabled">'+
-            '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
-    }
-}
-
-
-function deleteRow(id) {
-    $.ajax({
-        url: ajaxUrl + id,
-        type: 'DELETE',
-        success: function () {
-            updateTable();
-            successNoty('common.deleted');
-        }
-    });
-}
-
-
 function updateTableByData(data) {
     datatableApi.clear().rows.add(data).draw();
 }

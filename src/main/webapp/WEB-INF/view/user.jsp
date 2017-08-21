@@ -55,7 +55,6 @@
                                     <th><spring:message code="hotels.checkOut"/></th>
                                     <th><spring:message code="hotels.city"/></th>
                                     <th><spring:message code="common.country"/></th>
-                                    <th></th>
                                 </tr>
                                 </thead>
                             </table>
@@ -77,11 +76,9 @@
                             <table class="table table-striped display" id="userVotesDatatable">
                                 <thead>
                                 <tr>
-                                    <th><spring:message code="common.id"/></th>
                                     <th><spring:message code="common.dateAdded"/></th>
                                     <th><spring:message code="common.rate"/></th>
                                     <th><spring:message code="common.comment"/></th>
-                                    <th><spring:message code="common.bookerName"/></th>
                                     <th><spring:message code="common.hotelId"/></th>
                                     <th><spring:message code="common.hotelName"/></th>
                                     <th></th>

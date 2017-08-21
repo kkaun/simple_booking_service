@@ -11,8 +11,7 @@
     <div class="well">
         <ul class="nav ">
             <li class="menu-head">
-                MANAGER MENU <a href="#" class="push_menu"><span
-                    class="glyphicon glyphicon-align-justify pull-right"></span></a>
+                MANAGER MENU
             </li>
             <li>
                 <a onclick="showHotelChart()">Calendar/Chart

@@ -56,7 +56,7 @@
                             <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/user'}">
                                 <li style="margin-left: 10px;">
                                     <form>
-                                        <a class="btn navbar-btn btn-success" href="manage" style="border-radius: 15px">
+                                        <a class="btn navbar-btn btn-success" href="user_activity" style="border-radius: 15px">
                                             <spring:message code="common.user"/></a>
                                     </form>
                                 </li>

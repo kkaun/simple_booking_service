@@ -42,7 +42,7 @@
 </div>
 
 <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-4">
         <div class="panel panel-default">
             <div class="panel-body">
                 <form:form class="form-horizontal filter" id="superBookingsManagerInDateFilter">
@@ -65,10 +65,8 @@
             </div>
         </div>
     </div>
-</div>
 
-<div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-4">
         <div class="panel panel-default">
             <div class="panel-body">
                 <form:form class="form-horizontal filter" id="superBookingsManagerOutDateFilter">
@@ -91,10 +89,8 @@
             </div>
         </div>
     </div>
-</div>
 
-<div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-4">
         <div class="panel panel-default">
             <div class="panel-body">
                 <form:form class="form-horizontal filter" id="superBookingsManagerUserIdFilter">

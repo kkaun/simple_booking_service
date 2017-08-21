@@ -2,10 +2,12 @@ package com.kirak.web.abstr;
 
 import com.kirak.Profile;
 import com.kirak.model.User;
+import com.kirak.model.UserRole;
 import com.kirak.service.UserService;
 import com.kirak.to.UserTo;
 import com.kirak.util.ErrorInfo;
 import com.kirak.util.exception.ApplicationException;
+import com.kirak.util.model.UserUtil;
 import com.kirak.web.ExceptionViewHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.kirak.util.ValidationUtil.*;
 
@@ -50,14 +53,16 @@ public abstract class UserAbstractController {
         this.userService = service;
     }
 
-    public List<User> getAll() {
+    public List<UserTo> getAll() {
         log.info("getAllHotelTos");
-        return userService.getAll();
+        return UserUtil.getAllTos(userService.getAll().stream()
+        .filter(user -> !user.getRoles().contains(UserRole.ROLE_ADMIN))
+                .collect(Collectors.toList()));
     }
 
-    public User get(int id) {
+    public UserTo get(int id) {
         log.info("getPlacementMap {}", id);
-        return userService.get(id);
+        return UserUtil.asTo(userService.get(id));
     }
 
     public User create(User user) {

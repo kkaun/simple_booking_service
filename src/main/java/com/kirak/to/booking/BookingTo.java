@@ -1,6 +1,7 @@
 package com.kirak.to.booking;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.kirak.model.Apartment;
 import com.kirak.model.Hotel;
 import com.kirak.model.abstraction.BaseLongEntity;
@@ -54,34 +55,42 @@ public class BookingTo extends BasicLongTo implements Serializable {
         this.aptId = aptId;
     }
 
+    @JsonValue
     public String getAptCategory() {
         return aptCategory;
     }
 
+    @JsonValue
     public String getAptArrangement() {
         return aptArrangement;
     }
 
+    @JsonValue
     public Short getAptPersonNum() {
         return aptPersonNum;
     }
 
+    @JsonValue
     public Double getAptPrice() {
         return aptPrice;
     }
 
+    @JsonValue
     public LocalDate getInDate() {
         return inDate;
     }
 
+    @JsonValue
     public LocalDate getOutDate() {
         return outDate;
     }
 
+    @JsonValue
     public Double getSum() {
         return sum;
     }
 
+    @JsonValue
     public Integer getAptId() {
         return aptId;
     }
