@@ -10,7 +10,7 @@
 <body>
 <jsp:include page="fragments/header.jsp"/>
 
-<div class="container">
+<div class="container" style="margin-top: 20px; min-height: 580px">
     <div class="row">
 
         <div class="col-md-4">

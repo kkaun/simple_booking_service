@@ -9,7 +9,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/hotelsDatatable.js" defer></script>
 <jsp:include page="fragments/header.jsp"/>
 
-<div class="container" style="margin-top: 20px;">
+<div class="container" style="margin-top: 20px; min-height: 580px">
     <div class="row">
 
         <div class="col-md-2">
@@ -56,11 +56,11 @@
                         <div class="panel-body">
                             <form:form class="form-horizontal filter" id="hotelsByCityAdminFilter">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5" for="cityName"><spring:message
+                                    <label class="control-label col-sm-6" for="cityName" style="margin-left: -20px"><spring:message
                                             code="hotels.byCity"/>:</label>
                                     <c:if test="${not empty cities}">
                                         <div class="form-group">
-                                            <div class="col-xs-7">
+                                            <div class="col-xs-6">
                                                 <select class="form-control" name="cityName" id="cityName">
                                                     <c:forEach items="${cities}" var="city">
                                                         <option value="${city.name}">${city.name}</option>
@@ -103,7 +103,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table class="table table-striped display" id="hotelsDatatable">
+                        <table class="table table-striped table-bordered display" id="hotelsDatatable">
                             <thead>
                             <tr>
                                 <th><spring:message code="common.id"/></th>

@@ -8,15 +8,25 @@
 <body>
 <jsp:include page="fragments/header.jsp"/>
 
-<div class="container" style="margin-top: 20px;">
-    <div class="row">
+<div class="container" style="margin-top: 20px; min-height: 580px">
 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel-group">
+                <div class="panel panel-default text-center">
+                    <h1>Object <strong>${objectId}</strong> manager's page</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-md-3">
             <a href="hotel_manager/object/show_chart">
                 <div class="panel-group">
                     <div class="panel panel-default text-center">
                         <div class="panel-body">
-                            <h2>Hotels</h2>
+                            <h2>Calendar/Chart</h2>
                         </div>
                     </div>
                 </div>
@@ -28,7 +38,7 @@
                 <div class="panel-group">
                     <div class="panel panel-default text-center">
                         <div class="panel-body">
-                            <h2>Hotels</h2>
+                            <h2>Bookings</h2>
                         </div>
                     </div>
                 </div>
@@ -40,7 +50,7 @@
                 <div class="panel-group">
                     <div class="panel panel-default text-center">
                         <div class="panel-body">
-                            <h2>Hotels</h2>
+                            <h2>Feedback</h2>
                         </div>
                     </div>
                 </div>
@@ -52,7 +62,7 @@
                 <div class="panel-group">
                     <div class="panel panel-default text-center">
                         <div class="panel-body">
-                            <h2>Hotels</h2>
+                            <h2>Apartments</h2>
                         </div>
                     </div>
                 </div>

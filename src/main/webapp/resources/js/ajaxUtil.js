@@ -40,6 +40,7 @@ function extendsOpts(opts) {
 
 
 
+
 function updateTableByData(data) {
     datatableApi.clear().rows.add(data).draw();
 }
@@ -101,7 +102,7 @@ function updateAptTypeRow(id) {
 function renderAptTypeEditBtn(data, type, row) {
     if (type === 'display') {
         return '<a onclick="updateAptTypeRow(' + row.id + ');">' +
-            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+            '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>';
     }
 }
 
@@ -157,7 +158,7 @@ function updateHotelRow(id) {
 function renderHotelEditBtn(data, type, row) {
     if (type === 'display') {
         return '<a onclick="updateHotelRow(' + row.id + ');">' +
-            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+            '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>';
     }
 }
 
@@ -215,7 +216,7 @@ function updateRegionRow(id) {
 function renderRegionEditBtn(data, type, row) {
     if (type === 'display') {
         return '<a onclick="updateRegionRow(' + row.id + ');">' +
-            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+            '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>';
     }
 }
 
@@ -271,7 +272,7 @@ function updateUserRow(id) {
 function renderUserEditBtn(data, type, row) {
     if (type === 'display') {
         return '<a onclick="updateUserRow(' + row.id + ');">' +
-            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+            '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>';
     }
 }
 
@@ -322,7 +323,7 @@ function addApartment() {
 function renderApartmentEditBtn(data, type, row) {
     if (type === 'display') {
         return '<a onclick="updateApartmentRow(' + row.id + ');">' +
-            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+            '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>';
     }
 }
 
@@ -379,7 +380,7 @@ function addManagerHotel() {
 function renderManagerHotelEditBtn(data, type, row) {
     if (type === 'display') {
         return '<a onclick="updateManagerHotelRow(' + row.id + ');">' +
-            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+            '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>';
     }
 }
 
@@ -405,8 +406,6 @@ function saveManagerHotel() {
         }
     });
 }
-
-
 
 
 // USER  ---------------------------------------------------------------------------------------------------------------
@@ -436,7 +435,7 @@ function saveUserVote() {
 function renderUserVoteEditBtn(data, type, row) {
     if (type === 'display') {
         return '<a onclick="updateUserVoteRow(' + row.id + ');">' +
-            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+            '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>';
     }
 }
 
@@ -472,11 +471,6 @@ function deleteUserVoteRow(id) {
 
 
 
-
-
-
-
-
 // BOOKINGS            -----------------------------------------------------------------------------------------------------
 
 
@@ -501,7 +495,7 @@ function getSbId() {
 function renderSuperBookingEditBtn(data, type, row) {
     if (type === 'display') {
         return '<a onclick="updateSuperBookingRow(' + row.id + ');">' +
-            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+            '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>';
     }
 }
 
@@ -559,7 +553,7 @@ function saveSuperBooking() {
 // function renderBookingEditBtn(data, type, row) {
 //     if (type === 'display') {
 //         return '<a onclick="updateBookingRow(' + row.id + ');">' +
-//             '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+//             '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>';
 //     }
 // }
 //

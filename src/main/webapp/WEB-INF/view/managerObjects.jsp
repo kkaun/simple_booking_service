@@ -9,20 +9,20 @@
 <body>
 <jsp:include page="fragments/header.jsp"/>
 
-<div class="container" style="margin-top: 20px;">
+<div class="container" style="margin-top: 20px; min-height: 580px">
     <div class="row">
 
         <div class="col-md-12">
 
             <div class="row" style="height: 70px">
-                <div class="col-md-6">
+                <div class="col-md-11">
                     <div class="panel panel-default">
                         <div class="panel-body" style="padding: 10px;">
-                            <h4 class="pull-left"><strong>Manager's Objects:</strong></h4>
+                            <h4 class="pull-left"><strong>My Objects:</strong></h4>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-1">
                     <button id="adminUserAddBtn" class="btn btn-lg btn-primary pull-right"
                             style="margin: 0 auto;" onclick="addManagerHotel()">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -33,13 +33,12 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table class="table table-striped display" id="managerHotelsDatatable">
+                        <table class="table table-striped table-bordered hover display" id="managerHotelsDatatable">
                             <thead>
                             <tr>
                                 <th><spring:message code="common.id"/></th>
                                 <th><spring:message code="common.name"/></th>
                                 <th><spring:message code="hotels.rating"/></th>
-                                <th><spring:message code="hotels.stars"/></th>
                                 <th><spring:message code="common.description"/></th>
                                 <th><spring:message code="hotels.votesNum"/></th>
                                 <th><spring:message code="hotels.checkIn"/></th>
@@ -139,7 +138,6 @@
         </div>
     </div>
 </div>
-
 
 </body>
 <jsp:include page="fragments/i18nUtil.jsp"/>

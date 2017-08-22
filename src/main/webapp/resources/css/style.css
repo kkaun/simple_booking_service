@@ -79,6 +79,18 @@
 }
 
 
+.admLink{
+    text-decoration:none;
+    color: black;
+}
+
+.admLink :hover * {
+    background-color: #5cb85c !important;
+    text-decoration:none !important;
+    color: black !important;
+}
+
+
 
 
 
@@ -191,3 +203,5 @@ header, footer {
     padding: 5px 20px;
     margin: 6px 0;
 }
+
+

@@ -61,7 +61,7 @@ public class ManagerController {
                 .filter(booking -> booking.getSuperBooking().isActive())
                 .collect(Collectors.toList());
 
-        ManagerObject managerObject = ManagerObjectUtil.createManagerObjectFromHotelId(managerId,
+        ManagerObject managerObject = ManagerObjectUtil.createManagerObjectFromHotelId(managerId, hotelId,
                 new ArrayList<>(hotel.getApartments()),
                 new ArrayList<>(activeHotelBookings),
                 new ArrayList<>(hotel.getSuperBookings()),
@@ -69,8 +69,10 @@ public class ManagerController {
 
         managerObjectService.addManagerObject(managerObject);
 
-        ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
+        ModelUtil.getManagerView(model, managerObject.getHotelId(),
+                aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
                 managerObject.getObjectApartmentTos());
+
         return "object";
     }
 
@@ -82,7 +84,8 @@ public class ManagerController {
         int hotelManagerId = AuthorizedUser.id();
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
                 managerObjectService.getManagerObjects());
-        ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
+        ModelUtil.getManagerView(model, managerObject.getHotelId(),
+                aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
                 managerObject.getObjectApartmentTos());
         return "objectHotelChart";
     }
@@ -93,7 +96,8 @@ public class ManagerController {
         int hotelManagerId = AuthorizedUser.id();
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
                 managerObjectService.getManagerObjects());
-        ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
+        ModelUtil.getManagerView(model, managerObject.getHotelId(),
+                aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
                 managerObject.getObjectApartmentTos());
         return "objectSuperBookings";
     }
@@ -104,7 +108,8 @@ public class ManagerController {
         int hotelManagerId = AuthorizedUser.id();
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
                 managerObjectService.getManagerObjects());
-        ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
+        ModelUtil.getManagerView(model, managerObject.getHotelId(),
+                aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
                 managerObject.getObjectApartmentTos());
         return "objectHotelVotes";
     }
@@ -115,7 +120,8 @@ public class ManagerController {
         int hotelManagerId = AuthorizedUser.id();
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
                 managerObjectService.getManagerObjects());
-        ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
+        ModelUtil.getManagerView(model, managerObject.getHotelId(),
+                aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
                 managerObject.getObjectApartmentTos());
         return "objectApartments";
     }

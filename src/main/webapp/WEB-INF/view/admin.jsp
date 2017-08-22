@@ -8,11 +8,11 @@
 <body>
 <jsp:include page="fragments/header.jsp"/>
 
-<div class="container" style="margin-top: 20px;">
+<div class="container" style="margin-top: 20px; min-height: 580px">
     <div class="row">
 
         <div class="col-md-4">
-            <a href="admin/show_hotels">
+            <a class="admLink" href="admin/show_hotels">
                 <div class="panel-group">
                     <div class="panel panel-default text-center">
                         <div class="panel-body">
@@ -24,7 +24,7 @@
         </div>
 
         <div class="col-md-4">
-            <a href="admin/show_users">
+            <a class="admLink" href="admin/show_users">
                 <div class="panel-group">
                     <div class="panel panel-default text-center">
                         <div class="panel-body">
@@ -36,7 +36,7 @@
         </div>
 
         <div class="col-md-4">
-            <a href="admin/show_super_bookings">
+            <a class="admLink" href="admin/show_super_bookings">
                 <div class="panel-group">
                     <div class="panel panel-default text-center">
                         <div class="panel-body">
@@ -48,7 +48,7 @@
         </div>
 
         <div class="col-md-4">
-            <a href="admin/show_votes">
+            <a class="admLink" href="admin/show_votes">
                 <div class="panel-group">
                     <div class="panel panel-default text-center">
                         <div class="panel-body">
@@ -60,7 +60,7 @@
         </div>
 
         <div class="col-md-4">
-            <a href="admin/show_apt_types">
+            <a class="admLink" href="admin/show_apt_types">
                 <div class="panel-group">
                     <div class="panel panel-default text-center">
                         <div class="panel-body">
@@ -72,7 +72,7 @@
         </div>
 
         <div class="col-md-4">
-            <a href="admin/show_regions">
+            <a class="admLink" href="admin/show_regions">
                 <div class="panel-group">
                     <div class="panel panel-default text-center">
                         <div class="panel-body">

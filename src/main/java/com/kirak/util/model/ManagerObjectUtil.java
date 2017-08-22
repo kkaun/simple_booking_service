@@ -19,13 +19,13 @@ import java.util.stream.Collectors;
  */
 public class ManagerObjectUtil {
 
-    public static ManagerObject createManagerObjectFromHotelId(int managerId, List<Apartment> objectApartments,
+    public static ManagerObject createManagerObjectFromHotelId(int managerId, int hotelId, List<Apartment> objectApartments,
                                                             List<Booking> activeHotelBookings,
                                                             List<SuperBooking> hotelSuperBookings, List<Vote> objectVotes){
 
         List<ChartTo> chartTos = BookingUtil.getChartBookingsFromObject(objectApartments, activeHotelBookings);
 
-        return new ManagerObject(managerId, ApartmentUtil.getApartmentTos(objectApartments),
+        return new ManagerObject(managerId, hotelId, ApartmentUtil.getApartmentTos(objectApartments),
                 SuperBookingUtil.generateManagerSuperBookingTos(hotelSuperBookings, managerId), chartTos,
                 objectVotes);
     }

@@ -11,7 +11,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user/userVotesDatatable.js" defer></script>
 <jsp:include page="fragments/header.jsp"/>
 
-<div class="container">
+<div class="container" style="margin-top: 20px; min-height: 580px">
     <div class="row">
 
         <sec:authorize access="isAuthenticated()">
@@ -42,7 +42,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="table-responsive">
-                            <table class="table table-striped display" id="userVotesDatatable">
+                            <table class="table table-striped table-bordered display" id="userVotesDatatable">
                                 <thead>
                                 <tr>
                                     <th><spring:message code="common.dateAdded"/></th>

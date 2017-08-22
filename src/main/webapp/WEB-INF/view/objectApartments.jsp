@@ -9,7 +9,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/apartmentsDatatable.js" defer></script>
 <jsp:include page="fragments/header.jsp"/>
 
-<div class="container" style="margin-top: 20px;">
+<div class="container" style="margin-top: 20px; min-height: 580px">
     <div class="row">
 
         <div class="col-md-2">
@@ -37,7 +37,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table class="table table-striped display" id="apartmentsDatatable">
+                        <table class="table table-striped table-bordered display" id="apartmentsDatatable">
                             <thead>
                             <tr>
                                 <th><spring:message code="apt_types.personNum"/>

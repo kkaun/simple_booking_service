@@ -78,7 +78,8 @@ public abstract class HotelAbstractController {
     public List<HotelTo> getHotelsForUser(){
         LOG.info("Getting all hotels visiting by user");
         return HotelUtil.getAllHotelTos(hotelService.getAll().stream().flatMap(hotel -> hotel.getSuperBookings().stream())
-                .filter(superBooking -> Objects.equals(superBooking.getUser().getId(), AuthorizedUser.id()))
+                .filter(superBooking -> superBooking.isActive() &&
+                        Objects.equals(superBooking.getUser().getId(), AuthorizedUser.id()))
                 .distinct()
                 .map(SuperBooking::getHotel)
                 .collect(Collectors.toList()));

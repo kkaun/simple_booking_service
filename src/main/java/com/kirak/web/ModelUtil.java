@@ -32,12 +32,13 @@ public class ModelUtil {
         model.addAttribute("uniqueAptNums", HotelUtil.getUniqueApartmentNums(hotel));
     }
 
-    public static void getManagerView(Model model, List<AptType> aptTypes, List<Country> countries,
+    public static void getManagerView(Model model, int hotelId, List<AptType> aptTypes, List<Country> countries,
                                       List<City> cities, List<ApartmentTo> objectApartments){
         model.addAttribute("aptTypes", aptTypes);
         model.addAttribute("countries", countries);
         model.addAttribute("cities", cities);
         model.addAttribute("objectApartments", objectApartments);
+        model.addAttribute("objectId", hotelId);
     }
 
     public static void getAdminView(Model model, List<AptType> aptTypes, List<Country> countries,
