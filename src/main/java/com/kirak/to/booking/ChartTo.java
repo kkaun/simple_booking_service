@@ -30,17 +30,14 @@ public class ChartTo implements Serializable {
         this.values = values;
     }
 
-    @JsonValue
     public String getName() {
         return name;
     }
 
-    @JsonValue
     public String getDesc() {
         return desc;
     }
 
-    @JsonValue
     public List<ChartValue> getValues() {
         return values;
     }

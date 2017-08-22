@@ -4,6 +4,7 @@ import com.kirak.model.Vote;
 import com.kirak.to.booking.ChartTo;
 import com.kirak.to.booking.ManagerSuperBookingTo;
 import com.kirak.util.session.SessionObjectsIdGenerator;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.List;

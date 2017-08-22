@@ -19,8 +19,8 @@ public class SessionManagerObjects {
 
     private CopyOnWriteArrayList<ManagerObject> managerObjects;
 
-    public SessionManagerObjects(CopyOnWriteArrayList<ManagerObject> managerObjects) {
-        this.managerObjects = managerObjects;
+    public SessionManagerObjects() {
+        managerObjects = new CopyOnWriteArrayList<>();
     }
 
     public CopyOnWriteArrayList<ManagerObject> getManagerObjects() {

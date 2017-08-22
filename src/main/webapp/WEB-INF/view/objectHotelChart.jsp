@@ -11,6 +11,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/dataHours.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/jquery.cookie.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/jquery.fn.gantt.js" defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/hotelChart.js" defer></script>
 <jsp:include page="fragments/header.jsp"/>
 
 <div class="container" style="margin-top: 20px; min-height: 580px">
@@ -34,9 +35,9 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table class="table ganttTable" id="ganttTable">
+                        <div class="ganttTable">
 
-                        </table>
+                        </div>
                     </div>
                 </div>
             </div>

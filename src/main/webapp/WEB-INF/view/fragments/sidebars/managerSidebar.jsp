@@ -16,7 +16,9 @@
             <li><hr></li>
             <li>
                 <a class="restNavLi" href="hotel_manager/object/show_chart">
-                    <h4>Calendar/Chart</h4>
+                    <h4>Calendar/
+                        <br>
+                        Chart</h4>
                 </a>
             </li>
             <li>

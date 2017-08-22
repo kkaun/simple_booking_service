@@ -29,12 +29,10 @@ public class ApartmentTo extends BasicIntTo implements Serializable {
         this.stringAptType = stringAptType;
     }
 
-    @JsonValue
     public Double getPrice() {
         return price;
     }
 
-    @JsonValue
     public String getStringAptType() {
         return stringAptType;
     }

@@ -21,8 +21,6 @@
     <context:component-scan base-package="com.kirak.**.web"/>
     <context:component-scan base-package="com.kirak.to"/>
 
-
-
     <security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>
 
     <mvc:annotation-driven conversion-service="conversionService">
