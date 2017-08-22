@@ -6,6 +6,7 @@
 <html>
 <jsp:include page="fragments/head_tags/restHeadTag.jsp"/>
 <body>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/gantt/css/style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/dataDays.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/dataDaysEnh.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/dataHours.js" defer></script>
@@ -32,15 +33,7 @@
                 </div>
             </div>
 
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <div class="ganttTable">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="gantt"></div>
 
         </div>
     </div>

@@ -5,8 +5,6 @@ package com.kirak.to.booking;
  */
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
-
 import java.io.Serializable;
 import java.util.List;
 

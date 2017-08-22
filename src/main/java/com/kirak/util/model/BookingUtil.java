@@ -109,8 +109,9 @@ public class BookingUtil {
 
             List<ChartValue> chartValues = new ArrayList<>();
 
-            String name = String.valueOf(apartment.getType().getPersonNum()) + "-person "
+            String name = String.valueOf(apartment.getType().getPersonNum()) + "-p. "
                     + StringUtils.capitalize(apartment.getType().getCategory());
+
             String descPrimary = StringUtils.capitalize(apartment.getType().getBedsArrangement().toLowerCase());
 
             bookings.forEach(booking -> {
@@ -119,10 +120,10 @@ public class BookingUtil {
                 String from = String.valueOf(LocalDateTime.of(booking.getInDate(), LocalTime.MIN)
                         .toInstant(ZoneOffset.UTC).toEpochMilli());
 
-                String label = booking.getSuperBooking().getBookerName();
-                String descSecondary  = "Email: " + booking.getSuperBooking().getBookerEmail();
+                String descSecondary = booking.getSuperBooking().getBookerName();
+                String label  = "Email: " + booking.getSuperBooking().getBookerEmail();
                 if(booking.getSuperBooking().getBookerPhone() != null && !booking.getSuperBooking().getBookerPhone().isEmpty()){
-                    descSecondary  += " ------ Phone: " + booking.getSuperBooking().getBookerPhone();
+                    label  += " ------ Phone: " + booking.getSuperBooking().getBookerPhone();
                 }
 
                 String customClass = "";

@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="webjars/datatables/1.10.15/media/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="webjars/datetimepicker/2.5.4/jquery.datetimepicker.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/gantt/css/style.css">
 
     <!--http://stackoverflow.com/a/24070373/548473-->
     <script type="text/javascript" src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>

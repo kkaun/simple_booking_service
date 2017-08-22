@@ -5,8 +5,6 @@ package com.kirak.to.booking;
  */
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
-
 import java.io.Serializable;
 
 /**
@@ -58,33 +56,39 @@ public class ChartValue implements Serializable {
         this.dataObj = dataObj;
     }
 
-    @JsonValue
     public String getTo() {
         return to;
     }
 
-    @JsonValue
     public String getFrom() {
         return from;
     }
 
-    @JsonValue
     public String getLabel() {
         return label;
     }
 
-    @JsonValue
     public String getCustomClass() {
         return customClass;
     }
 
-    @JsonValue
     public String getDataObj() {
         return dataObj;
     }
 
-    @JsonValue
     public String getDesc() {
         return desc;
+    }
+
+    @Override
+    public String toString() {
+        return "ChartValue{" +
+                "to='" + to + '\'' +
+                ", from='" + from + '\'' +
+                ", desc='" + desc + '\'' +
+                ", label='" + label + '\'' +
+                ", customClass='" + customClass + '\'' +
+                ", dataObj='" + dataObj + '\'' +
+                '}';
     }
 }

@@ -4,37 +4,16 @@
 
 var ajaxUrl = "/hotel_manager/object/chart/";
 
-//
-// jQuery.ajax({
-//     url: ajaxUrl,
-//     type: "GET",
-//
-//     contentType: 'application/json; charset=utf-8',
-//     success: function(resultData) {
-//         //here is your json.
-//         // process it
-//         arr = resultData;
-//     },
-//     error : function(jqXHR, textStatus, errorThrown) {
-//     },
-//
-//     timeout: 12000
-// });
 
-// $(function(){
-//     $.getJSON('/api/rest/abc', function(data) {
-//         console.log(data);
-//     });
-// });
-
-
-$(".ganttTable").gantt({
-    source: $.getJSON(ajaxUrl, function(data){
-        return data;
-    }),
-    scale: "weeks",
-    minScale: "weeks",
+$(".gantt").gantt({
+    source: ajaxUrl,
+    months: ["January", "February", "March", "April", "May", "June", "July",
+            "August", "September", "October", "November", "December"],
+    dow:	["S", "M", "T", "W", "T", "F", "S"],
+    scale: "days",
+    minScale: "days",
     maxScale: "months",
+    navigate: "scroll",
     onItemClick: function(data) {
         alert("Item clicked - show some details");
     },
