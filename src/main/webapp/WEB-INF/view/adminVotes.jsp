@@ -4,7 +4,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
-<jsp:include page="fragments/head_tags/restAdmHeadTag.jsp"/>
+<jsp:include page="fragments/head_tags/restHeadTag.jsp"/>
 <body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/votesDatatable.js" defer></script>
 <jsp:include page="fragments/header.jsp"/>
@@ -18,24 +18,33 @@
 
 
         <div class="col-md-10">
-            <div class="panel panel-default">
-                <div class="panel-heading" style="padding: 10px;">
-                    <h3>Overall Votes Data</h3>
+            <div class="row" style="height: 70px">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="padding: 10px;">
+                            <h4 class="pull-left"><strong>Bookers Feedback Data:</strong></h4>
+                        </div>
+                    </div>
                 </div>
+            </div>
+
+            <div class="panel panel-default">
                 <div class="panel-body">
-                    <table class="table table-striped display" id="votesDatatable">
-                        <thead>
-                        <tr>
-                            <th><spring:message code="common.id"/></th>
-                            <th><spring:message code="common.dateAdded"/></th>
-                            <th><spring:message code="common.rate"/></th>
-                            <th><spring:message code="common.comment"/></th>
-                            <th><spring:message code="common.bookerName"/></th>
-                            <th><spring:message code="common.userId"/></th>
-                            <th><spring:message code="common.hotelId"/></th>
-                            <th><spring:message code="common.hotelName"/></th>
-                        </thead>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-striped display" id="votesDatatable">
+                            <thead>
+                            <tr>
+                                <th><spring:message code="common.id"/></th>
+                                <th><spring:message code="common.dateAdded"/></th>
+                                <th><spring:message code="common.rate"/></th>
+                                <th><spring:message code="common.comment"/></th>
+                                <th><spring:message code="common.bookerName"/></th>
+                                <th><spring:message code="common.userId"/></th>
+                                <th><spring:message code="common.hotelId"/></th>
+                                <th><spring:message code="common.hotelName"/></th>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
             </div>
 

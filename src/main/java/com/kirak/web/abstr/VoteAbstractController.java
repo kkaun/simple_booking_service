@@ -34,18 +34,18 @@ public abstract class VoteAbstractController {
     public void create(Vote vote, int hotelId){
         LOG.info("Saving {}", vote);
         checkNew(vote);
-        voteService.save(vote, AuthorizedUser.getId(), hotelId);
+        voteService.save(vote, AuthorizedUser.id(), hotelId);
     }
 
     public void update(Vote vote){
         LOG.info("Updating {}", vote);
         checkId(vote, vote.getId());
-        voteService.update(vote, AuthorizedUser.getId(), vote.getHotel().getId());
+        voteService.update(vote, AuthorizedUser.id(), vote.getHotel().getId());
     }
 
     public Vote get(Integer id) {
         LOG.info("Getting city {}", id);
-        return voteService.get(id, AuthorizedUser.getId());
+        return voteService.get(id, AuthorizedUser.id());
     }
 
     public List<Vote> getAll(){
@@ -68,7 +68,7 @@ public abstract class VoteAbstractController {
     public List<Vote> getVotesForUser(){
         LOG.info("Getting all votes by user, for user");
         return voteService.getAll().stream().filter(vote ->
-                Objects.equals(vote.getUser().getId(), AuthorizedUser.getId())).collect(Collectors.toList());
+                Objects.equals(vote.getUser().getId(), AuthorizedUser.id())).collect(Collectors.toList());
     }
 
 

@@ -77,7 +77,7 @@ public class RootController extends UserAbstractController {
                                 @AuthenticationPrincipal AuthorizedUser authorizedUser) {
         if (!result.hasErrors()) {
             try {
-                super.update(userTo, AuthorizedUser.getId());
+                super.update(userTo, AuthorizedUser.id());
                 authorizedUser.update(userTo);
                 status.setComplete();
                 return "redirect:meals";

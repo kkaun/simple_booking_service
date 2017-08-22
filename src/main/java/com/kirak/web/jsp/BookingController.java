@@ -251,11 +251,11 @@ public class BookingController{
 //    public String confirmCustomerBooking(@RequestParam ("id") String hotelId, @RequestParam ("apartmentId") String apartmentId,
 //                                         @RequestParam ("inDate") String inDate, @RequestParam ("outDate") String outDate,
 //                                         @RequestParam ("personNum") String personNum, @RequestParam ("sum") String sum, Model model) {
-//        ! int userId = AuthorizedUser.getId();
+//        ! int userId = AuthorizedUser.id();
 
 //        Booking booking = new Booking(true, LocalDateTime.now(), LocalDateTime.parse(inDate),
 //                LocalDateTime.parse(outDate), Double.parseDouble(sum), Short.parseShort(personNum),
-//                (short) 0, userService.getPlacementMap(AuthorizedUser.getId()),
+//                (short) 0, userService.getPlacementMap(AuthorizedUser.id()),
 //                apartmentService.getPlacementMap(Integer.parseInt(apartmentId)), hotelService.getPlacementMap(Integer.parseInt(hotelId)));
 
         //model.addAttribute("booking", bookingService.save(booking, ))

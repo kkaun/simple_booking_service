@@ -81,7 +81,7 @@ public abstract class ManagerObjectAbstractController {
 
     public List<ManagerSuperBookingTo> getAllSuperBookingsFromCurrentObject(){
         LOG.info("Getting all Super Bookings {}");
-        Integer hotelManagerId = AuthorizedUser.getId();
+        Integer hotelManagerId = AuthorizedUser.id();
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
                 managerObjectService.getManagerObjects());
         return managerObject.getObjectManagerSuperBookingTos();
@@ -89,7 +89,7 @@ public abstract class ManagerObjectAbstractController {
 
     public List<ManagerSuperBookingTo> getSuperBookingsFromCurrentObject(Integer userId){
         LOG.info("Getting all Super Bookings by user {}", userId);
-        Integer hotelManagerId = AuthorizedUser.getId();
+        Integer hotelManagerId = AuthorizedUser.id();
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
                 managerObjectService.getManagerObjects());
         List<SuperBooking> superBookings = userId != null ? superBookingService.getAllByUserId(userId) : superBookingService.getAll();
@@ -98,7 +98,7 @@ public abstract class ManagerObjectAbstractController {
 
     public List<ManagerSuperBookingTo> getSuperBookingsBetweenDatesFromCurrentObject(LocalDate startDate, LocalDate endDate) {
         LOG.info("Getting all Super Bookings between dates {}", startDate, endDate);
-        Integer hotelManagerId = AuthorizedUser.getId();
+        Integer hotelManagerId = AuthorizedUser.id();
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
                 managerObjectService.getManagerObjects());
         List<SuperBooking> superBookings = superBookingService.getAllBetweenCreatedDates(
@@ -109,7 +109,7 @@ public abstract class ManagerObjectAbstractController {
 
     public List<ManagerSuperBookingTo> getSuperBookingsByInDateFromCurrentObject(LocalDate inDate){
         LOG.info("Getting all Super Bookings by in date {}", inDate);
-        Integer hotelManagerId = AuthorizedUser.getId();
+        Integer hotelManagerId = AuthorizedUser.id();
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
                 managerObjectService.getManagerObjects());
         List<SuperBooking> superBookings = inDate != null ?
@@ -120,7 +120,7 @@ public abstract class ManagerObjectAbstractController {
 
     public List<ManagerSuperBookingTo> getSuperBookingsByOutDateFromCurrentObject(LocalDate outDate){
         LOG.info("Getting all Super Bookings by out date {}", outDate);
-        Integer hotelManagerId = AuthorizedUser.getId();
+        Integer hotelManagerId = AuthorizedUser.id();
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
                 managerObjectService.getManagerObjects());
         List<SuperBooking> superBookings = outDate != null ?
@@ -137,7 +137,7 @@ public abstract class ManagerObjectAbstractController {
     public void create(ApartmentTo apartmentTo){
         LOG.info("Saving {}", apartmentTo);
         Hotel ownHotel = hotelService.getAll().stream().filter(hotel ->
-                Objects.equals(hotel.getManager().getId(), AuthorizedUser.getId()))
+                Objects.equals(hotel.getManager().getId(), AuthorizedUser.id()))
                 .findFirst().orElse(null);
         apartmentService.save(apartmentTo, ownHotel, aptTypeService.getAll());
     }
@@ -154,7 +154,7 @@ public abstract class ManagerObjectAbstractController {
 
     public List<ApartmentTo> getAllApartmentsFromCurrentObject(){
         LOG.info("Getting all apartments from current object");
-        Integer hotelManagerId = AuthorizedUser.getId();
+        Integer hotelManagerId = AuthorizedUser.id();
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
                 managerObjectService.getManagerObjects());
         return managerObject.getObjectApartmentTos();
@@ -170,7 +170,7 @@ public abstract class ManagerObjectAbstractController {
 
     public List<Vote> getHotelVotesFromCurrentObject(){
         LOG.info("Getting all current object votes");
-        Integer hotelManagerId = AuthorizedUser.getId();
+        Integer hotelManagerId = AuthorizedUser.id();
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
                 managerObjectService.getManagerObjects());
         return managerObject.getObjectVotes();
@@ -183,7 +183,7 @@ public abstract class ManagerObjectAbstractController {
 
 
     public List<ChartTo> getAllChartBookingsFromCurrentObject() {
-        Integer hotelManagerId = AuthorizedUser.getId();
+        Integer hotelManagerId = AuthorizedUser.id();
         LOG.info("Getting all apartments for hotel manager {}", hotelManagerId);
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
                 managerObjectService.getManagerObjects());

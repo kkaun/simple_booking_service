@@ -4,7 +4,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
-<jsp:include page="fragments/head_tags/restAdmHeadTag.jsp"/>
+<jsp:include page="fragments/head_tags/restHeadTag.jsp"/>
 <body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/aptTypesDatatable.js" defer></script>
 <jsp:include page="fragments/header.jsp"/>
@@ -18,38 +18,46 @@
 
         <div class="col-md-10">
 
+            <div class="row" style="height: 70px">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="padding: 10px;">
+                            <h4 class="pull-left"><strong>Apartment Types Data:</strong></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <button id="adminUserAddBtn" class="btn btn-lg btn-primary pull-right"
+                            style="margin: 0 auto;" onclick="addAptType()">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+
             <div class="panel panel-default">
-                <div class="panel-heading" style="padding: 10px;">
-                    <h3>Apartment Types Data</h3>
-                    <br>
-                    <a id="adminAptTypeAddBtn" class="btn btn-primary" onclick="addAptType()">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"><spring:message code="common.add_apt_type"/></span>
-                    </a>
-                </div>
-
                 <div class="panel-body">
-                    <table class="table table-striped display" id="aptTypesDatatable">
-                        <thead>
-                        <tr>
-                            <th><spring:message code="common.id"/></th>
-                            <th><spring:message code="apt_types.personNum"/></th>
-                            <th><spring:message code="apt_types.category"/></th>
-                            <th><spring:message code="apt_types.bedsArrangement"/></th>
-                            <th><spring:message code="apt_types.hotelsUsing"/></th>
-                            <th><spring:message code="apt_types.apartmentsAppliedTo"/></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-striped display" id="aptTypesDatatable">
+                            <thead>
+                            <tr>
+                                <th><spring:message code="common.id"/></th>
+                                <th><spring:message code="apt_types.personNum"/></th>
+                                <th><spring:message code="apt_types.category"/></th>
+                                <th><spring:message code="apt_types.bedsArrangement"/></th>
+                                <th><spring:message code="apt_types.hotelsUsing"/></th>
+                                <th><spring:message code="apt_types.apartmentsAppliedTo"/></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
-
-             </div>
+            </div>
 
         </div>
     </div>
 </div>
-
 
 
 <div class="modal fade" id="aptTypeEditRow">

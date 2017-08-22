@@ -57,9 +57,9 @@ public class AuthorizedUser extends org.springframework.security.core.userdetail
         return (int) get().userTo.getId();
     }
 
-    public static int getId() {
-        return id;
-    }
+//    public static int getId() {
+//        return id;
+//    }
 
     public static void setId(int id) {
         AuthorizedUser.id = id;

@@ -11,37 +11,22 @@
     <div class="well">
         <ul class="nav navbar restNavbar">
             <li class="menu-head text-center">
-                ADMIN MENU
+                MANAGER MENU
             </li>
             <li><hr></li>
             <li>
-                <a class="restNavLi" href="admin/show_hotels">
-                    <h4>Hotels</h4>
+                <a class="restNavLi" href="user/show_bookings">
+                    <h4>My Bookings</h4>
                 </a>
             </li>
             <li>
-                <a class="restNavLi" href="admin/show_users">
-                    <h4>Users</h4>
+                <a class="restNavLi" href="user/show_hotels">
+                    <h4>Visited Objects</h4>
                 </a>
             </li>
             <li>
-                <a class="restNavLi" href="admin/show_super_bookings">
-                    <h4>Bookings</h4>
-                </a>
-            </li>
-            <li>
-                <a class="restNavLi" href="admin/show_votes">
-                    <h4>Feedback</h4>
-                </a>
-            </li>
-            <li>
-                <a class="restNavLi" href="admin/show_apt_types">
-                    <h4>Apt. Types</h4>
-                </a>
-            </li>
-            <li>
-                <a class="restNavLi" href="admin/show_regions">
-                    <h4>Regions</h4>
+                <a class="restNavLi" href="user/show_votes">
+                    <h4>My Votes</h4>
                 </a>
             </li>
             <li><hr></li>

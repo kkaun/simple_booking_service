@@ -4,10 +4,9 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
-<jsp:include page="fragments/head_tags/restAdmHeadTag.jsp"/>
+<jsp:include page="fragments/head_tags/restHeadTag.jsp"/>
 <body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/apartmentsDatatable.js"
-        defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/apartmentsDatatable.js" defer></script>
 <jsp:include page="fragments/header.jsp"/>
 
 <div class="container" style="margin-top: 20px;">
@@ -18,33 +17,44 @@
         </div>
 
         <div class="col-md-10">
-            <div class="panel panel-default">
-                <h3>Object Apartments</h3>
-                <br>
-                <div class="panel-heading" style="padding: 10px;">
-                    <a id="managerApartmentAddBtn" class="btn btn-primary" onclick="addApartment()">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"> Add Apartment</span>
-                        <spring:message code="common.add"/>
-                    </a>
+
+            <div class="row" style="height: 70px">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="padding: 10px;">
+                            <h4 class="pull-left"><strong>Object's Apartments Data:</strong></h4>
+                        </div>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <table class="table table-striped display" id="apartmentsDatatable">
-                        <thead>
-                        <tr>
-                            <th><spring:message code="apt_types.personNum"/>
-                                , <spring:message code="apt_types.category"/>
-                                , <spring:message code="apt_types.bedsArrangement"/>
-                            </th>
-                            <th><spring:message code="common.pricePerNight"/></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                    </table>
+                <div class="col-md-6">
+                    <button id="adminUserAddBtn" class="btn btn-lg btn-primary pull-right"
+                            style="margin: 0 auto;" onclick="addApartment()">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </button>
                 </div>
             </div>
-        </div>
 
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped display" id="apartmentsDatatable">
+                            <thead>
+                            <tr>
+                                <th><spring:message code="apt_types.personNum"/>
+                                    , <spring:message code="apt_types.category"/>
+                                    , <spring:message code="apt_types.bedsArrangement"/>
+                                </th>
+                                <th><spring:message code="common.pricePerNight"/></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
 

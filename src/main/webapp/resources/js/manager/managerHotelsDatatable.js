@@ -56,8 +56,22 @@ $(function () {
                 "desc"
             ]
         ],
-        "pageLength": 50
+        "pageLength": 50,
+        responsive: true,
+        "autoWidth": false
     }));
 
+    $(document).ready(function () {
+
+        var table = document.getElementById('managerHotelsDatatable');
+
+        $(table).find('tbody').on('click', 'tr', function () {
+            var hotelId = table.row(this).data().id;
+            return '<a href="/manage_object&id=' + hotelId + '"></a>';
+        });
+    });
+
 });
+
+
 

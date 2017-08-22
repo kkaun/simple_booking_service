@@ -4,7 +4,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
-<jsp:include page="fragments/head_tags/restAdmHeadTag.jsp"/>
+<jsp:include page="fragments/head_tags/restHeadTag.jsp"/>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/managerHotelsDatatable.js" defer></script>
 <body>
 <jsp:include page="fragments/header.jsp"/>
@@ -14,35 +14,46 @@
 
         <div class="col-md-12">
 
-            <div class="panel panel-default">
-                <div class="panel-heading" style="padding: 10px;">
-                    <a id="adminAptTypeAddBtn" class="btn btn-primary" onclick="addManagerHotel()">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"><spring:message code="common.add"/>
-                <spring:message code="common.object"/></span>
-                    </a>
+            <div class="row" style="height: 70px">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="padding: 10px;">
+                            <h4 class="pull-left"><strong>Manager's Objects:</strong></h4>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="panel-body">
-                    <table class="table table-striped display" id="managerHotelsDatatable">
-                        <thead>
-                        <tr>
-                            <th><spring:message code="common.id"/></th>
-                            <th><spring:message code="common.name"/></th>
-                            <th><spring:message code="hotels.rating"/></th>
-                            <th><spring:message code="hotels.stars"/></th>
-                            <th><spring:message code="common.description"/></th>
-                            <th><spring:message code="hotels.votesNum"/></th>
-                            <th><spring:message code="hotels.checkIn"/></th>
-                            <th><spring:message code="hotels.checkOut"/></th>
-                            <th><spring:message code="hotels.city"/></th>
-                            <th><spring:message code="common.country"/></th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                    </table>
+                <div class="col-md-6">
+                    <button id="adminUserAddBtn" class="btn btn-lg btn-primary pull-right"
+                            style="margin: 0 auto;" onclick="addManagerHotel()">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </button>
                 </div>
-
             </div>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped display" id="managerHotelsDatatable">
+                            <thead>
+                            <tr>
+                                <th><spring:message code="common.id"/></th>
+                                <th><spring:message code="common.name"/></th>
+                                <th><spring:message code="hotels.rating"/></th>
+                                <th><spring:message code="hotels.stars"/></th>
+                                <th><spring:message code="common.description"/></th>
+                                <th><spring:message code="hotels.votesNum"/></th>
+                                <th><spring:message code="hotels.checkIn"/></th>
+                                <th><spring:message code="hotels.checkOut"/></th>
+                                <th><spring:message code="hotels.city"/></th>
+                                <th><spring:message code="common.country"/></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -128,19 +139,6 @@
         </div>
     </div>
 </div>
-
-
-<script type="text/javascript">
-    $(document).ready(function () {
-
-        var table = document.getElementById('managerHotelsDatatable');
-
-        $(table).find('tbody').on('click', 'tr', function () {
-            var hotelId = table.row(this).data().id;
-            return '<a href="/manage_object&id=' + hotelId + '"></a>';
-        });
-    });
-</script>
 
 
 </body>

@@ -27,17 +27,17 @@ public class ProfileRestController extends UserAbstractController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public User get(@AuthenticationPrincipal AuthorizedUser authorizedUser) {
-        return super.getUser(AuthorizedUser.getId());
+        return super.getUser(AuthorizedUser.id());
     }
 
     @DeleteMapping
     public void delete(@AuthenticationPrincipal AuthorizedUser authorizedUser) {
-        super.delete(AuthorizedUser.getId());
+        super.delete(AuthorizedUser.id());
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public void update(@Valid @RequestBody UserTo userTo, @AuthenticationPrincipal AuthorizedUser authorizedUser) {
-        super.update(userTo, AuthorizedUser.getId());
+        super.update(userTo, AuthorizedUser.id());
     }
 
     @GetMapping(value = "/text")

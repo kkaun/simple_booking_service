@@ -4,7 +4,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
-<jsp:include page="fragments/head_tags/restAdmHeadTag.jsp"/>
+<jsp:include page="fragments/head_tags/restHeadTag.jsp"/>
 <body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/hotelSuperBookingsDatatable.js" defer></script>
 <jsp:include page="fragments/header.jsp"/>
@@ -124,32 +124,37 @@
                 </div>
             </div>
 
-            <br>
-            <br>
-            <div class="panel panel-default">
-                <div class="panel-heading" style="padding: 10px;">
-                    <h3>Object Bookings</h3>
-                </div>
-
-                <div class="panel-body">
-
-                    <table class="table table-striped display" id="hotelSuperBookingsDatatable">
-                        <thead>
-                        <tr>
-                            <th><spring:message code="common.id"/></th>
-                            <th><spring:message code="common.dateAdded"/></th>
-                            <th><spring:message code="super_bookings.inDate"/></th>
-                            <th><spring:message code="super_bookings.outDate"/></th>
-                            <th><spring:message code="user.name"/></th>
-                            <th><spring:message code="user.email"/></th>
-                            <th><spring:message code="users.phone"/></th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                    </table>
+            <div class="row" style="height: 70px">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="padding: 10px;">
+                            <h4 class="pull-left"><strong>Object Bookings Data:</strong></h4>
+                        </div>
+                    </div>
                 </div>
             </div>
 
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped display" id="hotelSuperBookingsDatatable">
+                            <thead>
+                            <tr>
+                                <th><spring:message code="common.id"/></th>
+                                <th><spring:message code="common.dateAdded"/></th>
+                                <th><spring:message code="super_bookings.inDate"/></th>
+                                <th><spring:message code="super_bookings.outDate"/></th>
+                                <th><spring:message code="user.name"/></th>
+                                <th><spring:message code="user.email"/></th>
+                                <th><spring:message code="users.phone"/></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>

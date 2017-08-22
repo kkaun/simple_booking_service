@@ -53,7 +53,7 @@ public class ManagerController {
         //int hotelId = Integer.parseInt(id);
         Hotel hotel = hotelService.get(hotelId);
 
-        int managerId = AuthorizedUser.getId();
+        int managerId = AuthorizedUser.id();
 
         List<Booking> activeHotelBookings = bookingService.getAll().stream()
                 .filter(booking -> Objects.equals(booking.getHotel().getId(), hotelId)
@@ -79,7 +79,7 @@ public class ManagerController {
     @PreAuthorize("hasRole('ROLE_MANAGER')")
     @GetMapping("/hotel_manager/object/show_chart")
     public String showChart(Model model) {
-        int hotelManagerId = AuthorizedUser.getId();
+        int hotelManagerId = AuthorizedUser.id();
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
                 managerObjectService.getManagerObjects());
         ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
@@ -90,7 +90,7 @@ public class ManagerController {
     @PreAuthorize("hasRole('ROLE_MANAGER')")
     @GetMapping("/hotel_manager/object/show_super_bookings")
     public String showBookings(Model model) {
-        int hotelManagerId = AuthorizedUser.getId();
+        int hotelManagerId = AuthorizedUser.id();
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
                 managerObjectService.getManagerObjects());
         ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
@@ -101,7 +101,7 @@ public class ManagerController {
     @PreAuthorize("hasRole('ROLE_MANAGER')")
     @GetMapping("/hotel_manager/object/show_hotel_votes")
     public String showObjectVotes(Model model) {
-        int hotelManagerId = AuthorizedUser.getId();
+        int hotelManagerId = AuthorizedUser.id();
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
                 managerObjectService.getManagerObjects());
         ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
@@ -112,7 +112,7 @@ public class ManagerController {
     @PreAuthorize("hasRole('ROLE_MANAGER')")
     @GetMapping("/hotel_manager/object/show_apartments")
     public String showApartments(Model model) {
-        int hotelManagerId = AuthorizedUser.getId();
+        int hotelManagerId = AuthorizedUser.id();
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
                 managerObjectService.getManagerObjects());
         ModelUtil.getManagerView(model, aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),

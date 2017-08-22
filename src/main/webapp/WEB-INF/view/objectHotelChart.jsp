@@ -4,7 +4,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
-<jsp:include page="fragments/head_tags/restAdmHeadTag.jsp"/>
+<jsp:include page="fragments/head_tags/restHeadTag.jsp"/>
 <body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/dataDays.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/dataDaysEnh.js" defer></script>
@@ -21,17 +21,26 @@
         </div>
 
         <div class="col-md-10">
-            <div class="panel panel-default">
-                <div class="panel-heading" style="padding: 10px;">
-                    <h3>Hotel Bookings Chart</h3>
-                </div>
-
-                <div class="panel-body">
-                    <table class="table ganttTable" id="ganttTable">
-
-                    </table>
+            <div class="row" style="height: 70px">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="padding: 10px;">
+                            <h4 class="pull-left"><strong>Object's Bookings Chart</strong></h4>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table ganttTable" id="ganttTable">
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

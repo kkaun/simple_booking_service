@@ -25,9 +25,6 @@
         <!--<csrf disabled="true"/>-->
     </http>
 
-    <!--authentication-success-handler-ref="customSuccessHandler"-->
-    <!--<beans:bean id="customSuccessHandler" class="com.kirak.web.jsp.AuthSuccessHandler" />-->
-
     <beans:bean class="com.kirak.util.PasswordUtil" id="passwordEncoder" factory-method="getPasswordEncoder"/>
 
     <authentication-manager>

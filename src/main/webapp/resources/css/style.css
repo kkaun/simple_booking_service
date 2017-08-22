@@ -64,6 +64,25 @@
 
 
 
+.restNavbar{
+    list-style: none;
+    text-decoration: none;
+    color: black;
+    width: 125px;
+}
+
+
+.restNavLi{
+    list-style: none;
+    text-decoration: none;
+    color: black;
+}
+
+
+
+
+
+
 
 .transition-timer-carousel .carousel-caption {
     background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 4%, rgba(0,0,0,0.5) 32%, rgba(0,0,0,1) 100%); /* FF3.6+ */

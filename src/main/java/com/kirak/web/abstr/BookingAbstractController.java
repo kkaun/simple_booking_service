@@ -109,7 +109,7 @@ public abstract class BookingAbstractController {
 
     public List<UserSuperBookingTo> getOwnSuperBookingsForUser(){
         LOG.info("Getting all Super Bookings {}");
-        return SuperBookingUtil.generateUserSuperBookingTos(superBookingService.getAll(), AuthorizedUser.getId());
+        return SuperBookingUtil.generateUserSuperBookingTos(superBookingService.getAll(), AuthorizedUser.id());
     }
 
 

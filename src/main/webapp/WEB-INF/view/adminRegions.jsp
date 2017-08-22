@@ -4,7 +4,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
-<jsp:include page="fragments/head_tags/restAdmHeadTag.jsp"/>
+<jsp:include page="fragments/head_tags/restHeadTag.jsp"/>
 <body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/regionsDatatable.js" defer></script>
 <jsp:include page="fragments/header.jsp"/>
@@ -46,28 +46,39 @@
                 </div>
             </div>
 
-            <div class="panel panel-default">
-
-                <div class="panel-heading" style="padding: 10px;">
-                    <a id="adminRegionAddBtn" class="btn btn-primary" onclick="addRegion()">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"><spring:message code="common.add_region"/></span>
-                    </a>
+            <div class="row" style="height: 70px">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="padding: 10px;">
+                            <h4 class="pull-left"><strong>Regions/Places Data:</strong></h4>
+                        </div>
+                    </div>
                 </div>
+                <div class="col-md-6">
+                    <button id="adminUserAddBtn" class="btn btn-lg btn-primary pull-right"
+                            style="margin: 0 auto;" onclick="addRegion()">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
 
+            <div class="panel panel-default">
                 <div class="panel-body">
-                    <table class="table table-striped display" id="placesDatatable">
-                        <thead>
-                        <tr>
-                            <th><spring:message code="common.id"/></th>
-                            <th><spring:message code="common.name"/></th>
-                            <th><spring:message code="common.country"/></th>
-                            <th><spring:message code="common.description"/></th>
-                            <th><spring:message code="regions.hotelNum"/></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-striped display" id="placesDatatable">
+                            <thead>
+                            <tr>
+                                <th><spring:message code="common.id"/></th>
+                                <th><spring:message code="common.name"/></th>
+                                <th><spring:message code="common.country"/></th>
+                                <th><spring:message code="common.description"/></th>
+                                <th><spring:message code="regions.hotelNum"/></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
             </div>
 
