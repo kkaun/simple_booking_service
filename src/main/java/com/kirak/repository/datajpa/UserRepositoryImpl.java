@@ -22,6 +22,7 @@ public class UserRepositoryImpl implements UserRepository{
 
     private static final Sort SORT_NAME_EMAIL = new Sort("name", "email");
 
+    @Transactional
     @Override
     public User save(User user) {
         return userRepository.save(user);

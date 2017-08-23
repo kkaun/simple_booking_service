@@ -174,15 +174,22 @@ CREATE TABLE IF NOT EXISTS `apartment` (
 
 --   //////////////////////////////////////////
 
-DROP TABLE IF EXISTS `object_image`
+DROP TABLE IF EXISTS `object_image`;
 CREATE TABLE IF NOT EXISTS `object_image` (
   `id`            INT           NOT NULL AUTO_INCREMENT,
-  `hotel_id`      INT           NOT NULL,
-  `apartment_id`  INT           NULL,
   `img_path`      VARCHAR(255)  NULL,
-  PRIMARY KEY (`id`)
-
-);
+  `apartment_id`  INT           NULL,
+  `hotel_id`      INT           NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_object_image_hotel1_idx` (`hotel_id` ASC),
+  CONSTRAINT `fk_object_image_hotel1`
+  FOREIGN KEY (`hotel_id`)
+  REFERENCES `hotel` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+)
+  AUTO_INCREMENT = 100000,
+  ENGINE = InnoDB;
 
 --   //////////////////////////////////////////
 

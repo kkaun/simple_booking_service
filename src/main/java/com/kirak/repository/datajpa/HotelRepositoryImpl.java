@@ -27,9 +27,6 @@ public class HotelRepositoryImpl implements HotelRepository {
     @Autowired
     private DataJpaCityRepository cityRepository;
 
-    @Autowired
-    private UserRepository userRepository;
-
     @Transactional
     @Override
     public Hotel save(Hotel hotel, int cityId) {
