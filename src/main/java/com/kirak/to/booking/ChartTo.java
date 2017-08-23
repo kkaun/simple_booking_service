@@ -16,15 +16,14 @@ public class ChartTo implements Serializable {
 
     private final String name;
 
-    private final String desc;
+    //private final String desc;
 
     private final List<ChartValue> values;
 
     public ChartTo(@JsonProperty("name") String name,
-                   @JsonProperty("desc") String desc,
                    @JsonProperty("values") List<ChartValue> values) {
         this.name = name;
-        this.desc = desc;
+        //this.desc = desc;
         this.values = values;
     }
 
@@ -32,9 +31,9 @@ public class ChartTo implements Serializable {
         return name;
     }
 
-    public String getDesc() {
-        return desc;
-    }
+    //public String getDesc() {
+    //    return desc;
+    //}
 
     public List<ChartValue> getValues() {
         return values;
@@ -44,7 +43,7 @@ public class ChartTo implements Serializable {
     public String toString() {
         return "ChartTo{" +
                 "name='" + name + '\'' +
-                ", desc='" + desc + '\'' +
+                //", desc='" + desc + '\'' +
                 ", values='" + values + '\'' +
                 '}';
     }

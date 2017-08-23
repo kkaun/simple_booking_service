@@ -11,7 +11,7 @@ $(".gantt").gantt({
             "August", "September", "October", "November", "December"],
     dow:	["S", "M", "T", "W", "T", "F", "S"],
     scale: "days",
-    minScale: "days",
+    minScale: "hours",
     maxScale: "months",
     navigate: "scroll",
     onItemClick: function(data) {

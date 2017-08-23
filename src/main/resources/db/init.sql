@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `apartment` (
   `apt_type_id` SMALLINT       NOT NULL,
   `price`       DECIMAL(11, 4) NULL,
   `hotel_id`    INT            NOT NULL,
-  PRIMARY KEY (`id`, `hotel_id`),
+  PRIMARY KEY (`id`),
   INDEX `fk_apartment_hotel1_idx` (`hotel_id` ASC),
   INDEX `fk_apartment_apt_type1_idx` (`apt_type_id` ASC),
   CONSTRAINT `fk_apartment_hotel1`
@@ -171,6 +171,18 @@ CREATE TABLE IF NOT EXISTS `apartment` (
 )
   AUTO_INCREMENT = 100000,
   ENGINE = InnoDB;
+
+--   //////////////////////////////////////////
+
+DROP TABLE IF EXISTS `object_image`
+CREATE TABLE IF NOT EXISTS `object_image` (
+  `id`            INT           NOT NULL AUTO_INCREMENT,
+  `hotel_id`      INT           NOT NULL,
+  `apartment_id`  INT           NULL,
+  `img_path`      VARCHAR(255)  NULL,
+  PRIMARY KEY (`id`)
+
+);
 
 --   //////////////////////////////////////////
 

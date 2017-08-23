@@ -21,14 +21,7 @@ import java.io.Serializable;
 
 public class ChartValue implements Serializable {
 
-    /**
-     * to: "/Date(1328832000000)/",
-     from: "/Date(1333411200000)/",
-     desc: "Something",
-     label: "Example Value",
-     customClass: "ganttRed",
-     dataObj: foo.bar[i]
-     */
+    //chartValues.add(new ChartValue(to, from, label, customClass, desc));
 
     private final String to;
 
@@ -40,20 +33,19 @@ public class ChartValue implements Serializable {
 
     private final String customClass;
 
-    private final String dataObj;
+    //private final String dataObj;
 
     public ChartValue(@JsonProperty("to") String to,
                       @JsonProperty("from") String from,
                       @JsonProperty("desc") String desc,
                       @JsonProperty("label") String label,
-                      @JsonProperty("customClass") String customClass,
-                      @JsonProperty("dataObj") String dataObj) {
+                      @JsonProperty("customClass") String customClass) {
         this.to = to;
         this.from = from;
         this.desc = desc;
         this.label = label;
         this.customClass = customClass;
-        this.dataObj = dataObj;
+        //this.dataObj = dataObj;
     }
 
     public String getTo() {
@@ -72,9 +64,9 @@ public class ChartValue implements Serializable {
         return customClass;
     }
 
-    public String getDataObj() {
-        return dataObj;
-    }
+    //public String getDataObj() {
+    //   return dataObj;
+    //}
 
     public String getDesc() {
         return desc;
@@ -88,7 +80,7 @@ public class ChartValue implements Serializable {
                 ", desc='" + desc + '\'' +
                 ", label='" + label + '\'' +
                 ", customClass='" + customClass + '\'' +
-                ", dataObj='" + dataObj + '\'' +
+                //", dataObj='" + dataObj + '\'' +
                 '}';
     }
 }

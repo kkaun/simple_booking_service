@@ -21,7 +21,7 @@ public class ApartmentUtil {
         String stringAptType = String.valueOf(apartment.getType().getPersonNum()) + " - " + apartment.getType().getCategory() +
                 " - " + apartment.getType().getBedsArrangement();
 
-        return new ApartmentTo(apartment.getId(), apartment.getPrice(), stringAptType);
+        return new ApartmentTo(apartment.getId(), apartment.getHotel().getId(), apartment.getPrice(), stringAptType);
     }
 
     public static List<ApartmentTo> getApartmentTos(List<Apartment> apartments){

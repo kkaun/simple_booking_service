@@ -11,6 +11,8 @@ import java.io.Serializable;
  */
 public class ApartmentTo extends BasicIntTo implements Serializable {
 
+    private final Integer hotelId;
+
     private final Double price;
 
 //    private final Short personNum;
@@ -22,11 +24,17 @@ public class ApartmentTo extends BasicIntTo implements Serializable {
     private final String stringAptType;
 
     public ApartmentTo(@JsonProperty("id") Integer id,
+                        @JsonProperty("id") Integer hotelId,
                        @JsonProperty("price") Double price,
                        @JsonProperty("stringAptType") String stringAptType) {
         super(id);
+        this.hotelId = hotelId;
         this.price = price;
         this.stringAptType = stringAptType;
+    }
+
+    public Integer getHotelId() {
+        return hotelId;
     }
 
     public Double getPrice() {
@@ -41,6 +49,7 @@ public class ApartmentTo extends BasicIntTo implements Serializable {
     public String toString() {
         return "ApartmentTo{" +
                 "id=" + id +
+                ", hotelId=" + hotelId +
                 ", price=" + price +
                 ", stringAptType='" + stringAptType + '\'' +
                 '}';
