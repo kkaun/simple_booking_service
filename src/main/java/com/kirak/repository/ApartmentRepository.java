@@ -10,13 +10,12 @@ import java.util.List;
  */
 public interface ApartmentRepository {
 
-    // null if updated apt does not belong to hotelId
     Apartment save(Apartment apt, int hotelId);
 
-    // false if apt does not belong to hotelId
+    Apartment save(Apartment apt);
+
     boolean delete(int id, int hotelId);
 
-    // null if apt does not belong to hotelId
     Apartment get(int id, int hotelId);
 
     Apartment get(int id);

@@ -60,7 +60,7 @@ public class ManagerHotelsController extends HotelAbstractController {
 
     @Override
     @PostMapping(value = "set_image")
-    public void setImage(@RequestParam("id") Integer id, @RequestParam("file") MultipartFile multipartFile) {
+    public void setImage(@RequestParam("id") Integer id, @RequestParam("image") MultipartFile multipartFile) {
         super.setImage(id, multipartFile);
     }
 }

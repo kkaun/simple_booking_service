@@ -35,6 +35,11 @@ public class ApartmentServiceImpl implements ApartmentService {
 
 
     @Override
+    public Apartment save(Apartment apartment) {
+        return repository.save(apartment);
+    }
+
+    @Override
     public Apartment save(ApartmentTo apartmentTo, Hotel hotel, List<AptType> existingTypes) {
         Assert.notNull(apartmentTo, "Apartment must not be null!");
         return repository.save(ApartmentUtil.createFromTo(apartmentTo, hotel, existingTypes), hotel.getId());

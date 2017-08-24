@@ -67,8 +67,18 @@
                 <c:forEach items="${citiesFive}" var="city">
                     <jsp:useBean id="city" scope="page" type="com.kirak.model.City"/>
                     <div class="item">
-                        <a href="get_by_city?city=${city.id}"><img src="${city.imgPath}"
-                                                                   alt="Sorry, no city image is available at the time"/></a>
+                        <a href="get_by_city?city=${city.id}">
+                            <div class="citiesCarousel" style="height: 400px; width: 1200px">
+                                <c:if test="${not empty city.imgPath && city.imgPath.length() >= 1}">
+                                    <img class="media-object img-rounded img-responsive"
+                                         src="${city.imgPath}" alt="" style="height: 400px; width: 1200px">
+                                </c:if>
+                                <c:if test="${empty city.imgPath || city.imgPath.length() < 1}">
+                                    <img class="media-object img-rounded img-responsive"
+                                         src="http://placehold.it/1200x400">
+                                </c:if>
+                            </div>
+                        </a>
                         <div class="carousel-caption">
                             <h1 class="carousel-caption-header">${city.name}</h1>
                             <p class="carousel-caption-text hidden-sm hidden-xs">
@@ -102,8 +112,14 @@
                     <a href="inspect_hotel?id=${hotel.id}" class="list-group-item">
                         <div class="media col-md-3">
                             <figure class="pull-left">
-                                <img class="media-object img-rounded img-responsive" src="${hotel.imgPath}"
-                                     alt="Sorry, no hotel image is available at the time" >
+                                <c:if test="${not empty hotel.imgPath && hotel.imgPath.length() >= 1}">
+                                    <img class="media-object img-rounded img-responsive"
+                                         src="${hotel.imgPath}" alt="">
+                                </c:if>
+                                <c:if test="${empty hotel.imgPath || hotel.imgPath.length() < 1}">
+                                    <img class="media-object img-rounded img-responsive"
+                                         src="http://placehold.it/350x250">
+                                </c:if>
                             </figure>
                         </div>
                         <div class="col-md-5">

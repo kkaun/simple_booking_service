@@ -39,12 +39,10 @@
                                 <th><spring:message code="common.id"/></th>
                                 <th><spring:message code="common.name"/></th>
                                 <th><spring:message code="hotels.rating"/></th>
-                                <th><spring:message code="common.description"/></th>
                                 <th><spring:message code="hotels.votesNum"/></th>
-                                <th><spring:message code="hotels.checkIn"/></th>
-                                <th><spring:message code="hotels.checkOut"/></th>
                                 <th><spring:message code="hotels.city"/></th>
                                 <th><spring:message code="common.country"/></th>
+                                <th></th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -150,22 +148,21 @@
             <div class="modal-body">
                 <div class="col-md-1"></div>
                 <div class="col-md-10 currentImage">
-                    <h4>Current image:</h4>
+                    <h4><spring:message code="common.image"/></h4>
+                    <br>
                     <img src="imgPath" class="img-responsive" alt="This item has no available image yet">
                 </div>
                 <div class="col-md-1"></div>
-                <form:form class="form-horizontal detailsForm" method="post" enctype="multipart/form-data">
+                <br>
+                <br>
+                <form:form class="form-horizontal detailsForm" id="imgForm" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="id" name="id">
+                    <label for="image" class="control-label col-xs-5">Choose New Image:</label>
                     <div class="form-group">
-                        <label for="image" class="control-label col-xs-3"><spring:message
-                                code="common.image"/></label>
-                        <div class="col-xs-9">
+                        <div class="col-xs-7">
                             <input name="image" id="image" type="file" /><br/>
                         </div>
                     </div>
-
-                    <div id="result"></div>
-
                     <div class="form-group">
                         <div class="col-xs-offset-3 col-xs-9">
                             <button class="btn btn-primary" type="button" onclick="saveManagerHotelImage()">

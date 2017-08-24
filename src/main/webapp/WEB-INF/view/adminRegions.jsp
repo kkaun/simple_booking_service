@@ -24,7 +24,7 @@
                 <div class="col-sm-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <form:form class="form-horizontal filter" id="citiesAdminFilter">
+                            <form:form class="form-horizontal filter" id="placesAdminFilter">
                                 <div class="form-group">
                                     <label class="control-label col-sm-4" for="region"><spring:message
                                             code="city.byRegion"/>:</label>
@@ -73,6 +73,7 @@
                                 <th><spring:message code="common.country"/></th>
                                 <th><spring:message code="common.description"/></th>
                                 <th><spring:message code="regions.hotelNum"/></th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -199,16 +200,16 @@
             <div class="modal-body">
                 <div class="col-md-1"></div>
                 <div class="col-md-10 currentImage">
-                    <h4>Current image:</h4>
+                    <h4><spring:message code="common.image"/></h4>
+                    <br>
                     <img src="imgPath" class="img-responsive" alt="This item has no available image yet">
                 </div>
                 <div class="col-md-1"></div>
-                <form:form class="form-horizontal detailsForm" method="post" enctype="multipart/form-data">
+                <form:form class="form-horizontal detailsForm" id="imgForm" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="id" name="id">
+                    <label for="image" class="control-label col-xs-5">Choose New Image:</label>
                     <div class="form-group">
-                        <label for="image" class="control-label col-xs-3"><spring:message
-                                code="common.image"/></label>
-                        <div class="col-xs-9">
+                        <div class="col-xs-7">
                             <input name="image" id="image" type="file" /><br/>
                         </div>
                     </div>

@@ -61,8 +61,14 @@
                             <a class="list-group-item" href="inspect_hotel?id=${hotel.id}" style="padding-top: 20px;">
                                 <div class="media col-md-3">
                                     <figure class="pull-left">
-                                        <img class="media-object img-rounded img-responsive"
-                                             src="${hotel.imgPath}" alt="Sorry, no hotel image is available at the time">
+                                        <c:if test="${not empty hotel.imgPath && hotel.imgPath.length() >= 1}">
+                                            <img class="media-object img-rounded img-responsive"
+                                                 src="${hotel.imgPath}" alt="">
+                                        </c:if>
+                                        <c:if test="${empty hotel.imgPath || hotel.imgPath.length() < 1}">
+                                            <img class="media-object img-rounded img-responsive"
+                                                 src="http://placehold.it/350x250">
+                                        </c:if>
                                     </figure>
                                 </div>
                                 <div class="col-md-4">
@@ -108,8 +114,14 @@
                                href="inspect_placement?id=${placement.id}&personNum=${placementPersonNum}&apartmentNum=${placementApartmentNum}&inDate=${placementInDate}&outDate=${placementOutDate}">
                                 <div class="media col-md-3">
                                     <figure class="pull-left">
-                                        <img class="media-object img-rounded img-responsive"
-                                             src="${placement.hotel.imgPath}" alt="Sorry, no hotel image is available at the time">
+                                        <c:if test="${not empty placement.hotel.imgPath && placement.hotel.imgPath.length() >= 1}">
+                                            <img class="media-object img-rounded img-responsive"
+                                                 src="${hotel.imgPath}" alt="">
+                                        </c:if>
+                                        <c:if test="${empty placement.hotel.imgPath || placement.hotel.imgPath.length() < 1}">
+                                            <img class="media-object img-rounded img-responsive"
+                                                 src="http://placehold.it/350x250">
+                                        </c:if>
                                     </figure>
                                 </div>
                                 <div class="col-md-6">

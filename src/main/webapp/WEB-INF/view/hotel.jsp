@@ -42,8 +42,14 @@
                             <div class="panel-body">
                                 <div class="media col-md-6">
                                     <figure class="pull-left">
-                                        <img class="media-object img-rounded img-responsive"
-                                             src="${hotel.imgPath}" alt="Sorry, no hotel image is available at the time">
+                                        <c:if test="${not empty hotel.imgPath && hotel.imgPath.length() >= 1}">
+                                            <img class="media-object img-rounded img-responsive"
+                                                 src="${hotel.imgPath}" alt="">
+                                        </c:if>
+                                        <c:if test="${empty hotel.imgPath || hotel.imgPath.length() < 1}">
+                                            <img class="media-object img-rounded img-responsive"
+                                                 src="http://placehold.it/350x250">
+                                        </c:if>
                                     </figure>
                                 </div>
                                 <div class="col-md-6 text-center">
@@ -125,9 +131,14 @@
                                                 <div class="row">
                                                     <div class="media col-md-5">
                                                         <figure class="pull-left">
-                                                            <img class="media-object img-rounded img-responsive"
-                                                                 src="${option.imgPath}"
-                                                                 alt="Sorry, no apartment image is available at the time">
+                                                            <c:if test="${not empty option.imgPath && option.imgPath.length() >= 1}">
+                                                                <img class="media-object img-rounded img-responsive"
+                                                                     src="${option.imgPath}" alt="">
+                                                            </c:if>
+                                                            <c:if test="${empty option.imgPath || option.imgPath.length() < 1}">
+                                                                <img class="media-object img-rounded img-responsive"
+                                                                     src="http://placehold.it/350x250">
+                                                            </c:if>
                                                         </figure>
                                                     </div>
                                                     <div class="col-md-7">
@@ -345,8 +356,14 @@
                                     </div>
                                     <div class="media col-md-5">
                                         <figure class="pull-left">
-                                            <img class="media-object img-rounded img-responsive"
-                                                 src="${apartment.imgPath}" alt="Sorry, no apartment image is available at the time">
+                                            <c:if test="${not empty apartment.imgPath && apartment.imgPath.length() >= 1}">
+                                                <img class="media-object img-rounded img-responsive"
+                                                     src="${apartment.imgPath}" alt="">
+                                            </c:if>
+                                            <c:if test="${empty apartment.imgPath || apartment.imgPath.length() < 1}">
+                                                <img class="media-object img-rounded img-responsive"
+                                                     src="http://placehold.it/350x250">
+                                            </c:if>
                                         </figure>
                                     </div>
                                 </div>

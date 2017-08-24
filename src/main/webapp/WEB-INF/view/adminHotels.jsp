@@ -110,7 +110,6 @@
                                 <th><spring:message code="common.name"/></th>
                                 <th><spring:message code="hotels.rating"/></th>
                                 <th><spring:message code="hotels.stars"/></th>
-                                <th><spring:message code="common.description"/></th>
                                 <th><spring:message code="hotels.votesNum"/></th>
                                 <th><spring:message code="hotels.city"/></th>
                                 <th><spring:message code="common.country"/></th>

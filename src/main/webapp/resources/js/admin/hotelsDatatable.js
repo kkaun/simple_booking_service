@@ -50,9 +50,6 @@ $(function () {
                 "data": "stars"
             },
             {
-                "data": "description"
-            },
-            {
                 "data": "votesNum"
             },
             {

@@ -253,16 +253,17 @@ function saveRegion() {
 }
 
 function saveRegionImage() {
+    var objFormData = new FormData(document.getElementById("imgForm"));
     $.ajax({
         type: "POST",
         url: ajaxUrl + 'set_image',
-        data: data,
+        data: objFormData,
         enctype: 'multipart/form-data',
         contentType: false,
         processData: false,
         //data: form.serialize(),
         success: function () {
-            $('#regionEditRow').modal('hide');
+            $('#regionImageEditRow').modal('hide');
             updatePlacesTable();
             successNoty('common.saved');
         }
@@ -407,16 +408,17 @@ function saveApartment() {
 }
 
 function saveApartmentImage() {
+    var objFormData = new FormData(document.getElementById("imgForm"));
     $.ajax({
         type: "POST",
         url: ajaxUrl + 'set_image',
-        data: data,
+        data: objFormData,
         enctype: 'multipart/form-data',
         contentType: false,
         processData: false,
         //data: form.serialize(),
         success: function () {
-            $('#apartmentEditRow').modal('hide');
+            $('#apartmentImageEditRow').modal('hide');
             updateApartmentsTable();
             successNoty('common.saved');
         }
@@ -501,17 +503,17 @@ function saveManagerHotel() {
 }
 
 function saveManagerHotelImage() {
-    var objFormData = new FormData();
+    var objFormData = new FormData(document.getElementById("imgForm"));
     $.ajax({
         type: "POST",
         url: ajaxUrl + 'set_image',
-        data: data,
+        data: objFormData,
         enctype: 'multipart/form-data',
         contentType: false,
         processData: false,
         //data: form.serialize(),
         success: function () {
-            $('#managerHotelEditRow').modal('hide');
+            $('#managerHotelImageEditRow').modal('hide');
             updateManagerHotelsTable();
             successNoty('common.saved');
         }

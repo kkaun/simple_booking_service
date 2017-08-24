@@ -32,16 +32,7 @@ $(function () {
                 "data": "rating"
             },
             {
-                "data": "description"
-            },
-            {
                 "data": "votesNum"
-            },
-            {
-                "data": "checkIn"
-            },
-            {
-                "data": "checkOut"
             },
             {
                 "data": "cityName"

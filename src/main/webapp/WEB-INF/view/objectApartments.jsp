@@ -47,6 +47,7 @@
                                 <th><spring:message code="common.pricePerNight"/></th>
                                 <th></th>
                                 <th></th>
+                                <th></th>
                             </tr>
                             </thead>
                         </table>
@@ -119,24 +120,21 @@
             </div>
             <div class="modal-body">
                 <div class="col-md-1"></div>
-                <div class="col-md-10 currentImage">
-                    <h4>Current image:</h4>
+                <div class="col-md-10 text-center currentImage">
+                    <h4><spring:message code="common.image"/></h4>
+                    <br>
                     <img src="imgPath" class="img-responsive" alt="This item has no available image yet">
                 </div>
                 <div class="col-md-1"></div>
-                <form:form class="form-horizontal detailsForm" method="post" enctype="multipart/form-data">
+                <form:form class="form-horizontal detailsForm" id="imgForm" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="id" name="id">
-                    <div class="form-group">
-                        <label for="image" class="control-label col-xs-3"><spring:message
-                                code="common.image"/></label>
-                        <div class="col-xs-9">
+                    <div class="form-group text-center">
+                        <label for="image" class="control-label col-md-6">Choose New Image:</label>
+                        <div class="col-md-6">
                             <input name="image" id="image" type="file" /><br/>
                         </div>
                     </div>
-
-                    <div id="result"></div>
-
-                    <div class="form-group">
+                    <div class="form-group text-center">
                         <div class="col-xs-offset-3 col-xs-9">
                             <button class="btn btn-primary" type="button" onclick="saveApartmentImage()">
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>

@@ -30,11 +30,18 @@ public class ApartmentRepositoryImpl implements ApartmentRepository {
     @Override
     @Transactional
     public Apartment save(Apartment apt, int hotelId) {
-
         if (!apt.isNew() && get(apt.getId(), hotelId) == null) {
             return null;
         }
         apt.setHotel(hotelRepository.getOne(hotelId));
+        return apartmentRepository.save(apt);
+    }
+
+    @Override
+    public Apartment save(Apartment apt) {
+        if (!apt.isNew() && get(apt.getId()) == null) {
+            return null;
+        }
         return apartmentRepository.save(apt);
     }
 

@@ -54,7 +54,7 @@ public class ApartmentsAjaxController extends ManagerObjectAbstractController{
 
     @Override
     @PostMapping(value = "set_image")
-    public void setApartmentImage(@RequestParam("id") Integer id, @RequestParam("file") MultipartFile multipartFile) {
+    public void setApartmentImage(@RequestParam("id") Integer id, @RequestParam("image") MultipartFile multipartFile) {
         super.setApartmentImage(id, multipartFile);
     }
 }

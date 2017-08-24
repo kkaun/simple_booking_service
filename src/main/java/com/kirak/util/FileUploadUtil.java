@@ -15,9 +15,8 @@ public class FileUploadUtil {
         File newFile = new File("D:\\booking_demo_images\\" + fileName);
         try {
             inputStream = multipartFile.getInputStream();
-
             if (!newFile.exists()) {
-                return false;
+                newFile.createNewFile();
             }
             outputStream = new FileOutputStream(newFile);
             int read = 0;
