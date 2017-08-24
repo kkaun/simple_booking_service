@@ -197,7 +197,13 @@
                 <h2 class="modal-title" id="regionImageModalTitle"></h2>
             </div>
             <div class="modal-body">
-                <form:form class="form-horizontal detailsForm">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 currentImage">
+                    <h4>Current image:</h4>
+                    <img src="imgPath" class="img-responsive" alt="This item has no available image yet">
+                </div>
+                <div class="col-md-1"></div>
+                <form:form class="form-horizontal detailsForm" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="id" name="id">
                     <div class="form-group">
                         <label for="image" class="control-label col-xs-3"><spring:message
@@ -206,9 +212,6 @@
                             <input name="image" id="image" type="file" /><br/>
                         </div>
                     </div>
-
-                    <div id="result"></div>
-
                     <div class="form-group">
                         <div class="col-xs-offset-3 col-xs-9">
                             <button class="btn btn-primary" type="button" onclick="saveRegionImage()">

@@ -1,8 +1,10 @@
 package com.kirak.web.abstr;
 
+import com.kirak.model.City;
 import com.kirak.service.CityService;
 import com.kirak.service.CountryService;
 import com.kirak.to.PlaceTo;
+import com.kirak.util.FileUploadUtil;
 import com.kirak.util.model.RegionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.net.URL;
 import java.util.List;
+import java.util.Random;
 
 import static com.kirak.util.ValidationUtil.checkId;
 import static com.kirak.util.ValidationUtil.checkNew;
@@ -72,12 +75,13 @@ public abstract class RegionAbstractController {
     }
 
     public void setImage(Integer id, MultipartFile multipartFile) {
-
-//        Resource resource = appContext.getResource("");
-//
-//        URL sqlScriptUrl = MyServletContextListener.class
-//                .getClassLoader().getResource("sql/script.sql");
-//
-//        File file = new File("/opt/stuff/uploads", multipartFile.getOriginalFilename());
+        City city = cityService.get(id);
+        Random random = new Random();
+        String fileName = "region_img_id_" + String.valueOf(id) +
+                "_" + String.valueOf(random.nextInt(10000) + 1) + ".jpg";
+        if(FileUploadUtil.fileUploaded(multipartFile, fileName)) {
+            city.setImgPath("/images/" + fileName);
+            cityService.save(city);
+        }
     }
 }

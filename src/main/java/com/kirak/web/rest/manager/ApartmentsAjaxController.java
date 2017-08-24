@@ -52,27 +52,9 @@ public class ApartmentsAjaxController extends ManagerObjectAbstractController{
         return super.getAllApartmentsFromCurrentObject();
     }
 
-
-
     @Override
-    @GetMapping(value = "/image/{id}")
-    @JsonView(View.JsonUI.class)
-    public String getImagePath(@PathVariable("id") Integer id) {
-        return super.getImagePath(id);
+    @PostMapping(value = "set_image")
+    public void setApartmentImage(@RequestParam("id") Integer id, @RequestParam("file") MultipartFile multipartFile) {
+        super.setApartmentImage(id, multipartFile);
     }
-
-//    @Override
-//    @PostMapping(value = "set_image")
-//    @JsonView(View.JsonUI.class)
-//    public void setImage(@RequestParam("id") Integer id, @RequestParam("file") MultipartFile multipartFile) {
-//        super.setImage(id, multipartFile);
-//    }
-//
-//    @Override
-//    @PostMapping(value = "set_image")
-//    @JsonView(View.JsonUI.class)
-//    public MultipartFile setImage(@RequestParam("id") Integer id,
-//                                  @RequestParam("file") MultipartFile multipartFile) {
-//        return super.setImage(id, multipartFile);
-//    }
 }

@@ -19,7 +19,6 @@ function makeEditable() {
     });
 }
 
-// https://api.jquery.com/jquery.extend/#jQuery-extend-deep-target-object1-objectN
 function extendsOpts(opts) {
     $.extend(true, opts,
         {
@@ -231,6 +230,9 @@ function updateRegionImage(id) {
     $('#regionImageModalTitle').html(i18n["editTitle"]);
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
+            //!!!!!!!!!!!!!!!!!
+            form.find("img[src='" + key + "']").val(value);
+
             form.find("input[name='" + key + "']").val(value);
         });
         $('#regionImageEditRow').modal();
@@ -242,6 +244,23 @@ function saveRegion() {
         type: "POST",
         url: ajaxUrl,
         data: form.serialize(),
+        success: function () {
+            $('#regionEditRow').modal('hide');
+            updatePlacesTable();
+            successNoty('common.saved');
+        }
+    });
+}
+
+function saveRegionImage() {
+    $.ajax({
+        type: "POST",
+        url: ajaxUrl + 'set_image',
+        data: data,
+        enctype: 'multipart/form-data',
+        contentType: false,
+        processData: false,
+        //data: form.serialize(),
         success: function () {
             $('#regionEditRow').modal('hide');
             updatePlacesTable();
@@ -365,6 +384,9 @@ function updateApartmentImage(id) {
     $('#apartmentImageModalTitle').html(i18n["editTitle"]);
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
+            //!!!!!!!!!!!!!!!!!
+            form.find("img[src='" + key + "']").val(value);
+
             form.find("input[name='" + key + "']").val(value);
         });
         $('#apartmentImageEditRow').modal();
@@ -376,6 +398,23 @@ function saveApartment() {
         type: "POST",
         url: ajaxUrl,
         data: form.serialize(),
+        success: function () {
+            $('#apartmentEditRow').modal('hide');
+            updateApartmentsTable();
+            successNoty('common.saved');
+        }
+    });
+}
+
+function saveApartmentImage() {
+    $.ajax({
+        type: "POST",
+        url: ajaxUrl + 'set_image',
+        data: data,
+        enctype: 'multipart/form-data',
+        contentType: false,
+        processData: false,
+        //data: form.serialize(),
         success: function () {
             $('#apartmentEditRow').modal('hide');
             updateApartmentsTable();
@@ -439,6 +478,9 @@ function updateManagerHotelImage(id) {
     $('#managerHotelImageModalTitle').html(i18n["editTitle"]);
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
+            //!!!!!!!!!!!!!!!!!
+            form.find("img[src='" + key + "']").val(value);
+
             form.find("input[name='" + key + "']").val(value);
         });
         $('#managerHotelImageEditRow').modal();
@@ -450,6 +492,24 @@ function saveManagerHotel() {
         type: "POST",
         url: ajaxUrl,
         data: form.serialize(),
+        success: function () {
+            $('#managerHotelEditRow').modal('hide');
+            updateManagerHotelsTable();
+            successNoty('common.saved');
+        }
+    });
+}
+
+function saveManagerHotelImage() {
+    var objFormData = new FormData();
+    $.ajax({
+        type: "POST",
+        url: ajaxUrl + 'set_image',
+        data: data,
+        enctype: 'multipart/form-data',
+        contentType: false,
+        processData: false,
+        //data: form.serialize(),
         success: function () {
             $('#managerHotelEditRow').modal('hide');
             updateManagerHotelsTable();

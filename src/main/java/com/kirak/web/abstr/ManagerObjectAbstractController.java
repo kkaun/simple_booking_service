@@ -6,6 +6,7 @@ import com.kirak.to.ApartmentTo;
 import com.kirak.to.ManagerObject;
 import com.kirak.to.booking.ChartTo;
 import com.kirak.to.booking.ManagerSuperBookingTo;
+import com.kirak.util.FileUploadUtil;
 import com.kirak.util.model.ApartmentUtil;
 import com.kirak.util.model.BookingUtil;
 import com.kirak.util.model.ManagerObjectUtil;
@@ -14,11 +15,13 @@ import com.kirak.web.session.AuthorizedUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import static com.kirak.util.model.SuperBookingUtil.asManagerSuperBookingTo;
@@ -191,9 +194,21 @@ public abstract class ManagerObjectAbstractController {
     }
 
 
+    //--------------------------------------  File Upload/Get methods --------------------------------//
 
-    public String getImagePath(Integer id){
 
+    public String getApartmentImagePath(Integer id){
         return apartmentService.get(id).getImgPath();
+    }
+
+    public void setApartmentImage(Integer id, MultipartFile multipartFile) {
+        Apartment apartment = apartmentService.get(id);
+        Random random = new Random();
+        String fileName = "apartment_img_id_" + String.valueOf(id) +
+                "_" + String.valueOf(random.nextInt(10000) + 1) + ".jpg";
+        if(FileUploadUtil.fileUploaded(multipartFile, fileName)) {
+            apartment.setImgPath("/images/" + fileName);
+            apartmentService.save(apartment);
+        }
     }
 }

@@ -148,7 +148,13 @@
                 <h2 class="modal-title" id="managerHotelImageModalTitle"></h2>
             </div>
             <div class="modal-body">
-                <form:form class="form-horizontal detailsForm">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 currentImage">
+                    <h4>Current image:</h4>
+                    <img src="imgPath" class="img-responsive" alt="This item has no available image yet">
+                </div>
+                <div class="col-md-1"></div>
+                <form:form class="form-horizontal detailsForm" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="id" name="id">
                     <div class="form-group">
                         <label for="image" class="control-label col-xs-3"><spring:message

@@ -58,23 +58,9 @@ public class RegionsAjaxController extends RegionAbstractController {
         return super.getAllByRegion(region);
     }
 
-
-
-    @Override
-    @GetMapping(value = "/image/{id}")
-    @JsonView(View.JsonUI.class)
-    public String getImagePath(@PathVariable("id") Integer id) {
-        return super.getImagePath(id);
-    }
-
-
     @Override
     @PostMapping(value = "set_image")
-    @JsonView(View.JsonUI.class)
-    public void setImage(@RequestParam("id") Integer id,
-                                  @RequestParam("file") MultipartFile multipartFile) {
+    public void setImage(@RequestParam("id") Integer id, @RequestParam("file") MultipartFile multipartFile) {
         super.setImage(id, multipartFile);
     }
-
-
 }

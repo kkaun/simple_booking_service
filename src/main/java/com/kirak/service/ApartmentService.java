@@ -13,6 +13,8 @@ import java.util.List;
  */
 public interface ApartmentService {
 
+    Apartment save(Apartment apartment);
+
     Apartment save(ApartmentTo apartmentTo, Hotel hotel, List<AptType> existingTypes);
 
     Apartment update(Apartment apt, int hotelId) throws NotFoundException;

@@ -28,6 +28,25 @@ $(function() {
 
 
 
+$(function() {
+    $('.from_date').datepicker({
+        dateFormat: 'yy-mm-dd',
+        onSelect: function() {},
+        onClose: function() {
+            $(this).focus();
+        }
+    });
+    $('.to_date').datepicker({
+        dateFormat: 'yy-mm-dd',
+        onSelect: function () {},
+        onClose: function () {
+            $(this).focus();
+        }
+    });
+});
+
+
+
 
 //
 // $.datetimepicker.setLocale(localeCode);

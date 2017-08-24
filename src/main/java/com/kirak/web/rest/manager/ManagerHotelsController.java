@@ -58,19 +58,9 @@ public class ManagerHotelsController extends HotelAbstractController {
     }
 
 
-//    @Override
-//    @GetMapping(value = "/image/{id}")
-//    @JsonView(View.JsonUI.class)
-//    public String getImagePath(@PathVariable("id") Integer id) {
-//        return super.getImagePath(id);
-//    }
-//
-//
-//    @Override
-//    @PostMapping(value = "set_image")
-//    @JsonView(View.JsonUI.class)
-//    public MultipartFile setImage(@RequestParam("id") Integer id,
-//                                  @RequestParam("file") MultipartFile multipartFile) {
-//        return super.setImage(id, multipartFile);
-//    }
+    @Override
+    @PostMapping(value = "set_image")
+    public void setImage(@RequestParam("id") Integer id, @RequestParam("file") MultipartFile multipartFile) {
+        super.setImage(id, multipartFile);
+    }
 }

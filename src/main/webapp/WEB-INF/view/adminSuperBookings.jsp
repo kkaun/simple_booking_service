@@ -29,12 +29,12 @@
                                     <label class="control-label col-sm-3" for="startDate"><spring:message
                                             code="super_bookings.fromDate"/>:</label>
                                     <div class="col-sm-3">
-                                        <input class="form-control in_date" name="startDate" id="startDate">
+                                        <input class="form-control start_date" name="startDate" id="startDate">
                                     </div>
                                     <label class="control-label col-sm-3" for="endDate"><spring:message
                                             code="super_bookings.toDate"/>:</label>
                                     <div class="col-sm-3">
-                                        <input class="form-control out_date" name="endDate" id="endDate">
+                                        <input class="form-control end_date" name="endDate" id="endDate">
                                     </div>
                                 </div>
                             </form:form>

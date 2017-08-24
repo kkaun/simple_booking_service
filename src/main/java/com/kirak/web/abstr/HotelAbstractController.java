@@ -5,14 +5,17 @@ import com.kirak.service.CityService;
 import com.kirak.service.CountryService;
 import com.kirak.service.HotelService;
 import com.kirak.to.HotelTo;
+import com.kirak.util.FileUploadUtil;
 import com.kirak.util.model.HotelUtil;
 import com.kirak.web.session.AuthorizedUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import static com.kirak.util.ValidationUtil.checkIdConsistency;
@@ -105,9 +108,20 @@ public abstract class HotelAbstractController {
 
 
     public String getImagePath(Integer id){
-
         return hotelService.get(id).getImgPath();
     }
+
+    public void setImage(Integer id, MultipartFile multipartFile) {
+        Hotel hotel = hotelService.get(id);
+        Random random = new Random();
+        String fileName = "hotel_img_id_" + String.valueOf(id) +
+                "_" + String.valueOf(random.nextInt(10000) + 1) + ".jpg";
+        if(FileUploadUtil.fileUploaded(multipartFile, fileName)) {
+            hotel.setImgPath("/images/" + fileName);
+            hotelService.save(hotel);
+        }
+    }
+
 
     //    public void delete(Integer id, int cityId){
 //
