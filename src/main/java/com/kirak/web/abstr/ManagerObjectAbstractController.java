@@ -189,4 +189,11 @@ public abstract class ManagerObjectAbstractController {
                 managerObjectService.getManagerObjects());
         return managerObject.getObjectChartTos();
     }
+
+
+
+    public String getImagePath(Integer id){
+
+        return apartmentService.get(id).getImgPath();
+    }
 }

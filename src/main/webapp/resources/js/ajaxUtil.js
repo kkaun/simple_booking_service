@@ -220,6 +220,23 @@ function renderRegionEditBtn(data, type, row) {
     }
 }
 
+function renderRegionImageBtn(data, type, row) {
+    if (type === 'display') {
+        return '<a onclick="updateRegionImage(' + row.id + ');">' +
+            '<span class="glyphicon glyphicon-picture" aria-hidden="true"></span></a>';
+    }
+}
+
+function updateRegionImage(id) {
+    $('#regionImageModalTitle').html(i18n["editTitle"]);
+    $.get(ajaxUrl + id, function (data) {
+        $.each(data, function (key, value) {
+            form.find("input[name='" + key + "']").val(value);
+        });
+        $('#regionImageEditRow').modal();
+    });
+}
+
 function saveRegion() {
     $.ajax({
         type: "POST",
@@ -337,6 +354,23 @@ function updateApartmentRow(id) {
     });
 }
 
+function renderApartmentImageBtn(data, type, row) {
+    if (type === 'display') {
+        return '<a onclick="updateApartmentImage(' + row.id + ');">' +
+            '<span class="glyphicon glyphicon-picture" aria-hidden="true"></span></a>';
+    }
+}
+
+function updateApartmentImage(id) {
+    $('#apartmentImageModalTitle').html(i18n["editTitle"]);
+    $.get(ajaxUrl + id, function (data) {
+        $.each(data, function (key, value) {
+            form.find("input[name='" + key + "']").val(value);
+        });
+        $('#apartmentImageEditRow').modal();
+    });
+}
+
 function saveApartment() {
     $.ajax({
         type: "POST",
@@ -391,6 +425,23 @@ function updateManagerHotelRow(id) {
             form.find("input[name='" + key + "']").val(value);
         });
         $('#managerHotelEditRow').modal();
+    });
+}
+
+function renderManagerHotelImageBtn(data, type, row) {
+    if (type === 'display') {
+        return '<a onclick="updateManagerHotelImage(' + row.id + ');">' +
+            '<span class="glyphicon glyphicon-picture" aria-hidden="true"></span></a>';
+    }
+}
+
+function updateManagerHotelImage(id) {
+    $('#managerHotelImageModalTitle').html(i18n["editTitle"]);
+    $.get(ajaxUrl + id, function (data) {
+        $.each(data, function (key, value) {
+            form.find("input[name='" + key + "']").val(value);
+        });
+        $('#managerHotelImageEditRow').modal();
     });
 }
 

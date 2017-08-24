@@ -12,7 +12,7 @@
     <bean class="com.kirak.web.json.JacksonObjectMapper" id="objectMapper" factory-method="getMapper"/>
 
     <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
-
+    <mvc:resources mapping="/images/**" location="file:///D:/booking_demo_images/"/>
     <mvc:resources mapping="/resources/**" location="/resources/"/>
 
     <mvc:default-servlet-handler/>
@@ -72,6 +72,11 @@
                 <bean class="com.kirak.util.DateTimeFormatters.LocalDateFormatter"/>
             </set>
         </property>
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- one of the several properties available; the maximum file size in bytes -->
+        <property name="maxUploadSizePerFile" value="5242880"/>
     </bean>
 
 </beans>

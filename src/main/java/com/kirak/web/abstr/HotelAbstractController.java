@@ -102,6 +102,13 @@ public abstract class HotelAbstractController {
         return cityService.getAll();
     }
 
+
+
+    public String getImagePath(Integer id){
+
+        return hotelService.get(id).getImgPath();
+    }
+
     //    public void delete(Integer id, int cityId){
 //
 //    }

@@ -13,9 +13,9 @@ USE `booking_service`;
 DROP TABLE IF EXISTS `city`;
 CREATE TABLE `city` (
   `id`          INT          NOT NULL AUTO_INCREMENT,
-  `name`        VARCHAR(45),
-  `country_id`  VARCHAR(45),
-  `description` TEXT,
+  `name`        VARCHAR(45)  NOT NULL,
+  `country_id`  VARCHAR(45)  NOT NULL,
+  `description` TEXT         NULL,
   `img_path`    VARCHAR(255) NULL,
   INDEX `idx_country_id` (`country_id`),
   PRIMARY KEY (`id`)
@@ -29,8 +29,8 @@ CREATE TABLE `city` (
 
 DROP TABLE IF EXISTS `country`;
 CREATE TABLE `country` (
-  `id`   SMALLINT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45),
+  `id`   SMALLINT     NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45)  NOT NULL,
   INDEX `idx_country_id`(`id`),
   PRIMARY KEY (`id`)
 )
@@ -112,6 +112,7 @@ CREATE TABLE IF NOT EXISTS `hotel` (
   `check_out`         TIME        NOT NULL,
   `max_extra_per_day` SMALLINT    NOT NULL,
   `manager`           INT         NOT NULL,
+  `img_path`          VARCHAR(255)NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_hotel_country1_idx` (`country_id` ASC),
   INDEX `fk_hotel_city1_idx` (`city_id` ASC),
@@ -155,6 +156,7 @@ CREATE TABLE IF NOT EXISTS `apartment` (
   `apt_type_id` SMALLINT       NOT NULL,
   `price`       DECIMAL(11, 4) NULL,
   `hotel_id`    INT            NOT NULL,
+  `img_path`    VARCHAR(255)   NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_apartment_hotel1_idx` (`hotel_id` ASC),
   INDEX `fk_apartment_apt_type1_idx` (`apt_type_id` ASC),
@@ -166,25 +168,6 @@ CREATE TABLE IF NOT EXISTS `apartment` (
   CONSTRAINT `fk_apartment_apt_type1`
   FOREIGN KEY (`apt_type_id`)
   REFERENCES `apt_type` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-)
-  AUTO_INCREMENT = 100000,
-  ENGINE = InnoDB;
-
---   //////////////////////////////////////////
-
-DROP TABLE IF EXISTS `object_image`;
-CREATE TABLE IF NOT EXISTS `object_image` (
-  `id`            INT           NOT NULL AUTO_INCREMENT,
-  `img_path`      VARCHAR(255)  NULL,
-  `apartment_id`  INT           NULL,
-  `hotel_id`      INT           NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_object_image_hotel1_idx` (`hotel_id` ASC),
-  CONSTRAINT `fk_object_image_hotel1`
-  FOREIGN KEY (`hotel_id`)
-  REFERENCES `hotel` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 )

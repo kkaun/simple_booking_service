@@ -188,6 +188,41 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="regionImageEditRow">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title" id="regionImageModalTitle"></h2>
+            </div>
+            <div class="modal-body">
+                <form:form class="form-horizontal detailsForm">
+                    <input type="hidden" id="id" name="id">
+                    <div class="form-group">
+                        <label for="image" class="control-label col-xs-3"><spring:message
+                                code="common.image"/></label>
+                        <div class="col-xs-9">
+                            <input name="image" id="image" type="file" /><br/>
+                        </div>
+                    </div>
+
+                    <div id="result"></div>
+
+                    <div class="form-group">
+                        <div class="col-xs-offset-3 col-xs-9">
+                            <button class="btn btn-primary" type="button" onclick="saveRegionImage()">
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                </form:form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 </body>
 <jsp:include page="fragments/i18nUtil.jsp"/>
 </html>

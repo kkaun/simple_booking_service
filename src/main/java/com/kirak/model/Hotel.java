@@ -65,6 +65,9 @@ public class Hotel extends NamedEntity {
     @JoinColumn(name = "manager", nullable = false)
     private User manager;
 
+    @Column(name = "img_path")
+    private String imgPath;
+
     @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "hotel")
     private Set<Apartment> apartments;
@@ -234,6 +237,14 @@ public class Hotel extends NamedEntity {
 
     public void setSuperBookings(Set<SuperBooking> superBookings) {
         this.superBookings = superBookings;
+    }
+
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
     }
 
     @Override

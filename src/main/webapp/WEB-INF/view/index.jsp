@@ -67,7 +67,8 @@
                 <c:forEach items="${citiesFive}" var="city">
                     <jsp:useBean id="city" scope="page" type="com.kirak.model.City"/>
                     <div class="item">
-                        <a href="get_by_city?city=${city.id}"><img src="http://placehold.it/1200x400"/></a>
+                        <a href="get_by_city?city=${city.id}"><img src="${city.imgPath}"
+                                                                   alt="Sorry, no city image is available at the time"/></a>
                         <div class="carousel-caption">
                             <h1 class="carousel-caption-header">${city.name}</h1>
                             <p class="carousel-caption-text hidden-sm hidden-xs">
@@ -101,7 +102,8 @@
                     <a href="inspect_hotel?id=${hotel.id}" class="list-group-item">
                         <div class="media col-md-3">
                             <figure class="pull-left">
-                                <img class="media-object img-rounded img-responsive" src="http://placehold.it/350x250" alt="placehold.it/350x250" >
+                                <img class="media-object img-rounded img-responsive" src="${hotel.imgPath}"
+                                     alt="Sorry, no hotel image is available at the time" >
                             </figure>
                         </div>
                         <div class="col-md-5">

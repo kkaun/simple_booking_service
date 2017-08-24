@@ -62,7 +62,7 @@
                                 <div class="media col-md-3">
                                     <figure class="pull-left">
                                         <img class="media-object img-rounded img-responsive"
-                                             src="http://placehold.it/350x250" alt="placehold.it/350x250">
+                                             src="${hotel.imgPath}" alt="Sorry, no hotel image is available at the time">
                                     </figure>
                                 </div>
                                 <div class="col-md-4">
@@ -109,7 +109,7 @@
                                 <div class="media col-md-3">
                                     <figure class="pull-left">
                                         <img class="media-object img-rounded img-responsive"
-                                             src="http://placehold.it/350x250" alt="placehold.it/350x250">
+                                             src="${placement.hotel.imgPath}" alt="Sorry, no hotel image is available at the time">
                                     </figure>
                                 </div>
                                 <div class="col-md-6">

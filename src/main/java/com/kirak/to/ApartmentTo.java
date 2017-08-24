@@ -23,14 +23,18 @@ public class ApartmentTo extends BasicIntTo implements Serializable {
 
     private final String stringAptType;
 
+    private final String imgPath;
+
     public ApartmentTo(@JsonProperty("id") Integer id,
-                        @JsonProperty("id") Integer hotelId,
+                       @JsonProperty("id") Integer hotelId,
                        @JsonProperty("price") Double price,
-                       @JsonProperty("stringAptType") String stringAptType) {
+                       @JsonProperty("stringAptType") String stringAptType,
+                       @JsonProperty("imgPath") String imgPath) {
         super(id);
         this.hotelId = hotelId;
         this.price = price;
         this.stringAptType = stringAptType;
+        this.imgPath = imgPath;
     }
 
     public Integer getHotelId() {
@@ -43,6 +47,10 @@ public class ApartmentTo extends BasicIntTo implements Serializable {
 
     public String getStringAptType() {
         return stringAptType;
+    }
+
+    public String getImgPath() {
+        return imgPath;
     }
 
     @Override

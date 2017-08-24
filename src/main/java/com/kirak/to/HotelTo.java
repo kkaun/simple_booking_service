@@ -43,6 +43,8 @@ public class HotelTo extends BasicIntTo implements Serializable {
 
     private final String countryName;
 
+    private final String imgPath;
+
     public HotelTo(@JsonProperty("id") Integer id,
                    @JsonProperty("managerId") Integer managerId,
                    @JsonProperty("name") String name,
@@ -56,7 +58,8 @@ public class HotelTo extends BasicIntTo implements Serializable {
                    @JsonProperty("phone") String phone,
                    @JsonProperty("cityId") Integer cityId,
                    @JsonProperty("cityName") String cityName,
-                   @JsonProperty("countryName") String countryName) {
+                   @JsonProperty("countryName") String countryName,
+                   @JsonProperty("imgPath") String imgPath) {
         super(id);
         this.managerId = managerId;
         this.name = name;
@@ -71,6 +74,7 @@ public class HotelTo extends BasicIntTo implements Serializable {
         this.cityId = cityId;
         this.cityName = cityName;
         this.countryName = countryName;
+        this.imgPath = imgPath;
     }
 
     public String getName() {
@@ -123,6 +127,14 @@ public class HotelTo extends BasicIntTo implements Serializable {
 
     public Integer getManagerId() {
         return managerId;
+    }
+
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     @Override

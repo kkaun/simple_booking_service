@@ -36,7 +36,8 @@ public class HotelUtil {
         return new HotelTo(hotel.getId(), hotel.getManager().getId(), hotel.getName(), calculateHotelRating(hotel),
                 hotel.getStars(), hotel.getDescription().isEmpty() ? " " : hotel.getDescription(),
                 calculateHotelVotesNum(hotel), hotel.getCheckIn(), hotel.getCheckOut(),
-                hotel.getAddress(), hotel.getPhone(), hotel.getCity().getId(), hotel.getCity().getName(), hotel.getCountry().getName());
+                hotel.getAddress(), hotel.getPhone(), hotel.getCity().getId(), hotel.getCity().getName(),
+                hotel.getCountry().getName(), hotel.getImgPath());
     }
 
 

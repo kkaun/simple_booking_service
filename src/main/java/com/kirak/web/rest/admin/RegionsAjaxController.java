@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -56,4 +57,24 @@ public class RegionsAjaxController extends RegionAbstractController {
     public List<PlaceTo> getAllByRegion(@RequestParam("region") String region) {
         return super.getAllByRegion(region);
     }
+
+
+
+    @Override
+    @GetMapping(value = "/image/{id}")
+    @JsonView(View.JsonUI.class)
+    public String getImagePath(@PathVariable("id") Integer id) {
+        return super.getImagePath(id);
+    }
+
+
+    @Override
+    @PostMapping(value = "set_image")
+    @JsonView(View.JsonUI.class)
+    public void setImage(@RequestParam("id") Integer id,
+                                  @RequestParam("file") MultipartFile multipartFile) {
+        super.setImage(id, multipartFile);
+    }
+
+
 }

@@ -50,6 +50,11 @@ $(function () {
                 "data": "countryName"
             },
             {
+                "render": renderHotelImageBtn,
+                "defaultContent": "",
+                "orderable": false
+            },
+            {
                 "render": renderManagerHotelEditBtn,
                 "defaultContent": "",
                 "orderable": false

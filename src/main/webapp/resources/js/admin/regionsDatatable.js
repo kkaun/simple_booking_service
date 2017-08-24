@@ -39,6 +39,11 @@ $(function () {
                 "data": "hotelNum"
             },
             {
+                "render": renderRegionImageBtn,
+                "defaultContent": "",
+                "orderable": false
+            },
+            {
                 "render": renderRegionEditBtn,
                 "defaultContent": "",
                 "orderable": false

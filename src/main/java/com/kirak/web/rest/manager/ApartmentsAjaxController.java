@@ -8,6 +8,7 @@ import com.kirak.web.abstr.ManagerObjectAbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -50,4 +51,28 @@ public class ApartmentsAjaxController extends ManagerObjectAbstractController{
     public List<ApartmentTo> getAllApartmentsFromCurrentObject() {
         return super.getAllApartmentsFromCurrentObject();
     }
+
+
+
+    @Override
+    @GetMapping(value = "/image/{id}")
+    @JsonView(View.JsonUI.class)
+    public String getImagePath(@PathVariable("id") Integer id) {
+        return super.getImagePath(id);
+    }
+
+//    @Override
+//    @PostMapping(value = "set_image")
+//    @JsonView(View.JsonUI.class)
+//    public void setImage(@RequestParam("id") Integer id, @RequestParam("file") MultipartFile multipartFile) {
+//        super.setImage(id, multipartFile);
+//    }
+//
+//    @Override
+//    @PostMapping(value = "set_image")
+//    @JsonView(View.JsonUI.class)
+//    public MultipartFile setImage(@RequestParam("id") Integer id,
+//                                  @RequestParam("file") MultipartFile multipartFile) {
+//        return super.setImage(id, multipartFile);
+//    }
 }

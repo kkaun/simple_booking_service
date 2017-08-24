@@ -43,7 +43,7 @@
                                 <div class="media col-md-6">
                                     <figure class="pull-left">
                                         <img class="media-object img-rounded img-responsive"
-                                             src="http://placehold.it/350x250" alt="placehold.it/350x250">
+                                             src="${hotel.imgPath}" alt="Sorry, no hotel image is available at the time">
                                     </figure>
                                 </div>
                                 <div class="col-md-6 text-center">
@@ -126,7 +126,8 @@
                                                     <div class="media col-md-5">
                                                         <figure class="pull-left">
                                                             <img class="media-object img-rounded img-responsive"
-                                                                 src="http://placehold.it/350x250" alt="placehold.it/350x250">
+                                                                 src="${option.imgPath}"
+                                                                 alt="Sorry, no apartment image is available at the time">
                                                         </figure>
                                                     </div>
                                                     <div class="col-md-7">
@@ -345,7 +346,7 @@
                                     <div class="media col-md-5">
                                         <figure class="pull-left">
                                             <img class="media-object img-rounded img-responsive"
-                                                 src="http://placehold.it/350x250" alt="placehold.it/350x250">
+                                                 src="${apartment.imgPath}" alt="Sorry, no apartment image is available at the time">
                                         </figure>
                                     </div>
                                 </div>

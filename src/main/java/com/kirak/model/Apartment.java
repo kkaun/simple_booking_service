@@ -33,6 +33,9 @@ public class Apartment extends BaseIntEntity {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "apartment")
     private Set<Booking> bookings;
 
+    @Column(name = "img_path")
+    private String imgPath;
+
     public Apartment(){}
 
     public Apartment(AptType type, Double price, Hotel hotel){
@@ -76,6 +79,14 @@ public class Apartment extends BaseIntEntity {
 
     public void setBookings(Set<Booking> bookings) {
         this.bookings = bookings;
+    }
+
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
     }
 
     @Override

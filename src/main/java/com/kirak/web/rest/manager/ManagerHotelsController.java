@@ -13,6 +13,8 @@ import com.kirak.web.session.AuthorizedUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.validation.Valid;
 import java.util.List;
 
@@ -54,4 +56,21 @@ public class ManagerHotelsController extends HotelAbstractController {
     public List<HotelTo> getHotelsForManager() {
         return super.getHotelsForManager();
     }
+
+
+//    @Override
+//    @GetMapping(value = "/image/{id}")
+//    @JsonView(View.JsonUI.class)
+//    public String getImagePath(@PathVariable("id") Integer id) {
+//        return super.getImagePath(id);
+//    }
+//
+//
+//    @Override
+//    @PostMapping(value = "set_image")
+//    @JsonView(View.JsonUI.class)
+//    public MultipartFile setImage(@RequestParam("id") Integer id,
+//                                  @RequestParam("file") MultipartFile multipartFile) {
+//        return super.setImage(id, multipartFile);
+//    }
 }

@@ -20,6 +20,11 @@ $(function () {
                 "data": "price"
             },
             {
+                "render": renderApartmentImageBtn,
+                "defaultContent": "",
+                "orderable": false
+            },
+            {
                 "render": renderApartmentEditBtn,
                 "defaultContent": "",
                 "orderable": false
