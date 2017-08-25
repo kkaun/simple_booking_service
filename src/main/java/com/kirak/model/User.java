@@ -104,6 +104,10 @@ public class User extends NamedEntity {
         this(id, name, email, phone, password, new Date(), true, EnumSet.of(role, roles));
     }
 
+    public User(Integer id, String name, String email, String password, UserRole role, UserRole... roles) {
+        this(id, name, email, password, new Date(), true, EnumSet.of(role, roles));
+    }
+
     public User(Integer id, String name, String email, String phone, String password, Date registered,
                 boolean enabled, Collection<UserRole> roles) {
         super(id, name);

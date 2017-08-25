@@ -230,9 +230,12 @@ function updateRegionImage(id) {
     $('#regionImageModalTitle').html(i18n["editTitle"]);
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
-            //!!!!!!!!!!!!!!!!!
-            form.find("img[src='" + key + "']").val(value);
-
+            $('.imgTag').each(function () {
+                var curSrc = $(this).attr('src');
+                if ( curSrc === key ) {
+                    $(this).attr('src', value);
+                }
+            });
             form.find("input[name='" + key + "']").val(value);
         });
         $('#regionImageEditRow').modal();
@@ -385,9 +388,12 @@ function updateApartmentImage(id) {
     $('#apartmentImageModalTitle').html(i18n["editTitle"]);
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
-            //!!!!!!!!!!!!!!!!!
-            form.find("img[src='" + key + "']").val(value);
-
+            $('.imgTag').each(function () {
+                var curSrc = $(this).attr('src');
+                if ( curSrc === key ) {
+                    $(this).attr('src', value);
+                }
+            });
             form.find("input[name='" + key + "']").val(value);
         });
         $('#apartmentImageEditRow').modal();
@@ -480,9 +486,12 @@ function updateManagerHotelImage(id) {
     $('#managerHotelImageModalTitle').html(i18n["editTitle"]);
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
-            //!!!!!!!!!!!!!!!!!
-            form.find("img[src='" + key + "']").val(value);
-
+            $('.imgTag').each(function () {
+                var curSrc = $(this).attr('src');
+                if ( curSrc === key ) {
+                    $(this).attr('src', value);
+                }
+            });
             form.find("input[name='" + key + "']").val(value);
         });
         $('#managerHotelImageEditRow').modal();

@@ -8,6 +8,7 @@ import com.kirak.util.exception.NotFoundException;
 import com.kirak.util.model.HotelUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -43,19 +44,18 @@ public class HotelServiceImpl implements HotelService {
         return checkNotFoundWithId(repository.save(hotel, hotel.getCity().getId()), hotel.getId());
     }
 
-    @CacheEvict(value = "hotels", allEntries = true)
     @Transactional
     @Override
     public void update(HotelTo hotelTo) {
         Hotel hotel = updateFromTo(get(hotelTo.getId()), hotelTo);
         repository.save(hotel, hotelTo.getCityId());
     }
-
     @Override
     public HotelTo getTo(Integer id) throws NotFoundException {
         return checkNotFoundWithId(HotelUtil.asHotelTo(repository.get(id)), id);
     }
 
+    @CacheEvict(value = "hotels", allEntries = true)
     @Override
     public Hotel get(Integer id) throws com.kirak.util.exception.NotFoundException {
         return checkNotFoundWithId(repository.get(id), id);
@@ -76,11 +76,6 @@ public class HotelServiceImpl implements HotelService {
         return repository.getAll();
     }
 
-    @CacheEvict(value = "users", allEntries = true)
-    @Override
-    public void evictCache() {
-
-    }
 
 //    @Override
 //    public void delete(Integer id) throws NotFoundException {

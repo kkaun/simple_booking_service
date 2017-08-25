@@ -24,8 +24,6 @@ public interface VoteService {
 
     List<Vote> getAll();
 
-    void evictCache();//for tests
-
     void delete(Integer id, int userId, int hotelId) throws NotFoundException;
 
 }

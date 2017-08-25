@@ -25,6 +25,4 @@ public interface AptTypeService {
     AptType get(Short id) throws NotFoundException;
 
     List<AptType> getAll();
-
-    void evictCache();//for tests
 }

@@ -32,7 +32,6 @@ public class CountryServiceImpl implements CountryService {
         return checkNotFoundWithId(repository.get(id), id);
     }
 
-    @CacheEvict(value = "users", allEntries = true)
     @Override
     public List<Country> getAll() {
         return repository.getAll();

@@ -42,6 +42,14 @@ public class City extends BaseIntEntity {
         this.country = country;
     }
 
+    //For Tests
+    public City(Integer id, String name, String description, Country country) {
+        super(id);
+        this.name = name;
+        this.description = description;
+        this.country = country;
+    }
+
     public City(Integer id, String name, String description, String imgPath, Country country, List<Hotel> hotels) {
         super(id);
         this.name = name;

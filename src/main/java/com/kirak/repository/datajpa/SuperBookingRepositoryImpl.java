@@ -19,7 +19,7 @@ import java.util.List;
 @Repository
 public class SuperBookingRepositoryImpl implements SuperBookingRepository {
 
-    private static final Sort DATE_ADDED_SORT = new Sort("dateAdded");
+    private static final Sort DATE_ADDED_SORT = new Sort(Sort.Direction.DESC, "dateAdded");
 
     @Autowired
     private DataJpaSuperBookingRepository superBookingRepository;

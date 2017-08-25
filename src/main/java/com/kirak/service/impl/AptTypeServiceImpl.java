@@ -77,9 +77,4 @@ public class AptTypeServiceImpl implements AptTypeService {
         return repository.getAll();
     }
 
-    @CacheEvict(value = "users", allEntries = true)
-    @Override
-    public void evictCache() {
-
-    }
 }

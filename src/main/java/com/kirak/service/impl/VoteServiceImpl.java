@@ -65,12 +65,6 @@ public class VoteServiceImpl implements VoteService {
         return repository.getAll();
     }
 
-    @CacheEvict(value = "users", allEntries = true)
-    @Override
-    public void evictCache() {
-
-    }
-
     @Override
     public void delete(Integer id, int userId, int hotelId) {
         checkNotFoundWithId(repository.delete(id, userId, hotelId), id);

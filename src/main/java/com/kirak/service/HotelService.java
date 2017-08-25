@@ -32,5 +32,4 @@ public interface HotelService {
 
     List<Hotel> getAll();
 
-    void evictCache();//for tests
 }
