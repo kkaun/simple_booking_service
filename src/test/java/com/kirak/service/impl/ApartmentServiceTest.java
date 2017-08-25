@@ -26,7 +26,7 @@ public class ApartmentServiceTest extends AbstractServiceTest {
     public void save() throws Exception {
         Apartment created = getCreatedApartment();
         service.save(created);
-        APARTMENT_MATCHER.assertCollectionEquals(Arrays.asList(APARTMENT1, APARTMENT2, created, APARTMENT3, APARTMENT4, APARTMENT5),
+        APARTMENT_MATCHER.assertCollectionEquals(Arrays.asList(APARTMENT1, APARTMENT5, APARTMENT2, created, APARTMENT3, APARTMENT4),
                 service.getAll());
     }
 
@@ -52,8 +52,8 @@ public class ApartmentServiceTest extends AbstractServiceTest {
     @Test
     public void updateNotFound() throws Exception {
         thrown.expect(NotFoundException.class);
-        thrown.expectMessage("Not found entity with id=" + APARTMENT1_ID);
-        service.update(APARTMENT1, HOTEL4_ID);
+        thrown.expectMessage("Not found entity with id=" + APARTMENT3_ID);
+        service.update(APARTMENT3, HOTEL4_ID);
     }
 
     @Test
@@ -68,12 +68,12 @@ public class ApartmentServiceTest extends AbstractServiceTest {
     @Test
     public void delete() throws Exception {
         service.delete(APARTMENT1_ID, HOTEL1_ID);
-        APARTMENT_MATCHER.assertCollectionEquals(Arrays.asList(APARTMENT2, APARTMENT3, APARTMENT4, APARTMENT5), service.getAll());
+        APARTMENT_MATCHER.assertCollectionEquals(Arrays.asList(APARTMENT5, APARTMENT2, APARTMENT3, APARTMENT4), service.getAll());
     }
 
     @Test
     public void deleteNotFound() throws Exception {
         thrown.expect(NotFoundException.class);
-        service.delete(APARTMENT1_ID, HOTEL1_ID);
+        service.delete(APARTMENT1_ID + 12, HOTEL1_ID);
     }
 }

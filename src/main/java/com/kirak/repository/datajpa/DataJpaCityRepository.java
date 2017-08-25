@@ -32,6 +32,6 @@ public interface DataJpaCityRepository extends JpaRepository<City, Integer> {
 
     @Transactional
     @Modifying
-    @Query("DELETE FROM Vote v WHERE v.id=:id")
+    @Query("DELETE FROM City c WHERE c.id=:id")
     int deleteById(@Param("id") int id);
 }

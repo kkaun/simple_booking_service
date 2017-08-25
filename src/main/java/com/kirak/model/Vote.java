@@ -16,8 +16,8 @@ import java.time.LocalDateTime;
 @Table(name = "vote")
 public class Vote extends BaseIntEntity {
 
-    @NotBlank
-    @SafeHtml
+    //@NotBlank
+    //@SafeHtml
     @Column (name = "rate", nullable = false)
     private Double rate;
 

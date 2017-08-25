@@ -3,6 +3,7 @@ package com.kirak.service.impl;
 import com.kirak.model.AptType;
 import com.kirak.service.AbstractServiceTest;
 import com.kirak.service.AptTypeService;
+import com.kirak.util.exception.NotFoundException;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
@@ -11,6 +12,11 @@ import java.util.Arrays;
 
 import static com.kirak.Profile.DATAJPA;
 import static com.kirak.mock.AptTypeTestData.*;
+import static com.kirak.mock.BookingTestData.BOOKING1;
+import static com.kirak.mock.BookingTestData.BOOKING1_ID;
+import static com.kirak.mock.HotelTestData.HOTEL2_ID;
+import static com.kirak.mock.HotelTestData.HOTEL4_ID;
+import static com.kirak.mock.UserTestData.USER3_ID;
 
 /**
  * Created by Kir on 19.06.2017.
@@ -39,6 +45,12 @@ public class AptTypeServiceTest extends AbstractServiceTest {
     @Test
     public void get() throws Exception {
         APT_TYPE_MATCHER.assertEquals(TYPE2, service.get(TYPE2_ID));
+    }
+
+    @Test
+    public void getNotFound() throws Exception {
+        thrown.expect(NotFoundException.class);
+        service.get((short)99);
     }
 
     @Test

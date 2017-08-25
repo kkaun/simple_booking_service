@@ -34,7 +34,7 @@ INSERT INTO city
 (name, country_id, description, img_path)
 VALUES
   ('Moscow', 1, 'Moscow Description', ''),
-  ('St petersburg', 1, 'St Petersburg Description', ''),
+  ('St Petersburg', 1, 'St Petersburg Description', ''),
   ('Kiev', 2, 'Kiev Description', ''),
   ('Lviv', 2, 'Lviv Description', '');
 
@@ -90,7 +90,7 @@ VALUES
 INSERT INTO super_booking (active, date_added, extra_beds, overall_sum, overall_person_num, user_id,
                            hotel_id, booker_name, booker_email, booker_phone)
 VALUES
-  (1, '2016-05-12 16:17:00', 0, 6000.00, 1, 100000, 100000, 'Name1', 'email1@gmail.com', '384543534822'),
+  (1, '2017-05-12 16:17:00', 0, 6000.00, 1, 100000, 100000, 'Name1', 'email1@gmail.com', '384543534822'),
   (1, '2017-01-23 11:21:00', 0, 4500.00, 2, 100001, 100000, 'Name2', 'email2@gmail.com', '384546474822'),
   (1, '2017-03-08 19:25:00', 0, 3200.00, 2, 100002, 100001, 'Name3', 'email3@gmail.com', '384367654822'),
   (1, '2017-05-02 10:43:00', 0, 10000.00, 2, 100000, 100002, 'Name4', 'emai41@gmail.com', '3842344822'),
@@ -101,7 +101,7 @@ INSERT INTO booking (in_date, out_date, sum, person_num, super_booking_id, apart
 VALUES
   ('2017-05-23', '2017-05-28', 6000.00, 1, 100000, 100000, 100000),
   ('2017-04-14', '2017-04-17', 4500.00, 2, 100001, 100001, 100000),
-  ('2017-06-07', '2017-06-30', 3200.00, 2, 100002, 100002, 100001),
+  ('2017-06-06', '2017-06-07', 3200.00, 2, 100002, 100002, 100001),
   ('2017-05-21', '2017-05-23', 10000.00, 2, 100003, 100003, 100002),
   ('2017-05-21', '2017-05-28', 31200.00, 2, 100004, 100004, 100003);
 

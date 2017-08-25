@@ -196,18 +196,18 @@ public class SuperBooking extends BaseIntEntity {
         this.bookerPhone = bookerPhone;
     }
 
-    @Override
-    public String toString() {
-        return "SuperBooking{" +
-                "id='" + getId() + '\'' +
-                ", active=" + active +
-                ", dateAdded=" + dateAdded +
-                ", extraBeds=" + extraBeds +
-                ", overallSum=" + overallSum +
-                ", overallPersonNum=" + overallPersonNum +
-                ", user=" + user +
-                ", hotel=" + hotel +
-                ", bookings=" + bookings +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "SuperBooking{" +
+//                "id='" + getId() + '\'' +
+//                ", active=" + active +
+//                ", dateAdded=" + dateAdded +
+//                ", extraBeds=" + extraBeds +
+//                ", overallSum=" + overallSum +
+//                ", overallPersonNum=" + overallPersonNum +
+//                ", user=" + user +
+//                ", hotel=" + hotel +
+//                ", bookings=" + bookings +
+//                '}';
+//    }
 }

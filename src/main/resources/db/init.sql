@@ -110,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `hotel` (
   `description`       TINYTEXT    NULL,
   `check_in`          TIME        NOT NULL,
   `check_out`         TIME        NOT NULL,
-  `max_extra_per_day` SMALLINT    NOT NULL,
+  `max_extra_per_day` SMALLINT    NULL,
   `manager`           INT         NOT NULL,
   `img_path`          VARCHAR(255)NULL,
   PRIMARY KEY (`id`),
@@ -168,8 +168,8 @@ CREATE TABLE IF NOT EXISTS `apartment` (
   CONSTRAINT `fk_apartment_apt_type1`
   FOREIGN KEY (`apt_type_id`)
   REFERENCES `apt_type` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 )
   AUTO_INCREMENT = 100000,
   ENGINE = InnoDB;

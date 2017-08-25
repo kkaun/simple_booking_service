@@ -53,7 +53,6 @@ public class HotelServiceImpl implements HotelService {
         return checkNotFoundWithId(HotelUtil.asHotelTo(repository.get(id)), id);
     }
 
-    @CacheEvict(value = "hotels", allEntries = true)
     @Override
     public Hotel get(Integer id) {
         return checkNotFoundWithId(repository.get(id), id);

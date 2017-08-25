@@ -31,8 +31,7 @@ public class VoteServiceTest extends AbstractServiceTest {
 
     @Test
     public void save() throws Exception {
-        Vote created = new Vote(null, 4.5, "comment",
-                LocalDateTime.of(2017, Month.MARCH, 23, 12, 9), USER2, HOTEL3);
+        Vote created = getCreatedVote();
         service.save(created, USER2_ID, HOTEL3_ID);
         VOTE_MATCHER.assertCollectionEquals(Arrays.asList(created, VOTE2, VOTE3, VOTE1), service.getAll());
     }
@@ -40,7 +39,7 @@ public class VoteServiceTest extends AbstractServiceTest {
     @Test
     public void update() throws Exception {
         Vote updated = getUpdatedVote();
-        service.update(updated, USER1_ID, HOTEL3_ID);
+        service.update(updated, USER1_ID, HOTEL1_ID);
         VOTE_MATCHER.assertEquals(updated, service.get(VOTE1_ID, USER1_ID, HOTEL3_ID));
     }
 
@@ -76,7 +75,7 @@ public class VoteServiceTest extends AbstractServiceTest {
 
     @Test
     public void delete() throws Exception {
-        service.delete(VOTE1_ID, USER1_ID, HOTEL3_ID);
+        service.delete(VOTE1_ID, USER1_ID, HOTEL1_ID);
         VOTE_MATCHER.assertCollectionEquals(Arrays.asList(VOTE3, VOTE2), service.getAll());
     }
 

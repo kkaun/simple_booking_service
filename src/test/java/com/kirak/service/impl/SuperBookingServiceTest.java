@@ -1,22 +1,33 @@
 package com.kirak.service.impl;
 
 import com.kirak.model.SuperBooking;
+import com.kirak.service.AbstractServiceTest;
 import com.kirak.service.SuperBookingService;
+import com.kirak.util.exception.NotFoundException;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
+
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import static com.kirak.Profile.DATAJPA;
+import static com.kirak.mock.HotelTestData.HOTEL1;
 import static com.kirak.mock.HotelTestData.HOTEL1_ID;
 import static com.kirak.mock.SuperBookingTestData.*;
+import static com.kirak.mock.UserTestData.USER1;
 import static com.kirak.mock.UserTestData.USER1_ID;
+import static java.time.LocalDateTime.of;
 
 /**
  * Created by Kir on 25.08.2017.
  */
-public class SuperBookingServiceTest {
+@ActiveProfiles(DATAJPA)
+public class SuperBookingServiceTest extends AbstractServiceTest{
 
     @Autowired
     private SuperBookingService service;
@@ -25,7 +36,7 @@ public class SuperBookingServiceTest {
     public void save() throws Exception {
         SuperBooking created = getCreatedSuperBooking();
         service.save(created);
-        List<SuperBooking> updatedList = SUPER_BOOKINGS;
+        List<SuperBooking> updatedList = new ArrayList<>(SUPER_BOOKINGS);
         updatedList.add(created);
         SUPER_BOOKING_MATCHER.assertCollectionEquals(updatedList, service.getAll());
     }
@@ -41,6 +52,20 @@ public class SuperBookingServiceTest {
     @Test
     public void get() throws Exception {
         SUPER_BOOKING_MATCHER.assertEquals(SUPER_BOOKING2, service.get(SUPER_BOOKING2_ID));
+    }
+
+    @Test
+    public void getNotFound() throws Exception {
+        thrown.expect(NotFoundException.class);
+        service.get(SUPER_BOOKING1_ID + 11);
+    }
+
+    @Test
+    public void updateNotFound() throws Exception {
+        thrown.expect(NotFoundException.class);
+        service.update(new SuperBooking(SUPER_BOOKING1_ID  + 11, true,
+                of(2016, Month.MAY, 12, 16, 17), (short)0, 6000.00, (short)1, USER1, HOTEL1,
+                "Name1", "email1@gmail.com", "384543534822"), USER1_ID);
     }
 
     @Test

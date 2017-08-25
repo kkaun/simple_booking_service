@@ -29,15 +29,15 @@ public class HotelTestData {
 
 
     public static final Hotel HOTEL1 = new Hotel(HOTEL1_ID, "HOTEL1", (short)3, RUSSIA, MOSCOW, "Address1",
-            "8943111111", "", Time.valueOf(CHECK_IN), Time.valueOf(CHECK_OUT), MANAGER);
+            "89431543453", "", Time.valueOf(CHECK_IN), Time.valueOf(CHECK_OUT), MANAGER);
     public static final Hotel HOTEL2 = new Hotel(HOTEL2_ID, "HOTEL2", (short)4, RUSSIA, ST_PETERSBURG, "Address2",
-            "8943111111", "Description2", Time.valueOf(CHECK_IN), Time.valueOf(CHECK_OUT), MANAGER);
+            "89431564565", "Description2", Time.valueOf(CHECK_IN), Time.valueOf(CHECK_OUT), MANAGER);
     public static final Hotel HOTEL3 = new Hotel(HOTEL3_ID, "HOTEL3", null, UKRAINE, KYIV, "Address3",
-            "8943111111", "Description3", Time.valueOf(CHECK_IN), Time.valueOf(CHECK_OUT), MANAGER);
+            "894312223222", "Description3", Time.valueOf(CHECK_IN), Time.valueOf(CHECK_OUT), MANAGER);
     public static final Hotel HOTEL4 = new Hotel(HOTEL4_ID, "HOTEL4", (short)4, UKRAINE, LVIV, "Address4",
-            null, "Description4", Time.valueOf(CHECK_IN), Time.valueOf(CHECK_OUT), MANAGER);
+            "894312223222", "Description4", Time.valueOf(CHECK_IN), Time.valueOf(CHECK_OUT), MANAGER);
 
-    public static final List<Hotel> HOTELS = Arrays.asList(HOTEL1, HOTEL4, HOTEL3, HOTEL2);
+    public static final List<Hotel> HOTELS = Arrays.asList(HOTEL1, HOTEL2, HOTEL3, HOTEL4);
 
     public static Hotel getCreatedHotel() {
         return new Hotel(null, "HOTEL1", (short)3, RUSSIA, ST_PETERSBURG, "Address3253",

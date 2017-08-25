@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import java.util.Arrays;
 import static com.kirak.Profile.DATAJPA;
+import static com.kirak.mock.ApartmentTestData.APARTMENT3_ID;
 import static com.kirak.mock.BookingTestData.*;
 import static com.kirak.mock.HotelTestData.*;
+import static com.kirak.mock.SuperBookingTestData.SUPER_BOOKING3;
+import static com.kirak.mock.SuperBookingTestData.SUPER_BOOKING3_ID;
 import static com.kirak.mock.UserTestData.*;
 
 /**
@@ -27,7 +30,7 @@ public class BookingServiceTest extends AbstractServiceTest {
     public void save() throws Exception {
         Booking created = getCreatedBooking();
         service.save(created, USER2_ID, HOTEL2_ID);
-        BOOKING_MATCHER.assertCollectionEquals(Arrays.asList(created, BOOKING4, BOOKING3, BOOKING5, BOOKING2, BOOKING1),
+        BOOKING_MATCHER.assertCollectionEquals(Arrays.asList(BOOKING1, BOOKING2, BOOKING3, BOOKING4, BOOKING5, created),
                 service.getAll());
     }
 
@@ -39,15 +42,15 @@ public class BookingServiceTest extends AbstractServiceTest {
     }
 
     @Test
+    public void get() throws Exception {
+        BOOKING_MATCHER.assertEquals(BOOKING3, service.get(BOOKING3_ID, SUPER_BOOKING3_ID, APARTMENT3_ID));
+    }
+
+    @Test
     public void updateNotFound() throws Exception {
         thrown.expect(NotFoundException.class);
         thrown.expectMessage("Not found entity with id=" + BOOKING1_ID);
         service.update(BOOKING1, USER3_ID, HOTEL4_ID);
-    }
-
-    @Test
-    public void get() throws Exception {
-        BOOKING_MATCHER.assertEquals(BOOKING3, service.get(BOOKING3_ID, USER3_ID, HOTEL2_ID));
     }
 
     @Test

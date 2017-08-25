@@ -25,7 +25,7 @@ public class SuperBookingTestData {
     public static final Integer SUPER_BOOKING5_ID = START_SEQ + 4;
 
     public static final SuperBooking SUPER_BOOKING1 = new SuperBooking(SUPER_BOOKING1_ID, true,
-            of(2016, Month.MAY, 12, 16, 17), (short)0, 6000.00, (short)1, USER1, HOTEL1,
+            of(2017, Month.MAY, 12, 16, 17), (short)0, 6000.00, (short)1, USER1, HOTEL1,
             "Name1", "email1@gmail.com", "384543534822");
     public static final SuperBooking SUPER_BOOKING2 = new SuperBooking(SUPER_BOOKING2_ID, true,
             of(2017, Month.JANUARY, 23, 11, 21), (short)0, 4500.00, (short)2, USER2, HOTEL1,

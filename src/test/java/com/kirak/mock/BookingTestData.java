@@ -46,11 +46,11 @@ public class BookingTestData {
             10000.00, (short)2, SUPER_BOOKING4, APARTMENT4, HOTEL3);
 
     public static final Booking BOOKING5 = new Booking(BOOKING5_ID,
-            of(2017, Month.MAY, 23), of(2017, Month.MAY, 28),
-            31200.00, (short)4, SUPER_BOOKING5, APARTMENT5, HOTEL4);
+            of(2017, Month.MAY, 21), of(2017, Month.MAY, 28),
+            31200.00, (short)2, SUPER_BOOKING5, APARTMENT5, HOTEL4);
 
 
-    public static final List<Booking> BOOKINGS = Arrays.asList(BOOKING4, BOOKING3, BOOKING5, BOOKING2, BOOKING1);
+    public static final List<Booking> BOOKINGS = Arrays.asList(BOOKING1, BOOKING2, BOOKING3, BOOKING4, BOOKING5);
 
 
     public static Booking getCreatedBooking() {
