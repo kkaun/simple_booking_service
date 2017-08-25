@@ -2,11 +2,7 @@ package com.kirak.repository.datajpa;
 
 import com.kirak.model.Hotel;
 import com.kirak.repository.HotelRepository;
-import com.kirak.repository.UserRepository;
-import com.kirak.repository.datajpa.DataJpaCityRepository;
-import com.kirak.repository.datajpa.DataJpaHotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,8 +34,8 @@ public class HotelRepositoryImpl implements HotelRepository {
     }
 
     @Override
-    public boolean delete(int id, int cityId) {
-        return hotelRepository.delete(id, cityId) != 0;
+    public boolean delete(int id) {
+        return hotelRepository.deleteById(id) != 0;
     }
 
     @Override

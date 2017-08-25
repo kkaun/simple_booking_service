@@ -69,4 +69,9 @@ public class VoteServiceImpl implements VoteService {
     public void delete(Integer id, int userId, int hotelId) {
         checkNotFoundWithId(repository.delete(id, userId, hotelId), id);
     }
+
+    @Override
+    public void delete(Integer id) throws NotFoundException {
+        checkNotFoundWithId(repository.delete(id), id);
+    }
 }

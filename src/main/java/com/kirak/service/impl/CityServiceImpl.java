@@ -5,6 +5,7 @@ import com.kirak.model.Country;
 import com.kirak.repository.CityRepository;
 import com.kirak.service.CityService;
 import com.kirak.to.PlaceTo;
+import com.kirak.util.exception.NotFoundException;
 import com.kirak.util.model.RegionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,6 +55,11 @@ public class CityServiceImpl implements CityService {
     public void update(PlaceTo placeTo) {
         Assert.notNull(placeTo, "Place must not be null");
         repository.save(RegionUtil.updateCityFromPlaceTo(placeTo, repository.get(placeTo.getId())));
+    }
+
+    @Override
+    public void delete(Integer id) throws NotFoundException {
+        checkNotFoundWithId(repository.delete(id), id);
     }
 
     @Override

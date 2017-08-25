@@ -26,4 +26,6 @@ public interface CityService {
     void update(City city);
 
     void update(PlaceTo placeTo);
+
+    void delete(Integer id) throws NotFoundException;
 }

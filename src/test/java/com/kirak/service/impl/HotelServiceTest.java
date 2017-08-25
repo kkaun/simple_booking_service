@@ -43,11 +43,6 @@ public class HotelServiceTest extends AbstractServiceTest {
         service.update(HOTEL1);
     }
 
-//    @Test
-//    public void delete() throws Exception {
-//        service.delete(HOTEL1_ID, MOSCOW_ID);
-//        HOTEL_MATCHER.assertCollectionEquals(Arrays.asList(HOTEL4, HOTEL3, HOTEL2), service.getAll());
-//    }
 
     @Test
     public void get() throws Exception {
@@ -69,6 +64,12 @@ public class HotelServiceTest extends AbstractServiceTest {
     @Test
     public void getAll() throws Exception {
         HOTEL_MATCHER.assertCollectionEquals(HOTELS, service.getAll());
+    }
+
+    @Test
+    public void delete() throws Exception {
+        service.delete(HOTEL1_ID);
+        HOTEL_MATCHER.assertCollectionEquals(Arrays.asList(HOTEL4, HOTEL3, HOTEL2), service.getAll());
     }
 
 

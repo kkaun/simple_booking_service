@@ -26,4 +26,6 @@ public interface VoteService {
 
     void delete(Integer id, int userId, int hotelId) throws NotFoundException;
 
+    void delete(Integer id) throws NotFoundException;
+
 }

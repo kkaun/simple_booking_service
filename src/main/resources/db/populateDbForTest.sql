@@ -3,6 +3,8 @@ DELETE FROM vote;
 ALTER TABLE vote AUTO_INCREMENT = 100000;
 DELETE FROM booking;
 ALTER TABLE booking AUTO_INCREMENT = 100000;
+DELETE FROM super_booking;
+ALTER TABLE super_booking AUTO_INCREMENT = 100000;
 DELETE FROM apartment;
 ALTER TABLE apartment AUTO_INCREMENT = 100000;
 DELETE FROM apt_type;
@@ -20,6 +22,7 @@ ALTER TABLE country AUTO_INCREMENT = 1;
 
 
 
+
 INSERT INTO country
 (name)
 VALUES
@@ -30,10 +33,10 @@ VALUES
 INSERT INTO city
 (name, country_id, description, img_path)
 VALUES
-  ('Moscow', 0, 'Moscow Description', null),
-  ('St petersburg', 0, 'St Petersburg Description', null),
-  ('Kiev', 1, 'Kiev Description', null),
-  ('Lviv', 1, 'Lviv Description', null);
+  ('Moscow', 1, 'Moscow Description', ''),
+  ('St petersburg', 1, 'St Petersburg Description', ''),
+  ('Kiev', 2, 'Kiev Description', ''),
+  ('Lviv', 2, 'Lviv Description', '');
 
 
 
@@ -59,10 +62,10 @@ INSERT INTO user_role (user_id, role) VALUES
 
 INSERT INTO hotel (name, stars, country_id, city_id, address, phone, description, check_in, check_out, max_extra_per_day, manager)
 VALUES
-  ('HOTEL1', 3, 0, 100000, 'Address1', '89431543453', '', '14:00:00', '12:00:00', 3, 100003),
-  ('HOTEL2', 4, 0, 100001, 'Address2', '89431564565', 'Description2', '14:00:00', '12:00:00', 3, 100003),
-  ('HOTEL3', 0, 1, 100002, 'Address3', '894312223222', 'Description3', '14:00:00', '12:00:00', 3, 100003),
-  ('HOTEL4', 4, 1, 100003, 'Address4', '894312223222', 'Description4', '14:00:00', '12:00:00', 3, 100003);
+  ('HOTEL1', 3, 1, 100000, 'Address1', '89431543453', '', '14:00:00', '12:00:00', 3, 100003),
+  ('HOTEL2', 4, 1, 100001, 'Address2', '89431564565', 'Description2', '14:00:00', '12:00:00', 3, 100003),
+  ('HOTEL3', 0, 2, 100002, 'Address3', '894312223222', 'Description3', '14:00:00', '12:00:00', 3, 100003),
+  ('HOTEL4', 4, 2, 100003, 'Address4', '894312223222', 'Description4', '14:00:00', '12:00:00', 3, 100003);
 
 
 INSERT INTO apt_type(beds_arrangement, category, person_num)

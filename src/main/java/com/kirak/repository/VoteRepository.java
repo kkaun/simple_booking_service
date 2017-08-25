@@ -23,4 +23,6 @@ public interface VoteRepository{
     List<Vote> getAllByUser(int userId);
 
     List<Vote> getAll();
+
+    boolean delete(Integer id);
 }

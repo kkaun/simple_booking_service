@@ -16,4 +16,6 @@ public interface CityRepository {
     List<City> getAll();
 
     City save(City city);
+
+    boolean delete(Integer id);
 }

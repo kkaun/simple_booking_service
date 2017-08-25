@@ -22,6 +22,11 @@ public interface DataJpaHotelRepository extends JpaRepository<Hotel, Integer> {
     @Query("DELETE FROM Hotel h WHERE h.id=:hotelId AND h.city.id=:cityId")
     int delete(@Param("hotelId") int hotelId, @Param("cityId") int cityId);
 
+    @Transactional
+    @Modifying
+    @Query("DELETE FROM Vote v WHERE v.id=:id")
+    int deleteById(@Param("id") int id);
+
     @Override
     @Transactional
     Hotel save(Hotel hotel);

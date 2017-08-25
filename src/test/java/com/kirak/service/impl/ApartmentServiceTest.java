@@ -65,17 +65,15 @@ public class ApartmentServiceTest extends AbstractServiceTest {
         APARTMENT_MATCHER.assertCollectionEquals(Arrays.asList(APARTMENT1, APARTMENT2), service.getAllByHotel(HOTEL1_ID));
     }
 
+    @Test
+    public void delete() throws Exception {
+        service.delete(APARTMENT1_ID, HOTEL1_ID);
+        APARTMENT_MATCHER.assertCollectionEquals(Arrays.asList(APARTMENT2, APARTMENT3, APARTMENT4, APARTMENT5), service.getAll());
+    }
 
-
-//    @Test
-//    public void delete() throws Exception {
-//        service.delete(APARTMENT1_ID, HOTEL1_ID);
-//        APARTMENT_MATCHER.assertCollectionEquals(Arrays.asList(APARTMENT2, APARTMENT3, APARTMENT4, APARTMENT5), service.getAll());
-//    }
-
-//    @Test
-//    public void deleteNotFound() throws Exception {
-//        thrown.expect(NotFoundException.class);
-//        service.delete(APARTMENT1_ID, HOTEL1_ID);
-//    }
+    @Test
+    public void deleteNotFound() throws Exception {
+        thrown.expect(NotFoundException.class);
+        service.delete(APARTMENT1_ID, HOTEL1_ID);
+    }
 }

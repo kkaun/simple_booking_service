@@ -8,6 +8,9 @@ import com.kirak.repository.datajpa.DataJpaUserRepository;
 import com.kirak.repository.datajpa.DataJpaVoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -73,4 +76,11 @@ public class VoteRepositoryImpl implements VoteRepository {
     public List<Vote> getAll() {
         return voteRepository.findAll(RATE_SORT);
     }
+
+    @Override
+    public boolean delete(Integer id) {
+        return voteRepository.deleteById(id) != 0;
+    }
+
+
 }

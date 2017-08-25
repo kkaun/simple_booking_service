@@ -44,4 +44,9 @@ public class CityRepositoryImpl implements CityRepository {
         return cityRepository.save(city);
     }
 
+    @Override
+    public boolean delete(Integer id) {
+        return cityRepository.deleteById(id) != 0;
+    }
+
 }
