@@ -137,10 +137,4 @@ public abstract class BookingAbstractController {
     }
 
 
-    // ------------------------------- Chart TO methods --------------------------- ---- //
-
-
-
-
-
 }

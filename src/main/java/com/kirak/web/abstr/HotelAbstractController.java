@@ -95,20 +95,12 @@ public abstract class HotelAbstractController {
                 .collect(Collectors.toList()));
     }
 
-
-
     public List<Country> getAllCountries() {
         return countryService.getAll();
     }
 
     public List<City> getAllCities() {
         return cityService.getAll();
-    }
-
-
-
-    public String getImagePath(Integer id){
-        return hotelService.get(id).getImgPath();
     }
 
     public void setImage(Integer id, MultipartFile multipartFile) {
@@ -122,9 +114,9 @@ public abstract class HotelAbstractController {
         }
     }
 
-
-    //    public void delete(Integer id, int cityId){
-//
-//    }
+    public void delete(Integer id){
+        LOG.info("Deleting hotel {}", id);
+        hotelService.delete(id);
+    }
 
 }

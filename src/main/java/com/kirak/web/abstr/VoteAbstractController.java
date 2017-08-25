@@ -58,8 +58,6 @@ public abstract class VoteAbstractController {
         return new ArrayList<>(hotelService.get(hotelId).getVotes());
     }
 
-
-
     public List<Vote> getVotesByUser(int userId){
         LOG.info("Getting all user's votes");
         return voteService.getAllByUser(userId);
@@ -71,5 +69,9 @@ public abstract class VoteAbstractController {
                 Objects.equals(vote.getUser().getId(), AuthorizedUser.id())).collect(Collectors.toList());
     }
 
+    public void delete(Integer id){
+        LOG.info("Deleting user vote {}", id);
+        voteService.delete(id);
+    }
 
 }

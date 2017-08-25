@@ -84,4 +84,9 @@ public abstract class RegionAbstractController {
             cityService.save(city);
         }
     }
+
+    public void delete(Integer id){
+        LOG.info("Deleting city {}", id);
+        cityService.delete(id);
+    }
 }

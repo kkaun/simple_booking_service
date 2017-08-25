@@ -16,7 +16,7 @@ import java.util.Locale;
 public class MessageUtil {
 
     //for Tests w/Russian lang
-    //public static final Locale RU_LOCALE = new Locale("ru");
+    public static final Locale RU_LOCALE = new Locale("ru");
 
     @Autowired
     private MessageSource messageSource;

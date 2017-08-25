@@ -1,6 +1,5 @@
 package com.kirak.service;
 
-import com.kirak.ActiveDbProfileResolver;
 import com.kirak.Profile;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -23,6 +22,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.concurrent.TimeUnit;
 
 import static com.fasterxml.jackson.databind.util.ClassUtil.getRootCause;
+import static com.kirak.Profile.DATAJPA;
 import static org.hamcrest.CoreMatchers.instanceOf;
 
 /**
@@ -32,7 +32,7 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 @ContextConfiguration({ "classpath:spring/spring-app.xml",
                         "classpath:spring/spring-db.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
-@ActiveProfiles(resolver = ActiveDbProfileResolver.class)
+@ActiveProfiles(DATAJPA)
 @Sql(scripts = "classpath:db/populateDbForTest.sql", config = @SqlConfig(encoding = "UTF-8"))
 public abstract class AbstractServiceTest {
 
@@ -62,7 +62,7 @@ public abstract class AbstractServiceTest {
     }
 
     public boolean isJpaBased() {
-        return env.acceptsProfiles(Profile.DATAJPA);
+        return env.acceptsProfiles(DATAJPA);
     }
 
     @AfterClass
