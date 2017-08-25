@@ -97,11 +97,18 @@ public class User extends NamedEntity {
 
     //For registered user
     public User(User u) {
-        this(u.getId(), u.getName(), u.getEmail(), u.getPhone(), u.getPassword(), u.getRegistered(), u.isEnabled(), u.getRoles());
+        this(u.getId(), u.getName(), u.getEmail(), u.getPhone(), u.getPassword(), u.getRegistered(), u.isEnabled(),
+                u.getSuperBookings(), u.getVotes(), u.getHotels(), u.getRoles());
     }
 
     public User(Integer id, String name, String email, String phone, String password, UserRole role, UserRole... roles) {
         this(id, name, email, phone, password, new Date(), true, EnumSet.of(role, roles));
+    }
+
+    //For Tests
+    public User(Integer id, String name, String email, String phone, String password,
+                Set<SuperBooking> superBookings, Set<Vote> votes, Set<Hotel> hotels, UserRole role, UserRole... roles) {
+        this(id, name, email, phone, password, new Date(), true, superBookings, votes, hotels, EnumSet.of(role, roles));
     }
 
     public User(Integer id, String name, String email, String password, UserRole role, UserRole... roles) {
@@ -116,6 +123,20 @@ public class User extends NamedEntity {
         this.phone = phone;
         this.registered = registered;
         this.enabled = enabled;
+        setRoles(roles);
+    }
+
+    public User(Integer id, String name, String email, String phone, String password, Date registered,
+                boolean enabled, Set<SuperBooking> superBookings, Set<Vote> votes, Set<Hotel> hotels, Collection<UserRole> roles) {
+        super(id, name);
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.registered = registered;
+        this.enabled = enabled;
+        this.superBookings = superBookings;
+        this.votes = votes;
+        this.hotels = hotels;
         setRoles(roles);
     }
 
@@ -199,7 +220,8 @@ public class User extends NamedEntity {
     @Override
     public String toString() {
         return "User{" +
-                "email='" + email + '\'' +
+                "id=" + getId() +
+                ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", password='" + password + '\'' +
                 ", enabled=" + enabled +
@@ -208,6 +230,7 @@ public class User extends NamedEntity {
                 ", superBookings=" + superBookings +
                 ", votes=" + votes +
                 ", hotels=" + hotels +
+                "\n" + "\n" +
                 '}';
     }
 }

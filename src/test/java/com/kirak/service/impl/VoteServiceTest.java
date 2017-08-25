@@ -33,14 +33,14 @@ public class VoteServiceTest extends AbstractServiceTest {
     public void save() throws Exception {
         Vote created = getCreatedVote();
         service.save(created, USER2_ID, HOTEL3_ID);
-        VOTE_MATCHER.assertCollectionEquals(Arrays.asList(created, VOTE2, VOTE3, VOTE1), service.getAll());
+        VOTE_MATCHER.assertCollectionEquals(Arrays.asList(VOTE3, VOTE2, created, VOTE1), service.getAll());
     }
 
     @Test
     public void update() throws Exception {
         Vote updated = getUpdatedVote();
         service.update(updated, USER1_ID, HOTEL1_ID);
-        VOTE_MATCHER.assertEquals(updated, service.get(VOTE1_ID, USER1_ID, HOTEL3_ID));
+        VOTE_MATCHER.assertEquals(updated, service.get(VOTE1_ID, USER1_ID, HOTEL1_ID));
     }
 
     @Test
@@ -64,7 +64,7 @@ public class VoteServiceTest extends AbstractServiceTest {
 
     @Test
     public void getAllByHotel() throws Exception {
-        VOTE_MATCHER.assertCollectionEquals(Collections.singletonList(VOTE2), service.getAllByHotel(HOTEL1_ID));
+        VOTE_MATCHER.assertCollectionEquals(Collections.singletonList(VOTE3), service.getAllByHotel(HOTEL2_ID));
     }
 
     @Test

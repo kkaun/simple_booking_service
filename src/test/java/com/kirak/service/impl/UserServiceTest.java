@@ -41,16 +41,15 @@ public class UserServiceTest extends AbstractServiceTest {
         User created = getCreatedUser();
         User saved = service.save(created);
         created.setId(saved.getId());
-        USER_MATCHER.assertCollectionEquals(Arrays.asList(USER1, USER2, USER3, MANAGER, ADMIN, created), service.getAll());
+        USER_MATCHER.assertCollectionEquals(Arrays.asList(ADMIN, MANAGER, created, USER1, USER2, USER3), service.getAll());
     }
 
     @Test
-    public void updatePlusVote() throws Exception {
+    public void update() throws Exception {
         User updated = new User(USER1);
         updated.setName("UpdatedName");
-        updated.setVotes(Collections.singleton(new Vote(VOTE3_ID + 1, 5.5, "User Vote",
-                of(2017, Month.JUNE, 19, 15, 12), USER1, HOTEL3)));
-        updated.setRoles(Arrays.asList(UserRole.ROLE_USER, UserRole.ROLE_ADMIN));
+        updated.setPhone("465354335343");
+        updated.setRoles(Collections.singletonList(UserRole.ROLE_USER));
         service.update(updated);
         USER_MATCHER.assertEquals(updated, service.get(USER1_ID));
     }
@@ -63,7 +62,7 @@ public class UserServiceTest extends AbstractServiceTest {
     @Test
     public void delete() throws Exception {
         service.delete(USER1_ID);
-        USER_MATCHER.assertCollectionEquals(Arrays.asList(USER2, USER3, MANAGER, ADMIN), service.getAll());
+        USER_MATCHER.assertCollectionEquals(Arrays.asList(ADMIN, MANAGER, USER2, USER3), service.getAll());
     }
 
     @Test(expected = NotFoundException.class)
@@ -74,7 +73,7 @@ public class UserServiceTest extends AbstractServiceTest {
     @Test
     public void get() throws Exception {
         User user = service.get(ADMIN_ID);
-        USER_MATCHER.assertEquals(ADMIN, user);
+        USER_MATCHER.assertEquals(user, ADMIN);
     }
 
     @Test(expected = NotFoundException.class)
@@ -85,7 +84,7 @@ public class UserServiceTest extends AbstractServiceTest {
     @Test
     public void getByEmail() throws Exception {
         User user = service.getByEmail("admin@gmail.com");
-        USER_MATCHER.assertEquals(ADMIN, user);
+        USER_MATCHER.assertEquals(user, ADMIN);
     }
 
     @Test
@@ -93,6 +92,7 @@ public class UserServiceTest extends AbstractServiceTest {
         Collection<User> all = service.getAll();
         USER_MATCHER.assertCollectionEquals(ALL_USERS, all);
     }
+
     @Test
     public void testEnable() {
         service.enable(USER2_ID, false);

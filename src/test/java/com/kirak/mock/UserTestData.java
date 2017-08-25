@@ -6,14 +6,18 @@ import com.kirak.util.PasswordUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.*;
+
+import static com.kirak.mock.HotelTestData.*;
+import static com.kirak.mock.SuperBookingTestData.*;
+import static com.kirak.mock.VoteTestData.VOTE1;
+import static com.kirak.mock.VoteTestData.VOTE2;
+import static com.kirak.mock.VoteTestData.VOTE3;
 import static com.kirak.model.abstraction.BaseIntEntity.START_SEQ;
 
 /**
  * Created by Kir on 20.06.2017.
  */
 public class UserTestData {
-
-
 
     private static final Logger LOG = LoggerFactory.getLogger(UserTestData.class);
 
@@ -23,37 +27,57 @@ public class UserTestData {
     public static final Integer MANAGER_ID = START_SEQ + 3;
     public static final Integer ADMIN_ID = START_SEQ + 4;
 
+    //(Integer id, String name, String email, String phone, String password, UserRole role,
+    //      Set<SuperBooking> superBookings, Set<Vote> votes, Set<Hotel> hotels, UserRole... roles)
 
-    public static final Set<SuperBooking> USER1_SUPER_BOOKINGS = new HashSet<SuperBooking>(Arrays.asList(new SuperBooking[] {}));
-    public static final Set<SuperBooking> USER2_SUPER_BOOKINGS = new HashSet<SuperBooking>(Arrays.asList(new SuperBooking[] {}));
-    public static final Set<SuperBooking> USER3_SUPER_BOOKINGS = new HashSet<SuperBooking>(Arrays.asList(new SuperBooking[] {}));
-    public static final Set<SuperBooking> ADMIN_SUPER_BOOKINGS = new HashSet<SuperBooking>(Arrays.asList(new SuperBooking[] {}));
+    public static final Set<SuperBooking> USER1_SUPER_BOOKINGS =
+            new HashSet<SuperBooking>(Arrays.asList(new SuperBooking[] {SUPER_BOOKING1, SUPER_BOOKING4}));
+    public static final Set<SuperBooking> USER2_SUPER_BOOKINGS = new HashSet<SuperBooking>(Arrays.asList(new SuperBooking[] {SUPER_BOOKING2}));
+    public static final Set<SuperBooking> USER3_SUPER_BOOKINGS = new HashSet<SuperBooking>(Arrays.asList(new SuperBooking[] {SUPER_BOOKING3}));
+    public static final Set<SuperBooking> MANAGER_SUPER_BOOKINGS = Collections.emptySet();
+    public static final Set<SuperBooking> ADMIN_SUPER_BOOKINGS = new HashSet<SuperBooking>(Arrays.asList(new SuperBooking[] {SUPER_BOOKING5}));
+
+    public static final Set<Vote> USER1_VOTES = new HashSet<Vote>(Arrays.asList(new Vote[] {VOTE1}));
+    public static final Set<Vote> USER2_VOTES = new HashSet<Vote>(Arrays.asList(new Vote[] {VOTE2}));
+    public static final Set<Vote> USER3_VOTES = new HashSet<Vote>(Arrays.asList(new Vote[] {VOTE3}));
+    public static final Set<Vote> MANAGER_VOTES = Collections.emptySet();
+    public static final Set<Vote> ADMIN_VOTES = Collections.emptySet();
+
+    public static final Set<Hotel> USER1_HOTELS = Collections.emptySet();
+    public static final Set<Hotel> USER2_HOTELS = Collections.emptySet();
+    public static final Set<Hotel> USER3_HOTELS = Collections.emptySet();
+    public static final Set<Hotel> MANAGER_HOTELS = new HashSet<Hotel>(Arrays.asList(new Hotel[] {HOTEL1, HOTEL2, HOTEL3, HOTEL4}));
+    public static final Set<Hotel> ADMIN_HOTELS = Collections.emptySet();
+
 
     public static final User USER1 = new User(USER1_ID, "User1", "user1@yandex.ru", "483748273423",
-            "password1", UserRole.ROLE_USER);
+            "$2a$04$LSa4NOGDwRsAomYMG10tdebOfo9BfrAjV9FvymxMt/IORffJ1tJmy",
+            USER1_SUPER_BOOKINGS, USER1_VOTES, USER1_HOTELS, UserRole.ROLE_USER);
     public static final User USER2 = new User(USER2_ID, "User2", "user2@yandex.ru", "483711111123",
-            "password2", UserRole.ROLE_USER);
+            "$2a$04$LptUR6XmDAiZH76ojCdNi.M8BPhAyBN8D2uvEPplrPStLwEIXYPvm",
+            USER2_SUPER_BOOKINGS, USER2_VOTES, USER2_HOTELS, UserRole.ROLE_USER);
     public static final User USER3 = new User(USER3_ID, "User3", "user3@yandex.ru", "483333373423",
-            "password3", UserRole.ROLE_USER);
+            "$2a$04$cxtnaMTgA/zkzqu5abBmd.Hj5B.Dp9Wfk1iP7ONomAApluyVyqOSa",
+            USER3_SUPER_BOOKINGS, USER3_VOTES, USER3_HOTELS, UserRole.ROLE_USER);
     public static final User MANAGER = new User(MANAGER_ID, "Manager", "manager@gmail.com", "432523522352",
-            "manager", UserRole.ROLE_MANAGER);
-    public static final User ADMIN = new User(ADMIN_ID, "Admin", "admin@gmail.com", "admin",
-            UserRole.ROLE_USER, UserRole.ROLE_ADMIN);
+            "$2a$04$GVGrIytqazsQlpU7wPgyUuoaWukZoTSJCUVfuXmaRugERWuD0l18q",
+            MANAGER_SUPER_BOOKINGS, MANAGER_VOTES, MANAGER_HOTELS, UserRole.ROLE_MANAGER);
+    public static final User ADMIN = new User(ADMIN_ID, "Admin", "admin@gmail.com", null,
+            "$2a$04$8pwICPDZ3IsZnKFuvZ2MBe5zqR6DOA20turCpBv9.jy/2Un5SpfZ2",
+            ADMIN_SUPER_BOOKINGS, ADMIN_VOTES, ADMIN_HOTELS, UserRole.ROLE_ADMIN);
 
 
     public static final List<User> ALL_USERS = Arrays.asList(ADMIN, MANAGER, USER1, USER2, USER3);
 
 
     public static final ModelMatcher<User> USER_MATCHER = ModelMatcher.of(User.class,
-            (expected, actual) -> expected == actual ||
-                    (comparePassword(expected.getPassword(), actual.getPassword())
-                            && Objects.equals(expected.getId(), actual.getId())
+            (expected, actual) -> Objects.equals(expected.getId(), actual.getId())
                             && Objects.equals(expected.getName(), actual.getName())
                             && Objects.equals(expected.getEmail(), actual.getEmail())
                             && Objects.equals(expected.getVotes(), actual.getVotes())
                             && Objects.equals(expected.getRoles(), actual.getRoles())
-                    )
-    );
+                    );
+
 
 
     private static boolean comparePassword(String rawOrEncodedPassword, String password) {
@@ -68,12 +92,14 @@ public class UserTestData {
 
 
     public static User getCreatedUser() {
-        return new User(null, "User NEW", "user644@yandex.ru", "4324232343", "password1", UserRole.ROLE_USER);
+        return new User(null, "User NEW", "user644@yandex.ru", "4324232343", "password1",
+                Collections.emptySet(), Collections.emptySet(), Collections.emptySet(), UserRole.ROLE_USER);
     }
 
-    public static User getUpdatedUser() {
-        return new User(USER1_ID, "User UPDATED", "user657@yandex.ru", "3847242323", "password1", UserRole.ROLE_USER);
-    }
+//    public static User getUpdatedUser() {
+//        return new User(USER1_ID, "User UPDATED", "user657@yandex.ru", "3847242323", "password1",
+//                UserRole.ROLE_USER);
+//    }
 
 
 }

@@ -43,7 +43,7 @@ CREATE TABLE `country` (
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id`         INT          NOT NULL AUTO_INCREMENT,
-  `email`      VARCHAR(45)  NOT NULL,
+  `email`      VARCHAR(45)  NOT NULL UNIQUE,
   `phone`      VARCHAR(20)  NULL,
   `name`       VARCHAR(45)  NOT NULL,
   `password`   VARCHAR(61)  NULL,
