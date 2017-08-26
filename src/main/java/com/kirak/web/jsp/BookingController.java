@@ -6,6 +6,8 @@ import com.kirak.to.HotelTo;
 import com.kirak.to.Placement;
 import com.kirak.util.model.*;
 import com.kirak.web.ModelUtil;
+import com.kirak.web.abstr.BusinessAbstractController;
+import com.kirak.web.session.AuthorizedUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
@@ -14,9 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +26,7 @@ import java.util.Map;
 
 @Controller
 @Scope("session")
-public class BookingController{
+public class BookingController extends BusinessAbstractController {
 
     @Autowired
     private HotelService hotelService;
@@ -44,12 +44,6 @@ public class BookingController{
     private ApartmentService apartmentService;
 
     @Autowired
-    private BookingService bookingService;
-
-    @Autowired
-    private SuperBookingService superBookingService;
-
-    @Autowired
     @Qualifier("sessionPlacementsService")
     private SessionPlacementsService sessionPlacementsService;
 
@@ -58,7 +52,7 @@ public class BookingController{
     public String index(Model model){
         model.addAttribute("citiesFive", RegionUtil.getFiveCitiesByHotelAmount(cityService.getAll()));
         model.addAttribute("hotelsFive", HotelUtil.getFiveHotelsByRating(hotelService.getAll()));
-        ModelUtil.addUniqueFilterParams(model, aptTypeService);
+        ModelUtil.addUniqueFilterParams(model, AptTypeUtil.getUniqueCategories(aptTypeService.getAll()));
         return "index";
     }
 
@@ -66,7 +60,7 @@ public class BookingController{
     public String searchByCity(@RequestParam("city") String city, Model model) {
         model.addAttribute("hotels", HotelUtil.getAllByCity(hotelService.getAll(), Integer.parseInt(city)));
         model.addAttribute("city", cityService.get(Integer.parseInt(city)));
-        ModelUtil.addUniqueFilterParams(model, aptTypeService);
+        ModelUtil.addUniqueFilterParams(model, AptTypeUtil.getUniqueCategories(aptTypeService.getAll()));
         return "hotels";
     }
 
@@ -79,7 +73,7 @@ public class BookingController{
         } else{
             model.addAttribute("badRegion", region);
         }
-        ModelUtil.addUniqueFilterParams(model, aptTypeService);
+        ModelUtil.addUniqueFilterParams(model, AptTypeUtil.getUniqueCategories(aptTypeService.getAll()));
         return "hotels";
     }
 
@@ -88,7 +82,7 @@ public class BookingController{
                                                 @RequestParam("personNum") String personNum, @RequestParam("inDate") String inDate,
                                                 @RequestParam("outDate") String outDate, @RequestParam("category") String category,
                                                 @RequestParam("apartmentNum") String apartmentNum, Model model){
-        ModelUtil.addUniqueFilterParams(model, aptTypeService);
+        ModelUtil.addUniqueFilterParams(model, AptTypeUtil.getUniqueCategories(aptTypeService.getAll()));
         List<Placement> placements = HotelUtil.aggregateAvailablePlacementsByRequest(sessionPlacementsService,
                 location, hotelService.getAll(), Short.parseShort(personNum), Integer.parseInt(apartmentNum),
                 LocalDate.parse(inDate), LocalDate.parse(outDate), category);
@@ -112,27 +106,20 @@ public class BookingController{
                             @RequestParam("apartmentNum") String placementApartmentNum, @RequestParam("inDate") String inDate,
                             @RequestParam("outDate") String outDate, Model model) {
         int hotelId = PlacementUtil.getHotelIdFromPlacementId(sessionPlacementsService, Integer.parseInt(placementId));
-        double placementSum = PlacementUtil.calculateBookingSumForPlacement(PlacementUtil.getPlacementFromId(sessionPlacementsService,
-                Integer.parseInt(placementId)));
         ModelUtil.addUniqueHotelParams(hotelService.get(hotelId), model);
-        ModelUtil.addUniqueFilterParams(model, aptTypeService);
+        ModelUtil.addUniqueFilterParams(model, AptTypeUtil.getUniqueCategories(aptTypeService.getAll()));
         Placement placement = PlacementUtil.getPlacementFromId(sessionPlacementsService, Integer.parseInt(placementId));
-        model.addAttribute("options", placement.getOption().values());
-        model.addAttribute("placement", placement);
-        model.addAttribute("placementSum", placementSum);
-        model.addAttribute("placementApartmentNum", Integer.parseInt(placementApartmentNum));
-        model.addAttribute("placementPersonNum", Short.parseShort(placementPersonNum));
-        model.addAttribute("placementInDate", LocalDate.parse(inDate));
-        model.addAttribute("placementOutDate", LocalDate.parse(outDate));
-        model.addAttribute("apartments", apartmentService.getAllByHotel(hotelId));
-        model.addAttribute("hotel", HotelUtil.asHotelTo(hotelService.get(hotelId)));
+        ModelUtil.addPlacementView(model, placement, Integer.parseInt(placementApartmentNum), Short.parseShort(placementPersonNum),
+                PlacementUtil.calculateBookingSumForPlacement(placement), inDate, outDate);
+        ModelUtil.addInspectPlacementView(model, placement, apartmentService.getAllByHotel(hotelId),
+                HotelUtil.asHotelTo(hotelService.get(hotelId)));
         return "hotel";
     }
 
     @GetMapping(value = "/inspect_hotel")
     public String hotel(@RequestParam("id") String hotelId, Model model) {
         ModelUtil.addUniqueHotelParams(hotelService.get(Integer.parseInt(hotelId)), model);
-        ModelUtil.addUniqueFilterParams(model, aptTypeService);
+        ModelUtil.addUniqueFilterParams(model, AptTypeUtil.getUniqueCategories(aptTypeService.getAll()));
         model.addAttribute("apartments", apartmentService.getAllByHotel(Integer.parseInt(hotelId)));
         model.addAttribute("hotel", HotelUtil.asHotelTo(hotelService.get(Integer.parseInt(hotelId))));
         return "hotel";
@@ -143,24 +130,19 @@ public class BookingController{
                                            @RequestParam ("outDate") String outDate, @RequestParam ("category") String category,
                                            @RequestParam ("apartmentNum") String apartmentNum,
                                            @RequestParam ("personNum") String personNum, Model model) {
-
         Placement placement = HotelUtil.aggregateSingleHotelPlacementByRequest(sessionPlacementsService,
                 hotelService.get(Integer.parseInt(hotelId)), Short.parseShort(personNum), Integer.parseInt(apartmentNum),
                 LocalDate.parse(inDate), LocalDate.parse(outDate), category);
         if(!placement.getOption().isEmpty()){
-            model.addAttribute("placement", placement);
-            model.addAttribute("placementSum", PlacementUtil.calculateBookingSumForPlacement(placement));
-            model.addAttribute("placementApartmentNum", Integer.parseInt(apartmentNum));
-            model.addAttribute("placementPersonNum", Integer.parseInt(personNum));
-            model.addAttribute("placementInDate", inDate);
-            model.addAttribute("placementOutDate", outDate);
+            ModelUtil.addPlacementView(model, placement, Integer.parseInt(apartmentNum), Short.parseShort(personNum),
+                    PlacementUtil.calculateBookingSumForPlacement(placement), inDate, outDate);
         } else{
             model.addAttribute("notAvailablePlacement", "Unfortunately, requested option is not " +
                     "available for this object right now.");
         }
         model.addAttribute("hotel", HotelUtil.asHotelTo(hotelService.get(Integer.parseInt(hotelId))));
         ModelUtil.addUniqueHotelParams(hotelService.get(Integer.parseInt(hotelId)), model);
-        ModelUtil.addUniqueFilterParams(model, aptTypeService);
+        ModelUtil.addUniqueFilterParams(model, AptTypeUtil.getUniqueCategories(aptTypeService.getAll()));
         return "hotel";
     }
 
@@ -168,27 +150,20 @@ public class BookingController{
     public String checkApartmentAvailability(@RequestParam ("apartmentId") String apartmentId,
                                              @RequestParam("hotelId") String hotelId, @RequestParam ("aptInDate") String inDate,
                                              @RequestParam ("aptOutDate") String outDate, Model model) {
-
         Map<Apartment, Integer> availableApartmentMap = ApartmentUtil.isHotelApartmentAvailableByRequest(apartmentService
                         .get(Integer.parseInt(apartmentId)), LocalDate.parse(inDate), LocalDate.parse(outDate));
-
         if(!availableApartmentMap.isEmpty()){
             model.addAttribute("availableAptNum", availableApartmentMap.values().iterator().next());
-
             Placement placement = PlacementUtil.convertAvailableApartmentToPlacement(sessionPlacementsService,
                     availableApartmentMap.keySet().iterator().next());
-            model.addAttribute("placement", placement);
-            model.addAttribute("options", placement.getOption().values());
-            model.addAttribute("placementSum", PlacementUtil.calculateBookingSumForPlacement(placement));
-            model.addAttribute("placementApartmentNum", 1);
-            model.addAttribute("placementPersonNum", apartmentService.get(Integer.parseInt(apartmentId)).getType().getPersonNum());
-            model.addAttribute("placementInDate", inDate);
-            model.addAttribute("placementOutDate", outDate);
+            ModelUtil.addPlacementView(model, placement, apartmentService.get(Integer.parseInt(apartmentId)).getType().getPersonNum(),
+                    (short)1, PlacementUtil.calculateBookingSumForPlacement(placement), inDate, outDate);
+            ModelUtil.addOptionsView(model, placement);
         } else {
             model.addAttribute("notAvailableApartment", apartmentService.get(Integer.parseInt(apartmentId)));
         }
         ModelUtil.addUniqueHotelParams(hotelService.get(Integer.parseInt(hotelId)), model);
-        ModelUtil.addUniqueFilterParams(model, aptTypeService);
+        ModelUtil.addUniqueFilterParams(model, AptTypeUtil.getUniqueCategories(aptTypeService.getAll()));
         model.addAttribute("apartments", apartmentService.getAllByHotel(Integer.parseInt(hotelId)));
         model.addAttribute("hotel", HotelUtil.asHotelTo(hotelService.get(Integer.parseInt(hotelId))));
         return "hotel";
@@ -199,17 +174,12 @@ public class BookingController{
                                @RequestParam ("bookingApartmentNum") String apartmentNum, @RequestParam ("bookingPlacementId") String placementId,
                                @RequestParam ("bookingInDate") String inDate, @RequestParam ("bookingOutDate") String outDate,
                                @RequestParam ("bookingPersonNum") String personNum, Model model) {
-
         Placement placement = PlacementUtil.getPlacementFromId(sessionPlacementsService, Integer.parseInt(placementId));
         model.addAttribute("hotel", HotelUtil.asHotelTo(hotelService.get(Integer.parseInt(hotelId))));
-        model.addAttribute("placement", placement);
-        model.addAttribute("options", placement.getOption().values());
-        model.addAttribute("placementSum", sum);
-        model.addAttribute("placementApartmentNum", apartmentNum);
-        model.addAttribute("placementPersonNum", personNum);
-        model.addAttribute("placementInDate", inDate);
-        model.addAttribute("placementOutDate", outDate);
-        ModelUtil.addUniqueFilterParams(model, aptTypeService);
+        ModelUtil.addPlacementView(model, placement, Short.parseShort(personNum), Short.parseShort(apartmentNum),
+                Double.parseDouble(sum), inDate, outDate);
+        ModelUtil.addOptionsView(model, placement);
+        ModelUtil.addUniqueFilterParams(model, AptTypeUtil.getUniqueCategories(aptTypeService.getAll()));
         return "book";
     }
 
@@ -220,47 +190,24 @@ public class BookingController{
                                           @RequestParam ("bookingInDate") String inDate, @RequestParam ("bookingOutDate") String outDate,
                                           @RequestParam ("bookingPersonNum") String personNum, @RequestParam ("userName") String userName,
                                           @RequestParam ("userEmail") String userEmail, @RequestParam ("userPhone") String userPhone, Model model) {
-
         User user = new User(userName, userEmail, userPhone);
         userService.save(user);
-        SuperBooking superBooking = new SuperBooking(true, LocalDateTime.now(), (short)0, Double.parseDouble(sum),
-                Short.parseShort(personNum), user, hotelService.get(Integer.parseInt(hotelId)),
-                user.getName(), user.getEmail(), user.getPhone());
-        superBookingService.save(superBooking, user.getId());
-        Placement placement = PlacementUtil.getPlacementFromId(sessionPlacementsService, Integer.parseInt(placementId));
-        placement.getOption().values().forEach(apartments -> apartments.forEach(apartment -> {
-            Booking booking = new Booking(LocalDate.parse(inDate), LocalDate.parse(outDate), apartment.getPrice(),
-                    apartment.getType().getPersonNum(), superBooking, apartment, hotelService.get(Integer.parseInt(hotelId)));
-            bookingService.save(booking, superBooking.getId(), apartment.getId());
-        }));
-        model.addAttribute("user", user);
-        model.addAttribute("superBooking", superBooking);
-        model.addAttribute("hotel", HotelUtil.asHotelTo(hotelService.get(Integer.parseInt(hotelId))));
-        model.addAttribute("placement", PlacementUtil.getPlacementFromId(sessionPlacementsService, Integer.parseInt(placementId)));
-        model.addAttribute("placementSum", sum);
-        model.addAttribute("placementApartmentNum", apartmentNum);
-        model.addAttribute("placementPersonNum", personNum);
-        model.addAttribute("placementInDate", inDate);
-        model.addAttribute("placementOutDate", outDate);
+
+        super.accomplishBooking(model, user, sum, personNum, hotelId, placementId, apartmentNum, inDate, outDate);
         return "confirmation";
     }
 
+    @PostMapping(value = "/confirm_customer_booking")
+    public String confirmCustomerBooking(@RequestParam ("bookingHotelId") String hotelId, @RequestParam ("bookingSum") String sum,
+                                         @RequestParam ("bookingApartmentNum") String apartmentNum,
+                                         @RequestParam ("bookingPlacementId") String placementId,
+                                         @RequestParam ("bookingInDate") String inDate, @RequestParam ("bookingOutDate") String outDate,
+                                         @RequestParam ("bookingPersonNum") String personNum, Model model) {
+        User user = userService.get(AuthorizedUser.id());
 
-
-//    @PostMapping(value = "/confirm_customer_booking")
-//    public String confirmCustomerBooking(@RequestParam ("id") String hotelId, @RequestParam ("apartmentId") String apartmentId,
-//                                         @RequestParam ("inDate") String inDate, @RequestParam ("outDate") String outDate,
-//                                         @RequestParam ("personNum") String personNum, @RequestParam ("sum") String sum, Model model) {
-//        ! int userId = AuthorizedUser.id();
-
-//        Booking booking = new Booking(true, LocalDateTime.now(), LocalDateTime.parse(inDate),
-//                LocalDateTime.parse(outDate), Double.parseDouble(sum), Short.parseShort(personNum),
-//                (short) 0, userService.getPlacementMap(AuthorizedUser.id()),
-//                apartmentService.getPlacementMap(Integer.parseInt(apartmentId)), hotelService.getPlacementMap(Integer.parseInt(hotelId)));
-
-        //model.addAttribute("booking", bookingService.save(booking, ))
-//        return "confirmation";
-//    }
+        super.accomplishBooking(model, user, sum, personNum, hotelId, placementId, apartmentNum, inDate, outDate);
+        return "confirmation";
+    }
 
 
 }

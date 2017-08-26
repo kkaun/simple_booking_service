@@ -1,15 +1,13 @@
 package com.kirak.web;
 
 import com.kirak.model.*;
-import com.kirak.service.AptTypeService;
 import com.kirak.to.ApartmentTo;
+import com.kirak.to.HotelTo;
+import com.kirak.to.Placement;
 import com.kirak.util.model.ApartmentUtil;
-import com.kirak.util.model.AptTypeUtil;
 import com.kirak.util.model.HotelUtil;
-import com.kirak.web.session.AuthorizedUser;
+import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,10 +16,12 @@ import java.util.stream.IntStream;
 /**
  * Created by Kir on 03.08.2017.
  */
+
+@Component
 public class ModelUtil {
 
-    public static void addUniqueFilterParams(Model model, AptTypeService aptTypeService){
-        model.addAttribute("categories", AptTypeUtil.getUniqueCategories(aptTypeService.getAll()));
+    public static void addUniqueFilterParams(Model model, List<String> types){
+        model.addAttribute("categories", types);
         model.addAttribute("personNums", IntStream.rangeClosed(1, 20).boxed().collect(Collectors.toList()));
         model.addAttribute("apartmentNums", IntStream.rangeClosed(1, 10).boxed().collect(Collectors.toList()));
     }
@@ -48,5 +48,26 @@ public class ModelUtil {
         model.addAttribute("cities", cities);
         model.addAttribute("apartments", ApartmentUtil.getApartmentTos(apartments));
         model.addAttribute("roles",  Arrays.asList("User", "Manager"));
+    }
+
+
+    public static void addOptionsView(Model model, Placement placement){
+        model.addAttribute("options", placement.getOption().values());
+    }
+
+    public static void addInspectPlacementView(Model model, Placement placement, List<Apartment> apartments, HotelTo hotelTo){
+        model.addAttribute("options", placement.getOption().values());
+        model.addAttribute("apartments", apartments);
+        model.addAttribute("hotel", hotelTo);
+    }
+
+    public static void addPlacementView(Model model, Placement placement, int apartmentNum, short personNum,
+                                        double placementBookingSum, String inDate, String outDate){
+        model.addAttribute("placement", placement);
+        model.addAttribute("placementSum", placementBookingSum);
+        model.addAttribute("placementApartmentNum", apartmentNum);
+        model.addAttribute("placementPersonNum", personNum);
+        model.addAttribute("placementInDate", inDate);
+        model.addAttribute("placementOutDate", outDate);
     }
 }

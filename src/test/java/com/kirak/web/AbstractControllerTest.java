@@ -1,5 +1,6 @@
 package com.kirak.web;
 
+import com.kirak.ActiveDbProfileResolver;
 import com.kirak.service.UserService;
 import org.junit.Before;
 import org.junit.runner.RunWith;
@@ -32,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 //@Transactional
-@ActiveProfiles(DATAJPA)
+@ActiveProfiles(resolver = ActiveDbProfileResolver.class)
 abstract public class AbstractControllerTest {
 
     private static final CharacterEncodingFilter CHARACTER_ENCODING_FILTER = new CharacterEncodingFilter();

@@ -10,9 +10,7 @@ import static com.kirak.mock.UserTestData.MANAGER;
 import static com.kirak.mock.UserTestData.USER1;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * Created by Kir on 26.08.2017.
@@ -48,6 +46,14 @@ public class RootControllerTest extends AbstractControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("user"))
                 .andExpect(forwardedUrl("/WEB-INF/jsp/user.jsp"));
+    }
+
+    @Test
+    public void handleUnauthorizedRequest() throws Exception {
+        mockMvc.perform(get("/administrate"))
+                .andDo(print())
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("http://localhost/login"));
     }
 
 }

@@ -51,19 +51,19 @@ public class UserTestData {
 
 
     public static final User USER1 = new User(USER1_ID, "User1", "user1@yandex.ru", "483748273423",
-            "$2a$04$LSa4NOGDwRsAomYMG10tdebOfo9BfrAjV9FvymxMt/IORffJ1tJmy",
+            "password1",
             USER1_SUPER_BOOKINGS, USER1_VOTES, USER1_HOTELS, UserRole.ROLE_USER);
     public static final User USER2 = new User(USER2_ID, "User2", "user2@yandex.ru", "483711111123",
-            "$2a$04$LptUR6XmDAiZH76ojCdNi.M8BPhAyBN8D2uvEPplrPStLwEIXYPvm",
+            "password2",
             USER2_SUPER_BOOKINGS, USER2_VOTES, USER2_HOTELS, UserRole.ROLE_USER);
     public static final User USER3 = new User(USER3_ID, "User3", "user3@yandex.ru", "483333373423",
-            "$2a$04$cxtnaMTgA/zkzqu5abBmd.Hj5B.Dp9Wfk1iP7ONomAApluyVyqOSa",
+            "password3",
             USER3_SUPER_BOOKINGS, USER3_VOTES, USER3_HOTELS, UserRole.ROLE_USER);
     public static final User MANAGER = new User(MANAGER_ID, "Manager", "manager@gmail.com", "432523522352",
-            "$2a$04$GVGrIytqazsQlpU7wPgyUuoaWukZoTSJCUVfuXmaRugERWuD0l18q",
+            "manager",
             MANAGER_SUPER_BOOKINGS, MANAGER_VOTES, MANAGER_HOTELS, UserRole.ROLE_MANAGER);
     public static final User ADMIN = new User(ADMIN_ID, "Admin", "admin@gmail.com", null,
-            "$2a$04$8pwICPDZ3IsZnKFuvZ2MBe5zqR6DOA20turCpBv9.jy/2Un5SpfZ2",
+            "admin",
             ADMIN_SUPER_BOOKINGS, ADMIN_VOTES, ADMIN_HOTELS, UserRole.ROLE_ADMIN);
 
 
@@ -71,12 +71,15 @@ public class UserTestData {
 
 
     public static final ModelMatcher<User> USER_MATCHER = ModelMatcher.of(User.class,
-            (expected, actual) -> Objects.equals(expected.getId(), actual.getId())
+            (expected, actual) -> expected == actual ||
+                    (comparePassword(expected.getPassword(), actual.getPassword())
+                            && Objects.equals(expected.getId(), actual.getId())
                             && Objects.equals(expected.getName(), actual.getName())
                             && Objects.equals(expected.getEmail(), actual.getEmail())
                             && Objects.equals(expected.getVotes(), actual.getVotes())
                             && Objects.equals(expected.getRoles(), actual.getRoles())
-                    );
+                    )
+    );
 
 
 
