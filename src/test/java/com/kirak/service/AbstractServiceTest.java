@@ -1,5 +1,6 @@
 package com.kirak.service;
 
+import com.kirak.ActiveDbProfileResolver;
 import com.kirak.Profile;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -32,7 +33,7 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 @ContextConfiguration({ "classpath:spring/spring-app.xml",
                         "classpath:spring/spring-db.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
-@ActiveProfiles(DATAJPA)
+@ActiveProfiles(resolver = ActiveDbProfileResolver.class)
 @Sql(scripts = "classpath:db/populateDbForTest.sql", config = @SqlConfig(encoding = "UTF-8"))
 public abstract class AbstractServiceTest {
 
