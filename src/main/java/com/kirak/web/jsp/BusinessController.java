@@ -26,7 +26,7 @@ import java.util.Map;
 
 @Controller
 @Scope("session")
-public class BookingController extends BusinessAbstractController {
+public class BusinessController extends BusinessAbstractController {
 
     @Autowired
     private HotelService hotelService;
@@ -192,22 +192,18 @@ public class BookingController extends BusinessAbstractController {
                                           @RequestParam ("userEmail") String userEmail, @RequestParam ("userPhone") String userPhone, Model model) {
         User user = new User(userName, userEmail, userPhone);
         userService.save(user);
-
         super.accomplishBooking(model, user, sum, personNum, hotelId, placementId, apartmentNum, inDate, outDate);
         return "confirmation";
     }
 
-    @PostMapping(value = "/confirm_customer_booking")
+    @PostMapping(value = "/confirm_registered_booking")
     public String confirmCustomerBooking(@RequestParam ("bookingHotelId") String hotelId, @RequestParam ("bookingSum") String sum,
                                          @RequestParam ("bookingApartmentNum") String apartmentNum,
                                          @RequestParam ("bookingPlacementId") String placementId,
                                          @RequestParam ("bookingInDate") String inDate, @RequestParam ("bookingOutDate") String outDate,
                                          @RequestParam ("bookingPersonNum") String personNum, Model model) {
         User user = userService.get(AuthorizedUser.id());
-
         super.accomplishBooking(model, user, sum, personNum, hotelId, placementId, apartmentNum, inDate, outDate);
         return "confirmation";
     }
-
-
 }

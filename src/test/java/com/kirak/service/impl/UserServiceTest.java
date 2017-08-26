@@ -73,7 +73,7 @@ public class UserServiceTest extends AbstractServiceTest {
     @Test
     public void get() throws Exception {
         User user = service.get(ADMIN_ID);
-        USER_MATCHER.assertEquals(user, ADMIN);
+        USER_MATCHER.assertEquals(ADMIN, user);
     }
 
     @Test(expected = NotFoundException.class)
@@ -84,7 +84,7 @@ public class UserServiceTest extends AbstractServiceTest {
     @Test
     public void getByEmail() throws Exception {
         User user = service.getByEmail("admin@gmail.com");
-        USER_MATCHER.assertEquals(user, ADMIN);
+        USER_MATCHER.assertEquals(ADMIN, user);
     }
 
     @Test

@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <html>
 <jsp:include page="fragments/head_tags/jspHeadTag.jsp"/>
@@ -34,55 +35,119 @@
                             <div class="col-md-12">
                                 <div class="col-md-1"></div>
                                 <div class="col-md-10">
-                                    <form class="form-horizontal" method="post" action="confirm_anonymous_booking">
-                                        <fieldset>
-                                            <input type="hidden" name="bookingHotelId" value="${hotel.id}">
-                                            <input type="hidden" name="bookingPlacementId" value="${placement.id}">
-                                            <input type="hidden" name="bookingSum" value="${placementSum}">
-                                            <input type="hidden" name="bookingPersonNum" value="${placementPersonNum}">
-                                            <input type="hidden" name="bookingApartmentNum"
-                                                   value="${placementApartmentNum}">
-                                            <input type="hidden" name="bookingInDate" value="${placementInDate}">
-                                            <input type="hidden" name="bookingOutDate" value="${placementOutDate}">
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <input id="user_name" type="text" class="form-control"
-                                                           name="userName" value=""
-                                                           placeholder="Name">
-                                                    <span class="input-group-addon"><i
-                                                            class="glyphicon glyphicon-user"></i></span>
+
+                                    <sec:authorize access="isAnonymous()">
+                                        <form:form class="navbar-form" role="form" action="confirm_anonymous_booking"
+                                                   method="post">
+                                            <fieldset>
+                                                <input type="hidden" name="bookingHotelId" value="${hotel.id}">
+                                                <input type="hidden" name="bookingPlacementId" value="${placement.id}">
+                                                <input type="hidden" name="bookingSum" value="${placementSum}">
+                                                <input type="hidden" name="bookingPersonNum"
+                                                       value="${placementPersonNum}">
+                                                <input type="hidden" name="bookingApartmentNum"
+                                                       value="${placementApartmentNum}">
+                                                <input type="hidden" name="bookingInDate" value="${placementInDate}">
+                                                <input type="hidden" name="bookingOutDate" value="${placementOutDate}">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input id="user_name" type="text" class="form-control"
+                                                               name="userName" value=""
+                                                               placeholder="Name">
+                                                        <span class="input-group-addon"><i
+                                                                class="glyphicon glyphicon-user"></i></span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <input id="user_phone" type="text" class="form-control"
-                                                           name="userPhone"
-                                                           value="" placeholder="Phone">
-                                                    <span class="input-group-addon"><i
-                                                            class="glyphicon glyphicon-earphone"></i></span>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input id="user_phone" type="text" class="form-control"
+                                                               name="userPhone"
+                                                               value="" placeholder="Phone">
+                                                        <span class="input-group-addon"><i
+                                                                class="glyphicon glyphicon-earphone"></i></span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <input id="user_email" type="email" class="form-control"
-                                                           name="userEmail"
-                                                           value="" placeholder="Email">
-                                                    <span class="input-group-addon"><i
-                                                            class="glyphicon glyphicon-envelope"></i></span>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input id="user_email" type="email" class="form-control"
+                                                               name="userEmail"
+                                                               value="" placeholder="Email">
+                                                        <span class="input-group-addon"><i
+                                                                class="glyphicon glyphicon-envelope"></i></span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <br>
-                                            <div class="row">
-                                                <div class="col-md-3"></div>
-                                                <div class="col-md-6">
-                                                    <button type="submit" class="btn btn-success btn-lg btn-primary">
-                                                        Confirm Booking
-                                                    </button>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-md-3"></div>
+                                                    <div class="col-md-6">
+                                                        <button type="submit"
+                                                                class="btn btn-success btn-lg btn-primary">
+                                                            Confirm Booking
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-md-3"></div>
                                                 </div>
-                                                <div class="col-md-3"></div>
-                                            </div>
-                                        </fieldset>
-                                    </form>
+                                            </fieldset>
+                                        </form:form>
+                                    </sec:authorize>
+
+                                    <sec:authorize access="isAuthenticated()">
+                                    <sec:authorize access="hasAuthority('ROLE_USER')">
+                                        <form:form class="navbar-form" role="form" action="confirm_registered_booking"
+                                                   method="post">
+                                            <fieldset>
+                                                <input type="hidden" name="bookingHotelId" value="${hotel.id}">
+                                                <input type="hidden" name="bookingPlacementId" value="${placement.id}">
+                                                <input type="hidden" name="bookingSum" value="${placementSum}">
+                                                <input type="hidden" name="bookingPersonNum"
+                                                       value="${placementPersonNum}">
+                                                <input type="hidden" name="bookingApartmentNum"
+                                                       value="${placementApartmentNum}">
+                                                <input type="hidden" name="bookingInDate" value="${placementInDate}">
+                                                <input type="hidden" name="bookingOutDate" value="${placementOutDate}">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input id="reg_user_name" type="text" class="form-control"
+                                                               name="userName" value=""
+                                                               placeholder="Name">
+                                                        <span class="input-group-addon"><i
+                                                                class="glyphicon glyphicon-user"></i></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input id="reg_user_phone" type="text" class="form-control"
+                                                               name="userPhone"
+                                                               value="" placeholder="Phone">
+                                                        <span class="input-group-addon"><i
+                                                                class="glyphicon glyphicon-earphone"></i></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input id="reg_user_email" type="email" class="form-control"
+                                                               name="userEmail"
+                                                               value="" placeholder="Email">
+                                                        <span class="input-group-addon"><i
+                                                                class="glyphicon glyphicon-envelope"></i></span>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-md-3"></div>
+                                                    <div class="col-md-6">
+                                                        <button type="submit"
+                                                                class="btn btn-success btn-lg btn-primary">
+                                                            Confirm Booking
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-md-3"></div>
+                                                </div>
+                                            </fieldset>
+                                        </form:form>
+                                    </sec:authorize>
+                                    </sec:authorize>
+
                                 </div>
                                 <div class="col-md-1"></div>
                             </div>
