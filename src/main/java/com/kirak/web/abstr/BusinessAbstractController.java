@@ -62,7 +62,7 @@ public class BusinessAbstractController {
         model.addAttribute("user", user);
         model.addAttribute("superBooking", superBooking);
         model.addAttribute("hotel", HotelUtil.asHotelTo(hotelService.get(Integer.parseInt(hotelId))));
-        ModelUtil.addPlacementView(model, placement, Short.parseShort(personNum), Short.parseShort(apartmentNum),
+        ModelUtil.addPlacementView(model, placement, Short.parseShort(apartmentNum), Short.parseShort(personNum),
                 Double.parseDouble(sum), inDate, outDate);
     }
 

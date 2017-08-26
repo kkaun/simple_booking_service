@@ -156,8 +156,9 @@ public class BusinessController extends BusinessAbstractController {
             model.addAttribute("availableAptNum", availableApartmentMap.values().iterator().next());
             Placement placement = PlacementUtil.convertAvailableApartmentToPlacement(sessionPlacementsService,
                     availableApartmentMap.keySet().iterator().next());
-            ModelUtil.addPlacementView(model, placement, apartmentService.get(Integer.parseInt(apartmentId)).getType().getPersonNum(),
-                    (short)1, PlacementUtil.calculateBookingSumForPlacement(placement), inDate, outDate);
+            ModelUtil.addPlacementView(model, placement, (short)1,
+                    apartmentService.get(Integer.parseInt(apartmentId)).getType().getPersonNum(),
+                    PlacementUtil.calculateBookingSumForPlacement(placement), inDate, outDate);
             ModelUtil.addOptionsView(model, placement);
         } else {
             model.addAttribute("notAvailableApartment", apartmentService.get(Integer.parseInt(apartmentId)));
@@ -176,7 +177,7 @@ public class BusinessController extends BusinessAbstractController {
                                @RequestParam ("bookingPersonNum") String personNum, Model model) {
         Placement placement = PlacementUtil.getPlacementFromId(sessionPlacementsService, Integer.parseInt(placementId));
         model.addAttribute("hotel", HotelUtil.asHotelTo(hotelService.get(Integer.parseInt(hotelId))));
-        ModelUtil.addPlacementView(model, placement, Short.parseShort(personNum), Short.parseShort(apartmentNum),
+        ModelUtil.addPlacementView(model, placement, Short.parseShort(apartmentNum), Short.parseShort(personNum),
                 Double.parseDouble(sum), inDate, outDate);
         ModelUtil.addOptionsView(model, placement);
         ModelUtil.addUniqueFilterParams(model, AptTypeUtil.getUniqueCategories(aptTypeService.getAll()));

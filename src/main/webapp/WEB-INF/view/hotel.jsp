@@ -197,7 +197,7 @@
                                             </table>
                                         </div>
                                         <div class="col-md-4" style="padding-top: 15px;">
-                                            <form class="form-horizontal" method="post" action="check_booking">
+                                            <form:form class="form-horizontal" role="form" action="check_booking" method="post">
                                                 <fieldset>
                                                     <input type="hidden" name="bookingHotelId" value="${hotel.id}">
                                                     <input type="hidden" name="bookingPlacementId"
@@ -216,7 +216,7 @@
                                                         Book Now
                                                     </button>
                                                 </fieldset>
-                                            </form>
+                                            </form:form>
                                         </div>
                                     </div>
                                 </div>

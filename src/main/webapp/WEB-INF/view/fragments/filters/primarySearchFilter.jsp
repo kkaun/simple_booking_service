@@ -10,7 +10,7 @@
 <div class="well">
     <div class="row">
         <div class="col-md-12">
-            <form class="form-horizontal" method="get" action="parametric_search">
+            <form:form class="form-horizontal" role="form" method="get" action="parametric_search">
                 <div class="col-md-12">
                     <div class="form-group row">
                         <div class="col-md-3">
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                 </div>
-            </form>
+            </form:form>
         </div>
     </div>
 </div>

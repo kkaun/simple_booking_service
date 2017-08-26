@@ -36,9 +36,19 @@
                                 <div class="col-md-1"></div>
                                 <div class="col-md-10">
 
+                                    <div class="panel panel-warning hidden">
+                                        <h4>Oh snap!</h4>
+                                        <p>The form seems to be invalid in some place :(</p>
+                                    </div>
+
+                                    <div class="panel panel-info hidden">
+                                        <h4>Nice!</h4>
+                                        <p>Everything seems to be ok!</p>
+                                    </div>
+
                                     <sec:authorize access="isAnonymous()">
-                                        <form:form class="navbar-form" role="form" action="confirm_anonymous_booking"
-                                                   method="post">
+                                        <form:form class="form-horizontal" id="anon_booking_form" role="form" action="confirm_anonymous_booking"
+                                                   method="post" data-parsley-validate="">
                                             <fieldset>
                                                 <input type="hidden" name="bookingHotelId" value="${hotel.id}">
                                                 <input type="hidden" name="bookingPlacementId" value="${placement.id}">
@@ -52,8 +62,11 @@
                                                 <div class="form-group">
                                                     <div class="input-group">
                                                         <input id="user_name" type="text" class="form-control"
-                                                               name="userName" value=""
-                                                               placeholder="Name">
+                                                               name="userName"
+                                                               data-parsley-pattern="^[a-zA-Z]+$"
+                                                               data-parsley-required="true"
+                                                               data-parsley-length="[3, 44]"
+                                                               placeholder="Name" required>
                                                         <span class="input-group-addon"><i
                                                                 class="glyphicon glyphicon-user"></i></span>
                                                     </div>
@@ -62,7 +75,10 @@
                                                     <div class="input-group">
                                                         <input id="user_phone" type="text" class="form-control"
                                                                name="userPhone"
-                                                               value="" placeholder="Phone">
+                                                               data-parsley-required="true"
+                                                               data-parsley-pattern="^[0-9\-\+\s\(\)]*$"
+                                                               data-parsley-length="[5, 20]"
+                                                               value="" placeholder="Phone" required>
                                                         <span class="input-group-addon"><i
                                                                 class="glyphicon glyphicon-earphone"></i></span>
                                                     </div>
@@ -71,7 +87,9 @@
                                                     <div class="input-group">
                                                         <input id="user_email" type="email" class="form-control"
                                                                name="userEmail"
-                                                               value="" placeholder="Email">
+                                                               data-parsley-required="true"
+                                                               data-parsley-type="email"
+                                                               value="" placeholder="Email" required>
                                                         <span class="input-group-addon"><i
                                                                 class="glyphicon glyphicon-envelope"></i></span>
                                                     </div>
@@ -93,7 +111,7 @@
 
                                     <sec:authorize access="isAuthenticated()">
                                     <sec:authorize access="hasAuthority('ROLE_USER')">
-                                        <form:form class="navbar-form" role="form" action="confirm_registered_booking"
+                                        <form:form class="form-horizontal" role="form" action="confirm_registered_booking"
                                                    method="post">
                                             <fieldset>
                                                 <input type="hidden" name="bookingHotelId" value="${hotel.id}">
@@ -257,6 +275,19 @@
         </c:if>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#anon_booking_form').parsley().on('field:validated', function() {
+            var ok = $('.parsley-error').length === 0;
+            $('.panel-info').toggleClass('hidden', !ok);
+            $('.panel-warning').toggleClass('hidden', ok);
+        })
+            .on('form:submit', function() {
+                return true;
+            });
+    });
+</script>
 
 </body>
 </html>

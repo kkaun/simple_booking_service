@@ -12,17 +12,39 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-md-4">
-        </div>
-        <div class="col-md-8">
-            <c:if test="${not empty region}">
-                <h2>We found some objects in ${region}:</h2>
-            </c:if>
-            <c:if test="${not empty city}">
-                <h3>${city.name}.
-                    <br>${city.description}</h3>
-            </c:if>
-        </div>
+        <c:if test="${not empty city}">
+            <c:choose>
+                <c:when test="${not empty city.imgPath && city.imgPath.length() >= 1}">
+                    <div class="jumbotron" style="height: 220px; opacity:0.5; background: url(${city.imgPath}) no-repeat center center; background-size: cover;">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-8">
+                            <h3>${city.name}. <br>${city.description}</h3>
+                        </div>
+                    </div>
+                </c:when>
+                <c:when test="${empty city.imgPath || city.imgPath.length() < 1}">
+                    <div class="jumbotron" style="">
+                        <div class="img" style="width: 100%; min-height: 220px; opacity:0.5; background: url('http://placehold.it/1200x400') no-repeat center center; background-size: cover; z-index: -1;">
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-8" style="z-index: 100">
+                            <h3>${city.name}. <br>${city.description}</h3>
+                        </div>
+                    </div>
+                </c:when>
+            </c:choose>
+        </c:if>
+        <c:if test="${empty city}">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-8">
+                <c:if test="${not empty region}">
+                    <h2>We found some objects in ${region}:</h2>
+                </c:if>
+            </div>
+        </c:if>
     </div>
 
     <div class="row">

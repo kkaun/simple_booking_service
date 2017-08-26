@@ -107,8 +107,8 @@
                         <div class="panel-group">
                             <div class="panel panel-default">
                                 <div class="panel-body text-center">
-                                    <div class="2"></div>
-                                    <div class="col-md-8">
+                                    <div class="3"></div>
+                                    <div class="col-md-6 text-center">
                                     <h3> Booker's info </h3>
                                     <br>
                                     <table class="table table-responsive">
@@ -119,7 +119,7 @@
                                         </tr>
                                     </table>
                                     </div>
-                                    <div class="2"></div>
+                                    <div class="3"></div>
                                 </div>
                             </div>
                         </div>
