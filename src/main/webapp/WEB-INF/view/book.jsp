@@ -36,12 +36,12 @@
                                 <div class="col-md-1"></div>
                                 <div class="col-md-10">
 
-                                    <div class="panel panel-warning hidden">
+                                    <div class="panel panel-warning hidden" style="padding: 15px; margin-bottom: 20px">
                                         <h4>Oh snap!</h4>
                                         <p>The form seems to be invalid in some place :(</p>
                                     </div>
 
-                                    <div class="panel panel-info hidden">
+                                    <div class="panel panel-info hidden" style="padding: 15px; margin-bottom: 20px">
                                         <h4>Nice!</h4>
                                         <p>Everything seems to be ok!</p>
                                     </div>

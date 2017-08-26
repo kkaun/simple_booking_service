@@ -13,11 +13,13 @@ $(function() {
         minDate: 'today',
         maxDate: '+1y +10m',
         onSelect: function (dateText, inst) {
-            var nyd = new Date(dateText);
-            nyd.setDate(nyd.getDate() + 31);
+            var min = new Date(dateText);
+            var max = new Date(dateText);
+            min.setDate(min.getDate() + 1);
+            max.setDate(max.getDate() + 31);
             $('.out_date').datepicker("option", {
-                minDate: new Date(dateText),
-                maxDate: nyd
+                minDate: min,
+                maxDate: max
             });
         },
         onClose: function () {
