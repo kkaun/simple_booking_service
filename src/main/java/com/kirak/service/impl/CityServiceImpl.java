@@ -54,7 +54,8 @@ public class CityServiceImpl implements CityService {
     @Override
     public void update(PlaceTo placeTo) {
         Assert.notNull(placeTo, "Place must not be null");
-        repository.save(RegionUtil.updateCityFromPlaceTo(placeTo, repository.get(placeTo.getId())));
+        City expectedCity = repository.get(placeTo.getId());
+        repository.save(RegionUtil.updateCityFromPlaceTo(placeTo, repository.get(expectedCity.getId())));
     }
 
     @Override

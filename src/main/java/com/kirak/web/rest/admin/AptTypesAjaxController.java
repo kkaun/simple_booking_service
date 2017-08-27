@@ -28,7 +28,7 @@ public class AptTypesAjaxController extends AptTypeAbstractController{
         super(aptTypeService, hotelService);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping
     public void createOrUpdate(@Valid AptTypeTo aptTypeTo) {
         if (aptTypeTo.isNew()) {
             super.save(aptTypeTo);

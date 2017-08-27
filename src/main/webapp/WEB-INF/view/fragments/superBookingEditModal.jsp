@@ -23,101 +23,100 @@
                     <%--<spring:message code="bookings.view"/>--%>
                 <%--</a>--%>
 
-                <%--<table class="table table-striped display" id="bookingsDatatable">--%>
-                    <%--<thead>--%>
-                    <%--<tr>--%>
-                        <%--<th><spring:message code="common.id"/></th>--%>
-                        <%--<th><spring:message code="common.inDate"/></th>--%>
-                        <%--<th><spring:message code="common.outDate"/></th>--%>
-                        <%--<th><spring:message code="common.sum"/></th>--%>
-                        <%--<th><spring:message code="apt_types.personNum"/></th>--%>
-                        <%--<th><spring:message code="apt_types.category"/></th>--%>
-                        <%--<th><spring:message code="apt_types.bedsArrangement"/></th>--%>
-                        <%--<th></th>--%>
-                        <%--<th></th>--%>
-                    <%--</tr>--%>
-                    <%--</thead>--%>
-                <%--</table>--%>
+                <table class="table table-striped display" id="bookingsDatatable">
+                    <thead>
+                    <tr>
+                        <th><spring:message code="common.id"/></th>
+                        <th><spring:message code="common.inDate"/></th>
+                        <th><spring:message code="common.outDate"/></th>
+                        <th><spring:message code="common.sum"/></th>
+                        <th><spring:message code="apt_types.personNum"/></th>
+                        <th><spring:message code="apt_types.category"/></th>
+                        <th><spring:message code="apt_types.bedsArrangement"/></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                </table>
 
-                <%--<div class="modal fade" id="bookingEditRow">--%>
-                    <%--<div class="modal-dialog">--%>
-                        <%--<div class="modal-content">--%>
-                            <%--<div class="modal-header">--%>
-                                <%--<button type="button" class="close" data-dismiss="modal"--%>
-                                        <%--aria-hidden="true">&times;--%>
-                                <%--</button>--%>
-                                <%--<h2 class="modal-title" id="modalTitle"></h2>--%>
-                            <%--</div>--%>
-                            <%--<div class="modal-body">--%>
-                                <%--<form:form class="form-horizontal detailsForm">--%>
-                                    <%--<input type="hidden" id="id" name="id">--%>
-                                    <%--<div class="form-group">--%>
-                                        <%--<label for="bookingInDate" class="control-label col-xs-3"><spring:message--%>
-                                                <%--code="common.inDate"/></label>--%>
-                                        <%--<div class="col-xs-9">--%>
-                                            <%--<input class="form-control in_date" id="bookingInDate" name="inDate"--%>
-                                                   <%--placeholder="<spring:message code="common.inDate"/>">--%>
-                                        <%--</div>--%>
-                                    <%--</div>--%>
-                                    <%--<div class="form-group">--%>
-                                        <%--<label for="bookingOutDate" class="control-label col-xs-3"><spring:message--%>
-                                                <%--code="common.outDate"/></label>--%>
-                                        <%--<div class="col-xs-9">--%>
-                                            <%--<input class="form-control out_date" id="bookingOutDate" name="outDate"--%>
-                                                   <%--placeholder="<spring:message code="common.outDate"/>">--%>
-                                        <%--</div>--%>
-                                    <%--</div>--%>
-                                    <%--<div class="form-group">--%>
-                                        <%--<c:if test="${not empty objectApartments}">--%>
-                                            <%--<label for="bookingApt" class="control-label col-xs-3"><spring:message--%>
-                                                <%--code="apt_types.personNum"/></label>--%>
-                                            <%--<div class="col-xs-9">--%>
-                                                <%--<select class="form-control" name="aptId" id="bookingApt">--%>
-                                                    <%--<c:forEach items="${objectApartments}" var="objectApartment">--%>
-                                                        <%--<option value="${objectApartment.id}">${objectApartment.stringAptType}--%>
-                                                            <%--; ${objectApartment.price}0 $ / night--%>
-                                                        <%--</option>--%>
-                                                    <%--</c:forEach>--%>
-                                                <%--</select>--%>
-                                            <%--</div>--%>
-                                        <%--</c:if>--%>
-                                        <%--<c:if test="${empty objectApartments}">--%>
-                                            <%--<label for="existingBookingApt" class="control-label col-xs-3"><spring:message--%>
-                                                    <%--code="bookings.apartment"/></label>--%>
-                                            <%--<div class="col-xs-9">--%>
-                                                <%--<input class="form-control out_date" id="existingBookingApt" name="aptId"--%>
-                                                       <%--placeholder="<spring:message code="bookings.apartment"/>" readonly>--%>
-                                            <%--</div>--%>
-                                        <%--</c:if>--%>
-                                    <%--</div>--%>
-                                    <%--<div class="form-group">--%>
-                                        <%--<label for="bookingAptPrice" class="control-label col-xs-3"><spring:message--%>
-                                                <%--code="apartments.price"/></label>--%>
-                                        <%--<div class="col-xs-9">--%>
-                                            <%--<input class="form-control" id="bookingAptPrice" name="aptPrice"--%>
-                                                   <%--placeholder="<spring:message code="apartments.price"/>" readonly>--%>
-                                        <%--</div>--%>
-                                    <%--</div>--%>
-                                    <%--<div class="form-group">--%>
-                                        <%--<label for="bookingSum" class="control-label col-xs-3"><spring:message--%>
-                                                <%--code="bookings.sum"/></label>--%>
-                                        <%--<div class="col-xs-9">--%>
-                                            <%--<input class="form-control" id="bookingSum" name="sum"--%>
-                                                   <%--placeholder="<spring:message code="bookings.sum"/>" readonly>--%>
-                                        <%--</div>--%>
-                                    <%--</div>--%>
-                                    <%--<div class="form-group">--%>
-                                        <%--<div class="col-xs-offset-3 col-xs-9">--%>
-                                            <%--<button class="btn btn-primary" type="button"--%>
-                                                    <%--onclick="saveBooking()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>--%>
-                                            <%--</button>--%>
-                                        <%--</div>--%>
-                                    <%--</div>--%>
-                                <%--</form:form>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
+                <div class="modal fade" id="bookingEditRow">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"
+                                        aria-hidden="true">&times;
+                                </button>
+                                <h2 class="modal-title" id="bookingModalTitle"></h2>
+                            </div>
+                            <div class="modal-body">
+                                <form:form class="form-horizontal detailsForm">
+                                    <input type="hidden" id="id" name="id">
+                                    <div class="form-group">
+                                        <label for="bookingInDate" class="control-label col-xs-3"><spring:message
+                                                code="common.inDate"/></label>
+                                        <div class="col-xs-9">
+                                            <input class="form-control in_date" id="bookingInDate" name="inDate"
+                                                   placeholder="<spring:message code="common.inDate"/>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bookingOutDate" class="control-label col-xs-3"><spring:message
+                                                code="common.outDate"/></label>
+                                        <div class="col-xs-9">
+                                            <input class="form-control out_date" id="bookingOutDate" name="outDate"
+                                                   placeholder="<spring:message code="common.outDate"/>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <c:if test="${not empty objectApartments}">
+                                            <label for="bookingApt" class="control-label col-xs-3"><spring:message
+                                                code="apt_types.personNum"/></label>
+                                            <div class="col-xs-9">
+                                                <select class="form-control" name="aptId" id="bookingApt">
+                                                    <c:forEach items="${objectApartments}" var="objectApartment">
+                                                        <option value="${objectApartment.id}">${objectApartment.stringAptType}
+                                                            ; ${objectApartment.price}0 $ / night
+                                                        </option>
+                                                    </c:forEach>
+                                                </select>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${empty objectApartments}">
+                                            <label for="existingBookingApt" class="control-label col-xs-3"><spring:message
+                                                    code="bookings.apartment"/></label>
+                                            <div class="col-xs-9">
+                                                <input class="form-control out_date" id="existingBookingApt" name="aptId"
+                                                       placeholder="<spring:message code="bookings.apartment"/>" readonly>
+                                            </div>
+                                        </c:if>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bookingAptPrice" class="control-label col-xs-3"><spring:message
+                                                code="apartments.price"/></label>
+                                        <div class="col-xs-9">
+                                            <input class="form-control" id="bookingAptPrice" name="aptPrice"
+                                                   placeholder="<spring:message code="apartments.price"/>" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bookingSum" class="control-label col-xs-3"><spring:message
+                                                code="bookings.sum"/></label>
+                                        <div class="col-xs-9">
+                                            <input class="form-control" id="bookingSum" name="sum"
+                                                   placeholder="<spring:message code="bookings.sum"/>" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-offset-3 col-xs-9">
+                                            <button class="btn btn-primary" type="button"
+                                                    onclick="saveBooking()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">

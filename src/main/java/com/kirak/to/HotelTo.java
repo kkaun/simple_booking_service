@@ -17,34 +17,35 @@ public class HotelTo extends BasicIntTo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private final Integer managerId;
+    private Integer managerId;
 
-    private final String name;
+    private String name;
 
-    private final Double rating;
+    private Double rating;
 
-    private final Short stars;
+    private Short stars;
 
-    private final String description;
+    private String description;
 
-    private final Integer votesNum;
+    private Integer votesNum;
 
-    private final Time checkIn;
+    private Time checkIn;
 
-    private final Time checkOut;
+    private Time checkOut;
 
-    private final String address;
+    private String address;
 
-    private final String phone;
+    private String phone;
 
-    private final Integer cityId;
+    private Integer cityId;
 
-    private final String cityName;
+    private String cityName;
 
-    private final String countryName;
+    private String countryName;
 
-    private final String imgPath;
+    private String imgPath;
 
+    public HotelTo(){}
 
     public HotelTo(@JsonProperty("id") Integer id,
                    @JsonProperty("managerId") Integer managerId,
@@ -136,6 +137,62 @@ public class HotelTo extends BasicIntTo implements Serializable {
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
+    }
+
+    public void setManagerId(Integer managerId) {
+        this.managerId = managerId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
+    }
+
+    public void setStars(Short stars) {
+        this.stars = stars;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setVotesNum(Integer votesNum) {
+        this.votesNum = votesNum;
+    }
+
+    public void setCheckIn(Time checkIn) {
+        this.checkIn = checkIn;
+    }
+
+    public void setCheckOut(Time checkOut) {
+        this.checkOut = checkOut;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setCityId(Integer cityId) {
+        this.cityId = cityId;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
     }
 
     @Override

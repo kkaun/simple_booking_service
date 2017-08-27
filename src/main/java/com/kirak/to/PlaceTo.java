@@ -14,15 +14,17 @@ import java.io.Serializable;
  */
 public class PlaceTo extends BasicIntTo implements Serializable {
 
-    private final String imgPath;
+    private String imgPath;
 
-    private final String name;
+    private String name;
 
-    private final String countryName;
+    private String countryName;
 
-    private final String description;
+    private String description;
 
-    private final Integer hotelNum;
+    private Integer hotelNum;
+
+    public PlaceTo(){}
 
     public PlaceTo(@JsonProperty("id") Integer id,
                    @JsonProperty("imgPath") String imgPath,
@@ -61,6 +63,26 @@ public class PlaceTo extends BasicIntTo implements Serializable {
     
     public Integer getHotelNum() {
         return hotelNum;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setHotelNum(Integer hotelNum) {
+        this.hotelNum = hotelNum;
     }
 
     @Override

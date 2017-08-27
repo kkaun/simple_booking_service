@@ -9,15 +9,9 @@ import com.kirak.util.model.RegionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.File;
-import java.net.URL;
 import java.util.List;
 import java.util.Random;
-
 import static com.kirak.util.ValidationUtil.checkId;
 import static com.kirak.util.ValidationUtil.checkNew;
 
@@ -31,9 +25,6 @@ public abstract class RegionAbstractController {
     private final CityService cityService;
 
     private final CountryService countryService;
-
-    @Autowired
-    private ApplicationContext appContext;
 
     @Autowired
     public RegionAbstractController(CityService cityService, CountryService countryService){
@@ -68,10 +59,6 @@ public abstract class RegionAbstractController {
         return region != null && !region.isEmpty() ?
                 RegionUtil.getPlaceTos(RegionUtil.getCitiesByRegionName(region, cityService.getAll()))
                 : RegionUtil.getPlaceTos(cityService.getAll());
-    }
-
-    public String getImagePath(Integer id){
-        return cityService.get(id).getImgPath();
     }
 
     public void setImage(Integer id, MultipartFile multipartFile) {

@@ -34,8 +34,7 @@ public class UserTo extends BasicIntTo implements Serializable {
 
     private boolean enabled;
 
-    public UserTo(){
-    }
+    public UserTo(){}
 
     public UserTo(@JsonProperty("id") Integer id,
                   @JsonProperty("name") String name,

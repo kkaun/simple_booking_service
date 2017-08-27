@@ -11,15 +11,17 @@ import java.io.Serializable;
  */
 public class AptTypeTo extends BasicShortTo implements Serializable {
 
-    private final Short personNum;
+    private Short personNum;
 
-    private final String category;
+    private String category;
 
-    private final String bedsArrangement;
+    private String bedsArrangement;
 
-    private final Integer hotelsUsing;
+    private Integer hotelsUsing;
 
-    private final Integer apartmentsAppliedTo;
+    private Integer apartmentsAppliedTo;
+
+    public AptTypeTo(){}
 
     public AptTypeTo(@JsonProperty("id") Short id,
                      @JsonProperty("personNum") Short personNum,
@@ -58,6 +60,26 @@ public class AptTypeTo extends BasicShortTo implements Serializable {
     
     public Integer getApartmentsAppliedTo() {
         return apartmentsAppliedTo;
+    }
+
+    public void setPersonNum(Short personNum) {
+        this.personNum = personNum;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setBedsArrangement(String bedsArrangement) {
+        this.bedsArrangement = bedsArrangement;
+    }
+
+    public void setHotelsUsing(Integer hotelsUsing) {
+        this.hotelsUsing = hotelsUsing;
+    }
+
+    public void setApartmentsAppliedTo(Integer apartmentsAppliedTo) {
+        this.apartmentsAppliedTo = apartmentsAppliedTo;
     }
 
     @Override

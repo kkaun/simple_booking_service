@@ -15,27 +15,29 @@ import java.time.LocalDateTime;
  */
 public class ManagerSuperBookingTo extends BasicIntTo implements Serializable {
 
-    private final boolean active;
+    private boolean active;
 
-    private final LocalDateTime dateAdded;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING,
-            pattern = "dd-MM-yyyy")
-    private final LocalDate inDate;
+    private LocalDateTime dateAdded;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING,
             pattern = "dd-MM-yyyy")
-    private final LocalDate outDate;
+    private LocalDate inDate;
 
-    private final Short apartmentsNum;
+    @JsonFormat(shape = JsonFormat.Shape.STRING,
+            pattern = "dd-MM-yyyy")
+    private LocalDate outDate;
 
-    private final Integer userId;
+    private Short apartmentsNum;
 
-    private final String userName;
+    private Integer userId;
 
-    private final String userEmail;
+    private String userName;
 
-    private final String userPhone;
+    private String userEmail;
+
+    private String userPhone;
+
+    public ManagerSuperBookingTo(){}
 
     public ManagerSuperBookingTo(@JsonProperty("id") Integer id,
                                  @JsonProperty("active") boolean active,
@@ -102,6 +104,42 @@ public class ManagerSuperBookingTo extends BasicIntTo implements Serializable {
     
     public Integer getUserId() {
         return userId;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public void setDateAdded(LocalDateTime dateAdded) {
+        this.dateAdded = dateAdded;
+    }
+
+    public void setInDate(LocalDate inDate) {
+        this.inDate = inDate;
+    }
+
+    public void setOutDate(LocalDate outDate) {
+        this.outDate = outDate;
+    }
+
+    public void setApartmentsNum(Short apartmentsNum) {
+        this.apartmentsNum = apartmentsNum;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
     }
 
     @Override

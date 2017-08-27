@@ -88,7 +88,7 @@
                     <div class="form-group">
                         <label for="updatedUserPhone" class="control-label col-xs-3"><spring:message code="users.phone"/></label>
                         <div class="col-xs-9">
-                            <input type="email" class="form-control" id="updatedUserPhone" name="phone" placeholder="<spring:message code="user.email"/>">
+                            <input type="text" class="form-control" id="updatedUserPhone" name="phone" placeholder="<spring:message code="user.email"/>">
                         </div>
                     </div>
 
@@ -141,7 +141,7 @@
                     <div class="form-group">
                         <label for="phone" class="control-label col-xs-3"><spring:message code="users.phone"/></label>
                         <div class="col-xs-9">
-                            <input type="email" class="form-control" id="phone" name="phone" placeholder="<spring:message code="user.email"/>">
+                            <input type="text" class="form-control" id="phone" name="phone" placeholder="<spring:message code="user.email"/>">
                         </div>
                     </div>
 

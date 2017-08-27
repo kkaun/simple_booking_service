@@ -118,7 +118,7 @@
                         <label for="regionDescription" class="control-label col-xs-3"><spring:message
                                 code="common.description"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="regionDescription" name="description"
+                            <textarea class="form-control" id="regionDescription" name="description"
                                    placeholder="<spring:message code="common.description"/>">
                         </div>
                     </div>
@@ -156,7 +156,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="countryName" class="control-label col-xs-3"><spring:message
+                        <label for="createdRegionCountryName" class="control-label col-xs-3"><spring:message
                                 code="common.countryName"/></label>
                         <c:if test="${not empty countries}">
                             <div class="col-xs-9">
@@ -172,7 +172,7 @@
                         <label for="regionDescription" class="control-label col-xs-3"><spring:message
                                 code="common.description"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="createdRegionDescription" name="description"
+                            <textarea class="form-control" id="createdRegionDescription" name="description"
                                    placeholder="<spring:message code="common.description"/>">
                         </div>
                     </div>

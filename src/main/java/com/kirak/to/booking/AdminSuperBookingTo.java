@@ -15,23 +15,25 @@ import java.time.LocalDateTime;
  */
 public class AdminSuperBookingTo extends BasicIntTo implements Serializable {
 
-    private final boolean active;
+    private boolean active;
 
-    private final LocalDateTime dateAdded;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING,
-            pattern = "dd-MM-yyyy")
-    private final LocalDate inDate;
+    private LocalDateTime dateAdded;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING,
             pattern = "dd-MM-yyyy")
-    private final LocalDate outDate;
+    private LocalDate inDate;
 
-    private final Integer hotelId;
+    @JsonFormat(shape = JsonFormat.Shape.STRING,
+            pattern = "dd-MM-yyyy")
+    private LocalDate outDate;
 
-    private final String hotelName;
+    private Integer hotelId;
 
-    private final Integer userId;
+    private String hotelName;
+
+    private Integer userId;
+
+    public AdminSuperBookingTo(){}
 
     public AdminSuperBookingTo(@JsonProperty("id") Integer id,
                                @JsonProperty("active") boolean active,
@@ -84,6 +86,34 @@ public class AdminSuperBookingTo extends BasicIntTo implements Serializable {
     
     public Integer getUserId() {
         return userId;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public void setDateAdded(LocalDateTime dateAdded) {
+        this.dateAdded = dateAdded;
+    }
+
+    public void setInDate(LocalDate inDate) {
+        this.inDate = inDate;
+    }
+
+    public void setOutDate(LocalDate outDate) {
+        this.outDate = outDate;
+    }
+
+    public void setHotelId(Integer hotelId) {
+        this.hotelId = hotelId;
+    }
+
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     @Override

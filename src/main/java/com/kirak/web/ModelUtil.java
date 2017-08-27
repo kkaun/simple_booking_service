@@ -36,7 +36,7 @@ public class ModelUtil {
                                       List<City> cities, List<ApartmentTo> objectApartments){
         model.addAttribute("aptTypes", aptTypes);
         model.addAttribute("countries", countries);
-        model.addAttribute("cities", cities);
+        model.addAttribute("cities", cities.stream().sorted().collect(Collectors.toList()));
         model.addAttribute("objectApartments", objectApartments);
         model.addAttribute("objectId", hotelId);
     }

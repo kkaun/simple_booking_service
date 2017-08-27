@@ -19,21 +19,23 @@ public class BookingTo extends BasicLongTo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private final Integer aptId;
+    private Integer aptId;
 
-    private final String aptCategory;
+    private String aptCategory;
 
-    private final String aptArrangement;
+    private String aptArrangement;
 
-    private final Short aptPersonNum;
+    private Short aptPersonNum;
 
-    private final Double aptPrice;
+    private Double aptPrice;
 
-    private final LocalDate inDate;
+    private LocalDate inDate;
 
-    private final LocalDate outDate;
+    private LocalDate outDate;
 
-    private final Double sum;
+    private Double sum;
+
+    public BookingTo(){}
 
     public BookingTo(@JsonProperty("id") Long id,
                      @JsonProperty("aptId") Integer aptId,
@@ -93,6 +95,42 @@ public class BookingTo extends BasicLongTo implements Serializable {
     
     public Integer getAptId() {
         return aptId;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public void setAptId(Integer aptId) {
+        this.aptId = aptId;
+    }
+
+    public void setAptCategory(String aptCategory) {
+        this.aptCategory = aptCategory;
+    }
+
+    public void setAptArrangement(String aptArrangement) {
+        this.aptArrangement = aptArrangement;
+    }
+
+    public void setAptPersonNum(Short aptPersonNum) {
+        this.aptPersonNum = aptPersonNum;
+    }
+
+    public void setAptPrice(Double aptPrice) {
+        this.aptPrice = aptPrice;
+    }
+
+    public void setInDate(LocalDate inDate) {
+        this.inDate = inDate;
+    }
+
+    public void setOutDate(LocalDate outDate) {
+        this.outDate = outDate;
+    }
+
+    public void setSum(Double sum) {
+        this.sum = sum;
     }
 
     @Override

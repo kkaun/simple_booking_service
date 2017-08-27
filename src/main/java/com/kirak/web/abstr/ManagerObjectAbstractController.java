@@ -197,10 +197,6 @@ public abstract class ManagerObjectAbstractController {
     //--------------------------------------  File Upload/Get methods --------------------------------//
 
 
-    public String getApartmentImagePath(Integer id){
-        return apartmentService.get(id).getImgPath();
-    }
-
     public void setApartmentImage(Integer id, MultipartFile multipartFile) {
         Apartment apartment = apartmentService.get(id);
         Random random = new Random();
