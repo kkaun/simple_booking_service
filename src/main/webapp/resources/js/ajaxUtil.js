@@ -206,6 +206,9 @@ function updateRegionRow(id) {
     $('#regionModalTitle').html(i18n["editTitle"]);
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
+            if(key === 'description') {
+                form.find("textarea[name='" + key + "']").val(value);
+            }
             form.find("input[name='" + key + "']").val(value);
         });
         $('#regionEditRow').modal();

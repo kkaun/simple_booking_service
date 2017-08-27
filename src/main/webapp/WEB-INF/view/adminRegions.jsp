@@ -102,24 +102,22 @@
                         <label for="regionName" class="control-label col-xs-3"><spring:message
                                 code="common.placeName"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="regionName" name="name"
-                                   placeholder="<spring:message code="common.placeName"/>">
+                            <input class="form-control" id="regionName" name="name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="countryName" class="control-label col-xs-3"><spring:message
                                 code="common.countryName"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="countryName" name="countryName"
-                                   placeholder="<spring:message code="common.countryName"/>" readonly>
+                            <input class="form-control" id="countryName" name="countryName" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="regionDescription" class="control-label col-xs-3"><spring:message
                                 code="common.description"/></label>
                         <div class="col-xs-9">
-                            <textarea class="form-control" id="regionDescription" name="description"
-                                   placeholder="<spring:message code="common.description"/>">
+                            <textarea class="form-control region-update-textarea" id="regionDescription" name="description">
+                            </textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -174,6 +172,7 @@
                         <div class="col-xs-9">
                             <textarea class="form-control" id="createdRegionDescription" name="description"
                                    placeholder="<spring:message code="common.description"/>">
+                            </textarea>
                         </div>
                     </div>
                     <div class="form-group">

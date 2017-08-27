@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.Range;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Kir on 12.06.2017.
@@ -32,15 +33,9 @@ public class City extends BaseIntEntity {
     @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "city")
     @NotNull
-    private List<Hotel> hotels;
+    private Set<Hotel> hotels;
 
     public City(){}
-
-    public City(Integer id, String name, Country country) {
-        super(id);
-        this.name = name;
-        this.country = country;
-    }
 
     //For Tests
     public City(Integer id, String name, String description, Country country) {
@@ -50,7 +45,7 @@ public class City extends BaseIntEntity {
         this.country = country;
     }
 
-    public City(Integer id, String name, String description, String imgPath, Country country, List<Hotel> hotels) {
+    public City(Integer id, String name, String description, String imgPath, Country country, Set<Hotel> hotels) {
         super(id);
         this.name = name;
         this.country = country;
@@ -75,11 +70,11 @@ public class City extends BaseIntEntity {
         return name;
     }
 
-    public List<Hotel> getHotels() {
+    public Set<Hotel> getHotels() {
         return hotels;
     }
 
-    public void setHotels(List<Hotel> hotels) {
+    public void setHotels(Set<Hotel> hotels) {
         this.hotels = hotels;
     }
 

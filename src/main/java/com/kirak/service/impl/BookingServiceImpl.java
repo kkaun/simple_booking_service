@@ -51,6 +51,7 @@ public class BookingServiceImpl implements BookingService {
         Assert.notNull(bookingTo, "BookingTo must not be null!");
         Assert.notNull(apartments, "Apartments must not be null!");
         Assert.notNull(superBookings, "superBookings must not be null!");
+
         Map<Booking, Boolean> actualResult = BookingUtil.createFromBookingToWithResult(bookingTo, superBookingId,
                 apartments, superBookings);
 
