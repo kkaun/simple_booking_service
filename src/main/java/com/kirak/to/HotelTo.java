@@ -45,6 +45,7 @@ public class HotelTo extends BasicIntTo implements Serializable {
 
     private final String imgPath;
 
+
     public HotelTo(@JsonProperty("id") Integer id,
                    @JsonProperty("managerId") Integer managerId,
                    @JsonProperty("name") String name,

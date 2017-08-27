@@ -34,6 +34,7 @@
                 <a href="admin/show_hotels">
                     <div class="panel-footer">
                         <span class="pull-left">View/Manage</span>
+                        <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
                         <div class="clearfix"></div>
                     </div>
                 </a>
@@ -52,6 +53,7 @@
                 <a href="admin/show_apt_types">
                     <div class="panel-footer">
                         <span class="pull-left">View/Manage</span>
+                        <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
                         <div class="clearfix"></div>
                     </div>
                 </a>
@@ -70,6 +72,7 @@
                 <a href="admin/show_regions">
                     <div class="panel-footer">
                         <span class="pull-left">View/Manage</span>
+                        <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
                         <div class="clearfix"></div>
                     </div>
                 </a>
@@ -88,6 +91,7 @@
                 <a href="admin/show_users">
                     <div class="panel-footer">
                         <span class="pull-left">View/Manage</span>
+                        <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
                         <div class="clearfix"></div>
                     </div>
                 </a>
@@ -106,6 +110,7 @@
                 <a href="admin/show_super_bookings">
                     <div class="panel-footer">
                         <span class="pull-left">View/Manage</span>
+                        <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
                         <div class="clearfix"></div>
                     </div>
                 </a>
@@ -124,6 +129,7 @@
                 <a href="admin/show_votes">
                     <div class="panel-footer">
                         <span class="pull-left">View</span>
+                        <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
                         <div class="clearfix"></div>
                     </div>
                 </a>

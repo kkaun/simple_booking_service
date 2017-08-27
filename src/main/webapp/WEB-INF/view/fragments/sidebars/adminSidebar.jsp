@@ -16,32 +16,32 @@
             <li><hr></li>
             <li>
                 <a class="restNavLi" href="admin/show_hotels">
-                    <h4>Hotels</h4>
+                    <h5><strong>Hotels</strong></h5>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="admin/show_users">
-                    <h4>Users</h4>
+                    <h5><strong>Users</strong></h5>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="admin/show_super_bookings">
-                    <h4>Bookings</h4>
+                    <h5><strong>Bookings</strong></h5>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="admin/show_votes">
-                    <h4>Feedback</h4>
+                    <h5><strong>Feedback</strong></h5>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="admin/show_apt_types">
-                    <h4>Apt. Types</h4>
+                    <h5><strong>Apt. Types</strong></h5>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="admin/show_regions">
-                    <h4>Regions</h4>
+                    <h5><strong>Regions</strong></h5>
                 </a>
             </li>
             <li><hr></li>

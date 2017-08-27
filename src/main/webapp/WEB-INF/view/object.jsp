@@ -35,6 +35,7 @@
                 <a href="hotel_manager/object/show_chart">
                     <div class="panel-footer">
                         <span class="pull-left">View Details</span>
+                        <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
                         <div class="clearfix"></div>
                     </div>
                 </a>
@@ -52,6 +53,7 @@
                 <a href="hotel_manager/object/show_super_bookings">
                     <div class="panel-footer">
                         <span class="pull-left">View/Manage</span>
+                        <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
                         <div class="clearfix"></div>
                     </div>
                 </a>
@@ -72,6 +74,7 @@
                 <a href="hotel_manager/object/show_hotel_votes">
                     <div class="panel-footer">
                         <span class="pull-left">View Details</span>
+                        <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
                         <div class="clearfix"></div>
                     </div>
                 </a>
@@ -89,6 +92,7 @@
                 <a href="hotel_manager/object/show_apartments">
                     <div class="panel-footer">
                         <span class="pull-left">Manage</span>
+                        <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
                         <div class="clearfix"></div>
                     </div>
                 </a>

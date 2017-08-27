@@ -85,24 +85,32 @@
 
                 <sec:authorize access="isAnonymous()">
                     <ul class="nav navbar-nav navbar-right">
-                        <li style="margin-left: 10px;">
-                            <form method="get">
-                                <a href="register_manager" class="btn btn-warning navbar-btn" style="border-radius: 15px">
-                                    <spring:message code="common.listobject"/></a>
-                            </form>
-                        </li>
-                        <li style="margin-left: 10px;">
-                            <form method="get">
-                                <a href="register_user" class="btn btn-success navbar-btn" style="border-radius: 15px">
-                                    <spring:message code="common.register"/></a>
-                            </form>
-                        <li>
-                        <li style="margin-left: 10px;">
-                            <form method="get">
-                                <a href="login" class="btn btn-primary navbar-btn" style="border-radius: 15px">
-                                    <spring:message code="common.login_as"/></a>
-                            </form>
-                        </li>
+                        <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/register_manager'}">
+                            <li style="margin-left: 10px;">
+                                <form method="get">
+                                    <a href="register_manager" class="btn btn-warning navbar-btn" style="border-radius: 15px">
+                                        <spring:message code="common.listobject"/></a>
+                                </form>
+                            </li>
+                        </c:if>
+                        <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/register_user'
+                        && requestScope['javax.servlet.forward.request_uri'] ne '/register_manager'
+                        && requestScope['javax.servlet.forward.request_uri'] ne '/login'}">
+                            <li style="margin-left: 10px;">
+                                <form method="get">
+                                    <a href="register_user" class="btn btn-success navbar-btn" style="border-radius: 15px">
+                                        <spring:message code="common.register"/></a>
+                                </form>
+                            <li>
+                        </c:if>
+                        <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/login'}">
+                            <li style="margin-left: 10px;">
+                                <form method="get">
+                                    <a href="login" class="btn btn-primary navbar-btn" style="border-radius: 15px">
+                                        <spring:message code="common.login_as"/></a>
+                                </form>
+                            </li>
+                        </c:if>
                     </ul>
                 </sec:authorize>
 

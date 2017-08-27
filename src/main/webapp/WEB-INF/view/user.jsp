@@ -36,6 +36,7 @@
                 <a href="user/show_bookings">
                     <div class="panel-footer">
                         <span class="pull-left">View/Manage</span>
+                        <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
                         <div class="clearfix"></div>
                     </div>
                 </a>
@@ -54,6 +55,7 @@
                 <a href="user/show_hotels">
                     <div class="panel-footer">
                         <span class="pull-left">View/Manage</span>
+                        <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
                         <div class="clearfix"></div>
                     </div>
                 </a>
@@ -72,6 +74,7 @@
                 <a href="user/show_votes">
                     <div class="panel-footer">
                         <span class="pull-left">View/Manage</span>
+                        <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
                         <div class="clearfix"></div>
                     </div>
                 </a>
