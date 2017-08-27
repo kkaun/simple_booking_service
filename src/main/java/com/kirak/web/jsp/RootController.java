@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -53,7 +54,10 @@ public class RootController extends UserAbstractController {
 
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/user_activity")
-    public String getUserOwnActivity() {
+    public String getUserOwnActivity(Model model) {
+        AuthorizedUser user = AuthorizedUser.get();
+        UserTo userTo = user.getUserTo();
+        model.addAttribute("user", userTo);
         return "user";
     }
 

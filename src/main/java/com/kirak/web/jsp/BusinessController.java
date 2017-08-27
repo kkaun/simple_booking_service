@@ -181,6 +181,15 @@ public class BusinessController extends BusinessAbstractController {
                 Double.parseDouble(sum), inDate, outDate);
         ModelUtil.addOptionsView(model, placement);
         ModelUtil.addUniqueFilterParams(model, AptTypeUtil.getUniqueCategories(aptTypeService.getAll()));
+
+        if(AuthorizedUser.safeGet() != null) {
+            if (AuthorizedUser.id() != null) {
+                User user = userService.get(AuthorizedUser.id());
+                model.addAttribute("regUserName", user.getName());
+                model.addAttribute("regUserPhone", user.getPhone());
+                model.addAttribute("regUserEmail", user.getEmail());
+            }
+        }
         return "book";
     }
 

@@ -13,40 +13,69 @@
 <div class="container" style="margin-top: 20px; min-height: 580px">
     <div class="row">
 
-        <div class="col-md-4">
-            <a href="user/show_bookings">
+        <div class="row">
+            <div class="col-md-12">
                 <div class="panel-group">
                     <div class="panel panel-default text-center">
-                        <div class="panel-body">
-                            <h2>My Bookings</h2>
-                        </div>
+                        <h2>Welcome back, ${user.name}!</h2>
+                        <hr>
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
 
-        <div class="col-md-4">
-            <a href="user/show_hotels">
-                <div class="panel-group">
-                    <div class="panel panel-default text-center">
-                        <div class="panel-body">
-                            <h2>Visited Hotels</h2>
+        <div class="col-lg-4 col-md-4">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <h3>My Bookings</h3>
                         </div>
                     </div>
                 </div>
-            </a>
+                <a href="user/show_bookings">
+                    <div class="panel-footer">
+                        <span class="pull-left">View/Manage</span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
         </div>
 
-        <div class="col-md-4">
-            <a href="user/show_votes">
-                <div class="panel-group">
-                    <div class="panel panel-default text-center">
-                        <div class="panel-body">
-                            <h2>My Feedback</h2>
+        <div class="col-lg-4 col-md-4">
+            <div class="panel panel-yellow">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <h3>Visited Hotels</h3>
                         </div>
                     </div>
                 </div>
-            </a>
+                <a href="user/show_hotels">
+                    <div class="panel-footer">
+                        <span class="pull-left">View/Manage</span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <h3>My Feedback</h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="user/show_votes">
+                    <div class="panel-footer">
+                        <span class="pull-left">View/Manage</span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
         </div>
 
     </div>

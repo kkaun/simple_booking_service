@@ -126,8 +126,7 @@
                                                 <div class="form-group">
                                                     <div class="input-group">
                                                         <input id="reg_user_name" type="text" class="form-control"
-                                                               name="userName" value=""
-                                                               placeholder="Name">
+                                                               name="userName" value="${regUserName}" readonly>
                                                         <span class="input-group-addon"><i
                                                                 class="glyphicon glyphicon-user"></i></span>
                                                     </div>
@@ -135,8 +134,7 @@
                                                 <div class="form-group">
                                                     <div class="input-group">
                                                         <input id="reg_user_phone" type="text" class="form-control"
-                                                               name="userPhone"
-                                                               value="" placeholder="Phone">
+                                                               name="userPhone" value="${regUserPhone}" readonly>
                                                         <span class="input-group-addon"><i
                                                                 class="glyphicon glyphicon-earphone"></i></span>
                                                     </div>
@@ -144,8 +142,7 @@
                                                 <div class="form-group">
                                                     <div class="input-group">
                                                         <input id="reg_user_email" type="email" class="form-control"
-                                                               name="userEmail"
-                                                               value="" placeholder="Email">
+                                                               name="userEmail" value="${regUserEmail}" readonly>
                                                         <span class="input-group-addon"><i
                                                                 class="glyphicon glyphicon-envelope"></i></span>
                                                     </div>

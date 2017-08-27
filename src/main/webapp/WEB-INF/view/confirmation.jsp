@@ -104,22 +104,24 @@
                     </div>
 
                     <div class="col-md-12">
-                        <div class="panel-group">
-                            <div class="panel panel-default">
+                        <div class="panel-group text-center">
+                            <div class="panel panel-default text-center">
                                 <div class="panel-body text-center">
-                                    <div class="3"></div>
-                                    <div class="col-md-6 text-center">
-                                    <h3> Booker's info </h3>
-                                    <br>
-                                    <table class="table table-responsive">
-                                        <tr>
-                                            <td>${user.name}</td>
-                                            <td>${user.email}</td>
-                                            <td>${user.phone}</td>
-                                        </tr>
-                                    </table>
+                                    <div class="row">
+                                        <div class="3"></div>
+                                        <div class="col-md-6 text-center">
+                                            <h3> Booker's info </h3>
+                                            <br>
+                                            <table class="table table-responsive">
+                                                <tr>
+                                                    <td>${user.name}</td>
+                                                    <td>${user.email}</td>
+                                                    <td>${user.phone}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="3"></div>
                                     </div>
-                                    <div class="3"></div>
                                 </div>
                             </div>
                         </div>

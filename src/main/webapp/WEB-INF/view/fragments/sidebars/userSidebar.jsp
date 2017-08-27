@@ -11,7 +11,7 @@
     <div class="well">
         <ul class="nav navbar restNavbar">
             <li class="menu-head text-center">
-                MANAGER MENU
+                USER MENU
             </li>
             <li><hr></li>
             <li>

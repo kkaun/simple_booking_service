@@ -11,77 +11,126 @@
 <div class="container" style="margin-top: 20px; min-height: 580px">
     <div class="row">
 
-        <div class="col-md-4">
-            <a class="admLink" href="admin/show_hotels">
+        <div class="row">
+            <div class="col-md-12">
                 <div class="panel-group">
                     <div class="panel panel-default text-center">
-                        <div class="panel-body">
-                            <h2>Hotels</h2>
-                        </div>
+                        <h2>Welcome back to Admin Panel</h2>
+                        <hr>
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
 
-        <div class="col-md-4">
-            <a class="admLink" href="admin/show_users">
-                <div class="panel-group">
-                    <div class="panel panel-default text-center">
-                        <div class="panel-body">
-                            <h2>Users</h2>
+        <div class="col-lg-4 col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <h3>Hotels</h3>
                         </div>
                     </div>
                 </div>
-            </a>
+                <a href="admin/show_hotels">
+                    <div class="panel-footer">
+                        <span class="pull-left">View/Manage</span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
         </div>
 
-        <div class="col-md-4">
-            <a class="admLink" href="admin/show_super_bookings">
-                <div class="panel-group">
-                    <div class="panel panel-default text-center">
-                        <div class="panel-body">
-                            <h2>Bookings</h2>
+        <div class="col-lg-4 col-md-4">
+            <div class="panel panel-purple">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <h3>Apartment Types</h3>
                         </div>
                     </div>
                 </div>
-            </a>
+                <a href="admin/show_apt_types">
+                    <div class="panel-footer">
+                        <span class="pull-left">View/Manage</span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
         </div>
 
-        <div class="col-md-4">
-            <a class="admLink" href="admin/show_votes">
-                <div class="panel-group">
-                    <div class="panel panel-default text-center">
-                        <div class="panel-body">
-                            <h2>Feedback</h2>
+        <div class="col-lg-4 col-md-4">
+            <div class="panel panel-grey">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <h3>Regions/Cities</h3>
                         </div>
                     </div>
                 </div>
-            </a>
+                <a href="admin/show_regions">
+                    <div class="panel-footer">
+                        <span class="pull-left">View/Manage</span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
         </div>
 
-        <div class="col-md-4">
-            <a class="admLink" href="admin/show_apt_types">
-                <div class="panel-group">
-                    <div class="panel panel-default text-center">
-                        <div class="panel-body">
-                            <h2>Apt. Types</h2>
+        <div class="col-lg-4 col-md-4">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <h3>Users</h3>
                         </div>
                     </div>
                 </div>
-            </a>
+                <a href="admin/show_users">
+                    <div class="panel-footer">
+                        <span class="pull-left">View/Manage</span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
         </div>
 
-        <div class="col-md-4">
-            <a class="admLink" href="admin/show_regions">
-                <div class="panel-group">
-                    <div class="panel panel-default text-center">
-                        <div class="panel-body">
-                            <h2>Regions</h2>
+        <div class="col-lg-4 col-md-4">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <h3>Bookings</h3>
                         </div>
                     </div>
                 </div>
-            </a>
+                <a href="admin/show_super_bookings">
+                    <div class="panel-footer">
+                        <span class="pull-left">View/Manage</span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
         </div>
+
+        <div class="col-lg-4 col-md-4">
+            <div class="panel panel-yellow">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <h3>Booker Votes</h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="admin/show_votes">
+                    <div class="panel-footer">
+                        <span class="pull-left">View</span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+
 
     </div>
 </div>
