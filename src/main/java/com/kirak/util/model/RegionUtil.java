@@ -2,9 +2,7 @@ package com.kirak.util.model;
 
 import com.kirak.model.City;
 import com.kirak.model.Country;
-import com.kirak.model.Hotel;
 import com.kirak.to.PlaceTo;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -21,8 +19,11 @@ public class RegionUtil {
 
     public static City createCityFromPlaceTo(PlaceTo placeTo, List<Country> countries){
 
-        Country country = countries.stream().filter(c -> c.getName().equals(placeTo.getCountryName()))
+        String countryName = placeTo.getCountryName().substring(1, placeTo.getCountryName().length());
+
+        Country country = countries.stream().filter(c -> c.getName().equals(countryName))
                 .findFirst().orElse(null);
+
         return new City(placeTo.getId(), placeTo.getName(), placeTo.getDescription(), "", country,
                 new HashSet<>());
     }
@@ -38,6 +39,7 @@ public class RegionUtil {
     public static List<PlaceTo> getPlaceTos(List<City> cities){
         return cities.stream().map(RegionUtil::asPlaceTo).collect(Collectors.toList());
     }
+
 
     public static List<City> getFiveCitiesByHotelAmount(List<City> cities){
 

@@ -197,19 +197,22 @@ function deleteHotelRow(id) {
 
 
 function addRegion() {
-    $('#regionCreateModalTitle').html(i18n["addTitle"]);
+    $('#regionModalTitle').html(i18n["addTitle"]);
     form.find(":input").val("");
-    $('#regionCreateRow').modal();
+    form.find("textarea[name='" + 'description' + "']").val("");
+    $('.currentCountryName').hide();
+    $('.countryNamesList').show();
+    $('#regionEditRow').modal();
 }
 
 function updateRegionRow(id) {
     $('#regionModalTitle').html(i18n["editTitle"]);
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
-            if(key === 'description') {
-                form.find("textarea[name='" + key + "']").val(value);
-            }
+            form.find("textarea[name='" + key + "']").val(value);
             form.find("input[name='" + key + "']").val(value);
+            $('.countryNamesList').hide();
+            $('.currentCountryName').show();
         });
         $('#regionEditRow').modal();
     });
@@ -229,6 +232,19 @@ function renderRegionImageBtn(data, type, row) {
     }
 }
 
+function saveRegion() {
+    $.ajax({
+        type: "POST",
+        url: ajaxUrl,
+        data: form.serialize(),
+        success: function () {
+            $('#regionEditRow').modal('hide');
+            updatePlacesTable();
+            successNoty('common.saved');
+        }
+    });
+}
+
 function updateRegionImage(id) {
     $('#regionImageModalTitle').html(i18n["editTitle"]);
     $.get(ajaxUrl + id, function (data) {
@@ -245,18 +261,6 @@ function updateRegionImage(id) {
     });
 }
 
-function saveRegion() {
-    $.ajax({
-        type: "POST",
-        url: ajaxUrl,
-        data: form.serialize(),
-        success: function () {
-            $('#regionEditRow').modal('hide');
-            updatePlacesTable();
-            successNoty('common.saved');
-        }
-    });
-}
 
 function saveRegionImage() {
     var objFormData = new FormData(document.getElementById("imgForm"));
@@ -297,9 +301,9 @@ function deleteRegionRow(id) {
 
 
 function addUser() {
-    $('#userCreateModalTitle').html(i18n["addTitle"]);
+    $('#userUpdateModalTitle').html(i18n["addTitle"]);
     form.find(":input").val("");
-    $('#userCreateRow').modal();
+    $('#userEditRow').modal();
 }
 
 function updateUserRow(id) {
@@ -307,6 +311,7 @@ function updateUserRow(id) {
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(value);
+            $('.userRoleInput').hide();
         });
         $('#userEditRow').modal();
     });

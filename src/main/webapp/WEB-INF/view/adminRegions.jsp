@@ -22,13 +22,13 @@
 
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body text-left">
                             <form:form class="form-horizontal filter" id="placesAdminFilter">
                                 <div class="form-group">
                                     <label class="control-label col-sm-4" for="region"><spring:message
                                             code="city.byRegion"/>:</label>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-5">
                                         <input class="form-control" name="region" id="region">
                                     </div>
                                 </div>
@@ -87,6 +87,7 @@
     </div>
 </div>
 
+
 <div class="modal fade" id="regionEditRow">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -98,79 +99,43 @@
             <div class="modal-body">
                 <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
+
                     <div class="form-group">
                         <label for="regionName" class="control-label col-xs-3"><spring:message
                                 code="common.placeName"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="regionName" name="name">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="countryName" class="control-label col-xs-3"><spring:message
-                                code="common.countryName"/></label>
-                        <div class="col-xs-9">
-                            <input class="form-control" id="countryName" name="countryName" readonly>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="regionDescription" class="control-label col-xs-3"><spring:message
-                                code="common.description"/></label>
-                        <div class="col-xs-9">
-                            <textarea class="form-control region-update-textarea" id="regionDescription" name="description">
-                            </textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-offset-3 col-xs-9">
-                            <button class="btn btn-primary" type="button" onclick="saveRegion()">
-                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                            </button>
-                        </div>
-                    </div>
-                </form:form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="regionCreateRow">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
-                </button>
-                <h2 class="modal-title" id="regionCreateModalTitle"></h2>
-            </div>
-            <div class="modal-body">
-                <form:form class="form-horizontal detailsForm">
-                    <input type="hidden" id="id" name="id">
-
-                    <div class="form-group">
-                        <label for="createdRegionName" class="control-label col-xs-3"><spring:message
-                                code="common.placeName"/></label>
-                        <div class="col-xs-9">
-                            <input class="form-control" id="createdRegionName" name="name"
+                            <input class="form-control" id="regionName" name="name"
                                    placeholder="<spring:message code="common.placeName"/>">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="createdRegionCountryName" class="control-label col-xs-3"><spring:message
+                    <div class="form-group currentCountryName">
+                        <label for="currentCountryName" class="control-label col-xs-3"><spring:message
+                                code="common.countryName"/></label>
+                        <div class="col-xs-9">
+                            <input class="form-control" id="currentCountryName" name="countryName" readonly
+                                   placeholder="<spring:message code="common.countryName"/>">
+                        </div>
+                    </div>
+
+                    <div class="form-group countryNamesList">
+                        <label for="countryNamesList" class="control-label col-xs-3"><spring:message
                                 code="common.countryName"/></label>
                         <c:if test="${not empty countries}">
                             <div class="col-xs-9">
-                                <select class="form-control" name="countryName" id="createdRegionCountryName">
+                                <select class="form-control" name="countryName" id="countryNamesList">
                                     <c:forEach items="${countries}" var="country">
-                                        <option value="${country.name}">${country.name}</option>
+                                        <option name="countryName" value="${country.name}">${country.name}</option>
                                     </c:forEach>
                                 </select>
                             </div>
                         </c:if>
                     </div>
+
                     <div class="form-group">
                         <label for="regionDescription" class="control-label col-xs-3"><spring:message
                                 code="common.description"/></label>
                         <div class="col-xs-9">
-                            <textarea class="form-control" id="createdRegionDescription" name="description"
+                            <textarea class="form-control" id="regionDescription" name="description"
                                    placeholder="<spring:message code="common.description"/>">
                             </textarea>
                         </div>

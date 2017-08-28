@@ -9,6 +9,7 @@ import com.kirak.util.model.HotelUtil;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -34,9 +35,10 @@ public class ModelUtil {
 
     public static void getManagerView(Model model, int hotelId, List<AptType> aptTypes, List<Country> countries,
                                       List<City> cities, List<ApartmentTo> objectApartments){
+        Comparator<City> byName = (City c1, City c2) -> (c1.getName().compareTo(c2.getName()));
         model.addAttribute("aptTypes", aptTypes);
         model.addAttribute("countries", countries);
-        model.addAttribute("cities", cities.stream().sorted().collect(Collectors.toList()));
+        model.addAttribute("cities", cities.stream().sorted(byName).collect(Collectors.toList()));
         model.addAttribute("objectApartments", objectApartments);
         model.addAttribute("objectId", hotelId);
     }

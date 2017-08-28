@@ -41,7 +41,8 @@ public abstract class RegionAbstractController {
     public void update(PlaceTo placeTo, int id){
         LOG.info("Updating {}", placeTo);
         checkId(placeTo, id);
-        cityService.update(placeTo);
+        City city = cityService.get(id);
+        cityService.update(RegionUtil.updateCityFromPlaceTo(placeTo, city));
     }
 
     public PlaceTo get(Integer id) {

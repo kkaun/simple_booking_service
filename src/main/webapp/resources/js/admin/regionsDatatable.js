@@ -5,6 +5,9 @@
 var ajaxUrl = "/admin/regions/";
 var datatableApi;
 
+// function updatePlacesTable() {
+//     $.get(ajaxUrl, updateTableByData);
+// }
 
 function updatePlacesTable() {
     $.ajax({

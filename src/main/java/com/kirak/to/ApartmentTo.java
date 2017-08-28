@@ -11,19 +11,15 @@ import java.io.Serializable;
  */
 public class ApartmentTo extends BasicIntTo implements Serializable {
 
-    private final Integer hotelId;
+    private Integer hotelId;
 
-    private final Double price;
+    private Double price;
 
-//    private final Short personNum;
-//
-//    private final String category;
-//
-//    private final String bedsArrangement;
+    private String stringAptType;
 
-    private final String stringAptType;
+    private String imgPath;
 
-    private final String imgPath;
+    public ApartmentTo(){}
 
     public ApartmentTo(@JsonProperty("id") Integer id,
                        @JsonProperty("id") Integer hotelId,
@@ -51,6 +47,22 @@ public class ApartmentTo extends BasicIntTo implements Serializable {
 
     public String getImgPath() {
         return imgPath;
+    }
+
+    public void setHotelId(Integer hotelId) {
+        this.hotelId = hotelId;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public void setStringAptType(String stringAptType) {
+        this.stringAptType = stringAptType;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
     }
 
     @Override

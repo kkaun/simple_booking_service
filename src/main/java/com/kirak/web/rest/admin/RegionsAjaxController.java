@@ -39,7 +39,7 @@ public class RegionsAjaxController extends RegionAbstractController {
     }
 
     @Override
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @JsonView(View.JsonUI.class)
     public PlaceTo get(@PathVariable("id") Integer id) {
         return super.get(id);
@@ -47,6 +47,7 @@ public class RegionsAjaxController extends RegionAbstractController {
 
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @JsonView(View.JsonUI.class)
     public List<PlaceTo> getAll(){
         return super.getAll();
     }

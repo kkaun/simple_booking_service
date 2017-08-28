@@ -51,12 +51,12 @@ public class CityServiceImpl implements CityService {
         return repository.save(city);
     }
 
-    @Override
-    public void update(PlaceTo placeTo) {
-        Assert.notNull(placeTo, "Place must not be null");
-        City expectedCity = repository.get(placeTo.getId());
-        repository.save(RegionUtil.updateCityFromPlaceTo(placeTo, expectedCity));
-    }
+//    @Override
+//    public void update(PlaceTo placeTo) {
+//        Assert.notNull(placeTo, "Place must not be null");
+//        City expectedCity = repository.get(placeTo.getId());
+//        repository.save(RegionUtil.updateCityFromPlaceTo(placeTo, expectedCity));
+//    }
 
     @Override
     public void delete(Integer id) throws NotFoundException {
@@ -64,14 +64,14 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public void save(PlaceTo placeTo, List<Country> countries) {
+    public City save(PlaceTo placeTo, List<Country> countries) {
         Assert.notNull(placeTo, "Place must not be null");
-        repository.save(RegionUtil.createCityFromPlaceTo(placeTo, countries));
+        return repository.save(RegionUtil.createCityFromPlaceTo(placeTo, countries));
     }
 
     @Override
     public void update(City city) {
         Assert.notNull(city, "Place must not be null");
-        repository.save(repository.get(city.getId()));
+        repository.save(city);
     }
 }

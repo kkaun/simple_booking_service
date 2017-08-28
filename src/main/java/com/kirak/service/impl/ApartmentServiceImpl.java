@@ -58,7 +58,7 @@ public class ApartmentServiceImpl implements ApartmentService {
 
         return ApartmentUtil.isApartmentAcceptedForEditing(toUpdate) ?
                 checkNotFoundWithId(repository.save(ApartmentUtil.updateFromTo(apartmentTo, toUpdate, existingTypes),
-                        toUpdate.getHotel().getId()), toUpdate.getId()) : repository.save(toUpdate, toUpdate.getHotel().getId());
+                        toUpdate.getHotel().getId()), toUpdate.getId()) : update(toUpdate, toUpdate.getHotel().getId());
     }
 
     @Override

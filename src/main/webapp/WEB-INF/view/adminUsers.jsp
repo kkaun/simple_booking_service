@@ -73,59 +73,7 @@
             <div class="modal-body">
                 <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
-                    <div class="form-group">
-                        <label for="updatedUserName" class="control-label col-xs-3"><spring:message code="user.name"/></label>
-                        <div class="col-xs-9">
-                            <input type="text" class="form-control" id="updatedUserName" name="name" placeholder="<spring:message code="user.name"/>">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="updatedUserEmail" class="control-label col-xs-3"><spring:message code="user.email"/></label>
-                        <div class="col-xs-9">
-                            <input type="email" class="form-control" id="updatedUserEmail" name="email" placeholder="<spring:message code="user.email"/>">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="updatedUserPhone" class="control-label col-xs-3"><spring:message code="users.phone"/></label>
-                        <div class="col-xs-9">
-                            <input type="text" class="form-control" id="updatedUserPhone" name="phone" placeholder="<spring:message code="user.email"/>">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="updatedUserPassword" class="control-label col-xs-3"><spring:message
-                                code="users.password"/></label>
-                        <div class="col-xs-9">
-                            <input type="password" class="form-control" id="updatedUserPassword" name="password"
-                                   placeholder="<spring:message code="users.password"/>">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-offset-3 col-xs-9">
-                            <button type="button" onclick="saveUser()" class="btn btn-primary">
-                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                            </button>
-                        </div>
-                    </div>
-                </form:form>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="modal fade" id="userCreateRow">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h2 class="modal-title" id="userCreateModalTitle"></h2>
-            </div>
-            <div class="modal-body">
-                <form:form class="form-horizontal detailsForm">
-                    <input type="hidden" id="id" name="id">
+                    <input type="hidden" id="id" name="active">
                     <div class="form-group">
                         <label for="name" class="control-label col-xs-3"><spring:message code="user.name"/></label>
                         <div class="col-xs-9">
@@ -141,12 +89,19 @@
                     <div class="form-group">
                         <label for="phone" class="control-label col-xs-3"><spring:message code="users.phone"/></label>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" id="phone" name="phone" placeholder="<spring:message code="user.email"/>">
+                            <input type="text" class="form-control" id="phone" name="phone" placeholder="<spring:message code="users.phone"/>">
                         </div>
                     </div>
-
                     <div class="form-group">
-                        <label for="role" class="control-label col-xs-3"><spring:message code="users.phone"/></label>
+                        <label for="password" class="control-label col-xs-3"><spring:message
+                                code="users.password"/></label>
+                        <div class="col-xs-9">
+                            <input type="password" class="form-control" id="password" name="password"
+                                   placeholder="<spring:message code="users.password"/>">
+                        </div>
+                    </div>
+                    <div class="form-group userRoleInput">
+                        <label for="role" class="control-label col-xs-3"><spring:message code="users.roles"/></label>
                         <c:if test="${not empty roles}">
                             <div class="col-xs-9">
                                 <select class="form-control" name="userRole" id="role">
@@ -156,15 +111,6 @@
                                 </select>
                             </div>
                         </c:if>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password" class="control-label col-xs-3"><spring:message
-                                code="users.password"/></label>
-                        <div class="col-xs-9">
-                            <input type="password" class="form-control" id="password" name="password"
-                                   placeholder="<spring:message code="users.password"/>">
-                        </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-offset-3 col-xs-9">
