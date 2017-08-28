@@ -25,7 +25,7 @@ public class RootControllerTest extends AbstractControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("admin"))
-                .andExpect(forwardedUrl("/WEB-INF/jsp/admin.jsp"));
+                .andExpect(forwardedUrl("/WEB-INF/view/admin.jsp"));
     }
 
     @Test
@@ -35,7 +35,7 @@ public class RootControllerTest extends AbstractControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("managerObjects"))
-                .andExpect(forwardedUrl("/WEB-INF/jsp/managerObjects.jsp"));
+                .andExpect(forwardedUrl("/WEB-INF/view/managerObjects.jsp"));
     }
 
     @Test
@@ -45,7 +45,7 @@ public class RootControllerTest extends AbstractControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("user"))
-                .andExpect(forwardedUrl("/WEB-INF/jsp/user.jsp"));
+                .andExpect(forwardedUrl("/WEB-INF/view/user.jsp"));
     }
 
     @Test

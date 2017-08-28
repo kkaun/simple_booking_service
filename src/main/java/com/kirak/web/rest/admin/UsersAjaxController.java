@@ -49,6 +49,7 @@ public class UsersAjaxController extends UserAbstractController {
         if (userTo.isNew()) {
             super.create(UserUtil.createNewByAdminFromTo(userTo));
         } else {
+            super.enable(userTo.getId(),true);
             super.update(userTo, userTo.getId());
         }
     }

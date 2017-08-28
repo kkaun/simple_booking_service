@@ -35,11 +35,15 @@ public class UserUtil {
 
         Set<UserRole> set = new HashSet<>();
 
-        if(newUser.getRoles().contains("User")) {
-            set.add(UserRole.ROLE_USER);
-        }
-        if(newUser.getRoles().contains("Manager")){
+//        if(newUser.getRole().equals("User")) {
+//            set = Collections.singleton(UserRole.ROLE_USER);
+//        }
+        if(newUser.getRole().equals("Manager")){
             set.add(UserRole.ROLE_MANAGER);
+            return new User(null, newUser.getName(), newUser.getEmail().toLowerCase(), newUser.getPhone(),
+                    newUser.getPassword(), UserRole.ROLE_MANAGER, set.toArray(new UserRole[set.size()]));
+        } else {
+            set.add(UserRole.ROLE_USER);
         }
         return new User(null, newUser.getName(), newUser.getEmail().toLowerCase(), newUser.getPhone(),
                 newUser.getPassword(), UserRole.ROLE_USER, set.toArray(new UserRole[set.size()]));
@@ -47,15 +51,13 @@ public class UserUtil {
 
     public static UserTo asTo(User user) {
 
-        List<String> roles = user.getRoles().stream()
-                .map(userRole -> StringUtils.capitalize(userRole.name()
-                        .substring(userRole.name().indexOf("_")+1, userRole.name().length()).toLowerCase()))
-                .collect(Collectors.toList());
+        UserRole primaryRole = user.getRoles().iterator().next();
+
+        String role = StringUtils.capitalize(primaryRole.name()
+                        .substring(primaryRole.name().indexOf("_")+1, primaryRole.name().length()).toLowerCase());
 
         return new UserTo(user.getId(), user.getName(), user.getEmail(),
-                user.getPhone(), String.join(", ", roles),
-                user.getRegistered(), user.getPassword(), user.isEnabled());
-
+                user.getPhone(), role, user.getRegistered(), user.getPassword(), user.isEnabled());
     }
 
     public static User updateFromTo(User user, UserTo userTo) {

@@ -26,7 +26,7 @@ public class UserTo extends BasicIntTo implements Serializable {
 
     private String phone;
 
-    private String roles;
+    private String role;
 
     private String password;
 
@@ -40,7 +40,7 @@ public class UserTo extends BasicIntTo implements Serializable {
                   @JsonProperty("name") String name,
                   @JsonProperty("email") String email,
                   @JsonProperty("phone") String phone,
-                  @JsonProperty("roles") String roles,
+                  @JsonProperty("roles") String role,
                   @JsonProperty("registered") Date registered,
                   @JsonProperty("password") String password,
                   @JsonProperty("enabled") boolean enabled) {
@@ -48,7 +48,7 @@ public class UserTo extends BasicIntTo implements Serializable {
         this.name = name;
         this.email = email;
         this.phone = phone;
-        this.roles = roles;
+        this.role = role;
         this.registered = registered;
         this.password = password;
         this.enabled = enabled;
@@ -102,12 +102,12 @@ public class UserTo extends BasicIntTo implements Serializable {
         this.enabled = enabled;
     }
 
-    public String getRoles() {
-        return roles;
+    public String getRole() {
+        return role;
     }
 
-    public void setRoles(String roles) {
-        this.roles = roles;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override
@@ -117,7 +117,7 @@ public class UserTo extends BasicIntTo implements Serializable {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
-                ", roles='" + roles + '\'' +
+                ", roles='" + role + '\'' +
                 ", password='" + password + '\'' +
                 ", registered=" + registered +
                 ", enabled=" + enabled +

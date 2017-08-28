@@ -73,7 +73,7 @@
             <div class="modal-body">
                 <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
-                    <input type="hidden" id="id" name="active">
+
                     <div class="form-group">
                         <label for="name" class="control-label col-xs-3"><spring:message code="user.name"/></label>
                         <div class="col-xs-9">
@@ -104,9 +104,9 @@
                         <label for="role" class="control-label col-xs-3"><spring:message code="users.roles"/></label>
                         <c:if test="${not empty roles}">
                             <div class="col-xs-9">
-                                <select class="form-control" name="userRole" id="role">
+                                <select class="form-control" name="role" id="role">
                                     <c:forEach items="${roles}" var="role">
-                                        <option value="${role}">${role}</option>
+                                        <option name="role" value="${role}">${role}</option>
                                     </c:forEach>
                                 </select>
                             </div>

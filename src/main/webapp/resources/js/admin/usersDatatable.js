@@ -49,7 +49,7 @@ $(function () {
                 "data": "phone"
             },
             {
-                "data": "roles"
+                "data": "role"
             },
             {
                 "data": "enabled",

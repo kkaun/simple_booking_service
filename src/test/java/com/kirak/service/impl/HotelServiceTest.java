@@ -46,7 +46,7 @@ public class HotelServiceTest extends AbstractServiceTest {
     public void updateNotFound() throws Exception {
         thrown.expect(NotFoundException.class);
         service.update(new Hotel(HOTEL1_ID + 11, "HOTEL234", (short)3, RUSSIA, MOSCOW, "Address1",
-                "8943111111", "", Time.valueOf(LocalTime.MIN), Time.valueOf(LocalTime.MAX), MANAGER));
+                "8943111111", "", LocalTime.MIN, LocalTime.MAX, MANAGER));
     }
 
 

@@ -303,6 +303,7 @@ function deleteRegionRow(id) {
 function addUser() {
     $('#userUpdateModalTitle').html(i18n["addTitle"]);
     form.find(":input").val("");
+    $('.userRoleInput').show();
     $('#userEditRow').modal();
 }
 

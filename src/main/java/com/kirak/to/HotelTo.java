@@ -6,8 +6,11 @@ import com.kirak.to.abstr.BasicIntTo;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.io.Serializable;
 import java.sql.Time;
+import java.util.Date;
 
 /**
  * Created by Kir on 24.06.2017.
@@ -29,9 +32,9 @@ public class HotelTo extends BasicIntTo implements Serializable {
 
     private Integer votesNum;
 
-    private Time checkIn;
+    private String checkIn;
 
-    private Time checkOut;
+    private String checkOut;
 
     private String address;
 
@@ -54,8 +57,8 @@ public class HotelTo extends BasicIntTo implements Serializable {
                    @JsonProperty("stars") Short stars,
                    @JsonProperty("description") String description,
                    @JsonProperty("votesNum") int votesNum,
-                   @JsonProperty("checkIn") Time checkIn,
-                   @JsonProperty("checkOut") Time checkOut,
+                   @JsonProperty("checkIn") String checkIn,
+                   @JsonProperty("checkOut") String checkOut,
                    @JsonProperty("address") String address,
                    @JsonProperty("phone") String phone,
                    @JsonProperty("cityId") Integer cityId,
@@ -99,11 +102,11 @@ public class HotelTo extends BasicIntTo implements Serializable {
         return votesNum;
     }
 
-    public Time getCheckIn() {
+    public String getCheckIn() {
         return checkIn;
     }
 
-    public Time getCheckOut() {
+    public String getCheckOut() {
         return checkOut;
     }
 
@@ -163,11 +166,11 @@ public class HotelTo extends BasicIntTo implements Serializable {
         this.votesNum = votesNum;
     }
 
-    public void setCheckIn(Time checkIn) {
+    public void setCheckIn(String checkIn) {
         this.checkIn = checkIn;
     }
 
-    public void setCheckOut(Time checkOut) {
+    public void setCheckOut(String checkOut) {
         this.checkOut = checkOut;
     }
 

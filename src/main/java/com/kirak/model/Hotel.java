@@ -2,15 +2,13 @@ package com.kirak.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kirak.model.abstraction.NamedEntity;
-import com.kirak.web.session.AuthorizedUser;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Time;
-import java.util.Date;
+import java.time.LocalTime;
 import java.util.Set;
 
 /**
@@ -49,12 +47,14 @@ public class Hotel extends NamedEntity {
     private String description;
 
     @NotNull
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     @Column(name = "check_in")
-    private Time checkIn;
+    private LocalTime checkIn;
 
     @NotNull
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     @Column(name = "check_out")
-    private Time checkOut;
+    private LocalTime checkOut;
 
     @Range(min = 0, max = 10)
     @Column(name = "max_extra_per_day")
@@ -93,7 +93,7 @@ public class Hotel extends NamedEntity {
 
 
     public Hotel(Integer id, String name, Short stars, Country country, City city, String address,
-                 String phone, String description, Time checkIn, Time checkOut, Set<Vote> votes, User manager) {
+                 String phone, String description, LocalTime checkIn, LocalTime checkOut, Set<Vote> votes, User manager) {
         super(id, name);
         this.stars = stars;
         this.country = country;
@@ -114,7 +114,7 @@ public class Hotel extends NamedEntity {
     }
 
     public Hotel(Integer id, String name, Short stars, Country country, City city, String address,
-                 String phone, String description, Time checkIn, Time checkOut, User manager) {
+                 String phone, String description, LocalTime checkIn, LocalTime checkOut, User manager) {
         super(id, name);
         this.stars = stars;
         this.country = country;
@@ -171,19 +171,19 @@ public class Hotel extends NamedEntity {
         return stars;
     }
 
-    public Time getCheckIn() {
+    public LocalTime getCheckIn() {
         return checkIn;
     }
 
-    public void setCheckIn(Time checkIn) {
+    public void setCheckIn(LocalTime checkIn) {
         this.checkIn = checkIn;
     }
 
-    public Time getCheckOut() {
+    public LocalTime getCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(Time checkOut) {
+    public void setCheckOut(LocalTime checkOut) {
         this.checkOut = checkOut;
     }
 

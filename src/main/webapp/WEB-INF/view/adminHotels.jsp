@@ -137,6 +137,9 @@
             <div class="modal-body">
                 <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
+                    <input type="hidden" id="managerId" name="managerId">
+                    <input type="hidden" id="cityId" name="cityId">
+
                     <div class="form-group">
                         <label for="hotelName" class="control-label col-xs-3"><spring:message
                                 code="common.hotelName"/></label>

@@ -70,6 +70,8 @@
             <div class="modal-body">
                 <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
+                    <input type="hidden" id="hotelId" name="hotelId">
+
                     <div class="form-group">
                         <label for="aptPrice" class="control-label col-xs-3"><spring:message
                                 code="apartments.price"/></label>

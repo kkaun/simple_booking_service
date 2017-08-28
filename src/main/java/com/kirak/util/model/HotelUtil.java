@@ -4,7 +4,12 @@ import com.kirak.model.*;
 import com.kirak.service.SessionPlacementsService;
 import com.kirak.to.HotelTo;
 import com.kirak.to.Placement;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -15,27 +20,31 @@ import java.util.stream.IntStream;
 public class HotelUtil {
 
     public static Hotel createNewFromTo(HotelTo newHotel, List<Country> countries, List<City> cities, User manager) {
+
         return new Hotel(newHotel.getId(), newHotel.getName(), newHotel.getStars(),
                 RegionUtil.findCountryByName(countries, newHotel.getCountryName()),
                 RegionUtil.findCityByName(cities, newHotel.getCityName(), newHotel.getCountryName()), newHotel.getAddress(),
-                newHotel.getPhone(), newHotel.getDescription(), newHotel.getCheckIn(), newHotel.getCheckOut(), manager);
+                newHotel.getPhone(), newHotel.getDescription(),
+                LocalTime.parse(newHotel.getCheckIn()), LocalTime.parse(newHotel.getCheckOut()), manager);
     }
 
     public static Hotel updateFromTo(Hotel hotel, HotelTo hotelTo) {
+
         hotel.setName(hotelTo.getName());
         hotel.setStars(hotelTo.getStars());
         hotel.setAddress(hotelTo.getAddress());
         hotel.setPhone(hotelTo.getPhone());
         hotel.setDescription(hotelTo.getDescription());
-        hotel.setCheckIn(hotelTo.getCheckIn());
-        hotel.setCheckOut(hotelTo.getCheckOut());
+        hotel.setCheckIn(LocalTime.parse(hotelTo.getCheckIn()));
+        hotel.setCheckOut(LocalTime.parse(hotelTo.getCheckOut()));
         return hotel;
     }
 
     public static HotelTo asHotelTo(Hotel hotel) {
+
         return new HotelTo(hotel.getId(), hotel.getManager().getId(), hotel.getName(), calculateHotelRating(hotel),
                 hotel.getStars(), hotel.getDescription().isEmpty() ? " " : hotel.getDescription(),
-                calculateHotelVotesNum(hotel), hotel.getCheckIn(), hotel.getCheckOut(),
+                calculateHotelVotesNum(hotel), String.valueOf(hotel.getCheckIn()), String.valueOf(hotel.getCheckOut()),
                 hotel.getAddress(), hotel.getPhone(), hotel.getCity().getId(), hotel.getCity().getName(),
                 hotel.getCountry().getName(), hotel.getImgPath());
     }
