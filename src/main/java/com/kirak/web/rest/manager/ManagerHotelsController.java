@@ -38,8 +38,7 @@ public class ManagerHotelsController extends HotelAbstractController {
     @PostMapping
     public void createOrUpdate(@Valid HotelTo hotelTo) {
         if (hotelTo.isNew()) {
-            super.create(HotelUtil.createNewFromTo(hotelTo, super.getAllCountries(), super.getAllCities(),
-                    userService.get(AuthorizedUser.id())));
+            super.create(HotelUtil.createNewFromTo(hotelTo, super.getAllCities(), userService.get(AuthorizedUser.id())));
         } else {
             super.update(hotelTo, hotelTo.getId());
         }

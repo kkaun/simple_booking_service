@@ -5,9 +5,6 @@ import com.kirak.service.SessionPlacementsService;
 import com.kirak.to.HotelTo;
 import com.kirak.to.Placement;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
@@ -19,11 +16,11 @@ import java.util.stream.IntStream;
  */
 public class HotelUtil {
 
-    public static Hotel createNewFromTo(HotelTo newHotel, List<Country> countries, List<City> cities, User manager) {
+    public static Hotel createNewFromTo(HotelTo newHotel, List<City> cities, User manager) {
 
         return new Hotel(newHotel.getId(), newHotel.getName(), newHotel.getStars(),
-                RegionUtil.findCountryByName(countries, newHotel.getCountryName()),
-                RegionUtil.findCityByName(cities, newHotel.getCityName(), newHotel.getCountryName()), newHotel.getAddress(),
+                RegionUtil.getCountryByRegionName(cities, newHotel.getCountryName()),
+                RegionUtil.findCityByName(cities, newHotel.getCityName()), newHotel.getAddress(),
                 newHotel.getPhone(), newHotel.getDescription(),
                 LocalTime.parse(newHotel.getCheckIn()), LocalTime.parse(newHotel.getCheckOut()), manager);
     }
@@ -67,12 +64,6 @@ public class HotelUtil {
     public static List<HotelTo> getAllByRegionAsTo(String region, List<Hotel> hotels) {
 
         return getAllByRegion(region, hotels).stream().map(HotelUtil::asHotelTo).collect(Collectors.toList());
-    }
-
-    public static List<HotelTo> getAllByCity(Collection<Hotel> hotels, int cityId){
-
-        return hotels.stream().filter(hotel -> hotel.getCity().getId() == cityId).map(HotelUtil::asHotelTo)
-                .collect(Collectors.toList());
     }
 
     public static List<HotelTo> getBetweenRatings(Collection<Hotel> hotels, Double minRating, Double maxRating){

@@ -58,9 +58,9 @@ public abstract class HotelAbstractController {
         return hotelService.getTo(id);
     }
 
-    public List<HotelTo> getAllByCity(Integer cityId){
-        LOG.info("Getting all hotels by city {}", cityId);
-        return cityId != null ? HotelUtil.getAllByCity(hotelService.getAll(), cityId)
+    public List<HotelTo> getAllByRegion(String regionName){
+        LOG.info("Getting all hotels by city {}", regionName);
+        return regionName != null ? HotelUtil.getAllByRegionAsTo(regionName, hotelService.getAll())
                 : HotelUtil.getAllHotelTos(hotelService.getAll());
     }
 

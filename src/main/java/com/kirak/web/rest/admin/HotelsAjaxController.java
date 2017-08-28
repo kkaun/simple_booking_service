@@ -14,7 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -36,8 +35,7 @@ public class HotelsAjaxController extends HotelAbstractController {
     @PostMapping
     public void createOrUpdate(@Valid HotelTo hotelTo) {
         if (hotelTo.isNew()) {
-            super.create(HotelUtil.createNewFromTo(hotelTo, super.getAllCountries(), super.getAllCities(),
-                    userService.get(hotelTo.getManagerId())));
+            super.create(HotelUtil.createNewFromTo(hotelTo, super.getAllCities(), userService.get(hotelTo.getManagerId())));
         } else {
             super.update(hotelTo, hotelTo.getId());
         }
@@ -51,8 +49,8 @@ public class HotelsAjaxController extends HotelAbstractController {
 
     @Override
     @PostMapping(value = "/by_city", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<HotelTo> getAllByCity(@RequestParam("cityId") Integer cityId) {
-        return super.getAllByCity(cityId);
+    public List<HotelTo> getAllByRegion(@RequestParam("regionName") String regionName) {
+        return super.getAllByRegion(regionName);
     }
 
     @Override

@@ -141,6 +141,9 @@ function deleteAptTypeRow(id) {
 function addHotel() {
     $('#regionModalTitle').html(i18n["addTitle"]);
     form.find(":input").val("");
+    form.find("textarea[name='" + 'description' + "']").val("");
+    $('.cityNameForm :input').removeAttr('readonly');
+    $('.countryNameForm :input').removeAttr('readonly');
     $('#hotelEditRow').modal();
 }
 
@@ -149,6 +152,9 @@ function updateHotelRow(id) {
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(value);
+            form.find("textarea[name='" + key + "']").val(value);
+            $('.cityNameForm :input').attr('readonly','readonly');
+            $('.countryNameForm :input').attr('readonly','readonly');
         });
         $('#hotelEditRow').modal();
     });
@@ -464,6 +470,9 @@ function deleteApartmentRow(id) {
 function addManagerHotel() {
     $('#managerHotelModalTitle').html(i18n["addTitle"]);
     form.find(":input").val("");
+    form.find("textarea[name='" + 'description' + "']").val("");
+    $('.cityNameForm :input').removeAttr('readonly');
+    $('.countryNameForm :input').removeAttr('readonly');
     $('#managerHotelEditRow').modal();
 }
 
@@ -479,6 +488,9 @@ function updateManagerHotelRow(id) {
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(value);
+            form.find("textarea[name='" + key + "']").val(value);
+            $('.cityNameForm :input').attr('readonly','readonly');
+            $('.countryNameForm :input').attr('readonly','readonly');
         });
         $('#managerHotelEditRow').modal();
     });

@@ -56,19 +56,12 @@
                         <div class="panel-body">
                             <form:form class="form-horizontal filter" id="hotelsByCityAdminFilter">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-6" for="cityName" style="margin-left: -20px"><spring:message
-                                            code="hotels.byCity"/>:</label>
-                                    <c:if test="${not empty cities}">
-                                        <div class="form-group">
-                                            <div class="col-xs-6">
-                                                <select class="form-control" name="cityName" id="cityName">
-                                                    <c:forEach items="${cities}" var="city">
-                                                        <option value="${city.name}">${city.name}</option>
-                                                    </c:forEach>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </c:if>
+                                    <label for="regionName" class="control-label col-xs-3"><spring:message
+                                            code="common.hotelName"/></label>
+                                    <div class="col-xs-9">
+                                        <input class="form-control" type="text" id="regionName" name="regionName"
+                                               placeholder="<spring:message code="common.hotelName"/>">
+                                    </div>
                                 </div>
                             </form:form>
                         </div>
@@ -137,14 +130,40 @@
             <div class="modal-body">
                 <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
-                    <input type="hidden" id="managerId" name="managerId">
                     <input type="hidden" id="cityId" name="cityId">
+
+                    <div class="form-group managerIdForm">
+                        <label for="managerId" class="control-label col-xs-3">Manager <spring:message
+                                code="common.id"/> (for demo: 100003)</label>
+                        <div class="col-xs-9">
+                            <input class="form-control" type="text" id="managerId" name="managerId"
+                                   placeholder="Manager <spring:message code="common.id"/>">
+                        </div>
+                    </div>
+
+                    <div class="form-group countryNameForm">
+                        <label for="countryName" class="control-label col-xs-3">Place/City <spring:message
+                                code="common.id"/></label>
+                        <div class="col-xs-9">
+                            <input class="form-control" type="text" id="countryName" name="countryName"
+                                   placeholder="Place/City <spring:message code="common.id"/>">
+                        </div>
+                    </div>
+
+                    <div class="form-group cityNameForm">
+                        <label for="cityName" class="control-label col-xs-3">Place/City <spring:message
+                                code="common.id"/></label>
+                        <div class="col-xs-9">
+                            <input class="form-control" type="text" id="cityName" name="cityName"
+                                   placeholder="Place/City <spring:message code="common.id"/>">
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <label for="hotelName" class="control-label col-xs-3"><spring:message
                                 code="common.hotelName"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="hotelName" name="name"
+                            <input class="form-control" type="text" id="hotelName" name="name"
                                    placeholder="<spring:message code="common.hotelName"/>">
                         </div>
                     </div>
@@ -152,7 +171,7 @@
                         <label for="stars" class="control-label col-xs-3"><spring:message
                                 code="common.hotelStars"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="stars" type="number" name="stars"
+                            <input class="form-control" id="stars" type="text" name="stars"
                                    placeholder="<spring:message code="common.hotelStars"/>">
                         </div>
                     </div>
@@ -160,8 +179,9 @@
                         <label for="hotelDescription" class="control-label col-xs-3"><spring:message
                                 code="hotels.description"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="hotelDescription" name="description"
+                            <textarea class="form-control" id="hotelDescription" name="description"
                                    placeholder="<spring:message code="hotels.description"/>">
+                            </textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -184,7 +204,7 @@
                         <label for="address" class="control-label col-xs-3"><spring:message
                                 code="hotels.address"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="address" name="address"
+                            <input class="form-control" type="text" id="address" name="address"
                                    placeholder="<spring:message code="hotels.address"/>">
                         </div>
                     </div>
@@ -193,7 +213,7 @@
                                 code="hotels.phone"/></label>
 
                         <div class="col-xs-9">
-                            <input class="form-control" id="hotelPhone" name="phone"
+                            <input class="form-control" type="text" id="hotelPhone" name="phone"
                                    placeholder="<spring:message code="hotels.phone"/>">
                         </div>
                     </div>

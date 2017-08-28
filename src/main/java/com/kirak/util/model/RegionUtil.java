@@ -56,21 +56,23 @@ public class RegionUtil {
                 .collect(Collectors.toList());
     }
 
-    public static City findCityByName(List<City> cities, String name, String countryName){
+    public static City findCityByName(List<City> cities, String cityName){
 
         List<City> citySingleton = cities.stream().
-                filter(city -> city.getName().equals(name) && city.getCountry().getName().equals(countryName))
+                filter(city -> Arrays.equals(city.getName().toLowerCase().split(" "),
+                        cityName.toLowerCase().split(" ")))
                 .collect(Collectors.toList());
 
         return !citySingleton.isEmpty() ? citySingleton.get(0) : null;
     }
 
-    public static Country findCountryByName(List<Country> countries, String name){
+    public static Country getCountryByRegionName(List<City> cities, String regionName){
 
-        List<Country> countrySingleton = countries.stream().filter(country -> country.getName().equals(name))
-                .collect(Collectors.toList());
-
-        return !countrySingleton.isEmpty() ? countrySingleton.get(0) : null;
+        return cities.stream()
+                .filter(city -> Arrays.equals(city.getCountry().getName().toLowerCase().split(" "),
+                        regionName.toLowerCase().split(" ")))
+                .findFirst().orElse(null).getCountry();
     }
+
 
 }

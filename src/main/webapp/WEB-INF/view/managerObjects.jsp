@@ -64,8 +64,28 @@
             </div>
             <div class="modal-body">
                 <form:form class="form-horizontal detailsForm">
-
                     <input type="hidden" id="id" name="id">
+                    <input type="hidden" id="cityId" name="cityId">
+                    <input type="hidden" id="managerId" name="managerId">
+
+                    <div class="form-group countryNameForm">
+                        <label for="countryName" class="control-label col-xs-3">Place/City <spring:message
+                                code="common.id"/></label>
+                        <div class="col-xs-9">
+                            <input class="form-control" type="text" id="countryName" name="countryName"
+                                   placeholder="Place/City <spring:message code="common.id"/>">
+                        </div>
+                    </div>
+
+                    <div class="form-group cityNameForm">
+                        <label for="cityName" class="control-label col-xs-3">Place/City <spring:message
+                                code="common.id"/></label>
+                        <div class="col-xs-9">
+                            <input class="form-control" type="text" id="cityName" name="cityName"
+                                   placeholder="Place/City <spring:message code="common.id"/>">
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label for="hotelName" class="control-label col-xs-3"><spring:message
                                 code="common.hotelName"/></label>
@@ -86,8 +106,9 @@
                         <label for="hotelDescription" class="control-label col-xs-3"><spring:message
                                 code="hotels.description"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="hotelDescription" name="description"
+                            <textarea class="form-control" id="hotelDescription" name="description"
                                    placeholder="<spring:message code="hotels.description"/>">
+                            </textarea>
                         </div>
                     </div>
                     <div class="form-group">
