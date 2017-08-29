@@ -574,7 +574,6 @@ function saveUserVote() {
     });
 }
 
-
 function renderUserVoteEditBtn(data, type, row) {
     if (type === 'display') {
         return '<a onclick="updateUserVoteRow(' + row.id + ');">' +
@@ -637,7 +636,7 @@ function renderBookingEditBtn(data, type, row) {
 function saveBooking() {
     $.ajax({
         type: "POST",
-        url: ajaxUrl + getSbId(),
+        url: ajaxUrl,
         data: form.serialize(),
         success: function () {
             $('#bookingEditRow').modal('hide');

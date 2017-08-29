@@ -6,18 +6,22 @@ import com.kirak.service.BookingService;
 import com.kirak.service.SubBookingObjectService;
 import com.kirak.service.SuperBookingService;
 import com.kirak.to.booking.*;
+import com.kirak.util.exception.ApplicationException;
 import com.kirak.util.model.BookingUtil;
 import com.kirak.util.model.SuperBookingUtil;
+import com.kirak.web.ExceptionViewHandler;
 import com.kirak.web.session.AuthorizedUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 
 import java.time.LocalDate;
 import java.util.List;
 
 import static com.kirak.util.model.SuperBookingUtil.*;
+import static com.kirak.web.abstr.UserAbstractController.EXCEPTION_MODIFICATION_RESTRICTION;
 
 /**
  * Created by Kir on 09.06.2017.
@@ -35,6 +39,11 @@ public abstract class BookingAbstractController {
     private final SubBookingObjectService subBookingObjectService;
 
     @Autowired
+    private ExceptionViewHandler exceptionInfoHandler;
+
+    private boolean modificationRestriction;
+
+    @Autowired
     public BookingAbstractController(BookingService bookingService, SuperBookingService superBookingService,
                                      ApartmentService apartmentService,
                                      @Qualifier("subBookingObjectService") SubBookingObjectService subBookingObjectService) {
@@ -49,6 +58,19 @@ public abstract class BookingAbstractController {
     public void updateSuperBooking(ManagerSuperBookingTo managerSuperBookingTo){
         LOG.info("Saving Super Booking {}", managerSuperBookingTo);
         superBookingService.update(managerSuperBookingTo);
+    }
+
+
+    public void deactivate(int id, boolean enabled) {
+        LOG.info((enabled ? "enable " : "deactivate ") + id);
+        checkModificationAllowed(id);
+        superBookingService.deactivate(id, enabled);
+    }
+
+    public void checkModificationAllowed(int id) {
+        if (modificationRestriction) {
+            throw new ApplicationException(EXCEPTION_MODIFICATION_RESTRICTION, HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
+        }
     }
 
     //-------------------------------------- Admin SuperBooking methods --------------------------------//
@@ -118,8 +140,11 @@ public abstract class BookingAbstractController {
     //-------------------------------------- Booking methods --------------------------------//
 
 
-    public void createBooking(BookingTo bookingTo, int superBookingId){
+    public void createBooking(BookingTo bookingTo){
         LOG.info("Saving booking {}", bookingTo);
+        SubBookingObject lastSubBooking = BookingUtil.getLastSubBooking(AuthorizedUser.id(),
+                subBookingObjectService.getSubBookingObjects());
+        int superBookingId = lastSubBooking.getSuperBookingId();
         bookingService.save(bookingTo, superBookingId, apartmentService.getAll(), superBookingService.getAll());
     }
 

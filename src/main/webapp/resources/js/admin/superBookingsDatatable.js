@@ -70,21 +70,22 @@ function clearSBHotelIdAdminFilter() {
 }
 
 
-
-function enableAdminSB(chkbox, id) {
+function deactivateAdminSB(chkbox, id) {
     var enabled = chkbox.is(":checked");
-    $.ajax({
-        url: ajaxUrl + id,
-        type: 'POST',
-        data: 'active=' + enabled,
-        success: function () {
-            chkbox.closest('tr').toggleClass('disabled');
-            successNoty(enabled ? 'common.enabled' : 'common.disabled');
-        },
-        error: function () {
-            $(chkbox).prop("checked", !enabled);
-        }
-    });
+    if(enabled) {
+        $.ajax({
+            url: ajaxUrl + id,
+            type: 'POST',
+            data: 'active=' + enabled,
+            success: function () {
+                chkbox.closest('tr').toggleClass('disabled');
+                successNoty(enabled ? 'common.enabled' : 'common.disabled');
+            },
+            error: function () {
+                $(chkbox).prop("checked", !enabled);
+            }
+        });
+    }
 }
 
 
@@ -124,7 +125,7 @@ $(function () {
                 "data": "active",
                 "render": function (data, type, row) {
                     if (type === 'display') {
-                        return '<input type="checkbox" ' + (data ? 'checked' : '') + ' onclick="enableAdminSB($(this),' + row.id + ');"/>';
+                        return '<input type="checkbox" ' + (data ? 'checked' : '') + ' onclick="deactivateAdminSB($(this),' + row.id + ');"/>';
                     }
                     return data;
                 }

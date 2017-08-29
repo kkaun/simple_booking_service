@@ -7,10 +7,7 @@ import com.kirak.service.SuperBookingService;
 import com.kirak.to.booking.UserSuperBookingTo;
 import com.kirak.web.abstr.BookingAbstractController;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,6 +29,15 @@ public class UserSuperBookingsAjaxController extends BookingAbstractController {
     public UserSuperBookingTo getUserSuperBooking(@PathVariable("id") int id) {
         return super.getUserSuperBooking(id);
     }
+
+
+    @Override
+    @PostMapping(value = "/{id}")
+    public void deactivate(@PathVariable("id") int id, @RequestParam("active") boolean active) {
+        super.deactivate(id, active);
+    }
+
+
 
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)

@@ -59,6 +59,7 @@ public class ApartmentUtil {
                 .collect(Collectors.toList()));
     }
 
+
 //    public static List<ApartmentTo> getApartmentTosForHotelManager(List<Apartment> apartments, int hotelManagerId){
 //
 //        List<Apartment> hotelApartments = apartments.stream()
@@ -103,8 +104,7 @@ public class ApartmentUtil {
         return hotel.getApartments().stream()
                     .filter(apartment -> isApartmentAcceptedByPersonNum(apartment, personNum))
                     .collect(Collectors.toList());
-
-        //!!!!!!!!  return !availableApartments.isEmpty() ? aggregateSimilarAvailableApartmentsWithCount(availableApartments, inDate, outDate) : Collections.emptyMap();
+        //! return !availableApartments.isEmpty() ? aggregateSimilarAvailableApartmentsWithCount(availableApartments, inDate, outDate) : Collections.emptyMap();
     }
 
     public static List<Apartment> findHotelApartmentsByCategory(Hotel hotel, LocalDate inDate, LocalDate outDate, String category){

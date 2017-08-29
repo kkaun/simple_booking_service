@@ -16,11 +16,6 @@ import java.util.stream.Collectors;
  */
 public class UserUtil {
 
-    public static User createNewFromTo(UserTo newUser) {
-        return new User(null, newUser.getName(), newUser.getEmail().toLowerCase(), newUser.getPhone(),
-                newUser.getPassword(), UserRole.ROLE_USER);
-    }
-
     public static User createNewRegisteredUserFromTo(UserTo newUser) {
         return new User(null, newUser.getName(), newUser.getEmail().toLowerCase(), newUser.getPhone(),
                 newUser.getPassword(), UserRole.ROLE_USER);

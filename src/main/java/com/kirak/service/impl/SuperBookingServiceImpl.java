@@ -82,6 +82,16 @@ public class SuperBookingServiceImpl implements SuperBookingService {
     }
 
     @Override
+    @Transactional
+    public void deactivate(int id, boolean enabled) {
+        if(enabled) {
+            SuperBooking superBooking = get(id);
+            superBooking.setActive(false);
+            repository.save(superBooking);
+        }
+    }
+
+    @Override
     public List<SuperBooking> getAll() {
         return repository.getAll();
     }

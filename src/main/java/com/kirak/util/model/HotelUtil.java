@@ -52,7 +52,7 @@ public class HotelUtil {
         return hotels.stream().map(HotelUtil::asHotelTo).collect(Collectors.toList());
     }
 
-    public static List<Hotel> getAllByRegion(String region, List<Hotel> hotels){
+    public static List<Hotel> getAllTosByRegionName(String region, List<Hotel> hotels){
 
         return hotels.stream()
                 .filter(hotel -> hotel.getCity().getName().toLowerCase().equals(region.toLowerCase()) ||
@@ -61,10 +61,11 @@ public class HotelUtil {
                 .collect(Collectors.toList());
     }
 
-    public static List<HotelTo> getAllByRegionAsTo(String region, List<Hotel> hotels) {
+    public static List<HotelTo> getAllHotelsByRegionName(String region, List<Hotel> hotels) {
 
-        return getAllByRegion(region, hotels).stream().map(HotelUtil::asHotelTo).collect(Collectors.toList());
+        return getAllTosByRegionName(region, hotels).stream().map(HotelUtil::asHotelTo).collect(Collectors.toList());
     }
+
 
     public static List<HotelTo> getBetweenRatings(Collection<Hotel> hotels, Double minRating, Double maxRating){
 
@@ -149,7 +150,7 @@ public class HotelUtil {
                                                                         List<Hotel> hotels, Short personNum, Integer apartmentNum,
                                                                         LocalDate inDate, LocalDate outDate, String category) {
         List<Placement> potentialPlacements = new ArrayList<>();
-        List<Hotel> hotelsByRegion = getAllByRegion(region, hotels);
+        List<Hotel> hotelsByRegion = getAllTosByRegionName(region, hotels);
         List<Hotel> hotelsByPersonNum = filterHotelsAvailableByPersonNum(hotelsByRegion, personNum);
         List<Hotel> hotelsByApartmentNum = filterHotelsAvailableByApartmentNum(hotelsByPersonNum, apartmentNum);
 

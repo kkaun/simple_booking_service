@@ -70,11 +70,8 @@ public abstract class ManagerObjectAbstractController {
 
     public void updateManagerObjectBooking(ManagerSuperBookingTo managerSuperBookingTo){
         LOG.info("Saving Super Booking {}", managerSuperBookingTo);
-
-
         superBookingService.update(managerSuperBookingTo);
     }
-
 
     public ManagerSuperBookingTo getObjectSuperBooking(int id){
         LOG.info("Saving Super Booking {}", id);

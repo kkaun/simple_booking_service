@@ -29,11 +29,11 @@ public class BookingsAjaxController extends BookingAbstractController {
         super(bookingService, superBookingService, apartmentService, subBookingObjectService);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createOrUpdateBooking(@Valid BookingTo bookingTo,
-                              @RequestParam("sbId") int superBookingId) {
+    @PostMapping
+    @JsonView(View.JsonUI.class)
+    public void createOrUpdateBooking(@Valid BookingTo bookingTo) {
         if (bookingTo.isNew()) {
-            super.createBooking(bookingTo, superBookingId);
+            super.createBooking(bookingTo);
         } else {
             super.updateBooking(bookingTo);
         }

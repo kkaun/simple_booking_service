@@ -63,9 +63,6 @@
             <div class="panel panel-yellow">
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-shopping-cart fa-5x"></i>
-                        </div>
                         <div class="col-xs-12 text-center">
                             <h3>Votes</h3>
                         </div>

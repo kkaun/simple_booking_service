@@ -60,7 +60,7 @@ public abstract class HotelAbstractController {
 
     public List<HotelTo> getAllByRegion(String regionName){
         LOG.info("Getting all hotels by city {}", regionName);
-        return regionName != null ? HotelUtil.getAllByRegionAsTo(regionName, hotelService.getAll())
+        return regionName != null ? HotelUtil.getAllHotelsByRegionName(regionName, hotelService.getAll())
                 : HotelUtil.getAllHotelTos(hotelService.getAll());
     }
 

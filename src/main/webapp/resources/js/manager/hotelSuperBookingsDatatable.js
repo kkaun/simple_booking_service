@@ -58,6 +58,25 @@ function clearSBUserIdManagerFilter() {
 }
 
 
+function deactivateManagerSB(chkbox, id) {
+    var enabled = chkbox.is(":checked");
+    if(enabled){
+        $.ajax({
+            url: ajaxUrl + id,
+            type: 'POST',
+            data: 'active=' + enabled,
+            success: function () {
+                chkbox.closest('tr').toggleClass('disabled');
+                successNoty(enabled ? 'common.enabled' : 'common.disabled');
+            },
+            error: function () {
+                $(chkbox).prop("checked", !enabled);
+            }
+        });
+    }
+}
+
+
 $(function () {
     datatableApi = $('#hotelSuperBookingsDatatable').DataTable(extendsOpts({
         "columns": [
@@ -94,7 +113,7 @@ $(function () {
                 "data": "active",
                 "render": function (data, type, row) {
                     if (type === 'display') {
-                        return '<input type="checkbox" ' + (data ? 'checked' : '') + '/>';
+                        return '<input type="checkbox" ' + (data ? 'checked' : '') + ' onclick="deactivateManagerSB($(this),' + row.id + ');"/>';
                     }
                     return data;
                 }

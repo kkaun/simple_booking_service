@@ -65,7 +65,7 @@ public class BusinessController extends BusinessAbstractController {
 
     @GetMapping(value = "/search")
     public String searchHotelsByRegion(@RequestParam("region") String region, Model model){
-        List<HotelTo> hotelsFound = HotelUtil.getAllByRegionAsTo(region, hotelService.getAll());
+        List<HotelTo> hotelsFound = HotelUtil.getAllHotelsByRegionName(region, hotelService.getAll());
         if(!hotelsFound.isEmpty()) {
             model.addAttribute("hotels", hotelsFound);
             model.addAttribute("region", region);
@@ -75,6 +75,16 @@ public class BusinessController extends BusinessAbstractController {
         ModelUtil.addUniqueFilterParams(model, AptTypeUtil.getUniqueCategories(aptTypeService.getAll()));
         return "hotels";
     }
+
+
+    @GetMapping(value = "/get_by_city")
+    public String searchByCity(@RequestParam("city") String cityId, Model model) {
+        model.addAttribute("hotels", HotelUtil.getAllHotelTos(hotelService.getAllByCity(Integer.parseInt(cityId))));
+        model.addAttribute("city", cityService.get(Integer.parseInt(cityId)));
+        ModelUtil.addUniqueFilterParams(model, AptTypeUtil.getUniqueCategories(aptTypeService.getAll()));
+        return "hotels";
+    }
+
 
     @GetMapping(value = "/parametric_search")
     public String searchHotelPlacementsByParams(@RequestParam("location") String location,

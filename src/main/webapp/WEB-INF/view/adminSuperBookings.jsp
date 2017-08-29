@@ -172,7 +172,7 @@
                                 <th><spring:message code="super_bookings.hotelId"/></th>
                                 <th><spring:message code="super_bookings.hotelName"/></th>
                                 <th><spring:message code="super_bookings.userId"/></th>
-                                <th><spring:message code="bookings.active"/></th>
+                                <th></th>
                             </tr>
                             </thead>
                         </table>

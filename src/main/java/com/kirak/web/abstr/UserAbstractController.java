@@ -100,7 +100,7 @@ public abstract class UserAbstractController {
     }
 
     public void enable(int id, boolean enabled) {
-        log.info((enabled ? "enable " : "disable ") + id);
+        log.info((enabled ? "enable " : "deactivate ") + id);
         checkModificationAllowed(id);
         userService.enable(id, enabled);
     }

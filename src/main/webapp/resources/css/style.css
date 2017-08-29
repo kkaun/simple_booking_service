@@ -10,6 +10,11 @@
 }
 
 
+.disabled {
+    opacity: 0.3;
+}
+
+
 
 .filter_search {
     padding-right: 3px;

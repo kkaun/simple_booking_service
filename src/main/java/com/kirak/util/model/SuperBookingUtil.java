@@ -3,9 +3,7 @@ package com.kirak.util.model;
 import com.kirak.model.Booking;
 import com.kirak.model.SuperBooking;
 import com.kirak.to.ManagerObject;
-import com.kirak.to.booking.AdminSuperBookingTo;
-import com.kirak.to.booking.ManagerSuperBookingTo;
-import com.kirak.to.booking.UserSuperBookingTo;
+import com.kirak.to.booking.*;
 import com.kirak.web.session.AuthorizedUser;
 
 import java.time.LocalDate;
@@ -110,23 +108,6 @@ public class SuperBookingUtil {
                 .map(superBooking -> asUserSuperBookingTo(superBooking,
                         getSuperBookingInDate(superBooking), getSuperBookingOutDate(superBooking)))
                 .collect(Collectors.toList());
-    }
-
-
-
-    public static SuperBooking checkSuperBookingInOutDates(SuperBooking superBooking){
-        //Stub
-        return null;
-    }
-
-    public static SuperBooking updateFromUserSuperBookingTo(UserSuperBookingTo userSuperBookingTo, SuperBooking superBooking){
-        //Stub
-        return null;
-    }
-
-    public static ManagerSuperBookingTo AdminToManagerSuperBookingTo(AdminSuperBookingTo adminSuperBookingTo){
-        //Stub
-        return null;
     }
 
 }

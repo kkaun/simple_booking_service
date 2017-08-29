@@ -43,6 +43,13 @@ public class SuperBookingsAjaxController extends BookingAbstractController {
         return super.getManagerSuperBookingForAdmin(id);
     }
 
+
+    @Override
+    @PostMapping(value = "/{id}")
+    public void deactivate(@PathVariable("id") int id, @RequestParam("active") boolean active) {
+        super.deactivate(id, active);
+    }
+
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @JsonView(View.JsonUI.class)

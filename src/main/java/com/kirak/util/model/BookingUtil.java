@@ -92,7 +92,6 @@ public class BookingUtil {
     }
 
 
-
     public static List<BookingTo> getBookingsFromSuperBooking(int editorId, List<SubBookingObject> subBookingObjects){
 
         Comparator<SubBookingObject> comparator = (SubBookingObject o1, SubBookingObject o2)->
@@ -103,6 +102,18 @@ public class BookingUtil {
                 .sorted(comparator)
                 .flatMap(subBookingObject -> subBookingObject.getBookings().stream())
                 .collect(Collectors.toList());
+    }
+
+
+    public static SubBookingObject getLastSubBooking(int editorId, List<SubBookingObject> subBookingObjects){
+
+        Comparator<SubBookingObject> comparator = (SubBookingObject o1, SubBookingObject o2)->
+                Integer.compare(o2.getId(), o1.getId());
+
+        return subBookingObjects.stream()
+                .filter(subBookingObject -> Objects.equals(subBookingObject.getEditorId(), editorId))
+                .sorted(comparator)
+                .findFirst().orElse(null);
     }
 
 

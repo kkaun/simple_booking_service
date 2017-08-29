@@ -32,6 +32,8 @@ public interface SuperBookingService {
 
     SuperBooking get(Integer id) throws NotFoundException;
 
+    void deactivate(int id, boolean enabled);
+
     List<SuperBooking> getAll();
 
     List<SuperBooking> getAllByUserId(int userId);
