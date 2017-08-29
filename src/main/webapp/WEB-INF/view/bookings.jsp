@@ -34,7 +34,33 @@
 
         <div class="col-md-10">
             <div class="row" style="height: 70px">
-                <div class="col-md-12">
+                <div class="col-md-4">
+                    <sec:authorize access="isAuthenticated()">
+                        <sec:authorize access="hasAuthority('ROLE_ADMIN')">
+                            <a id="backBtn" class="btn btn-lg btn-primary pull-left" href="admin/show_super_bookings"
+                               style="margin: 0 auto;">
+                                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&nbsp;&nbsp;Submit/Return
+                            </a>
+                        </sec:authorize>
+                    </sec:authorize>
+                    <sec:authorize access="isAuthenticated()">
+                        <sec:authorize access="hasAuthority('ROLE_MANAGER')">
+                            <a id="backBtn" class="btn btn-lg btn-primary pull-left" href="hotel_manager/object/show_super_bookings"
+                               style="margin: 0 auto;">
+                                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&nbsp;&nbsp;Submit/Return
+                            </a>
+                        </sec:authorize>
+                    </sec:authorize>
+                    <sec:authorize access="isAuthenticated()">
+                        <sec:authorize access="hasAuthority('ROLE_USER')">
+                            <a id="backBtn" class="btn btn-lg btn-primary pull-left" href="user/show_bookings"
+                               style="margin: 0 auto;">
+                                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&nbsp;&nbsp;Submit/Return
+                            </a>
+                        </sec:authorize>
+                    </sec:authorize>
+                </div>
+                <div class="col-md-8">
                     <div class="panel panel-default">
                         <div class="panel-body" style="padding: 10px;">
                             <h4 class="pull-left"><strong>Chosen Booking Info:</strong></h4>
@@ -68,7 +94,6 @@
 </div>
 
 
-
 <div class="modal fade" id="bookingEditRow">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -99,8 +124,10 @@
                     </div>
                     <div class="form-group">
                         <c:if test="${not empty objectApartments && fn:length(objectApartments) >= 2}">
-                            <label for="bookingApt" class="control-label col-xs-3"><spring:message
-                                    code="apt_types.personNum"/></label>
+                            <label for="bookingApt" class="control-label col-xs-3">
+                                <spring:message code="apt_types.personNum"/>,
+                                <spring:message code="apt_types.category"/>,
+                                <spring:message code="apt_types.bedsArrangement"/></label>
                             <div class="col-xs-9">
                                 <select class="form-control" name="stringAptType" id="bookingApt">
                                     <c:forEach items="${objectApartments}" var="objectApartment">
@@ -111,10 +138,12 @@
                             </div>
                         </c:if>
                         <c:if test="${empty objectApartments || fn:length(objectApartments) < 2}">
-                            <label for="existingBookingApt" class="control-label col-xs-3"><spring:message
-                                    code="bookings.apartment"/></label>
+                            <label for="existingBookingApt" class="control-label col-xs-3">
+                                <spring:message code="apt_types.personNum"/>,
+                                <spring:message code="apt_types.category"/>,
+                                <spring:message code="apt_types.bedsArrangement"/></label>
                             <div class="col-xs-9">
-                                <input class="form-control out_date" id="existingBookingApt" name="stringAptType"
+                                <input class="form-control" id="existingBookingApt" name="stringAptType"
                                        placeholder="<spring:message code="bookings.apartment"/>" readonly>
                             </div>
                         </c:if>

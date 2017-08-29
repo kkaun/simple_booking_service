@@ -48,7 +48,7 @@
                                         <th><spring:message code="super_bookings.hotelId"/></th>
                                         <th><spring:message code="super_bookings.hotelName"/></th>
                                         <th><spring:message code="super_bookings.apartmentsNum"/></th>
-                                        <th></th>
+                                        <th><spring:message code="bookings.active"/></th>
                                     </tr>
                                     </thead>
                                 </table>

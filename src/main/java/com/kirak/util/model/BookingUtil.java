@@ -93,7 +93,7 @@ public class BookingUtil {
 
 
 
-    public static List<BookingTo> getBookingsFromSub(int editorId, List<SubBookingObject> subBookingObjects){
+    public static List<BookingTo> getBookingsFromSuperBooking(int editorId, List<SubBookingObject> subBookingObjects){
 
         Comparator<SubBookingObject> comparator = (SubBookingObject o1, SubBookingObject o2)->
                 Integer.compare(o2.getId(), o1.getId());

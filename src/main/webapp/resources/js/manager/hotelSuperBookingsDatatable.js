@@ -91,9 +91,13 @@ $(function () {
                 "data": "userPhone"
             },
             {
-                "render": renderSuperBookingEditBtn,
-                "defaultContent": "",
-                "orderable": false
+                "data": "active",
+                "render": function (data, type, row) {
+                    if (type === 'display') {
+                        return '<input type="checkbox" ' + (data ? 'checked' : '') + '/>';
+                    }
+                    return data;
+                }
             }
         ],
         "order": [

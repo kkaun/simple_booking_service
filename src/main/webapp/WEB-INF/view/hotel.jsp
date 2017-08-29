@@ -163,7 +163,8 @@
                                                         <br></td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="text-center">RUB <strong><c:out value="${option.price}"/></strong> /
+                                                        <td class="text-center"><i class="fa fa-btc"></i>
+                                                            <strong><c:out value="${option.price}"/></strong> /
                                                             night
                                                         </td>
                                                     </tr>
@@ -187,7 +188,8 @@
                                                 <tr>
                                                     <td><h4>Total Price:</h4></td>
                                                     <td><h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        RUB <strong><c:out value="${placementSum}"/>0</strong></h4></td>
+                                                        <i class="fa fa-btc"></i>
+                                                        <strong><c:out value="${placementSum}"/>0</strong></h4></td>
                                                 </tr>
                                                 <tr>
                                                     <td><h4>Total No. of Rooms:</h4></td>

@@ -148,7 +148,7 @@
                                 <th><spring:message code="user.name"/></th>
                                 <th><spring:message code="user.email"/></th>
                                 <th><spring:message code="users.phone"/></th>
-                                <th></th>
+                                <th><spring:message code="bookings.active"/></th>
                             </tr>
                             </thead>
                         </table>

@@ -1,7 +1,5 @@
 package com.kirak.web.abstr;
 
-import com.kirak.model.Apartment;
-import com.kirak.model.Booking;
 import com.kirak.model.SuperBooking;
 import com.kirak.service.ApartmentService;
 import com.kirak.service.BookingService;
@@ -17,10 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.time.LocalDate;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 import static com.kirak.util.model.SuperBookingUtil.*;
 
@@ -140,7 +135,7 @@ public abstract class BookingAbstractController {
 
     public List<BookingTo> getAllBookings(){
         LOG.info("Getting all bookings");
-        return BookingUtil.getBookingsFromSub(AuthorizedUser.id(), subBookingObjectService.getSubBookingObjects());
+        return BookingUtil.getBookingsFromSuperBooking(AuthorizedUser.id(), subBookingObjectService.getSubBookingObjects());
     }
 
 

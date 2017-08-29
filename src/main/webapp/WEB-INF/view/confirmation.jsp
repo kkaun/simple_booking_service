@@ -65,7 +65,8 @@
                                                         </td>
                                                         <td>x<strong>${fn:length(apartment.value)}</strong>
                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                            RUB <strong>${apartment.value[0].price}</strong> / night
+                                                            <i class="fa fa-btc"></i>
+                                                            <strong>${apartment.value[0].price}</strong> / night
                                                         </td>
                                                     </tr>
                                                 </c:forEach>

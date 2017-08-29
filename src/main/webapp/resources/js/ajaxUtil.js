@@ -613,87 +613,8 @@ function deleteUserVoteRow(id) {
 
 
 
-
-// BOOKINGS            -----------------------------------------------------------------------------------------------------
-
-
-function updateSuperBookingRow(id) {
-    $('#superBookingModalTitle').html(i18n["editTitle"]);
-    $.get(ajaxUrl + id, function (data) {
-        $.each(data, function (key, value) {
-            form.find("input[name='" + key + "']").val(value);
-        });
-        $('#superBookingEditRow').modal();
-    });
-}
-
-
-function renderSuperBookingEditBtn(data, type, row) {
-    if (type === 'display') {
-        return '<a onclick="updateSuperBookingRow(' + row.id + ');">' +
-            '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>';
-    }
-}
-
-
-function saveSuperBooking() {
-    if ($('#superBookingsDatatable').length > 0
-        || $('#hotelSuperBookingsDatatable').length > 0
-        || $('#userSuperBookingsDatatable').length > 0) {
-
-        $.ajax({
-            type: "POST",
-            url: ajaxUrl,
-            data: form.serialize(),
-            success: function () {
-                $('#superBookingEditRow').modal('hide');
-
-                if ($('#superBookingsDatatable').length > 0) {
-                    updateAdminSBTableByDatesAdded();
-                    updateAdminSBTableByInDate();
-                    updateAdminSBTableByOutDate();
-                    updateAdminSBTableByUserId();
-                    updateAdminSBTableByHotelId();
-                }
-
-                if ($('#hotelSuperBookingsDatatable').length > 0) {
-                    updateManagerSBTableByDatesAdded();
-                    updateManagerSBTableByInDate();
-                    updateManagerSBTableByOutDate();
-                    updateManagerSBTableByUserId();
-                }
-
-                if ($('#userSuperBookingsDatatable').length > 0) {
-                    updateUserSuperBookingsTable();
-                }
-
-                successNoty('common.saved');
-            }
-        });
-    }
-}
-
 /* ----------------------------------------------- Booking DT functions --------------------------------------------- */
 
-
-
-function bookingsExtendsOpts(opts) {
-    $.extend(true, opts,
-        {
-            "ajax": {
-                "url": ajaxUrl +  + '&sbId=' + getSbId(),
-                "dataSrc": ""
-            },
-            "paging": true,
-            "info": true,
-            "language": {
-                "search": i18n["common.search"]
-            },
-            "initComplete": makeEditable
-        }
-    );
-    return opts;
-}
 
 
 function updateBookingRow(id) {
@@ -725,26 +646,3 @@ function saveBooking() {
         }
     });
 }
-
-
-// $(function () {
-//     $("#viewBookingsBtn").click(function () {
-//         var table = $('<table></table>').addClass('bookingsDatatable');
-//         var thead = $('<thead></thead>');
-//         var row = $('<tr></tr>');
-//
-//         row.append('<th><spring:message code="common.id"/></th>');
-//         row.append('<th><spring:message code="common.inDate"/></th>');
-//         row.append('<th><spring:message code="common.outDate"/></th>');
-//         row.append('<th><spring:message code="common.sum"/></th>');
-//         row.append('<th><spring:message code="apt_types.personNum"/>, ' +
-//             '<spring:message code="apt_types.category"/>, ' +
-//             '<spring:message code="apt_types.bedsArrangement"/></th>');
-//         row.append('<th></th>');
-//
-//         thead.append(row);
-//         table.append(thead);
-//
-//         $('.bookingsTableHolder').append(table);
-//     });
-// });

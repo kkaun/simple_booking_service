@@ -9,6 +9,24 @@ function updateUserSuperBookingsTable() {
     $.get(ajaxUrl, updateTableByData);
 }
 
+
+function enableUserSB(chkbox, id) {
+    var enabled = chkbox.is(":checked");
+    $.ajax({
+        url: ajaxUrl + id,
+        type: 'POST',
+        data: 'active=' + enabled,
+        success: function () {
+            chkbox.closest('tr').toggleClass('disabled');
+            successNoty(enabled ? 'common.enabled' : 'common.disabled');
+        },
+        error: function () {
+            $(chkbox).prop("checked", !enabled);
+        }
+    });
+}
+
+
 $(function () {
     datatableApi = $('#userSuperBookingsDatatable').DataTable(extendsOpts({
         "columns": [
@@ -42,9 +60,13 @@ $(function () {
                 "data": "apartmentsNum"
             },
             {
-                "render": renderSuperBookingEditBtn,
-                "defaultContent": "",
-                "orderable": false
+                "data": "active",
+                "render": function (data, type, row) {
+                    if (type === 'display') {
+                        return '<input type="checkbox" ' + (data ? 'checked' : '') + ' onclick="enableAdminSB($(this),' + row.id + ');"/>';
+                    }
+                    return data;
+                }
             }
         ],
         "order": [

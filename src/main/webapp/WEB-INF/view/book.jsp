@@ -252,8 +252,8 @@
                                                                 <br></td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="text-center">RUB <strong><c:out
-                                                                    value="${option.price}"/></strong> /
+                                                            <td class="text-center"><i class="fa fa-btc"></i>
+                                                                <strong><c:out value="${option.price}"/></strong> /
                                                                 night
                                                             </td>
                                                         </tr>

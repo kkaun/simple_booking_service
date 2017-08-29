@@ -2,6 +2,7 @@ package com.kirak.web.rest.user;
 
 import com.kirak.service.ApartmentService;
 import com.kirak.service.BookingService;
+import com.kirak.service.SubBookingObjectService;
 import com.kirak.service.SuperBookingService;
 import com.kirak.to.booking.UserSuperBookingTo;
 import com.kirak.web.abstr.BookingAbstractController;
@@ -21,9 +22,9 @@ import java.util.List;
 @RequestMapping(value = "/user/super_bookings")
 public class UserSuperBookingsAjaxController extends BookingAbstractController {
 
-    protected UserSuperBookingsAjaxController(BookingService bookingService, SuperBookingService superBookingService,
-                                              ApartmentService apartmentService) {
-        super(bookingService, superBookingService, apartmentService);
+    public UserSuperBookingsAjaxController(BookingService bookingService, SuperBookingService superBookingService,
+                                           ApartmentService apartmentService, SubBookingObjectService subBookingObjectService) {
+        super(bookingService, superBookingService, apartmentService, subBookingObjectService);
     }
 
     @Override
