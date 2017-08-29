@@ -19,17 +19,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class AdminController {
 
-    @Autowired
-    private AptTypeService aptTypeService;
+    private final AptTypeService aptTypeService;
+
+    private final CountryService countryService;
+
+    private final CityService cityService;
+
+    private final ApartmentService apartmentService;
 
     @Autowired
-    private CountryService countryService;
-
-    @Autowired
-    private CityService cityService;
-
-    @Autowired
-    private ApartmentService apartmentService;
+    public AdminController(AptTypeService aptTypeService, CountryService countryService,
+                           CityService cityService, ApartmentService apartmentService) {
+        this.aptTypeService = aptTypeService;
+        this.countryService = countryService;
+        this.cityService = cityService;
+        this.apartmentService = apartmentService;
+    }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/admin_panel")

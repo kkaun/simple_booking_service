@@ -617,11 +617,7 @@ function deleteUserVoteRow(id) {
 // BOOKINGS            -----------------------------------------------------------------------------------------------------
 
 
-var superBookingId;
-
-
 function updateSuperBookingRow(id) {
-    superBookingId = id;
     $('#superBookingModalTitle').html(i18n["editTitle"]);
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
@@ -631,9 +627,6 @@ function updateSuperBookingRow(id) {
     });
 }
 
-function getSbId() {
-    return superBookingId;
-}
 
 function renderSuperBookingEditBtn(data, type, row) {
     if (type === 'display') {
@@ -683,6 +676,26 @@ function saveSuperBooking() {
 /* ----------------------------------------------- Booking DT functions --------------------------------------------- */
 
 
+
+function bookingsExtendsOpts(opts) {
+    $.extend(true, opts,
+        {
+            "ajax": {
+                "url": ajaxUrl +  + '&sbId=' + getSbId(),
+                "dataSrc": ""
+            },
+            "paging": true,
+            "info": true,
+            "language": {
+                "search": i18n["common.search"]
+            },
+            "initComplete": makeEditable
+        }
+    );
+    return opts;
+}
+
+
 function updateBookingRow(id) {
     $('#bookingModalTitle').html(i18n["editTitle"]);
     $.get(ajaxUrl + id, function (data) {
@@ -712,3 +725,26 @@ function saveBooking() {
         }
     });
 }
+
+
+// $(function () {
+//     $("#viewBookingsBtn").click(function () {
+//         var table = $('<table></table>').addClass('bookingsDatatable');
+//         var thead = $('<thead></thead>');
+//         var row = $('<tr></tr>');
+//
+//         row.append('<th><spring:message code="common.id"/></th>');
+//         row.append('<th><spring:message code="common.inDate"/></th>');
+//         row.append('<th><spring:message code="common.outDate"/></th>');
+//         row.append('<th><spring:message code="common.sum"/></th>');
+//         row.append('<th><spring:message code="apt_types.personNum"/>, ' +
+//             '<spring:message code="apt_types.category"/>, ' +
+//             '<spring:message code="apt_types.bedsArrangement"/></th>');
+//         row.append('<th></th>');
+//
+//         thead.append(row);
+//         table.append(thead);
+//
+//         $('.bookingsTableHolder').append(table);
+//     });
+// });

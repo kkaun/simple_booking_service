@@ -16,13 +16,15 @@ public class ApartmentUtil {
 
     // --------------------------- TO Methods ----------------------- //
 
+    public static String getStringAptTypeFromApartment(Apartment apartment){
+        return String.valueOf(apartment.getType().getPersonNum()) + " - " + apartment.getType().getCategory() +
+                " - " + apartment.getType().getBedsArrangement();
+    }
+
     public static ApartmentTo asApartmentTo(Apartment apartment){
 
-        String stringAptType = String.valueOf(apartment.getType().getPersonNum()) + " - " + apartment.getType().getCategory() +
-                " - " + apartment.getType().getBedsArrangement();
-
-        return new ApartmentTo(apartment.getId(), apartment.getHotel().getId(), apartment.getPrice(), stringAptType,
-                apartment.getImgPath());
+        return new ApartmentTo(apartment.getId(), apartment.getHotel().getId(), apartment.getPrice(),
+                getStringAptTypeFromApartment(apartment), apartment.getImgPath());
     }
 
     public static List<ApartmentTo> getApartmentTos(List<Apartment> apartments){
@@ -48,6 +50,13 @@ public class ApartmentUtil {
         if(apartmentTo.getPrice() != null) apartment.setPrice(apartmentTo.getPrice());
 
         return apartment;
+    }
+
+    public static List<ApartmentTo> getApartmentTosFromSuperBooking(SuperBooking superBooking){
+
+        return getApartmentTos(superBooking.getBookings().stream()
+                .map(Booking::getApartment)
+                .collect(Collectors.toList()));
     }
 
 //    public static List<ApartmentTo> getApartmentTosForHotelManager(List<Apartment> apartments, int hotelManagerId){
@@ -124,7 +133,6 @@ public class ApartmentUtil {
     }
 
 
-    //TODO:Write greedy algorithm for aggregating groups of available apartments of same type!
     public static Map<AptType, List<Apartment>> aggregateDifferentAvailableApartmentsWithCount(List<Apartment> hotelApartments,
                                                                                                LocalDate inDate, LocalDate outDate,
                                                                                                Short personNum, Integer apartmentNum){
@@ -177,8 +185,8 @@ public class ApartmentUtil {
         final int[] daysOccupied = {0};//Transformed to final effectively array
 
         List<Apartment> similarApartments = requestedApartment.getHotel().getApartments().stream()
-                .filter(apartment -> Objects.equals(apartment.getType().getPersonNum(), requestedApartment.getType().getPersonNum()) &&
-                        Objects.equals(apartment.getType().getCategory(), requestedApartment.getType().getCategory()))
+                .filter(apartment -> Objects.equals(apartment.getType().getPersonNum(), requestedApartment.getType().getPersonNum())
+                        && Objects.equals(apartment.getType().getCategory(), requestedApartment.getType().getCategory()))
                 .collect(Collectors.toList());
 
         List<Booking> apartmentBookings = similarApartments.stream()

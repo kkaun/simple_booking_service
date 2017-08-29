@@ -5,6 +5,7 @@ import com.kirak.model.Booking;
 import com.kirak.model.SuperBooking;
 import com.kirak.service.ApartmentService;
 import com.kirak.service.BookingService;
+import com.kirak.service.SubBookingObjectService;
 import com.kirak.service.SuperBookingService;
 import com.kirak.to.booking.*;
 import com.kirak.util.model.BookingUtil;
@@ -13,8 +14,10 @@ import com.kirak.web.session.AuthorizedUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -34,12 +37,16 @@ public abstract class BookingAbstractController {
 
     private final ApartmentService apartmentService;
 
+    private final SubBookingObjectService subBookingObjectService;
+
     @Autowired
     public BookingAbstractController(BookingService bookingService, SuperBookingService superBookingService,
-                                        ApartmentService apartmentService) {
+                                     ApartmentService apartmentService,
+                                     @Qualifier("subBookingObjectService") SubBookingObjectService subBookingObjectService) {
         this.bookingService = bookingService;
         this.superBookingService = superBookingService;
         this.apartmentService = apartmentService;
+        this.subBookingObjectService = subBookingObjectService;
     }
 
     //-------------------------------------- General SuperBooking methods --------------------------------//
@@ -131,9 +138,9 @@ public abstract class BookingAbstractController {
         return BookingUtil.asBookingTo(bookingService.get(id));
     }
 
-    public List<BookingTo> getAllBookingsBySBId(int superBookingId){
+    public List<BookingTo> getAllBookings(){
         LOG.info("Getting all bookings");
-        return BookingUtil.generateBookingTos(superBookingService.get(superBookingId));
+        return BookingUtil.getBookingsFromSub(AuthorizedUser.id(), subBookingObjectService.getSubBookingObjects());
     }
 
 

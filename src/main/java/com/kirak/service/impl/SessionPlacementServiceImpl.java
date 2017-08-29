@@ -13,13 +13,16 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Created by Kir on 11.08.2017.
  */
-@Component("sessionPlacementsService")
+@Component("sessionPlacementService")
 @Service
-public class SessionPlacementsServiceImpl implements SessionPlacementsService {
+public class SessionPlacementServiceImpl implements SessionPlacementsService {
+
+    private final SessionPlacements sessionPlacements;
 
     @Autowired
-    @Qualifier("sessionPlacements")
-    private SessionPlacements sessionPlacements;
+    public SessionPlacementServiceImpl(@Qualifier("sessionPlacements") SessionPlacements sessionPlacements) {
+        this.sessionPlacements = sessionPlacements;
+    }
 
     @Override
     public ConcurrentHashMap<Integer, Placement> getPlacementMap() {

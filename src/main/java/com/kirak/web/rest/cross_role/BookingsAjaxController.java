@@ -3,6 +3,7 @@ package com.kirak.web.rest.cross_role;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.kirak.service.ApartmentService;
 import com.kirak.service.BookingService;
+import com.kirak.service.SubBookingObjectService;
 import com.kirak.service.SuperBookingService;
 import com.kirak.to.booking.BookingTo;
 import com.kirak.web.View;
@@ -23,8 +24,9 @@ import java.util.List;
 public class BookingsAjaxController extends BookingAbstractController {
 
     @Autowired
-    public BookingsAjaxController(BookingService bookingService, SuperBookingService superBookingService, ApartmentService apartmentService) {
-        super(bookingService, superBookingService, apartmentService);
+    public BookingsAjaxController(BookingService bookingService, SuperBookingService superBookingService,
+                                  ApartmentService apartmentService, SubBookingObjectService subBookingObjectService) {
+        super(bookingService, superBookingService, apartmentService, subBookingObjectService);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -46,8 +48,8 @@ public class BookingsAjaxController extends BookingAbstractController {
 
     @Override
     @JsonView(View.JsonUI.class)
-    @GetMapping(value = "/{sbId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<BookingTo> getAllBookingsBySBId(@PathVariable("sbId") int superBookingId) {
-        return super.getAllBookingsBySBId(superBookingId);
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<BookingTo> getAllBookings() {
+        return super.getAllBookings();
     }
 }

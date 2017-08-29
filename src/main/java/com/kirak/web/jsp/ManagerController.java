@@ -27,24 +27,29 @@ import java.util.stream.Collectors;
 @Controller
 public class ManagerController {
 
-    @Autowired
-    private AptTypeService aptTypeService;
+    private final AptTypeService aptTypeService;
+
+    private final CountryService countryService;
+
+    private final CityService cityService;
+
+    private final HotelService hotelService;
+
+    private final BookingService bookingService;
+
+    private final ManagerObjectService managerObjectService;
 
     @Autowired
-    private CountryService countryService;
-
-    @Autowired
-    private CityService cityService;
-
-    @Autowired
-    private HotelService hotelService;
-
-    @Autowired
-    private BookingService bookingService;
-
-    @Autowired
-    @Qualifier("managerObjectService")
-    private ManagerObjectService managerObjectService;
+    public ManagerController(AptTypeService aptTypeService, CountryService countryService, CityService cityService,
+                             HotelService hotelService, BookingService bookingService,
+                             @Qualifier("managerObjectService") ManagerObjectService managerObjectService) {
+        this.aptTypeService = aptTypeService;
+        this.countryService = countryService;
+        this.cityService = cityService;
+        this.hotelService = hotelService;
+        this.bookingService = bookingService;
+        this.managerObjectService = managerObjectService;
+    }
 
 
     @PreAuthorize("hasRole('ROLE_MANAGER')")

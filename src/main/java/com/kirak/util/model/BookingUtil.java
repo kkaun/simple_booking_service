@@ -3,9 +3,11 @@ package com.kirak.util.model;
 import com.kirak.model.Apartment;
 import com.kirak.model.Booking;
 import com.kirak.model.SuperBooking;
+import com.kirak.to.ManagerObject;
 import com.kirak.to.booking.BookingTo;
 import com.kirak.to.booking.ChartTo;
 import com.kirak.to.booking.ChartValue;
+import com.kirak.to.booking.SubBookingObject;
 import org.apache.commons.lang3.StringUtils;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -22,10 +24,10 @@ public class BookingUtil {
 
     public static BookingTo asBookingTo(Booking booking){
 
-        return new BookingTo(booking.getId(), booking.getApartment().getId(), booking.getApartment().getType().getCategory(),
-                booking.getApartment().getType().getBedsArrangement(), booking.getApartment().getType().getPersonNum(),
-                booking.getApartment().getPrice(), booking.getInDate(), booking.getOutDate(),
-                calculateBookingSum(booking, booking.getInDate(), booking.getOutDate()));
+        String stringAptType = ApartmentUtil.getStringAptTypeFromApartment(booking.getApartment());
+
+        return new BookingTo(booking.getId(), booking.getApartment().getId(), stringAptType, booking.getApartment().getPrice(),
+                booking.getInDate(), booking.getOutDate(), calculateBookingSum(booking, booking.getInDate(), booking.getOutDate()));
     }
 
     public static Map<Booking, Boolean> createFromBookingToWithResult(BookingTo bookingTo, int superBookingId,
@@ -36,12 +38,14 @@ public class BookingUtil {
         Apartment expectedApartment = apartments.stream().filter(apartment -> Objects.equals(bookingTo.getAptId(), apartment.getId()))
                 .findFirst().orElse(null);
 
-        Booking creatableBooking = new Booking(bookingTo.getInDate(), bookingTo.getOutDate(), calculateBookingSumForApt(expectedApartment,
-                bookingTo.getInDate(), bookingTo.getOutDate()), bookingTo.getAptPersonNum(), expectedSuperBooking, expectedApartment,
-                expectedApartment.getHotel());
+        Short aptPersonNum = expectedApartment.getType().getPersonNum();
 
-        if(expectedSuperBooking != null && ApartmentUtil.isSingleApartmentAvailable(expectedApartment, bookingTo.getInDate(),
-                bookingTo.getOutDate())) {
+        Booking creatableBooking = new Booking(bookingTo.getAptInDate(), bookingTo.getAptOutDate(),
+                calculateBookingSumForApt(expectedApartment, bookingTo.getAptInDate(), bookingTo.getAptOutDate()),
+                aptPersonNum, expectedSuperBooking, expectedApartment, expectedApartment.getHotel());
+
+        if(expectedSuperBooking != null && ApartmentUtil.isSingleApartmentAvailable(expectedApartment, bookingTo.getAptInDate(),
+                bookingTo.getAptOutDate())) {
             return Collections.singletonMap(creatableBooking, true);
         }
         return Collections.singletonMap(creatableBooking, false);
@@ -49,8 +53,8 @@ public class BookingUtil {
 
     public static Map<Booking, Boolean> updateFromBookingToWithResult(BookingTo bookingTo, Booking booking,
                                                                       List<Apartment> apartments){
-        LocalDate requestedInDate = bookingTo.getInDate();
-        LocalDate requestedOutDate = bookingTo.getOutDate();
+        LocalDate requestedInDate = bookingTo.getAptInDate();
+        LocalDate requestedOutDate = bookingTo.getAptOutDate();
 
         if(!Objects.equals(booking.getApartment().getId(), bookingTo.getAptId())){
             Apartment requestedApartment = apartments.stream().filter(apartment ->
@@ -59,11 +63,13 @@ public class BookingUtil {
             if(requestedApartment != null && ApartmentUtil.isSingleApartmentAvailable(requestedApartment,
                     requestedInDate, requestedOutDate)) {
 
+                Short aptPersonNum = requestedApartment.getType().getPersonNum();
+
                 booking.setApartment(requestedApartment);
                 booking.setInDate(requestedInDate);
                 booking.setOutDate(requestedOutDate);
                 booking.setSum(calculateBookingSum(booking, requestedInDate, requestedOutDate));
-                booking.setPersonNum(bookingTo.getAptPersonNum());
+                booking.setPersonNum(aptPersonNum);
 
                 return Collections.singletonMap(booking, true);
             }
@@ -85,6 +91,19 @@ public class BookingUtil {
         return apartment.getPrice() * DAYS.between(startDate, endDate);
     }
 
+
+
+    public static List<BookingTo> getBookingsFromSub(int editorId, List<SubBookingObject> subBookingObjects){
+
+        Comparator<SubBookingObject> comparator = (SubBookingObject o1, SubBookingObject o2)->
+                Integer.compare(o2.getId(), o1.getId());
+
+        return subBookingObjects.stream()
+                .filter(subBookingObject -> Objects.equals(subBookingObject.getEditorId(), editorId))
+                .sorted(comparator)
+                .flatMap(subBookingObject -> subBookingObject.getBookings().stream())
+                .collect(Collectors.toList());
+    }
 
 
     // ------------------------------- Chart TO methods ----------------------------------- //

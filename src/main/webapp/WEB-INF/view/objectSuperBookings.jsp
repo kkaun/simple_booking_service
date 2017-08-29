@@ -2,12 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <html>
 <jsp:include page="fragments/head_tags/restHeadTag.jsp"/>
 <body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/hotelSuperBookingsDatatable.js" defer></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/cross_role/bookingsDatatable.js" defer></script>
 <jsp:include page="fragments/header.jsp"/>
 
 <div class="container" style="margin-top: 20px; min-height: 580px">
@@ -160,7 +160,6 @@
     </div>
 </div>
 
-<jsp:include page="fragments/superBookingEditModal.jsp"/>
 
 </body>
 <jsp:include page="fragments/i18nUtil.jsp"/>

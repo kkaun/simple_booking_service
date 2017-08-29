@@ -21,30 +21,36 @@ import java.time.LocalDateTime;
 public class BusinessAbstractController {
 
 
-    @Autowired
-    private HotelService hotelService;
+    private final HotelService hotelService;
+
+    private final CityService cityService;
+
+    private final AptTypeService aptTypeService;
+
+    private final UserService userService;
+
+    private final ApartmentService apartmentService;
+
+    private final BookingService bookingService;
+
+    private final SuperBookingService superBookingService;
+
+    private final SessionPlacementsService sessionPlacementsService;
 
     @Autowired
-    private CityService cityService;
-
-    @Autowired
-    private AptTypeService aptTypeService;
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private ApartmentService apartmentService;
-
-    @Autowired
-    private BookingService bookingService;
-
-    @Autowired
-    private SuperBookingService superBookingService;
-
-    @Autowired
-    @Qualifier("sessionPlacementsService")
-    private SessionPlacementsService sessionPlacementsService;
+    public BusinessAbstractController(HotelService hotelService, CityService cityService, AptTypeService aptTypeService,
+                                      UserService userService, ApartmentService apartmentService, BookingService bookingService,
+                                      SuperBookingService superBookingService,
+                                      @Qualifier("sessionPlacementService") SessionPlacementsService sessionPlacementsService) {
+        this.hotelService = hotelService;
+        this.cityService = cityService;
+        this.aptTypeService = aptTypeService;
+        this.userService = userService;
+        this.apartmentService = apartmentService;
+        this.bookingService = bookingService;
+        this.superBookingService = superBookingService;
+        this.sessionPlacementsService = sessionPlacementsService;
+    }
 
     public void accomplishBooking(Model model, User user, String sum, String personNum, String hotelId, String placementId,
                                   String apartmentNum, String inDate, String outDate){

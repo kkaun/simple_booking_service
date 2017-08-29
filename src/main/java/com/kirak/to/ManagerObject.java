@@ -50,10 +50,6 @@ public class ManagerObject implements Serializable {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public List<ApartmentTo> getObjectApartmentTos() {
         return objectApartmentTos;
     }

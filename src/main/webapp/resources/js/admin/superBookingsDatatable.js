@@ -73,7 +73,15 @@ $(function () {
     datatableApi = $('#superBookingsDatatable').DataTable(extendsOpts({
         "columns": [
             {
-                "data": "id"
+                "data": "id",
+                "render": function(data, type, row, meta){
+                    if(type === 'display'){
+                        return '<a href="/edit_super_booking?id=' + data + '">'
+                            + '<span class="glyphicon glyphicon-share" aria-hidden="true"></span>' +
+                            '&nbsp;&nbsp;&nbsp;' + data + '</a>';
+                    }
+                    return data;
+                }
             },
             {
                 "data": "dateAdded"

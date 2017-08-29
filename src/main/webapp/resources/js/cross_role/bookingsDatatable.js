@@ -6,7 +6,7 @@ var ajaxUrl = "/bookings/";
 var datatableApi;
 
 function updateBookingsTable() {
-    $.get(ajaxUrl + getSbId(), updateTableByData);
+    $.get(ajaxUrl, updateTableByData);
 }
 
 $(function () {
@@ -16,22 +16,16 @@ $(function () {
                 "data": "id"
             },
             {
-                "data": "inDate"
+                "data": "aptInDate"
             },
             {
-                "data": "outDate"
+                "data": "aptOutDate"
             },
             {
                 "data": "sum"
             },
             {
-                "data": "aptPersonNum"
-            },
-            {
-                "data": "aptCategory"
-            },
-            {
-                "data": "aptArrangement"
+                "data": "stringAptType"
             },
             {
                 "render": renderBookingEditBtn,

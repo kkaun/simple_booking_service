@@ -44,8 +44,15 @@ public class BusinessController extends BusinessAbstractController {
     private ApartmentService apartmentService;
 
     @Autowired
-    @Qualifier("sessionPlacementsService")
+    @Qualifier("sessionPlacementService")
     private SessionPlacementsService sessionPlacementsService;
+
+    public BusinessController(HotelService hotelService, CityService cityService, AptTypeService aptTypeService,
+                              UserService userService, ApartmentService apartmentService, BookingService bookingService,
+                              SuperBookingService superBookingService, SessionPlacementsService sessionPlacementsService) {
+        super(hotelService, cityService, aptTypeService, userService, apartmentService, bookingService,
+                superBookingService, sessionPlacementsService);
+    }
 
 
     @GetMapping("/index")

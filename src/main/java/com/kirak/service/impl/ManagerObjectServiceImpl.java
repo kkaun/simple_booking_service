@@ -19,9 +19,12 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @Service
 public class ManagerObjectServiceImpl implements ManagerObjectService {
 
+    private final SessionManagerObjects sessionManagerObjects;
+
     @Autowired
-    @Qualifier("sessionManagerObjects")
-    private SessionManagerObjects sessionManagerObjects;
+    public ManagerObjectServiceImpl(@Qualifier("sessionManagerObjects") SessionManagerObjects sessionManagerObjects) {
+        this.sessionManagerObjects = sessionManagerObjects;
+    }
 
     @Override
     public CopyOnWriteArrayList<ManagerObject> getManagerObjects() {

@@ -1,5 +1,6 @@
 package com.kirak.to.booking;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.kirak.model.Apartment;
@@ -21,17 +22,15 @@ public class BookingTo extends BasicLongTo implements Serializable {
 
     private Integer aptId;
 
-    private String aptCategory;
-
-    private String aptArrangement;
-
-    private Short aptPersonNum;
+    private String stringAptType;
 
     private Double aptPrice;
 
-    private LocalDate inDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    private LocalDate aptInDate;
 
-    private LocalDate outDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    private LocalDate aptOutDate;
 
     private Double sum;
 
@@ -39,37 +38,23 @@ public class BookingTo extends BasicLongTo implements Serializable {
 
     public BookingTo(@JsonProperty("id") Long id,
                      @JsonProperty("aptId") Integer aptId,
-                     @JsonProperty("aptCategory") String aptCategory,
-                     @JsonProperty("aptArrangement") String aptArrangement,
-                     @JsonProperty("aptPersonNum") Short aptPersonNum,
+                     @JsonProperty("aptCategory") String stringAptType,
                      @JsonProperty("aptPrice") Double aptPrice,
-                     @JsonProperty("inDate") LocalDate inDate,
-                     @JsonProperty("outDate") LocalDate outDate,
+                     @JsonProperty("inDate") LocalDate aptInDate,
+                     @JsonProperty("outDate") LocalDate aptOutDate,
                      @JsonProperty("sum") Double sum) {
         super(id);
-        this.aptCategory = aptCategory;
-        this.aptArrangement = aptArrangement;
-        this.aptPersonNum = aptPersonNum;
+        this.stringAptType = stringAptType;
         this.aptPrice = aptPrice;
-        this.inDate = inDate;
-        this.outDate = outDate;
+        this.aptInDate = aptInDate;
+        this.aptOutDate = aptOutDate;
         this.sum = sum;
         this.aptId = aptId;
     }
 
     
-    public String getAptCategory() {
-        return aptCategory;
-    }
-
-    
-    public String getAptArrangement() {
-        return aptArrangement;
-    }
-
-    
-    public Short getAptPersonNum() {
-        return aptPersonNum;
+    public String getStringAptType() {
+        return stringAptType;
     }
 
     
@@ -78,13 +63,13 @@ public class BookingTo extends BasicLongTo implements Serializable {
     }
 
     
-    public LocalDate getInDate() {
-        return inDate;
+    public LocalDate getAptInDate() {
+        return aptInDate;
     }
 
     
-    public LocalDate getOutDate() {
-        return outDate;
+    public LocalDate getAptOutDate() {
+        return aptOutDate;
     }
 
     
@@ -105,28 +90,20 @@ public class BookingTo extends BasicLongTo implements Serializable {
         this.aptId = aptId;
     }
 
-    public void setAptCategory(String aptCategory) {
-        this.aptCategory = aptCategory;
-    }
-
-    public void setAptArrangement(String aptArrangement) {
-        this.aptArrangement = aptArrangement;
-    }
-
-    public void setAptPersonNum(Short aptPersonNum) {
-        this.aptPersonNum = aptPersonNum;
+    public void setStringAptType(String stringAptType) {
+        this.stringAptType = stringAptType;
     }
 
     public void setAptPrice(Double aptPrice) {
         this.aptPrice = aptPrice;
     }
 
-    public void setInDate(LocalDate inDate) {
-        this.inDate = inDate;
+    public void setAptInDate(LocalDate aptInDate) {
+        this.aptInDate = aptInDate;
     }
 
-    public void setOutDate(LocalDate outDate) {
-        this.outDate = outDate;
+    public void setAptOutDate(LocalDate aptInDate) {
+        this.aptOutDate = aptInDate;
     }
 
     public void setSum(Double sum) {
@@ -138,12 +115,10 @@ public class BookingTo extends BasicLongTo implements Serializable {
         return "BookingTo{" +
                 "id=" + id +
                 ", aptId=" + aptId +
-                ", aptCategory='" + aptCategory + '\'' +
-                ", aptArrangement='" + aptArrangement + '\'' +
-                ", aptPersonNum=" + aptPersonNum +
+                ", stringAptType='" + stringAptType +
                 ", aptPrice=" + aptPrice +
-                ", inDate=" + inDate +
-                ", outDate=" + outDate +
+                ", inDate=" + aptInDate +
+                ", outDate=" + aptOutDate +
                 ", sum=" + sum +
                 '}';
     }
