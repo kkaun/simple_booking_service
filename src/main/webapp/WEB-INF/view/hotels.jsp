@@ -40,7 +40,7 @@
             </div>
             <div class="col-md-8">
                 <c:if test="${not empty region}">
-                    <h2>We found some objects in ${region}:</h2>
+                    <h2><spring:message code="common.found_objects_in"/> ${region}:</h2>
                 </c:if>
             </div>
         </c:if>
@@ -57,22 +57,22 @@
                     <c:if test="${not empty badRegion && empty hotels}">
                         <div class="list-group-item">
                             <h3>
-                                Unfortunately, searching by request "${badRegion}" brought no results.
+                                <spring:message code="common.unfortunately_request"/> "${badRegion}" <spring:message code="common.no_results"/>
                                 <br>
-                                Maybe there is a shortage of hotels in this region
-                                or they haven't been included yet. You might try to make more specific request in Search Filter.
+                                <spring:message code="common.maybe_shortage"/>
                                 <br>
-                                Also you can check list of cities or create your own in Admin mode.
+                                <spring:message code="common.also_check"/>
                             </h3>
                         </div>
                     </c:if>
                     <c:if test="${not empty notAvailablePlacementList && empty hotels}">
                         <h3><c:out value="${notAvailablePlacementList}"/></h3>
                         <br>
-                        <h5>Maybe there is a shortage of available placement options/hotels in this region right now
-                            or they haven't been included yet. You might try to make more specific request in Search Filter.
+                        <h5><spring:message code="common.maybe_shortage"/>
+                            <spring:message code="common.might_try_search"/>
                             <br>
-                            Also you can check list of cities or create your own in Admin mode.
+                            <spring:message code="common.try_also"/>
+
                             ------------------------------- Link to Cities ---------------------------
                         </h5>
                     </c:if>
@@ -105,23 +105,23 @@
                                             </c:forEach>
                                         </c:if>
                                         <c:if test="${empty hotel.stars || hotel.stars == 0}">
-                                            <p> No stars yet </p>
+                                            <p> <spring:message code="common.no_stars"/> </p>
                                         </c:if>
                                     </div>
                                     <c:if test="${hotel.votesNum > 0}">
-                                        <h3> Average ${hotel.rating}
+                                        <h3> <spring:message code="common.average"/> ${hotel.rating}
                                             <small> /</small>
                                             10
                                         </h3>
                                         <h4> ${hotel.votesNum}
-                                            <small> votes</small>
+                                            <small> <spring:message code="hotels.votesNum"/> </small>
                                         </h4>
                                     </c:if>
                                     <c:if test="${empty hotel.votesNum || hotel.votesNum == 0}">
-                                        <h4> No votes yet </h4>
+                                        <h4> <spring:message code="common.no_votes"/> </h4>
                                     </c:if>
                                     <button type="button" href="inspect_hotel?id=${hotel.id}"
-                                            class="btn btn-default btn-lg btn-block"> View & Book
+                                            class="btn btn-default btn-lg btn-block"> <spring:message code="common.view_book"/>
                                     </button>
                                 </div>
                             </a>
@@ -151,12 +151,13 @@
                                         <hr>
                                     </div>
                                     <div class="col-md-12">
-                                        <h5 style="margin-top: 7px;"><strong> Optimal placement solution: </strong></h5>
+                                        <h5 style="margin-top: 7px;"><strong> <spring:message code="optimal_placement_title"/> </strong></h5>
                                         <div class="well" style="background-color: lightgreen; padding-top: 5px; padding-bottom: 5px;">
                                             <table class="table-responsive">
                                                 <c:forEach items="${placement.option}" var="option">
                                                     <tr>
-                                                        <td><h6><strong>${option.key.category} with ${option.key.bedsArrangement}</strong></h6></td>
+                                                        <td><h6><strong>${option.key.category}
+                                                                <spring:message code="common.with"/> ${option.key.bedsArrangement}</strong></h6></td>
                                                         <td><h6>&nbsp;&nbsp;&nbsp;x<strong>${fn:length(option.value)}</strong></h6></td>
                                                     </tr>
                                                 </c:forEach>
@@ -177,21 +178,21 @@
                                         </c:if>
                                     </div>
                                     <c:if test="${placement.hotel.votesNum > 0}">
-                                        <h3> Average ${hotel.rating}
+                                        <h3> <spring:message code="common.average"/> ${hotel.rating}
                                             <small> /</small>
                                             10
                                         </h3>
                                         <h4> ${placement.hotel.votesNum}
-                                            <small> votes</small>
+                                            <small> <spring:message code="hotels.votesNum"/> </small>
                                         </h4>
                                     </c:if>
                                     <c:if test="${empty placement.hotel.votesNum || placement.hotel.votesNum == 0}">
-                                        <h4> No votes yet </h4>
+                                        <h4> <spring:message code="common.no_votes"/> </h4>
                                     </c:if>
                                     <button type="button"
                                             href="inspect_placement?id=${placement.id}&personNum=${placementPersonNum}&
                                         apartmentNum=${placementApartmentNum}&inDate=${placementInDate}&outDate=${placementOutDate}"
-                                            class="btn btn-default btn-lg btn-block"> Book Now
+                                            class="btn btn-default btn-lg btn-block"> <spring:message code="common.book_now"/>
                                     </button>
                                 </div>
                             </a>

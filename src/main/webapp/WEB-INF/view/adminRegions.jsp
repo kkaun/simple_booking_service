@@ -50,7 +50,7 @@
                 <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-body" style="padding: 10px;">
-                            <h4 class="pull-left"><strong>Regions/Places Data:</strong></h4>
+                            <h4 class="pull-left"><strong><spring:message code="common.regions_list"/></strong></h4>
                         </div>
                     </div>
                 </div>
@@ -171,7 +171,7 @@
                 <div class="col-md-1"></div>
                 <form:form class="form-horizontal detailsForm" id="imgForm" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="id" name="id">
-                    <label for="image" class="control-label col-xs-5">Choose New Image:</label>
+                    <label for="image" class="control-label col-xs-5"><spring:message code="common.choose_image"/></label>
                     <div class="form-group">
                         <div class="col-xs-7">
                             <input name="image" id="image" type="file" /><br/>

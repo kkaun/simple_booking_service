@@ -135,15 +135,15 @@
                                     </c:forEach>
                                 </c:if>
                                 <c:if test="${empty hotel.stars || hotel.stars == 0}">
-                                    <p> No stars yet </p>
+                                    <p> <spring:message code="common.no_stars"/> </p>
                                 </c:if>
                             </div>
                             <c:if test="${hotel.votesNum > 0}">
                                 <h3> Average ${hotel.rating} <small> / </small> 10 </h3>
-                                <h4> ${hotel.votesNum} <small> votes </small></h4>
+                                <h4> ${hotel.votesNum} <small> <spring:message code="hotels.votesNum"/> </small></h4>
                             </c:if>
                             <c:if test="${empty hotel.votesNum || hotel.votesNum == 0}">
-                                <h4> No votes yet </h4>
+                                <h4> <spring:message code="common.no_votes"/> </h4>
                             </c:if>
                             <button type="button" href="inspect_hotel?id=${hotel.id}" class="btn btn-default btn-lg btn-block">
                                 <spring:message code="app.view_and_book"/></button>

@@ -81,7 +81,7 @@
                 <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-body" style="padding: 10px;">
-                            <h4 class="pull-left"><strong>Hotels Data:</strong></h4>
+                            <h4 class="pull-left"><strong><spring:message code="common.hotels_list"/></strong></h4>
                         </div>
                     </div>
                 </div>
@@ -133,8 +133,8 @@
                     <input type="hidden" id="cityId" name="cityId">
 
                     <div class="form-group managerIdForm">
-                        <label for="managerId" class="control-label col-xs-3">Manager <spring:message
-                                code="common.id"/> (for demo: 100003)</label>
+                        <label for="managerId" class="control-label col-xs-3">>
+                            <spring:message code="app.manager"/> <spring:message code="common.id"/> <spring:message code="common.def_managerId"/></label>
                         <div class="col-xs-9">
                             <input class="form-control" type="text" id="managerId" name="managerId"
                                    placeholder="Manager <spring:message code="common.id"/>">
@@ -142,20 +142,20 @@
                     </div>
 
                     <div class="form-group countryNameForm">
-                        <label for="countryName" class="control-label col-xs-3">Place/City <spring:message
-                                code="common.id"/></label>
+                        <label for="countryName" class="control-label col-xs-3">
+                            <spring:message code="common.countryName"/>
                         <div class="col-xs-9">
                             <input class="form-control" type="text" id="countryName" name="countryName"
-                                   placeholder="Place/City <spring:message code="common.id"/>">
+                                   placeholder="<spring:message code="common.countryName"/>">
                         </div>
                     </div>
 
                     <div class="form-group cityNameForm">
-                        <label for="cityName" class="control-label col-xs-3">Place/City <spring:message
-                                code="common.id"/></label>
+                        <label for="cityName" class="control-label col-xs-3">
+                            <spring:message code="common.placeName"/></label>
                         <div class="col-xs-9">
                             <input class="form-control" type="text" id="cityName" name="cityName"
-                                   placeholder="Place/City <spring:message code="common.id"/>">
+                                   placeholder="<spring:message code="common.placeName"/>">
                         </div>
                     </div>
 

@@ -15,7 +15,7 @@
 
     <div class="row">
         <div class="col-md-12 text-center">
-            <h2>Reservation page</h2>
+            <h2><spring:message code="common.reservation_page"/></h2>
             <br>
         </div>
     </div>
@@ -26,24 +26,23 @@
                 <div class="panel-group">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4>Fake Booker Info</h4>
+                            <h4><spring:message code="common.booker_info"/></h4>
                         </div>
                         <div class="panel-body">
-                            <h5>Please fill in your own fake information needed for fake booking confirmation
-                                and being informed about any (im)possible changes</h5>
+                            <h5><spring:message code="common.booker_info_discl"/></h5>
                             <hr>
                             <div class="col-md-12">
                                 <div class="col-md-1"></div>
                                 <div class="col-md-10">
 
                                     <div class="panel panel-warning hidden" style="padding: 15px; margin-bottom: 20px">
-                                        <h4>Oh snap!</h4>
-                                        <p>The form seems to be invalid in some place :(</p>
+                                        <h4><spring:message code="common.damn"/></h4>
+                                        <p><spring:message code="common.damn_discl"/></p>
                                     </div>
 
                                     <div class="panel panel-info hidden" style="padding: 15px; margin-bottom: 20px">
-                                        <h4>Nice!</h4>
-                                        <p>Everything seems to be ok!</p>
+                                        <h4><spring:message code="common.nice"/></h4>
+                                        <p><spring:message code="common.nice_discl"/></p>
                                     </div>
 
                                     <sec:authorize access="isAnonymous()">
@@ -66,7 +65,7 @@
                                                                data-parsley-pattern="^[a-zA-Z]+$"
                                                                data-parsley-required="true"
                                                                data-parsley-length="[3, 44]"
-                                                               placeholder="Name" required>
+                                                               placeholder="<spring:message code="common.name"/>" required>
                                                         <span class="input-group-addon"><i
                                                                 class="glyphicon glyphicon-user"></i></span>
                                                     </div>
@@ -78,7 +77,7 @@
                                                                data-parsley-required="true"
                                                                data-parsley-pattern="^[0-9\-\+\s\(\)]*$"
                                                                data-parsley-length="[5, 20]"
-                                                               value="" placeholder="Phone" required>
+                                                               value="" placeholder="<spring:message code="common.phone"/>" required>
                                                         <span class="input-group-addon"><i
                                                                 class="glyphicon glyphicon-earphone"></i></span>
                                                     </div>
@@ -89,7 +88,7 @@
                                                                name="userEmail"
                                                                data-parsley-required="true"
                                                                data-parsley-type="email"
-                                                               value="" placeholder="Email" required>
+                                                               value="" placeholder="<spring:message code="common.email"/>" required>
                                                         <span class="input-group-addon"><i
                                                                 class="glyphicon glyphicon-envelope"></i></span>
                                                     </div>
@@ -100,7 +99,7 @@
                                                     <div class="col-md-6">
                                                         <button type="submit"
                                                                 class="btn btn-success btn-lg btn-primary">
-                                                            Confirm Booking
+                                                            <spring:message code="common.confirm_booking"/>
                                                         </button>
                                                     </div>
                                                     <div class="col-md-3"></div>
@@ -153,7 +152,7 @@
                                                     <div class="col-md-6">
                                                         <button type="submit"
                                                                 class="btn btn-success btn-lg btn-primary">
-                                                            Confirm Booking
+                                                            <spring:message code="common.confirm_booking"/>
                                                         </button>
                                                     </div>
                                                     <div class="col-md-3"></div>
@@ -175,30 +174,30 @@
                 <div class="panel-group">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3>Summary</h3>
+                            <h3><spring:message code="common.summary"/></h3>
                         </div>
                         <div class="panel-body">
                             <h4>${hotel.name}</h4>
                             <br>
                             <table class="table table-responsive">
                                 <tr>
-                                    <td>No. of person</td>
+                                    <td><spring:message code="bookings.personNum"/></td>
                                     <td>${placementPersonNum}</td>
                                 </tr>
                                 <tr>
-                                    <td>No. of rooms</td>
+                                    <td><spring:message code="super_bookings.apartmentsNum"/></td>
                                     <td>${placementApartmentNum}</td>
                                 </tr>
                                 <tr>
-                                    <td>Check-in</td>
+                                    <td><spring:message code="hotels.checkIn"/></td>
                                     <td>${placementInDate}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${hotel.checkIn}</td>
                                 </tr>
                                 <tr>
-                                    <td>Check-out</td>
+                                    <td><spring:message code="hotels.checkOut"/></td>
                                     <td>${placementOutDate}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${hotel.checkOut}</td>
                                 </tr>
                                 <tr>
-                                    <td>Total sum</td>
+                                    <td><spring:message code="common.total_sum"/></td>
                                     <td>${placementSum}</td>
                                 </tr>
                             </table>
@@ -213,7 +212,7 @@
                                 <div class="row>">
                                     <div class="row">
                                         <div class="col-md-12 text-center">
-                                            <h4>Your apartments:</h4>
+                                            <h4><spring:message code="your_apartments"/></h4>
                                         </div>
                                     </div>
                                     <div class="col-md-8">
@@ -230,9 +229,9 @@
                                                         </div>
                                                         <div class="col-md-7">
                                                             <h5>
-                                                                <c:out value="${option.type.personNum}"/>-person
-                                                                <c:out value="${option.type.category}"/> with <c:out
-                                                                    value="${option.type.bedsArrangement}"/>
+                                                                <c:out value="${option.type.personNum}"/><spring:message code="common._person"/>
+                                                                <c:out value="${option.type.category}"/> <spring:message code="common.with"/>
+                                                                <c:out value="${option.type.bedsArrangement}"/>
                                                             </h5>
                                                         </div>
                                                     </div>
@@ -253,8 +252,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td class="text-center"><i class="fa fa-btc"></i>
-                                                                <strong><c:out value="${option.price}"/></strong> /
-                                                                night
+                                                                <strong><c:out value="${option.price}"/></strong><spring:message code="common.per_night"/>
                                                             </td>
                                                         </tr>
                                                     </table>

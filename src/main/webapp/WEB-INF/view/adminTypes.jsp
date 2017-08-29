@@ -22,7 +22,7 @@
                 <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-body" style="padding: 10px;">
-                            <h4 class="pull-left"><strong>Apartment Types Data:</strong></h4>
+                            <h4 class="pull-left"><strong><spring:message code="common.apt_types_list"/></strong></h4>
                         </div>
                     </div>
                 </div>

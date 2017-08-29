@@ -18,13 +18,10 @@
                         <div class="panel-group">
                             <div class="panel panel-default">
                                 <div class="panel-body text-center">
-                                    <h2>Booking is done</h2>
+                                    <h2><spring:message code="common.booking_done"/></h2>
                                     <hr>
-                                    <h4>Your trip ID is : <strong>${superBooking.id}</strong>. All fake details will
-                                        (not)
-                                        be
-                                        sent
-                                        to ${user.email}</h4>
+                                    <h4><spring:message code="common.trip_id"/> : <strong>${superBooking.id}</strong>
+                                        . <spring:message code="common.booking_compl_add"/>${user.email}</h4>
                                 </div>
                             </div>
                         </div>
@@ -34,13 +31,13 @@
                         <div class="panel-group text-center">
                             <div class="panel panel-default text-center">
                                 <div class="panel-heading text-center">
-                                    <h3>Summary</h3>
+                                    <h3><spring:message code="common.summary"/></h3>
                                 </div>
                                 <div class="panel-body text-center">
                                     <div class="row">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-8">
-                                            <h4><strong>Hotel info:</strong></h4>
+                                            <h4><strong><spring:message code="common.hotel_info"/></strong></h4>
                                             <table class="table table-responsive" style="margin: 0 auto">
                                                 <tr>
                                                     <td>${hotel.name}</td>
@@ -54,7 +51,7 @@
                                             </table>
                                             <br>
                                             <br>
-                                            <h4><strong>List of booked rooms(numbers):</strong></h4>
+                                            <h4><strong><spring:message code="common.summary_sub_1"/></strong></h4>
                                             <table class="table table-responsive" style="margin: 0 auto">
                                                 <c:forEach items="${placement.option}" var="apartment">
                                                     <tr>
@@ -73,26 +70,26 @@
                                             </table>
                                             <br>
                                             <br>
-                                            <h4><strong>Booking info:</strong></h4>
+                                            <h4><strong><spring:message code="common.booking_info"/></strong></h4>
                                             <table class="table table-responsive" style="margin: 0 auto">
                                                 <tr>
-                                                    <td>No. of person</td>
+                                                    <td><spring:message code="bookings.personNum"/></td>
                                                     <td>${placementPersonNum}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>No. of rooms</td>
+                                                    <td><spring:message code="super_bookings.apartmentsNum"/></td>
                                                     <td>${placementApartmentNum}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Check-in</td>
+                                                    <td><spring:message code="hotels.checkIn"/></td>
                                                     <td>${placementInDate}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${hotel.checkIn}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Check-out</td>
+                                                    <td><spring:message code="hotels.checkOut"/></td>
                                                     <td>${placementOutDate}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${hotel.checkOut}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Total sum</td>
+                                                    <td><spring:message code="common.total_sum"/></td>
                                                     <td>${placementSum}</td>
                                                 </tr>
                                             </table>
@@ -111,7 +108,7 @@
                                     <div class="row">
                                         <div class="3"></div>
                                         <div class="col-md-6 text-center">
-                                            <h3> Booker's info </h3>
+                                            <h3><spring:message code="common.booker_info"/></h3>
                                             <br>
                                             <table class="table table-responsive">
                                                 <tr>

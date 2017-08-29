@@ -34,7 +34,7 @@
                                             </c:forEach>
                                         </c:if>
                                         <c:if test="${empty hotel.stars || hotel.stars == 0}">
-                                            <p> No stars yet </p>
+                                            <p> <spring:message code="common.no_stars"/> </p>
                                         </c:if>
                                     </div>
                                 </div>
@@ -53,7 +53,7 @@
                                     </figure>
                                 </div>
                                 <div class="col-md-6 text-center">
-                                    <h3> Average <c:out value="${hotel.rating}"/>
+                                    <h3> <spring:message code="common.average"/> <c:out value="${hotel.rating}"/>
                                         <small> /</small>
                                         10
                                     </h3>
@@ -76,9 +76,9 @@
 
             <c:if test="${not empty notAvailableApartment}">
                 <div class="alert-warning">
-                    Unfortunately, <c:out value="${notAvailableApartment.type.personNum}"/>-person
+                    <spring:message code="common.unfortunately"/> <c:out value="${notAvailableApartment.type.personNum}"/><spring:message code="common._person"/>
                     <c:out value="${notAvailableApartment.type.category}"/>
-                    with <c:out value="${notAvailableApartment.type.bedsArrangement}"/> is not available for requested dates.
+                    <spring:message code="common.with"/> <c:out value="${notAvailableApartment.type.bedsArrangement}"/> <spring:message code="common.not_available"/>
 
                     ---------------- Link to search apartments of similar type in other hotels in this region --------------
                 </div>
@@ -96,26 +96,19 @@
                         <div class="alert alert-success">
                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                             <h4>
-                                Nice catch! <strong><c:out value="${placementPersonNum}"/></strong>-person placement solution in
-                                <strong><c:out value="${hotel.name}"/></strong> is available for the period between
-                                <strong><c:out value="${placementInDate}"/></strong> and <strong><c:out value="${placementOutDate}"/></strong>.
-                                Feel free to check it below and book it immediately.
+                                <spring:message code="common.nice_catch"/> <strong><c:out value="${placementPersonNum}"/></strong><spring:message code="common.solution"/>
+                                <strong><c:out value="${hotel.name}"/></strong> <spring:message code="common.is_av_in_period"/>
+                                <strong><c:out value="${placementInDate}"/></strong> <spring:message code="common.and"/> <strong><c:out value="${placementOutDate}"/></strong>.
+                                <spring:message code="common.feel_free"/>
                             </h4>
                             <c:if test="${availableAptNum > 1}">
                                 <h5>
-                                    By the way, <c:out value="${hotel.name}"/> has
-                                    <strong><c:out value="${availableAptNum - 1}"/></strong> more
-                                    similar apartments available for the requested period.
+                                    <spring:message code="common.btw"/> <c:out value="${hotel.name}"/> <spring:message code="common.has"/>
+                                    <strong><c:out value="${availableAptNum - 1}"/></strong> <spring:message code="common.more_apts_in_period"/>
                                 </h5>
                             </c:if>
                         </div>
                         <hr>
-                        <%--<h3 class="text-center">Optimal <strong><c:out value="${placementPersonNum}"/></strong>-person placement solution--%>
-                            <%--in <strong><c:out value="${hotel.name}"/></strong>--%>
-                            <%--<br>--%>
-                             <%--between <strong><c:out value="${placementInDate}"/></strong>--%>
-                            <%--and <strong><c:out value="${placementOutDate}"/></strong>:--%>
-                        <%--</h3>--%>
                     </div>
                 </div>
 
@@ -143,8 +136,9 @@
                                                     </div>
                                                     <div class="col-md-7">
                                                         <h4>
-                                                            <c:out value="${option.type.personNum}"/>-person
-                                                            <c:out value="${option.type.category}"/> with <c:out value="${option.type.bedsArrangement}"/>
+                                                            <c:out value="${option.type.personNum}"/><spring:message code="common._person"/>
+                                                            <c:out value="${option.type.category}"/>
+                                                            <spring:message code="common.with"/> <c:out value="${option.type.bedsArrangement}"/>
                                                         </h4>
                                                     </div>
                                                 </div>
@@ -164,8 +158,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td class="text-center"><i class="fa fa-btc"></i>
-                                                            <strong><c:out value="${option.price}"/></strong> /
-                                                            night
+                                                            <strong><c:out value="${option.price}"/></strong><spring:message code="common.per_night"/>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -186,13 +179,13 @@
                                         <div class="col-md-8">
                                             <table class="table-responsive">
                                                 <tr>
-                                                    <td><h4>Total Price:</h4></td>
+                                                    <td><h4><spring:message code="common.total_price"/></h4></td>
                                                     <td><h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                         <i class="fa fa-btc"></i>
                                                         <strong><c:out value="${placementSum}"/>0</strong></h4></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><h4>Total No. of Rooms:</h4></td>
+                                                    <td><h4><spring:message code="common.total_room_num"/></h4></td>
                                                     <td><h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                         <strong><c:out value="${placementApartmentNum}"/></strong></h4></td>
                                                 </tr>
@@ -215,7 +208,7 @@
                                                            value="${placementOutDate}">
                                                     <button type="submit" style="padding-left: 40px; padding-right: 40px;"
                                                             class="btn btn-default btn-lg btn-success">
-                                                        Book Now
+                                                        <spring:message code="common.book_now"/>
                                                     </button>
                                                 </fieldset>
                                             </form:form>
@@ -237,14 +230,13 @@
                                 <div class="panel-heading">
                                     <h3 class="panel-title">
                                         <a data-toggle="collapse" href="#collapse1"><h4 class="text-center">
-                                            Check availability of this object's apartments</h4></a>
+                                            <spring:message code="common.check_av"/></h4></a>
                                     </h3>
                                 </div>
                                 <div id="collapse1" class="panel-collapse collapse">
                                     <div class="panel-body" style="padding: 5px">
                                         <form class="form-horizontal" method="get" action="check_hotel_overall">
-                                            <h5 class="text-center">Note that system doesn't provide single bookings with duration of
-                                                more than 30 nights in a row</h5>
+                                            <h5 class="text-center"><spring:message code="common.note_booking_duration"/> </h5>
                                             <fieldset>
                                                 <input type="hidden" name="hotelId" value="${hotel.id}">
                                                 <div class="col-md-12">
@@ -252,7 +244,7 @@
                                                         <div class="col-md-3">
                                                             <div class="form-group pull-left">
                                                                 <label for="person_num"
-                                                                       class="control-label">Persons</label>
+                                                                       class="control-label"><spring:message code="common.persons"/></label>
                                                                 <br>
                                                                 <select class="input-sm" name="personNum"
                                                                         id="person_num">
@@ -265,7 +257,7 @@
                                                         <div class="col-md-3">
                                                             <div class="form-group pull-left">
                                                                 <label for="apartment_num"
-                                                                       class="control-label">Rooms</label>
+                                                                       class="control-label"><spring:message code="common.rooms"/></label>
                                                                 <br>
                                                                 <select class="input-sm" name="apartmentNum"
                                                                         id="apartment_num">
@@ -278,7 +270,7 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group pull-left">
                                                                 <label for="category"
-                                                                       class="control-label">Category</label>
+                                                                       class="control-label"><spring:message code="apt_types.category"/></label>
                                                                 <select class="input-sm" name="category" id="category">
                                                                     <c:forEach items="${uniqueCategories}" var="category">
                                                                         <option value="${category}"><c:out value="${category}"/></option>
@@ -290,8 +282,9 @@
                                                     <div class="col-md-6">
                                                         <div class="col-md-5">
                                                             <div class="form-group">
-                                                                <label for="hotel_in_date" class="control-label text-center">From
-                                                                    Date</label>
+                                                                <label for="hotel_in_date" class="control-label text-center">
+                                                                    <spring:message code="super_bookings.fromDate"/>
+                                                                </label>
                                                                 <div class="input-group">
                                                                     <input class="form-control in_date" id="hotel_in_date"
                                                                            name="inDate">
@@ -304,8 +297,9 @@
                                                         <div class="col-md-1"></div>
                                                         <div class="col-md-5">
                                                             <div class="form-group">
-                                                                <label for="hotel_out_date" class="control-label text-center">To
-                                                                    Date</label>
+                                                                <label for="hotel_out_date" class="control-label text-center">
+                                                                    <spring:message code="super_bookings.toDate"/>
+                                                                </label>
                                                                 <div class="input-group">
                                                                     <input class="form-control out_date" id="hotel_out_date"
                                                                            name="outDate">
@@ -318,7 +312,7 @@
                                                         <div class="col-md-1"></div>
                                                     </div>
                                                 </div>
-                                                <button type="submit" class="btn btn-default btn-lg btn-block"> Check
+                                                <button type="submit" class="btn btn-default btn-lg btn-block"> <spring:message code="common.check"/>
                                                 </button>
                                             </fieldset>
                                         </form>
