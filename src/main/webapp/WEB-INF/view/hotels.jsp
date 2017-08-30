@@ -121,7 +121,7 @@
                                         <h4> <spring:message code="common.no_votes"/> </h4>
                                     </c:if>
                                     <button type="button" href="inspect_hotel?id=${hotel.id}"
-                                            class="btn btn-default btn-lg btn-block"> <spring:message code="common.view_book"/>
+                                            class="btn btn-default btn-lg btn-block"> <spring:message code="common.view_book"/>&nbsp;
                                     </button>
                                 </div>
                             </a>

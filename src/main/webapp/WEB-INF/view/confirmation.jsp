@@ -56,14 +56,14 @@
                                                 <c:forEach items="${placement.option}" var="apartment">
                                                     <tr>
                                                         <td>
-                                                                ${apartment.key.personNum}-person
+                                                                ${apartment.key.personNum}<spring:message code="common._person"/>
                                                                 ${apartment.key.category}
-                                                            with ${apartment.key.bedsArrangement}
+                                                            <spring:message code="common.with"/> ${apartment.key.bedsArrangement}
                                                         </td>
                                                         <td>x<strong>${fn:length(apartment.value)}</strong>
                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                             <i class="fa fa-btc"></i>
-                                                            <strong>${apartment.value[0].price}</strong> / night
+                                                            <strong>${apartment.value[0].price}</strong> <spring:message code="common.per_night"/>
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
@@ -106,8 +106,8 @@
                             <div class="panel panel-default text-center">
                                 <div class="panel-body text-center">
                                     <div class="row">
-                                        <div class="3"></div>
-                                        <div class="col-md-6 text-center">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-8 text-center">
                                             <h3><spring:message code="common.booker_info"/></h3>
                                             <br>
                                             <table class="table table-responsive">
@@ -118,7 +118,7 @@
                                                 </tr>
                                             </table>
                                         </div>
-                                        <div class="3"></div>
+                                        <div class="col-md-2"></div>
                                     </div>
                                 </div>
                             </div>

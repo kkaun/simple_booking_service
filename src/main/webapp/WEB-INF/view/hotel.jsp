@@ -176,7 +176,7 @@
                             <div class="panel-group">
                                 <div class="panel panel-default">
                                     <div class="panel-body">
-                                        <div class="col-md-8">
+                                        <div class="col-md-7">
                                             <table class="table-responsive">
                                                 <tr>
                                                     <td><h4><spring:message code="common.total_price"/></h4></td>
@@ -191,7 +191,7 @@
                                                 </tr>
                                             </table>
                                         </div>
-                                        <div class="col-md-4" style="padding-top: 15px;">
+                                        <div class="col-md-5" style="padding-top: 15px;">
                                             <form:form class="form-horizontal" role="form" action="check_booking" method="post">
                                                 <fieldset>
                                                     <input type="hidden" name="bookingHotelId" value="${hotel.id}">
@@ -326,10 +326,10 @@
             <hr>
             <div class="well">
                 <c:if test="${not empty hotel && empty apartments}">
-                    <h4 class="text-center">Unfortunately, this object does'nt have any registered apartments yet</h4>
+                    <h4 class="text-center"><spring:message code="common.no_reg_apartments"/></h4>
                 </c:if>
                 <c:if test="${not empty hotel && not empty apartments}">
-                    <h3 class="text-center">Inspect all apartments of this object:</h3>
+                    <h3 class="text-center"><spring:message code="common.inspect_obj_apts"/></h3>
                     <br>
 
                         <c:forEach items="${apartments}" var="apartment" varStatus="vs">
@@ -338,8 +338,9 @@
                                 <div class="row" style="padding-bottom: 10px;">
                                     <div class="col-md-7">
                                         <h4 class="list-group-item-text">
-                                             <c:out value="${apartment.type.personNum}"/>-person
-                                             <c:out value="${apartment.type.category}"/> with <c:out value="${apartment.type.bedsArrangement}"/>
+                                             <c:out value="${apartment.type.personNum}"/><spring:message code="common._person"/>
+                                             <c:out value="${apartment.type.category}"/> <spring:message code="common.with"/>
+                                            <c:out value="${apartment.type.bedsArrangement}"/>
                                         </h4>
                                         <br>
                                         <br>
@@ -348,7 +349,7 @@
                                         <button class="btn btn-info btn-lg" type="button" data-toggle="collapse"
                                                 data-target="#checkAvCollapseId${vs.index}"
                                                 aria-expanded="false" style="padding-left: 40px; padding-right: 40px;
-                                                 margin-bottom: 0; margin-left: 5px;"> Check Availability </button>
+                                                 margin-bottom: 0; margin-left: 5px;"> <spring:message code="common.check_av_apt"/></button>
                                     </div>
                                     <div class="media col-md-5">
                                         <figure class="pull-left">
@@ -373,8 +374,8 @@
                                                     <div class="col-md-12">
                                                         <div class="col-md-5">
                                                             <div class="form-group">
-                                                                <label for="apt_in_date${vs.index}" class="control-label">From
-                                                                    Date</label>
+                                                                <label for="apt_in_date${vs.index}" class="control-label">
+                                                                    <spring:message code="votes.from_date"/> </label>
                                                                 <div class="input-group">
                                                                     <input class="form-control in_date"
                                                                            id="apt_in_date${vs.index}"
@@ -388,8 +389,8 @@
                                                         <div class="col-md-2"></div>
                                                         <div class="col-md-5">
                                                             <div class="form-group">
-                                                                <label for="apt_out_date${vs.index}" class="control-label">To
-                                                                    Date</label>
+                                                                <label for="apt_out_date${vs.index}" class="control-label">
+                                                                    <spring:message code="common.to_date"/></label>
                                                                 <div class="input-group">
                                                                     <input class="form-control out_date"
                                                                            id="apt_out_date${vs.index}"
@@ -402,7 +403,7 @@
                                                         </div>
                                                     </div>
                                                     <button type="submit" class="btn btn-default btn-lg btn-block">
-                                                        Check
+                                                        <spring:message code="common.check"/>
                                                     </button>
                                                 </form>
                                             </div>

@@ -48,7 +48,7 @@
                                                    data-parsley-pattern="^[a-zA-Z]+$"
                                                    data-parsley-required="true"
                                                    data-parsley-length="[3, 44]"
-                                                   placeholder="<spring:message code="common.name"/>" required>
+                                                   placeholder="<spring:message code="common.usr_name"/>" required>
                                             <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-user"></i></span>
                                         </div>
@@ -146,7 +146,7 @@
                                                    data-parsley-pattern="^[a-zA-Z]+$"
                                                    data-parsley-required="true"
                                                    data-parsley-length="[3, 44]"
-                                                   placeholder="<spring:message code="common.name"/>" required>
+                                                   placeholder="<spring:message code="common.usr_name"/>" required>
                                             <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-user"></i></span>
                                         </div>

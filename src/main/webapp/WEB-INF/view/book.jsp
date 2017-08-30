@@ -65,7 +65,7 @@
                                                                data-parsley-pattern="^[a-zA-Z]+$"
                                                                data-parsley-required="true"
                                                                data-parsley-length="[3, 44]"
-                                                               placeholder="<spring:message code="common.name"/>" required>
+                                                               placeholder="<spring:message code="common.usr_name"/>" required>
                                                         <span class="input-group-addon"><i
                                                                 class="glyphicon glyphicon-user"></i></span>
                                                     </div>
@@ -95,14 +95,14 @@
                                                 </div>
                                                 <br>
                                                 <div class="row">
-                                                    <div class="col-md-3"></div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-10">
                                                         <button type="submit"
                                                                 class="btn btn-success btn-lg btn-primary">
                                                             <spring:message code="common.confirm_booking"/>
                                                         </button>
                                                     </div>
-                                                    <div class="col-md-3"></div>
+                                                    <div class="col-md-1"></div>
                                                 </div>
                                             </fieldset>
                                         </form:form>
@@ -148,14 +148,14 @@
                                                 </div>
                                                 <br>
                                                 <div class="row">
-                                                    <div class="col-md-3"></div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-10 text-center">
                                                         <button type="submit"
                                                                 class="btn btn-success btn-lg btn-primary">
                                                             <spring:message code="common.confirm_booking"/>
                                                         </button>
                                                     </div>
-                                                    <div class="col-md-3"></div>
+                                                    <div class="col-md-1"></div>
                                                 </div>
                                             </fieldset>
                                         </form:form>
