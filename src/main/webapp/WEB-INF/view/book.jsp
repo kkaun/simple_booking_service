@@ -212,7 +212,7 @@
                                 <div class="row>">
                                     <div class="row">
                                         <div class="col-md-12 text-center">
-                                            <h4><spring:message code="your_apartments"/></h4>
+                                            <h4><spring:message code="common.your_apartments"/></h4>
                                         </div>
                                     </div>
                                     <div class="col-md-8">
