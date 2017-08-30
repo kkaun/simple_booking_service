@@ -79,15 +79,12 @@
                     <spring:message code="common.unfortunately"/> <c:out value="${notAvailableApartment.type.personNum}"/><spring:message code="common._person"/>
                     <c:out value="${notAvailableApartment.type.category}"/>
                     <spring:message code="common.with"/> <c:out value="${notAvailableApartment.type.bedsArrangement}"/> <spring:message code="common.not_available"/>
-
-                    ---------------- Link to search apartments of similar type in other hotels in this region --------------
                 </div>
             </c:if>
             <c:if test="${not empty notAvailablePlacement}">
                 <div class="alert-warning">
                     <c:out value="${notAvailablePlacement}"/>
                     <br>
-                    ---------------- Link to search apartments of similar type in other hotels in this region --------------
                 </div>
             </c:if>
             <c:if test="${not empty placement}">

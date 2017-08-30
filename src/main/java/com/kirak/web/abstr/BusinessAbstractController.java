@@ -62,7 +62,8 @@ public class BusinessAbstractController {
         Placement placement = PlacementUtil.getPlacementFromId(sessionPlacementsService, Integer.parseInt(placementId));
         placement.getOption().values().forEach(apartments -> apartments.forEach(apartment -> {
             Booking booking = new Booking(LocalDate.parse(inDate), LocalDate.parse(outDate), apartment.getPrice(),
-                    apartment.getType().getPersonNum(), superBooking, apartment, hotelService.get(Integer.parseInt(hotelId)));
+                    apartment.getType().getPersonNum(), superBooking, apartment,
+                    hotelService.get(Integer.parseInt(hotelId)), LocalDateTime.now());
             bookingService.save(booking, superBooking.getId(), apartment.getId());
         }));
         model.addAttribute("user", user);

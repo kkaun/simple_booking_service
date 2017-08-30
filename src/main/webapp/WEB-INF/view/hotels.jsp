@@ -72,8 +72,6 @@
                             <spring:message code="common.might_try_search"/>
                             <br>
                             <spring:message code="common.try_also"/>
-
-                            ------------------------------- Link to Cities ---------------------------
                         </h5>
                     </c:if>
                     <c:if test="${not empty hotels}">

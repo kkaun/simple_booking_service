@@ -211,13 +211,14 @@ CREATE TABLE IF NOT EXISTS `super_booking` (
 DROP TABLE IF EXISTS `booking`;
 CREATE TABLE IF NOT EXISTS `booking` (
   `id`                 BIGINT         NOT NULL AUTO_INCREMENT,
-  `in_date`            TIMESTAMP               DEFAULT CURRENT_TIMESTAMP,
-  `out_date`           TIMESTAMP               DEFAULT CURRENT_TIMESTAMP,
+  `in_date`            TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
+  `out_date`           TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
   `sum`                DECIMAL(11, 4) NOT NULL,
   `person_num`         SMALLINT       NOT NULL,
   `super_booking_id`   INT            NOT NULL,
   `apartment_id`       INT            NOT NULL,
   `apartment_hotel_id` INT            NOT NULL,
+  `edited`             TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   INDEX `fk_booking_super_booking1_idx` (`super_booking_id` ASC),
   INDEX `fk_booking_apartment1_idx` (`apartment_id` ASC),

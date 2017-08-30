@@ -51,12 +51,14 @@
 
                     <form:form class="navbar-form" role="form" action="spring_security_check" method="post">
                         <div class="form-group">
-                            <input type="text" placeholder="Email" class="form-control" name="username">
+                            <input type="text" placeholder="<spring:message code="common.email"/>"
+                                   class="form-control" name="username">
                         </div>
                         <div class="form-group">
-                            <input type="password" placeholder="Password" class="form-control" name="password">
+                            <input type="password" placeholder="<spring:message code="common.password"/>"
+                                   class="form-control" name="password">
                         </div>
-                        <button type="submit" class="btn btn btn-success" style="height: 35px;">Enter&nbsp;&nbsp;
+                        <button type="submit" class="btn btn btn-success" style="height: 35px;"><spring:message code="common.enter"/> &nbsp;&nbsp;
                             <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
                         </button>
                     </form:form>

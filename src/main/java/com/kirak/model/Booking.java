@@ -36,6 +36,10 @@ public class Booking extends BaseLongEntity {
     @Column(name = "person_num")
     private Short personNum;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @Column(name = "edited")
+    private LocalDateTime edited;
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "super_booking_id")
@@ -54,12 +58,12 @@ public class Booking extends BaseLongEntity {
     public Booking(){}
 
     public Booking(LocalDate inDate, LocalDate outDate,
-                   Double sum, Short personNum, SuperBooking superBooking, Apartment apartment, Hotel hotel) {
-        this(null, inDate, outDate, sum, personNum, superBooking, apartment, hotel);
+                   Double sum, Short personNum, SuperBooking superBooking, Apartment apartment, Hotel hotel, LocalDateTime edited) {
+        this(null, inDate, outDate, sum, personNum, superBooking, apartment, hotel, edited);
     }
 
     public Booking(Long id, LocalDate inDate, LocalDate outDate,
-                   Double sum, Short personNum, SuperBooking superBooking, Apartment apartment, Hotel hotel) {
+                   Double sum, Short personNum, SuperBooking superBooking, Apartment apartment, Hotel hotel, LocalDateTime edited) {
         super(id);
         this.inDate = inDate;
         this.outDate = outDate;
@@ -68,6 +72,7 @@ public class Booking extends BaseLongEntity {
         this.superBooking = superBooking;
         this.apartment = apartment;
         this.hotel = hotel;
+        this.edited = edited;
     }
 
 
@@ -123,6 +128,14 @@ public class Booking extends BaseLongEntity {
         return superBooking;
     }
 
+    public LocalDateTime getEdited() {
+        return edited;
+    }
+
+    public void setEdited(LocalDateTime edited) {
+        this.edited = edited;
+    }
+
     public void setSuperBooking(SuperBooking superBooking) {
         this.superBooking = superBooking;
     }
@@ -130,11 +143,11 @@ public class Booking extends BaseLongEntity {
     @Override
     public String toString() {
         return "Booking{" +
-                "id='" + getId() + '\'' +
                 "inDate=" + inDate +
                 ", outDate=" + outDate +
                 ", sum=" + sum +
                 ", personNum=" + personNum +
+                ", edited=" + edited +
                 ", superBooking=" + superBooking +
                 ", apartment=" + apartment +
                 ", hotel=" + hotel +

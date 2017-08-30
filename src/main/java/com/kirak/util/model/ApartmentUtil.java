@@ -2,6 +2,7 @@ package com.kirak.util.model;
 
 import com.kirak.model.*;
 import com.kirak.to.ApartmentTo;
+import com.kirak.to.booking.BookingTo;
 import com.kirak.web.session.AuthorizedUser;
 
 import java.time.LocalDate;
@@ -87,16 +88,16 @@ public class ApartmentUtil {
         return category.isEmpty() || apartment.getType().getCategory().equals(category);
     }
 
-    public static Map<Apartment, Integer> apartmentsAvailabilityForToday(List<Apartment> similarApartments){
-
-        LocalDate today = LocalDate.now();
-        return aggregateSimilarAvailableApartmentsWithCount(similarApartments, today, today);
-    }
-
     public static Map<Apartment, Integer> isHotelApartmentAvailableByRequest(Apartment apartment,
                                                              LocalDate inDate, LocalDate outDate){
 
         return aggregateSimilarAvailableApartmentsWithCount(Collections.singletonList(apartment), inDate, outDate);
+    }
+
+    public static Map<Apartment, Integer> apartmentsAvailabilityForToday(List<Apartment> similarApartments){
+
+        LocalDate today = LocalDate.now();
+        return aggregateSimilarAvailableApartmentsWithCount(similarApartments, today, today);
     }
 
     public static List<Apartment> findHotelApartmentsByPersonNum(Hotel hotel, LocalDate inDate, LocalDate outDate, Short personNum){
@@ -147,7 +148,7 @@ public class ApartmentUtil {
 
         List<Apartment> aggregatedApartments = new ArrayList<>();
         if(!availableApartmentsSortedByType.isEmpty()) {
-            if (apartmentNum == 1 && Objects.equals(personNum, availableApartmentsSortedByType.get(0).getType().getPersonNum())) {
+            if (apartmentNum == 1 && Objects.equals(personNum, availableApartmentsSortedByType.get(0).getType().getPersonNum())){
                 aggregatedApartmentLists.put(availableApartmentsSortedByType.get(0).getType(),
                         Collections.singletonList(availableApartmentsSortedByType.get(0)));
             } else {
@@ -175,6 +176,17 @@ public class ApartmentUtil {
 
         final int[] daysOccupied = {0};
         apartment.getBookings().stream().filter(booking -> booking.getSuperBooking().isActive())
+                .forEach(booking -> getOccupiedDaysForSingleApartmentInPeriod(booking, daysOccupied, inDate, outDate));
+        return daysOccupied[0] == 0;
+    }
+
+
+    public static boolean isSingleApartmentAvailableWithoutCurrentBooking(Apartment apartment, BookingTo currentBooking,
+                                                                LocalDate inDate, LocalDate outDate){
+
+        final int[] daysOccupied = {0};
+        apartment.getBookings().stream().filter(booking -> booking.getSuperBooking().isActive())
+                .filter(booking -> !Objects.equals(booking.getId(), currentBooking.getId()))
                 .forEach(booking -> getOccupiedDaysForSingleApartmentInPeriod(booking, daysOccupied, inDate, outDate));
         return daysOccupied[0] == 0;
     }

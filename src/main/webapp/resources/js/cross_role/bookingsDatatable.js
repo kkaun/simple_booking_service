@@ -16,6 +16,9 @@ $(function () {
                 "data": "id"
             },
             {
+                "data": "aptId"
+            },
+            {
                 "data": "aptInDate"
             },
             {

@@ -3,7 +3,6 @@ package com.kirak.util.model;
 import com.kirak.model.Apartment;
 import com.kirak.model.Booking;
 import com.kirak.model.SuperBooking;
-import com.kirak.to.ManagerObject;
 import com.kirak.to.booking.BookingTo;
 import com.kirak.to.booking.ChartTo;
 import com.kirak.to.booking.ChartValue;
@@ -27,7 +26,8 @@ public class BookingUtil {
         String stringAptType = ApartmentUtil.getStringAptTypeFromApartment(booking.getApartment());
 
         return new BookingTo(booking.getId(), booking.getApartment().getId(), stringAptType, booking.getApartment().getPrice(),
-                booking.getInDate(), booking.getOutDate(), calculateBookingSum(booking, booking.getInDate(), booking.getOutDate()));
+                booking.getInDate(), booking.getOutDate(), calculateBookingSum(booking, booking.getInDate(), booking.getOutDate()),
+                booking.getEdited());
     }
 
     public static Map<Booking, Boolean> createFromBookingToWithResult(BookingTo bookingTo, int superBookingId,
@@ -42,7 +42,7 @@ public class BookingUtil {
 
         Booking creatableBooking = new Booking(bookingTo.getAptInDate(), bookingTo.getAptOutDate(),
                 calculateBookingSumForApt(expectedApartment, bookingTo.getAptInDate(), bookingTo.getAptOutDate()),
-                aptPersonNum, expectedSuperBooking, expectedApartment, expectedApartment.getHotel());
+                aptPersonNum, expectedSuperBooking, expectedApartment, expectedApartment.getHotel(), LocalDateTime.now());
 
         if(expectedSuperBooking != null && ApartmentUtil.isSingleApartmentAvailable(expectedApartment, bookingTo.getAptInDate(),
                 bookingTo.getAptOutDate())) {
@@ -55,24 +55,29 @@ public class BookingUtil {
                                                                       List<Apartment> apartments){
         LocalDate requestedInDate = bookingTo.getAptInDate();
         LocalDate requestedOutDate = bookingTo.getAptOutDate();
+        Apartment requestedApartment;
 
-        if(!Objects.equals(booking.getApartment().getId(), bookingTo.getAptId())){
-            Apartment requestedApartment = apartments.stream().filter(apartment ->
+        if(!Objects.equals(booking.getApartment().getId(), bookingTo.getAptId())) {
+            requestedApartment = apartments.stream().filter(apartment ->
                     Objects.equals(apartment.getId(), bookingTo.getAptId()))
                     .findFirst().orElse(null);
-            if(requestedApartment != null && ApartmentUtil.isSingleApartmentAvailable(requestedApartment,
-                    requestedInDate, requestedOutDate)) {
+        } else {
+            requestedApartment = booking.getApartment();
+        }
 
-                Short aptPersonNum = requestedApartment.getType().getPersonNum();
+        if(requestedApartment != null && ApartmentUtil.isSingleApartmentAvailableWithoutCurrentBooking(requestedApartment,
+                    bookingTo, requestedInDate, requestedOutDate)) {
 
-                booking.setApartment(requestedApartment);
-                booking.setInDate(requestedInDate);
-                booking.setOutDate(requestedOutDate);
-                booking.setSum(calculateBookingSum(booking, requestedInDate, requestedOutDate));
-                booking.setPersonNum(aptPersonNum);
+            Short aptPersonNum = requestedApartment.getType().getPersonNum();
 
-                return Collections.singletonMap(booking, true);
-            }
+            booking.setApartment(requestedApartment);
+            booking.setInDate(requestedInDate);
+            booking.setOutDate(requestedOutDate);
+            booking.setSum(calculateBookingSum(booking, requestedInDate, requestedOutDate));
+            booking.setPersonNum(aptPersonNum);
+            booking.setEdited(bookingTo.getEdited());
+
+            return Collections.singletonMap(booking, true);
         }
         return Collections.singletonMap(booking, false);
     }
@@ -94,14 +99,36 @@ public class BookingUtil {
 
     public static List<BookingTo> getBookingsFromSuperBooking(int editorId, List<SubBookingObject> subBookingObjects){
 
-        Comparator<SubBookingObject> comparator = (SubBookingObject o1, SubBookingObject o2)->
-                Integer.compare(o2.getId(), o1.getId());
+        List<BookingTo> result = new ArrayList<>();
+        Map<Long, List<BookingTo>> toListsWithIds = new HashMap<>();
 
-        return subBookingObjects.stream()
+        Comparator<BookingTo> bookingToTimeComparator = (BookingTo b1, BookingTo b2) ->
+                (b2.getEdited().compareTo(b1.getEdited()));
+
+        List<BookingTo> allBookingTos = subBookingObjects.stream()
                 .filter(subBookingObject -> Objects.equals(subBookingObject.getEditorId(), editorId))
-                .sorted(comparator)
                 .flatMap(subBookingObject -> subBookingObject.getBookings().stream())
                 .collect(Collectors.toList());
+
+        List<Long> ids = allBookingTos.stream()
+                .map(BookingTo::getId).sorted().distinct().collect(Collectors.toList());
+
+        ids.forEach(id -> {
+            List<BookingTo> listById = new ArrayList<>();
+            allBookingTos.forEach(bookingTo -> {
+                if(Objects.equals(id, bookingTo.getId())){
+                    listById.add(bookingTo);
+                }
+            });
+            toListsWithIds.put(id, listById);
+        });
+        toListsWithIds.forEach((id, bookingTos) -> {
+            BookingTo lastEdited = bookingTos.stream()
+                    .sorted(bookingToTimeComparator).findFirst().get();
+            result.add(lastEdited);
+        });
+
+        return result;
     }
 
 

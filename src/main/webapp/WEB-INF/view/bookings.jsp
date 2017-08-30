@@ -109,6 +109,8 @@
             <div class="modal-body">
                 <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
+                    <input type="hidden" id="aptId" name="aptId">
+
                     <div class="form-group">
                         <label for="bookingInDate" class="control-label col-xs-3"><spring:message
                                 code="common.inDate"/></label>
@@ -153,7 +155,7 @@
                     </div>
                     <div class="form-group">
                         <label for="bookingAptPrice" class="control-label col-xs-3"><spring:message
-                                code="apartments.price"/></label>
+                                code="apartments.price"/> <spring:message code="common.will_change"/></label>
                         <div class="col-xs-9">
                             <input class="form-control" id="bookingAptPrice" name="aptPrice"
                                    placeholder="<spring:message code="apartments.price"/>" readonly>
@@ -161,7 +163,7 @@
                     </div>
                     <div class="form-group">
                         <label for="bookingSum" class="control-label col-xs-3"><spring:message
-                                code="bookings.sum"/></label>
+                                code="bookings.sum"/> <spring:message code="common.will_change"/></label>
                         <div class="col-xs-9">
                             <input class="form-control" id="bookingSum" name="sum"
                                    placeholder="<spring:message code="bookings.sum"/>" readonly>

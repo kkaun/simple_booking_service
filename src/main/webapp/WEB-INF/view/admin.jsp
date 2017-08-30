@@ -23,68 +23,11 @@
         </div>
 
         <div class="col-lg-4 col-md-4">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-12 text-center">
-                            <h3>><spring:message code="hotels.title"/></h3>
-                        </div>
-                    </div>
-                </div>
-                <a href="admin/show_hotels">
-                    <div class="panel-footer">
-                        <span class="pull-left"><spring:message code="common.view_manage"/></span>
-                        <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
-                        <div class="clearfix"></div>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <div class="col-lg-4 col-md-4">
-            <div class="panel panel-purple">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-12 text-center">
-                            <h3>><spring:message code="common.apt_types"/></h3>
-                        </div>
-                    </div>
-                </div>
-                <a href="admin/show_apt_types">
-                    <div class="panel-footer">
-                        <span class="pull-left"><spring:message code="common.view_manage"/></span>
-                        <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
-                        <div class="clearfix"></div>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <div class="col-lg-4 col-md-4">
-            <div class="panel panel-grey">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-12 text-center">
-                            <h3>><spring:message code="common.regions_cities"/></h3>
-                        </div>
-                    </div>
-                </div>
-                <a href="admin/show_regions">
-                    <div class="panel-footer">
-                        <span class="pull-left"><spring:message code="common.view_manage"/></span>
-                        <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
-                        <div class="clearfix"></div>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <div class="col-lg-4 col-md-4">
             <div class="panel panel-green">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-12 text-center">
-                            <h3>><spring:message code="common.users"/></h3>
+                            <h3><spring:message code="common.users"/></h3>
                         </div>
                     </div>
                 </div>
@@ -99,15 +42,34 @@
         </div>
 
         <div class="col-lg-4 col-md-4">
-            <div class="panel panel-red">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-12 text-center">
-                            <h3>><spring:message code="common.bookings"/></h3>
+                            <h3><spring:message code="hotels.title"/></h3>
                         </div>
                     </div>
                 </div>
-                <a href="admin/show_super_bookings">
+                <a href="admin/show_hotels">
+                    <div class="panel-footer">
+                        <span class="pull-left"><spring:message code="common.view_manage"/></span>
+                        <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-4">
+            <div class="panel panel-grey">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <h3><spring:message code="common.regions_cities"/></h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="admin/show_regions">
                     <div class="panel-footer">
                         <span class="pull-left"><spring:message code="common.view_manage"/></span>
                         <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
@@ -122,7 +84,7 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-12 text-center">
-                            <h3>><spring:message code="common.booker_votes"/></h3>
+                            <h3><spring:message code="common.booker_votes"/></h3>
                         </div>
                     </div>
                 </div>
@@ -135,6 +97,46 @@
                 </a>
             </div>
         </div>
+
+        <div class="col-lg-4 col-md-4">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <h3><spring:message code="common.bookings"/></h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="admin/show_super_bookings">
+                    <div class="panel-footer">
+                        <span class="pull-left"><spring:message code="common.view_manage"/></span>
+                        <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-4">
+            <div class="panel panel-purple">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <h3><spring:message code="common.apt_types"/></h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="admin/show_apt_types">
+                    <div class="panel-footer">
+                        <span class="pull-left"><spring:message code="common.view_manage"/></span>
+                        <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+
 
 
 
