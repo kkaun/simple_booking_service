@@ -66,10 +66,10 @@
                 </div>
                 <div class="panel-footer">
                     <a class="btn btn-lg btn-info" href="register_user">
-                        <spring:message code="app.register"/> as user &raquo;
+                        <spring:message code="app.register"/> <spring:message code="common.as_user"/> &raquo;
                     </a>
                     <a class="btn btn-lg btn-info" href="register_manager">
-                        <spring:message code="app.register"/> as manager &raquo;
+                        <spring:message code="app.register"/> <spring:message code="common.as_manager"/> &raquo;
                     </a>
                 </div>
 

@@ -14,7 +14,7 @@
         <div class="col-md-12">
             <div class="panel-group">
                 <div class="panel panel-default text-center">
-                    <h2>Object <strong>#${objectId}</strong> Manager Panel</h2>
+                    <h2><spring:message code="common.object"/> <strong>#${objectId}</strong> <spring:message code="manager_panel"/> </h2>
                     <hr>
                 </div>
             </div>
@@ -28,13 +28,13 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-12 text-center">
-                            <h3>Calendar/Chart</h3>
+                            <h3><spring:message code="common.chart"/> </h3>
                         </div>
                     </div>
                 </div>
                 <a href="hotel_manager/object/show_chart">
                     <div class="panel-footer">
-                        <span class="pull-left">View Details</span>
+                        <span class="pull-left"><spring:message code="common.view"/> </span>
                         <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
                         <div class="clearfix"></div>
                     </div>
@@ -46,13 +46,13 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-12 text-center">
-                            <h3>Bookings</h3>
+                            <h3><spring:message code="common.bookings"/></h3>
                         </div>
                     </div>
                 </div>
                 <a href="hotel_manager/object/show_super_bookings">
                     <div class="panel-footer">
-                        <span class="pull-left">View/Manage</span>
+                        <span class="pull-left"><spring:message code="common.view_manage"/> </span>
                         <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
                         <div class="clearfix"></div>
                     </div>
@@ -64,13 +64,13 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-12 text-center">
-                            <h3>Votes</h3>
+                            <h3><spring:message code="common.votes"/></h3>
                         </div>
                     </div>
                 </div>
                 <a href="hotel_manager/object/show_hotel_votes">
                     <div class="panel-footer">
-                        <span class="pull-left">View Details</span>
+                        <span class="pull-left"><spring:message code="common.view"/></span>
                         <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
                         <div class="clearfix"></div>
                     </div>
@@ -82,13 +82,13 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-12 text-center">
-                            <h3>Apartments</h3>
+                            <h3><spring:message code="common.apartments"/></h3>
                         </div>
                     </div>
                 </div>
                 <a href="hotel_manager/object/show_apartments">
                     <div class="panel-footer">
-                        <span class="pull-left">Manage</span>
+                        <span class="pull-left"><spring:message code="common.view_manage"/></span>
                         <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
                         <div class="clearfix"></div>
                     </div>

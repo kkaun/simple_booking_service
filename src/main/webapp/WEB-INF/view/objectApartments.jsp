@@ -22,7 +22,7 @@
                 <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-body" style="padding: 10px;">
-                            <h4 class="pull-left"><strong>Object's Apartments Data:</strong></h4>
+                            <h4 class="pull-left"><strong><spring:message code="common.obj_apartments_list"/></strong></h4>
                         </div>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                                     <c:if test="${not empty objectApartments}">
                                     <c:forEach items="${objectApartments}" var="objectApartment">
                                         <option value="${objectApartment.stringAptType}">${objectApartment.stringAptType}
-                                            ; ${objectApartment.price}0 $ / night
+                                            ; <i class="fa fa-btc"> ${objectApartment.price}0<spring:message code="common.per_night"/>
                                         </option>
                                     </c:forEach>
                                 </select>
@@ -131,7 +131,7 @@
                 <form:form class="form-horizontal detailsForm" id="imgForm" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="id" name="id">
                     <div class="form-group text-center">
-                        <label for="image" class="control-label col-md-6">Choose New Image:</label>
+                        <label for="image" class="control-label col-md-6"><spring:message code="common.choose_image"/></label>
                         <div class="col-md-6">
                             <input name="image" id="image" type="file" /><br/>
                         </div>

@@ -18,7 +18,7 @@
         </div>
 
         <div class="col-md-10">
-            <h3><spring:message code="super_bookings.title"/></h3>
+            <h3><spring:message code="common.obj_bookings"/></h3>
 
             <div class="row">
                 <div class="col-sm-12">

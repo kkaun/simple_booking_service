@@ -18,7 +18,7 @@
                 <div class="col-md-11">
                     <div class="panel panel-default">
                         <div class="panel-body" style="padding: 10px;">
-                            <h4 class="pull-left"><strong>My Objects:</strong></h4>
+                            <h4 class="pull-left"><strong><spring:message code="common.my_objects"/> </strong></h4>
                         </div>
                     </div>
                 </div>
@@ -69,20 +69,22 @@
                     <input type="hidden" id="managerId" name="managerId">
 
                     <div class="form-group countryNameForm">
-                        <label for="countryName" class="control-label col-xs-3">Place/City <spring:message
-                                code="common.id"/></label>
+                        <label for="countryName" class="control-label col-xs-3">
+                            <spring:message code="common.countryName"/>
+                        </label>
                         <div class="col-xs-9">
                             <input class="form-control" type="text" id="countryName" name="countryName"
-                                   placeholder="Place/City <spring:message code="common.id"/>">
+                                   placeholder="<spring:message code="common.countryName"/> ">
                         </div>
                     </div>
 
                     <div class="form-group cityNameForm">
-                        <label for="cityName" class="control-label col-xs-3">Place/City <spring:message
-                                code="common.id"/></label>
+                        <label for="cityName" class="control-label col-xs-3">
+                            <spring:message code="common.placeName"/>
+                        </label>
                         <div class="col-xs-9">
                             <input class="form-control" type="text" id="cityName" name="cityName"
-                                   placeholder="Place/City <spring:message code="common.id"/>">
+                                   placeholder="<spring:message code="common.placeName"/>">
                         </div>
                     </div>
 
@@ -178,7 +180,7 @@
                 <br>
                 <form:form class="form-horizontal detailsForm" id="imgForm" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="id" name="id">
-                    <label for="image" class="control-label col-xs-5">Choose New Image:</label>
+                    <label for="image" class="control-label col-xs-5"><spring:message code="common.choose_image"/> </label>
                     <div class="form-group">
                         <div class="col-xs-7">
                             <input name="image" id="image" type="file" /><br/>

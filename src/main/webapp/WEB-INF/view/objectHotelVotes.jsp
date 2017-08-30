@@ -21,7 +21,7 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-body" style="padding: 10px;">
-                            <h4 class="pull-left"><strong>Object's Feedback Data:</strong></h4>
+                            <h4 class="pull-left"><strong><spring:message code="common.obj_votes_list"/></strong></h4>
                         </div>
                     </div>
                 </div>

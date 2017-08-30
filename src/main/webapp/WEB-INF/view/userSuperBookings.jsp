@@ -29,7 +29,7 @@
                     <div class="col-md-6">
                         <div class="panel panel-default">
                             <div class="panel-body" style="padding: 10px;">
-                                <h4 class="pull-left"><strong>My Bookings:</strong></h4>
+                                <h4 class="pull-left"><strong><spring:message code="common.my_bookings"/></strong></h4>
                             </div>
                         </div>
                     </div>

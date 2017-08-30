@@ -11,7 +11,7 @@
     <div class="well">
         <ul class="nav navbar restNavbar">
             <li class="menu-head text-center">
-                ADMIN MENU
+                <spring:message code="common.admin"/>
             </li>
             <li><hr></li>
             <li>

@@ -17,7 +17,7 @@
             <div class="col-md-12">
                 <div class="panel-group">
                     <div class="panel panel-default text-center">
-                        <h2>Welcome back, ${user.name}!</h2>
+                        <h2><spring:message code="common.welcome_back"/> ${user.name}!</h2>
                         <hr>
                     </div>
                 </div>
@@ -29,13 +29,13 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-12 text-center">
-                            <h3>My Bookings</h3>
+                            <h3><spring:message code="common.my_bookings"/></h3>
                         </div>
                     </div>
                 </div>
                 <a href="user/show_bookings">
                     <div class="panel-footer">
-                        <span class="pull-left">View/Manage</span>
+                        <span class="pull-left"><spring:message code="common.view_manage"/></span>
                         <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
                         <div class="clearfix"></div>
                     </div>
@@ -48,13 +48,13 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-12 text-center">
-                            <h3>Visited Hotels</h3>
+                            <h3><spring:message code="common.visited_hotels"/></h3>
                         </div>
                     </div>
                 </div>
                 <a href="user/show_hotels">
                     <div class="panel-footer">
-                        <span class="pull-left">View/Manage</span>
+                        <span class="pull-left"><spring:message code="common.view_manage"/></span>
                         <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
                         <div class="clearfix"></div>
                     </div>
@@ -67,13 +67,13 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-12 text-center">
-                            <h3>My Feedback</h3>
+                            <h3><spring:message code="common.my_feedback"/></h3>
                         </div>
                     </div>
                 </div>
                 <a href="user/show_votes">
                     <div class="panel-footer">
-                        <span class="pull-left">View/Manage</span>
+                        <span class="pull-left"><spring:message code="common.view_manage"/></span>
                         <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
                         <div class="clearfix"></div>
                     </div>

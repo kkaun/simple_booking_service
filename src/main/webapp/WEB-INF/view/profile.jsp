@@ -28,13 +28,13 @@
                             <div class="col-md-8">
 
                                 <div class="panel panel-warning hidden" style="padding: 15px; margin-bottom: 20px">
-                                    <h4>Oh snap!</h4>
-                                    <p>The form seems to be invalid in some place :(</p>
+                                    <h4><spring:message code="common.damn"/></h4>
+                                    <p><spring:message code="common.damn_discl"/></p>
                                 </div>
 
                                 <div class="panel panel-info hidden" style="padding: 15px; margin-bottom: 20px">
-                                    <h4>Nice!</h4>
-                                    <p>Everything seems to be ok!</p>
+                                    <h4><spring:message code="common.nice"/></h4>
+                                    <p><spring:message code="common.nice_discl"/></p>
                                 </div>
 
                                 <form:form modelAttribute="userTo" class="form-horizontal registration_form" method="post"
@@ -48,7 +48,7 @@
                                                    data-parsley-pattern="^[a-zA-Z]+$"
                                                    data-parsley-required="true"
                                                    data-parsley-length="[3, 44]"
-                                                   placeholder="Name" required>
+                                                   placeholder="<spring:message code="common.name"/>" required>
                                             <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-user"></i></span>
                                         </div>
@@ -60,7 +60,7 @@
                                                    data-parsley-required="true"
                                                    data-parsley-pattern="^[0-9\-\+\s\(\)]*$"
                                                    data-parsley-length="[5, 20]"
-                                                   value="" placeholder="Phone" required>
+                                                   value="" placeholder="<spring:message code="common.phone"/>" required>
                                             <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-earphone"></i></span>
                                         </div>
@@ -71,7 +71,7 @@
                                                    name="email"
                                                    data-parsley-required="true"
                                                    data-parsley-type="email"
-                                                   value="" placeholder="Email" required>
+                                                   value="" placeholder="<spring:message code="common.email"/>" required>
                                             <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-envelope"></i></span>
                                         </div>
@@ -82,7 +82,7 @@
                                                    name="password"
                                                    data-parsley-required="true"
                                                    data-parsley-length="[6, 18]"
-                                                   placeholder="Password" required>
+                                                   placeholder="<spring:message code="common.password"/>" required>
                                             <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-lock"></i></span>
                                         </div>
@@ -93,7 +93,7 @@
                                         <div class="col-md-6">
                                             <button type="submit"
                                                     class="btn btn-success btn-lg btn-primary">
-                                                Register
+                                                <spring:message code="app.register"/>
                                             </button>
                                         </div>
                                         <div class="col-md-3"></div>
@@ -126,13 +126,13 @@
                             <div class="col-md-8">
 
                                 <div class="panel panel-warning hidden" style="padding: 15px; margin-bottom: 20px">
-                                    <h4>Oh snap!</h4>
-                                    <p>The form seems to be invalid in some place :(</p>
+                                    <h4><spring:message code="common.damn"/></h4>
+                                    <p><spring:message code="common.damn_discl"/></p>
                                 </div>
 
                                 <div class="panel panel-info hidden" style="padding: 15px; margin-bottom: 20px">
-                                    <h4>Nice!</h4>
-                                    <p>Everything seems to be ok!</p>
+                                    <h4><spring:message code="common.nice"/></h4>
+                                    <p><spring:message code="common.nice_discl"/></p>
                                 </div>
 
                                 <form:form modelAttribute="userTo" class="form-horizontal registration_form" method="post"
@@ -146,7 +146,7 @@
                                                    data-parsley-pattern="^[a-zA-Z]+$"
                                                    data-parsley-required="true"
                                                    data-parsley-length="[3, 44]"
-                                                   placeholder="Name" required>
+                                                   placeholder="<spring:message code="common.name"/>" required>
                                             <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-user"></i></span>
                                         </div>
@@ -158,7 +158,7 @@
                                                    data-parsley-required="true"
                                                    data-parsley-pattern="^[0-9\-\+\s\(\)]*$"
                                                    data-parsley-length="[5, 20]"
-                                                   value="" placeholder="Phone" required>
+                                                   value="" placeholder="<spring:message code="common.phone"/>" required>
                                             <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-earphone"></i></span>
                                         </div>
@@ -169,7 +169,7 @@
                                                    name="email"
                                                    data-parsley-required="true"
                                                    data-parsley-type="email"
-                                                   value="" placeholder="Email" required>
+                                                   value="" placeholder="<spring:message code="common.email"/>" required>
                                             <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-envelope"></i></span>
                                         </div>
@@ -180,7 +180,7 @@
                                                    name="password"
                                                    data-parsley-required="true"
                                                    data-parsley-length="[6, 18]"
-                                                   placeholder="Password" required>
+                                                   placeholder="<spring:message code="common.password"/>" required>
                                             <span class="input-group-addon"><i
                                                     class="glyphicon glyphicon-lock"></i></span>
                                         </div>
@@ -191,7 +191,7 @@
                                         <div class="col-md-6">
                                             <button type="submit"
                                                     class="btn btn-success btn-lg btn-primary">
-                                                Register
+                                                <spring:message code="app.register"/>
                                             </button>
                                         </div>
                                         <div class="col-md-3"></div>
