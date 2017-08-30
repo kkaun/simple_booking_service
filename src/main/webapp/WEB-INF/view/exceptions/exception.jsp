@@ -2,7 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-<jsp:include page="../fragments/jspHeadTag.jsp"/>
+<jsp:include page="../fragments/head_tags/jspHeadTag.jsp"/>
 
 <body>
 <jsp:include page="../fragments/header.jsp"/>

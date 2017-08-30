@@ -16,32 +16,32 @@
             <li><hr></li>
             <li>
                 <a class="restNavLi" href="admin/show_hotels">
-                    <h5><strong>Hotels</strong></h5>
+                    <h5><strong><spring:message code="hotels.title"/></strong></h5>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="admin/show_users">
-                    <h5><strong>Users</strong></h5>
+                    <h5><strong><spring:message code="common.users"/></strong></h5>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="admin/show_super_bookings">
-                    <h5><strong>Bookings</strong></h5>
+                    <h5><strong><spring:message code="common.votes"/></strong></h5>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="admin/show_votes">
-                    <h5><strong>Feedback</strong></h5>
+                    <h5><strong><spring:message code="common.feedback"/></strong></h5>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="admin/show_apt_types">
-                    <h5><strong>Apt. Types</strong></h5>
+                    <h5><strong><spring:message code="common.apt_types_short"/></strong></h5>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="admin/show_regions">
-                    <h5><strong>Regions</strong></h5>
+                    <h5><strong><spring:message code="common.regions"/></strong></h5>
                 </a>
             </li>
             <li><hr></li>

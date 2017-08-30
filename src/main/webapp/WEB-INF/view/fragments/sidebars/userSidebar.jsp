@@ -11,22 +11,22 @@
     <div class="well">
         <ul class="nav navbar restNavbar">
             <li class="menu-head text-center">
-                USER MENU
+                <spring:message code="common.user_panel"/>
             </li>
             <li><hr></li>
             <li>
                 <a class="restNavLi" href="user/show_bookings">
-                    <h4>My Bookings</h4>
+                    <h4><spring:message code="common.my_bookings"/></h4>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="user/show_hotels">
-                    <h4>Visited Objects</h4>
+                    <h4><spring:message code="common.visited_hotels"/></h4>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="user/show_votes">
-                    <h4>My Votes</h4>
+                    <h4><spring:message code="common.my_feedback"/></h4>
                 </a>
             </li>
             <li><hr></li>

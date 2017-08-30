@@ -11,29 +11,29 @@
     <div class="well">
         <ul class="nav navbar restNavbar">
             <li class="menu-head text-center">
-                MANAGER MENU
+                <spring:message code="manager_panel"/>
             </li>
             <li><hr></li>
             <li>
                 <a class="restNavLi" href="hotel_manager/object/show_chart">
-                    <h4>Calendar/
+                    <h4><spring:message code="common.calendar"/>/
                         <br>
-                        Chart</h4>
+                        <spring:message code="chart_only"/></h4>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="hotel_manager/object/show_super_bookings">
-                    <h4>Manage Bookings</h4>
+                    <h4><spring:message code="common.manage_bookings"/></h4>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="hotel_manager/object/show_hotel_votes">
-                    <h4>View Feedback</h4>
+                    <h4><spring:message code="common.view_feedback"/></h4>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="hotel_manager/object/show_apartments">
-                    <h4>Manage Apartments</h4>
+                    <h4><spring:message code="common.manage_apts"/></h4>
                 </a>
             </li>
             <li><hr></li>
