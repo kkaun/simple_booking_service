@@ -1,5 +1,6 @@
 package com.kirak.util.model;
 
+import com.kirak.model.Apartment;
 import com.kirak.model.Booking;
 import com.kirak.model.SuperBooking;
 import com.kirak.to.ManagerObject;
@@ -8,10 +9,10 @@ import com.kirak.web.session.AuthorizedUser;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 /**
  * Created by Kir on 13.08.2017.
@@ -108,6 +109,28 @@ public class SuperBookingUtil {
                 .map(superBooking -> asUserSuperBookingTo(superBooking,
                         getSuperBookingInDate(superBooking), getSuperBookingOutDate(superBooking)))
                 .collect(Collectors.toList());
+    }
+
+    public static double calculateSuperBookingSum(List<Booking> bookings){
+
+        final double[] sum = {0};
+        bookings.forEach(booking -> sum[0] += BookingUtil.calculateBookingSum(booking, booking.getInDate(), booking.getOutDate()));
+        return sum[0];
+    }
+
+    public static short calculateSuperBookingOverallPersonNum(List<Booking> bookings){
+
+        final short[] num = {0};
+        bookings.forEach(booking -> num[0] += booking.getPersonNum());
+        return num[0];
+    }
+
+    public static SuperBooking updateSuperBookingFromSub(SuperBooking superBooking, Set<Booking> bookings){
+        superBooking.setBookings(bookings);
+        superBooking.setOverallSum(SuperBookingUtil.calculateSuperBookingSum(new ArrayList<>(bookings)));
+        superBooking.setOverallPersonNum(SuperBookingUtil.calculateSuperBookingOverallPersonNum(new ArrayList<>(bookings)));
+
+        return superBooking;
     }
 
 }

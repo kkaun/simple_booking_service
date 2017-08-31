@@ -26,7 +26,7 @@ function extendsSubBookingOpts(opts) {
     $.extend(true, opts,
         {
             "ajax": {
-                "url": subBookingAjaxUrl + "getAll?sbId=" + sbId,
+                "url": subBookingAjaxUrl + "getAll?superBookingId=" + sbId,
                 "dataSrc": ""
             },
             "paging": true,
@@ -47,9 +47,16 @@ function updateSubBookingTableByData(data) {
 }
 
 
+function addSubBooking() {
+    $('#bookingModalTitle').html(i18n["addTitle"]);
+    form.find(":input").val("");
+    $('#bookingEditRow').modal();
+}
+
+
 function updateBookingRow(id) {
     $('#bookingModalTitle').html(i18n["editTitle"]);
-    $.get(subBookingAjaxUrl + id, function (data) {
+    $.get(subBookingAjaxUrl + "get?superBookingId=" + sbId + "&subId=" + id, function (data) {
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(value);
         });
@@ -67,7 +74,7 @@ function renderBookingEditBtn(data, type, row) {
 function saveBooking() {
     $.ajax({
         type: "POST",
-        url: subBookingAjaxUrl + "crud?sbId=" + sbId,
+        url: subBookingAjaxUrl + "crud?superBookingId=" + sbId,
         data: form.serialize(),
         success: function () {
             $('#bookingEditRow').modal('hide');

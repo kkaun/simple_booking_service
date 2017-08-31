@@ -23,8 +23,11 @@ public interface BookingRepository {
     // null if booking does not belong to superBookingId
     Booking get(long id, int superBookingId, int apartmentId);
 
+    Booking get(Long id, Integer superBookingId);
+
     Booking get(long id);
 
     List<Booking> getAll();
+
 
 }

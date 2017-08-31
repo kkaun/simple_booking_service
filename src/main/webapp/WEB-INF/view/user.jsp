@@ -44,7 +44,7 @@
         </div>
 
         <div class="col-lg-4 col-md-4">
-            <div class="panel panel-yellow">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-12 text-center">
@@ -54,7 +54,7 @@
                 </div>
                 <a href="user/show_hotels">
                     <div class="panel-footer">
-                        <span class="pull-left"><spring:message code="common.view_manage"/></span>
+                        <span class="pull-left"><spring:message code="common.view"/></span>
                         <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
                         <div class="clearfix"></div>
                     </div>
@@ -63,7 +63,7 @@
         </div>
 
         <div class="col-lg-4 col-md-4">
-            <div class="panel panel-primary">
+            <div class="panel panel-yellow">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-12 text-center">

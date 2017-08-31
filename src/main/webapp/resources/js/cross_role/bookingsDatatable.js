@@ -6,7 +6,7 @@ var subBookingAjaxUrl = "/bookings/";
 var datatableApi;
 
 function updateBookingsTable() {
-    $.get(subBookingAjaxUrl, updateSubBookingTableByData);
+    $.get(subBookingAjaxUrl + "getAll?superBookingId=" + sbId, updateSubBookingTableByData);
 }
 
 $(function () {

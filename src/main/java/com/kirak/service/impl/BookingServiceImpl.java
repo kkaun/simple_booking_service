@@ -79,6 +79,11 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
+    public Booking get(Long id, Integer superBookingId) {
+        return checkNotFoundWithId(repository.get(id, superBookingId), id);
+    }
+
+    @Override
     public Booking get(Long id) {
         return checkNotFoundWithId(repository.get(id), id);
     }

@@ -29,8 +29,9 @@ public interface BookingService {
 
     Booking get(Long id, int superBookingId, int apartmentId) throws NotFoundException;
 
+    Booking get(Long id, Integer superBookingId);
+
     Booking get(Long id) throws NotFoundException;
 
     List<Booking> getAll();
-
 }

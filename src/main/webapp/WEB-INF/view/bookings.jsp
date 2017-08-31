@@ -11,7 +11,6 @@
 <script type="text/javascript">
     var sbId = '${sbId}';
 </script>
-
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/cross_role/subBookingAjaxUtil.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/cross_role/bookingsDatatable.js" defer></script>
 <jsp:include page="fragments/header.jsp"/>
@@ -23,7 +22,7 @@
         <div class="col-md-2">
             <sec:authorize access="isAuthenticated()">
                 <sec:authorize access="hasAuthority('ROLE_ADMIN')">
-                        <jsp:include page="fragments/sidebars/adminSidebar.jsp"/>
+                    <jsp:include page="fragments/sidebars/adminSidebar.jsp"/>
                 </sec:authorize>
             </sec:authorize>
             <sec:authorize access="isAuthenticated()">
@@ -39,7 +38,16 @@
         </div>
 
         <div class="col-md-10">
+
             <div class="row" style="height: 70px">
+                <div class="col-md-7">
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="padding: 10px;">
+                            <h4 class="pull-left"><strong><spring:message code="common.sub_bookings_info"/></strong>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-4">
                     <sec:authorize access="isAuthenticated()">
                         <sec:authorize access="hasAuthority('ROLE_ADMIN')">
@@ -52,7 +60,8 @@
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
                         <sec:authorize access="hasAuthority('ROLE_MANAGER')">
-                            <a id="backBtn" class="btn btn-lg btn-primary pull-left" href="hotel_manager/object/show_super_bookings"
+                            <a id="backBtn" class="btn btn-lg btn-primary pull-left"
+                               href="hotel_manager/object/show_super_bookings"
                                style="margin: 0 auto;">
                                 <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&nbsp;&nbsp;
                                 <spring:message code="common.submit_return"/>
@@ -69,15 +78,15 @@
                         </sec:authorize>
                     </sec:authorize>
                 </div>
-                <div class="col-md-8">
-                    <div class="panel panel-default">
-                        <div class="panel-body" style="padding: 10px;">
-                            <h4 class="pull-left"><strong><spring:message code="common.sub_bookings_info"/></strong></h4>
-                        </div>
-                    </div>
+                <div class="col-md-1">
+                    <button id="adminUserAddBtn" class="btn btn-lg btn-primary pull-right"
+                            style="margin: 0 auto;" onclick="addSubBooking()">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </button>
                 </div>
             </div>
 
+            <div class="row">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="table-responsive">
@@ -98,6 +107,7 @@
                     </div>
                 </div>
             </div>
+            </div>
 
         </div>
     </div>
@@ -116,7 +126,6 @@
             <div class="modal-body">
                 <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
-                    <input type="hidden" id="sbId" name="sbId">
                     <input type="hidden" id="edited" name="edited">
 
                     <div class="form-group">

@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Kir on 13.06.2017.
@@ -52,8 +53,14 @@ public class BookingRepositoryImpl implements BookingRepository {
     @Override
     public Booking get(long id, int superBookingId, int apartmentId) {
         Booking booking = bookingRepository.findOne(id);
-        return booking != null && booking.getSuperBooking().getId() == superBookingId
-                && booking.getApartment().getId() == apartmentId ? booking : null;
+        return booking != null && Objects.equals(booking.getSuperBooking().getId(), superBookingId)
+                && Objects.equals(booking.getApartment().getId(), apartmentId) ? booking : null;
+    }
+
+    @Override
+    public Booking get(Long id, Integer superBookingId) {
+        Booking booking = bookingRepository.findOne(id);
+        return booking != null && Objects.equals(booking.getSuperBooking().getId(), superBookingId) ? booking : null;
     }
 
     @Override

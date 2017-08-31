@@ -1,5 +1,6 @@
 package com.kirak.web.abstr;
 
+import com.kirak.model.Booking;
 import com.kirak.model.SuperBooking;
 import com.kirak.service.ApartmentService;
 import com.kirak.service.BookingService;
@@ -17,7 +18,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.*;
 
 import static com.kirak.util.model.SuperBookingUtil.*;
 import static com.kirak.web.abstr.UserAbstractController.EXCEPTION_MODIFICATION_RESTRICTION;
@@ -135,24 +136,37 @@ public abstract class BookingAbstractController {
     //-------------------------------------- Booking methods --------------------------------//
 
 
-    public void createBooking(BookingTo bookingTo, Integer sbId){
+    public void createBooking(BookingTo bookingTo, Integer superBookingId){
         LOG.info("Saving booking {}", bookingTo);
-        bookingService.save(bookingTo, sbId, apartmentService.getAll(), superBookingService.getAll());
+        Booking booking = bookingService.save(bookingTo, superBookingId, apartmentService.getAll(), superBookingService.getAll());
+        SuperBooking superBooking = superBookingService.get(superBookingId);
+        Set<Booking> bookings = superBooking.getBookings();
+        bookings.add(booking);
+        superBookingService.save(SuperBookingUtil.updateSuperBookingFromSub(superBooking, bookings));
     }
 
-    public void updateBooking(BookingTo bookingTo){
+    public void updateBooking(BookingTo bookingTo, Integer superBookingId){
         LOG.info("Updating booking {}", bookingTo);
-        bookingService.update(bookingTo);
+        Booking updatedBooking = bookingService.update(bookingTo);
+        SuperBooking superBooking = superBookingService.get(superBookingId);
+        Set<Booking> bookings = superBooking.getBookings();
+        Set<Booking> editedBookings = new HashSet<>();
+        bookings.forEach(booking -> {
+            if(!Objects.equals(booking.getId(), updatedBooking.getId())){
+                editedBookings.add(booking);
+        }});
+        editedBookings.add(updatedBooking);
+        superBookingService.update(SuperBookingUtil.updateSuperBookingFromSub(superBooking, editedBookings));
     }
 
-    public BookingTo getBooking(Long id){
+    public BookingTo getBooking(Integer superBookingId, Long id){
         LOG.info("Getting booking {}", id);
-        return BookingUtil.asBookingTo(bookingService.get(id));
+        return BookingUtil.asBookingTo(bookingService.get(id, superBookingId));
     }
 
-    public List<BookingTo> getAllBookings(Integer sbId){
+    public List<BookingTo> getAllBookings(Integer superBookingId){
         LOG.info("Getting all bookings");
-        return BookingUtil.generateBookingTos(superBookingService.get(sbId));
+        return BookingUtil.generateBookingTos(superBookingService.get(superBookingId));
     }
 
 

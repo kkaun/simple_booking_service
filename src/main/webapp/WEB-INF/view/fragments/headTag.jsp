@@ -10,8 +10,8 @@
     <title><spring:message code="app.title"/></title>
     <base href="${pageContext.request.contextPath}/"/>
 
-    <%--<meta name="_csrf" content="${_csrf.token}"/>--%>
-    <%--<meta name="_csrf_header" content="${_csrf.headerName}"/>--%>
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
 
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
 
