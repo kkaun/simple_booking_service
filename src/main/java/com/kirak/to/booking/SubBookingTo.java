@@ -1,12 +1,12 @@
 package com.kirak.to.booking;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.*;
 import com.kirak.model.Apartment;
 import com.kirak.model.Hotel;
 import com.kirak.model.abstraction.BaseLongEntity;
 import com.kirak.to.abstr.BasicLongTo;
+import com.kirak.util.DateTimeUtil;
+import com.kirak.web.View;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -34,7 +34,8 @@ public class SubBookingTo extends BasicLongTo implements Serializable {
 
     private Double sum;
 
-    private String edited;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DateTimeUtil.DATE_TIME_PATTERN)
+    private LocalDateTime edited;
 
     public SubBookingTo(){}
 
@@ -45,7 +46,7 @@ public class SubBookingTo extends BasicLongTo implements Serializable {
                         @JsonProperty("inDate") LocalDate aptInDate,
                         @JsonProperty("outDate") LocalDate aptOutDate,
                         @JsonProperty("sum") Double sum,
-                        @JsonProperty("edited") String edited) {
+                        @JsonProperty("edited") LocalDateTime edited) {
         super(id);
         this.stringAptType = stringAptType;
         this.aptPrice = aptPrice;
@@ -61,26 +62,21 @@ public class SubBookingTo extends BasicLongTo implements Serializable {
         return stringAptType;
     }
 
-    
     public Double getAptPrice() {
         return aptPrice;
     }
-
     
     public LocalDate getAptInDate() {
         return aptInDate;
     }
-
     
     public LocalDate getAptOutDate() {
         return aptOutDate;
     }
-
     
     public Double getSum() {
         return sum;
     }
-
     
     public Integer getAptId() {
         return aptId;
@@ -114,11 +110,15 @@ public class SubBookingTo extends BasicLongTo implements Serializable {
         this.sum = sum;
     }
 
-    public String getEdited() {
+    @JsonGetter
+    @JsonView(View.JsonUI.class)
+    @JsonFormat(pattern = DateTimeUtil.DATE_TIME_PATTERN)
+    public LocalDateTime getEdited() {
         return edited;
     }
 
-    public void setEdited(String edited) {
+    @JsonFormat(pattern = DateTimeUtil.DATE_TIME_PATTERN)
+    public void setEdited(LocalDateTime edited) {
         this.edited = edited;
     }
 

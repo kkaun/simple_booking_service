@@ -14,4 +14,10 @@
         <function-class>java.lang.Math</function-class>
         <function-signature>int abs(int)</function-signature>
     </function>
+
+    <function>
+        <name>formatDateTime</name>
+        <function-class>com.kirak.util.DateTimeUtil</function-class>
+        <function-signature>java.lang.String toString(java.time.LocalDateTime)</function-signature>
+    </function>
 </taglib>

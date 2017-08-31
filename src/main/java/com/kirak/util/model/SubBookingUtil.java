@@ -27,7 +27,7 @@ public class SubBookingUtil {
         return new SubBookingTo(subBooking.getId(), subBooking.getApartment().getId(), stringAptType,
                 subBooking.getApartment().getPrice(), subBooking.getInDate(), subBooking.getOutDate(),
                 calculateSubBookingSum(subBooking, subBooking.getInDate(), subBooking.getOutDate()),
-                subBooking.getEdited().toString());
+                subBooking.getEdited());
     }
 
     public static Map<SubBooking, Boolean> createFromToWithResult(SubBookingTo subBookingTo, int bookingId,
@@ -75,7 +75,7 @@ public class SubBookingUtil {
             subBooking.setOutDate(requestedOutDate);
             subBooking.setSum(calculateSubBookingSum(subBooking, requestedInDate, requestedOutDate));
             subBooking.setPersonNum(aptPersonNum);
-            subBooking.setEdited(LocalDateTime.parse(subBookingTo.getEdited()));
+            subBooking.setEdited(LocalDateTime.now());
 
             return Collections.singletonMap(subBooking, true);
         }

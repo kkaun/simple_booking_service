@@ -45,22 +45,18 @@ public class PlaceTo extends BasicIntTo implements Serializable {
         return imgPath;
     }
 
-    
     public String getName() {
         return name;
     }
 
-    
     public String getCountryName() {
         return countryName;
     }
 
-    
     public String getDescription() {
         return description;
     }
 
-    
     public Integer getHotelNum() {
         return hotelNum;
     }

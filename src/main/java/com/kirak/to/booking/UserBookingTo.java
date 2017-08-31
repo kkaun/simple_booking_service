@@ -1,9 +1,9 @@
 package com.kirak.to.booking;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.*;
 import com.kirak.to.abstr.BasicIntTo;
+import com.kirak.util.DateTimeUtil;
+import com.kirak.web.View;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
@@ -17,6 +17,7 @@ public class UserBookingTo extends BasicIntTo implements Serializable {
 
     private boolean active;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DateTimeUtil.DATE_TIME_PATTERN)
     private LocalDateTime dateAdded;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING,
@@ -57,39 +58,33 @@ public class UserBookingTo extends BasicIntTo implements Serializable {
     public boolean isActive() {
         return active;
     }
-
-    
-    public LocalDateTime getDateAdded() {
-        return dateAdded;
-    }
-
     
     public LocalDate getInDate() {
         return inDate;
     }
-
     
     public LocalDate getOutDate() {
         return outDate;
     }
 
-    
     public Integer getHotelId() {
         return hotelId;
     }
 
-    
     public String getHotelName() {
         return hotelName;
     }
 
-    
     public Short getApartmentsNum() {
         return apartmentsNum;
     }
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public LocalDateTime getDateAdded() {
+        return dateAdded;
     }
 
     public void setDateAdded(LocalDateTime dateAdded) {

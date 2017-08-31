@@ -32,23 +32,23 @@ public class SubBookingTestData {
 
     public static final SubBooking SUB_BOOKING_1 = new SubBooking(BOOKING1_ID,
             of(2017, Month.MAY, 23), of(2017, Month.MAY, 28),
-            6000.00, (short)1, SUPER_BOOKING1, APARTMENT1, HOTEL1, LocalDateTime.now());
+            6000.00, (short)1, SUPER_BOOKING1, APARTMENT1, HOTEL1, LocalDateTime.of(2017, 9, 1, 0, 0));
 
     public static final SubBooking SUB_BOOKING_2 = new SubBooking(BOOKING2_ID,
             of(2017, Month.APRIL, 14), of(2017, Month.APRIL, 17),
-            4500.00, (short)2, SUPER_BOOKING2, APARTMENT2, HOTEL1, LocalDateTime.now());
+            4500.00, (short)2, SUPER_BOOKING2, APARTMENT2, HOTEL1, LocalDateTime.of(2017, 9, 1, 0, 0));
 
     public static final SubBooking SUB_BOOKING_3 = new SubBooking(BOOKING3_ID,
             of(2017, Month.JUNE, 6), of(2017, Month.JUNE, 7),
-            3200.00, (short)2, SUPER_BOOKING3, APARTMENT3, HOTEL2, LocalDateTime.now());
+            3200.00, (short)2, SUPER_BOOKING3, APARTMENT3, HOTEL2, LocalDateTime.of(2017, 9, 1, 0, 0));
 
     public static final SubBooking SUB_BOOKING_4 = new SubBooking(BOOKING4_ID,
             of(2017, Month.MAY, 21), of(2017, Month.MAY, 23),
-            10000.00, (short)2, SUPER_BOOKING4, APARTMENT4, HOTEL3, LocalDateTime.now());
+            10000.00, (short)2, SUPER_BOOKING4, APARTMENT4, HOTEL3, LocalDateTime.of(2017, 9, 1, 0, 0));
 
     public static final SubBooking SUB_BOOKING_5 = new SubBooking(BOOKING5_ID,
             of(2017, Month.MAY, 21), of(2017, Month.MAY, 28),
-            31200.00, (short)2, SUPER_BOOKING5, APARTMENT5, HOTEL4, LocalDateTime.now());
+            31200.00, (short)2, SUPER_BOOKING5, APARTMENT5, HOTEL4, LocalDateTime.of(2017, 9, 1, 0, 0));
 
 
     public static final List<SubBooking> SUB_BOOKINGS = Arrays.asList(SUB_BOOKING_1, SUB_BOOKING_2, SUB_BOOKING_3, SUB_BOOKING_4, SUB_BOOKING_5);
@@ -56,11 +56,12 @@ public class SubBookingTestData {
 
     public static SubBooking getCreatedBooking() {
         return new SubBooking(null, of(2017, Month.JUNE, 17), of(2017, Month.JUNE, 27),
-                3200.00, (short)2, SUPER_BOOKING4, APARTMENT2, HOTEL2, LocalDateTime.now());
+                3200.00, (short)2, SUPER_BOOKING4, APARTMENT2, HOTEL2, LocalDateTime.of(2017, 9, 1, 0, 0));
     }
 
     public static SubBooking getUpdatedBooking() {
         return new SubBooking(BOOKING1_ID, SUB_BOOKING_1.getInDate(), of(2017, Month.JUNE, 1),
-                10800.00, (short)2, SUB_BOOKING_1.getBooking(), SUB_BOOKING_1.getApartment(), SUB_BOOKING_1.getHotel(), LocalDateTime.now());
+                10800.00, (short)2, SUB_BOOKING_1.getBooking(), SUB_BOOKING_1.getApartment(), SUB_BOOKING_1.getHotel(),
+                LocalDateTime.of(2017, 9, 1, 0, 0));
     }
 }

@@ -42,21 +42,17 @@ public class AptTypeTo extends BasicShortTo implements Serializable {
         return personNum;
     }
 
-    
     public String getCategory() {
         return category;
     }
-
     
     public String getBedsArrangement() {
         return bedsArrangement;
     }
-
     
     public Integer getHotelsUsing() {
         return hotelsUsing;
     }
-
     
     public Integer getApartmentsAppliedTo() {
         return apartmentsAppliedTo;

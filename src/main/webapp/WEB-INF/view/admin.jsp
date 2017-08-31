@@ -107,7 +107,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="admin/show_super_bookings">
+                <a href="admin/show_bookings">
                     <div class="panel-footer">
                         <span class="pull-left"><spring:message code="common.view_manage"/></span>
                         <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
