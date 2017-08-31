@@ -3,7 +3,6 @@ package com.kirak.web.abstr;
 import com.kirak.model.SuperBooking;
 import com.kirak.service.ApartmentService;
 import com.kirak.service.BookingService;
-import com.kirak.service.SubBookingObjectService;
 import com.kirak.service.SuperBookingService;
 import com.kirak.to.booking.*;
 import com.kirak.util.exception.ApplicationException;
@@ -36,8 +35,6 @@ public abstract class BookingAbstractController {
 
     private final ApartmentService apartmentService;
 
-    private final SubBookingObjectService subBookingObjectService;
-
     @Autowired
     private ExceptionViewHandler exceptionInfoHandler;
 
@@ -45,12 +42,10 @@ public abstract class BookingAbstractController {
 
     @Autowired
     public BookingAbstractController(BookingService bookingService, SuperBookingService superBookingService,
-                                     ApartmentService apartmentService,
-                                     @Qualifier("subBookingObjectService") SubBookingObjectService subBookingObjectService) {
+                                     ApartmentService apartmentService) {
         this.bookingService = bookingService;
         this.superBookingService = superBookingService;
         this.apartmentService = apartmentService;
-        this.subBookingObjectService = subBookingObjectService;
     }
 
     //-------------------------------------- General SuperBooking methods --------------------------------//
@@ -140,12 +135,9 @@ public abstract class BookingAbstractController {
     //-------------------------------------- Booking methods --------------------------------//
 
 
-    public void createBooking(BookingTo bookingTo){
+    public void createBooking(BookingTo bookingTo, Integer sbId){
         LOG.info("Saving booking {}", bookingTo);
-        SubBookingObject lastSubBooking = BookingUtil.getLastSubBooking(AuthorizedUser.id(),
-                subBookingObjectService.getSubBookingObjects());
-        int superBookingId = lastSubBooking.getSuperBookingId();
-        bookingService.save(bookingTo, superBookingId, apartmentService.getAll(), superBookingService.getAll());
+        bookingService.save(bookingTo, sbId, apartmentService.getAll(), superBookingService.getAll());
     }
 
     public void updateBooking(BookingTo bookingTo){
@@ -158,10 +150,9 @@ public abstract class BookingAbstractController {
         return BookingUtil.asBookingTo(bookingService.get(id));
     }
 
-    public List<BookingTo> getAllBookings(){
+    public List<BookingTo> getAllBookings(Integer sbId){
         LOG.info("Getting all bookings");
-        return BookingUtil.getBookingsFromSuperBooking(AuthorizedUser.id(), subBookingObjectService.getSubBookingObjects(),
-                bookingService.getAll());
+        return BookingUtil.generateBookingTos(superBookingService.get(sbId));
     }
 
 

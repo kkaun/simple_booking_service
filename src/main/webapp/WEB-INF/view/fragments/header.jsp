@@ -6,7 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
-<jsp:include page="head_tags/jspHeadTag.jsp"/>
+<jsp:include page="headTag.jsp"/>
 <body>
 
 <div class="container">

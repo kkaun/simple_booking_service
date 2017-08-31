@@ -3,7 +3,6 @@ package com.kirak.web.rest.cross_role;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.kirak.service.ApartmentService;
 import com.kirak.service.BookingService;
-import com.kirak.service.SubBookingObjectService;
 import com.kirak.service.SuperBookingService;
 import com.kirak.to.booking.BookingTo;
 import com.kirak.web.View;
@@ -25,15 +24,15 @@ public class BookingsAjaxController extends BookingAbstractController {
 
     @Autowired
     public BookingsAjaxController(BookingService bookingService, SuperBookingService superBookingService,
-                                  ApartmentService apartmentService, SubBookingObjectService subBookingObjectService) {
-        super(bookingService, superBookingService, apartmentService, subBookingObjectService);
+                                  ApartmentService apartmentService) {
+        super(bookingService, superBookingService, apartmentService);
     }
 
-    @PostMapping
+    @PostMapping(value = "/crud")
     @JsonView(View.JsonUI.class)
-    public void createOrUpdateBooking(@Valid BookingTo bookingTo) {
+    public void createOrUpdateBooking(@Valid BookingTo bookingTo, @RequestParam("sbId") Integer sbId) {
         if (bookingTo.isNew()) {
-            super.createBooking(bookingTo);
+            super.createBooking(bookingTo, sbId);
         } else {
             super.updateBooking(bookingTo);
         }
@@ -48,8 +47,8 @@ public class BookingsAjaxController extends BookingAbstractController {
 
     @Override
     @JsonView(View.JsonUI.class)
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<BookingTo> getAllBookings() {
-        return super.getAllBookings();
+    @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<BookingTo> getAllBookings(@RequestParam("sbId") Integer sbId) {
+        return super.getAllBookings(sbId);
     }
 }

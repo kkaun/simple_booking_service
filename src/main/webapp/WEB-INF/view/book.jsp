@@ -6,7 +6,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <html>
-<jsp:include page="fragments/head_tags/jspHeadTag.jsp"/>
+<jsp:include page="fragments/headTag.jsp"/>
 <body>
 <jsp:include page="fragments/header.jsp"/>
 

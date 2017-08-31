@@ -36,6 +36,8 @@ public class BookingTo extends BasicLongTo implements Serializable {
 
     private String edited;
 
+    private Integer sbId;
+
     public BookingTo(){}
 
     public BookingTo(@JsonProperty("id") Long id,
@@ -45,7 +47,8 @@ public class BookingTo extends BasicLongTo implements Serializable {
                      @JsonProperty("inDate") LocalDate aptInDate,
                      @JsonProperty("outDate") LocalDate aptOutDate,
                      @JsonProperty("sum") Double sum,
-                     @JsonProperty("edited") String edited) {
+                     @JsonProperty("edited") String edited,
+                     @JsonProperty("superBookingId") Integer sbId) {
         super(id);
         this.stringAptType = stringAptType;
         this.aptPrice = aptPrice;
@@ -54,6 +57,7 @@ public class BookingTo extends BasicLongTo implements Serializable {
         this.sum = sum;
         this.aptId = aptId;
         this.edited = edited;
+        this.sbId = sbId;
     }
 
     
@@ -120,6 +124,14 @@ public class BookingTo extends BasicLongTo implements Serializable {
 
     public void setEdited(String edited) {
         this.edited = edited;
+    }
+
+    public Integer getSbId() {
+        return sbId;
+    }
+
+    public void setSbId(Integer sbId) {
+        this.sbId = sbId;
     }
 
     @Override

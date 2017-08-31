@@ -6,7 +6,6 @@ import com.kirak.model.SuperBooking;
 import com.kirak.to.booking.BookingTo;
 import com.kirak.to.booking.ChartTo;
 import com.kirak.to.booking.ChartValue;
-import com.kirak.to.booking.SubBookingObject;
 import org.apache.commons.lang3.StringUtils;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -27,7 +26,7 @@ public class BookingUtil {
 
         return new BookingTo(booking.getId(), booking.getApartment().getId(), stringAptType, booking.getApartment().getPrice(),
                 booking.getInDate(), booking.getOutDate(), calculateBookingSum(booking, booking.getInDate(), booking.getOutDate()),
-                booking.getEdited().toString());
+                booking.getEdited().toString(), booking.getSuperBooking().getId());
     }
 
     public static Map<Booking, Boolean> createFromBookingToWithResult(BookingTo bookingTo, int superBookingId,
@@ -97,57 +96,58 @@ public class BookingUtil {
     }
 
 
-    public static List<BookingTo> getBookingsFromSuperBooking(int editorId, List<SubBookingObject> subBookingObjects,
-                                                              List<Booking> bookings){
-
-        List<BookingTo> result = new ArrayList<>();
-        Map<Long, List<BookingTo>> toListsWithIds = new HashMap<>();
-
-        Comparator<BookingTo> bookingToTimeComparator = (BookingTo b1, BookingTo b2) ->
-                (b2.getEdited().compareTo(b1.getEdited()));
-
-        List<BookingTo> allBookingTos = subBookingObjects.stream()
-                .filter(subBookingObject -> Objects.equals(subBookingObject.getEditorId(), editorId))
-                .flatMap(subBookingObject -> subBookingObject.getBookings().stream()).collect(Collectors.toList());
-
-        List<Long> ids = allBookingTos.stream()
-                .map(BookingTo::getId).sorted().distinct().collect(Collectors.toList());
-
-        ids.forEach(id -> {
-            List<BookingTo> listById = new ArrayList<>();
-            allBookingTos.forEach(bookingTo -> {
-                if(Objects.equals(id, bookingTo.getId())){
-                    listById.add(bookingTo);
-                }
-            });
-            toListsWithIds.put(id, listById);
-        });
-        toListsWithIds.forEach((id, bookingTos) -> {
-            BookingTo lastEdited = bookingTos.stream()
-                    .sorted(bookingToTimeComparator).findFirst().get();
-                    Booking realBooking = bookings.stream()
-                            .filter(booking -> Objects.equals(booking.getId(), lastEdited.getId()))
-                            .findFirst().orElse(null);
-                    lastEdited.setAptInDate(realBooking.getInDate());
-                    lastEdited.setAptOutDate(realBooking.getOutDate());
-                    lastEdited.setStringAptType(ApartmentUtil.getStringAptTypeFromApartment(realBooking.getApartment()));
-            result.add(lastEdited);
-        });
-
-        return result;
-    }
-
-
-    public static SubBookingObject getLastSubBooking(int editorId, List<SubBookingObject> subBookingObjects){
-
-        Comparator<SubBookingObject> comparator = (SubBookingObject o1, SubBookingObject o2)->
-                Integer.compare(o2.getId(), o1.getId());
-
-        return subBookingObjects.stream()
-                .filter(subBookingObject -> Objects.equals(subBookingObject.getEditorId(), editorId))
-                .sorted(comparator)
-                .findFirst().orElse(null);
-    }
+//    public static List<BookingTo> getBookingsFromSuperBooking(int editorId, List<SubBookingObject> subBookingObjects,
+//                                                              List<Booking> bookings){
+//
+//        List<BookingTo> result = new ArrayList<>();
+//        Map<Long, List<BookingTo>> toListsWithIds = new HashMap<>();
+//
+//        Comparator<BookingTo> bookingToTimeComparator = (BookingTo b1, BookingTo b2) ->
+//                (b2.getEdited().compareTo(b1.getEdited()));
+//
+//        List<BookingTo> allBookingTos = subBookingObjects.stream()
+//                .filter(subBookingObject -> Objects.equals(subBookingObject.getEditorId(), editorId))
+//                .flatMap(subBookingObject -> subBookingObject.getBookings().stream()).collect(Collectors.toList());
+//
+//        List<Long> ids = allBookingTos.stream()
+//                .map(BookingTo::getId).sorted().distinct().collect(Collectors.toList());
+//
+//        ids.forEach(id -> {
+//            List<BookingTo> listById = new ArrayList<>();
+//            allBookingTos.forEach(bookingTo -> {
+//                if(Objects.equals(id, bookingTo.getId())){
+//                    listById.add(bookingTo);
+//                }
+//            });
+//            toListsWithIds.put(id, listById);
+//        });
+//        toListsWithIds.forEach((id, bookingTos) -> {
+//            BookingTo lastEdited = bookingTos.stream()
+//                    .sorted(bookingToTimeComparator).findFirst().get();
+//                    Booking realBooking = bookings.stream()
+//                            .filter(booking -> Objects.equals(booking.getId(), lastEdited.getId()))
+//                            .findFirst().orElse(null);
+//                    lastEdited.setAptInDate(realBooking.getInDate());
+//                    lastEdited.setAptOutDate(realBooking.getOutDate());
+//                    lastEdited.setStringAptType(ApartmentUtil.getStringAptTypeFromApartment(realBooking.getApartment()));
+//                    lastEdited.setSum(realBooking.getSum());
+//            result.add(lastEdited);
+//        });
+//
+//        return result;
+//    }
+//
+//
+//    public static SubBookingObject getLastSubBooking(int editorId, List<SubBookingObject> subBookingObjects){
+//
+//        Comparator<SubBookingObject> comparator = (SubBookingObject o1, SubBookingObject o2)->
+//                Integer.compare(o2.getId(), o1.getId());
+//
+//        return subBookingObjects.stream()
+//                .filter(subBookingObject -> Objects.equals(subBookingObject.getEditorId(), editorId))
+//                .sorted(comparator)
+//                .findFirst().orElse(null);
+//    }
 
 
     // ------------------------------- Chart TO methods ----------------------------------- //

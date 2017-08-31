@@ -4,7 +4,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
-<jsp:include page="fragments/head_tags/restHeadTag.jsp"/>
+<jsp:include page="fragments/headTag.jsp"/>
 <body>
 <jsp:include page="fragments/header.jsp"/>
 

@@ -2,15 +2,15 @@
  * Created by Кира on 15.08.2017.
  */
 
-var ajaxUrl = "/bookings/";
+var subBookingAjaxUrl = "/bookings/";
 var datatableApi;
 
 function updateBookingsTable() {
-    $.get(ajaxUrl, updateTableByData);
+    $.get(subBookingAjaxUrl, updateSubBookingTableByData);
 }
 
 $(function () {
-    datatableApi = $('#bookingsDatatable').DataTable(extendsOpts({
+    datatableApi = $('#bookingsDatatable').DataTable(extendsSubBookingOpts({
         "columns": [
             {
                 "data": "id"

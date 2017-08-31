@@ -3,10 +3,8 @@ package com.kirak.web.rest.admin;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.kirak.service.ApartmentService;
 import com.kirak.service.BookingService;
-import com.kirak.service.SubBookingObjectService;
 import com.kirak.service.SuperBookingService;
 import com.kirak.to.booking.AdminSuperBookingTo;
-import com.kirak.to.booking.BookingTo;
 import com.kirak.to.booking.ManagerSuperBookingTo;
 import com.kirak.web.View;
 import com.kirak.web.abstr.BookingAbstractController;
@@ -28,8 +26,8 @@ public class SuperBookingsAjaxController extends BookingAbstractController {
 
     @Autowired
     protected SuperBookingsAjaxController(BookingService bookingService, SuperBookingService superBookingService,
-                                          ApartmentService apartmentService, SubBookingObjectService subBookingObjectService) {
-        super(bookingService, superBookingService, apartmentService, subBookingObjectService);
+                                          ApartmentService apartmentService) {
+        super(bookingService, superBookingService, apartmentService);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

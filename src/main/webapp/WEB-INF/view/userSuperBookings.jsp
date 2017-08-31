@@ -7,8 +7,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <html>
-<jsp:include page="fragments/head_tags/restHeadTag.jsp"/>
+<jsp:include page="fragments/headTag.jsp"/>
 <body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ajaxUtil.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user/userSuperBookingsDatatable.js" defer></script>
 <jsp:include page="fragments/header.jsp"/>
 

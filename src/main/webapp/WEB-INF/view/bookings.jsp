@@ -6,10 +6,16 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <html>
-<jsp:include page="fragments/head_tags/restHeadTag.jsp"/>
+<jsp:include page="fragments/headTag.jsp"/>
 <body>
+<script type="text/javascript">
+    var sbId = '${sbId}';
+</script>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/cross_role/subBookingAjaxUtil.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/cross_role/bookingsDatatable.js" defer></script>
 <jsp:include page="fragments/header.jsp"/>
+
 
 <div class="container" style="margin-top: 20px; min-height: 580px">
     <div class="row">
@@ -110,7 +116,7 @@
             <div class="modal-body">
                 <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
-                    <input type="hidden" id="aptId" name="aptId">
+                    <input type="hidden" id="sbId" name="sbId">
                     <input type="hidden" id="edited" name="edited">
 
                     <div class="form-group">
@@ -136,10 +142,10 @@
                                 <spring:message code="apt_types.category"/>,
                                 <spring:message code="apt_types.bedsArrangement"/></label>
                             <div class="col-xs-9">
-                                <select class="form-control" name="stringAptType" id="bookingApt">
+                                <select class="form-control" name="aptId" id="bookingApt">
                                     <c:forEach items="${objectApartments}" var="objectApartment">
-                                        <option value="${objectApartment.stringAptType}" name="stringAptType">
-                                        </option>
+                                        <option name="aptId" value="${objectApartment.id}">
+                                                ${objectApartment.stringAptType}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -153,6 +159,7 @@
                                 <input class="form-control" id="existingBookingApt" name="stringAptType"
                                        placeholder="<spring:message code="bookings.apartment"/>" readonly>
                             </div>
+                            <input type="hidden" id="aptId" name="aptId">
                         </c:if>
                     </div>
                     <div class="form-group">
