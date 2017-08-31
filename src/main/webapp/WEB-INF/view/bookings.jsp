@@ -85,6 +85,7 @@
                                 <th><spring:message code="apt_types.personNum"/>,
                                     <spring:message code="apt_types.category"/>,
                                     <spring:message code="apt_types.bedsArrangement"/></th>
+                                <th><spring:message code="common.edited"/></th>
                                 <th></th>
                             </thead>
                         </table>
@@ -110,6 +111,7 @@
                 <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
                     <input type="hidden" id="aptId" name="aptId">
+                    <input type="hidden" id="edited" name="edited">
 
                     <div class="form-group">
                         <label for="bookingInDate" class="control-label col-xs-3"><spring:message

@@ -16,9 +16,6 @@ $(function () {
                 "data": "id"
             },
             {
-                "data": "aptId"
-            },
-            {
                 "data": "aptInDate"
             },
             {
@@ -29,6 +26,9 @@ $(function () {
             },
             {
                 "data": "stringAptType"
+            },
+            {
+                "data": "edited"
             },
             {
                 "render": renderBookingEditBtn,

@@ -1,6 +1,5 @@
 package com.kirak.web.jsp;
 
-import com.kirak.model.Booking;
 import com.kirak.model.SuperBooking;
 import com.kirak.service.*;
 import com.kirak.to.ApartmentTo;
@@ -16,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,7 +47,8 @@ public class SubBookingsController {
 
         subBookingObjectService.addSubBookingObject(subBookingObject);
 
-        model.addAttribute("objectApartments", subBookingObject.getApartmentTos());
+        model.addAttribute("objectApartments", ApartmentUtil.getApartmentTos(
+                new ArrayList<>(superBooking.getHotel().getApartments())));
 
         return "bookings";
     }

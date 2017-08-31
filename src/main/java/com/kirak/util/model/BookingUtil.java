@@ -27,7 +27,7 @@ public class BookingUtil {
 
         return new BookingTo(booking.getId(), booking.getApartment().getId(), stringAptType, booking.getApartment().getPrice(),
                 booking.getInDate(), booking.getOutDate(), calculateBookingSum(booking, booking.getInDate(), booking.getOutDate()),
-                booking.getEdited());
+                booking.getEdited().toString());
     }
 
     public static Map<Booking, Boolean> createFromBookingToWithResult(BookingTo bookingTo, int superBookingId,
@@ -75,7 +75,7 @@ public class BookingUtil {
             booking.setOutDate(requestedOutDate);
             booking.setSum(calculateBookingSum(booking, requestedInDate, requestedOutDate));
             booking.setPersonNum(aptPersonNum);
-            booking.setEdited(bookingTo.getEdited());
+            booking.setEdited(LocalDateTime.parse(bookingTo.getEdited()));
 
             return Collections.singletonMap(booking, true);
         }
@@ -97,7 +97,8 @@ public class BookingUtil {
     }
 
 
-    public static List<BookingTo> getBookingsFromSuperBooking(int editorId, List<SubBookingObject> subBookingObjects){
+    public static List<BookingTo> getBookingsFromSuperBooking(int editorId, List<SubBookingObject> subBookingObjects,
+                                                              List<Booking> bookings){
 
         List<BookingTo> result = new ArrayList<>();
         Map<Long, List<BookingTo>> toListsWithIds = new HashMap<>();
@@ -107,8 +108,7 @@ public class BookingUtil {
 
         List<BookingTo> allBookingTos = subBookingObjects.stream()
                 .filter(subBookingObject -> Objects.equals(subBookingObject.getEditorId(), editorId))
-                .flatMap(subBookingObject -> subBookingObject.getBookings().stream())
-                .collect(Collectors.toList());
+                .flatMap(subBookingObject -> subBookingObject.getBookings().stream()).collect(Collectors.toList());
 
         List<Long> ids = allBookingTos.stream()
                 .map(BookingTo::getId).sorted().distinct().collect(Collectors.toList());
@@ -125,6 +125,12 @@ public class BookingUtil {
         toListsWithIds.forEach((id, bookingTos) -> {
             BookingTo lastEdited = bookingTos.stream()
                     .sorted(bookingToTimeComparator).findFirst().get();
+                    Booking realBooking = bookings.stream()
+                            .filter(booking -> Objects.equals(booking.getId(), lastEdited.getId()))
+                            .findFirst().orElse(null);
+                    lastEdited.setAptInDate(realBooking.getInDate());
+                    lastEdited.setAptOutDate(realBooking.getOutDate());
+                    lastEdited.setStringAptType(ApartmentUtil.getStringAptTypeFromApartment(realBooking.getApartment()));
             result.add(lastEdited);
         });
 

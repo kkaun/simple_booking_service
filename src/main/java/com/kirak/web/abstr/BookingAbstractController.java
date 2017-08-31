@@ -160,7 +160,8 @@ public abstract class BookingAbstractController {
 
     public List<BookingTo> getAllBookings(){
         LOG.info("Getting all bookings");
-        return BookingUtil.getBookingsFromSuperBooking(AuthorizedUser.id(), subBookingObjectService.getSubBookingObjects());
+        return BookingUtil.getBookingsFromSuperBooking(AuthorizedUser.id(), subBookingObjectService.getSubBookingObjects(),
+                bookingService.getAll());
     }
 
 
