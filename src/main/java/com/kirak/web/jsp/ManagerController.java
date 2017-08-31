@@ -12,7 +12,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
@@ -35,19 +34,19 @@ public class ManagerController {
 
     private final HotelService hotelService;
 
-    private final BookingService bookingService;
+    private final SubBookingService subBookingService;
 
     private final ManagerObjectService managerObjectService;
 
     @Autowired
     public ManagerController(AptTypeService aptTypeService, CountryService countryService, CityService cityService,
-                             HotelService hotelService, BookingService bookingService,
+                             HotelService hotelService, SubBookingService subBookingService,
                              @Qualifier("managerObjectService") ManagerObjectService managerObjectService) {
         this.aptTypeService = aptTypeService;
         this.countryService = countryService;
         this.cityService = cityService;
         this.hotelService = hotelService;
-        this.bookingService = bookingService;
+        this.subBookingService = subBookingService;
         this.managerObjectService = managerObjectService;
     }
 
@@ -60,16 +59,16 @@ public class ManagerController {
 
         int managerId = AuthorizedUser.id();
 
-        List<Booking> activeHotelBookings = bookingService.getAll().stream()
-                .filter(booking -> Objects.equals(booking.getHotel().getId(), hotelId)
-                        && Objects.equals(booking.getHotel().getManager().getId(), managerId))
-                .filter(booking -> booking.getSuperBooking().isActive())
+        List<SubBooking> activeHotelSubBookings = subBookingService.getAll().stream()
+                .filter(subBooking -> Objects.equals(subBooking.getHotel().getId(), hotelId)
+                        && Objects.equals(subBooking.getHotel().getManager().getId(), managerId))
+                .filter(subBooking -> subBooking.getBooking().isActive())
                 .collect(Collectors.toList());
 
         ManagerObject managerObject = ManagerObjectUtil.createManagerObjectFromHotelId(managerId, hotelId,
                 new ArrayList<>(hotel.getApartments()),
-                new ArrayList<>(activeHotelBookings),
-                new ArrayList<>(hotel.getSuperBookings()),
+                new ArrayList<>(activeHotelSubBookings),
+                new ArrayList<>(hotel.getBookings()),
                 new ArrayList<>(hotel.getVotes()));
 
         managerObjectService.addManagerObject(managerObject);
@@ -96,7 +95,7 @@ public class ManagerController {
     }
 
     @PreAuthorize("hasRole('ROLE_MANAGER')")
-    @GetMapping("/hotel_manager/object/show_super_bookings")
+    @GetMapping("/hotel_manager/object/show_bookings")
     public String showBookings(Model model) {
         int hotelManagerId = AuthorizedUser.id();
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
@@ -104,7 +103,7 @@ public class ManagerController {
         ModelUtil.getManagerView(model, managerObject.getHotelId(),
                 aptTypeService.getAll(), countryService.getAll(), cityService.getAll(),
                 managerObject.getObjectApartmentTos());
-        return "objectSuperBookings";
+        return "objectBookings";
     }
 
     @PreAuthorize("hasRole('ROLE_MANAGER')")

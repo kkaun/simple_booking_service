@@ -1,10 +1,10 @@
 
 DELETE FROM vote;
 ALTER TABLE vote AUTO_INCREMENT = 100000;
+DELETE FROM sub_booking;
+ALTER TABLE sub_booking AUTO_INCREMENT = 100000;
 DELETE FROM booking;
 ALTER TABLE booking AUTO_INCREMENT = 100000;
-DELETE FROM super_booking;
-ALTER TABLE super_booking AUTO_INCREMENT = 100000;
 DELETE FROM apartment;
 ALTER TABLE apartment AUTO_INCREMENT = 100000;
 DELETE FROM apt_type;
@@ -858,7 +858,7 @@ VALUES
   (2, 1290.00, 100012);
 
 
-INSERT INTO super_booking (active, date_added, extra_beds, overall_sum, overall_person_num, user_id,
+INSERT INTO booking (active, date_added, extra_beds, overall_sum, overall_person_num, user_id,
                            hotel_id, booker_name, booker_email, booker_phone)
 VALUES
   (1, '2016-05-12 16:17:00', 0, 6000.00, 1, 100000, 100000, 'Name1', 'email1@gmail.com', '384543534822'),
@@ -872,7 +872,7 @@ VALUES
   (0, '2017-01-19 12:24:00', 0, 6900.00, 2, 100004, 100006, 'Name9', 'email9@gmail.com', '38432700002');
 
 
-INSERT INTO booking (in_date, out_date, sum, person_num, super_booking_id, apartment_id, apartment_hotel_id)
+INSERT INTO sub_booking (in_date, out_date, sum, person_num, super_booking_id, apartment_id, apartment_hotel_id)
 VALUES
   ('2017-09-23', '2017-09-28', 6000.00, 1, 100000, 100000, 100000),
   ('2017-09-14', '2017-09-17', 4500.00, 2, 100001, 100001, 100000),

@@ -25,13 +25,13 @@
                 </a>
             </li>
             <li>
-                <a class="restNavLi" href="admin/show_super_bookings">
+                <a class="restNavLi" href="admin/show_bookings">
                     <h5><strong><spring:message code="common.votes"/></strong></h5>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="admin/show_votes">
-                    <h5><strong><spring:message code="common.bookings"/></strong></h5>
+                    <h5><strong><spring:message code="common.subBookings"/></strong></h5>
                 </a>
             </li>
             <li>

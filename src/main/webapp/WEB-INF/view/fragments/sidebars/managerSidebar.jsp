@@ -22,7 +22,7 @@
                 </a>
             </li>
             <li>
-                <a class="restNavLi" href="hotel_manager/object/show_super_bookings">
+                <a class="restNavLi" href="hotel_manager/object/show_bookings">
                     <h4><spring:message code="common.manage_bookings"/></h4>
                 </a>
             </li>

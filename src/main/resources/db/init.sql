@@ -176,8 +176,8 @@ CREATE TABLE IF NOT EXISTS `apartment` (
 
 --   //////////////////////////////////////////
 
-DROP TABLE IF EXISTS `super_booking`;
-CREATE TABLE IF NOT EXISTS `super_booking` (
+DROP TABLE IF EXISTS `booking`;
+CREATE TABLE IF NOT EXISTS `booking` (
   `id`                 INT            NOT NULL AUTO_INCREMENT,
   `active`             BOOLEAN                 DEFAULT TRUE,
   `date_added`         TIMESTAMP               DEFAULT CURRENT_TIMESTAMP,
@@ -190,14 +190,14 @@ CREATE TABLE IF NOT EXISTS `super_booking` (
   `booker_email`       VARCHAR(45)    NULL,
   `booker_phone`       VARCHAR(20)    NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_super_booking_user1_idx` (`user_id` ASC),
-  INDEX `fk_super_booking_hotel1_idx` (`hotel_id` ASC),
-  CONSTRAINT `fk_super_booking_user1`
+  INDEX `fk_booking_user1_idx` (`user_id` ASC),
+  INDEX `fk_booking_hotel1_idx` (`hotel_id` ASC),
+  CONSTRAINT `fk_booking_user1`
   FOREIGN KEY (`user_id`)
   REFERENCES `user` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT `fk_super_booking_hotel1`
+  CONSTRAINT `fk_booking_hotel1`
   FOREIGN KEY (`hotel_id`)
   REFERENCES `hotel` (`id`)
     ON DELETE CASCADE
@@ -208,32 +208,32 @@ CREATE TABLE IF NOT EXISTS `super_booking` (
 
 --   //////////////////////////////////////////
 
-DROP TABLE IF EXISTS `booking`;
-CREATE TABLE IF NOT EXISTS `booking` (
+DROP TABLE IF EXISTS `sub_booking`;
+CREATE TABLE IF NOT EXISTS `sub_booking` (
   `id`                 BIGINT         NOT NULL AUTO_INCREMENT,
   `in_date`            TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
   `out_date`           TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
   `sum`                DECIMAL(11, 4) NOT NULL,
   `person_num`         SMALLINT       NOT NULL,
-  `super_booking_id`   INT            NOT NULL,
+  `booking_id`         INT            NOT NULL,
   `apartment_id`       INT            NOT NULL,
   `apartment_hotel_id` INT            NOT NULL,
   `edited`             TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  INDEX `fk_booking_super_booking1_idx` (`super_booking_id` ASC),
-  INDEX `fk_booking_apartment1_idx` (`apartment_id` ASC),
-  INDEX `fk_booking_apartment_hotel1_idx` (`apartment_hotel_id` ASC),
-  CONSTRAINT `fk_booking_super_booking1`
-  FOREIGN KEY (`super_booking_id`)
-  REFERENCES `super_booking` (`id`)
+  INDEX `fk_sub_booking_booking1_idx` (`booking_id` ASC),
+  INDEX `fk_sub_booking_apartment1_idx` (`apartment_id` ASC),
+  INDEX `fk_sub_booking_apartment_hotel1_idx` (`apartment_hotel_id` ASC),
+  CONSTRAINT `fk_sub_booking_booking1`
+  FOREIGN KEY (`booking_id`)
+  REFERENCES `booking` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT `fk_booking_apartment1`
+  CONSTRAINT `fk_sub_booking_apartment1`
   FOREIGN KEY (`apartment_id`)
   REFERENCES `apartment` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT `fk_booking_apartment_hotel1`
+  CONSTRAINT `fk_sub_booking_apartment_hotel1`
   FOREIGN KEY (`apartment_hotel_id`)
   REFERENCES `apartment` (`hotel_id`)
     ON DELETE CASCADE

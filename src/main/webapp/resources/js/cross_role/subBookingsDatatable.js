@@ -2,11 +2,11 @@
  * Created by Кира on 15.08.2017.
  */
 
-var subBookingAjaxUrl = "/bookings/";
+var subBookingAjaxUrl = "/sub_bookings/";
 var datatableApi;
 
 function updateBookingsTable() {
-    $.get(subBookingAjaxUrl + "getAll?superBookingId=" + sbId, updateSubBookingTableByData);
+    $.get(subBookingAjaxUrl + "getAll?bookingId=" + bookingId, updateSubBookingTableByData);
 }
 
 $(function () {
@@ -31,7 +31,7 @@ $(function () {
                 "data": "edited"
             },
             {
-                "render": renderBookingEditBtn,
+                "render": renderSubBookingEditBtn,
                 "defaultContent": "",
                 "orderable": false
             }

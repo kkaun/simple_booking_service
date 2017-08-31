@@ -181,7 +181,7 @@
                             <br>
                             <table class="table table-responsive">
                                 <tr>
-                                    <td><spring:message code="bookings.personNum"/></td>
+                                    <td><spring:message code="subBookings.personNum"/></td>
                                     <td>${placementPersonNum}</td>
                                 </tr>
                                 <tr>

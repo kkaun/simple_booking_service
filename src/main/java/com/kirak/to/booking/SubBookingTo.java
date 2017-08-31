@@ -16,7 +16,7 @@ import java.util.Date;
 /**
  * Created by Kir on 25.06.2017.
  */
-public class BookingTo extends BasicLongTo implements Serializable {
+public class SubBookingTo extends BasicLongTo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -36,16 +36,16 @@ public class BookingTo extends BasicLongTo implements Serializable {
 
     private String edited;
 
-    public BookingTo(){}
+    public SubBookingTo(){}
 
-    public BookingTo(@JsonProperty("id") Long id,
-                     @JsonProperty("aptId") Integer aptId,
-                     @JsonProperty("aptCategory") String stringAptType,
-                     @JsonProperty("aptPrice") Double aptPrice,
-                     @JsonProperty("inDate") LocalDate aptInDate,
-                     @JsonProperty("outDate") LocalDate aptOutDate,
-                     @JsonProperty("sum") Double sum,
-                     @JsonProperty("edited") String edited) {
+    public SubBookingTo(@JsonProperty("id") Long id,
+                        @JsonProperty("aptId") Integer aptId,
+                        @JsonProperty("aptCategory") String stringAptType,
+                        @JsonProperty("aptPrice") Double aptPrice,
+                        @JsonProperty("inDate") LocalDate aptInDate,
+                        @JsonProperty("outDate") LocalDate aptOutDate,
+                        @JsonProperty("sum") Double sum,
+                        @JsonProperty("edited") String edited) {
         super(id);
         this.stringAptType = stringAptType;
         this.aptPrice = aptPrice;
@@ -124,7 +124,7 @@ public class BookingTo extends BasicLongTo implements Serializable {
 
     @Override
     public String toString() {
-        return "BookingTo{" +
+        return "SubBookingTo{" +
                 "id=" + id +
                 ", aptId=" + aptId +
                 ", stringAptType='" + stringAptType +

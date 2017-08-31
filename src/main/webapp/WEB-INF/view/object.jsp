@@ -46,11 +46,11 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-12 text-center">
-                            <h3><spring:message code="common.bookings"/></h3>
+                            <h3><spring:message code="common.subBookings"/></h3>
                         </div>
                     </div>
                 </div>
-                <a href="hotel_manager/object/show_super_bookings">
+                <a href="hotel_manager/object/show_bookings">
                     <div class="panel-footer">
                         <span class="pull-left"><spring:message code="common.view_manage"/> </span>
                         <span class="pull-right glyphicon glyphicon glyphicon-open"></span>

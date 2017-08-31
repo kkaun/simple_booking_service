@@ -25,7 +25,7 @@ public class UserController {
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/user/show_bookings")
     public String showBookings() {
-        return "userSuperBookings";
+        return "userBookings";
     }
 
 }

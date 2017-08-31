@@ -9,10 +9,10 @@
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
 <script type="text/javascript">
-    var sbId = '${sbId}';
+    var bookingId = '${bookingId}';
 </script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/cross_role/subBookingAjaxUtil.js" defer></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/cross_role/bookingsDatatable.js" defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/cross_role/subBookingsDatatable.js" defer></script>
 <jsp:include page="fragments/header.jsp"/>
 
 
@@ -51,7 +51,7 @@
                 <div class="col-md-4">
                     <sec:authorize access="isAuthenticated()">
                         <sec:authorize access="hasAuthority('ROLE_ADMIN')">
-                            <a id="backBtn" class="btn btn-lg btn-primary pull-left" href="admin/show_super_bookings"
+                            <a id="backBtn" class="btn btn-lg btn-primary pull-left" href="admin/show_bookings"
                                style="margin: 0 auto;">
                                 <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&nbsp;&nbsp;
                                 <spring:message code="common.submit_return"/>
@@ -61,7 +61,7 @@
                     <sec:authorize access="isAuthenticated()">
                         <sec:authorize access="hasAuthority('ROLE_MANAGER')">
                             <a id="backBtn" class="btn btn-lg btn-primary pull-left"
-                               href="hotel_manager/object/show_super_bookings"
+                               href="hotel_manager/object/show_bookings"
                                style="margin: 0 auto;">
                                 <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&nbsp;&nbsp;
                                 <spring:message code="common.submit_return"/>
@@ -95,7 +95,7 @@
                                 <th><spring:message code="common.id"/></th>
                                 <th><spring:message code="common.inDate"/></th>
                                 <th><spring:message code="common.outDate"/></th>
-                                <th><spring:message code="bookings.sum"/></th>
+                                <th><spring:message code="subBookings.sum"/></th>
                                 <th><spring:message code="apt_types.personNum"/>,
                                     <spring:message code="apt_types.category"/>,
                                     <spring:message code="apt_types.bedsArrangement"/></th>
@@ -164,7 +164,7 @@
                                 <spring:message code="apt_types.bedsArrangement"/></label>
                             <div class="col-xs-9">
                                 <input class="form-control" id="existingBookingApt" name="stringAptType"
-                                       placeholder="<spring:message code="bookings.apartment"/>" readonly>
+                                       placeholder="<spring:message code="subBookings.apartment"/>" readonly>
                             </div>
                             <input type="hidden" id="aptId" name="aptId">
                         </c:if>
@@ -179,16 +179,16 @@
                     </div>
                     <div class="form-group">
                         <label for="bookingSum" class="control-label col-xs-3"><spring:message
-                                code="bookings.sum"/> <spring:message code="common.will_change"/></label>
+                                code="subBookings.sum"/> <spring:message code="common.will_change"/></label>
                         <div class="col-xs-9">
                             <input class="form-control" id="bookingSum" name="sum"
-                                   placeholder="<spring:message code="bookings.sum"/>" readonly>
+                                   placeholder="<spring:message code="subBookings.sum"/>" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-offset-3 col-xs-9">
                             <button class="btn btn-primary" type="button"
-                                    onclick="saveBooking()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    onclick="saveSubBooking()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                             </button>
                         </div>
                     </div>

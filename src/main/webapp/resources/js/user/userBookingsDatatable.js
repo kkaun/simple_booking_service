@@ -2,15 +2,15 @@
  * Created by Кира on 15.08.2017.
  */
 
-var ajaxUrl = "/user/super_bookings/";
+var ajaxUrl = "/user/bookings/";
 var datatableApi;
 
-function updateUserSuperBookingsTable() {
+function updateUserBookingsTable() {
     $.get(ajaxUrl, updateTableByData);
 }
 
 
-function deactivateUserSB(chkbox, id) {
+function deactivateUserBooking(chkbox, id) {
     var enabled = chkbox.is(":checked");
     if(enabled) {
         $.ajax({
@@ -30,7 +30,7 @@ function deactivateUserSB(chkbox, id) {
 
 
 $(function () {
-    datatableApi = $('#userSuperBookingsDatatable').DataTable(extendsOpts({
+    datatableApi = $('#userBookingsDatatable').DataTable(extendsOpts({
         "columns": [
             {
                 "data": "id",
@@ -65,7 +65,7 @@ $(function () {
                 "data": "active",
                 "render": function (data, type, row) {
                     if (type === 'display') {
-                        return '<input type="checkbox" ' + (data ? 'checked' : '') + ' onclick="deactivateUserSB($(this),' + row.id + ');"/>';
+                        return '<input type="checkbox" ' + (data ? 'checked' : '') + ' onclick="deactivateUserBooking($(this),' + row.id + ');"/>';
                     }
                     return data;
                 }

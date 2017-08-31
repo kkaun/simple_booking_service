@@ -12,14 +12,10 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.util.CollectionUtils;
 
-import javax.management.relation.Role;
 import javax.persistence.*;
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -63,7 +59,7 @@ public class User extends NamedEntity {
     @JsonIgnore
     @OrderBy("dateAdded DESC")
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
-    private Set<SuperBooking> superBookings;
+    private Set<Booking> bookings;
 
     @JsonIgnore
     @OrderBy("dateAdded DESC")
@@ -98,7 +94,7 @@ public class User extends NamedEntity {
     //For registered user
     public User(User u) {
         this(u.getId(), u.getName(), u.getEmail(), u.getPhone(), u.getPassword(), u.getRegistered(), u.isEnabled(),
-                u.getSuperBookings(), u.getVotes(), u.getHotels(), u.getRoles());
+                u.getBookings(), u.getVotes(), u.getHotels(), u.getRoles());
     }
 
     public User(Integer id, String name, String email, String phone, String password, UserRole role, UserRole... roles) {
@@ -107,8 +103,8 @@ public class User extends NamedEntity {
 
     //For Tests
     public User(Integer id, String name, String email, String phone, String password,
-                Set<SuperBooking> superBookings, Set<Vote> votes, Set<Hotel> hotels, UserRole role, UserRole... roles) {
-        this(id, name, email, phone, password, new Date(), true, superBookings, votes, hotels, EnumSet.of(role, roles));
+                Set<Booking> bookings, Set<Vote> votes, Set<Hotel> hotels, UserRole role, UserRole... roles) {
+        this(id, name, email, phone, password, new Date(), true, bookings, votes, hotels, EnumSet.of(role, roles));
     }
 
     public User(Integer id, String name, String email, String password, UserRole role, UserRole... roles) {
@@ -127,14 +123,14 @@ public class User extends NamedEntity {
     }
 
     public User(Integer id, String name, String email, String phone, String password, Date registered,
-                boolean enabled, Set<SuperBooking> superBookings, Set<Vote> votes, Set<Hotel> hotels, Collection<UserRole> roles) {
+                boolean enabled, Set<Booking> bookings, Set<Vote> votes, Set<Hotel> hotels, Collection<UserRole> roles) {
         super(id, name);
         this.email = email;
         this.password = password;
         this.phone = phone;
         this.registered = registered;
         this.enabled = enabled;
-        this.superBookings = superBookings;
+        this.bookings = bookings;
         this.votes = votes;
         this.hotels = hotels;
         setRoles(roles);
@@ -181,12 +177,12 @@ public class User extends NamedEntity {
         this.roles = CollectionUtils.isEmpty(roles) ? Collections.emptySet() : EnumSet.copyOf(roles);
     }
 
-    public Set<SuperBooking> getSuperBookings() {
-        return superBookings;
+    public Set<Booking> getBookings() {
+        return bookings;
     }
 
-    public void setSuperBookings(Set<SuperBooking> superBookings) {
-        this.superBookings = superBookings;
+    public void setBookings(Set<Booking> bookings) {
+        this.bookings = bookings;
     }
 
     public Set<Vote> getVotes() {
@@ -227,7 +223,7 @@ public class User extends NamedEntity {
                 ", enabled=" + enabled +
                 ", registered=" + registered +
                 ", roles=" + roles +
-                ", superBookings=" + superBookings +
+                ", bookings=" + bookings +
                 ", votes=" + votes +
                 ", hotels=" + hotels +
                 "\n" + "\n" +

@@ -103,7 +103,7 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-12 text-center">
-                            <h3><spring:message code="common.bookings"/></h3>
+                            <h3><spring:message code="common.subBookings"/></h3>
                         </div>
                     </div>
                 </div>

@@ -10,7 +10,7 @@
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ajaxUtil.js" defer></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user/userSuperBookingsDatatable.js" defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user/userBookingsDatatable.js" defer></script>
 <jsp:include page="fragments/header.jsp"/>
 
 <div class="container" style="margin-top: 20px; min-height: 580px">

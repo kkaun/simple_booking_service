@@ -45,7 +45,7 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="form-group">
-                            <label for="person_num" class="control-label"><spring:message code="bookings.personNum"/></label>
+                            <label for="person_num" class="control-label"><spring:message code="subBookings.personNum"/></label>
                             <select class="form-control" name="personNum" id="person_num">
                                 <c:forEach items="${personNums}" var="personNum">
                                     <option value="${personNum}">${personNum}</option>

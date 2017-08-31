@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 /**
  * Created by Kir on 13.08.2017.
  */
-public class AdminSuperBookingTo extends BasicIntTo implements Serializable {
+public class UserBookingTo extends BasicIntTo implements Serializable {
 
     private boolean active;
 
@@ -31,18 +31,18 @@ public class AdminSuperBookingTo extends BasicIntTo implements Serializable {
 
     private String hotelName;
 
-    private Integer userId;
+    private Short apartmentsNum;
 
-    public AdminSuperBookingTo(){}
+    public UserBookingTo(){}
 
-    public AdminSuperBookingTo(@JsonProperty("id") Integer id,
-                               @JsonProperty("active") boolean active,
-                               @JsonProperty("dateAdded") LocalDateTime dateAdded,
-                               @JsonProperty("inDate") LocalDate inDate,
-                               @JsonProperty("outDate") LocalDate outDate,
-                               @JsonProperty("hotelId") Integer hotelId,
-                               @JsonProperty("hotelName") String hotelName,
-                               @JsonProperty("userId") Integer userId) {
+    public UserBookingTo(@JsonProperty("id") Integer id,
+                         @JsonProperty("active") boolean active,
+                         @JsonProperty("dateAdded") LocalDateTime dateAdded,
+                         @JsonProperty("inDate") LocalDate inDate,
+                         @JsonProperty("outDate") LocalDate outDate,
+                         @JsonProperty("hotelId") Integer hotelId,
+                         @JsonProperty("hotelName") String hotelName,
+                         @JsonProperty("apartmentsNum") Short apartmentsNum) {
         super(id);
         this.active = active;
         this.dateAdded = dateAdded;
@@ -50,7 +50,7 @@ public class AdminSuperBookingTo extends BasicIntTo implements Serializable {
         this.outDate = outDate;
         this.hotelId = hotelId;
         this.hotelName = hotelName;
-        this.userId = userId;
+        this.apartmentsNum = apartmentsNum;
     }
 
     
@@ -84,8 +84,8 @@ public class AdminSuperBookingTo extends BasicIntTo implements Serializable {
     }
 
     
-    public Integer getUserId() {
-        return userId;
+    public Short getApartmentsNum() {
+        return apartmentsNum;
     }
 
     public void setActive(boolean active) {
@@ -112,13 +112,13 @@ public class AdminSuperBookingTo extends BasicIntTo implements Serializable {
         this.hotelName = hotelName;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setApartmentsNum(Short apartmentsNum) {
+        this.apartmentsNum = apartmentsNum;
     }
 
     @Override
     public String toString() {
-        return "AdminSuperBookingTo{" +
+        return "UserBookingTo{" +
                 "id=" + id +
                 ", active=" + active +
                 ", dateAdded=" + dateAdded +
@@ -126,7 +126,7 @@ public class AdminSuperBookingTo extends BasicIntTo implements Serializable {
                 ", outDate=" + outDate +
                 ", hotelId=" + hotelId +
                 ", hotelName='" + hotelName + '\'' +
-                ", userId=" + userId +
+                ", apartmentsNum=" + apartmentsNum +
                 '}';
     }
 }

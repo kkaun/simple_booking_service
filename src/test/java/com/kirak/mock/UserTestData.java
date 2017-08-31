@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 
 import static com.kirak.mock.HotelTestData.*;
-import static com.kirak.mock.SuperBookingTestData.*;
+import static com.kirak.mock.BookingTestData.*;
 import static com.kirak.mock.VoteTestData.VOTE1;
 import static com.kirak.mock.VoteTestData.VOTE2;
 import static com.kirak.mock.VoteTestData.VOTE3;
@@ -28,14 +28,14 @@ public class UserTestData {
     public static final Integer ADMIN_ID = START_SEQ + 4;
 
     //(Integer id, String name, String email, String phone, String password, UserRole role,
-    //      Set<SuperBooking> superBookings, Set<Vote> votes, Set<Hotel> hotels, UserRole... roles)
+    //      Set<Booking> bookings, Set<Vote> votes, Set<Hotel> hotels, UserRole... roles)
 
-    public static final Set<SuperBooking> USER1_SUPER_BOOKINGS =
-            new HashSet<SuperBooking>(Arrays.asList(new SuperBooking[] {SUPER_BOOKING1, SUPER_BOOKING4}));
-    public static final Set<SuperBooking> USER2_SUPER_BOOKINGS = new HashSet<SuperBooking>(Arrays.asList(new SuperBooking[] {SUPER_BOOKING2}));
-    public static final Set<SuperBooking> USER3_SUPER_BOOKINGS = new HashSet<SuperBooking>(Arrays.asList(new SuperBooking[] {SUPER_BOOKING3}));
-    public static final Set<SuperBooking> MANAGER_SUPER_BOOKINGS = Collections.emptySet();
-    public static final Set<SuperBooking> ADMIN_SUPER_BOOKINGS = new HashSet<SuperBooking>(Arrays.asList(new SuperBooking[] {SUPER_BOOKING5}));
+    public static final Set<Booking> USER1_SUPER_BOOKINGS =
+            new HashSet<Booking>(Arrays.asList(new Booking[] {SUPER_BOOKING1, SUPER_BOOKING4}));
+    public static final Set<Booking> USER2_SUPER_BOOKINGS = new HashSet<Booking>(Arrays.asList(new Booking[] {SUPER_BOOKING2}));
+    public static final Set<Booking> USER3_SUPER_BOOKINGS = new HashSet<Booking>(Arrays.asList(new Booking[] {SUPER_BOOKING3}));
+    public static final Set<Booking> MANAGER_SUPER_BOOKINGS = Collections.emptySet();
+    public static final Set<Booking> ADMIN_SUPER_BOOKINGS = new HashSet<Booking>(Arrays.asList(new Booking[] {SUPER_BOOKING5}));
 
     public static final Set<Vote> USER1_VOTES = new HashSet<Vote>(Arrays.asList(new Vote[] {VOTE1}));
     public static final Set<Vote> USER2_VOTES = new HashSet<Vote>(Arrays.asList(new Vote[] {VOTE2}));

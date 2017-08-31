@@ -12,11 +12,6 @@ import java.util.Arrays;
 
 import static com.kirak.Profile.DATAJPA;
 import static com.kirak.mock.AptTypeTestData.*;
-import static com.kirak.mock.BookingTestData.BOOKING1;
-import static com.kirak.mock.BookingTestData.BOOKING1_ID;
-import static com.kirak.mock.HotelTestData.HOTEL2_ID;
-import static com.kirak.mock.HotelTestData.HOTEL4_ID;
-import static com.kirak.mock.UserTestData.USER3_ID;
 
 /**
  * Created by Kir on 19.06.2017.

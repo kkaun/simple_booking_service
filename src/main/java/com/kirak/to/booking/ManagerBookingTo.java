@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 /**
  * Created by Kir on 13.08.2017.
  */
-public class ManagerSuperBookingTo extends BasicIntTo implements Serializable {
+public class ManagerBookingTo extends BasicIntTo implements Serializable {
 
     private boolean active;
 
@@ -37,18 +37,18 @@ public class ManagerSuperBookingTo extends BasicIntTo implements Serializable {
 
     private String userPhone;
 
-    public ManagerSuperBookingTo(){}
+    public ManagerBookingTo(){}
 
-    public ManagerSuperBookingTo(@JsonProperty("id") Integer id,
-                                 @JsonProperty("active") boolean active,
-                                 @JsonProperty("dateAdded") LocalDateTime dateAdded,
-                                 @JsonProperty("inDate") LocalDate inDate,
-                                 @JsonProperty("outDate") LocalDate outDate,
-                                 @JsonProperty("apartmentsNum") Short apartmentsNum,
-                                 @JsonProperty("userId") Integer userId,
-                                 @JsonProperty("userName") String userName,
-                                 @JsonProperty("userEmail") String userEmail,
-                                 @JsonProperty("userPhone") String userPhone) {
+    public ManagerBookingTo(@JsonProperty("id") Integer id,
+                            @JsonProperty("active") boolean active,
+                            @JsonProperty("dateAdded") LocalDateTime dateAdded,
+                            @JsonProperty("inDate") LocalDate inDate,
+                            @JsonProperty("outDate") LocalDate outDate,
+                            @JsonProperty("apartmentsNum") Short apartmentsNum,
+                            @JsonProperty("userId") Integer userId,
+                            @JsonProperty("userName") String userName,
+                            @JsonProperty("userEmail") String userEmail,
+                            @JsonProperty("userPhone") String userPhone) {
         super(id);
         this.active = active;
         this.dateAdded = dateAdded;
@@ -144,7 +144,7 @@ public class ManagerSuperBookingTo extends BasicIntTo implements Serializable {
 
     @Override
     public String toString() {
-        return "ManagerSuperBookingTo{" +
+        return "ManagerBookingTo{" +
                 "id=" + id +
                 ", active=" + active +
                 ", dateAdded=" + dateAdded +

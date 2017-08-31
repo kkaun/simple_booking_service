@@ -28,30 +28,30 @@ import java.util.Map;
 @Scope("session")
 public class BusinessController extends BusinessAbstractController {
 
-    @Autowired
-    private HotelService hotelService;
+    private final HotelService hotelService;
+
+    private final CityService cityService;
+
+    private final AptTypeService aptTypeService;
+
+    private final UserService userService;
+
+    private final ApartmentService apartmentService;
+
+    private final SessionPlacementsService sessionPlacementsService;
 
     @Autowired
-    private CityService cityService;
-
-    @Autowired
-    private AptTypeService aptTypeService;
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private ApartmentService apartmentService;
-
-    @Autowired
-    @Qualifier("sessionPlacementService")
-    private SessionPlacementsService sessionPlacementsService;
-
-    public BusinessController(HotelService hotelService, CityService cityService, AptTypeService aptTypeService,
-                              UserService userService, ApartmentService apartmentService, BookingService bookingService,
-                              SuperBookingService superBookingService, SessionPlacementsService sessionPlacementsService) {
+    public BusinessController(HotelService hotelService, CityService cityService, AptTypeService aptTypeService, UserService userService,
+                              ApartmentService apartmentService, BookingService bookingService, SubBookingService subBookingService,
+                              @Qualifier("sessionPlacementService") SessionPlacementsService sessionPlacementsService) {
         super(hotelService, cityService, aptTypeService, userService, apartmentService, bookingService,
-                superBookingService, sessionPlacementsService);
+                subBookingService, sessionPlacementsService);
+        this.hotelService = hotelService;
+        this.cityService = cityService;
+        this.aptTypeService = aptTypeService;
+        this.userService = userService;
+        this.apartmentService = apartmentService;
+        this.sessionPlacementsService = sessionPlacementsService;
     }
 
 

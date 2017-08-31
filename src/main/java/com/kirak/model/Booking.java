@@ -1,111 +1,162 @@
 package com.kirak.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.kirak.model.abstraction.BaseLongEntity;
+import com.kirak.model.abstraction.BaseIntEntity;
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 /**
- * Created by Kir on 30.05.2017.
+ * Created by Kir on 07.08.2017.
  */
+
 @Entity
 @Table(name = "booking")
-public class Booking extends BaseLongEntity {
-
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @NotNull
-    @Column(name = "in_date", nullable = false)
-    private LocalDate inDate;
-
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @NotNull
-    @Column(name = "out_date", nullable = false)
-    private LocalDate outDate;
+public class Booking extends BaseIntEntity {
 
     @NotNull
-    @Column(name = "sum", precision=11, scale=2, nullable = false)
-    private Double sum;
+    @Column(name = "active",  nullable = false, columnDefinition = "boolean default true")
+    private boolean active;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @NotNull
+    @Column(name = "date_added", nullable = false)
+    private LocalDateTime dateAdded;
+
+    @Range(min = 0, max = 10)
+    @Column(name = "extra_beds")
+    private Short extraBeds = 0;
+
+    @NotNull
+    @Column(name = "overall_sum", precision=11, scale=2, nullable = false)
+    private Double overallSum;
 
     @Range(min = 1, max = 20)
     @NotNull
-    @Column(name = "person_num")
-    private Short personNum;
-
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    @Column(name = "edited")
-    private LocalDateTime edited;
+    @Column(name = "overall_person_num")
+    private Short overallPersonNum;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "super_booking_id")
-    private SuperBooking superBooking;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "apartment_id")
-    private Apartment apartment;
-
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "apartment_hotel_id")
+    @JoinColumn(name = "hotel_id")
     private Hotel hotel;
+
+    @Column(name = "booker_name")
+    private String bookerName;
+
+    @Column(name = "booker_email")
+    @Email
+    private String bookerEmail;
+
+    @Column(name = "booker_phone")
+    private String bookerPhone;
+
+    @OneToMany(mappedBy = "booking")
+    private Set<SubBooking> subBookings;
 
     public Booking(){}
 
-    public Booking(LocalDate inDate, LocalDate outDate,
-                   Double sum, Short personNum, SuperBooking superBooking, Apartment apartment, Hotel hotel, LocalDateTime edited) {
-        this(null, inDate, outDate, sum, personNum, superBooking, apartment, hotel, edited);
+    //For calendar bookings
+    public Booking(boolean active, LocalDateTime dateAdded, Short extraBeds, Double overallSum,
+                   Short overallPersonNum, Hotel hotel) {
+        this(null, active, dateAdded, extraBeds, overallSum, overallPersonNum, hotel);
     }
 
-    public Booking(Long id, LocalDate inDate, LocalDate outDate,
-                   Double sum, Short personNum, SuperBooking superBooking, Apartment apartment, Hotel hotel, LocalDateTime edited) {
+    public Booking(Integer id, boolean active, LocalDateTime dateAdded, Short extraBeds, Double overallSum,
+                   Short overallPersonNum, Hotel hotel) {
         super(id);
-        this.inDate = inDate;
-        this.outDate = outDate;
-        this.sum = sum;
-        this.personNum = personNum;
-        this.superBooking = superBooking;
-        this.apartment = apartment;
+        this.active = active;
+        this.dateAdded = dateAdded;
+        this.extraBeds = extraBeds;
+        this.overallSum = overallSum;
+        this.overallPersonNum = overallPersonNum;
         this.hotel = hotel;
-        this.edited = edited;
     }
 
-
-    public LocalDate getInDate() {
-        return inDate;
+    //For anonymous user's bookings
+    public Booking(boolean active, LocalDateTime dateAdded, Short extraBeds, Double overallSum,
+                   Short overallPersonNum, User user, Hotel hotel, String bookerName, String bookerEmail, String bookerPhone) {
+        this(null, active, dateAdded, extraBeds, overallSum, overallPersonNum, user, hotel, bookerName, bookerEmail, bookerPhone);
     }
 
-    public void setInDate(LocalDate inDate) {
-        this.inDate = inDate;
+    public Booking(Integer id, boolean active, LocalDateTime dateAdded, Short extraBeds, Double overallSum,
+                   Short overallPersonNum, User user, Hotel hotel, String bookerName, String bookerEmail, String bookerPhone) {
+        super(id);
+        this.active = active;
+        this.dateAdded = dateAdded;
+        this.extraBeds = extraBeds;
+        this.overallSum = overallSum;
+        this.overallPersonNum = overallPersonNum;
+        this.user = user;
+        this.hotel = hotel;
+        this.bookerName = bookerName;
+        this.bookerEmail = bookerEmail;
+        this.bookerPhone = bookerPhone;
     }
 
-    public LocalDate getOutDate() {
-        return outDate;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setOutDate(LocalDate outDate) {
-        this.outDate = outDate;
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
-    public Double getSum() {
-        return sum;
+    public LocalDateTime getDateAdded() {
+        return dateAdded;
     }
 
-    public void setSum(Double sum) {
-        this.sum = sum;
+    public void setDateAdded(LocalDateTime dateAdded) {
+        this.dateAdded = dateAdded;
     }
 
-    public Apartment getApartment() {
-        return apartment;
+    public Short getExtraBeds() {
+        return extraBeds;
     }
 
-    public void setApartment(Apartment apartment) {
-        this.apartment = apartment;
+    public void setExtraBeds(Short extraBeds) {
+        this.extraBeds = extraBeds;
+    }
+
+    public Double getOverallSum() {
+        return overallSum;
+    }
+
+    public void setOverallSum(Double overallSum) {
+        this.overallSum = overallSum;
+    }
+
+    public Short getOverallPersonNum() {
+        return overallPersonNum;
+    }
+
+    public void setOverallPersonNum(Short overallPersonNum) {
+        this.overallPersonNum = overallPersonNum;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Set<SubBooking> getSubBookings() {
+        return subBookings;
+    }
+
+    public void setSubBookings(Set<SubBooking> subBookings) {
+        this.subBookings = subBookings;
     }
 
     public Hotel getHotel() {
@@ -116,41 +167,42 @@ public class Booking extends BaseLongEntity {
         this.hotel = hotel;
     }
 
-    public Short getPersonNum() {
-        return personNum;
+    public String getBookerName() {
+        return bookerName;
     }
 
-    public void setPersonNum(Short personNum) {
-        this.personNum = personNum;
+    public void setBookerName(String bookerName) {
+        this.bookerName = bookerName;
     }
 
-    public SuperBooking getSuperBooking() {
-        return superBooking;
+    public String getBookerEmail() {
+        return bookerEmail;
     }
 
-    public LocalDateTime getEdited() {
-        return edited;
+    public void setBookerEmail(String bookerEmail) {
+        this.bookerEmail = bookerEmail;
     }
 
-    public void setEdited(LocalDateTime edited) {
-        this.edited = edited;
+    public String getBookerPhone() {
+        return bookerPhone;
     }
 
-    public void setSuperBooking(SuperBooking superBooking) {
-        this.superBooking = superBooking;
+    public void setBookerPhone(String bookerPhone) {
+        this.bookerPhone = bookerPhone;
     }
 
-    @Override
-    public String toString() {
-        return "Booking{" +
-                "inDate=" + inDate +
-                ", outDate=" + outDate +
-                ", sum=" + sum +
-                ", personNum=" + personNum +
-                ", edited=" + edited +
-                ", superBooking=" + superBooking +
-                ", apartment=" + apartment +
-                ", hotel=" + hotel +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Booking{" +
+//                "id='" + getId() + '\'' +
+//                ", active=" + active +
+//                ", dateAdded=" + dateAdded +
+//                ", extraBeds=" + extraBeds +
+//                ", overallSum=" + overallSum +
+//                ", overallPersonNum=" + overallPersonNum +
+//                ", user=" + user +
+//                ", hotel=" + hotel +
+//                ", subBookings=" + subBookings +
+//                '}';
+//    }
 }

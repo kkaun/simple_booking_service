@@ -2,7 +2,6 @@ package com.kirak.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kirak.model.abstraction.BaseIntEntity;
-import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -31,7 +30,7 @@ public class Apartment extends BaseIntEntity {
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "apartment")
-    private Set<Booking> bookings;
+    private Set<SubBooking> subBookings;
 
     @Column(name = "img_path")
     private String imgPath;
@@ -73,12 +72,12 @@ public class Apartment extends BaseIntEntity {
         this.price = price;
     }
 
-    public Set<Booking> getBookings() {
-        return bookings;
+    public Set<SubBooking> getSubBookings() {
+        return subBookings;
     }
 
-    public void setBookings(Set<Booking> bookings) {
-        this.bookings = bookings;
+    public void setSubBookings(Set<SubBooking> subBookings) {
+        this.subBookings = subBookings;
     }
 
     public String getImgPath() {

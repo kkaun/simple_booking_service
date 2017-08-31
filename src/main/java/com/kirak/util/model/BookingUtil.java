@@ -1,154 +1,132 @@
 package com.kirak.util.model;
 
-import com.kirak.model.Apartment;
 import com.kirak.model.Booking;
-import com.kirak.model.SuperBooking;
-import com.kirak.to.booking.BookingTo;
-import com.kirak.to.booking.ChartTo;
-import com.kirak.to.booking.ChartValue;
-import org.apache.commons.lang3.StringUtils;
+import com.kirak.model.SubBooking;
+import com.kirak.to.ManagerObject;
+import com.kirak.to.booking.*;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneOffset;
 import java.util.*;
 import java.util.stream.Collectors;
-import static java.time.temporal.ChronoUnit.DAYS;
 
 /**
- * Created by Kir on 21.06.2017.
+ * Created by Kir on 13.08.2017.
  */
 public class BookingUtil {
 
-    public static BookingTo asBookingTo(Booking booking){
+    public static AdminBookingTo asAdminBookingTo(Booking booking, LocalDate inDate, LocalDate outDate){
 
-        String stringAptType = ApartmentUtil.getStringAptTypeFromApartment(booking.getApartment());
-
-        return new BookingTo(booking.getId(), booking.getApartment().getId(), stringAptType, booking.getApartment().getPrice(),
-                booking.getInDate(), booking.getOutDate(), calculateBookingSum(booking, booking.getInDate(), booking.getOutDate()),
-                booking.getEdited().toString());
+        return new AdminBookingTo(booking.getId(), booking.isActive(), booking.getDateAdded(),
+                inDate, outDate, booking.getHotel().getId(),
+                booking.getHotel().getName(), booking.getUser().getId());
     }
 
-    public static Map<Booking, Boolean> createFromBookingToWithResult(BookingTo bookingTo, int superBookingId,
-                                       List<Apartment> apartments, List<SuperBooking> superBookings){
+    public static ManagerBookingTo asManagerBookingTo(Booking booking, LocalDate inDate, LocalDate outDate){
 
-        SuperBooking expectedSuperBooking = superBookings.stream().filter(superBooking -> Objects.equals(superBooking.getId(),
-                superBookingId)).findAny().orElse(null);
-        Apartment expectedApartment = apartments.stream().filter(apartment -> Objects.equals(bookingTo.getAptId(), apartment.getId()))
-                .findFirst().orElse(null);
+        return new ManagerBookingTo(booking.getId(), booking.isActive(), booking.getDateAdded(),
+                inDate, outDate, (short) booking.getSubBookings().size(), booking.getUser().getId(),
+                booking.getUser().getName(), booking.getUser().getEmail(), booking.getUser().getPhone());
+    }
 
-        Short aptPersonNum = expectedApartment.getType().getPersonNum();
+    public static UserBookingTo asUserBookingTo(Booking booking, LocalDate inDate, LocalDate outDate){
 
-        Booking creatableBooking = new Booking(bookingTo.getAptInDate(), bookingTo.getAptOutDate(),
-                calculateBookingSumForApt(expectedApartment, bookingTo.getAptInDate(), bookingTo.getAptOutDate()),
-                aptPersonNum, expectedSuperBooking, expectedApartment, expectedApartment.getHotel(), LocalDateTime.now());
+        return new UserBookingTo(booking.getId(), booking.isActive(), booking.getDateAdded(), inDate, outDate,
+                booking.getHotel().getId(), booking.getHotel().getName(), (short) booking.getSubBookings().size());
+    }
 
-        if(expectedSuperBooking != null && ApartmentUtil.isSingleApartmentAvailable(expectedApartment, bookingTo.getAptInDate(),
-                bookingTo.getAptOutDate())) {
-            return Collections.singletonMap(creatableBooking, true);
+    public static Booking updateFromManagerBookingTo(ManagerBookingTo managerBookingTo, Booking booking){
+
+        booking.setActive(managerBookingTo.isActive());
+        booking.setDateAdded(LocalDateTime.now());
+
+        if(!managerBookingTo.getUserName().isEmpty()){
+            booking.setBookerName(managerBookingTo.getUserName());
         }
-        return Collections.singletonMap(creatableBooking, false);
-    }
-
-    public static Map<Booking, Boolean> updateFromBookingToWithResult(BookingTo bookingTo, Booking booking,
-                                                                      List<Apartment> apartments){
-        LocalDate requestedInDate = bookingTo.getAptInDate();
-        LocalDate requestedOutDate = bookingTo.getAptOutDate();
-        Apartment requestedApartment;
-
-        if(!Objects.equals(booking.getApartment().getId(), bookingTo.getAptId())) {
-            requestedApartment = apartments.stream().filter(apartment ->
-                    Objects.equals(apartment.getId(), bookingTo.getAptId()))
-                    .findFirst().orElse(null);
-        } else {
-            requestedApartment = booking.getApartment();
+        if(!managerBookingTo.getUserEmail().isEmpty()){
+            booking.setBookerEmail(managerBookingTo.getUserEmail());
         }
-
-        if(requestedApartment != null && ApartmentUtil.isSingleApartmentAvailableWithoutCurrentBooking(requestedApartment,
-                    bookingTo, requestedInDate, requestedOutDate)) {
-
-            Short aptPersonNum = requestedApartment.getType().getPersonNum();
-
-            booking.setApartment(requestedApartment);
-            booking.setInDate(requestedInDate);
-            booking.setOutDate(requestedOutDate);
-            booking.setSum(calculateBookingSum(booking, requestedInDate, requestedOutDate));
-            booking.setPersonNum(aptPersonNum);
-            booking.setEdited(LocalDateTime.parse(bookingTo.getEdited()));
-
-            return Collections.singletonMap(booking, true);
+        if(!managerBookingTo.getUserPhone().isEmpty()){
+            booking.setBookerPhone(managerBookingTo.getUserPhone());
         }
-        return Collections.singletonMap(booking, false);
-    }
-
-    public static List<BookingTo> generateBookingTos(SuperBooking superBooking){
-
-        return superBooking.getBookings().stream().map(BookingUtil::asBookingTo).collect(Collectors.toList());
-    }
-
-    public static double calculateBookingSum(Booking booking, LocalDate startDate, LocalDate endDate){
-        return booking.getApartment().getPrice() * DAYS.between(startDate, endDate);
-    }
-
-    public static double calculateBookingSumForApt(Apartment apartment, LocalDate startDate, LocalDate endDate){
-
-        return apartment.getPrice() * DAYS.between(startDate, endDate);
+        return booking;
     }
 
 
-    // ------------------------------- Chart TO methods ----------------------------------- //
+    public static List<ManagerBookingTo> getObjectManagerBookingTos(List<Booking> bookings,
+                                                                         ManagerObject managerObject, int managerId) {
 
-    public static List<ChartTo> getChartBookingsFromObject(List<Apartment> objectApartments,
-                                                           List<Booking> activeHotelBookings) {
+        List<ManagerBookingTo> managerBookingTos = generateManagerBookingTos(bookings, managerId);
 
-        Map<Apartment, List<Booking>> apartmentsWithOwnBookings = new HashMap<>();
+        return managerBookingTos.stream().filter(managerBookingTo ->
+                managerObject.getObjectManagerBookingTos().contains(managerBookingTo)).collect(Collectors.toList());
+    }
 
-        List<ChartTo> chartBookingTos = new ArrayList<>();
 
-        objectApartments.forEach(apartment -> {
-            List<Booking> ownBookings = new ArrayList<>();
-            activeHotelBookings.forEach(booking -> {
-                if(booking.getApartment().equals(apartment))
-                    ownBookings.add(booking);
-            });
-            apartmentsWithOwnBookings.put(apartment, ownBookings);
-        });
+    public static LocalDate getBookingInDate(Booking booking){
 
-        apartmentsWithOwnBookings.forEach((apartment, bookings) -> {
+        Comparator<SubBooking> dateNaturalComparator = Comparator.comparing(SubBooking::getInDate);
+        return booking.getSubBookings().stream().min(dateNaturalComparator).orElse(null).getInDate();
+    }
 
-            List<ChartValue> chartValues = new ArrayList<>();
+    public static LocalDate getBookingOutDate(Booking booking){
 
-            String name = String.valueOf(apartment.getType().getPersonNum()) + "-p. "
-                    + StringUtils.capitalize(apartment.getType().getCategory())
-                    + " | " + StringUtils.capitalize(apartment.getType().getBedsArrangement().toLowerCase());
+        Comparator<SubBooking> dateNaturalComparator = Comparator.comparing(SubBooking::getInDate);
+        return booking.getSubBookings().stream().max(dateNaturalComparator).orElse(null).getOutDate();
+    }
 
-            //String descPrimary = StringUtils.capitalize(apartment.getType().getBedsArrangement().toLowerCase());
+    public static List<Booking> getAllBookingsByInDate(List<Booking> bookings, LocalDate inDate){
 
-            bookings.forEach(booking -> {
-                String to = String.valueOf(LocalDateTime.of(booking.getOutDate(), LocalTime.MIN)
-                        .toInstant(ZoneOffset.UTC).toEpochMilli());
-                String from = String.valueOf(LocalDateTime.of(booking.getInDate(), LocalTime.MIN)
-                        .toInstant(ZoneOffset.UTC).toEpochMilli());
+        return bookings.stream().filter(booking -> getBookingInDate(booking).equals(inDate))
+                .collect(Collectors.toList());
+    }
 
-                String label = booking.getSuperBooking().getBookerName();
-                String desc  = "Email: " + booking.getSuperBooking().getBookerEmail();
-                if(booking.getSuperBooking().getBookerPhone() != null && !booking.getSuperBooking().getBookerPhone().isEmpty()){
-                    desc  += " ------ Phone: " + booking.getSuperBooking().getBookerPhone();
-                }
+    public static List<Booking> getAllBookingsByOutDate(List<Booking> bookings, LocalDate outDate){
 
-                String customClass = "";
-                if(booking.getSuperBooking().getUser().getEmail().equals(booking.getSuperBooking().getHotel().getManager().getEmail())) {
-                    customClass = "ganttRed";
-                } else {
-                    customClass = "ganttGreen";
-                }
-                chartValues.add(new ChartValue(to, from, label, customClass, desc));
-            });
+        return bookings.stream().filter(booking -> getBookingOutDate(booking).equals(outDate))
+                .collect(Collectors.toList());
+    }
 
-            chartBookingTos.add(new ChartTo(name, chartValues));
-        });
+    public static List<AdminBookingTo> generateAdminBookingTos(List<Booking> bookings){
+        return bookings.stream().map(booking -> asAdminBookingTo(booking,
+                getBookingInDate(booking), getBookingOutDate(booking)))
+                .collect(Collectors.toList());
+    }
 
-        return chartBookingTos;
+    public static List<ManagerBookingTo> generateManagerBookingTos(List<Booking> bookings, int managerId){
+        return bookings.stream().filter(booking -> Objects.equals(booking.getHotel().getManager().getId(), managerId))
+                .map(booking -> asManagerBookingTo(booking,
+                getBookingInDate(booking), getBookingOutDate(booking)))
+                .collect(Collectors.toList());
+    }
+
+    public static List<UserBookingTo> generateUserBookingTos(List<Booking> bookings, int userId){
+        return bookings.stream().filter(booking -> Objects.equals(booking.getUser().getId(), userId))
+                .map(booking -> asUserBookingTo(booking,
+                        getBookingInDate(booking), getBookingOutDate(booking)))
+                .collect(Collectors.toList());
+    }
+
+    public static double calculateBookingSum(List<SubBooking> subBookings){
+
+        final double[] sum = {0};
+        subBookings.forEach(booking -> sum[0] += SubBookingUtil.calculateSubBookingSum(booking, booking.getInDate(), booking.getOutDate()));
+        return sum[0];
+    }
+
+    public static short calculateBookingOverallPersonNum(List<SubBooking> subBookings){
+
+        final short[] num = {0};
+        subBookings.forEach(booking -> num[0] += booking.getPersonNum());
+        return num[0];
+    }
+
+    public static Booking updateSubFromBooking(Booking booking, Set<SubBooking> subBookings){
+        booking.setSubBookings(subBookings);
+        booking.setOverallSum(BookingUtil.calculateBookingSum(new ArrayList<>(subBookings)));
+        booking.setOverallPersonNum(BookingUtil.calculateBookingOverallPersonNum(new ArrayList<>(subBookings)));
+
+        return booking;
     }
 
 }

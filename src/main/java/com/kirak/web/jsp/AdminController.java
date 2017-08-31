@@ -10,7 +10,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Created by Kir on 03.08.2017.
@@ -38,7 +37,7 @@ public class AdminController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/admin_panel")
-    public String adminPanel(Model model) {
+    public String adminPanel() {
         return "admin";
     }
 
@@ -62,11 +61,11 @@ public class AdminController {
 
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping("admin/show_super_bookings")
+    @GetMapping("admin/show_bookings")
     public String showBookings(Model model) {
         ModelUtil.getAdminView(model, aptTypeService.getAll(), countryService.getAll(),
                 cityService.getAll(), apartmentService.getAll());
-        return "adminSuperBookings";
+        return "adminBookings";
     }
 
 

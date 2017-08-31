@@ -2,32 +2,32 @@ package com.kirak.repository;
 
 import com.kirak.model.Booking;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * Created by Kir on 13.06.2017.
+ * Created by Kir on 07.08.2017.
  */
 public interface BookingRepository {
 
-    // null if updated booking does not belong to superBookingId
-    Booking save(Booking booking, int superBookingId, int apartmentId);
-
     Booking save(Booking booking);
 
-    default boolean delete(long id, int superBookingId, int apartmentId){
+    Booking save(Booking booking, int userId);
+
+    default boolean delete(long id, int userId){
         throw new UnsupportedOperationException("Booking cannot be deleted, only modified!");
     }
 
-    // null if booking does not belong to superBookingId
-    Booking get(long id, int superBookingId, int apartmentId);
+    Booking get(Integer id);
 
-    Booking get(Long id, Integer superBookingId);
-
-    Booking get(long id);
+    Booking get(int id, int userId);
 
     List<Booking> getAll();
 
+    List<Booking> getAllByUserId(int userId);
+
+    List<Booking> getAllByHotelId(int hotelId);
+
+    List<Booking> getAllBetweenCreatedDateTimes(LocalDateTime startDateTime, LocalDateTime endDateTime);
 
 }

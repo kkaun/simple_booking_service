@@ -1,6 +1,6 @@
 package com.kirak.web.jsp;
 
-import com.kirak.model.SuperBooking;
+import com.kirak.model.Booking;
 import com.kirak.service.*;
 import com.kirak.util.model.ApartmentUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,23 +17,23 @@ import java.util.ArrayList;
 @Controller
 public class SubBookingsController {
 
-    private final SuperBookingService superBookingService;
+    private final BookingService bookingService;
 
     @Autowired
-    public SubBookingsController(SuperBookingService superBookingService) {
-        this.superBookingService = superBookingService;
+    public SubBookingsController(BookingService bookingService) {
+        this.bookingService = bookingService;
     }
 
-    @GetMapping("/edit_super_booking")
-    public String editSuperBooking(@RequestParam("id") int superBookingId, Model model) {
+    @GetMapping("/edit_booking")
+    public String editBooking(@RequestParam("id") int bookingId, Model model) {
 
-        SuperBooking superBooking = superBookingService.get(superBookingId);
+        Booking booking = bookingService.get(bookingId);
 
-        model.addAttribute("sbId", superBooking.getId());
+        model.addAttribute("bookingId", booking.getId());
         model.addAttribute("objectApartments", ApartmentUtil.getApartmentTos(
-                new ArrayList<>(superBooking.getHotel().getApartments())));
+                new ArrayList<>(booking.getHotel().getApartments())));
 
-        return "bookings";
+        return "subBookings";
     }
 
 }

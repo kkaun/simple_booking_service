@@ -1,37 +1,46 @@
 package com.kirak.service;
 
-import com.kirak.model.Apartment;
 import com.kirak.model.Booking;
-import com.kirak.model.SuperBooking;
-import com.kirak.to.booking.BookingTo;
+import com.kirak.to.booking.ManagerBookingTo;
 import com.kirak.util.exception.NotFoundException;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 /**
- * Created by Kir on 01.06.2017.
+ * Created by Kir on 07.08.2017.
  */
 public interface BookingService {
 
-    Booking save(Booking booking, int superBookingId, int apartmentId);
+    Booking save(Booking booking);
 
-    Booking save(BookingTo bookingTo, int superBookingId, List<Apartment> apartments, List<SuperBooking> superBookings)
-            throws NotFoundException;
+    Booking update(Booking booking);
 
-    Booking update(Booking booking, int superBookingId, int apartmentId) throws NotFoundException;
+    Booking update(ManagerBookingTo managerBookingTo);
 
-    Booking update(BookingTo bookingTo) throws NotFoundException;
+    Booking save(Booking booking, int userId);
 
-    default boolean delete(Long id, int superBookingId, int apartmentId){
+    Booking update(Booking booking, int userId) throws NotFoundException;
+
+    default boolean delete(Integer id){
         throw new UnsupportedOperationException("Booking cannot be deleted, only modified!");
     }
 
-    Booking get(Long id, int superBookingId, int apartmentId) throws NotFoundException;
+    Booking get(Integer id) throws NotFoundException;
 
-    Booking get(Long id, Integer superBookingId);
-
-    Booking get(Long id) throws NotFoundException;
+    void deactivate(int id, boolean enabled);
 
     List<Booking> getAll();
+
+    List<Booking> getAllByUserId(int userId);
+
+    List<Booking> getAllByHotelId(int hotelId);
+
+    default List<Booking> getAllBetweenCreatedDates(LocalDate startDate, LocalDate endDate){
+        return getAllBetweenCreatedDateTimes(LocalDateTime.of(startDate, LocalTime.MIN), LocalDateTime.of(endDate, LocalTime.MAX));
+    }
+
+    List<Booking> getAllBetweenCreatedDateTimes(LocalDateTime startDate, LocalDateTime endDate);
 }

@@ -20,7 +20,7 @@
                                 <div class="panel-body text-center">
                                     <h2><spring:message code="common.booking_done"/></h2>
                                     <hr>
-                                    <h4><spring:message code="common.trip_id"/> : <strong>${superBooking.id}</strong>
+                                    <h4><spring:message code="common.trip_id"/> : <strong>${booking.id}</strong>
                                         . <spring:message code="common.booking_compl_add"/>${user.email}</h4>
                                 </div>
                             </div>
@@ -73,7 +73,7 @@
                                             <h4><strong><spring:message code="common.booking_info"/></strong></h4>
                                             <table class="table table-responsive" style="margin: 0 auto">
                                                 <tr>
-                                                    <td><spring:message code="bookings.personNum"/></td>
+                                                    <td><spring:message code="subBookings.personNum"/></td>
                                                     <td>${placementPersonNum}</td>
                                                 </tr>
                                                 <tr>

@@ -2,9 +2,8 @@ package com.kirak.to;
 
 import com.kirak.model.Vote;
 import com.kirak.to.booking.ChartTo;
-import com.kirak.to.booking.ManagerSuperBookingTo;
+import com.kirak.to.booking.ManagerBookingTo;
 import com.kirak.util.session.SessionObjectsIdGenerator;
-import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.List;
@@ -25,7 +24,7 @@ public class ManagerObject implements Serializable {
 
     private List<ApartmentTo> objectApartmentTos;
 
-    private List<ManagerSuperBookingTo> objectManagerSuperBookingTos;
+    private List<ManagerBookingTo> objectManagerBookingTos;
 
     private List<ChartTo> objectChartTos;
 
@@ -34,14 +33,14 @@ public class ManagerObject implements Serializable {
     public ManagerObject(Integer managerId,
                          Integer hotelId,
                          List<ApartmentTo> objectApartmentTos,
-                         List<ManagerSuperBookingTo> objectManagerSuperBookingTos,
+                         List<ManagerBookingTo> objectManagerBookingTos,
                          List<ChartTo> objectChartTos,
                          List<Vote> objectVotes) {
         this.id = SessionObjectsIdGenerator.getNewId();
         this.hotelId = hotelId;
         this.managerId = managerId;
         this.objectApartmentTos = objectApartmentTos;
-        this.objectManagerSuperBookingTos = objectManagerSuperBookingTos;
+        this.objectManagerBookingTos = objectManagerBookingTos;
         this.objectChartTos = objectChartTos;
         this.objectVotes = objectVotes;
     }
@@ -58,12 +57,12 @@ public class ManagerObject implements Serializable {
         this.objectApartmentTos = objectApartmentTos;
     }
 
-    public List<ManagerSuperBookingTo> getObjectManagerSuperBookingTos() {
-        return objectManagerSuperBookingTos;
+    public List<ManagerBookingTo> getObjectManagerBookingTos() {
+        return objectManagerBookingTos;
     }
 
-    public void setObjectManagerSuperBookingTos(List<ManagerSuperBookingTo> objectManagerSuperBookingTos) {
-        this.objectManagerSuperBookingTos = objectManagerSuperBookingTos;
+    public void setObjectManagerBookingTos(List<ManagerBookingTo> objectManagerBookingTos) {
+        this.objectManagerBookingTos = objectManagerBookingTos;
     }
 
     public List<ChartTo> getObjectChartTos() {
@@ -105,7 +104,7 @@ public class ManagerObject implements Serializable {
                 ", hotelId=" + hotelId +
                 ", managerId=" + managerId +
                 ", objectApartmentTos=" + objectApartmentTos +
-                ", objectManagerSuperBookingTos=" + objectManagerSuperBookingTos +
+                ", objectManagerBookingTos=" + objectManagerBookingTos +
                 ", objectChartTos=" + objectChartTos +
                 ", objectVotes=" + objectVotes +
                 '}';

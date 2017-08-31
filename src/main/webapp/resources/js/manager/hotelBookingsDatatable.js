@@ -2,77 +2,65 @@
  * Created by Кира on 15.08.2017.
  */
 
-var ajaxUrl = "/admin/super_bookings/";
+
+var ajaxUrl = "/hotel_manager/object/bookings/";
 var datatableApi;
 
 
-function updateAdminSBTableByDatesAdded() {
+function updateManagerBookingTableByDatesAdded() {
     $.ajax({
         type: "POST",
         url: ajaxUrl + "between_dates",
-        data: $("#superBookingsAdminDatesAddedFilter").serialize(),
+        data: $("#bookingsManagerDatesAddedFilter").serialize(),
         success: updateTableByData
     });
 }
-function updateAdminSBTableByInDate() {
+function updateManagerBookingTableByInDate() {
     $.ajax({
         type: "POST",
         url: ajaxUrl + "by_in_date",
-        data: $("#superBookingsAdminInDateFilter").serialize(),
+        data: $("#bookingsManagerInDateFilter").serialize(),
         success: updateTableByData
     });
 }
-function updateAdminSBTableByOutDate() {
+function updateManagerBookingTableByOutDate() {
     $.ajax({
         type: "POST",
         url: ajaxUrl + "by_out_date",
-        data: $("#superBookingsAdminOutDateFilter").serialize(),
+        data: $("#bookingsManagerOutDateFilter").serialize(),
         success: updateTableByData
     });
 }
-function updateAdminSBTableByUserId() {
+function updateManagerBookingTableByUserId() {
     $.ajax({
         type: "POST",
         url: ajaxUrl + "by_user_id",
-        data: $("#superBookingsAdminUserIdFilter").serialize(),
-        success: updateTableByData
-    });
-}
-function updateAdminSBTableByHotelId() {
-    $.ajax({
-        type: "POST",
-        url: ajaxUrl + "by_hotel_id",
-        data: $("#superBookingsAdminHotelIdFilter").serialize(),
+        data: $("#bookingsManagerUserIdFilter").serialize(),
         success: updateTableByData
     });
 }
 
-
-function clearSBDatesAddedAdminFilter() {
-    $("#superBookingsAdminDatesAddedFilter")[0].reset();
+function clearBookingDatesAddedManagerFilter() {
+    $("#bookingsManagerDatesAddedFilter")[0].reset();
     $.get(ajaxUrl, updateTableByData);
 }
-function clearSBInDateAdminFilter() {
-    $("#superBookingsAdminInDateFilter")[0].reset();
+function clearBookingInDateManagerFilter() {
+    $("#bookingsManagerInDateFilter")[0].reset();
     $.get(ajaxUrl, updateTableByData);
 }
-function clearSBOutDateAdminFilter() {
-    $("#superBookingsAdminOutDateFilter")[0].reset();
+function clearBookingOutDateManagerFilter() {
+    $("#bookingsManagerOutDateFilter")[0].reset();
     $.get(ajaxUrl, updateTableByData);
 }
-function clearSBUserIdAdminFilter() {
-    $("#superBookingsAdminUserIdFilter")[0].reset();
-    $.get(ajaxUrl, updateTableByData);
-}
-function clearSBHotelIdAdminFilter() {
-    $("#superBookingsAdminHotelIdFilter")[0].reset();
+function clearBookingUserIdManagerFilter() {
+    $("#bookingsManagerUserIdFilter")[0].reset();
     $.get(ajaxUrl, updateTableByData);
 }
 
 
-function deactivateAdminSB(chkbox, id) {
+function deactivateManagerBooking(chkbox, id) {
     var enabled = chkbox.is(":checked");
-    if(enabled) {
+    if(enabled){
         $.ajax({
             url: ajaxUrl + id,
             type: 'POST',
@@ -90,7 +78,7 @@ function deactivateAdminSB(chkbox, id) {
 
 
 $(function () {
-    datatableApi = $('#superBookingsDatatable').DataTable(extendsOpts({
+    datatableApi = $('#hotelBookingsDatatable').DataTable(extendsOpts({
         "columns": [
             {
                 "data": "id",
@@ -113,19 +101,19 @@ $(function () {
                 "data": "outDate"
             },
             {
-                "data": "hotelId"
+                "data": "userName"
             },
             {
-                "data": "hotelName"
+                "data": "userEmail"
             },
             {
-                "data": "userId"
+                "data": "userPhone"
             },
             {
                 "data": "active",
                 "render": function (data, type, row) {
                     if (type === 'display') {
-                        return '<input type="checkbox" ' + (data ? 'checked' : '') + ' onclick="deactivateAdminSB($(this),' + row.id + ');"/>';
+                        return '<input type="checkbox" ' + (data ? 'checked' : '') + ' onclick="deactivateManagerBooking($(this),' + row.id + ');"/>';
                     }
                     return data;
                 }
@@ -144,5 +132,7 @@ $(function () {
             }
         }
     }));
-
 });
+
+
+

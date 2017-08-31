@@ -23,9 +23,9 @@ public class ApartmentsAjaxController extends ManagerObjectAbstractController{
 
     @Autowired
     public ApartmentsAjaxController(ApartmentService apartmentService, AptTypeService aptTypeService, HotelService hotelService,
-                                    BookingService bookingService, SuperBookingService superBookingService,
+                                    BookingService bookingService, SubBookingService subBookingService,
                                     VoteService voteService, ManagerObjectService managerObjectService) {
-        super(apartmentService, aptTypeService, hotelService, bookingService, superBookingService, voteService, managerObjectService);
+        super(apartmentService, aptTypeService, hotelService, bookingService, subBookingService, voteService, managerObjectService);
     }
 
     @PostMapping

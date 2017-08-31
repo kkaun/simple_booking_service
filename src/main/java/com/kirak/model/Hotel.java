@@ -74,7 +74,7 @@ public class Hotel extends NamedEntity {
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel")
-    private Set<Booking> bookings;
+    private Set<SubBooking> subBookings;
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "hotel")
@@ -82,7 +82,7 @@ public class Hotel extends NamedEntity {
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel")
-    private Set<SuperBooking> superBookings;
+    private Set<Booking> bookings;
 
     public Hotel(){}
 
@@ -223,20 +223,20 @@ public class Hotel extends NamedEntity {
         this.maxExtraBedsPerDay = maxExtraBedsPerDay;
     }
 
+    public Set<SubBooking> getSubBookings() {
+        return subBookings;
+    }
+
+    public void setSubBookings(Set<SubBooking> subBookings) {
+        this.subBookings = subBookings;
+    }
+
     public Set<Booking> getBookings() {
         return bookings;
     }
 
     public void setBookings(Set<Booking> bookings) {
         this.bookings = bookings;
-    }
-
-    public Set<SuperBooking> getSuperBookings() {
-        return superBookings;
-    }
-
-    public void setSuperBookings(Set<SuperBooking> superBookings) {
-        this.superBookings = superBookings;
     }
 
     public String getImgPath() {

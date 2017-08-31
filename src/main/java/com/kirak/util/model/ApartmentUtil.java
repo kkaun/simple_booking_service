@@ -2,8 +2,7 @@ package com.kirak.util.model;
 
 import com.kirak.model.*;
 import com.kirak.to.ApartmentTo;
-import com.kirak.to.booking.BookingTo;
-import com.kirak.web.session.AuthorizedUser;
+import com.kirak.to.booking.SubBookingTo;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -53,10 +52,10 @@ public class ApartmentUtil {
         return apartment;
     }
 
-    public static List<ApartmentTo> getApartmentTosFromSuperBooking(SuperBooking superBooking){
+    public static List<ApartmentTo> getApartmentTosFromBooking(Booking booking){
 
-        return getApartmentTos(superBooking.getBookings().stream()
-                .map(Booking::getApartment)
+        return getApartmentTos(booking.getSubBookings().stream()
+                .map(SubBooking::getApartment)
                 .collect(Collectors.toList()));
     }
 
@@ -175,17 +174,17 @@ public class ApartmentUtil {
     public static boolean isSingleApartmentAvailable(Apartment apartment, LocalDate inDate, LocalDate outDate){
 
         final int[] daysOccupied = {0};
-        apartment.getBookings().stream().filter(booking -> booking.getSuperBooking().isActive())
+        apartment.getSubBookings().stream().filter(booking -> booking.getBooking().isActive())
                 .forEach(booking -> getOccupiedDaysForSingleApartmentInPeriod(booking, daysOccupied, inDate, outDate));
         return daysOccupied[0] == 0;
     }
 
 
-    public static boolean isSingleApartmentAvailableWithoutCurrentBooking(Apartment apartment, BookingTo currentBooking,
+    public static boolean isSingleApartmentAvailableWithoutCurrentBooking(Apartment apartment, SubBookingTo currentBooking,
                                                                 LocalDate inDate, LocalDate outDate){
 
         final int[] daysOccupied = {0};
-        apartment.getBookings().stream().filter(booking -> booking.getSuperBooking().isActive())
+        apartment.getSubBookings().stream().filter(booking -> booking.getBooking().isActive())
                 .filter(booking -> !Objects.equals(booking.getId(), currentBooking.getId()))
                 .forEach(booking -> getOccupiedDaysForSingleApartmentInPeriod(booking, daysOccupied, inDate, outDate));
         return daysOccupied[0] == 0;
@@ -201,12 +200,12 @@ public class ApartmentUtil {
                         && Objects.equals(apartment.getType().getCategory(), requestedApartment.getType().getCategory()))
                 .collect(Collectors.toList());
 
-        List<Booking> apartmentBookings = similarApartments.stream()
-                .flatMap(apartment -> apartment.getBookings().stream())
-                .filter(booking -> booking.getSuperBooking().isActive())
+        List<SubBooking> apartmentSubBookings = similarApartments.stream()
+                .flatMap(apartment -> apartment.getSubBookings().stream())
+                .filter(booking -> booking.getBooking().isActive())
                 .collect(Collectors.toList());
 
-        apartmentBookings.forEach(booking -> getOccupiedDaysForSingleApartmentInPeriod(booking, daysOccupied, inDate, outDate));
+        apartmentSubBookings.forEach(booking -> getOccupiedDaysForSingleApartmentInPeriod(booking, daysOccupied, inDate, outDate));
 
         int requestPeriod = (int)ChronoUnit.DAYS.between(inDate, outDate);
         int daysInRequestPeriod = similarApartments.size()*requestPeriod;
@@ -215,27 +214,27 @@ public class ApartmentUtil {
     }
 
 
-    public static int[] getOccupiedDaysForSingleApartmentInPeriod(Booking booking, int[] daysOccupied,
+    public static int[] getOccupiedDaysForSingleApartmentInPeriod(SubBooking subBooking, int[] daysOccupied,
                                                                   LocalDate inDate, LocalDate outDate){
 
-        if(booking.getInDate().isBefore(inDate) && booking.getOutDate().isAfter(outDate)){
+        if(subBooking.getInDate().isBefore(inDate) && subBooking.getOutDate().isAfter(outDate)){
             daysOccupied[0] += (int) ChronoUnit.DAYS.between(inDate, outDate);
         }
-        if(booking.getInDate().isBefore(inDate) &&
-                booking.getOutDate().isBefore(outDate)) {
-            if (ChronoUnit.DAYS.between(booking.getOutDate(), inDate) <= 0) {
-                daysOccupied[0] += (int) ChronoUnit.DAYS.between(booking.getOutDate(), inDate);
+        if(subBooking.getInDate().isBefore(inDate) &&
+                subBooking.getOutDate().isBefore(outDate)) {
+            if (ChronoUnit.DAYS.between(subBooking.getOutDate(), inDate) <= 0) {
+                daysOccupied[0] += (int) ChronoUnit.DAYS.between(subBooking.getOutDate(), inDate);
             }
         }
-        if(booking.getInDate().isAfter(inDate) &&
-                booking.getOutDate().isAfter(outDate)) {
-            if(ChronoUnit.DAYS.between(booking.getInDate(), outDate) >= 0){
-                daysOccupied[0] += (int) ChronoUnit.DAYS.between(outDate, booking.getInDate());
+        if(subBooking.getInDate().isAfter(inDate) &&
+                subBooking.getOutDate().isAfter(outDate)) {
+            if(ChronoUnit.DAYS.between(subBooking.getInDate(), outDate) >= 0){
+                daysOccupied[0] += (int) ChronoUnit.DAYS.between(outDate, subBooking.getInDate());
             }
         }
-        if(booking.getInDate().isAfter(inDate) &&
-                booking.getOutDate().isBefore(outDate)) {
-            daysOccupied[0] += (int) ChronoUnit.DAYS.between(booking.getInDate(), booking.getOutDate());
+        if(subBooking.getInDate().isAfter(inDate) &&
+                subBooking.getOutDate().isBefore(outDate)) {
+            daysOccupied[0] += (int) ChronoUnit.DAYS.between(subBooking.getInDate(), subBooking.getOutDate());
         }
         return daysOccupied;
     }
