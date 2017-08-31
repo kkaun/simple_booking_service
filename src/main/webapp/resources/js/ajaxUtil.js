@@ -85,6 +85,7 @@ function failNoty(jqXHR) {
 function addAptType() {
     $('#aptTypeModalTitle').html(i18n["addTitle"]);
     form.find(":input").val("");
+    $('.load-bar').hide();
     $('#aptTypeEditRow').modal();
 }
 
@@ -94,6 +95,7 @@ function updateAptTypeRow(id) {
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(value);
         });
+        $('.load-bar').hide();
         $('#aptTypeEditRow').modal();
     });
 }
@@ -106,6 +108,7 @@ function renderAptTypeEditBtn(data, type, row) {
 }
 
 function saveAptType() {
+    $('.load-bar').show();
     $.ajax({
         type: "POST",
         url: ajaxUrl,
@@ -144,6 +147,7 @@ function addHotel() {
     form.find("textarea[name='" + 'description' + "']").val("");
     $('.cityNameForm :input').removeAttr('readonly');
     $('.countryNameForm :input').removeAttr('readonly');
+    $('.load-bar').hide();
     $('#hotelEditRow').modal();
 }
 
@@ -156,6 +160,7 @@ function updateHotelRow(id) {
             $('.cityNameForm :input').attr('readonly','readonly');
             $('.countryNameForm :input').attr('readonly','readonly');
         });
+        $('.load-bar').hide();
         $('#hotelEditRow').modal();
     });
 }
@@ -168,6 +173,7 @@ function renderHotelEditBtn(data, type, row) {
 }
 
 function saveHotel() {
+    $('.load-bar').show();
     $.ajax({
         type: "POST",
         url: ajaxUrl,
@@ -208,6 +214,7 @@ function addRegion() {
     form.find("textarea[name='" + 'description' + "']").val("");
     $('.currentCountryName').hide();
     $('.countryNamesList').show();
+    $('.load-bar').hide();
     $('#regionEditRow').modal();
 }
 
@@ -220,6 +227,7 @@ function updateRegionRow(id) {
             $('.countryNamesList').hide();
             $('.currentCountryName').show();
         });
+        $('.load-bar').hide();
         $('#regionEditRow').modal();
     });
 }
@@ -239,6 +247,7 @@ function renderRegionImageBtn(data, type, row) {
 }
 
 function saveRegion() {
+    $('.load-bar').show();
     $.ajax({
         type: "POST",
         url: ajaxUrl,
@@ -263,12 +272,14 @@ function updateRegionImage(id) {
             });
             form.find("input[name='" + key + "']").val(value);
         });
+        $('.load-bar').hide();
         $('#regionImageEditRow').modal();
     });
 }
 
 
 function saveRegionImage() {
+    $('.load-bar').show();
     var objFormData = new FormData(document.getElementById("imgForm"));
     $.ajax({
         type: "POST",
@@ -310,6 +321,7 @@ function addUser() {
     $('#userUpdateModalTitle').html(i18n["addTitle"]);
     form.find(":input").val("");
     $('.userRoleInput').show();
+    $('.load-bar').hide();
     $('#userEditRow').modal();
 }
 
@@ -320,6 +332,7 @@ function updateUserRow(id) {
             form.find("input[name='" + key + "']").val(value);
             $('.userRoleInput').hide();
         });
+        $('.load-bar').hide();
         $('#userEditRow').modal();
     });
 }
@@ -332,6 +345,7 @@ function renderUserEditBtn(data, type, row) {
 }
 
 function saveUser() {
+    $('.load-bar').show();
     $.ajax({
         type: "POST",
         url: ajaxUrl,
@@ -372,6 +386,7 @@ function deleteUserRow(id) {
 function addApartment() {
     $('#apartmentModalTitle').html(i18n["addTitle"]);
     form.find(":input").val("");
+    $('.load-bar').hide();
     $('#apartmentEditRow').modal();
 }
 
@@ -388,6 +403,7 @@ function updateApartmentRow(id) {
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(value);
         });
+        $('.load-bar').hide();
         $('#apartmentEditRow').modal();
     });
 }
@@ -411,11 +427,13 @@ function updateApartmentImage(id) {
             });
             form.find("input[name='" + key + "']").val(value);
         });
+        $('.load-bar').hide();
         $('#apartmentImageEditRow').modal();
     });
 }
 
 function saveApartment() {
+    $('.load-bar').show();
     $.ajax({
         type: "POST",
         url: ajaxUrl,
@@ -429,6 +447,7 @@ function saveApartment() {
 }
 
 function saveApartmentImage() {
+    $('.load-bar').show();
     var objFormData = new FormData(document.getElementById("imgForm"));
     $.ajax({
         type: "POST",
@@ -473,6 +492,7 @@ function addManagerHotel() {
     form.find("textarea[name='" + 'description' + "']").val("");
     $('.cityNameForm :input').removeAttr('readonly');
     $('.countryNameForm :input').removeAttr('readonly');
+    $('.load-bar').hide();
     $('#managerHotelEditRow').modal();
 }
 
@@ -492,6 +512,7 @@ function updateManagerHotelRow(id) {
             $('.cityNameForm :input').attr('readonly','readonly');
             $('.countryNameForm :input').attr('readonly','readonly');
         });
+        $('.load-bar').hide();
         $('#managerHotelEditRow').modal();
     });
 }
@@ -515,11 +536,13 @@ function updateManagerHotelImage(id) {
             });
             form.find("input[name='" + key + "']").val(value);
         });
+        $('.load-bar').hide();
         $('#managerHotelImageEditRow').modal();
     });
 }
 
 function saveManagerHotel() {
+    $('.load-bar').show();
     $.ajax({
         type: "POST",
         url: ajaxUrl,
@@ -533,6 +556,7 @@ function saveManagerHotel() {
 }
 
 function saveManagerHotelImage() {
+    $('.load-bar').show();
     var objFormData = new FormData(document.getElementById("imgForm"));
     $.ajax({
         type: "POST",
@@ -558,10 +582,12 @@ function saveManagerHotelImage() {
 function addUserVote() {
     $('#userVoteModalTitle').html(i18n["addTitle"]);
     form.find(":input").val("");
+    $('.load-bar').hide();
     $('#userVoteEditRow').modal();
 }
 
 function saveUserVote() {
+    $('.load-bar').show();
     $.ajax({
         type: "POST",
         url: ajaxUrl,
@@ -587,6 +613,7 @@ function updateUserVoteRow(id) {
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(value);
         });
+        $('.load-bar').hide();
         $('#userVoteEditRow').modal();
     });
 }

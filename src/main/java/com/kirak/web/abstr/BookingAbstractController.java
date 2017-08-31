@@ -168,6 +168,4 @@ public abstract class BookingAbstractController {
         LOG.info("Getting all bookings");
         return BookingUtil.generateBookingTos(superBookingService.get(superBookingId));
     }
-
-
 }

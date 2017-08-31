@@ -50,6 +50,7 @@ function updateSubBookingTableByData(data) {
 function addSubBooking() {
     $('#bookingModalTitle').html(i18n["addTitle"]);
     form.find(":input").val("");
+    $('.load-bar').hide();
     $('#bookingEditRow').modal();
 }
 
@@ -60,6 +61,7 @@ function updateBookingRow(id) {
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(value);
         });
+        $('.load-bar').hide();
         $('#bookingEditRow').modal();
     });
 }
@@ -72,6 +74,7 @@ function renderBookingEditBtn(data, type, row) {
 }
 
 function saveBooking() {
+    $('.load-bar').show();
     $.ajax({
         type: "POST",
         url: subBookingAjaxUrl + "crud?superBookingId=" + sbId,

@@ -31,7 +31,7 @@
             </li>
             <li>
                 <a class="restNavLi" href="admin/show_votes">
-                    <h5><strong><spring:message code="common.feedback"/></strong></h5>
+                    <h5><strong><spring:message code="common.bookings"/></strong></h5>
                 </a>
             </li>
             <li>

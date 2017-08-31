@@ -74,6 +74,7 @@
             <div class="modal-body">
                 <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
+                    <input type="hidden" id="enabled" name="enabled">
 
                     <div class="form-group">
                         <label for="name" class="control-label col-xs-3"><spring:message code="user.name"/></label>
@@ -121,6 +122,9 @@
                         </div>
                     </div>
                 </form:form>
+            </div>
+            <div class="modal-footer">
+                <div class="load-bar"></div>
             </div>
         </div>
     </div>

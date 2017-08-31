@@ -86,7 +86,6 @@
                 </div>
             </div>
 
-            <div class="row">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="table-responsive">
@@ -106,7 +105,6 @@
                         </table>
                     </div>
                 </div>
-            </div>
             </div>
 
         </div>
@@ -195,6 +193,9 @@
                         </div>
                     </div>
                 </form:form>
+            </div>
+            <div class="modal-footer">
+                <div class="load-bar"></div>
             </div>
         </div>
     </div>
