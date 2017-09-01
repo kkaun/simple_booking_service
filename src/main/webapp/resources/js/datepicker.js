@@ -2,14 +2,14 @@
 //datetimepicker
 $(function() {
     $('.out_date').datepicker({
-        dateFormat: 'dd-mm-yy',
+        dateFormat: 'yy-mm-dd',
         onSelect: function() {},
         onClose: function() {
             $(this).focus();
         }
     });
     $('.in_date').datepicker({
-        dateFormat: 'dd-mm-yy',
+        dateFormat: 'yy-mm-dd',
         minDate: 'today',
         maxDate: '+1y +10m',
         onSelect: function (dateText, inst) {
@@ -32,14 +32,14 @@ $(function() {
 
 $(function() {
     $('.from_date').datepicker({
-        dateFormat: 'dd-mm-yy',
+        dateFormat: 'yy-mm-dd',
         onSelect: function() {},
         onClose: function() {
             $(this).focus();
         }
     });
     $('.to_date').datepicker({
-        dateFormat: 'dd-mm-yy',
+        dateFormat: 'yy-mm-dd',
         onSelect: function () {},
         onClose: function () {
             $(this).focus();

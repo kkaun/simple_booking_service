@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static com.kirak.util.DateTimeUtil.*;
+
 /**
  * Created by Kir on 13.08.2017.
  */
@@ -17,22 +19,23 @@ public class BookingUtil {
 
     public static AdminBookingTo asAdminBookingTo(Booking booking, LocalDate inDate, LocalDate outDate){
 
-        return new AdminBookingTo(booking.getId(), booking.isActive(), booking.getDateAdded(),
-                inDate, outDate, booking.getHotel().getId(),
-                booking.getHotel().getName(), booking.getUser().getId());
+        return new AdminBookingTo(booking.getId(), booking.isActive(), formatDateTime(booking.getDateAdded()),
+                inDate, outDate, booking.getHotel().getId(), booking.getHotel().getName(),
+                booking.getUser().getId());
     }
 
     public static ManagerBookingTo asManagerBookingTo(Booking booking, LocalDate inDate, LocalDate outDate){
 
-        return new ManagerBookingTo(booking.getId(), booking.isActive(), booking.getDateAdded(),
+        return new ManagerBookingTo(booking.getId(), booking.isActive(), formatDateTime(booking.getDateAdded()),
                 inDate, outDate, (short) booking.getSubBookings().size(), booking.getUser().getId(),
                 booking.getUser().getName(), booking.getUser().getEmail(), booking.getUser().getPhone());
     }
 
     public static UserBookingTo asUserBookingTo(Booking booking, LocalDate inDate, LocalDate outDate){
 
-        return new UserBookingTo(booking.getId(), booking.isActive(), booking.getDateAdded(), inDate, outDate,
-                booking.getHotel().getId(), booking.getHotel().getName(), (short) booking.getSubBookings().size());
+        return new UserBookingTo(booking.getId(), booking.isActive(), formatDateTime(booking.getDateAdded()),
+                inDate, outDate, booking.getHotel().getId(), booking.getHotel().getName(),
+                (short) booking.getSubBookings().size());
     }
 
     public static Booking updateFromManagerBookingTo(ManagerBookingTo managerBookingTo, Booking booking){
@@ -52,7 +55,6 @@ public class BookingUtil {
         return booking;
     }
 
-
     public static List<ManagerBookingTo> getObjectManagerBookingTos(List<Booking> bookings,
                                                                          ManagerObject managerObject, int managerId) {
 
@@ -61,7 +63,6 @@ public class BookingUtil {
         return managerBookingTos.stream().filter(managerBookingTo ->
                 managerObject.getObjectManagerBookingTos().contains(managerBookingTo)).collect(Collectors.toList());
     }
-
 
     public static LocalDate getBookingInDate(Booking booking){
 

@@ -2,13 +2,8 @@ package com.kirak.to.booking;
 
 import com.fasterxml.jackson.annotation.*;
 import com.kirak.to.abstr.BasicIntTo;
-import com.kirak.util.DateTimeUtil;
-import com.kirak.web.View;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  * Created by Kir on 13.08.2017.
@@ -17,15 +12,10 @@ public class AdminBookingTo extends BasicIntTo implements Serializable {
 
     private boolean active;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DateTimeUtil.DATE_TIME_PATTERN)
-    private LocalDateTime dateAdded;
+    private String dateAdded;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING,
-            pattern = "dd-MM-yyyy")
     private LocalDate inDate;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING,
-            pattern = "dd-MM-yyyy")
     private LocalDate outDate;
 
     private Integer hotelId;
@@ -38,7 +28,7 @@ public class AdminBookingTo extends BasicIntTo implements Serializable {
 
     public AdminBookingTo(@JsonProperty("id") Integer id,
                           @JsonProperty("active") boolean active,
-                          @JsonProperty("dateAdded") LocalDateTime dateAdded,
+                          @JsonProperty("dateAdded") String dateAdded,
                           @JsonProperty("inDate") LocalDate inDate,
                           @JsonProperty("outDate") LocalDate outDate,
                           @JsonProperty("hotelId") Integer hotelId,
@@ -83,11 +73,11 @@ public class AdminBookingTo extends BasicIntTo implements Serializable {
         this.active = active;
     }
 
-    public LocalDateTime getDateAdded() {
+    public String getDateAdded() {
         return dateAdded;
     }
 
-    public void setDateAdded(LocalDateTime dateAdded) {
+    public void setDateAdded(String dateAdded) {
         this.dateAdded = dateAdded;
     }
 

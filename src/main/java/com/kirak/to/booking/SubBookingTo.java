@@ -1,17 +1,9 @@
 package com.kirak.to.booking;
 
 import com.fasterxml.jackson.annotation.*;
-import com.kirak.model.Apartment;
-import com.kirak.model.Hotel;
-import com.kirak.model.abstraction.BaseLongEntity;
 import com.kirak.to.abstr.BasicLongTo;
-import com.kirak.util.DateTimeUtil;
-import com.kirak.web.View;
-
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * Created by Kir on 25.06.2017.
@@ -26,16 +18,13 @@ public class SubBookingTo extends BasicLongTo implements Serializable {
 
     private Double aptPrice;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate aptInDate;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate aptOutDate;
 
     private Double sum;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DateTimeUtil.DATE_TIME_PATTERN)
-    private LocalDateTime edited;
+    private String edited;
 
     public SubBookingTo(){}
 
@@ -46,7 +35,7 @@ public class SubBookingTo extends BasicLongTo implements Serializable {
                         @JsonProperty("inDate") LocalDate aptInDate,
                         @JsonProperty("outDate") LocalDate aptOutDate,
                         @JsonProperty("sum") Double sum,
-                        @JsonProperty("edited") LocalDateTime edited) {
+                        @JsonProperty("edited") String edited) {
         super(id);
         this.stringAptType = stringAptType;
         this.aptPrice = aptPrice;
@@ -110,15 +99,11 @@ public class SubBookingTo extends BasicLongTo implements Serializable {
         this.sum = sum;
     }
 
-    @JsonGetter
-    @JsonView(View.JsonUI.class)
-    @JsonFormat(pattern = DateTimeUtil.DATE_TIME_PATTERN)
-    public LocalDateTime getEdited() {
+    public String getEdited() {
         return edited;
     }
 
-    @JsonFormat(pattern = DateTimeUtil.DATE_TIME_PATTERN)
-    public void setEdited(LocalDateTime edited) {
+    public void setEdited(String edited) {
         this.edited = edited;
     }
 

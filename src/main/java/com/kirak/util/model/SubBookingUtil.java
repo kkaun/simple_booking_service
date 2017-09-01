@@ -13,6 +13,9 @@ import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static com.kirak.util.DateTimeUtil.formatDate;
+import static com.kirak.util.DateTimeUtil.formatDateTime;
 import static java.time.temporal.ChronoUnit.DAYS;
 
 /**
@@ -26,8 +29,8 @@ public class SubBookingUtil {
 
         return new SubBookingTo(subBooking.getId(), subBooking.getApartment().getId(), stringAptType,
                 subBooking.getApartment().getPrice(), subBooking.getInDate(), subBooking.getOutDate(),
-                calculateSubBookingSum(subBooking, subBooking.getInDate(), subBooking.getOutDate()),
-                subBooking.getEdited());
+                calculateSubBookingSum(subBooking, subBooking.getInDate(),
+                subBooking.getOutDate()), formatDateTime(subBooking.getEdited()));
     }
 
     public static Map<SubBooking, Boolean> createFromToWithResult(SubBookingTo subBookingTo, int bookingId,
@@ -40,12 +43,13 @@ public class SubBookingUtil {
 
         Short aptPersonNum = expectedApartment.getType().getPersonNum();
 
-        SubBooking creatableSubBooking = new SubBooking(subBookingTo.getAptInDate(), subBookingTo.getAptOutDate(),
-                calculateSubBookingSumForApt(expectedApartment, subBookingTo.getAptInDate(), subBookingTo.getAptOutDate()),
+        SubBooking creatableSubBooking = new SubBooking(subBookingTo.getAptInDate(),
+                subBookingTo.getAptOutDate(), calculateSubBookingSumForApt(expectedApartment,
+                subBookingTo.getAptInDate(), subBookingTo.getAptOutDate()),
                 aptPersonNum, expectedBooking, expectedApartment, expectedApartment.getHotel(), LocalDateTime.now());
 
-        if(expectedBooking != null && ApartmentUtil.isSingleApartmentAvailable(expectedApartment, subBookingTo.getAptInDate(),
-                subBookingTo.getAptOutDate())) {
+        if(expectedBooking != null && ApartmentUtil.isSingleApartmentAvailable(expectedApartment,
+                subBookingTo.getAptInDate(), subBookingTo.getAptOutDate())) {
             return Collections.singletonMap(creatableSubBooking, true);
         }
         return Collections.singletonMap(creatableSubBooking, false);

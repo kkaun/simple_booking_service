@@ -17,12 +17,23 @@ import java.util.Date;
 public class DateTimeUtil {
 
     public static final String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm";
+    public static final String DATE_PATTERN = "dd-MM-yyyy";
+
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_PATTERN);
 
     public static final LocalDate MIN_DATE = LocalDate.of(1, 1, 1);
     public static final LocalDate MAX_DATE = LocalDate.of(3000, 1, 1);
 
     private DateTimeUtil() {
+    }
+
+    public static String formatDateTime(LocalDateTime added){
+        return added.format(DATE_TIME_FORMATTER);
+    }
+
+    public static String formatDate(LocalDate date){
+        return date.format(DATE_FORMATTER);
     }
 
     public static <T extends Comparable<? super T>> boolean isBetween(T value, T start, T end) {
