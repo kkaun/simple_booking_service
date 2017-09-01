@@ -331,7 +331,7 @@
 
                         <c:forEach items="${apartments}" var="apartment" varStatus="vs">
                             <div class="list-group">
-                            <a class="list-group-item apartmentListItem">
+                            <a class="list-group-item listItem">
                                 <div class="row" style="padding-bottom: 10px;">
                                     <div class="col-md-7">
                                         <h4 class="list-group-item-text">

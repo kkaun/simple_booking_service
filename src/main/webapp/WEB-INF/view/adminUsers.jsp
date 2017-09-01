@@ -13,7 +13,7 @@
 <div class="container" style="margin-top: 20px; min-height: 580px">
     <div class="row">
 
-        <div class="col-md-2">
+        <div class="col-md-2" style="max-height: 400px;">
             <jsp:include page="fragments/sidebars/adminSidebar.jsp"/>
         </div>
 

@@ -17,7 +17,6 @@
             <jsp:include page="fragments/sidebars/adminSidebar.jsp"/>
         </div>
 
-
         <div class="col-md-10">
             <div class="row" style="height: 70px">
                 <div class="col-md-12">

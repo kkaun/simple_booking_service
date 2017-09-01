@@ -7,52 +7,43 @@
 <html>
 <body>
 
-<div class="sidebar-nav-fixed affix" style="margin-left: -15px">
-    <div class="well">
-        <ul class="nav navbar restNavbar">
-            <li class="menu-head text-center">
-                <spring:message code="common.admin"/>
-            </li>
-            <li><hr></li>
-            <li>
-                <a class="restNavLi" href="admin/show_hotels">
-                    <i class="fa fa-circle-o fa-fw fa-pull-left" aria-hidden="true"></i>&nbsp;
-                    <h5><strong><spring:message code="hotels.title"/></strong></h5>
-                </a>
-            </li>
-            <li>
-                <a class="restNavLi" href="admin/show_users">
-                    <i class="fa fa-circle-o fa-fw fa-pull-left" aria-hidden="true"></i>&nbsp;
-                    <h5><strong><spring:message code="common.users"/></strong></h5>
-                </a>
-            </li>
-            <li>
-                <a class="restNavLi" href="admin/show_bookings">
-                    <i class="fa fa-circle-o fa-fw fa-pull-left" aria-hidden="true"></i>&nbsp;
-                    <h5><strong><spring:message code="common.votes"/></strong></h5>
-                </a>
-            </li>
-            <li>
-                <a class="restNavLi" href="admin/show_votes">
-                    <i class="fa fa-circle-o fa-fw fa-pull-left" aria-hidden="true"></i>&nbsp;
-                    <h5><strong><spring:message code="common.subBookings"/></strong></h5>
-                </a>
-            </li>
-            <li>
-                <a class="restNavLi" href="admin/show_apt_types">
-                    <i class="fa fa-circle-o fa-fw fa-pull-left" aria-hidden="true"></i>&nbsp;
-                    <h5><strong><spring:message code="common.apt_types_short"/></strong></h5>
-                </a>
-            </li>
-            <li>
-                <a class="restNavLi" href="admin/show_regions">
-                    <i class="fa fa-circle-o fa-fw fa-pull-left" aria-hidden="true"></i>&nbsp;
-                    <h5><strong><spring:message code="common.regions"/></strong></h5>
-                </a>
-            </li>
-            <li><hr></li>
-            <li><hr></li>
-        </ul>
+<div class="sidebar">
+    <div class="mini-submenu">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </div>
+    <div class="list-group">
+        <div href="#" class="list-group-item">
+            <div class="row">
+                <div class="col-md-9">
+                    <spring:message code="side.admin"/>
+                </div>
+                <div class="col-md-3" style="padding-top: 8px">
+                    <span class="pull-right" id="slide-submenu">
+                        <i class="fa fa-times"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <a href="admin/show_hotels" class="list-group-item">
+            <strong><spring:message code="side.hotels"/></strong><i class="fa fa-building fa-pull-right" aria-hidden="true"></i>
+        </a>
+        <a href="admin/show_users" class="list-group-item">
+            <strong><spring:message code="side.users"/></strong><i class="fa fa-users fa-pull-right" aria-hidden="true"></i>
+        </a>
+        <a href="admin/show_bookings" class="list-group-item">
+            <strong><spring:message code="side.bookings"/></strong><i class="fa fa-ticket fa-pull-right" aria-hidden="true"></i>
+        </a>
+        <a href="admin/show_votes" class="list-group-item">
+            <strong><spring:message code="side.votes"/></strong><i class="fa fa-comments-o fa-pull-right" aria-hidden="true"></i>
+        </a>
+        <a href="admin/show_apt_types" class="list-group-item">
+            <strong><spring:message code="side.apt_types_short"/></strong><i class="fa fa-bed fa-pull-right" aria-hidden="true"></i>
+        </a>
+        <a href="admin/show_regions" class="list-group-item">
+            <strong><spring:message code="side.regions"/></strong><i class="fa fa-globe fa-pull-right" aria-hidden="true"></i>
+        </a>
     </div>
 </div>
 

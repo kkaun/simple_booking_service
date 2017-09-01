@@ -18,8 +18,6 @@
         </div>
 
         <div class="col-md-10">
-            
-            <h3><spring:message code="hotels.title"/></h3>
 
             <div class="row">
                 <div class="col-sm-6">
@@ -79,14 +77,14 @@
             </div>
 
             <div class="row" style="height: 70px">
-                <div class="col-md-6">
+                <div class="col-md-9">
                     <div class="panel panel-default">
                         <div class="panel-body" style="padding: 10px;">
                             <h4 class="pull-left"><strong><spring:message code="common.hotels_list"/></strong></h4>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <button id="adminUserAddBtn" class="btn btn-lg btn-primary pull-right"
                             style="margin: 0 auto;" onclick="addHotel()">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>

@@ -7,41 +7,37 @@
 <html>
 <body>
 
-<div class="sidebar-nav-fixed affix" style="margin-left: -15px">
-    <div class="well">
-        <ul class="nav navbar restNavbar">
-            <li class="menu-head text-center">
-                <spring:message code="manager_panel"/>
-            </li>
-            <li><hr></li>
-            <li>
-                <a class="restNavLi" href="hotel_manager/object/show_chart">
-                    <h5><spring:message code="common.calendar"/>/
-                        <br>
-                        <spring:message code="chart_only"/></h5>
-                </a>
-            </li>
-            <li>
-                <a class="restNavLi" href="hotel_manager/object/show_bookings">
-                    <i class="fa fa-circle-o fa-fw fa-pull-left" aria-hidden="true"></i>&nbsp;
-                    <h5><spring:message code="common.manage_bookings"/></h5>
-                </a>
-            </li>
-            <li>
-                <a class="restNavLi" href="hotel_manager/object/show_hotel_votes">
-                    <i class="fa fa-circle-o fa-fw fa-pull-left" aria-hidden="true"></i>&nbsp;
-                    <h5><spring:message code="common.view_feedback"/></h5>
-                </a>
-            </li>
-            <li>
-                <a class="restNavLi" href="hotel_manager/object/show_apartments">
-                    <i class="fa fa-circle-o fa-fw fa-pull-left" aria-hidden="true"></i>&nbsp;
-                    <h5><spring:message code="common.manage_apts"/></h5>
-                </a>
-            </li>
-            <li><hr></li>
-            <li><hr></li>
-        </ul>
+<div class="sidebar">
+    <div class="mini-submenu">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </div>
+    <div class="list-group">
+        <div href="#" class="list-group-item">
+            <div class="row">
+                <div class="col-md-9">
+                    <spring:message code="common.manager_panel"/>
+                </div>
+                <div class="col-md-3" style="padding-top: 8px">
+                    <span class="pull-right" id="slide-submenu">
+                        <i class="fa fa-times"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <a href="hotel_manager/object/show_chart" class="list-group-item">
+            <strong><spring:message code="side.chart"/></strong><i class="fa fa-calendar fa-pull-right" aria-hidden="true"></i>
+        </a>
+        <a href="hotel_manager/object/show_bookings" class="list-group-item">
+            <strong><spring:message code="side.manage_bookings"/></strong><i class="fa fa-ticket fa-pull-right" aria-hidden="true"></i>
+        </a>
+        <a href="hotel_manager/object/show_hotel_votes" class="list-group-item">
+            <strong><spring:message code="side.view_feedback"/></strong><i class="fa fa-comments-o fa-pull-right" aria-hidden="true"></i>
+        </a>
+        <a href="hotel_manager/object/show_apartments" class="list-group-item">
+            <strong><spring:message code="side.manage_apts"/></strong><i class="fa fa-bed fa-pull-right" aria-hidden="true"></i>
+        </a>
     </div>
 </div>
 

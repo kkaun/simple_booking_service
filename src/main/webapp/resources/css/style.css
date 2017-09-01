@@ -69,31 +69,71 @@
 
 
 
-.restNavbar{
-    margin-left: -20px;
-    list-style: none;
-    text-decoration: none;
-    color: black;
-    width: 125px;
+/*.restNavbar{*/
+    /*margin-left: -20px;*/
+    /*list-style: none;*/
+    /*text-decoration: none;*/
+    /*color: black;*/
+    /*width: 125px;*/
+/*}*/
+
+
+/*.restNavLi{*/
+    /*list-style: none;*/
+    /*text-decoration: none;*/
+    /*color: black;*/
+/*}*/
+
+
+/*.admLink{*/
+    /*text-decoration:none;*/
+    /*color: black;*/
+/*}*/
+
+/*.admLink :hover * {*/
+    /*background-color: #5cb85c !important;*/
+    /*text-decoration:none !important;*/
+    /*color: black !important;*/
+/*}*/
+
+
+/*.sideItem{*/
+    /*height: 40px;*/
+/*}*/
+
+.mini-submenu{
+    display:none;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid rgba(0, 0, 0, 0.9);
+    border-radius: 4px;
+    padding: 9px;
+    /*position: relative;*/
+    width: 42px;
+
 }
 
-
-.restNavLi{
-    list-style: none;
-    text-decoration: none;
-    color: black;
+.mini-submenu:hover{
+    cursor: pointer;
 }
 
-
-.admLink{
-    text-decoration:none;
-    color: black;
+.mini-submenu .icon-bar {
+    border-radius: 1px;
+    display: block;
+    height: 2px;
+    width: 22px;
+    margin-top: 3px;
 }
 
-.admLink :hover * {
-    background-color: #5cb85c !important;
-    text-decoration:none !important;
-    color: black !important;
+.mini-submenu .icon-bar {
+    background-color: #000;
+}
+
+#slide-submenu{
+    background: rgba(0, 0, 0, 0.45);
+    display: inline-block;
+    padding: 0 8px;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 
@@ -239,11 +279,11 @@
 /*------------------------------------*/
 
 
-a.list-group-item {
+a.listItem {
     height:auto;
     min-height:220px;
 }
-a.list-group-item.active small {
+a.listItem.active small {
     color:#fff;
 }
 .stars {
