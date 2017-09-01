@@ -20,10 +20,10 @@ $(function () {
                 "data": "rate"
             },
             {
-                "data": "userComment"
+                "data": "userName"
             },
             {
-                "data": "user.name"
+                "data": "userComment"
             }
         ],
         "order": [

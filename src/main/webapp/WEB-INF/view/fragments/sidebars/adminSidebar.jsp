@@ -16,31 +16,37 @@
             <li><hr></li>
             <li>
                 <a class="restNavLi" href="admin/show_hotels">
+                    <i class="fa fa-circle-o fa-fw fa-pull-left" aria-hidden="true"></i>&nbsp;
                     <h5><strong><spring:message code="hotels.title"/></strong></h5>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="admin/show_users">
+                    <i class="fa fa-circle-o fa-fw fa-pull-left" aria-hidden="true"></i>&nbsp;
                     <h5><strong><spring:message code="common.users"/></strong></h5>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="admin/show_bookings">
+                    <i class="fa fa-circle-o fa-fw fa-pull-left" aria-hidden="true"></i>&nbsp;
                     <h5><strong><spring:message code="common.votes"/></strong></h5>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="admin/show_votes">
+                    <i class="fa fa-circle-o fa-fw fa-pull-left" aria-hidden="true"></i>&nbsp;
                     <h5><strong><spring:message code="common.subBookings"/></strong></h5>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="admin/show_apt_types">
+                    <i class="fa fa-circle-o fa-fw fa-pull-left" aria-hidden="true"></i>&nbsp;
                     <h5><strong><spring:message code="common.apt_types_short"/></strong></h5>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="admin/show_regions">
+                    <i class="fa fa-circle-o fa-fw fa-pull-left" aria-hidden="true"></i>&nbsp;
                     <h5><strong><spring:message code="common.regions"/></strong></h5>
                 </a>
             </li>

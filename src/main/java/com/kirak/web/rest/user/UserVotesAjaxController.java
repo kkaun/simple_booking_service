@@ -37,20 +37,22 @@ public class UserVotesAjaxController  extends VoteAbstractController {
     }
 
     @Override
+    @JsonView(View.JsonUI.class)
     @GetMapping(value = "/vote_object", produces = MediaType.APPLICATION_JSON_VALUE)
     public VoteTo getNewOrExistingByHotelId(@RequestParam("id") Integer hotelId) {
         return super.getNewOrExistingByHotelId(hotelId);
     }
 
     @Override
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @JsonView(View.JsonUI.class)
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public VoteTo get(@PathVariable("id") Integer id) {
         return super.get(id);
     }
 
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @JsonView(View.JsonUI.class)
     public List<VoteTo> getVotesForUser() {
         return super.getVotesForUser();
     }

@@ -39,7 +39,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="table-responsive">
-                                <table class="table table-striped table-bordered display" id="userSuperBookingsDatatable">
+                                <table class="table table-striped table-bordered display" id="userBookingsDatatable">
                                     <thead>
                                     <tr>
                                         <th><spring:message code="common.id"/></th>

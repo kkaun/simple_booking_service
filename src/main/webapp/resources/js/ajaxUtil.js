@@ -378,6 +378,26 @@ function deleteUserRow(id) {
 
 
 
+function renderViewUserVoteBtn(data, type, row) {
+    if (type === 'display') {
+        return '<a onclick="showVoteRow(' + row.id + ');">' +
+            '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>';
+    }
+}
+
+function showVoteRow(id) {
+    $('#voteShowModalTitle').html(i18n["editTitle"]);
+    $.get(ajaxUrl + id, function (data) {
+        $.each(data, function (key, value) {
+            form.find("input[name='" + key + "']").val(value);
+            form.find("textarea[name='" + key + "']").val(value);
+        });
+        $('.load-bar').hide();
+        $('#voteShowRow').modal();
+    });
+}
+
+
 
 //    MANAGER -------------------------------------------------------------------------------------------------------
 
@@ -575,7 +595,11 @@ function saveManagerHotelImage() {
 }
 
 
+
+
+
 // USER  ---------------------------------------------------------------------------------------------------------------
+
 
 
 function renderGetUserVoteByHotelBtn(data, type, row) {
@@ -605,7 +629,7 @@ function createUserVoteByHotel() {
         data: form.serialize(),
         success: function () {
             $('#userHotelVoteEditRow').modal('hide');
-            updateUserVotesTable();
+            updateUserHotelsTable();
             successNoty('common.saved');
         }
     });

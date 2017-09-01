@@ -20,10 +20,10 @@ $(function () {
                 "data": "rate"
             },
             {
-                "data": "hotel.id"
+                "data": "hotelId"
             },
             {
-                "data": "hotel.name"
+                "data": "hotelName"
             },
             {
                 "render": renderUserVoteEditBtn,

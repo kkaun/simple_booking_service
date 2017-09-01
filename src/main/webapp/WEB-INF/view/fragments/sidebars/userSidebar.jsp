@@ -16,17 +16,26 @@
             <li><hr></li>
             <li>
                 <a class="restNavLi" href="user/show_bookings">
-                    <h4><spring:message code="common.my_bookings"/></h4>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <i class="fa fa-circle-o fa-fw fa-pull-left" aria-hidden="true"></i>&nbsp;
+                        </div>
+                        <div class="col-md-10">
+                            <h5><spring:message code="common.my_bookings"/></h5>
+                        </div>
+                    </div>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="user/show_hotels">
-                    <h4><spring:message code="common.visited_hotels"/></h4>
+                    <i class="fa fa-circle-o fa-fw fa-pull-left" aria-hidden="true"></i>&nbsp;
+                    <h5><spring:message code="common.visited_hotels"/></h5>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="user/show_votes">
-                    <h4><spring:message code="common.my_feedback"/></h4>
+                    <i class="fa fa-circle-o fa-fw fa-pull-left" aria-hidden="true"></i>&nbsp;
+                    <h5><spring:message code="common.my_feedback"/></h5>
                 </a>
             </li>
             <li><hr></li>

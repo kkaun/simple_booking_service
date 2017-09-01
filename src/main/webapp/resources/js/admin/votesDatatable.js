@@ -22,19 +22,21 @@ $(function () {
                 "data": "rate"
             },
             {
-                "data": "userComment"
+                "data": "userId"
             },
             {
-                "data": "user.name"
+                "data": "userName"
             },
             {
-                "data": "user.id"
+                "data": "hotelId"
             },
             {
-                "data": "hotel.id"
+                "data": "hotelName"
             },
             {
-                "data": "hotel.name"
+                "render": renderViewUserVoteBtn,
+                "defaultContent": "",
+                "orderable": false
             }
         ],
         "order": [

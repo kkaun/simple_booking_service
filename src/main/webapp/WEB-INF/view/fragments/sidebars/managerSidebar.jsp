@@ -16,24 +16,27 @@
             <li><hr></li>
             <li>
                 <a class="restNavLi" href="hotel_manager/object/show_chart">
-                    <h4><spring:message code="common.calendar"/>/
+                    <h5><spring:message code="common.calendar"/>/
                         <br>
-                        <spring:message code="chart_only"/></h4>
+                        <spring:message code="chart_only"/></h5>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="hotel_manager/object/show_bookings">
-                    <h4><spring:message code="common.manage_bookings"/></h4>
+                    <i class="fa fa-circle-o fa-fw fa-pull-left" aria-hidden="true"></i>&nbsp;
+                    <h5><spring:message code="common.manage_bookings"/></h5>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="hotel_manager/object/show_hotel_votes">
-                    <h4><spring:message code="common.view_feedback"/></h4>
+                    <i class="fa fa-circle-o fa-fw fa-pull-left" aria-hidden="true"></i>&nbsp;
+                    <h5><spring:message code="common.view_feedback"/></h5>
                 </a>
             </li>
             <li>
                 <a class="restNavLi" href="hotel_manager/object/show_apartments">
-                    <h4><spring:message code="common.manage_apts"/></h4>
+                    <i class="fa fa-circle-o fa-fw fa-pull-left" aria-hidden="true"></i>&nbsp;
+                    <h5><spring:message code="common.manage_apts"/></h5>
                 </a>
             </li>
             <li><hr></li>

@@ -115,9 +115,9 @@
                     </div>
                 </form:form>
             </div>
-        </div>
-        <div class="modal-footer">
-            <div class="load-bar"></div>
+            <div class="modal-footer">
+                <div class="load-bar"></div>
+            </div>
         </div>
     </div>
 </div>

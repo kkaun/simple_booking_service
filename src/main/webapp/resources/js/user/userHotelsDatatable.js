@@ -5,6 +5,9 @@
 var ajaxUrl = "/user/hotels/";
 var datatableApi;
 
+function updateUserHotelsTable() {
+    $.get(ajaxUrl, updateTableByData);
+}
 
 $(function () {
     datatableApi = $('#userHotelsDatatable').DataTable(extendsOpts({

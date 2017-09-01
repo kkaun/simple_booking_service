@@ -21,6 +21,8 @@ public class VoteTo extends BasicIntTo {
 
     private String hotelName;
 
+    public VoteTo(){}
+
     public VoteTo(@JsonProperty Integer id, Double rate,
                   @JsonProperty String userComment,
                   @JsonProperty String dateAdded,
