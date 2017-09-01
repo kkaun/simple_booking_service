@@ -49,6 +49,11 @@ $(function () {
                 "render": renderManagerHotelEditBtn,
                 "defaultContent": "",
                 "orderable": false
+            },
+            {
+                "render": renderManagerHotelDeleteBtn,
+                "defaultContent": "",
+                "orderable": false
             }
         ],
         "order": [

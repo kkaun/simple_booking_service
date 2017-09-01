@@ -23,6 +23,8 @@ public interface ApartmentService {
 
     void delete(Integer id, int hotelId) throws NotFoundException;
 
+    void delete(Integer id) throws NotFoundException;
+
     Apartment get(Integer id, int hotelId) throws NotFoundException;
 
     Apartment get(Integer id) throws NotFoundException;

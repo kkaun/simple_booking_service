@@ -26,6 +26,9 @@ import static com.kirak.util.ValidationUtil.checkNew;
  */
 public abstract class HotelAbstractController {
 
+    public static final String EXCEPTION_HOTEL_HAS_BOOKINGS = "exception.hotel.apartments.haveBookings";
+    public static final String EXCEPTION_HOTEL_MODIFICATION_RESTRICTION = "exception.hotel.modificationRestriction";
+
     private final Logger LOG = LoggerFactory.getLogger(getClass());
 
     private final HotelService hotelService;
@@ -75,8 +78,6 @@ public abstract class HotelAbstractController {
         LOG.info("Getting all hotels sorted by rating");
         return HotelUtil.getAllHotelTos(hotelService.getAll());
     }
-
-
 
     public List<HotelTo> getHotelsForUser(){
         LOG.info("Getting all hotels visiting by user");

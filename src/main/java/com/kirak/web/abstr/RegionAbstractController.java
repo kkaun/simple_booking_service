@@ -19,6 +19,9 @@ import static com.kirak.util.ValidationUtil.checkNew;
  * Created by Kir on 03.08.2017.
  */
 public abstract class RegionAbstractController {
+
+    public static final String EXCEPTION_REGION_HAS_HOTELS = "exception.region.hasHotels";
+    public static final String EXCEPTION_REGION_MODIFICATION_RESTRICTION = "exception.region.modificationRestriction";
     
     private final Logger LOG = LoggerFactory.getLogger(getClass());
 

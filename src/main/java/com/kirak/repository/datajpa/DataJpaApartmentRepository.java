@@ -41,4 +41,8 @@ public interface DataJpaApartmentRepository extends JpaRepository<Apartment, Int
     @Query("SELECT a FROM Apartment a WHERE a.hotel.id=:hotelId AND a.type.id=:aptTypeId")
     List<Apartment> getAllByHotelAndType(@Param("hotelId") int hotelId, @Param("aptTypeId") short aptTypeId);
 
+    @Transactional
+    @Modifying
+    @Query("DELETE FROM Apartment a WHERE a.id=:id")
+    int deleteById(@Param("id") int id);
 }

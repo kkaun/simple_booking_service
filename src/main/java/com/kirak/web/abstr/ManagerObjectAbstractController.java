@@ -31,6 +31,12 @@ import static com.kirak.util.model.BookingUtil.getBookingOutDate;
  */
 public abstract class ManagerObjectAbstractController {
 
+    public static final String EXCEPTION_HOTEL_HAS_BOOKINGS = "exception.hotel.apartments.haveBookings";
+    public static final String EXCEPTION_HOTEL_MODIFICATION_RESTRICTION = "exception.hotel.modificationRestriction";
+
+    public static final String EXCEPTION_APARTMENT_HAS_BOOKINGS = "exception.apartment.hasBookings";
+    public static final String EXCEPTION_APARTMENT_MODIFICATION_RESTRICTION = "exception.apartment.modificationRestriction";
+
     private final Logger LOG = LoggerFactory.getLogger(getClass());
 
     private final ApartmentService apartmentService;
@@ -46,7 +52,6 @@ public abstract class ManagerObjectAbstractController {
     private final VoteService voteService;
 
     private final ManagerObjectService managerObjectService;
-
 
 
     @Autowired
@@ -158,34 +163,12 @@ public abstract class ManagerObjectAbstractController {
         return managerObject.getObjectApartmentTos();
     }
 
-
-
-
-
-    //--------------------------------------  Hotel Votes methods --------------------------------//
-
-
-
-    public List<VoteTo> getHotelVotesFromCurrentObject(){
-        LOG.info("Getting all current object votes");
-        Integer hotelManagerId = AuthorizedUser.id();
-        ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
-                managerObjectService.getManagerObjects());
-        return managerObject.getObjectVotes();
-    }
-
-
-
-    //--------------------------------------  Chart Building methods --------------------------------//
-
-
-
-    public List<ChartTo> getAllChartBookingsFromCurrentObject() {
-        Integer hotelManagerId = AuthorizedUser.id();
-        LOG.info("Getting all apartments for hotel manager {}", hotelManagerId);
-        ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
-                managerObjectService.getManagerObjects());
-        return managerObject.getObjectChartTos();
+    public void delete(Integer id){
+        LOG.info("Deleting city {}", id);
+        Apartment apartment = apartmentService.get(id);
+        if(ApartmentUtil.isApartmentAcceptedForEditing(apartment)){
+            apartmentService.delete(id);
+        }
     }
 
 
@@ -202,4 +185,32 @@ public abstract class ManagerObjectAbstractController {
             apartmentService.save(apartment);
         }
     }
+
+
+    //--------------------------------------  Hotel Votes methods --------------------------------//
+
+
+    public List<VoteTo> getHotelVotesFromCurrentObject(){
+        LOG.info("Getting all current object votes");
+        Integer hotelManagerId = AuthorizedUser.id();
+        ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
+                managerObjectService.getManagerObjects());
+        return managerObject.getObjectVotes();
+    }
+
+
+
+    //--------------------------------------  Chart Building methods --------------------------------//
+
+
+    public List<ChartTo> getAllChartBookingsFromCurrentObject() {
+        Integer hotelManagerId = AuthorizedUser.id();
+        LOG.info("Getting all apartments for hotel manager {}", hotelManagerId);
+        ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
+                managerObjectService.getManagerObjects());
+        return managerObject.getObjectChartTos();
+    }
+
+
 }
+

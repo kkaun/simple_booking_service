@@ -50,4 +50,10 @@ public class AptTypesAjaxController extends AptTypeAbstractController{
     public List<AptTypeTo> getAll() {
         return super.getAll();
     }
+
+    @Override
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") Short id) {
+        super.delete(id);
+    }
 }

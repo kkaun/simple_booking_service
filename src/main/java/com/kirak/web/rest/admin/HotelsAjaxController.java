@@ -68,8 +68,9 @@ public class HotelsAjaxController extends HotelAbstractController {
     }
 
 
-    //    @Override
-//    public void delete(Integer id, int cityId) {
-//        super.delete(id, cityId);
-//    }
+    @Override
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") Integer id) {
+        super.delete(id);
+    }
 }

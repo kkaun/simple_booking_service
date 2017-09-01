@@ -27,6 +27,9 @@ import static com.kirak.web.abstr.UserAbstractController.EXCEPTION_MODIFICATION_
  */
 public abstract class BookingAbstractController {
 
+    public static final String EXCEPTION_SUB_BOOKING_APARTMENT_OCCUPIED = "exception.booking.apartment.isOccupied";
+    public static final String EXCEPTION_SUB_BOOKING_MODIFICATION_RESTRICTION = "exception.booking.modificationRestriction";
+
     private final Logger LOG = LoggerFactory.getLogger(getClass());
 
     private final BookingService bookingService;

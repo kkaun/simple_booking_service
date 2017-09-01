@@ -58,7 +58,8 @@ public class UserVotesAjaxController  extends VoteAbstractController {
     }
 
     @Override
-    public void delete(Integer id) {
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") Integer id) {
         super.delete(id);
     }
 

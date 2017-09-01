@@ -45,6 +45,7 @@
                                 <th><spring:message code="common.country"/></th>
                                 <th></th>
                                 <th></th>
+                                <th></th>
                             </tr>
                             </thead>
                         </table>

@@ -67,6 +67,11 @@ public class ApartmentServiceImpl implements ApartmentService {
     }
 
     @Override
+    public void delete(Integer id) throws com.kirak.util.exception.NotFoundException {
+        checkNotFoundWithId(repository.delete(id), id);
+    }
+
+    @Override
     public Apartment get(Integer id, int hotelId) {
         return checkNotFoundWithId(repository.get(id, hotelId), id);
     }

@@ -594,6 +594,24 @@ function saveManagerHotelImage() {
     });
 }
 
+function renderManagerHotelDeleteBtn(data, type, row) {
+    if (type === 'display') {
+        return '<a onclick="deleteManagerHotelRow(' + row.id + ');" disabled="disabled">' +
+            '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
+    }
+}
+
+function deleteManagerHotelRow(id) {
+    $.ajax({
+        url: ajaxUrl + id,
+        type: 'DELETE',
+        success: function () {
+            updateManagerHotelsTable();
+            successNoty('common.deleted');
+        }
+    });
+}
+
 
 
 

@@ -51,6 +51,11 @@ public class ApartmentRepositoryImpl implements ApartmentRepository {
     }
 
     @Override
+    public boolean delete(int id) {
+        return apartmentRepository.deleteById(id) != 0;
+    }
+
+    @Override
     public Apartment get(int id, int hotelId) {
         Apartment apt = apartmentRepository.findOne(id);
         return apt != null && apt.getHotel().getId() == hotelId ? apt : null;

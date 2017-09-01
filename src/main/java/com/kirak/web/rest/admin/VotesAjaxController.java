@@ -38,11 +38,4 @@ public class VotesAjaxController extends VoteAbstractController {
     public List<VoteTo> getAll() {
         return super.getAll();
     }
-
-
-//    @Override
-//    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-//    public List<Vote> getHotelVotesForAdmin(@RequestParam("id") int hotelId) {
-//        return super.getHotelVotesForAdmin(hotelId);
-//    }
 }

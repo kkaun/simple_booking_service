@@ -26,6 +26,9 @@ import static com.kirak.util.ValidationUtil.checkNew;
  */
 public abstract class VoteAbstractController {
 
+    public static final String EXCEPTION_VOTE_BOOKING_NOT_INITIATED = "exception.vote.booking.hotel.notVisitedYet";
+    public static final String EXCEPTION_VOTE_CREATION_RESTRICTION = "exception.vote.creationRestriction";
+
     protected final Logger LOG = LoggerFactory.getLogger(getClass());
 
     private final VoteService voteService;

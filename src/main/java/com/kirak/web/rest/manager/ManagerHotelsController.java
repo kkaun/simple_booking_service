@@ -63,4 +63,10 @@ public class ManagerHotelsController extends HotelAbstractController {
     public void setImage(@RequestParam("id") Integer id, @RequestParam("image") MultipartFile multipartFile) {
         super.setImage(id, multipartFile);
     }
+
+    @Override
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") Integer id) {
+        super.delete(id);
+    }
 }

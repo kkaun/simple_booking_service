@@ -16,6 +16,8 @@ public interface ApartmentRepository {
 
     boolean delete(int id, int hotelId);
 
+    boolean delete(int id);
+
     Apartment get(int id, int hotelId);
 
     Apartment get(int id);

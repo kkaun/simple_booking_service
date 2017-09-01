@@ -31,6 +31,11 @@ import static com.kirak.util.ValidationUtil.*;
 
 public abstract class UserAbstractController {
 
+    public static final String EXCEPTION_USER_HAS_BOOKINGS = "exception.user.hasActiveBookings";
+    public static final String EXCEPTION_USER_IS_DEMO_MANAGER = "exception.user.isDemoManager";
+    public static final String EXCEPTION_USER_HAS_MANAGEABLE_HOTELS = "exception.user.hasManageableHotels";
+    public static final String EXCEPTION_USER_MODIFICATION_RESTRICTION = "exception.user.modificationRestriction";
+
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
     public static final String EXCEPTION_DUPLICATE_EMAIL = "exception.user.duplicateEmail";

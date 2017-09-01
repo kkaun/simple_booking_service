@@ -1,10 +1,8 @@
 package com.kirak.web.abstr;
 
-import com.kirak.model.AptType;
 import com.kirak.service.AptTypeService;
 import com.kirak.service.HotelService;
 import com.kirak.to.AptTypeTo;
-import com.kirak.util.exception.NotFoundException;
 import com.kirak.util.model.AptTypeUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +14,9 @@ import java.util.List;
  * Created by Kir on 03.08.2017.
  */
 public abstract class AptTypeAbstractController {
+
+    public static final String EXCEPTION_APT_TYPE_HAS_BOOKINGS = "exception.aptType.hasBookings";
+    public static final String EXCEPTION_APT_TYPE_MODIFICATION_RESTRICTION = "exception.aptType.modificationRestriction";
 
     private final Logger LOG = LoggerFactory.getLogger(getClass());
 

@@ -57,4 +57,10 @@ public class ApartmentsAjaxController extends ManagerObjectAbstractController{
     public void setApartmentImage(@RequestParam("id") Integer id, @RequestParam("image") MultipartFile multipartFile) {
         super.setApartmentImage(id, multipartFile);
     }
+
+    @Override
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") Integer id) {
+        super.delete(id);
+    }
 }
