@@ -5,6 +5,7 @@ import com.kirak.model.Vote;
 import com.kirak.service.HotelService;
 import com.kirak.service.UserService;
 import com.kirak.service.VoteService;
+import com.kirak.to.VoteTo;
 import com.kirak.web.View;
 import com.kirak.web.abstr.VoteAbstractController;
 import org.springframework.http.MediaType;
@@ -21,28 +22,23 @@ import java.util.List;
 @RequestMapping(value = "/admin/votes")
 public class VotesAjaxController extends VoteAbstractController {
 
-    public VotesAjaxController(VoteService voteService, HotelService hotelService) {
-        super(voteService, hotelService);
-    }
-
-    @Override
-    @PostMapping
-    public void update(@Validated(View.ValidatedUIGroup.class)Vote vote) {
-        super.update(vote);
+    public VotesAjaxController(VoteService voteService, HotelService hotelService, UserService userService) {
+        super(voteService, hotelService, userService);
     }
 
     @Override
     @GetMapping(value = "/{id}")
     @JsonView(View.JsonUI.class)
-    public Vote get(@PathVariable("id") Integer id) {
+    public VoteTo get(@PathVariable("id") Integer id) {
         return super.get(id);
     }
 
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Vote> getAll() {
+    public List<VoteTo> getAll() {
         return super.getAll();
     }
+
 
 //    @Override
 //    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)

@@ -578,27 +578,40 @@ function saveManagerHotelImage() {
 // USER  ---------------------------------------------------------------------------------------------------------------
 
 
-
-function addUserVote() {
-    $('#userVoteModalTitle').html(i18n["addTitle"]);
-    form.find(":input").val("");
-    $('.load-bar').hide();
-    $('#userVoteEditRow').modal();
+function renderGetUserVoteByHotelBtn(data, type, row) {
+    if (type === 'display') {
+        return '<a class="btn btn-danger" onclick="updateUserVoteByHotelId(' + row.id + ');">' +
+            '<span><i class="fa fa-commenting" aria-hidden="true"></i> Vote Object</span></a>';
+    }
 }
 
-function saveUserVote() {
+function updateUserVoteByHotelId(id) {
+    $('#userHotelVoteModalTitle').html(i18n["editTitle"]);
+    $.get('/user/votes/vote_object?id=' + id, function (data) {
+        $.each(data, function (key, value) {
+            form.find("input[name='" + key + "']").val(value);
+            form.find("textarea[name='" + key + "']").val(value);
+        });
+        $('.load-bar').hide();
+        $('#userHotelVoteEditRow').modal();
+    });
+}
+
+function createUserVoteByHotel() {
     $('.load-bar').show();
     $.ajax({
         type: "POST",
-        url: ajaxUrl,
+        url: '/user/votes/create_update',
         data: form.serialize(),
         success: function () {
-            $('#apartmentEditRow').modal('hide');
+            $('#userHotelVoteEditRow').modal('hide');
             updateUserVotesTable();
             successNoty('common.saved');
         }
     });
 }
+
+
 
 function renderUserVoteEditBtn(data, type, row) {
     if (type === 'display') {
@@ -612,9 +625,24 @@ function updateUserVoteRow(id) {
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(value);
+            form.find("textarea[name='" + key + "']").val(value);
         });
         $('.load-bar').hide();
         $('#userVoteEditRow').modal();
+    });
+}
+
+function saveUserVote() {
+    $('.load-bar').show();
+    $.ajax({
+        type: "POST",
+        url: ajaxUrl + 'create_update',
+        data: form.serialize(),
+        success: function () {
+            $('#userVoteEditRow').modal('hide');
+            updateUserVotesTable();
+            successNoty('common.saved');
+        }
     });
 }
 

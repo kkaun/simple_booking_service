@@ -56,17 +56,14 @@ public class User extends NamedEntity {
     @BatchSize(size = 200)
     private Set<UserRole> roles;
 
-    @JsonIgnore
     @OrderBy("dateAdded DESC")
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private Set<Booking> bookings;
 
-    @JsonIgnore
     @OrderBy("dateAdded DESC")
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private Set<Vote> votes;
 
-    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "manager")
     private Set<Hotel> hotels;
 

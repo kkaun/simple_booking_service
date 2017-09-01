@@ -3,6 +3,7 @@ package com.kirak.web.rest.manager;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.kirak.model.Vote;
 import com.kirak.service.*;
+import com.kirak.to.VoteTo;
 import com.kirak.web.View;
 import com.kirak.web.abstr.ManagerObjectAbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class HotelVotesAjaxController extends ManagerObjectAbstractController{
     @Override
     @GetMapping
     @JsonView(View.JsonUI.class)
-    public List<Vote> getHotelVotesFromCurrentObject() {
+    public List<VoteTo> getHotelVotesFromCurrentObject() {
         return super.getHotelVotesFromCurrentObject();
     }
 }

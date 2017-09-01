@@ -16,17 +16,14 @@ import java.time.LocalDateTime;
 @Table(name = "vote")
 public class Vote extends BaseIntEntity {
 
-    //@NotBlank
-    //@SafeHtml
     @Column (name = "rate", nullable = false)
     private Double rate;
 
     @NotBlank
-    @SafeHtml
     @Column (name = "user_comment", columnDefinition = "TINYTEXT")
     private String userComment;
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @Column(name = "date_added", nullable = false)
     private LocalDateTime dateAdded;
 
@@ -39,6 +36,10 @@ public class Vote extends BaseIntEntity {
     private Hotel hotel;
 
     public Vote(){}
+
+    public Vote(Double rate, String userComment, LocalDateTime dateAdded, User user, Hotel hotel) {
+        this(null, rate, userComment, dateAdded, user, hotel);
+    }
 
     public Vote(Integer id, Double rate, String userComment, LocalDateTime dateAdded, User user, Hotel hotel) {
         super(id);

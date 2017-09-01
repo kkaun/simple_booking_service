@@ -5,13 +5,21 @@
 var ajaxUrl = "/user/hotels/";
 var datatableApi;
 
-// $(function() {
-//     $.get(ajaxUrl, updateTableByData);
-// });
 
 $(function () {
     datatableApi = $('#userHotelsDatatable').DataTable(extendsOpts({
         "columns": [
+            {
+                "data": "imgPath",
+                "render": function(data, type, row, meta) {
+                    if (type === 'display') {
+                        return '<img class="media-object img-rounded img-responsive" alt="No img available yet" ' +
+                            'style="max-height: 320px; max-width: 240px;" src="' + data + '" />';
+                    }
+                },
+                "defaultContent": "",
+                "orderable": false
+            },
             {
                 "data": "id"
             },
@@ -22,25 +30,18 @@ $(function () {
                 "data": "rating"
             },
             {
-                "data": "stars"
-            },
-            {
-                "data": "description"
-            },
-            {
                 "data": "votesNum"
-            },
-            {
-                "data": "checkIn"
-            },
-            {
-                "data": "checkOut"
             },
             {
                 "data": "cityName"
             },
             {
                 "data": "countryName"
+            },
+            {
+                "render": renderGetUserVoteByHotelBtn,
+                "defaultContent": "",
+                "orderable": false
             }
         ],
         "order": [

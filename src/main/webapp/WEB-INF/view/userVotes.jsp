@@ -25,18 +25,12 @@
             <div class="col-md-10">
 
                 <div class="row" style="height: 70px">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-body" style="padding: 10px;">
                                 <h4 class="pull-left"><strong><spring:message code="common.my_feedback"/></strong></h4>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <button id="adminUserAddBtn" class="btn btn-lg btn-primary pull-right"
-                                style="margin: 0 auto;" onclick="addUserVote()">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                        </button>
                     </div>
                 </div>
 
@@ -48,7 +42,6 @@
                                 <tr>
                                     <th><spring:message code="common.dateAdded"/></th>
                                     <th><spring:message code="common.rate"/></th>
-                                    <th><spring:message code="common.comment"/></th>
                                     <th><spring:message code="common.hotelId"/></th>
                                     <th><spring:message code="common.hotelName"/></th>
                                     <th></th>
@@ -79,38 +72,38 @@
             <div class="modal-body">
                 <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
+                    <input type="hidden" id="dateAdded" name="dateAdded">
+                    <input type="hidden" id="userName" name="userName">
+                    <input type="hidden" id="hotelId" name="hotelId">
+
                     <div class="form-group">
-                        <label for="voteDateAdded" class="control-label col-xs-3"><spring:message
-                                code="common.dateAdded"/></label>
+                        <label for="hotelName" class="control-label col-xs-3"><spring:message
+                                code="common.bookerName"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="voteDateAdded" name="dateAdded"
-                                   placeholder="<spring:message code="common.dateAdded"/>" readonly>
+                            <input class="form-control" id="hotelName" name="hotelName"
+                                   placeholder="<spring:message code="common.bookerName"/>" readonly>
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label for="voteRate" class="control-label col-xs-3"><spring:message
                                 code="common.rate"/></label>
-                        <div class="col-xs-9">
+                        <div class="col-xs-3">
                             <input class="form-control" id="voteRate" name="rate"
-                                   placeholder="<spring:message code="common.rate"/>" readonly>
+                                   placeholder="<spring:message code="common.rate"/>">
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label for="voteUserComment" class="control-label col-xs-3"><spring:message
                                 code="common.comment"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="voteUserComment" name="userComment"
-                                   placeholder="<spring:message code="common.comment"/>" readonly>
+                            <textarea class="form-control" id="voteUserComment" name="userComment"
+                                      placeholder="<spring:message code="common.comment"/>">
+                            </textarea>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="voteUName" class="control-label col-xs-3"><spring:message
-                                code="common.bookerName"/></label>
-                        <div class="col-xs-9">
-                            <input class="form-control" id="voteUName" name="user.name"
-                                   placeholder="<spring:message code="common.bookerName"/>" readonly>
-                        </div>
-                    </div>
+
                     <div class="form-group">
                         <div class="col-xs-offset-3 col-xs-9">
                             <button class="btn btn-primary" type="button"
@@ -121,9 +114,9 @@
                     </div>
                 </form:form>
             </div>
-            <div class="modal-footer">
-                <div class="load-bar"></div>
-            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="load-bar"></div>
         </div>
     </div>
 </div>

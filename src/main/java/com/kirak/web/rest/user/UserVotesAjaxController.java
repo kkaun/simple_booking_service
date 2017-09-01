@@ -3,13 +3,16 @@ package com.kirak.web.rest.user;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.kirak.model.Vote;
 import com.kirak.service.HotelService;
+import com.kirak.service.UserService;
 import com.kirak.service.VoteService;
+import com.kirak.to.VoteTo;
 import com.kirak.web.View;
 import com.kirak.web.abstr.VoteAbstractController;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -20,31 +23,41 @@ import java.util.List;
 @RequestMapping(value = "/user/votes")
 public class UserVotesAjaxController  extends VoteAbstractController {
 
-    public UserVotesAjaxController(VoteService voteService, HotelService hotelService) {
-        super(voteService, hotelService);
+    public UserVotesAjaxController(VoteService voteService, HotelService hotelService, UserService userService) {
+        super(voteService, hotelService, userService);
     }
 
-    @PostMapping
-    public void createOrUpdate(@Validated(View.ValidatedUIGroup.class) Vote vote,
-                       @RequestParam("hotelId") int hotelId) {
-        if (vote.isNew()) {
-            super.create(vote, hotelId);
+    @PostMapping(value = "/create_update")
+    public void createOrUpdate(@Valid VoteTo voteTo) {
+        if (voteTo.isNew()) {
+            super.create(voteTo);
         } else {
-            super.update(vote);
+            super.update(voteTo);
         }
     }
 
     @Override
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/vote_object", produces = MediaType.APPLICATION_JSON_VALUE)
+    public VoteTo getNewOrExistingByHotelId(@RequestParam("id") Integer hotelId) {
+        return super.getNewOrExistingByHotelId(hotelId);
+    }
+
+    @Override
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @JsonView(View.JsonUI.class)
-    public Vote get(@PathVariable("id") Integer id) {
+    public VoteTo get(@PathVariable("id") Integer id) {
         return super.get(id);
     }
 
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Vote> getVotesForUser() {
+    public List<VoteTo> getVotesForUser() {
         return super.getVotesForUser();
+    }
+
+    @Override
+    public void delete(Integer id) {
+        super.delete(id);
     }
 
 }

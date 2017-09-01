@@ -1,10 +1,8 @@
 package com.kirak.to;
 
-import com.kirak.model.Vote;
 import com.kirak.to.booking.ChartTo;
 import com.kirak.to.booking.ManagerBookingTo;
 import com.kirak.util.session.SessionObjectsIdGenerator;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -28,14 +26,14 @@ public class ManagerObject implements Serializable {
 
     private List<ChartTo> objectChartTos;
 
-    private List<Vote> objectVotes;
+    private List<VoteTo> objectVotes;
 
     public ManagerObject(Integer managerId,
                          Integer hotelId,
                          List<ApartmentTo> objectApartmentTos,
                          List<ManagerBookingTo> objectManagerBookingTos,
                          List<ChartTo> objectChartTos,
-                         List<Vote> objectVotes) {
+                         List<VoteTo> objectVotes) {
         this.id = SessionObjectsIdGenerator.getNewId();
         this.hotelId = hotelId;
         this.managerId = managerId;
@@ -73,11 +71,11 @@ public class ManagerObject implements Serializable {
         this.objectChartTos = objectChartTos;
     }
 
-    public List<Vote> getObjectVotes() {
+    public List<VoteTo> getObjectVotes() {
         return objectVotes;
     }
 
-    public void setObjectVotes(List<Vote> objectVotes) {
+    public void setObjectVotes(List<VoteTo> objectVotes) {
         this.objectVotes = objectVotes;
     }
 

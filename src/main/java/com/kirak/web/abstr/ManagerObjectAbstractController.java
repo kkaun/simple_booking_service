@@ -4,6 +4,7 @@ import com.kirak.model.*;
 import com.kirak.service.*;
 import com.kirak.to.ApartmentTo;
 import com.kirak.to.ManagerObject;
+import com.kirak.to.VoteTo;
 import com.kirak.to.booking.ChartTo;
 import com.kirak.to.booking.ManagerBookingTo;
 import com.kirak.util.FileUploadUtil;
@@ -165,7 +166,7 @@ public abstract class ManagerObjectAbstractController {
 
 
 
-    public List<Vote> getHotelVotesFromCurrentObject(){
+    public List<VoteTo> getHotelVotesFromCurrentObject(){
         LOG.info("Getting all current object votes");
         Integer hotelManagerId = AuthorizedUser.id();
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,

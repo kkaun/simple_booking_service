@@ -4,6 +4,7 @@ import com.kirak.model.*;
 import com.kirak.service.*;
 import com.kirak.to.ManagerObject;
 import com.kirak.util.model.ManagerObjectUtil;
+import com.kirak.util.model.VoteUtil;
 import com.kirak.web.ModelUtil;
 import com.kirak.web.session.AuthorizedUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +70,7 @@ public class ManagerController {
                 new ArrayList<>(hotel.getApartments()),
                 new ArrayList<>(activeHotelSubBookings),
                 new ArrayList<>(hotel.getBookings()),
-                new ArrayList<>(hotel.getVotes()));
+                VoteUtil.getAllTos(new ArrayList<>(hotel.getVotes())));
 
         managerObjectService.addManagerObject(managerObject);
 

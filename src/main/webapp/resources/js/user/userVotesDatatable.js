@@ -20,9 +20,6 @@ $(function () {
                 "data": "rate"
             },
             {
-                "data": "userComment"
-            },
-            {
                 "data": "hotel.id"
             },
             {

@@ -5,6 +5,7 @@ import com.kirak.model.Booking;
 import com.kirak.model.SubBooking;
 import com.kirak.model.Vote;
 import com.kirak.to.ManagerObject;
+import com.kirak.to.VoteTo;
 import com.kirak.to.booking.ChartTo;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class ManagerObjectUtil {
 
     public static ManagerObject createManagerObjectFromHotelId(int managerId, int hotelId, List<Apartment> objectApartments,
                                                                List<SubBooking> activeHotelSubBookings,
-                                                               List<Booking> hotelBookings, List<Vote> objectVotes){
+                                                               List<Booking> hotelBookings, List<VoteTo> objectVotes){
 
         List<ChartTo> chartTos = SubBookingUtil.getChartBookingsFromObject(objectApartments, activeHotelSubBookings);
 
@@ -31,7 +32,4 @@ public class ManagerObjectUtil {
                 .filter(managerObject -> Objects.equals(managerObject.getManagerId(), managerId))
                 .reduce((first, second) -> second).orElse(null);
     }
-
-
-
 }
