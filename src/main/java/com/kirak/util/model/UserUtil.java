@@ -30,9 +30,6 @@ public class UserUtil {
 
         Set<UserRole> set = new HashSet<>();
 
-//        if(newUser.getRole().equals("User")) {
-//            set = Collections.singleton(UserRole.ROLE_USER);
-//        }
         if(newUser.getRole().equals("Manager")){
             set.add(UserRole.ROLE_MANAGER);
             return new User(null, newUser.getName(), newUser.getEmail().toLowerCase(), newUser.getPhone(),

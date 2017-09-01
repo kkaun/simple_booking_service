@@ -73,8 +73,8 @@
             </div>
             <div class="modal-body">
                 <form:form class="form-horizontal detailsForm">
-                    <input type="hidden" id="id" name="id">
                     <input type="hidden" id="enabled" name="enabled">
+                    <input type="hidden" id="id" name="id">
 
                     <div class="form-group">
                         <label for="name" class="control-label col-xs-3"><spring:message code="user.name"/></label>

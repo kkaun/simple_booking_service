@@ -27,7 +27,7 @@ import static com.kirak.util.ValidationUtil.checkNew;
 public abstract class HotelAbstractController {
 
     public static final String EXCEPTION_HOTEL_HAS_BOOKINGS = "exception.hotel.apartments.haveBookings";
-    public static final String EXCEPTION_HOTEL_MODIFICATION_RESTRICTION = "exception.hotel.modificationRestriction";
+    public static final String EXCEPTION_HOTEL_MODIFICATION_RESTRICTION = "exception.hotel.removingRestriction";
 
     private final Logger LOG = LoggerFactory.getLogger(getClass());
 

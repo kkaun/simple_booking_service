@@ -149,7 +149,7 @@
                                         <hr>
                                     </div>
                                     <div class="col-md-12">
-                                        <h5 style="margin-top: 7px;"><strong> <spring:message code="optimal_placement_title"/> </strong></h5>
+                                        <h5 style="margin-top: 7px;"><strong> <spring:message code="common.optimal_placement_title"/> </strong></h5>
                                         <div class="well" style="background-color: lightgreen; padding-top: 5px; padding-bottom: 5px;">
                                             <table class="table-responsive">
                                                 <c:forEach items="${placement.option}" var="option">

@@ -372,7 +372,7 @@
                                                         <div class="col-md-5">
                                                             <div class="form-group">
                                                                 <label for="apt_in_date${vs.index}" class="control-label">
-                                                                    <spring:message code="votes.from_date"/> </label>
+                                                                    <spring:message code="common.from_date"/> </label>
                                                                 <div class="input-group">
                                                                     <input class="form-control in_date"
                                                                            id="apt_in_date${vs.index}"

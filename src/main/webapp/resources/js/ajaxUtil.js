@@ -322,12 +322,17 @@ function addUser() {
     form.find(":input").val("");
     $('.userRoleInput').show();
     $('.load-bar').hide();
+    $('#enabled').remove();
     $('#userEditRow').modal();
 }
 
 function updateUserRow(id) {
     $('#userUpdateModalTitle').html(i18n["editTitle"]);
     $.get(ajaxUrl + id, function (data) {
+        var userForm = $(".detailsForm");
+        if(!$('#enabled').length) {
+            userForm.append('<input type="hidden" id="enabled" name="enabled">');
+        }
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(value);
             $('.userRoleInput').hide();

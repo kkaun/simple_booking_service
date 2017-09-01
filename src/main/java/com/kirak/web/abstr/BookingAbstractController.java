@@ -20,7 +20,6 @@ import java.time.LocalDate;
 import java.util.*;
 
 import static com.kirak.util.model.BookingUtil.*;
-import static com.kirak.web.abstr.UserAbstractController.EXCEPTION_MODIFICATION_RESTRICTION;
 
 /**
  * Created by Kir on 09.06.2017.
@@ -67,7 +66,7 @@ public abstract class BookingAbstractController {
 
     public void checkModificationAllowed(int id) {
         if (modificationRestriction) {
-            throw new ApplicationException(EXCEPTION_MODIFICATION_RESTRICTION, HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
+            throw new ApplicationException(EXCEPTION_SUB_BOOKING_MODIFICATION_RESTRICTION, HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
         }
     }
 

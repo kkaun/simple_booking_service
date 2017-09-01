@@ -31,15 +31,14 @@ import static com.kirak.util.ValidationUtil.*;
 
 public abstract class UserAbstractController {
 
+    public static final String EXCEPTION_DUPLICATE_EMAIL = "exception.user.duplicateEmail";
     public static final String EXCEPTION_USER_HAS_BOOKINGS = "exception.user.hasActiveBookings";
     public static final String EXCEPTION_USER_IS_DEMO_MANAGER = "exception.user.isDemoManager";
+    public static final String EXCEPTION_USER_IS_DEMO_ADMIN = "exception.user.isDemoAdmin";
     public static final String EXCEPTION_USER_HAS_MANAGEABLE_HOTELS = "exception.user.hasManageableHotels";
     public static final String EXCEPTION_USER_MODIFICATION_RESTRICTION = "exception.user.modificationRestriction";
 
     protected final Logger log = LoggerFactory.getLogger(getClass());
-
-    public static final String EXCEPTION_DUPLICATE_EMAIL = "exception.user.duplicateEmail";
-    public static final String EXCEPTION_MODIFICATION_RESTRICTION = "exception.user.modificationRestriction";
 
     private final UserService userService;
 
@@ -112,7 +111,7 @@ public abstract class UserAbstractController {
 
     public void checkModificationAllowed(int id) {
         if (modificationRestriction) {
-            throw new ApplicationException(EXCEPTION_MODIFICATION_RESTRICTION, HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
+            throw new ApplicationException(EXCEPTION_USER_MODIFICATION_RESTRICTION, HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
         }
     }
 
