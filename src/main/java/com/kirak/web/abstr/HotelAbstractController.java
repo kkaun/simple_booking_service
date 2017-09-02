@@ -5,14 +5,23 @@ import com.kirak.service.CityService;
 import com.kirak.service.CountryService;
 import com.kirak.service.HotelService;
 import com.kirak.to.HotelTo;
+import com.kirak.util.ErrorInfo;
 import com.kirak.util.FileUploadUtil;
+import com.kirak.util.exception.model.booking.BookingApartmentOccupiedException;
+import com.kirak.util.exception.model.hotel.HotelHasBookingsException;
+import com.kirak.util.model.BookingUtil;
 import com.kirak.util.model.HotelUtil;
+import com.kirak.web.ExceptionViewHandler;
 import com.kirak.web.session.AuthorizedUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -26,21 +35,21 @@ import static com.kirak.util.ValidationUtil.checkNew;
  */
 public abstract class HotelAbstractController {
 
-    public static final String EXCEPTION_HOTEL_HAS_BOOKINGS = "exception.hotel.apartments.haveBookings";
-    public static final String EXCEPTION_HOTEL_MODIFICATION_RESTRICTION = "exception.hotel.removingRestriction";
+    public static final String EXCEPTION_HOTEL_HAS_ACTIVE_BOOKINGS = "exception.hotel.apartments.haveBookings";
+    public static final String EXCEPTION_HOTEL_REMOVING_RESTRICTION = "exception.hotel.removingRestriction";
 
     private final Logger LOG = LoggerFactory.getLogger(getClass());
 
     private final HotelService hotelService;
 
-    private final CountryService countryService;
-
     private final CityService cityService;
 
     @Autowired
-    public HotelAbstractController(HotelService hotelService, CountryService countryService, CityService cityService){
+    private ExceptionViewHandler exceptionInfoHandler;
+
+    @Autowired
+    public HotelAbstractController(HotelService hotelService, CityService cityService){
         this.hotelService = hotelService;
-        this.countryService = countryService;
         this.cityService = cityService;
     }
 
@@ -53,7 +62,14 @@ public abstract class HotelAbstractController {
     public void update(HotelTo hotelTo, int id){
         LOG.info("Updating {}", hotelTo);
         checkIdConsistency(hotelTo, id);
+        checkAllBusinessRestrictions(id);
         hotelService.update(hotelTo);
+    }
+
+    public void delete(Integer id){
+        LOG.info("Deleting hotel {}", id);
+        checkAllBusinessRestrictions(id);
+        hotelService.delete(id);
     }
 
     public HotelTo get(int id){
@@ -89,15 +105,10 @@ public abstract class HotelAbstractController {
                 .collect(Collectors.toList()));
     }
 
-
     public List<HotelTo> getHotelsForManager() {
         return HotelUtil.getAllHotelTos(hotelService.getAll().stream()
                 .filter(hotel -> Objects.equals(hotel.getManager().getId(), AuthorizedUser.id()))
                 .collect(Collectors.toList()));
-    }
-
-    public List<Country> getAllCountries() {
-        return countryService.getAll();
     }
 
     public List<City> getAllCities() {
@@ -115,9 +126,18 @@ public abstract class HotelAbstractController {
         }
     }
 
-    public void delete(Integer id){
-        LOG.info("Deleting hotel {}", id);
-        hotelService.delete(id);
+
+
+    public void checkAllBusinessRestrictions(int id){
+        if(BookingUtil.activeBookingsLeft(hotelService.get(id).getBookings())){
+            throw new HotelHasBookingsException(EXCEPTION_HOTEL_REMOVING_RESTRICTION, HttpStatus.CONFLICT);
+        }
     }
+
+    @ExceptionHandler(BookingApartmentOccupiedException.class)
+    public ResponseEntity<ErrorInfo> hasManageableHotels(HttpServletRequest req, BookingApartmentOccupiedException e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_HOTEL_HAS_ACTIVE_BOOKINGS, HttpStatus.CONFLICT);
+    }
+
 
 }

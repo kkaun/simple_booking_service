@@ -1,21 +1,33 @@
 package com.kirak.web.abstr;
 
+import com.kirak.model.AptType;
+import com.kirak.service.ApartmentService;
 import com.kirak.service.AptTypeService;
 import com.kirak.service.HotelService;
 import com.kirak.to.AptTypeTo;
+import com.kirak.util.ErrorInfo;
+import com.kirak.util.exception.model.apt_type.AptTypeHasApartmentsException;
+import com.kirak.util.exception.model.user.UserHasBookingsException;
 import com.kirak.util.model.AptTypeUtil;
+import com.kirak.web.ExceptionViewHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Kir on 03.08.2017.
  */
 public abstract class AptTypeAbstractController {
 
-    public static final String EXCEPTION_APT_TYPE_HAS_BOOKINGS = "exception.aptType.hasBookings";
+    public static final String EXCEPTION_APT_TYPE_HAS_APARTMENTS = "exception.aptType.hasApartments";
     public static final String EXCEPTION_APT_TYPE_MODIFICATION_RESTRICTION = "exception.aptType.modificationRestriction";
 
     private final Logger LOG = LoggerFactory.getLogger(getClass());
@@ -24,10 +36,16 @@ public abstract class AptTypeAbstractController {
 
     private final HotelService hotelService;
 
+    private final ApartmentService apartmentService;
+
     @Autowired
-    public AptTypeAbstractController(AptTypeService aptTypeService, HotelService hotelService) {
+    private ExceptionViewHandler exceptionInfoHandler;
+
+    @Autowired
+    public AptTypeAbstractController(AptTypeService aptTypeService, HotelService hotelService, ApartmentService apartmentService) {
         this.aptTypeService = aptTypeService;
         this.hotelService = hotelService;
+        this.apartmentService = apartmentService;
     }
 
     public void save(AptTypeTo aptTypeTo){
@@ -37,11 +55,13 @@ public abstract class AptTypeAbstractController {
 
     public void update(AptTypeTo aptTypeTo){
         LOG.info("Updating {}", aptTypeTo);
+        checkAllBusinessRestrictions(aptTypeTo.getId());
         aptTypeService.update(aptTypeTo, aptTypeService.get(aptTypeTo.getId()), hotelService.getAll());
     }
 
     public void delete(Short id){
         LOG.info("Deleting aptType {}", id);
+        checkAllBusinessRestrictions(id);
         aptTypeService.delete(id);
     }
 
@@ -53,6 +73,19 @@ public abstract class AptTypeAbstractController {
     public List<AptTypeTo> getAll(){
         LOG.info("Getting all aptTypes");
         return AptTypeUtil.getToList(aptTypeService.getAll(), hotelService.getAll());
+    }
+
+
+    public void checkAllBusinessRestrictions(short id){
+        if(apartmentService.getAll().stream()
+                .filter(apartment -> Objects.equals(apartment.getType().getId(), id)).count() > 0){
+            throw new AptTypeHasApartmentsException(EXCEPTION_APT_TYPE_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
+        }
+    }
+
+    @ExceptionHandler(AptTypeHasApartmentsException.class)
+    public ResponseEntity<ErrorInfo> hasApartments(HttpServletRequest req, AptTypeHasApartmentsException e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_APT_TYPE_HAS_APARTMENTS, HttpStatus.CONFLICT);
     }
 
 }

@@ -7,6 +7,11 @@ import com.kirak.service.UserService;
 import com.kirak.to.UserTo;
 import com.kirak.util.ErrorInfo;
 import com.kirak.util.exception.ApplicationException;
+import com.kirak.util.exception.model.user.AdminModificationException;
+import com.kirak.util.exception.model.user.ManagerHasHotelsException;
+import com.kirak.util.exception.model.user.ManagerModificationException;
+import com.kirak.util.exception.model.user.UserHasBookingsException;
+import com.kirak.util.model.BookingUtil;
 import com.kirak.util.model.UserUtil;
 import com.kirak.web.ExceptionViewHandler;
 import org.slf4j.Logger;
@@ -17,7 +22,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -83,18 +87,21 @@ public abstract class UserAbstractController {
     public void delete(int id) {
         log.info("delete {}", id);
         checkModificationAllowed(id);
+        checkAllBusinessRestrictions(id);
         userService.delete(id);
     }
 
     public void update(User user, int id) {
         log.info("update {} with id={}", user, id);
         checkIdConsistency(user, id);
+        checkAllBusinessRestrictions(id);
         userService.update(user);
     }
 
     public void update(UserTo userTo, int id) {
         log.info("update {} with id={}", userTo, id);
         checkIdConsistency(userTo, id);
+        checkAllBusinessRestrictions(id);
         userService.update(userTo);
     }
 
@@ -110,9 +117,40 @@ public abstract class UserAbstractController {
     }
 
     public void checkModificationAllowed(int id) {
-        if (modificationRestriction) {
+        if (modificationRestriction)
             throw new ApplicationException(EXCEPTION_USER_MODIFICATION_RESTRICTION, HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
-        }
+    }
+
+    public void checkAllBusinessRestrictions(int id){
+        if (id == 100004)
+            throw new AdminModificationException(EXCEPTION_USER_MODIFICATION_RESTRICTION, HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
+        if (id == 100003)
+            throw new ManagerModificationException(EXCEPTION_USER_MODIFICATION_RESTRICTION, HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
+        User user = userService.get(id);
+        if (user.getRoles().contains(UserRole.ROLE_MANAGER) && !user.getHotels().isEmpty())
+            throw new ManagerHasHotelsException(EXCEPTION_USER_MODIFICATION_RESTRICTION, HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
+        if (user.getRoles().contains(UserRole.ROLE_USER) && BookingUtil.activeBookingsLeft(user.getBookings()))
+            throw new UserHasBookingsException(EXCEPTION_USER_MODIFICATION_RESTRICTION, HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
+    }
+
+    @ExceptionHandler(UserHasBookingsException.class)
+    public ResponseEntity<ErrorInfo> hasBookingsException(HttpServletRequest req, UserHasBookingsException e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_USER_HAS_BOOKINGS, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(ManagerModificationException.class)
+    public ResponseEntity<ErrorInfo> isDemoManager(HttpServletRequest req, ManagerModificationException e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_USER_IS_DEMO_MANAGER, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(AdminModificationException.class)
+    public ResponseEntity<ErrorInfo> isDemoAdmin(HttpServletRequest req, AdminModificationException e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_USER_IS_DEMO_ADMIN, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(UserHasBookingsException.class)
+    public ResponseEntity<ErrorInfo> hasManageableHotels(HttpServletRequest req, UserHasBookingsException e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_USER_HAS_MANAGEABLE_HOTELS, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)

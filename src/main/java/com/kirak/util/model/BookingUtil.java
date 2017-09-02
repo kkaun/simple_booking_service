@@ -109,14 +109,12 @@ public class BookingUtil {
     }
 
     public static double calculateBookingSum(List<SubBooking> subBookings){
-
         final double[] sum = {0};
         subBookings.forEach(booking -> sum[0] += SubBookingUtil.calculateSubBookingSum(booking, booking.getInDate(), booking.getOutDate()));
         return sum[0];
     }
 
     public static short calculateBookingOverallPersonNum(List<SubBooking> subBookings){
-
         final short[] num = {0};
         subBookings.forEach(booking -> num[0] += booking.getPersonNum());
         return num[0];
@@ -126,8 +124,20 @@ public class BookingUtil {
         booking.setSubBookings(subBookings);
         booking.setOverallSum(BookingUtil.calculateBookingSum(new ArrayList<>(subBookings)));
         booking.setOverallPersonNum(BookingUtil.calculateBookingOverallPersonNum(new ArrayList<>(subBookings)));
-
         return booking;
+    }
+
+
+    public static boolean activeBookingsLeft(Set<Booking> bookings){
+
+        return bookings.stream()
+                .filter(BookingUtil::isBookingIncomplete).count() > 0;
+    }
+
+    public static boolean isBookingIncomplete(Booking booking){
+        return ((getBookingInDate(booking).isAfter(LocalDate.now().minusDays(1))) ||
+                (getBookingInDate(booking).isBefore(LocalDate.now().minusDays(1)) &&
+                        getBookingOutDate(booking).isAfter(LocalDate.now())));
     }
 
 }

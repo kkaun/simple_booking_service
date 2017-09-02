@@ -6,7 +6,12 @@ import com.kirak.service.ApartmentService;
 import com.kirak.service.BookingService;
 import com.kirak.service.SubBookingService;
 import com.kirak.to.booking.*;
+import com.kirak.util.ErrorInfo;
 import com.kirak.util.exception.ApplicationException;
+import com.kirak.util.exception.model.apt_type.AptTypeHasApartmentsException;
+import com.kirak.util.exception.model.booking.BookingApartmentOccupiedException;
+import com.kirak.util.exception.model.user.UserHasBookingsException;
+import com.kirak.util.model.ApartmentUtil;
 import com.kirak.util.model.SubBookingUtil;
 import com.kirak.util.model.BookingUtil;
 import com.kirak.web.ExceptionViewHandler;
@@ -14,8 +19,12 @@ import com.kirak.web.session.AuthorizedUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -40,8 +49,6 @@ public abstract class BookingAbstractController {
     @Autowired
     private ExceptionViewHandler exceptionInfoHandler;
 
-    private boolean modificationRestriction;
-
     @Autowired
     public BookingAbstractController(BookingService bookingService, SubBookingService subBookingService,
                                      ApartmentService apartmentService) {
@@ -52,22 +59,14 @@ public abstract class BookingAbstractController {
 
     //-------------------------------------- General Booking methods --------------------------------//
 
-    public void updateBooking(ManagerBookingTo managerBookingTo){
-        LOG.info("Saving  SubBooking {}", managerBookingTo);
-        bookingService.update(managerBookingTo);
-    }
-
-
+//    public void updateBooking(ManagerBookingTo managerBookingTo){
+//        LOG.info("Saving  SubBooking {}", managerBookingTo);
+//        bookingService.update(managerBookingTo);
+//    }
+//
     public void deactivate(int id, boolean enabled) {
         LOG.info((enabled ? "enable " : "deactivate ") + id);
-        checkModificationAllowed(id);
         bookingService.deactivate(id, enabled);
-    }
-
-    public void checkModificationAllowed(int id) {
-        if (modificationRestriction) {
-            throw new ApplicationException(EXCEPTION_SUB_BOOKING_MODIFICATION_RESTRICTION, HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
-        }
     }
 
     //-------------------------------------- Admin Booking methods --------------------------------//
@@ -149,6 +148,7 @@ public abstract class BookingAbstractController {
 
     public void updateSubBooking(SubBookingTo subBookingTo, Integer bookingId){
         LOG.info("Updating booking {}", subBookingTo);
+        checkAllBusinessRestrictions(subBookingTo.getId());
         SubBooking updatedSubBooking = subBookingService.update(subBookingTo);
         Booking booking = bookingService.get(bookingId);
         Set<SubBooking> subBookings = booking.getSubBookings();
@@ -169,5 +169,19 @@ public abstract class BookingAbstractController {
     public List<SubBookingTo> getAllSubBookings(Integer bookingId){
         LOG.info("Getting all bookings");
         return SubBookingUtil.generateSubBookingsFromBookingTo(bookingService.get(bookingId));
+    }
+
+
+
+
+    public void checkAllBusinessRestrictions(long id){
+        if(!ApartmentUtil.isSingleApartmentAvailable(subBookingService.get(id).getApartment(),
+                LocalDate.now().minusDays(1), LocalDate.MAX))
+            throw new BookingApartmentOccupiedException(EXCEPTION_SUB_BOOKING_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(BookingApartmentOccupiedException.class)
+    public ResponseEntity<ErrorInfo> hasManageableHotels(HttpServletRequest req, BookingApartmentOccupiedException e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_SUB_BOOKING_APARTMENT_OCCUPIED, HttpStatus.CONFLICT);
     }
 }

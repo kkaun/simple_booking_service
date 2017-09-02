@@ -182,7 +182,6 @@ public class ApartmentUtil {
 
     public static boolean isSingleApartmentAvailableWithoutCurrentBooking(Apartment apartment, SubBookingTo currentBooking,
                                                                 LocalDate inDate, LocalDate outDate){
-
         final int[] daysOccupied = {0};
         apartment.getSubBookings().stream().filter(booking -> booking.getBooking().isActive())
                 .filter(booking -> !Objects.equals(booking.getId(), currentBooking.getId()))

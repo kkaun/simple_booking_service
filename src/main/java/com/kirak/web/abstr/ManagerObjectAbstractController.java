@@ -32,7 +32,7 @@ import static com.kirak.util.model.BookingUtil.getBookingOutDate;
 public abstract class ManagerObjectAbstractController {
 
     public static final String EXCEPTION_MANAGER_HOTEL_HAS_BOOKINGS = "exception.manager.hotel.apartments.haveBookings";
-    public static final String EXCEPTION_MANAGER_HOTEL_MODIFICATION_RESTRICTION = "exception.manager.hotel.removingRestriction";
+    public static final String EXCEPTION_MANAGER_HOTEL_REMOVING_RESTRICTION = "exception.manager.hotel.removingRestriction";
 
     public static final String EXCEPTION_APARTMENT_HAS_BOOKINGS = "exception.apartment.hasBookings";
     public static final String EXCEPTION_APARTMENT_MODIFICATION_RESTRICTION = "exception.apartment.modificationRestriction";
