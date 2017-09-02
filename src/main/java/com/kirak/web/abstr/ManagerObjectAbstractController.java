@@ -9,8 +9,7 @@ import com.kirak.to.booking.ChartTo;
 import com.kirak.to.booking.ManagerBookingTo;
 import com.kirak.util.ErrorInfo;
 import com.kirak.util.FileUploadUtil;
-import com.kirak.util.exception.model.apartment.ApartmentHasBookingsExcpetion;
-import com.kirak.util.exception.model.booking.BookingApartmentOccupiedException;
+import com.kirak.util.exception.model.apartment.ApartmentHasBookingsException;
 import com.kirak.util.model.ApartmentUtil;
 import com.kirak.util.model.ManagerObjectUtil;
 import com.kirak.util.model.BookingUtil;
@@ -26,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -150,12 +150,21 @@ public abstract class ManagerObjectAbstractController {
                 Objects.equals(hotel.getManager().getId(), AuthorizedUser.id()))
                 .findFirst().orElse(null);
         apartmentService.save(apartmentTo, ownHotel, aptTypeService.getAll());
+        ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(AuthorizedUser.id(),
+                managerObjectService.getManagerObjects());
+        List<ApartmentTo> apartmentTos = managerObject.getObjectApartmentTos();
+        apartmentTos.add(apartmentTo);
+        managerObject.setObjectApartmentTos(apartmentTos);
+        managerObjectService.addManagerObject(managerObject);
     }
 
     public void update(ApartmentTo apartmentTo){
         LOG.info("Updating {}", apartmentTo);
         checkAllBusinessRestrictions(apartmentTo.getId());
         apartmentService.update(apartmentTo, aptTypeService.getAll());
+        ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(AuthorizedUser.id(),
+                managerObjectService.getManagerObjects());
+        managerObjectService.addManagerObject(ManagerObjectUtil.modifyManagerObjectApartmentTo(managerObject, apartmentTo));
     }
 
     public ApartmentTo get(int id){
@@ -165,8 +174,7 @@ public abstract class ManagerObjectAbstractController {
 
     public List<ApartmentTo> getAllApartmentsFromCurrentObject(){
         LOG.info("Getting all apartments from current object");
-        Integer hotelManagerId = AuthorizedUser.id();
-        ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(hotelManagerId,
+        ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(AuthorizedUser.id(),
                 managerObjectService.getManagerObjects());
         return managerObject.getObjectApartmentTos();
     }
@@ -174,10 +182,10 @@ public abstract class ManagerObjectAbstractController {
     public void delete(Integer id){
         LOG.info("Deleting city {}", id);
         checkAllBusinessRestrictions(id);
-        Apartment apartment = apartmentService.get(id);
-        if(ApartmentUtil.isApartmentAcceptedForEditing(apartment)){
-            apartmentService.delete(id);
-        }
+        apartmentService.delete(id);
+        ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(AuthorizedUser.id(),
+                managerObjectService.getManagerObjects());
+        managerObjectService.addManagerObject(ManagerObjectUtil.deleteManagerObjectApartmentTo(managerObject, id));
     }
 
 
@@ -223,14 +231,13 @@ public abstract class ManagerObjectAbstractController {
 
 
     public void checkAllBusinessRestrictions(int id){
-        if(ApartmentUtil.isSingleApartmentAvailable(apartmentService.get(id), LocalDate.now().minusDays(1), LocalDate.MAX))
-            throw new ApartmentHasBookingsExcpetion(EXCEPTION_APARTMENT_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
+        if(!ApartmentUtil.isSingleApartmentAvailable(apartmentService.get(id), LocalDate.now().minusDays(1), LocalDate.MAX))
+            throw new ApartmentHasBookingsException(EXCEPTION_APARTMENT_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
     }
 
-    @ExceptionHandler(ApartmentHasBookingsExcpetion.class)
-    public ResponseEntity<ErrorInfo> apartmentHasBookings(HttpServletRequest req, ApartmentHasBookingsExcpetion e) {
-        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_APARTMENT_MODIFICATION_RESTRICTION + ": " +
-                EXCEPTION_APARTMENT_HAS_BOOKINGS, HttpStatus.CONFLICT);
+    @ExceptionHandler(ApartmentHasBookingsException.class)
+    public ResponseEntity<ErrorInfo> apartmentHasBookings(HttpServletRequest req, ApartmentHasBookingsException e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_APARTMENT_HAS_BOOKINGS, HttpStatus.CONFLICT);
     }
 
 }

@@ -133,10 +133,10 @@
 
                     <div class="form-group managerIdForm">
                         <label for="managerId" class="control-label col-xs-3">>
-                            <spring:message code="app.manager"/> <spring:message code="common.id"/> <spring:message code="common.def_managerId"/></label>
+                            <spring:message code="app.manager"/> <spring:message code="common.id"/>
+                            <spring:message code="common.def_managerId"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" type="text" id="managerId" name="managerId"
-                                   placeholder="Manager <spring:message code="common.id"/>">
+                            <input class="form-control" type="text" id="managerId" name="managerId">
                         </div>
                     </div>
 
@@ -144,8 +144,7 @@
                         <label for="countryName" class="control-label col-xs-3">
                             <spring:message code="common.countryName"/>
                         <div class="col-xs-9">
-                            <input class="form-control" type="text" id="countryName" name="countryName"
-                                   placeholder="<spring:message code="common.countryName"/>">
+                            <input class="form-control" type="text" id="countryName" name="countryName">
                         </div>
                     </div>
 
@@ -153,8 +152,7 @@
                         <label for="cityName" class="control-label col-xs-3">
                             <spring:message code="common.placeName"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" type="text" id="cityName" name="cityName"
-                                   placeholder="<spring:message code="common.placeName"/>">
+                            <input class="form-control" type="text" id="cityName" name="cityName">
                         </div>
                     </div>
 
@@ -162,24 +160,21 @@
                         <label for="hotelName" class="control-label col-xs-3"><spring:message
                                 code="common.hotelName"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" type="text" id="hotelName" name="name"
-                                   placeholder="<spring:message code="common.hotelName"/>">
+                            <input class="form-control" type="text" id="hotelName" name="name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="stars" class="control-label col-xs-3"><spring:message
                                 code="common.hotelStars"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="stars" type="text" name="stars"
-                                   placeholder="<spring:message code="common.hotelStars"/>">
+                            <input class="form-control" id="stars" type="text" name="stars">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="hotelDescription" class="control-label col-xs-3"><spring:message
                                 code="hotels.description"/></label>
                         <div class="col-xs-9">
-                            <textarea class="form-control" id="hotelDescription" name="description"
-                                   placeholder="<spring:message code="hotels.description"/>">
+                            <textarea class="form-control" id="hotelDescription" name="description">
                             </textarea>
                         </div>
                     </div>
@@ -187,24 +182,21 @@
                         <label for="checkIn" class="control-label col-xs-3"><spring:message
                                 code="hotels.checkIn"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control in_time" id="checkIn" name="checkIn"
-                                   placeholder="<spring:message code="hotels.checkIn"/>">
+                            <input class="form-control in_time" id="checkIn" name="checkIn">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="checkOut" class="control-label col-xs-3"><spring:message
                                 code="hotels.checkOut"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control out_time" id="checkOut" name="checkOut"
-                                   placeholder="<spring:message code="hotels.checkOut"/>">
+                            <input class="form-control out_time" id="checkOut" name="checkOut">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="address" class="control-label col-xs-3"><spring:message
                                 code="hotels.address"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" type="text" id="address" name="address"
-                                   placeholder="<spring:message code="hotels.address"/>">
+                            <input class="form-control" type="text" id="address" name="address">
                         </div>
                     </div>
                     <div class="form-group">
@@ -212,8 +204,7 @@
                                 code="hotels.phone"/></label>
 
                         <div class="col-xs-9">
-                            <input class="form-control" type="text" id="hotelPhone" name="phone"
-                                   placeholder="<spring:message code="hotels.phone"/>">
+                            <input class="form-control" type="text" id="hotelPhone" name="phone">
                         </div>
                     </div>
                     <div class="form-group">

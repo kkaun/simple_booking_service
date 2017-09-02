@@ -132,23 +132,21 @@ public abstract class HotelAbstractController {
     public void checkAllBusinessRestrictions(int id){
         if(Objects.equals(hotelService.get(id).getManager().getId(), AuthorizedUser.id())){
             if (BookingUtil.activeBookingsLeft(hotelService.get(id).getBookings()))
-                throw new HotelHasBookingsException(EXCEPTION_MANAGER_HOTEL_REMOVING_RESTRICTION, HttpStatus.CONFLICT);
+                throw new ManagerHotelHasBookingsException(EXCEPTION_MANAGER_HOTEL_REMOVING_RESTRICTION, HttpStatus.CONFLICT);
         } else {
             if (BookingUtil.activeBookingsLeft(hotelService.get(id).getBookings()))
                 throw new HotelHasBookingsException(EXCEPTION_HOTEL_REMOVING_RESTRICTION, HttpStatus.CONFLICT);
         }
     }
 
-    @ExceptionHandler(BookingApartmentOccupiedException.class)
-    public ResponseEntity<ErrorInfo> objectHasActiveBookings(HttpServletRequest req, BookingApartmentOccupiedException e) {
-        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_HOTEL_REMOVING_RESTRICTION  + ": " +
-                EXCEPTION_HOTEL_HAS_ACTIVE_BOOKINGS, HttpStatus.CONFLICT);
+    @ExceptionHandler(HotelHasBookingsException.class)
+    public ResponseEntity<ErrorInfo> objectHasActiveBookings(HttpServletRequest req, HotelHasBookingsException e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_HOTEL_HAS_ACTIVE_BOOKINGS, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(ManagerHotelHasBookingsException.class)
     public ResponseEntity<ErrorInfo> managerObjectHasBookings(HttpServletRequest req, ManagerHotelHasBookingsException e) {
-        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_MANAGER_HOTEL_REMOVING_RESTRICTION  + ": "
-                + EXCEPTION_MANAGER_HOTEL_HAS_BOOKINGS, HttpStatus.CONFLICT);
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_MANAGER_HOTEL_HAS_BOOKINGS, HttpStatus.CONFLICT);
     }
 
 }

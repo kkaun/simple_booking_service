@@ -105,16 +105,14 @@
                         <label for="regionName" class="control-label col-xs-3"><spring:message
                                 code="common.placeName"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="regionName" name="name"
-                                   placeholder="<spring:message code="common.placeName"/>">
+                            <input class="form-control" id="regionName" name="name">
                         </div>
                     </div>
                     <div class="form-group currentCountryName">
                         <label for="currentCountryName" class="control-label col-xs-3"><spring:message
                                 code="common.countryName"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="currentCountryName" name="countryName" readonly
-                                   placeholder="<spring:message code="common.countryName"/>">
+                            <input class="form-control" id="currentCountryName" name="countryName" readonly>
                         </div>
                     </div>
 
@@ -136,8 +134,7 @@
                         <label for="regionDescription" class="control-label col-xs-3"><spring:message
                                 code="common.description"/></label>
                         <div class="col-xs-9">
-                            <textarea class="form-control" id="regionDescription" name="description"
-                                   placeholder="<spring:message code="common.description"/>">
+                            <textarea class="form-control" id="regionDescription" name="description">
                             </textarea>
                         </div>
                     </div>

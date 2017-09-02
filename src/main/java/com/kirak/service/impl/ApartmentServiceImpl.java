@@ -7,9 +7,7 @@ import com.kirak.repository.ApartmentRepository;
 import com.kirak.service.ApartmentService;
 import com.kirak.to.ApartmentTo;
 import com.kirak.util.model.ApartmentUtil;
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -55,10 +53,8 @@ public class ApartmentServiceImpl implements ApartmentService {
     public Apartment update(ApartmentTo apartmentTo, List<AptType> existingTypes) {
         Assert.notNull(apartmentTo, "Apartment must not be null!");
         Apartment toUpdate = checkNotFoundWithId(repository.get(apartmentTo.getId()), apartmentTo.getId());
-
-        return ApartmentUtil.isApartmentAcceptedForEditing(toUpdate) ?
-                checkNotFoundWithId(repository.save(ApartmentUtil.updateFromTo(apartmentTo, toUpdate, existingTypes),
-                        toUpdate.getHotel().getId()), toUpdate.getId()) : update(toUpdate, toUpdate.getHotel().getId());
+        return checkNotFoundWithId(repository.save(ApartmentUtil.updateFromTo(apartmentTo, toUpdate, existingTypes),
+                toUpdate.getHotel().getId()), toUpdate.getId());
     }
 
     @Override

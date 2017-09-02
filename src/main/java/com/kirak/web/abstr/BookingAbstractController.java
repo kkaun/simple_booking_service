@@ -181,13 +181,11 @@ public abstract class BookingAbstractController {
 
     @ExceptionHandler(BookingApartmentOccupiedException.class)
     public ResponseEntity<ErrorInfo> subBookingApartmentOccupied(HttpServletRequest req, BookingApartmentOccupiedException e) {
-        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_SUB_BOOKING_MODIFICATION_RESTRICTION + ": " +
-                EXCEPTION_SUB_BOOKING_APARTMENT_OCCUPIED, HttpStatus.CONFLICT);
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_SUB_BOOKING_APARTMENT_OCCUPIED, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(BookingAccomplishedException.class)
     public ResponseEntity<ErrorInfo> subBookingAccomplished(HttpServletRequest req, BookingAccomplishedException e) {
-        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_SUB_BOOKING_MODIFICATION_RESTRICTION + ": " +
-                EXCEPTION_SUB_BOOKING_APARTMENT_OCCUPIED, HttpStatus.CONFLICT);
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_SUB_BOOKING_ACCOMPLISHED, HttpStatus.CONFLICT);
     }
 }

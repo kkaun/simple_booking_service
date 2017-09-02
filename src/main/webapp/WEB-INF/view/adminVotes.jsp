@@ -68,48 +68,42 @@
                         <label for="voteDateAdded" class="control-label col-xs-3"><spring:message
                                 code="common.dateAdded"/></label>
                         <div class="col-xs-5">
-                            <input class="form-control" id="voteDateAdded" name="dateAdded"
-                                   placeholder="<spring:message code="common.dateAdded"/>" readonly>
+                            <input class="form-control" id="voteDateAdded" name="dateAdded" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="hotelId" class="control-label col-xs-3"><spring:message
                                 code="common.rate"/></label>
                         <div class="col-xs-5">
-                            <input class="form-control" id="hotelId" name="hotelId"
-                                   placeholder="<spring:message code="common.rate"/>" readonly>
+                            <input class="form-control" id="hotelId" name="hotelId" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="hotelName" class="control-label col-xs-3"><spring:message
                                 code="common.rate"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="hotelName" name="hotelName"
-                                   placeholder="<spring:message code="common.rate"/>" readonly>
+                            <input class="form-control" id="hotelName" name="hotelName" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="voteRate" class="control-label col-xs-3"><spring:message
                                 code="common.rate"/></label>
                         <div class="col-xs-3">
-                            <input class="form-control" id="voteRate" name="rate"
-                                   placeholder="<spring:message code="common.rate"/>" readonly>
+                            <input class="form-control" id="voteRate" name="rate" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="voteUName" class="control-label col-xs-3"><spring:message
                                 code="common.bookerName"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="voteUName" name="user.name"
-                                   placeholder="<spring:message code="common.bookerName"/>" readonly>
+                            <input class="form-control" id="voteUName" name="user.name" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="voteUserComment" class="control-label col-xs-3"><spring:message
                                 code="common.comment"/></label>
                         <div class="col-xs-9">
-                            <textarea class="form-control" id="voteUserComment" name="userComment"
-                                   placeholder="<spring:message code="common.comment"/>" readonly>
+                            <textarea class="form-control" id="voteUserComment" name="userComment" readonly>
                             </textarea>
                         </div>
                     </div>

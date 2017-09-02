@@ -52,30 +52,9 @@ public class ApartmentUtil {
         return apartment;
     }
 
-    public static List<ApartmentTo> getApartmentTosFromBooking(Booking booking){
-
-        return getApartmentTos(booking.getSubBookings().stream()
-                .map(SubBooking::getApartment)
-                .collect(Collectors.toList()));
-    }
-
-
-//    public static List<ApartmentTo> getApartmentTosForHotelManager(List<Apartment> apartments, int hotelManagerId){
-//
-//        List<Apartment> hotelApartments = apartments.stream()
-//                .filter(apartment -> Objects.equals(apartment.getHotel().getManager().getId(), hotelManagerId))
-//                .collect(Collectors.toList());
-//        return ApartmentUtil.getApartmentTos(hotelApartments);
-//    }
-
-
 
     // --------------------------- General Methods ----------------------- //
 
-    public static boolean isApartmentAcceptedForEditing(Apartment apartment){
-
-        return isSingleApartmentAvailable(apartment, LocalDate.now(), LocalDate.now().plusYears(2));
-    }
 
     public static boolean isApartmentAcceptedByPersonNum(Apartment apartment, Short personNum){
 
@@ -91,20 +70,6 @@ public class ApartmentUtil {
                                                              LocalDate inDate, LocalDate outDate){
 
         return aggregateSimilarAvailableApartmentsWithCount(Collections.singletonList(apartment), inDate, outDate);
-    }
-
-    public static Map<Apartment, Integer> apartmentsAvailabilityForToday(List<Apartment> similarApartments){
-
-        LocalDate today = LocalDate.now();
-        return aggregateSimilarAvailableApartmentsWithCount(similarApartments, today, today);
-    }
-
-    public static List<Apartment> findHotelApartmentsByPersonNum(Hotel hotel, LocalDate inDate, LocalDate outDate, Short personNum){
-
-        return hotel.getApartments().stream()
-                    .filter(apartment -> isApartmentAcceptedByPersonNum(apartment, personNum))
-                    .collect(Collectors.toList());
-        //! return !availableApartments.isEmpty() ? aggregateSimilarAvailableApartmentsWithCount(availableApartments, inDate, outDate) : Collections.emptyMap();
     }
 
     public static List<Apartment> findHotelApartmentsByCategory(Hotel hotel, LocalDate inDate, LocalDate outDate, String category){

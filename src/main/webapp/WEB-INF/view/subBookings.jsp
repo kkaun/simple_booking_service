@@ -130,16 +130,14 @@
                         <label for="bookingInDate" class="control-label col-xs-3"><spring:message
                                 code="common.inDate"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control in_date" id="bookingInDate" name="aptInDate"
-                                   placeholder="<spring:message code="common.inDate"/>">
+                            <input class="form-control in_date" id="bookingInDate" name="aptInDate">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="bookingOutDate" class="control-label col-xs-3"><spring:message
                                 code="common.outDate"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control out_date" id="bookingOutDate" name="aptOutDate"
-                                   placeholder="<spring:message code="common.outDate"/>">
+                            <input class="form-control out_date" id="bookingOutDate" name="aptOutDate">
                         </div>
                     </div>
                     <div class="form-group">
@@ -163,8 +161,7 @@
                                 <spring:message code="apt_types.category"/>,
                                 <spring:message code="apt_types.bedsArrangement"/></label>
                             <div class="col-xs-9">
-                                <input class="form-control" id="existingBookingApt" name="stringAptType"
-                                       placeholder="<spring:message code="subBookings.apartment"/>" readonly>
+                                <input class="form-control" id="existingBookingApt" name="stringAptType" readonly>
                             </div>
                             <input type="hidden" id="aptId" name="aptId">
                         </c:if>
@@ -173,16 +170,14 @@
                         <label for="bookingAptPrice" class="control-label col-xs-3"><spring:message
                                 code="apartments.price"/> <spring:message code="common.will_change"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="bookingAptPrice" name="aptPrice"
-                                   placeholder="<spring:message code="apartments.price"/>" readonly>
+                            <input class="form-control" id="bookingAptPrice" name="aptPrice" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="bookingSum" class="control-label col-xs-3"><spring:message
                                 code="subBookings.sum"/> <spring:message code="common.will_change"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="bookingSum" name="sum"
-                                   placeholder="<spring:message code="subBookings.sum"/>" readonly>
+                            <input class="form-control" id="bookingSum" name="sum" readonly>
                         </div>
                     </div>
                     <div class="form-group">

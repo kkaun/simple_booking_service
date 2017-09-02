@@ -9,8 +9,6 @@ import com.kirak.service.UserService;
 import com.kirak.service.VoteService;
 import com.kirak.to.VoteTo;
 import com.kirak.util.ErrorInfo;
-import com.kirak.util.exception.model.apartment.ApartmentHasBookingsExcpetion;
-import com.kirak.util.exception.model.booking.BookingApartmentOccupiedException;
 import com.kirak.util.exception.model.vote.VoteBookingNotInitException;
 import com.kirak.util.model.BookingUtil;
 import com.kirak.util.model.VoteUtil;
@@ -123,8 +121,7 @@ public abstract class VoteAbstractController {
 
     @ExceptionHandler(VoteBookingNotInitException.class)
     public ResponseEntity<ErrorInfo> voteHotelNotVisited(HttpServletRequest req, VoteBookingNotInitException e) {
-        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_VOTE_CREATION_RESTRICTION + ": " +
-                EXCEPTION_VOTE_HOTEL_NOT_VISITED, HttpStatus.CONFLICT);
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_VOTE_HOTEL_NOT_VISITED, HttpStatus.CONFLICT);
     }
 
 }

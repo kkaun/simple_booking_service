@@ -19,7 +19,6 @@
         </div>
 
         <div class="col-md-10">
-            <h3><spring:message code="common.obj_bookings"/></h3>
 
             <div class="row">
                 <div class="col-sm-12">
@@ -60,7 +59,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-3" for="inDate"><spring:message
                                             code="super_bookings.inDate"/>:</label>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-6">
                                         <input class="form-control in_date" name="inDate" id="inDate">
                                     </div>
                                 </div>
@@ -84,7 +83,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-4" for="outDate"><spring:message
                                             code="super_bookings.outDate"/>:</label>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-6">
                                         <input class="form-control out_date" name="outDate" id="outDate">
                                     </div>
                                 </div>
@@ -108,7 +107,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-4" for="userId"><spring:message
                                             code="super_bookings.byUser"/>:</label>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-5">
                                         <input class="form-control" name="userId" id="userId">
                                     </div>
                                 </div>

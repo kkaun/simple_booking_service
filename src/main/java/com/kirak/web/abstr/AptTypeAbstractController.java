@@ -7,13 +7,11 @@ import com.kirak.service.HotelService;
 import com.kirak.to.AptTypeTo;
 import com.kirak.util.ErrorInfo;
 import com.kirak.util.exception.model.apt_type.AptTypeHasApartmentsException;
-import com.kirak.util.exception.model.user.UserHasBookingsException;
 import com.kirak.util.model.AptTypeUtil;
 import com.kirak.web.ExceptionViewHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -85,8 +83,7 @@ public abstract class AptTypeAbstractController {
 
     @ExceptionHandler(AptTypeHasApartmentsException.class)
     public ResponseEntity<ErrorInfo> aptTypeHasApartments(HttpServletRequest req, AptTypeHasApartmentsException e) {
-        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_APT_TYPE_MODIFICATION_RESTRICTION + ": " +
-                EXCEPTION_APT_TYPE_HAS_APARTMENTS, HttpStatus.CONFLICT);
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_APT_TYPE_HAS_APARTMENTS, HttpStatus.CONFLICT);
     }
 
 }

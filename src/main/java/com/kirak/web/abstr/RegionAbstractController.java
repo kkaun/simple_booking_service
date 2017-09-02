@@ -6,10 +6,7 @@ import com.kirak.service.CountryService;
 import com.kirak.to.PlaceTo;
 import com.kirak.util.ErrorInfo;
 import com.kirak.util.FileUploadUtil;
-import com.kirak.util.exception.model.apartment.ApartmentHasBookingsExcpetion;
-import com.kirak.util.exception.model.booking.BookingApartmentOccupiedException;
 import com.kirak.util.exception.model.region.RegionHasHotelsException;
-import com.kirak.util.model.ApartmentUtil;
 import com.kirak.util.model.RegionUtil;
 import com.kirak.web.ExceptionViewHandler;
 import org.slf4j.Logger;
@@ -21,7 +18,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
 import static com.kirak.util.ValidationUtil.checkId;
@@ -106,7 +102,6 @@ public abstract class RegionAbstractController {
 
     @ExceptionHandler(RegionHasHotelsException.class)
     public ResponseEntity<ErrorInfo> regionHasHotels(HttpServletRequest req, RegionHasHotelsException e) {
-        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_REGION_MODIFICATION_RESTRICTION + ": " +
-                EXCEPTION_REGION_HAS_HOTELS, HttpStatus.CONFLICT);
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_REGION_HAS_HOTELS, HttpStatus.CONFLICT);
     }
 }

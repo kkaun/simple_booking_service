@@ -79,27 +79,26 @@
                     <div class="form-group">
                         <label for="name" class="control-label col-xs-3"><spring:message code="user.name"/></label>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="<spring:message code="user.name"/>">
+                            <input type="text" class="form-control" id="name" name="name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="email" class="control-label col-xs-3"><spring:message code="user.email"/></label>
                         <div class="col-xs-9">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="<spring:message code="user.email"/>">
+                            <input type="email" class="form-control" id="email" name="email">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="phone" class="control-label col-xs-3"><spring:message code="users.phone"/></label>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" id="phone" name="phone" placeholder="<spring:message code="users.phone"/>">
+                            <input type="text" class="form-control" id="phone" name="phone">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="password" class="control-label col-xs-3"><spring:message
                                 code="users.password"/></label>
                         <div class="col-xs-9">
-                            <input type="password" class="form-control" id="password" name="password"
-                                   placeholder="<spring:message code="users.password"/>">
+                            <input type="password" class="form-control" id="password" name="password">
                         </div>
                     </div>
                     <div class="form-group userRoleInput">

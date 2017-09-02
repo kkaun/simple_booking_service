@@ -75,24 +75,21 @@
                         <label for="personNum" class="control-label col-xs-3"><spring:message
                                 code="apt_types.personNum"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="personNum" name="personNum"
-                                   placeholder="<spring:message code="apt_types.personNum"/>">
+                            <input class="form-control" id="personNum" name="personNum">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="category" class="control-label col-xs-3"><spring:message
                                 code="apt_types.category"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="category" name="category"
-                                   placeholder="<spring:message code="apt_types.category"/>">
+                            <input class="form-control" id="category" name="category">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="bedsArrangement" class="control-label col-xs-3"><spring:message
                                 code="apt_types.bedsArrangement"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="bedsArrangement" name="bedsArrangement"
-                                   placeholder="<spring:message code="apt_types.bedsArrangement"/>">
+                            <input class="form-control" id="bedsArrangement" name="bedsArrangement">
                         </div>
                     </div>
                     <div class="form-group">
