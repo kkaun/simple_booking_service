@@ -28,8 +28,8 @@ public class HotelsAjaxController extends HotelAbstractController {
     private UserService userService;
 
     @Autowired
-    public HotelsAjaxController(HotelService hotelService, CountryService countryService, CityService cityService) {
-        super(hotelService, countryService, cityService);
+    public HotelsAjaxController(HotelService hotelService, CityService cityService) {
+        super(hotelService, cityService);
     }
 
     @PostMapping

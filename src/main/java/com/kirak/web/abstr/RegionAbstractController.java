@@ -4,12 +4,24 @@ import com.kirak.model.City;
 import com.kirak.service.CityService;
 import com.kirak.service.CountryService;
 import com.kirak.to.PlaceTo;
+import com.kirak.util.ErrorInfo;
 import com.kirak.util.FileUploadUtil;
+import com.kirak.util.exception.model.apartment.ApartmentHasBookingsExcpetion;
+import com.kirak.util.exception.model.booking.BookingApartmentOccupiedException;
+import com.kirak.util.exception.model.region.RegionHasHotelsException;
+import com.kirak.util.model.ApartmentUtil;
 import com.kirak.util.model.RegionUtil;
+import com.kirak.web.ExceptionViewHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
 import static com.kirak.util.ValidationUtil.checkId;
@@ -30,6 +42,9 @@ public abstract class RegionAbstractController {
     private final CountryService countryService;
 
     @Autowired
+    private ExceptionViewHandler exceptionInfoHandler;
+
+    @Autowired
     public RegionAbstractController(CityService cityService, CountryService countryService){
         this.cityService = cityService;
         this.countryService = countryService;
@@ -43,6 +58,7 @@ public abstract class RegionAbstractController {
 
     public void update(PlaceTo placeTo, int id){
         LOG.info("Updating {}", placeTo);
+        checkAllBusinessRestrictions(id);
         checkId(placeTo, id);
         City city = cityService.get(id);
         cityService.update(RegionUtil.updateCityFromPlaceTo(placeTo, city));
@@ -51,6 +67,12 @@ public abstract class RegionAbstractController {
     public PlaceTo get(Integer id) {
         LOG.info("Getting city {}", id);
         return RegionUtil.asPlaceTo(cityService.get(id));
+    }
+
+    public void delete(Integer id){
+        LOG.info("Deleting city {}", id);
+        checkAllBusinessRestrictions(id);
+        cityService.delete(id);
     }
 
     public List<PlaceTo> getAll(){
@@ -76,8 +98,15 @@ public abstract class RegionAbstractController {
         }
     }
 
-    public void delete(Integer id){
-        LOG.info("Deleting city {}", id);
-        cityService.delete(id);
+
+    public void checkAllBusinessRestrictions(int id){
+        if(cityService.get(id).getHotels().size() > 0)
+            throw new RegionHasHotelsException(EXCEPTION_REGION_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(RegionHasHotelsException.class)
+    public ResponseEntity<ErrorInfo> regionHasHotels(HttpServletRequest req, RegionHasHotelsException e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_REGION_MODIFICATION_RESTRICTION + ": " +
+                EXCEPTION_REGION_HAS_HOTELS, HttpStatus.CONFLICT);
     }
 }

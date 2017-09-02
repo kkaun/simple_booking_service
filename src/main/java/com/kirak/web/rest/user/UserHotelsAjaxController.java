@@ -16,8 +16,8 @@ import java.util.List;
 @RequestMapping(value = "/user/hotels")
 public class UserHotelsAjaxController extends HotelAbstractController {
 
-    public UserHotelsAjaxController(HotelService hotelService, CountryService countryService, CityService cityService) {
-        super(hotelService, countryService, cityService);
+    public UserHotelsAjaxController(HotelService hotelService, CityService cityService) {
+        super(hotelService, cityService);
     }
 
     @Override

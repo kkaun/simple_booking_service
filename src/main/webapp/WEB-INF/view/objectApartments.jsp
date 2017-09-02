@@ -66,7 +66,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h2 class="modal-title" id="apartmentModalTitle"></h2>
+                <h2 class="modal-title" id="apartmentModalTitle">Добавление апаратамента</h2>
             </div>
             <div class="modal-body">
                 <form:form class="form-horizontal detailsForm">
@@ -76,9 +76,8 @@
                     <div class="form-group">
                         <label for="aptPrice" class="control-label col-xs-3"><spring:message
                                 code="apartments.price"/></label>
-                        <div class="col-xs-9">
-                            <input class="form-control" type="number" step="any" min="1" id="aptPrice" name="price"
-                                   placeholder="<spring:message code="apartments.price"/>">
+                        <div class="col-xs-3">
+                            <input class="form-control" type="text" id="aptPrice" name="price">
                         </div>
                     </div>
                     <div class="form-group">
@@ -87,7 +86,7 @@
                                     code="apt_types.personNum"/> - <spring:message
                                     code="apt_types.category"/> - <spring:message
                                     code="apt_types.bedsArrangement"/></label>
-                            <div class="col-xs-9">
+                            <div class="col-xs-8">
                                 <select class="form-control" name="stringAptType" id="apartmentType">
                                     <c:if test="${not empty objectApartments}">
                                     <c:forEach items="${objectApartments}" var="objectApartment">

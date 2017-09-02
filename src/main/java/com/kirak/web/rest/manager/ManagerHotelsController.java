@@ -31,8 +31,8 @@ public class ManagerHotelsController extends HotelAbstractController {
     private UserService userService;
 
     @Autowired
-    public ManagerHotelsController(HotelService hotelService, CountryService countryService, CityService cityService) {
-        super(hotelService, countryService, cityService);
+    public ManagerHotelsController(HotelService hotelService, CityService cityService) {
+        super(hotelService, cityService);
     }
 
     @PostMapping

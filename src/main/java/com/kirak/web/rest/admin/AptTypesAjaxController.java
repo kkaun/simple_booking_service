@@ -2,6 +2,7 @@ package com.kirak.web.rest.admin;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.kirak.model.AptType;
+import com.kirak.service.ApartmentService;
 import com.kirak.service.AptTypeService;
 import com.kirak.service.HotelService;
 import com.kirak.to.AptTypeTo;
@@ -24,8 +25,8 @@ import java.util.List;
 public class AptTypesAjaxController extends AptTypeAbstractController{
 
     @Autowired
-    public AptTypesAjaxController(AptTypeService aptTypeService, HotelService hotelService) {
-        super(aptTypeService, hotelService);
+    public AptTypesAjaxController(AptTypeService aptTypeService, HotelService hotelService, ApartmentService apartmentService) {
+        super(aptTypeService, hotelService, apartmentService);
     }
 
     @PostMapping

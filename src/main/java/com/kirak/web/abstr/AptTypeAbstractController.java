@@ -84,8 +84,9 @@ public abstract class AptTypeAbstractController {
     }
 
     @ExceptionHandler(AptTypeHasApartmentsException.class)
-    public ResponseEntity<ErrorInfo> hasApartments(HttpServletRequest req, AptTypeHasApartmentsException e) {
-        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_APT_TYPE_HAS_APARTMENTS, HttpStatus.CONFLICT);
+    public ResponseEntity<ErrorInfo> aptTypeHasApartments(HttpServletRequest req, AptTypeHasApartmentsException e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_APT_TYPE_MODIFICATION_RESTRICTION + ": " +
+                EXCEPTION_APT_TYPE_HAS_APARTMENTS, HttpStatus.CONFLICT);
     }
 
 }

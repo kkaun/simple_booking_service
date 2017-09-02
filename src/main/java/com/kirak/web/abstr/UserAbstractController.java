@@ -135,28 +135,31 @@ public abstract class UserAbstractController {
 
     @ExceptionHandler(UserHasBookingsException.class)
     public ResponseEntity<ErrorInfo> hasBookingsException(HttpServletRequest req, UserHasBookingsException e) {
-        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_USER_HAS_BOOKINGS, HttpStatus.CONFLICT);
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_USER_MODIFICATION_RESTRICTION + ": " +
+                EXCEPTION_USER_HAS_BOOKINGS, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(ManagerModificationException.class)
     public ResponseEntity<ErrorInfo> isDemoManager(HttpServletRequest req, ManagerModificationException e) {
-        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_USER_IS_DEMO_MANAGER, HttpStatus.CONFLICT);
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_USER_MODIFICATION_RESTRICTION + ": " +
+                EXCEPTION_USER_IS_DEMO_MANAGER, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(AdminModificationException.class)
     public ResponseEntity<ErrorInfo> isDemoAdmin(HttpServletRequest req, AdminModificationException e) {
-        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_USER_IS_DEMO_ADMIN, HttpStatus.CONFLICT);
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_USER_MODIFICATION_RESTRICTION + ": " +
+                EXCEPTION_USER_IS_DEMO_ADMIN, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(UserHasBookingsException.class)
     public ResponseEntity<ErrorInfo> hasManageableHotels(HttpServletRequest req, UserHasBookingsException e) {
-        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_USER_HAS_MANAGEABLE_HOTELS, HttpStatus.CONFLICT);
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_USER_MODIFICATION_RESTRICTION + ": " +
+                EXCEPTION_USER_HAS_MANAGEABLE_HOTELS, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ErrorInfo> duplicateEmailException(HttpServletRequest req, DataIntegrityViolationException e) {
-        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_DUPLICATE_EMAIL, HttpStatus.CONFLICT);
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_USER_MODIFICATION_RESTRICTION + ": " +
+                EXCEPTION_DUPLICATE_EMAIL, HttpStatus.CONFLICT);
     }
-
-
 }

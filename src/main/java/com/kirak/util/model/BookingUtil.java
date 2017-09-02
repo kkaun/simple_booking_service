@@ -129,15 +129,17 @@ public class BookingUtil {
 
 
     public static boolean activeBookingsLeft(Set<Booking> bookings){
-
-        return bookings.stream()
-                .filter(BookingUtil::isBookingIncomplete).count() > 0;
+        return bookings.stream().filter(BookingUtil::isBookingIncomplete).count() > 0;
     }
 
     public static boolean isBookingIncomplete(Booking booking){
         return ((getBookingInDate(booking).isAfter(LocalDate.now().minusDays(1))) ||
                 (getBookingInDate(booking).isBefore(LocalDate.now().minusDays(1)) &&
                         getBookingOutDate(booking).isAfter(LocalDate.now())));
+    }
+
+    public static boolean isBookingInitiated(Booking booking){
+        return (getBookingInDate(booking).isBefore(LocalDate.now()));
     }
 
 }

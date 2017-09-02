@@ -7,16 +7,24 @@ import com.kirak.to.ManagerObject;
 import com.kirak.to.VoteTo;
 import com.kirak.to.booking.ChartTo;
 import com.kirak.to.booking.ManagerBookingTo;
+import com.kirak.util.ErrorInfo;
 import com.kirak.util.FileUploadUtil;
+import com.kirak.util.exception.model.apartment.ApartmentHasBookingsExcpetion;
+import com.kirak.util.exception.model.booking.BookingApartmentOccupiedException;
 import com.kirak.util.model.ApartmentUtil;
 import com.kirak.util.model.ManagerObjectUtil;
 import com.kirak.util.model.BookingUtil;
+import com.kirak.web.ExceptionViewHandler;
 import com.kirak.web.session.AuthorizedUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -30,9 +38,6 @@ import static com.kirak.util.model.BookingUtil.getBookingOutDate;
  * Created by Kir on 19.08.2017.
  */
 public abstract class ManagerObjectAbstractController {
-
-    public static final String EXCEPTION_MANAGER_HOTEL_HAS_BOOKINGS = "exception.manager.hotel.apartments.haveBookings";
-    public static final String EXCEPTION_MANAGER_HOTEL_REMOVING_RESTRICTION = "exception.manager.hotel.removingRestriction";
 
     public static final String EXCEPTION_APARTMENT_HAS_BOOKINGS = "exception.apartment.hasBookings";
     public static final String EXCEPTION_APARTMENT_MODIFICATION_RESTRICTION = "exception.apartment.modificationRestriction";
@@ -53,6 +58,8 @@ public abstract class ManagerObjectAbstractController {
 
     private final ManagerObjectService managerObjectService;
 
+    @Autowired
+    private ExceptionViewHandler exceptionInfoHandler;
 
     @Autowired
     public ManagerObjectAbstractController(ApartmentService apartmentService, AptTypeService aptTypeService, HotelService hotelService,
@@ -147,6 +154,7 @@ public abstract class ManagerObjectAbstractController {
 
     public void update(ApartmentTo apartmentTo){
         LOG.info("Updating {}", apartmentTo);
+        checkAllBusinessRestrictions(apartmentTo.getId());
         apartmentService.update(apartmentTo, aptTypeService.getAll());
     }
 
@@ -165,6 +173,7 @@ public abstract class ManagerObjectAbstractController {
 
     public void delete(Integer id){
         LOG.info("Deleting city {}", id);
+        checkAllBusinessRestrictions(id);
         Apartment apartment = apartmentService.get(id);
         if(ApartmentUtil.isApartmentAcceptedForEditing(apartment)){
             apartmentService.delete(id);
@@ -211,6 +220,18 @@ public abstract class ManagerObjectAbstractController {
         return managerObject.getObjectChartTos();
     }
 
+
+
+    public void checkAllBusinessRestrictions(int id){
+        if(ApartmentUtil.isSingleApartmentAvailable(apartmentService.get(id), LocalDate.now().minusDays(1), LocalDate.MAX))
+            throw new ApartmentHasBookingsExcpetion(EXCEPTION_APARTMENT_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(ApartmentHasBookingsExcpetion.class)
+    public ResponseEntity<ErrorInfo> apartmentHasBookings(HttpServletRequest req, ApartmentHasBookingsExcpetion e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_APARTMENT_MODIFICATION_RESTRICTION + ": " +
+                EXCEPTION_APARTMENT_HAS_BOOKINGS, HttpStatus.CONFLICT);
+    }
 
 }
 

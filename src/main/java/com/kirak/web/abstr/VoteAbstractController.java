@@ -1,17 +1,29 @@
 package com.kirak.web.abstr;
 
+import com.kirak.model.Booking;
 import com.kirak.model.Hotel;
+import com.kirak.model.User;
 import com.kirak.model.Vote;
 import com.kirak.service.HotelService;
 import com.kirak.service.UserService;
 import com.kirak.service.VoteService;
 import com.kirak.to.VoteTo;
+import com.kirak.util.ErrorInfo;
+import com.kirak.util.exception.model.apartment.ApartmentHasBookingsExcpetion;
+import com.kirak.util.exception.model.booking.BookingApartmentOccupiedException;
+import com.kirak.util.exception.model.vote.VoteBookingNotInitException;
+import com.kirak.util.model.BookingUtil;
 import com.kirak.util.model.VoteUtil;
+import com.kirak.web.ExceptionViewHandler;
 import com.kirak.web.session.AuthorizedUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -26,7 +38,7 @@ import static com.kirak.util.ValidationUtil.checkNew;
  */
 public abstract class VoteAbstractController {
 
-    public static final String EXCEPTION_VOTE_BOOKING_NOT_INITIATED = "exception.vote.booking.hotel.notVisitedYet";
+    public static final String EXCEPTION_VOTE_HOTEL_NOT_VISITED = "exception.vote.booking.hotel.notVisitedYet";
     public static final String EXCEPTION_VOTE_CREATION_RESTRICTION = "exception.vote.creationRestriction";
 
     protected final Logger LOG = LoggerFactory.getLogger(getClass());
@@ -38,6 +50,9 @@ public abstract class VoteAbstractController {
     private final UserService userService;
 
     @Autowired
+    private ExceptionViewHandler exceptionInfoHandler;
+
+    @Autowired
     public VoteAbstractController(VoteService voteService, HotelService hotelService, UserService userService) {
         this.voteService = voteService;
         this.hotelService = hotelService;
@@ -47,8 +62,9 @@ public abstract class VoteAbstractController {
     public void create(VoteTo createdTo){
         LOG.info("Saving {}", createdTo);
         checkNew(createdTo);
-        Vote created = VoteUtil.createFromTo(createdTo, userService.get(AuthorizedUser.id()),
-                hotelService.get(createdTo.getHotelId()));
+        User currentUser = userService.get(AuthorizedUser.id());
+        checkVoteHotelNotVisited(currentUser, createdTo.getHotelId());
+        Vote created = VoteUtil.createFromTo(createdTo, currentUser, hotelService.get(createdTo.getHotelId()));
         if(voteService.getAllByHotel(createdTo.getHotelId()).stream()
                 .filter(vote -> Objects.equals(vote.getUser().getId(), AuthorizedUser.id())).count() == 0) {
             voteService.save(created, AuthorizedUser.id(), createdTo.getHotelId());
@@ -95,6 +111,20 @@ public abstract class VoteAbstractController {
     public void delete(Integer id){
         LOG.info("Deleting vote {}", id);
         voteService.delete(id);
+    }
+
+
+    public void checkVoteHotelNotVisited(User user, int hotelId){
+        List<Booking> userHotelBookings = user.getBookings().stream()
+                .filter(booking -> Objects.equals(booking.getHotel().getId(), hotelId)).collect(Collectors.toList());
+        if(userHotelBookings.stream().filter(BookingUtil::isBookingInitiated).count() < 1)
+            throw new VoteBookingNotInitException(EXCEPTION_VOTE_CREATION_RESTRICTION, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(VoteBookingNotInitException.class)
+    public ResponseEntity<ErrorInfo> voteHotelNotVisited(HttpServletRequest req, VoteBookingNotInitException e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_VOTE_CREATION_RESTRICTION + ": " +
+                EXCEPTION_VOTE_HOTEL_NOT_VISITED, HttpStatus.CONFLICT);
     }
 
 }

@@ -7,10 +7,8 @@ import com.kirak.service.BookingService;
 import com.kirak.service.SubBookingService;
 import com.kirak.to.booking.*;
 import com.kirak.util.ErrorInfo;
-import com.kirak.util.exception.ApplicationException;
-import com.kirak.util.exception.model.apt_type.AptTypeHasApartmentsException;
+import com.kirak.util.exception.model.booking.BookingAccomplishedException;
 import com.kirak.util.exception.model.booking.BookingApartmentOccupiedException;
-import com.kirak.util.exception.model.user.UserHasBookingsException;
 import com.kirak.util.model.ApartmentUtil;
 import com.kirak.util.model.SubBookingUtil;
 import com.kirak.util.model.BookingUtil;
@@ -19,7 +17,6 @@ import com.kirak.web.session.AuthorizedUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -36,6 +33,7 @@ import static com.kirak.util.model.BookingUtil.*;
 public abstract class BookingAbstractController {
 
     public static final String EXCEPTION_SUB_BOOKING_APARTMENT_OCCUPIED = "exception.booking.apartment.isOccupied";
+    public static final String EXCEPTION_SUB_BOOKING_ACCOMPLISHED = "exception.booking.isAccomplished";
     public static final String EXCEPTION_SUB_BOOKING_MODIFICATION_RESTRICTION = "exception.booking.modificationRestriction";
 
     private final Logger LOG = LoggerFactory.getLogger(getClass());
@@ -173,15 +171,23 @@ public abstract class BookingAbstractController {
 
 
 
-
     public void checkAllBusinessRestrictions(long id){
         if(!ApartmentUtil.isSingleApartmentAvailable(subBookingService.get(id).getApartment(),
                 LocalDate.now().minusDays(1), LocalDate.MAX))
             throw new BookingApartmentOccupiedException(EXCEPTION_SUB_BOOKING_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
+        if(BookingUtil.getBookingOutDate(subBookingService.get(id).getBooking()).isBefore(LocalDate.now()))
+            throw new BookingAccomplishedException(EXCEPTION_SUB_BOOKING_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(BookingApartmentOccupiedException.class)
-    public ResponseEntity<ErrorInfo> hasManageableHotels(HttpServletRequest req, BookingApartmentOccupiedException e) {
-        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_SUB_BOOKING_APARTMENT_OCCUPIED, HttpStatus.CONFLICT);
+    public ResponseEntity<ErrorInfo> subBookingApartmentOccupied(HttpServletRequest req, BookingApartmentOccupiedException e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_SUB_BOOKING_MODIFICATION_RESTRICTION + ": " +
+                EXCEPTION_SUB_BOOKING_APARTMENT_OCCUPIED, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(BookingAccomplishedException.class)
+    public ResponseEntity<ErrorInfo> subBookingAccomplished(HttpServletRequest req, BookingAccomplishedException e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_SUB_BOOKING_MODIFICATION_RESTRICTION + ": " +
+                EXCEPTION_SUB_BOOKING_APARTMENT_OCCUPIED, HttpStatus.CONFLICT);
     }
 }
