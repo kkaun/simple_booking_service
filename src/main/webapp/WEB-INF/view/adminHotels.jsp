@@ -20,18 +20,18 @@
         <div class="col-md-10">
 
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <form:form class="form-horizontal filter" id="hotelsByRatingAdminFilter">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-3" for="minRating"><spring:message
-                                            code="hotels.minRating"/>:</label>
+                                    <label class="control-label col-sm-3" for="minRating">
+                                        <spring:message code="common.filter_title"/> <spring:message code="hotels.minRating"/>:</label>
                                     <div class="col-sm-3">
                                         <input class="form-control" name="minRating" id="minRating">
                                     </div>
-                                    <label class="control-label col-sm-3" for="maxRating"><spring:message
-                                            code="hotels.maxRating"/>:</label>
+                                    <label class="control-label col-sm-3" for="maxRating">
+                                        <spring:message code="common.filter_title"/> <spring:message code="hotels.maxRating"/>:</label>
 
                                     <div class="col-sm-3">
                                         <input class="form-control" name="maxRating" id="maxRating">
@@ -40,36 +40,35 @@
                             </form:form>
                         </div>
                         <div class="panel-footer text-right">
-                            <a class="btn btn-danger" type="button" onclick="clearHotelsByRatingFilter()">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            <a class="btn btn-default" type="button" onclick="clearHotelsByRatingFilter()">
+                                <span><i class="fa fa-eraser" aria-hidden="true"></i></span>
                             </a>
                             <a class="btn btn-primary" type="button" onclick="updateHotelsTableByRating()">
-                                <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                                <spring:message code="common.filter"/> <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-5">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <form:form class="form-horizontal filter" id="hotelsByCityAdminFilter">
                                 <div class="form-group">
-                                    <label for="regionName" class="control-label col-xs-3"><spring:message
-                                            code="common.hotelName"/></label>
-                                    <div class="col-xs-9">
-                                        <input class="form-control" type="text" id="regionName" name="regionName"
-                                               placeholder="<spring:message code="common.hotelName"/>">
+                                    <label for="regionName" class="control-label col-xs-5">
+                                        <spring:message code="common.filter_title"/> <spring:message code="common.filter_by_location"/></label>
+                                    <div class="col-xs-7">
+                                        <input class="form-control" type="text" id="regionName" name="regionName">
                                     </div>
                                 </div>
                             </form:form>
                         </div>
                         <div class="panel-footer text-right">
-                            <a class="btn btn-danger" type="button" onclick="clearHotelsByCityFilter()">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            <a class="btn btn-default" type="button" onclick="clearHotelsByCityFilter()">
+                                <span><i class="fa fa-eraser" aria-hidden="true"></i></span>
                             </a>
                             <a class="btn btn-primary" type="button" onclick="updateHotelsTableByCity()">
-                                <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                                <spring:message code="common.filter"/> <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
                             </a>
                         </div>
                     </div>

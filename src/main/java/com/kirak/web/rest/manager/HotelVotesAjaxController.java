@@ -7,6 +7,7 @@ import com.kirak.to.VoteTo;
 import com.kirak.web.View;
 import com.kirak.web.abstr.ManagerObjectAbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,7 +30,7 @@ public class HotelVotesAjaxController extends ManagerObjectAbstractController{
     }
 
     @Override
-    @GetMapping
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @JsonView(View.JsonUI.class)
     public List<VoteTo> getHotelVotesFromCurrentObject() {
         return super.getHotelVotesFromCurrentObject();

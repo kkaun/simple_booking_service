@@ -16,7 +16,7 @@ import java.util.List;
  * Created by Kir on 15.06.2017.
  */
 @RestController
-@RequestMapping(value = "admin/users")
+@RequestMapping(value = "/admin/users")
 public class UsersAjaxController extends UserAbstractController {
 
     @Autowired

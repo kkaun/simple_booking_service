@@ -36,7 +36,7 @@
                             <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/admin'}">
                                 <li style="margin-left: 10px;">
                                     <form>
-                                        <a class="btn navbar-btn btn-danger" href="administrate"
+                                        <a class="btn navbar-btn btn-success" href="administrate"
                                            style="border-bottom-left-radius: 15px; border-top-left-radius: 15px;">
                                             <spring:message code="common.admin"/></a>
                                     </form>
@@ -47,7 +47,7 @@
                             <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/managerObjects'}">
                                 <li style="margin-left: 10px;">
                                     <form>
-                                        <a class="btn navbar-btn btn-danger" href="manage" style="border-radius: 15px">
+                                        <a class="btn navbar-btn btn-success" href="manage" style="border-radius: 15px">
                                             <spring:message code="common.manager"/></a>
                                     </form>
                                 </li>

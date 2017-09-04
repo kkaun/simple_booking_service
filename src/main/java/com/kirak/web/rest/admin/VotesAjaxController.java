@@ -27,7 +27,7 @@ public class VotesAjaxController extends VoteAbstractController {
     }
 
     @Override
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @JsonView(View.JsonUI.class)
     public VoteTo get(@PathVariable("id") Integer id) {
         return super.get(id);

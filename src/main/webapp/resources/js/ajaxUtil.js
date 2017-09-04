@@ -102,7 +102,7 @@ function updateAptTypeRow(id) {
 
 function renderAptTypeEditBtn(data, type, row) {
     if (type === 'display') {
-        return '<a onclick="updateAptTypeRow(' + row.id + ');">' +
+        return '<a class="btn btn-warning" onclick="updateAptTypeRow(' + row.id + ');">' +
             '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>';
     }
 }
@@ -123,7 +123,7 @@ function saveAptType() {
 
 function renderAptTypeDeleteBtn(data, type, row) {
     if (type === 'display') {
-        return '<a onclick="deleteAptTypeRow(' + row.id + ');" disabled="disabled">' +
+        return '<a class="btn btn-danger" onclick="deleteAptTypeRow(' + row.id + ');">' +
             '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
     }
 }
@@ -167,7 +167,7 @@ function updateHotelRow(id) {
 
 function renderHotelEditBtn(data, type, row) {
     if (type === 'display') {
-        return '<a onclick="updateHotelRow(' + row.id + ');">' +
+        return '<a class="btn btn-warning" onclick="updateHotelRow(' + row.id + ');">' +
             '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>';
     }
 }
@@ -189,7 +189,7 @@ function saveHotel() {
 
 function renderHotelDeleteBtn(data, type, row) {
     if (type === 'display') {
-        return '<a onclick="deleteHotelRow(' + row.id + ');" disabled="disabled">' +
+        return '<a class="btn btn-danger" onclick="deleteHotelRow(' + row.id + ');">' +
             '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
     }
 }
@@ -234,14 +234,14 @@ function updateRegionRow(id) {
 
 function renderRegionEditBtn(data, type, row) {
     if (type === 'display') {
-        return '<a onclick="updateRegionRow(' + row.id + ');">' +
+        return '<a class="btn btn-warning" onclick="updateRegionRow(' + row.id + ');">' +
             '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>';
     }
 }
 
 function renderRegionImageBtn(data, type, row) {
     if (type === 'display') {
-        return '<a onclick="updateRegionImage(' + row.id + ');">' +
+        return '<a class="btn btn-default" onclick="updateRegionImage(' + row.id + ');">' +
             '<span class="glyphicon glyphicon-picture" aria-hidden="true"></span></a>';
     }
 }
@@ -299,7 +299,7 @@ function saveRegionImage() {
 
 function renderRegionDeleteBtn(data, type, row) {
     if (type === 'display') {
-        return '<a onclick="deleteRegionRow(' + row.id + ');" disabled="disabled">' +
+        return '<a class="btn btn-danger" onclick="deleteRegionRow(' + row.id + ');">' +
             '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
     }
 }
@@ -344,7 +344,7 @@ function updateUserRow(id) {
 
 function renderUserEditBtn(data, type, row) {
     if (type === 'display') {
-        return '<a onclick="updateUserRow(' + row.id + ');">' +
+        return '<a class="btn btn-warning" onclick="updateUserRow(' + row.id + ');">' +
             '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>';
     }
 }
@@ -365,7 +365,7 @@ function saveUser() {
 
 function renderUserDeleteBtn(data, type, row) {
     if (type === 'display') {
-        return '<a onclick="deleteUserRow(' + row.id + ');" disabled="disabled">' +
+        return '<a onclick="deleteUserRow(' + row.id + ');">' +
             '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
     }
 }
@@ -383,10 +383,10 @@ function deleteUserRow(id) {
 
 
 
-function renderViewUserVoteBtn(data, type, row) {
+function renderViewVoteBtn(data, type, row) {
     if (type === 'display') {
-        return '<a onclick="showVoteRow(' + row.id + ');">' +
-            '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>';
+        return '<a class="btn btn-default" onclick="showVoteRow(' + row.id + ');">' +
+            '<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>';
     }
 }
 
@@ -399,6 +399,24 @@ function showVoteRow(id) {
         });
         $('.load-bar').hide();
         $('#voteShowRow').modal();
+    });
+}
+
+function renderDeleteVoteBtn(data, type, row) {
+    if (type === 'display') {
+        return '<a class="btn btn-danger" onclick="deleteVoteRow(' + row.id + ');">' +
+            '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
+    }
+}
+
+function deleteVoteRow(id) {
+    $.ajax({
+        url: ajaxUrl + id,
+        type: 'DELETE',
+        success: function () {
+            updateVotesTable();
+            successNoty('common.deleted');
+        }
     });
 }
 
@@ -417,7 +435,7 @@ function addApartment() {
 
 function renderApartmentEditBtn(data, type, row) {
     if (type === 'display') {
-        return '<a onclick="updateApartmentRow(' + row.id + ');">' +
+        return '<a class="btn btn-warning" onclick="updateApartmentRow(' + row.id + ');">' +
             '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>';
     }
 }
@@ -435,7 +453,7 @@ function updateApartmentRow(id) {
 
 function renderApartmentImageBtn(data, type, row) {
     if (type === 'display') {
-        return '<a onclick="updateApartmentImage(' + row.id + ');">' +
+        return '<a class="btn btn-default" onclick="updateApartmentImage(' + row.id + ');">' +
             '<span class="glyphicon glyphicon-picture" aria-hidden="true"></span></a>';
     }
 }
@@ -492,7 +510,7 @@ function saveApartmentImage() {
 
 function renderApartmentDeleteBtn(data, type, row) {
     if (type === 'display') {
-        return '<a onclick="deleteApartmentRow(' + row.id + ');" disabled="disabled">' +
+        return '<a class="btn btn-danger" onclick="deleteApartmentRow(' + row.id + ');">' +
             '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
     }
 }
@@ -523,7 +541,7 @@ function addManagerHotel() {
 
 function renderManagerHotelEditBtn(data, type, row) {
     if (type === 'display') {
-        return '<a onclick="updateManagerHotelRow(' + row.id + ');">' +
+        return '<a class="btn btn-warning" onclick="updateManagerHotelRow(' + row.id + ');">' +
             '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>';
     }
 }
@@ -544,7 +562,7 @@ function updateManagerHotelRow(id) {
 
 function renderManagerHotelImageBtn(data, type, row) {
     if (type === 'display') {
-        return '<a onclick="updateManagerHotelImage(' + row.id + ');">' +
+        return '<a class="btn btn-default" onclick="updateManagerHotelImage(' + row.id + ');">' +
             '<span class="glyphicon glyphicon-picture" aria-hidden="true"></span></a>';
     }
 }
@@ -601,7 +619,7 @@ function saveManagerHotelImage() {
 
 function renderManagerHotelDeleteBtn(data, type, row) {
     if (type === 'display') {
-        return '<a onclick="deleteManagerHotelRow(' + row.id + ');" disabled="disabled">' +
+        return '<a class="btn btn-danger" onclick="deleteManagerHotelRow(' + row.id + ');">' +
             '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
     }
 }
@@ -627,7 +645,7 @@ function deleteManagerHotelRow(id) {
 
 function renderGetUserVoteByHotelBtn(data, type, row) {
     if (type === 'display') {
-        return '<a class="btn btn-danger" onclick="updateUserVoteByHotelId(' + row.id + ');">' +
+        return '<a class="btn btn-warning" onclick="updateUserVoteByHotelId(' + row.id + ');">' +
             '<span><i class="fa fa-commenting" aria-hidden="true"></i> Vote Object</span></a>';
     }
 }
@@ -662,7 +680,7 @@ function createUserVoteByHotel() {
 
 function renderUserVoteEditBtn(data, type, row) {
     if (type === 'display') {
-        return '<a onclick="updateUserVoteRow(' + row.id + ');">' +
+        return '<a class="btn btn-warning" onclick="updateUserVoteRow(' + row.id + ');">' +
             '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>';
     }
 }
@@ -695,7 +713,7 @@ function saveUserVote() {
 
 function renderUserVoteDeleteBtn(data, type, row) {
     if (type === 'display') {
-        return '<a onclick="deleteUserVoteRow(' + row.id + ');" disabled="disabled">'+
+        return '<a class="btn btn-danger" onclick="deleteUserVoteRow(' + row.id + ');">'+
             '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
     }
 }

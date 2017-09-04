@@ -5,9 +5,9 @@
 var ajaxUrl = "/admin/votes/";
 var datatableApi;
 
-// $(function() {
-//     $.get(ajaxUrl, updateTableByData);
-// });
+function updateVotesTable() {
+    $.get(ajaxUrl, updateTableByData);
+}
 
 $(function () {
     datatableApi = $('#votesDatatable').DataTable(extendsOpts({
@@ -34,7 +34,12 @@ $(function () {
                 "data": "hotelName"
             },
             {
-                "render": renderViewUserVoteBtn,
+                "render": renderViewVoteBtn,
+                "defaultContent": "",
+                "orderable": false
+            },
+            {
+                "render": renderDeleteVoteBtn,
                 "defaultContent": "",
                 "orderable": false
             }

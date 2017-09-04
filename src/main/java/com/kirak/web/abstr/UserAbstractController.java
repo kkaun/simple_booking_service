@@ -7,10 +7,7 @@ import com.kirak.service.UserService;
 import com.kirak.to.UserTo;
 import com.kirak.util.ErrorInfo;
 import com.kirak.util.exception.ApplicationException;
-import com.kirak.util.exception.model.user.AdminModificationException;
-import com.kirak.util.exception.model.user.ManagerHasHotelsException;
-import com.kirak.util.exception.model.user.ManagerModificationException;
-import com.kirak.util.exception.model.user.UserHasBookingsException;
+import com.kirak.util.exception.model.user.*;
 import com.kirak.util.model.BookingUtil;
 import com.kirak.util.model.UserUtil;
 import com.kirak.web.ExceptionViewHandler;
@@ -39,6 +36,7 @@ public abstract class UserAbstractController {
     public static final String EXCEPTION_USER_HAS_BOOKINGS = "exception.user.hasActiveBookings";
     public static final String EXCEPTION_USER_IS_DEMO_MANAGER = "exception.user.isDemoManager";
     public static final String EXCEPTION_USER_IS_DEMO_ADMIN = "exception.user.isDemoAdmin";
+    public static final String EXCEPTION_USER_IS_DEMO_USER = "exception.user.isDemoUser";
     public static final String EXCEPTION_USER_HAS_MANAGEABLE_HOTELS = "exception.user.hasManageableHotels";
     public static final String EXCEPTION_USER_MODIFICATION_RESTRICTION = "exception.user.modificationRestriction";
 
@@ -122,10 +120,12 @@ public abstract class UserAbstractController {
     }
 
     public void checkAllBusinessRestrictions(int id){
+        if(id == 100000 || id == 100001|| id == 100002)
+            throw new DemoUserModificationException(EXCEPTION_USER_MODIFICATION_RESTRICTION, HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
         if (id == 100004)
             throw new AdminModificationException(EXCEPTION_USER_MODIFICATION_RESTRICTION, HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
         if (id == 100003)
-            throw new ManagerModificationException(EXCEPTION_USER_MODIFICATION_RESTRICTION, HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
+            throw new DemoManagerModificationException(EXCEPTION_USER_MODIFICATION_RESTRICTION, HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
         User user = userService.get(id);
         if (user.getRoles().contains(UserRole.ROLE_MANAGER) && !user.getHotels().isEmpty())
             throw new ManagerHasHotelsException(EXCEPTION_USER_MODIFICATION_RESTRICTION, HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
@@ -138,8 +138,13 @@ public abstract class UserAbstractController {
         return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_USER_HAS_BOOKINGS, HttpStatus.CONFLICT);
     }
 
-    @ExceptionHandler(ManagerModificationException.class)
-    public ResponseEntity<ErrorInfo> isDemoManager(HttpServletRequest req, ManagerModificationException e) {
+    @ExceptionHandler(DemoUserModificationException.class)
+    public ResponseEntity<ErrorInfo> isDemoUser(HttpServletRequest req, DemoUserModificationException e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_USER_IS_DEMO_USER, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(DemoManagerModificationException.class)
+    public ResponseEntity<ErrorInfo> isDemoManager(HttpServletRequest req, DemoManagerModificationException e) {
         return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_USER_IS_DEMO_MANAGER, HttpStatus.CONFLICT);
     }
 

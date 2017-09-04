@@ -19,16 +19,14 @@
 
         <div class="col-md-10">
 
-            <h3><spring:message code="cities.title"/></h3>
-
             <div class="row">
                 <div class="col-sm-12">
                     <div class="panel panel-default text-left">
                         <div class="panel-body text-left">
                             <form:form class="form-horizontal filter" id="placesAdminFilter">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-4" for="region"><spring:message
-                                            code="city.byRegion"/>:</label>
+                                    <label class="control-label col-sm-4" for="region">
+                                        <spring:message code="common.filter_title"/> <spring:message code="city.byRegion"/>:</label>
                                     <div class="col-sm-5">
                                         <input class="form-control" name="region" id="region">
                                     </div>
@@ -36,11 +34,11 @@
                             </form:form>
                         </div>
                         <div class="panel-footer text-right">
-                            <a class="btn btn-danger" type="button" onclick="clearPlacesFilter()">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            <a class="btn btn-default" type="button" onclick="clearPlacesFilter()">
+                                <span><i class="fa fa-eraser" aria-hidden="true"></i></span>
                             </a>
                             <a class="btn btn-primary" type="button" onclick="updatePlacesTable()">
-                                <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                                <spring:message code="common.filter"/> <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
                             </a>
                         </div>
                     </div>
@@ -48,14 +46,14 @@
             </div>
 
             <div class="row" style="height: 70px">
-                <div class="col-md-6">
+                <div class="col-md-10">
                     <div class="panel panel-default">
                         <div class="panel-body" style="padding: 10px;">
                             <h4 class="pull-left"><strong><spring:message code="common.regions_list"/></strong></h4>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-2">
                     <button id="adminUserAddBtn" class="btn btn-lg btn-primary pull-right"
                             style="margin: 0 auto;" onclick="addRegion()">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -177,11 +175,10 @@
                 <br>
                 <form:form class="form-horizontal detailsForm" id="imgForm" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="id" name="id">
-                    <label for="image" class="control-label col-xs-5"><spring:message
-                            code="common.choose_image"/></label>
-                    <div class="form-group">
-                        <div class="col-xs-7">
-                            <input name="image" id="image" type="file"/><br/>
+                    <div class="form-group text-center">
+                        <label for="image" class="control-label col-md-6"><spring:message code="common.choose_image"/></label>
+                        <div class="col-md-6">
+                            <input name="image" id="image" type="file" /><br/>
                         </div>
                     </div>
                     <div class="form-group">
