@@ -63,6 +63,11 @@ public class VoteRepositoryImpl implements VoteRepository {
     }
 
     @Override
+    public Vote get(Integer id) {
+        return voteRepository.findOne(id);
+    }
+
+    @Override
     public List<Vote> getAllByHotel(int hotelId) {
         return voteRepository.getAllByHotel(hotelId);
     }

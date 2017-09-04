@@ -42,6 +42,7 @@
                                 <th><spring:message code="common.hotelId"/></th>
                                 <th><spring:message code="common.hotelName"/></th>
                                 <th></th>
+                                <th></th>
                             </thead>
                         </table>
                     </div>
@@ -53,38 +54,24 @@
 </div>
 
 
-<div class="modal fade" id="voteShowRow">
+<div class="modal fade" id="showVoteRow">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h2 class="modal-title" id="voteShowModalTitle"></h2>
+                <h2 class="modal-title" id="userVoteModalTitle"><spring:message code="common.view_vote"/></h2>
             </div>
             <div class="modal-body">
                 <form:form class="form-horizontal detailsForm">
-                    <input type="hidden" id="id" name="id">
 
                     <div class="form-group">
-                        <label for="voteDateAdded" class="control-label col-xs-3"><spring:message
-                                code="common.dateAdded"/></label>
-                        <div class="col-xs-5">
-                            <input class="form-control" id="voteDateAdded" name="dateAdded" readonly>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="hotelId" class="control-label col-xs-3"><spring:message
-                                code="common.rate"/></label>
-                        <div class="col-xs-5">
-                            <input class="form-control" id="hotelId" name="hotelId" readonly>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label for="hotelName" class="control-label col-xs-3"><spring:message
-                                code="common.rate"/></label>
+                                code="common.bookerName"/></label>
                         <div class="col-xs-9">
                             <input class="form-control" id="hotelName" name="hotelName" readonly>
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label for="voteRate" class="control-label col-xs-3"><spring:message
                                 code="common.rate"/></label>
@@ -92,13 +79,7 @@
                             <input class="form-control" id="voteRate" name="rate" readonly>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="voteUName" class="control-label col-xs-3"><spring:message
-                                code="common.bookerName"/></label>
-                        <div class="col-xs-9">
-                            <input class="form-control" id="voteUName" name="user.name" readonly>
-                        </div>
-                    </div>
+
                     <div class="form-group">
                         <label for="voteUserComment" class="control-label col-xs-3"><spring:message
                                 code="common.comment"/></label>
@@ -109,6 +90,9 @@
                     </div>
                 </form:form>
             </div>
+        </div>
+        <div class="modal-footer">
+            <div class="load-bar"></div>
         </div>
     </div>
 </div>

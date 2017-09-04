@@ -93,7 +93,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
                 </button>
-                <h2 class="modal-title" id="regionModalTitle"></h2>
+                <h2 class="modal-title" id="regionModalTitle"><spring:message code="common.region_editing"/></h2>
             </div>
             <div class="modal-body">
                 <form:form class="form-horizontal detailsForm">

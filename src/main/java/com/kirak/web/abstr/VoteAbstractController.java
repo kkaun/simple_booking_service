@@ -95,6 +95,10 @@ public abstract class VoteAbstractController {
         return VoteUtil.asTo(voteService.get(id, AuthorizedUser.id()));
     }
 
+    public VoteTo getForAdmin(Integer id){
+        return VoteUtil.asTo(voteService.get(id));
+    }
+
     public List<VoteTo> getAll(){
         LOG.info("Getting all votes");
         return VoteUtil.getAllTos(voteService.getAll());

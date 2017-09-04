@@ -18,6 +18,8 @@ public interface VoteService {
 
     Vote get(Integer id, int userId);
 
+    Vote get(Integer id);
+
     List<Vote> getAllByHotel(int hotelId);
 
     List<Vote> getAllByUser(int userId);

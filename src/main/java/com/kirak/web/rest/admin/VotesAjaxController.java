@@ -29,13 +29,19 @@ public class VotesAjaxController extends VoteAbstractController {
     @Override
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @JsonView(View.JsonUI.class)
-    public VoteTo get(@PathVariable("id") Integer id) {
-        return super.get(id);
+    public VoteTo getForAdmin(@PathVariable("id") Integer id) {
+        return super.getForAdmin(id);
     }
 
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<VoteTo> getAll() {
         return super.getAll();
+    }
+
+    @Override
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") Integer id) {
+        super.delete(id);
     }
 }

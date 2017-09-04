@@ -69,7 +69,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     &times;
                 </button>
-                <h2 class="modal-title" id="userUpdateModalTitle"></h2>
+                <h2 class="modal-title" id="userUpdateModalTitle"><spring:message code="common.edit_user"/></h2>
             </div>
             <div class="modal-body">
                 <form:form class="form-horizontal detailsForm">

@@ -159,7 +159,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h2 class="modal-title" id="managerHotelImageModalTitle"></h2>
+                <h2 class="modal-title" id="managerHotelImageModalTitle"><spring:message code="common.edit_object"/></h2>
             </div>
             <div class="modal-body">
                 <div class="row">
