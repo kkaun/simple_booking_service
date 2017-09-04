@@ -29,8 +29,10 @@
                             <h4><spring:message code="common.booker_info"/></h4>
                         </div>
                         <div class="panel-body">
-                            <h5><spring:message code="common.booker_info_discl"/></h5>
-                            <hr>
+                            <sec:authorize access="isAnonymous()">
+                                <h5><spring:message code="common.booker_info_discl"/></h5>
+                                <hr>
+                            </sec:authorize>
                             <div class="col-md-12">
                                 <div class="col-md-1"></div>
                                 <div class="col-md-10">
@@ -177,28 +179,28 @@
                             <h3><spring:message code="common.summary"/></h3>
                         </div>
                         <div class="panel-body">
-                            <h4>${hotel.name}</h4>
+                            <h4><c:out value="${hotel.name}"/></h4>
                             <br>
                             <table class="table table-responsive">
                                 <tr>
                                     <td><spring:message code="subBookings.personNum"/></td>
-                                    <td>${placementPersonNum}</td>
+                                    <td><c:out value="${placementPersonNum}"/></td>
                                 </tr>
                                 <tr>
                                     <td><spring:message code="super_bookings.apartmentsNum"/></td>
-                                    <td>${placementApartmentNum}</td>
+                                    <td><c:out value="${placementApartmentNum}"/></td>
                                 </tr>
                                 <tr>
                                     <td><spring:message code="hotels.checkIn"/></td>
-                                    <td>${placementInDate}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${hotel.checkIn}</td>
+                                    <td><c:out value="${placementInDate}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp<c:out value=";${hotel.checkIn}"/></td>
                                 </tr>
                                 <tr>
                                     <td><spring:message code="hotels.checkOut"/></td>
-                                    <td>${placementOutDate}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${hotel.checkOut}</td>
+                                    <td><c:out value="${placementOutDate}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<c:out value="${hotel.checkOut}"/></td>
                                 </tr>
                                 <tr>
                                     <td><spring:message code="common.total_sum"/></td>
-                                    <td>${placementSum}</td>
+                                    <td><i class="fa fa-btc"></i> <c:out value="${placementSum}"/>0</td>
                                 </tr>
                             </table>
                         </div>

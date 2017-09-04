@@ -29,7 +29,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-body" style="padding: 10px;">
                                     <h4 class="pull-left"><strong><spring:message
-                                            code="common.visited_hotels"/></strong></h4>
+                                            code="common.booked_visited_hotels"/></strong></h4>
                                 </div>
                             </div>
                         </div>

@@ -31,7 +31,7 @@
                 <div class="col-md-4">
                 </div>
                 <div class="col-md-8" style="padding-left: 20px; padding-right: 20px">
-                    <h3 style="color: #f6f6f6; margin-top: -170px;">${city.name}. <br>${city.description}</h3>
+                    <h3 style="color: #f6f6f6; margin-top: -170px;"><c:out value="${city.name}"/>. <br><c:out value="${city.description}"/></h3>
                 </div>
             </div>
         </c:if>
@@ -40,7 +40,7 @@
             </div>
             <div class="col-md-8">
                 <c:if test="${not empty region}">
-                    <h2><spring:message code="common.found_objects_in"/> ${region}:</h2>
+                    <h2><spring:message code="common.found_objects_in"/> <c:out value="${region}"/>:</h2>
                 </c:if>
             </div>
         </c:if>
@@ -55,9 +55,10 @@
             <div class="well">
                 <a class="list-group">
                     <c:if test="${not empty badRegion && empty hotels}">
-                        <div class="list-group-item">
+                        <div class="list-group-item listItem">
                             <h3>
-                                <spring:message code="common.unfortunately_request"/> "${badRegion}" <spring:message code="common.no_results"/>
+                                <spring:message code="common.unfortunately_request"/> "<c:out value="${badRegion}"/>"
+                                <spring:message code="common.no_results"/>
                                 <br>
                                 <spring:message code="common.maybe_shortage"/>
                                 <br>
@@ -77,7 +78,7 @@
                     <c:if test="${not empty hotels}">
                         <c:forEach items="${hotels}" var="hotel">
                             <jsp:useBean id="hotel" scope="page" type="com.kirak.to.HotelTo"/>
-                            <a class="list-group-item" href="inspect_hotel?id=${hotel.id}" style="padding-top: 20px;">
+                            <a class="list-group-item listItem" href="inspect_hotel?id=${hotel.id}" style="padding-top: 20px;">
                                 <div class="media col-md-3">
                                     <figure class="pull-left">
                                         <c:if test="${not empty hotel.imgPath && hotel.imgPath.length() >= 1}">
@@ -91,8 +92,8 @@
                                     </figure>
                                 </div>
                                 <div class="col-md-4">
-                                    <h4 class="list-group-item-heading"> ${hotel.name} </h4>
-                                    <p class="list-group-item-text"> ${hotel.description}
+                                    <h4 class="list-group-item-heading"> <c:out value="${hotel.name}"/> </h4>
+                                    <p class="list-group-item-text"> <c:out value="${hotel.description}"/>
                                     </p>
                                 </div>
                                 <div class="col-md-5 text-center">
@@ -107,11 +108,11 @@
                                         </c:if>
                                     </div>
                                     <c:if test="${hotel.votesNum > 0}">
-                                        <h3> <spring:message code="common.average"/> ${hotel.rating}
+                                        <h3> <spring:message code="common.average"/> <c:out value="${hotel.rating}"/>
                                             <small> /</small>
                                             10
                                         </h3>
-                                        <h4> ${hotel.votesNum}
+                                        <h4> <c:out value="${hotel.votesNum}"/>
                                             <small> <spring:message code="hotels.votesNum"/> </small>
                                         </h4>
                                     </c:if>
@@ -129,7 +130,7 @@
                     <c:if test="${not empty placements && empty hotels}">
                         <c:forEach items="${placements}" var="placement">
                             <jsp:useBean id="placement" scope="page" type="com.kirak.to.Placement"/>
-                            <a class="list-group-item" style="padding-top: 20px; padding-bottom: 10px;"
+                            <a class="list-group-item listItem" style="padding-top: 20px; padding-bottom: 10px;"
                                href="inspect_placement?id=${placement.id}&personNum=${placementPersonNum}&apartmentNum=${placementApartmentNum}&inDate=${placementInDate}&outDate=${placementOutDate}">
                                 <div class="media col-md-3">
                                     <figure class="pull-left">
@@ -145,7 +146,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="col-md-12">
-                                        <h4 class="list-group-item-heading"> ${placement.hotel.name} </h4>
+                                        <h4 class="list-group-item-heading"> <c:out value="${placement.hotel.name}"/> </h4>
                                         <hr>
                                     </div>
                                     <div class="col-md-12">
@@ -154,8 +155,9 @@
                                             <table class="table-responsive">
                                                 <c:forEach items="${placement.option}" var="option">
                                                     <tr>
-                                                        <td><h6><strong>${option.key.category}
-                                                                <spring:message code="common.with"/> ${option.key.bedsArrangement}</strong></h6></td>
+                                                        <td><h6><strong><c:out value="${option.key.category}"/>
+                                                                <spring:message code="common.with"/>
+                                                                <c:out value="${option.key.bedsArrangement}"/></strong></h6></td>
                                                         <td><h6>&nbsp;&nbsp;&nbsp;x<strong>${fn:length(option.value)}</strong></h6></td>
                                                     </tr>
                                                 </c:forEach>
@@ -172,15 +174,15 @@
                                             </c:forEach>
                                         </c:if>
                                         <c:if test="${empty placement.hotel.stars || placement.hotel.stars == 0}">
-                                            <p> No stars yet </p>
+                                            <p> <spring:message code="common.no_stars"/> </p>
                                         </c:if>
                                     </div>
                                     <c:if test="${placement.hotel.votesNum > 0}">
-                                        <h3> <spring:message code="common.average"/> ${hotel.rating}
+                                        <h3> <spring:message code="common.average"/> <c:out value="${hotel.rating}"/>
                                             <small> /</small>
                                             10
                                         </h3>
-                                        <h4> ${placement.hotel.votesNum}
+                                        <h4> <c:out value="${placement.hotel.votesNum}"/>
                                             <small> <spring:message code="hotels.votesNum"/> </small>
                                         </h4>
                                     </c:if>

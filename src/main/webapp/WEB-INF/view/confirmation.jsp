@@ -20,7 +20,7 @@
                                 <div class="panel-body text-center">
                                     <h2><spring:message code="common.booking_done"/></h2>
                                     <hr>
-                                    <h4><spring:message code="common.trip_id"/> : <strong>${booking.id}</strong>
+                                    <h4><spring:message code="common.trip_id"/> <strong>${booking.id}</strong>
                                         . <spring:message code="common.booking_compl_add"/>${user.email}</h4>
                                 </div>
                             </div>
@@ -40,13 +40,13 @@
                                             <h4><strong><spring:message code="common.hotel_info"/></strong></h4>
                                             <table class="table table-responsive" style="margin: 0 auto">
                                                 <tr>
-                                                    <td>${hotel.name}</td>
+                                                    <td><c:out value="${hotel.name}"/></td>
                                                 </tr>
                                                 <tr>
-                                                    <td>${hotel.address}</td>
+                                                    <td><c:out value="${hotel.address}"/></td>
                                                 </tr>
                                                 <tr>
-                                                    <td>${hotel.phone}</td>
+                                                    <td><c:out value="${hotel.phone}"/></td>
                                                 </tr>
                                             </table>
                                             <br>
@@ -56,9 +56,11 @@
                                                 <c:forEach items="${placement.option}" var="apartment">
                                                     <tr>
                                                         <td>
-                                                                ${apartment.key.personNum}<spring:message code="common._person"/>
-                                                                ${apartment.key.category}
-                                                            <spring:message code="common.with"/> ${apartment.key.bedsArrangement}
+                                                            <c:out value="${apartment.key.personNum}"/>
+                                                            <spring:message code="common._person"/>
+                                                            <c:out value="${apartment.key.category}"/>
+                                                            <spring:message code="common.with"/>
+                                                            <c:out value="${apartment.key.bedsArrangement}"/>
                                                         </td>
                                                         <td>x<strong>${fn:length(apartment.value)}</strong>
                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -74,23 +76,25 @@
                                             <table class="table table-responsive" style="margin: 0 auto">
                                                 <tr>
                                                     <td><spring:message code="subBookings.personNum"/></td>
-                                                    <td>${placementPersonNum}</td>
+                                                    <td><c:out value="${placementPersonNum}"/></td>
                                                 </tr>
                                                 <tr>
                                                     <td><spring:message code="super_bookings.apartmentsNum"/></td>
-                                                    <td>${placementApartmentNum}</td>
+                                                    <td><c:out value="${placementApartmentNum}"/></td>
                                                 </tr>
                                                 <tr>
                                                     <td><spring:message code="hotels.checkIn"/></td>
-                                                    <td>${placementInDate}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${hotel.checkIn}</td>
+                                                    <td><c:out value="${placementInDate}"/>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<c:out value="${hotel.checkIn}"/></td>
                                                 </tr>
                                                 <tr>
                                                     <td><spring:message code="hotels.checkOut"/></td>
-                                                    <td>${placementOutDate}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${hotel.checkOut}</td>
+                                                    <td><c:out value="${placementOutDate}"/>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<c:out value="${hotel.checkOut}"/></td>
                                                 </tr>
                                                 <tr>
                                                     <td><spring:message code="common.total_sum"/></td>
-                                                    <td>${placementSum}</td>
+                                                    <td><i class="fa fa-btc"></i> <c:out value="${placementSum}"/>0</td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -112,9 +116,9 @@
                                             <br>
                                             <table class="table table-responsive">
                                                 <tr>
-                                                    <td>${user.name}</td>
-                                                    <td>${user.email}</td>
-                                                    <td>${user.phone}</td>
+                                                    <td><c:out value="${user.name}"/></td>
+                                                    <td><c:out value="${user.email}"/></td>
+                                                    <td><c:out value="${user.phone}"/></td>
                                                 </tr>
                                             </table>
                                         </div>

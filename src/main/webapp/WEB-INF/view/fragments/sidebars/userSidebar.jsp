@@ -30,7 +30,7 @@
             <strong><spring:message code="side.my_bookings"/></strong><i class="fa fa-ticket fa-pull-right" aria-hidden="true"></i>
         </a>
         <a href="user/show_hotels" class="list-group-item">
-            <strong><spring:message code="side.visited_hotels"/></strong><i class="fa fa-building fa-pull-right" aria-hidden="true"></i>
+            <strong><spring:message code="side.hotels"/></strong><i class="fa fa-building fa-pull-right" aria-hidden="true"></i>
         </a>
         <a href="user/show_votes" class="list-group-item">
             <strong><spring:message code="side.my_feedback"/></strong><i class="fa fa-comments-o fa-pull-right" aria-hidden="true"></i>

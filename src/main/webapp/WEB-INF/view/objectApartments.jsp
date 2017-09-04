@@ -20,14 +20,14 @@
         <div class="col-md-10">
 
             <div class="row" style="height: 70px">
-                <div class="col-md-6">
+                <div class="col-md-10">
                     <div class="panel panel-default">
                         <div class="panel-body" style="padding: 10px;">
                             <h4 class="pull-left"><strong><spring:message code="common.obj_apartments_list"/></strong></h4>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-2">
                     <button id="adminUserAddBtn" class="btn btn-lg btn-primary pull-right"
                             style="margin: 0 auto;" onclick="addApartment()">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -90,9 +90,7 @@
                                 <select class="form-control" name="stringAptType" id="apartmentType">
                                     <c:if test="${not empty objectApartments}">
                                     <c:forEach items="${objectApartments}" var="objectApartment">
-                                        <option value="${objectApartment.stringAptType}">${objectApartment.stringAptType}
-                                            ; <i class="fa fa-btc"> ${objectApartment.price}0<spring:message code="common.per_night"/>
-                                        </option>
+                                        <option value="${objectApartment.stringAptType}">${objectApartment.stringAptType}</option>
                                     </c:forEach>
                                 </select>
                                 </c:if>
@@ -124,13 +122,18 @@
                 <h2 class="modal-title" id="apartmentImageModalTitle"></h2>
             </div>
             <div class="modal-body">
-                <div class="col-md-1"></div>
-                <div class="col-md-10 text-center">
-                    <h4><spring:message code="common.image"/></h4>
-                    <br>
-                    <img src="imgPath" class="img-responsive imgTag" alt="This item has no available image yet">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10 text-center">
+                        <h4><spring:message code="common.image"/></h4>
+                        <br>
+                        <img src="imgPath" class="img-responsive imgTag" alt="This item has no available image yet">
+                    </div>
+                    <div class="col-md-1"></div>
                 </div>
-                <div class="col-md-1"></div>
+                <hr>
+                <hr>
+                <br>
                 <form:form class="form-horizontal detailsForm" id="imgForm" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="id" name="id">
                     <div class="form-group text-center">

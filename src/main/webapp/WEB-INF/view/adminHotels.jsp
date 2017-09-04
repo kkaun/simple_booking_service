@@ -77,14 +77,14 @@
             </div>
 
             <div class="row" style="height: 70px">
-                <div class="col-md-9">
+                <div class="col-md-10">
                     <div class="panel panel-default">
                         <div class="panel-body" style="padding: 10px;">
                             <h4 class="pull-left"><strong><spring:message code="common.hotels_list"/></strong></h4>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <button id="adminUserAddBtn" class="btn btn-lg btn-primary pull-right"
                             style="margin: 0 auto;" onclick="addHotel()">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -132,10 +132,10 @@
                     <input type="hidden" id="cityId" name="cityId">
 
                     <div class="form-group managerIdForm">
-                        <label for="managerId" class="control-label col-xs-3">>
+                        <label for="managerId" class="control-label col-xs-3">
                             <spring:message code="app.manager"/> <spring:message code="common.id"/>
                             <spring:message code="common.def_managerId"/></label>
-                        <div class="col-xs-9">
+                        <div class="col-xs-5">
                             <input class="form-control" type="text" id="managerId" name="managerId">
                         </div>
                     </div>
@@ -143,7 +143,8 @@
                     <div class="form-group countryNameForm">
                         <label for="countryName" class="control-label col-xs-3">
                             <spring:message code="common.countryName"/>
-                        <div class="col-xs-9">
+                        </label>
+                        <div class="col-xs-8">
                             <input class="form-control" type="text" id="countryName" name="countryName">
                         </div>
                     </div>
@@ -151,7 +152,7 @@
                     <div class="form-group cityNameForm">
                         <label for="cityName" class="control-label col-xs-3">
                             <spring:message code="common.placeName"/></label>
-                        <div class="col-xs-9">
+                        <div class="col-xs-8">
                             <input class="form-control" type="text" id="cityName" name="cityName">
                         </div>
                     </div>

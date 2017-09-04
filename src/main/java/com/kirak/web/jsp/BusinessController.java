@@ -119,7 +119,7 @@ public class BusinessController extends BusinessAbstractController {
         ModelUtil.addUniqueFilterParams(model, AptTypeUtil.getUniqueCategories(aptTypeService.getAll()));
         Placement placement = PlacementUtil.getPlacementFromId(sessionPlacementsService, Integer.parseInt(placementId));
         ModelUtil.addPlacementView(model, placement, Integer.parseInt(placementApartmentNum), Short.parseShort(placementPersonNum),
-                PlacementUtil.calculateBookingSumForPlacement(placement), inDate, outDate);
+                PlacementUtil.calculateBookingSumForPlacement(placement, LocalDate.parse(inDate), LocalDate.parse(outDate)), inDate, outDate);
         ModelUtil.addInspectPlacementView(model, placement, apartmentService.getAllByHotel(hotelId),
                 HotelUtil.asHotelTo(hotelService.get(hotelId)));
         return "hotel";
@@ -144,8 +144,9 @@ public class BusinessController extends BusinessAbstractController {
                 LocalDate.parse(inDate), LocalDate.parse(outDate), category);
         if(!placement.getOption().isEmpty()){
             ModelUtil.addPlacementView(model, placement, Integer.parseInt(apartmentNum), Short.parseShort(personNum),
-                    PlacementUtil.calculateBookingSumForPlacement(placement), inDate, outDate);
-        } else{
+                    PlacementUtil.calculateBookingSumForPlacement(placement, LocalDate.parse(inDate), LocalDate.parse(outDate)),
+                    inDate, outDate);
+        } else {
             model.addAttribute("notAvailablePlacement", "Unfortunately, requested option is not " +
                     "available for this object right now.");
         }
@@ -167,7 +168,8 @@ public class BusinessController extends BusinessAbstractController {
                     availableApartmentMap.keySet().iterator().next());
             ModelUtil.addPlacementView(model, placement, (short)1,
                     apartmentService.get(Integer.parseInt(apartmentId)).getType().getPersonNum(),
-                    PlacementUtil.calculateBookingSumForPlacement(placement), inDate, outDate);
+                    PlacementUtil.calculateBookingSumForPlacement(placement, LocalDate.parse(inDate), LocalDate.parse(outDate)),
+                    inDate, outDate);
             ModelUtil.addOptionsView(model, placement);
         } else {
             model.addAttribute("notAvailableApartment", apartmentService.get(Integer.parseInt(apartmentId)));

@@ -25,7 +25,7 @@
                             <div class="panel-heading">
                                 <div class="list-group">
                                     <div class="col-md-7">
-                                        <h4 class="list-group-item-heading"> ${hotel.name} </h4>
+                                        <h4 class="list-group-item-heading"> <c:out value="${hotel.name}"/> </h4>
                                     </div>
                                     <div class="col-md-5">
                                         <c:if test="${not empty hotel.stars && hotel.stars > 0}">

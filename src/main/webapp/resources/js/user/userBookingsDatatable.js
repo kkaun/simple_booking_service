@@ -9,7 +9,6 @@ function updateUserBookingsTable() {
     $.get(ajaxUrl, updateTableByData);
 }
 
-
 function deactivateUserBooking(chkbox, id) {
     var enabled = chkbox.is(":checked");
     if(enabled) {
@@ -20,6 +19,7 @@ function deactivateUserBooking(chkbox, id) {
             success: function () {
                 chkbox.closest('tr').toggleClass('disabled');
                 successNoty(enabled ? 'common.enabled' : 'common.disabled');
+                updateUserBookingsTable();
             },
             error: function () {
                 $(chkbox).prop("checked", !enabled);
@@ -27,7 +27,6 @@ function deactivateUserBooking(chkbox, id) {
         });
     }
 }
-
 
 $(function () {
     datatableApi = $('#userBookingsDatatable').DataTable(extendsOpts({

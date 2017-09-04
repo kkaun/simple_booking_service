@@ -163,19 +163,25 @@
                 <h2 class="modal-title" id="regionImageModalTitle"></h2>
             </div>
             <div class="modal-body">
-                <div class="col-md-1"></div>
-                <div class="col-md-10">
-                    <h4><spring:message code="common.image"/></h4>
-                    <br>
-                    <img src="imgPath" class="img-responsive imgTag" alt="This item has no available image yet">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <h4><spring:message code="common.image"/></h4>
+                        <br>
+                        <img src="imgPath" class="img-responsive imgTag" alt="This item has no available image yet">
+                    </div>
+                    <div class="col-md-1"></div>
                 </div>
-                <div class="col-md-1"></div>
+                <hr>
+                <hr>
+                <br>
                 <form:form class="form-horizontal detailsForm" id="imgForm" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="id" name="id">
-                    <label for="image" class="control-label col-xs-5"><spring:message code="common.choose_image"/></label>
+                    <label for="image" class="control-label col-xs-5"><spring:message
+                            code="common.choose_image"/></label>
                     <div class="form-group">
                         <div class="col-xs-7">
-                            <input name="image" id="image" type="file" /><br/>
+                            <input name="image" id="image" type="file"/><br/>
                         </div>
                     </div>
                     <div class="form-group">

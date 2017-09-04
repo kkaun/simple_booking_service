@@ -4,8 +4,11 @@ import com.kirak.model.Apartment;
 import com.kirak.service.SessionPlacementsService;
 import com.kirak.to.Placement;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 
 /**
@@ -24,17 +27,21 @@ public class PlacementUtil {
         return placement.getHotel().getId();
     }
 
-    public static double calculateBookingSumForPlacement(Placement placement){
+    public static double calculateBookingSumForPlacement(Placement placement, LocalDate inDate, LocalDate outDate){
+
+        int days = (int) DAYS.between(inDate, outDate);
 
         return placement.getOption().values().stream()
-                .mapToDouble(PlacementUtil::calculateSumForPlacementSublist).sum();
+                .mapToDouble(apartments -> calculateSumForPlacementSublist(apartments, days)).sum();
     }
 
-    public static double calculateSumForPlacementSublist(List<Apartment> apartments){
+    public static double calculateSumForPlacementSublist(List<Apartment> apartments, int days){
 
-        return apartments.stream()
+        double sumForAllAptsPerDay =  apartments.stream()
                 .map(Apartment::getPrice)
                 .mapToDouble(Double::intValue).sum();
+
+        return sumForAllAptsPerDay * days;
     }
 
     public static Placement convertAvailableApartmentToPlacement(SessionPlacementsService sessionPlacementsService, Apartment apartment){

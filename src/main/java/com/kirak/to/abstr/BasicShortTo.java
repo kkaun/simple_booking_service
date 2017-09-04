@@ -5,7 +5,7 @@ import com.kirak.model.abstraction.HasId;
 /**
  * Created by Kir on 13.08.2017.
  */
-public class BasicShortTo implements HasId {
+public abstract class BasicShortTo implements HasId {
 
     protected Short id;
 

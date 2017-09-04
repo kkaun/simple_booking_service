@@ -56,9 +56,9 @@
                         <div class="panel-body">
                             <form:form class="form-horizontal filter" id="bookingsAdminUserIdFilter">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-8" for="userId"><spring:message
+                                    <label class="control-label col-sm-5" for="userId"><spring:message
                                             code="super_bookings.byUser"/>:</label>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-7">
                                         <input class="form-control" name="userId" id="userId">
                                     </div>
                                 </div>
@@ -80,9 +80,9 @@
                         <div class="panel-body">
                             <form:form class="form-horizontal filter" id="bookingsAdminHotelIdFilter">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-8" for="hotelId"><spring:message
+                                    <label class="control-label col-sm-5" for="hotelId"><spring:message
                                             code="super_bookings.byHotel"/>:</label>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-7">
                                         <input class="form-control" name="hotelId" id="hotelId">
                                     </div>
                                 </div>
@@ -108,7 +108,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-4" for="inDate"><spring:message
                                             code="super_bookings.inDate"/>:</label>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-7">
                                         <input class="form-control in_date" name="inDate" id="inDate">
                                     </div>
                                 </div>
@@ -132,7 +132,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-4" for="outDate"><spring:message
                                             code="super_bookings.outDate"/>:</label>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-7">
                                         <input class="form-control out_date" name="outDate" id="outDate">
                                     </div>
                                 </div>

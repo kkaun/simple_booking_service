@@ -27,7 +27,7 @@
             <div class="col-md-10">
 
                 <div class="row" style="height: 70px">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-body" style="padding: 10px;">
                                 <h4 class="pull-left"><strong><spring:message code="common.my_bookings"/></strong></h4>

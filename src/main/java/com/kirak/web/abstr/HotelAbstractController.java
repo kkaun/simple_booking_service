@@ -103,8 +103,8 @@ public abstract class HotelAbstractController {
         return HotelUtil.getAllHotelTos(hotelService.getAll().stream().flatMap(hotel -> hotel.getBookings().stream())
                 .filter(booking -> booking.isActive() &&
                         Objects.equals(booking.getUser().getId(), AuthorizedUser.id()))
-                .distinct()
                 .map(Booking::getHotel)
+                .distinct()
                 .collect(Collectors.toList()));
     }
 

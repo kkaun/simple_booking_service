@@ -63,12 +63,12 @@
                 <li data-target="#transition-timer-carousel" data-slide-to="4"></li>
             </ol>
 
-                <div class="carousel-inner">
+                <div class="carousel-inner" style="border-radius: 5px;">
                 <c:forEach items="${citiesFive}" var="city">
                     <jsp:useBean id="city" scope="page" type="com.kirak.model.City"/>
-                    <div class="item">
-                        <a href="get_by_city?city=${city.id}">
-                            <div class="citiesCarousel" style="height: 400px; width: 1200px">
+                    <div class="item" style="border-radius: 5px;">
+                        <a href="get_by_city?city=${city.id}" style="border-radius: 5px;">
+                            <div class="citiesCarousel" style="height: 400px; width: 1200px; border-radius: 5px">
                                 <c:if test="${not empty city.imgPath && city.imgPath.length() >= 1}">
                                     <img class="media-object img-rounded img-responsive"
                                          src="${city.imgPath}" alt="" style="height: 400px; width: 1200px">
@@ -80,9 +80,9 @@
                             </div>
                         </a>
                         <div class="carousel-caption">
-                            <h1 class="carousel-caption-header">${city.name}</h1>
+                            <h1 class="carousel-caption-header"><c:out value="${city.name}"/></h1>
                             <p class="carousel-caption-text hidden-sm hidden-xs">
-                                    ${city.country.name}
+                                <c:out value="${city.country.name}"/>
                             </p>
                         </div>
                     </div>
@@ -123,8 +123,8 @@
                             </figure>
                         </div>
                         <div class="col-md-5">
-                            <h4 class="list-group-item-heading"> ${hotel.name} </h4>
-                            <p class="list-group-item-text"> ${hotel.description}
+                            <h4 class="list-group-item-heading"> <c:out value="${hotel.name}"/> </h4>
+                            <p class="list-group-item-text"> <c:out value="${hotel.description}"/>
                             </p>
                         </div>
                         <div class="col-md-4 text-center">
@@ -139,8 +139,8 @@
                                 </c:if>
                             </div>
                             <c:if test="${hotel.votesNum > 0}">
-                                <h3> Average ${hotel.rating} <small> / </small> 10 </h3>
-                                <h4> ${hotel.votesNum} <small> <spring:message code="hotels.votesNum"/> </small></h4>
+                                <h3> Average <c:out value="${hotel.rating}"/> <small> / </small> 10 </h3>
+                                <h4> <c:out value="${hotel.votesNum}"/> <small> <spring:message code="hotels.votesNum"/> </small></h4>
                             </c:if>
                             <c:if test="${empty hotel.votesNum || hotel.votesNum == 0}">
                                 <h4> <spring:message code="common.no_votes"/> </h4>
