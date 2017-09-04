@@ -65,7 +65,6 @@ public abstract class HotelAbstractController {
     public void update(HotelTo hotelTo, int id){
         LOG.info("Updating {}", hotelTo);
         checkIdConsistency(hotelTo, id);
-        checkAllBusinessRestrictions(id);
         hotelService.update(hotelTo);
     }
 

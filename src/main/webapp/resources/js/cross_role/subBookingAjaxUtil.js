@@ -2,8 +2,6 @@
  * Created by Кира on 31.08.2017.
  */
 
-
-
 var form;
 
 function makeSubBookingEditable() {
@@ -68,7 +66,7 @@ function updateSubBookingRow(id) {
 
 function renderSubBookingEditBtn(data, type, row) {
     if (type === 'display') {
-        return '<a onclick="updateSubBookingRow(' + row.id + ');">' +
+        return '<a class="btn btn-warning" onclick="updateSubBookingRow(' + row.id + ');">' +
             '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>';
     }
 }

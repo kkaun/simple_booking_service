@@ -84,7 +84,7 @@ $(function () {
                 "data": "id",
                 "render": function(data, type, row, meta){
                     if(type === 'display'){
-                        return '<a href="/edit_booking?id=' + data + '">'
+                        return '<a class="btn btn-default" href="/edit_booking?id=' + data + '">'
                             + '<span class="glyphicon glyphicon-share" aria-hidden="true"></span>' +
                             '&nbsp;&nbsp;&nbsp;' + data + '</a>';
                     }

@@ -37,7 +37,7 @@
                         <table class="table table-striped table-bordered hover display" id="managerHotelsDatatable">
                             <thead>
                             <tr>
-                                <th><spring:message code="common.id"/></th>
+                                <th><spring:message code="common.id"/><spring:message code="proceed"/></th>
                                 <th><spring:message code="common.name"/></th>
                                 <th><spring:message code="hotels.rating"/></th>
                                 <th><spring:message code="hotels.votesNum"/></th>
@@ -159,7 +159,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h2 class="modal-title" id="managerHotelImageModalTitle"><spring:message code="common.edit_object"/></h2>
+                <h2 class="modal-title" id="managerHotelImageModalTitle"><spring:message code="common.edit_object_image"/></h2>
             </div>
             <div class="modal-body">
                 <div class="row">

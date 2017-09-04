@@ -38,7 +38,7 @@
                                 <span><i class="fa fa-eraser" aria-hidden="true"></i></span>
                             </a>
                             <a class="btn btn-primary" type="button" onclick="updatePlacesTable()">
-                                <spring:message code="common.filter"/> <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
                             </a>
                         </div>
                     </div>
@@ -158,7 +158,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h2 class="modal-title" id="regionImageModalTitle"></h2>
+                <h2 class="modal-title" id="regionImageModalTitle"><spring:message code="common.region_image_editing"/></h2>
             </div>
             <div class="modal-body">
                 <div class="row">

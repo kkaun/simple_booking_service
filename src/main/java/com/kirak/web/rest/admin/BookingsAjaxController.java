@@ -30,11 +30,6 @@ public class BookingsAjaxController extends BookingAbstractController {
         super(bookingService, subBookingService, apartmentService);
     }
 
-//    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-//    public void updateBookingByAdmin(@Valid ManagerBookingTo managerBookingTo) {
-//            super.updateBooking(managerBookingTo);
-//    }
-
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @JsonView(View.JsonUI.class)
     public ManagerBookingTo getManagerBookingForAdmin(@PathVariable("id") int id) {

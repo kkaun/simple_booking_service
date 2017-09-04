@@ -44,7 +44,7 @@
                             <th><spring:message code="user.name"/></th>
                             <th><spring:message code="user.email"/></th>
                             <th><spring:message code="users.phone"/></th>
-                            <th><spring:message code="users.roles"/></th>
+                            <th><spring:message code="users.role"/></th>
                             <th><spring:message code="user.active"/></th>
                             <th><spring:message code="users.registered"/></th>
                             <th></th>
@@ -69,7 +69,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     &times;
                 </button>
-                <h2 class="modal-title" id="userUpdateModalTitle"><spring:message code="common.edit_user"/></h2>
+                <h2 class="modal-title" id="voteShowModalTitle"><spring:message code="common.edit_user"/></h2>
             </div>
             <div class="modal-body">
                 <form:form class="form-horizontal detailsForm">
@@ -102,7 +102,7 @@
                         </div>
                     </div>
                     <div class="form-group userRoleInput">
-                        <label for="role" class="control-label col-xs-3"><spring:message code="users.roles"/></label>
+                        <label for="role" class="control-label col-xs-3"><spring:message code="users.role"/></label>
                         <c:if test="${not empty roles}">
                             <div class="col-xs-9">
                                 <select class="form-control" name="role" id="role">

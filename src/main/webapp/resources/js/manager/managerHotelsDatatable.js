@@ -18,7 +18,7 @@ $(function () {
                 "data": "id",
                 "render": function(data, type, row, meta){
                     if(type === 'display'){
-                        return '<a href="/hotel_manager/manage_object?id=' + data + '">'
+                        return '<a class="btn btn-default" href="/hotel_manager/manage_object?id=' + data + '">'
                             + '<span class="glyphicon glyphicon-share" aria-hidden="true"></span>' +
                             '&nbsp;&nbsp;&nbsp;' + data + '</a>';
                     }

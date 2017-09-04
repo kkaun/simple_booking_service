@@ -14,7 +14,8 @@
         <div class="col-md-12">
             <div class="panel-group">
                 <div class="panel panel-default text-center">
-                    <h2><spring:message code="common.object"/> <strong>#${objectId}</strong> | <spring:message code="common.manager_panel"/> </h2>
+                    <h2><spring:message code="common.object"/> <strong>#${objectId}</strong> |
+                        <spring:message code="common.manager_panel"/> </h2>
                     <hr>
                 </div>
             </div>

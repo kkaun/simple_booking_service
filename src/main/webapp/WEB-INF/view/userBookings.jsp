@@ -42,7 +42,7 @@
                                 <table class="table table-striped table-bordered display" id="userBookingsDatatable">
                                     <thead>
                                     <tr>
-                                        <th><spring:message code="common.id"/></th>
+                                        <th><spring:message code="common.id"/><spring:message code="proceed"/></th>
                                         <th><spring:message code="common.dateAdded"/></th>
                                         <th><spring:message code="common.inDate"/></th>
                                         <th><spring:message code="common.outDate"/></th>

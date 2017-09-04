@@ -90,7 +90,7 @@
                 </div>
                 <a href="admin/show_votes">
                     <div class="panel-footer">
-                        <span class="pull-left"><spring:message code="common.view"/></span>
+                        <span class="pull-left"><spring:message code="common.view_moderate"/></span>
                         <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
                         <div class="clearfix"></div>
                     </div>

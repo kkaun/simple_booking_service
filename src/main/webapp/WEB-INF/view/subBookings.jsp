@@ -51,7 +51,7 @@
                 <div class="col-md-4">
                     <sec:authorize access="isAuthenticated()">
                         <sec:authorize access="hasAuthority('ROLE_ADMIN')">
-                            <a id="backBtn" class="btn btn-lg btn-warning pull-left" href="admin/show_bookings"
+                            <a id="backBtn" class="btn btn-lg btn-default pull-left" href="admin/show_bookings"
                                style="margin: 0 auto;">
                                 <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&nbsp;&nbsp;
                                 <spring:message code="common.submit_return"/>
@@ -60,7 +60,7 @@
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
                         <sec:authorize access="hasAuthority('ROLE_MANAGER')">
-                            <a id="backBtn" class="btn btn-lg btn-warning pull-left"
+                            <a id="backBtn" class="btn btn-lg btn-default pull-left"
                                href="hotel_manager/object/show_bookings"
                                style="margin: 0 auto;">
                                 <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&nbsp;&nbsp;
@@ -70,7 +70,7 @@
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
                         <sec:authorize access="hasAuthority('ROLE_USER')">
-                            <a id="backBtn" class="btn btn-lg btn-warning pull-left" href="user/show_bookings"
+                            <a id="backBtn" class="btn btn-lg btn-default pull-left" href="user/show_bookings"
                                style="margin: 0 auto;">
                                 <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&nbsp;&nbsp;
                                 <spring:message code="common.submit_return"/>
@@ -92,7 +92,7 @@
                         <table class="table table-striped table-bordered display" id="bookingsDatatable">
                             <thead>
                             <tr>
-                                <th>Sub-<spring:message code="common.id"/></th>
+                                <%--<th>Sub-<spring:message code="common.id"/></th>--%>
                                 <th><spring:message code="common.inDate"/></th>
                                 <th><spring:message code="common.outDate"/></th>
                                 <th><spring:message code="subBookings.sum"/></th>

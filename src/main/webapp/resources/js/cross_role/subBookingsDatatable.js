@@ -13,9 +13,6 @@ $(function () {
     datatableApi = $('#bookingsDatatable').DataTable(extendsSubBookingOpts({
         "columns": [
             {
-                "data": "id"
-            },
-            {
                 "data": "aptInDate"
             },
             {

@@ -44,7 +44,7 @@
                                 <span><i class="fa fa-eraser" aria-hidden="true"></i></span>
                             </a>
                             <a class="btn btn-primary" type="button" onclick="updateHotelsTableByRating()">
-                                <spring:message code="common.filter"/> <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
                             </a>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                                 <span><i class="fa fa-eraser" aria-hidden="true"></i></span>
                             </a>
                             <a class="btn btn-primary" type="button" onclick="updateHotelsTableByCity()">
-                                <spring:message code="common.filter"/> <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
                             </a>
                         </div>
                     </div>
@@ -135,7 +135,7 @@
                             <spring:message code="app.manager"/> <spring:message code="common.id"/>
                             <spring:message code="common.def_managerId"/></label>
                         <div class="col-xs-5">
-                            <input class="form-control" type="text" id="managerId" name="managerId">
+                            <input class="form-control" type="text" id="managerId" name="managerId" readonly>
                         </div>
                     </div>
 

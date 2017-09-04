@@ -54,7 +54,6 @@ public abstract class RegionAbstractController {
 
     public void update(PlaceTo placeTo, int id){
         LOG.info("Updating {}", placeTo);
-        checkAllBusinessRestrictions(id);
         checkId(placeTo, id);
         City city = cityService.get(id);
         cityService.update(RegionUtil.updateCityFromPlaceTo(placeTo, city));

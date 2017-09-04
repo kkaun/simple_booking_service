@@ -45,7 +45,7 @@
                                 <span><i class="fa fa-eraser" aria-hidden="true"></i></span>
                             </a>
                             <a class="btn btn-primary" type="button" onclick="updateAdminSBTableByDatesAdded()">
-                                <spring:message code="common.filter"/> <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
                             </a>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                                 <span><i class="fa fa-eraser" aria-hidden="true"></i></span>
                             </a>
                             <a class="btn btn-primary" type="button" onclick="updateAdminSBTableByUserId()">
-                                <spring:message code="common.filter"/> <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
                             </a>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                                 <span><i class="fa fa-eraser" aria-hidden="true"></i></span>
                             </a>
                             <a class="btn btn-primary" type="button" onclick="updateAdminSBTableByHotelId()">
-                                <spring:message code="common.filter"/> <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
                             </a>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
                                 <span><i class="fa fa-eraser" aria-hidden="true"></i></span>
                             </a>
                             <a class="btn btn-primary" type="button" onclick="updateAdminSBTableByInDate()">
-                                <spring:message code="common.filter"/> <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
                             </a>
                         </div>
                     </div>
@@ -143,7 +143,7 @@
                                 <span><i class="fa fa-eraser" aria-hidden="true"></i></span>
                             </a>
                             <a class="btn btn-primary" type="button" onclick="updateAdminSBTableByOutDate()">
-                                <spring:message code="common.filter"/> <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
                             </a>
                         </div>
                     </div>
@@ -166,7 +166,7 @@
                         <table class="table table-striped table-bordered display" id="bookingsDatatable">
                             <thead>
                             <tr>
-                                <th><spring:message code="common.id"/></th>
+                                <th><spring:message code="common.id"/><spring:message code="proceed"/></th>
                                 <th><spring:message code="common.dateAdded"/></th>
                                 <th><spring:message code="common.inDate"/></th>
                                 <th><spring:message code="common.outDate"/></th>

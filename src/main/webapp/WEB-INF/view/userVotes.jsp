@@ -53,8 +53,7 @@
                     </div>
                 </div>
             </div>
-
-
+                
             </sec:authorize>
         </sec:authorize>
     </div>
@@ -62,12 +61,12 @@
 
 
 
-<div class="modal fade" id="voteEditRow">
+<div class="modal fade" id="userVoteEditRow">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h2 class="modal-title" id="voteShowModalTitle"><spring:message code="common.edit_vote"/></h2>
+                <h2 class="modal-title" id="userVoteModalTitle"><spring:message code="common.edit_vote"/></h2>
             </div>
             <div class="modal-body">
                 <form:form class="form-horizontal detailsForm">

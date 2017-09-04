@@ -44,7 +44,7 @@
                                 <span><i class="fa fa-eraser" aria-hidden="true"></i></span>
                             </a>
                             <a class="btn btn-primary" type="button" onclick="updateManagerBookingTableByDatesAdded()">
-                                <spring:message code="common.filter"/> <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
                             </a>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             </a>
                             <a class="btn btn-primary" type="button" onclick="updateManagerBookingTableByInDate()">
-                                <spring:message code="common.filter"/> <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
                             </a>
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             </a>
                             <a class="btn btn-primary" type="button" onclick="updateManagerBookingTableByOutDate()">
-                                <spring:message code="common.filter"/> <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
                             </a>
                         </div>
                     </div>
@@ -118,7 +118,7 @@
                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             </a>
                             <a class="btn btn-primary" type="button" onclick="updateManagerBookingTableByUserId()">
-                                <spring:message code="common.filter"/> <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
                             </a>
                         </div>
                     </div>
@@ -141,7 +141,7 @@
                         <table class="table table-striped table-bordered display" id="hotelBookingsDatatable">
                             <thead>
                             <tr>
-                                <th><spring:message code="common.id"/></th>
+                                <th><spring:message code="common.id"/><spring:message code="proceed"/></th>
                                 <th><spring:message code="common.dateAdded"/></th>
                                 <th><spring:message code="super_bookings.inDate"/></th>
                                 <th><spring:message code="super_bookings.outDate"/></th>

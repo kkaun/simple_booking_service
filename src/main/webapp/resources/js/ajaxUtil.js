@@ -26,6 +26,7 @@ function extendsOpts(opts) {
                 "url": ajaxUrl,
                 "dataSrc": ""
             },
+            "responsive": true,
             "paging": true,
             "info": true,
             "language": {
@@ -145,6 +146,7 @@ function addHotel() {
     $('#regionModalTitle').html(i18n["addTitle"]);
     form.find(":input").val("");
     form.find("textarea[name='" + 'description' + "']").val("");
+    form.find("input[name='" + 'managerId' + "']").val('100003');
     $('.cityNameForm :input').removeAttr('readonly');
     $('.countryNameForm :input').removeAttr('readonly');
     $('.load-bar').hide();
@@ -365,7 +367,7 @@ function saveUser() {
 
 function renderUserDeleteBtn(data, type, row) {
     if (type === 'display') {
-        return '<a onclick="deleteUserRow(' + row.id + ');">' +
+        return '<a class="btn btn-danger" onclick="deleteUserRow(' + row.id + ');">' +
             '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
     }
 }
