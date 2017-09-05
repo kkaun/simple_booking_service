@@ -128,26 +128,12 @@
                     <input type="hidden" id="edited" name="edited">
 
                     <div class="form-group">
-                        <label for="bookingInDate" class="control-label col-xs-3"><spring:message
-                                code="common.inDate"/></label>
-                        <div class="col-xs-9">
-                            <input class="form-control in_date" id="bookingInDate" name="aptInDate">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="bookingOutDate" class="control-label col-xs-3"><spring:message
-                                code="common.outDate"/></label>
-                        <div class="col-xs-9">
-                            <input class="form-control out_date" id="bookingOutDate" name="aptOutDate">
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <c:if test="${not empty objectApartments && fn:length(objectApartments) >= 2}">
-                            <label for="bookingApt" class="control-label col-xs-3">
+                            <label for="bookingApt" class="control-label col-xs-5">
                                 <spring:message code="apt_types.personNum"/>,
                                 <spring:message code="apt_types.category"/>,
                                 <spring:message code="apt_types.bedsArrangement"/></label>
-                            <div class="col-xs-9">
+                            <div class="col-xs-7">
                                 <select class="form-control" name="aptId" id="bookingApt">
                                     <c:forEach items="${objectApartments}" var="objectApartment">
                                         <option name="aptId" value="${objectApartment.id}">
@@ -157,34 +143,52 @@
                             </div>
                         </c:if>
                         <c:if test="${empty objectApartments || fn:length(objectApartments) < 2}">
-                            <label for="existingBookingApt" class="control-label col-xs-3">
+                            <label for="existingBookingApt" class="control-label col-xs-5">
                                 <spring:message code="apt_types.personNum"/>,
                                 <spring:message code="apt_types.category"/>,
                                 <spring:message code="apt_types.bedsArrangement"/></label>
-                            <div class="col-xs-9">
+                            <div class="col-xs-7">
                                 <input class="form-control" id="existingBookingApt" name="stringAptType" readonly>
                             </div>
                             <input type="hidden" id="aptId" name="aptId">
                         </c:if>
                     </div>
+
                     <div class="form-group">
-                        <label for="bookingAptPrice" class="control-label col-xs-3"><spring:message
+                        <label for="bookingInDate" class="control-label col-xs-5"><spring:message
+                                code="common.inDate"/></label>
+                        <div class="col-xs-4">
+                            <input class="form-control in_date" id="bookingInDate" name="aptInDate">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingOutDate" class="control-label col-xs-5"><spring:message
+                                code="common.outDate"/></label>
+                        <div class="col-xs-4">
+                            <input class="form-control out_date" id="bookingOutDate" name="aptOutDate">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bookingAptPrice" class="control-label col-xs-5"><spring:message
                                 code="apartments.price"/> <spring:message code="common.will_change"/></label>
-                        <div class="col-xs-9">
+                        <div class="col-xs-3">
                             <input class="form-control" id="bookingAptPrice" name="aptPrice" readonly>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="bookingSum" class="control-label col-xs-3"><spring:message
+                        <label for="bookingSum" class="control-label col-xs-5"><spring:message
                                 code="subBookings.sum"/> <spring:message code="common.will_change"/></label>
-                        <div class="col-xs-9">
+                        <div class="col-xs-3">
                             <input class="form-control" id="bookingSum" name="sum" readonly>
                         </div>
                     </div>
+                    <hr>
                     <div class="form-group">
-                        <div class="col-xs-offset-3 col-xs-9">
-                            <button class="btn btn-primary" type="button"
-                                    onclick="saveSubBooking()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        <div class="col-xs-8">
+                            <button class="btn btn-lg btn-primary pull-right" type="button"
+                                    onclick="saveSubBooking()"><spring:message code="common.save"/>&nbsp;&nbsp;
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                             </button>
                         </div>
                     </div>

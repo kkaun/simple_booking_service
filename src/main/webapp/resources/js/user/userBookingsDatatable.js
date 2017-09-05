@@ -17,7 +17,8 @@ function deactivateUserBooking(chkbox, id) {
         data: 'active=' + enabled,
         success: function () {
             chkbox.closest('tr').toggleClass('disabled');
-            successNoty(enabled ? 'common.activated' : 'common.deactivated');
+            successNoty(enabled ? 'common.booking_activated' : 'common.booking_deactivated');
+            delayedUpdate();
         },
         error: function () {
             $(chkbox).prop("checked", !enabled);
@@ -61,7 +62,12 @@ $(function () {
                 "data": "active",
                 "render": function (data, type, row) {
                     if (type === 'display') {
-                        return '<input type="checkbox" ' + (data ? 'checked' : '') + ' onclick="deactivateUserBooking($(this),' + row.id + ');"/>';
+                        if (data) {
+                            return '<input type="checkbox" ' + (data ? 'checked' : '') + ' onclick="deactivateUserBooking($(this),' + row.id + ');"/>';
+                        } else {
+                            return '<input type="checkbox" ' + ' disabled readonly' + '/>';
+
+                        }
                     }
                     return data;
                 }

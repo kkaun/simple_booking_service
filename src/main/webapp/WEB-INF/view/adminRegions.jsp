@@ -138,8 +138,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-xs-offset-3 col-xs-9">
+                        <div class="col-xs-8">
                             <button class="btn btn-primary" type="button" onclick="saveRegion()">
+                                <spring:message code="common.save"/>&nbsp;&nbsp;
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                             </button>
                         </div>
@@ -183,8 +184,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-xs-offset-3 col-xs-9">
+                        <div class="col-xs-8">
                             <button class="btn btn-primary" type="button" onclick="saveRegionImage()">
+                                <spring:message code="common.save"/>&nbsp;&nbsp;
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                             </button>
                         </div>

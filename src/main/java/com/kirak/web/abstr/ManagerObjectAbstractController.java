@@ -10,6 +10,9 @@ import com.kirak.to.booking.ManagerBookingTo;
 import com.kirak.util.ErrorInfo;
 import com.kirak.util.FileUploadUtil;
 import com.kirak.util.exception.model.apartment.ApartmentHasBookingsException;
+import com.kirak.util.exception.model.booking.BookingAccomplishedException;
+import com.kirak.util.exception.model.booking.BookingApartmentOccupiedException;
+import com.kirak.util.exception.model.booking.BookingDeactivatedException;
 import com.kirak.util.model.ApartmentUtil;
 import com.kirak.util.model.ManagerObjectUtil;
 import com.kirak.util.model.BookingUtil;
@@ -25,7 +28,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -33,6 +35,7 @@ import java.util.Random;
 import static com.kirak.util.model.BookingUtil.asManagerBookingTo;
 import static com.kirak.util.model.BookingUtil.getBookingInDate;
 import static com.kirak.util.model.BookingUtil.getBookingOutDate;
+import static com.kirak.web.abstr.BookingAbstractController.*;
 
 /**
  * Created by Kir on 19.08.2017.
@@ -78,16 +81,16 @@ public abstract class ManagerObjectAbstractController {
     //--------------------------------------  Booking methods --------------------------------//
 
 
-    public void updateManagerObjectBooking(ManagerBookingTo managerBookingTo){
-        LOG.info("Saving Booking {}", managerBookingTo);
-        bookingService.update(managerBookingTo);
-    }
-
-    public ManagerBookingTo getObjectBooking(int id){
-        LOG.info("Saving Booking {}", id);
-        Booking booking = bookingService.get(id);
-        return asManagerBookingTo(booking, getBookingInDate(booking), getBookingOutDate(booking));
-    }
+//    public void updateManagerObjectBooking(ManagerBookingTo managerBookingTo){
+//        LOG.info("Saving Booking {}", managerBookingTo);
+//        bookingService.update(managerBookingTo);
+//    }
+//
+//    public ManagerBookingTo getObjectBooking(int id){
+//        LOG.info("Saving Booking {}", id);
+//        Booking booking = bookingService.get(id);
+//        return asManagerBookingTo(booking, getBookingInDate(booking), getBookingOutDate(booking));
+//    }
 
     public List<ManagerBookingTo> getAllBookingsFromCurrentObject(){
         LOG.info("Getting all Bookings {}");
@@ -160,7 +163,7 @@ public abstract class ManagerObjectAbstractController {
 
     public void update(ApartmentTo apartmentTo){
         LOG.info("Updating {}", apartmentTo);
-        checkAllBusinessRestrictions(apartmentTo.getId());
+        checkAllApartmentBusinessRestrictions(apartmentTo.getId());
         apartmentService.update(apartmentTo, aptTypeService.getAll());
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(AuthorizedUser.id(),
                 managerObjectService.getManagerObjects());
@@ -181,7 +184,7 @@ public abstract class ManagerObjectAbstractController {
 
     public void delete(Integer id){
         LOG.info("Deleting city {}", id);
-        checkAllBusinessRestrictions(id);
+        checkAllApartmentBusinessRestrictions(id);
         apartmentService.delete(id);
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(AuthorizedUser.id(),
                 managerObjectService.getManagerObjects());
@@ -230,7 +233,10 @@ public abstract class ManagerObjectAbstractController {
 
 
 
-    public void checkAllBusinessRestrictions(int id){
+    //--------------------------------------  MVC Exception Handling methods --------------------------------//
+
+
+    public void checkAllApartmentBusinessRestrictions(int id){
         if(!ApartmentUtil.isSingleApartmentAvailable(apartmentService.get(id), LocalDate.now().minusDays(1), LocalDate.MAX))
             throw new ApartmentHasBookingsException(EXCEPTION_APARTMENT_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
     }

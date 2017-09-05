@@ -9,6 +9,7 @@ import com.kirak.to.booking.*;
 import com.kirak.util.ErrorInfo;
 import com.kirak.util.exception.model.booking.BookingAccomplishedException;
 import com.kirak.util.exception.model.booking.BookingApartmentOccupiedException;
+import com.kirak.util.exception.model.booking.BookingDeactivatedException;
 import com.kirak.util.model.ApartmentUtil;
 import com.kirak.util.model.SubBookingUtil;
 import com.kirak.util.model.BookingUtil;
@@ -34,6 +35,7 @@ public abstract class BookingAbstractController {
 
     public static final String EXCEPTION_SUB_BOOKING_APARTMENT_OCCUPIED = "exception.booking.apartment.isOccupied";
     public static final String EXCEPTION_SUB_BOOKING_ACCOMPLISHED = "exception.booking.isAccomplished";
+    public static final String EXCEPTION_BOOKING_DEACTIVATED = "exception.booking.isDeactivated";
     public static final String EXCEPTION_SUB_BOOKING_MODIFICATION_RESTRICTION = "exception.booking.modificationRestriction";
 
     private final Logger LOG = LoggerFactory.getLogger(getClass());
@@ -57,13 +59,9 @@ public abstract class BookingAbstractController {
 
     //-------------------------------------- General Booking methods --------------------------------//
 
-//    public void updateBooking(ManagerBookingTo managerBookingTo){
-//        LOG.info("Saving  SubBooking {}", managerBookingTo);
-//        bookingService.update(managerBookingTo);
-//    }
-//
     public void deactivate(int id, boolean enabled) {
         LOG.info((enabled ? "enable " : "deactivate ") + id);
+        checkAllBookingBusinessRestrictions(id);
         bookingService.deactivate(id, enabled);
     }
 
@@ -136,6 +134,7 @@ public abstract class BookingAbstractController {
 
     public void createSubBooking(SubBookingTo subBookingTo, Integer bookingId){
         LOG.info("Saving subBooking {}", subBookingTo);
+        checkAllBookingBusinessRestrictions(bookingId);
         SubBooking subBooking = subBookingService.save(subBookingTo, bookingId,
                 apartmentService.getAll(), bookingService.getAll());
         Booking booking = bookingService.get(bookingId);
@@ -146,7 +145,7 @@ public abstract class BookingAbstractController {
 
     public void updateSubBooking(SubBookingTo subBookingTo, Integer bookingId){
         LOG.info("Updating booking {}", subBookingTo);
-        checkAllBusinessRestrictions(subBookingTo.getId());
+        checkAllSubBookingBusinessRestrictions(subBookingTo.getId());
         SubBooking updatedSubBooking = subBookingService.update(subBookingTo);
         Booking booking = bookingService.get(bookingId);
         Set<SubBooking> subBookings = booking.getSubBookings();
@@ -171,12 +170,27 @@ public abstract class BookingAbstractController {
 
 
 
-    public void checkAllBusinessRestrictions(long id){
+    public void checkAllSubBookingBusinessRestrictions(long id){
         if(!ApartmentUtil.isSingleApartmentAvailable(subBookingService.get(id).getApartment(),
                 LocalDate.now().minusDays(1), LocalDate.MAX))
             throw new BookingApartmentOccupiedException(EXCEPTION_SUB_BOOKING_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
         if(BookingUtil.getBookingOutDate(subBookingService.get(id).getBooking()).isBefore(LocalDate.now()))
             throw new BookingAccomplishedException(EXCEPTION_SUB_BOOKING_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
+        if(!subBookingService.get(id).getBooking().isActive()){
+            throw new BookingDeactivatedException(EXCEPTION_SUB_BOOKING_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
+        }
+    }
+
+    public void checkAllBookingBusinessRestrictions(int id){
+        if(!bookingService.get(id).isActive())
+            throw new BookingDeactivatedException(EXCEPTION_SUB_BOOKING_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
+        if(BookingUtil.getBookingOutDate(bookingService.get(id)).isBefore(LocalDate.now()))
+            throw new BookingAccomplishedException(EXCEPTION_SUB_BOOKING_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(BookingDeactivatedException.class)
+    public ResponseEntity<ErrorInfo> bookingDeactivated(HttpServletRequest req, BookingDeactivatedException e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_BOOKING_DEACTIVATED, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(BookingApartmentOccupiedException.class)

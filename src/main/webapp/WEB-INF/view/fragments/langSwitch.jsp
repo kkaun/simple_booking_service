@@ -7,12 +7,12 @@
                class="dropdown-toggle" data-toggle="dropdown">${pageContext.response.locale} <b class="caret"></b></a>
             <ul class="dropdown-menu list-unstyled">
                 <li>
-                    <a href="${requestScope['javax.servlet.forward.request_uri']}?lang=en">
+                    <a href="index?lang=en">
                     En
                     </a>
                 </li>
                 <li>
-                    <a href="${requestScope['javax.servlet.forward.request_uri']}?lang=ru">
+                    <a href="index?lang=ru">
                     Ru
                     </a>
                 </li>

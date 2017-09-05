@@ -58,22 +58,6 @@ function clearBookingUserIdManagerFilter() {
 }
 
 
-function deactivateManagerBooking(chkbox, id) {
-    var enabled = chkbox.is(":checked");
-    $.ajax({
-        url: ajaxUrl + id,
-        type: 'POST',
-        data: 'active=' + enabled,
-        success: function () {
-            chkbox.closest('tr').toggleClass('disabled');
-            successNoty(enabled ? 'common.activated' : 'common.deactivated');
-        },
-        error: function () {
-            $(chkbox).prop("checked", !enabled);
-        }
-    });
-}
-
 
 $(function () {
     datatableApi = $('#hotelBookingsDatatable').DataTable(extendsOpts({
@@ -111,7 +95,14 @@ $(function () {
                 "data": "active",
                 "render": function (data, type, row) {
                     if (type === 'display') {
-                        return '<input type="checkbox" ' + (data ? 'checked' : '') + ' onclick="deactivateManagerBooking($(this),' + row.id + ');"/>';
+                        if(data) {
+                            return '<input type="checkbox" ' +
+                                'checked disabled readonly title="Manager cannot activate/deactivate bookings of his own object"' + '/>';
+                        } else {
+                            return '<input type="checkbox" ' +
+                                ' disabled readonly title="Manager cannot activate/deactivate bookings of his own object"' + '/>';
+
+                        }
                     }
                     return data;
                 }

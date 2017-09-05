@@ -59,6 +59,17 @@ function updateTableByData(data) {
 }
 
 
+
+function getDelayedTable() {
+    $.get(ajaxUrl, updateTableByData);
+}
+
+function delayedUpdate() {
+    setTimeout(getDelayedTable, 2000);
+}
+
+
+
 var failedNote;
 
 function closeNoty() {
@@ -74,7 +85,7 @@ function successNoty(key) {
         text: i18n[key],
         type: 'success',
         layout: 'bottomRight',
-        timeout: 1500
+        timeout: 10000
     });
 }
 
