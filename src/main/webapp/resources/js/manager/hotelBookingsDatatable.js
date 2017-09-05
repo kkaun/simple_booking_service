@@ -60,20 +60,18 @@ function clearBookingUserIdManagerFilter() {
 
 function deactivateManagerBooking(chkbox, id) {
     var enabled = chkbox.is(":checked");
-    if(enabled){
-        $.ajax({
-            url: ajaxUrl + id,
-            type: 'POST',
-            data: 'active=' + enabled,
-            success: function () {
-                chkbox.closest('tr').toggleClass('disabled');
-                successNoty(enabled ? 'common.enabled' : 'common.disabled');
-            },
-            error: function () {
-                $(chkbox).prop("checked", !enabled);
-            }
-        });
-    }
+    $.ajax({
+        url: ajaxUrl + id,
+        type: 'POST',
+        data: 'active=' + enabled,
+        success: function () {
+            chkbox.closest('tr').toggleClass('disabled');
+            successNoty(enabled ? 'common.activated' : 'common.deactivated');
+        },
+        error: function () {
+            $(chkbox).prop("checked", !enabled);
+        }
+    });
 }
 
 

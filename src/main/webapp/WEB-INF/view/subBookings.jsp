@@ -11,9 +11,9 @@
 <script type="text/javascript">
     var bookingId = '${bookingId}';
 </script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/datatables-responsive/2.1.1/js/dataTables.responsive.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/cross_role/subBookingAjaxUtil.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/cross_role/subBookingsDatatable.js" defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/datatables-responsive/2.1.1/js/dataTables.responsive.js" defer></script>
 <jsp:include page="fragments/header.jsp"/>
 
 

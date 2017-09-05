@@ -7,9 +7,21 @@
     <c:forEach var='key' items='<%=new String[]{"common.deleted",
                                                 "common.saved",
                                                 "common.enabled",
+                                                "common.activated",
+                                                "common.deactivated",
                                                 "common.disabled",
                                                 "common.errorStatus",
-                                                "common.search"}%>'>
+                                                "common.search",
+                                                "common.processing",
+                                                "common.table_info",
+                                                "common.menu_length",
+                                                "common.loading_records",
+                                                "common.zero_records",
+                                                "common.empty_table",
+                                                "common.paging_first",
+                                                "common.paging_previous",
+                                                "common.paging_next",
+                                                "common.paging_last"}%>'>
     i18n['${key}'] = '<spring:message code="${key}"/>';
     </c:forEach>
 </script>

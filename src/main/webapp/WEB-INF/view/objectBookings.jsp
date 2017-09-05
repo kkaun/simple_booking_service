@@ -7,9 +7,9 @@
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/datatables-responsive/2.1.1/js/dataTables.responsive.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ajaxUtil.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/hotelBookingsDatatable.js" defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/datatables-responsive/2.1.1/js/dataTables.responsive.js" defer></script>
 <jsp:include page="fragments/header.jsp"/>
 
 <div class="container" style="margin-top: 20px; min-height: 580px">
@@ -149,7 +149,7 @@
                                 <th><spring:message code="user.name"/></th>
                                 <th><spring:message code="user.email"/></th>
                                 <th><spring:message code="users.phone"/></th>
-                                <th></th>
+                                <th><spring:message code="bookings.active"/></th>
                             </tr>
                             </thead>
                         </table>
