@@ -6,6 +6,7 @@
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ajaxUtil.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/hotelsDatatable.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/datatables-responsive/2.1.1/js/dataTables.responsive.js" defer></script>
@@ -26,15 +27,14 @@
                         <div class="panel-body">
                             <form:form class="form-horizontal filter" id="hotelsByRatingAdminFilter">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-3" for="minRating">
-                                        <spring:message code="common.filter_title"/> <spring:message code="hotels.minRating"/>:</label>
-                                    <div class="col-sm-3">
+                                    <label class="control-label col-sm-4" for="minRating">
+                                        <spring:message code="hotels.minRating"/>:</label>
+                                    <div class="col-sm-2">
                                         <input class="form-control" name="minRating" id="minRating">
                                     </div>
-                                    <label class="control-label col-sm-3" for="maxRating">
-                                        <spring:message code="common.filter_title"/> <spring:message code="hotels.maxRating"/>:</label>
-
-                                    <div class="col-sm-3">
+                                    <label class="control-label col-sm-4" for="maxRating">
+                                        <spring:message code="hotels.maxRating"/>:</label>
+                                    <div class="col-sm-2">
                                         <input class="form-control" name="maxRating" id="maxRating">
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@
                             <form:form class="form-horizontal filter" id="hotelsByCityAdminFilter">
                                 <div class="form-group">
                                     <label for="regionName" class="control-label col-xs-5">
-                                        <spring:message code="common.filter_title"/> <spring:message code="common.filter_by_location"/></label>
+                                        <spring:message code="common.filter_by_location"/></label>
                                     <div class="col-xs-7">
                                         <input class="form-control" type="text" id="regionName" name="regionName">
                                     </div>
@@ -98,6 +98,7 @@
                         <table class="table responsive table-striped table-bordered display" id="hotelsDatatable">
                             <thead>
                             <tr>
+                                <th></th>
                                 <th><spring:message code="common.id"/></th>
                                 <th><spring:message code="common.name"/></th>
                                 <th><spring:message code="hotels.rating"/></th>

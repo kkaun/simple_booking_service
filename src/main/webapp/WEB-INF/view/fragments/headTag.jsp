@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="webjars/datatables/1.10.15/media/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="webjars/datetimepicker/2.5.4/jquery.datetimepicker.css">
     <link rel="stylesheet" href="webjars/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="webjars/datatables-responsive/2.1.1/css/responsive.dataTables.scss">
+    <link rel="stylesheet" href="webjars/datatables-responsive/2.1.1/css/responsive.jqueryui.scss">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 
     <!--http://stackoverflow.com/a/24070373/548473-->
@@ -32,6 +34,8 @@
     <script type="text/javascript" src="webjars/noty/2.4.1/js/noty/packaged/jquery.noty.packaged.min.js" defer></script>
     <script type="text/javascript" src="webjars/datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js" defer></script>
 
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/datepicker.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/datepicker.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.ui.datepicker-en.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.ui.datepicker-ru.js" defer></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/scripts.js"></script>
 </head>

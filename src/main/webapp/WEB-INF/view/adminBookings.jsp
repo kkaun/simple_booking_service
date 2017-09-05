@@ -29,12 +29,12 @@
                             <form:form class="form-horizontal filter" id="bookingsAdminDatesAddedFilter">
                                 <div class="form-group">
                                     <label class="control-label col-sm-3" for="startDate">
-                                        <spring:message code="common.filter_title"/> <spring:message code="super_bookings.fromDate"/>:</label>
+                                        <spring:message code="super_bookings.fromDate"/>:</label>
                                     <div class="col-sm-3">
                                         <input class="form-control start_date" name="startDate" id="startDate">
                                     </div>
                                     <label class="control-label col-sm-3" for="endDate">
-                                        <spring:message code="common.filter_title"/> <spring:message code="super_bookings.toDate"/>:</label>
+                                        <spring:message code="super_bookings.toDate"/>:</label>
                                     <div class="col-sm-3">
                                         <input class="form-control end_date" name="endDate" id="endDate">
                                     </div>
@@ -58,7 +58,7 @@
                             <form:form class="form-horizontal filter" id="bookingsAdminUserIdFilter">
                                 <div class="form-group">
                                     <label class="control-label col-sm-5" for="userId">
-                                        <spring:message code="common.filter_title"/> <spring:message code="super_bookings.byUser"/>:</label>
+                                        <spring:message code="super_bookings.byUser"/>:</label>
                                     <div class="col-sm-7">
                                         <input class="form-control" name="userId" id="userId">
                                     </div>
@@ -82,7 +82,7 @@
                             <form:form class="form-horizontal filter" id="bookingsAdminHotelIdFilter">
                                 <div class="form-group">
                                     <label class="control-label col-sm-5" for="hotelId">
-                                        <spring:message code="common.filter_title"/> <spring:message code="super_bookings.byHotel"/>:</label>
+                                        <spring:message code="super_bookings.byHotel"/>:</label>
                                     <div class="col-sm-7">
                                         <input class="form-control" name="hotelId" id="hotelId">
                                     </div>
@@ -108,7 +108,7 @@
                             <form:form class="form-horizontal filter" id="bookingsAdminInDateFilter">
                                 <div class="form-group">
                                     <label class="control-label col-sm-4" for="inDate">
-                                        <spring:message code="common.filter_title"/> <spring:message code="super_bookings.inDate"/>:</label>
+                                        <spring:message code="super_bookings.inDate"/>:</label>
                                     <div class="col-sm-7">
                                         <input class="form-control in_date" name="inDate" id="inDate">
                                     </div>
@@ -132,7 +132,7 @@
                             <form:form class="form-horizontal filter" id="bookingsAdminOutDateFilter">
                                 <div class="form-group">
                                     <label class="control-label col-sm-4" for="outDate">
-                                        <spring:message code="common.filter_title"/> <spring:message code="super_bookings.outDate"/>:</label>
+                                        <spring:message code="super_bookings.outDate"/>:</label>
                                     <div class="col-sm-7">
                                         <input class="form-control out_date" name="outDate" id="outDate">
                                     </div>
@@ -167,6 +167,7 @@
                         <table class="table responsive table-striped table-bordered display" id="bookingsDatatable">
                             <thead>
                             <tr>
+                                <th></th>
                                 <th><spring:message code="common.id"/><spring:message code="proceed"/></th>
                                 <th><spring:message code="common.dateAdded"/></th>
                                 <th><spring:message code="common.inDate"/></th>

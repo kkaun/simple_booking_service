@@ -1,5 +1,11 @@
 
 
+.carousel {
+    border-radius: 5px 5px 5px 5px;
+    overflow: hidden;
+}
+
+
 #navBrand{
     font-family: 'Pacifico', cursive;
 }

@@ -42,6 +42,7 @@
                         <table class="table responsive table-striped table-bordered display" id="aptTypesDatatable">
                             <thead>
                             <tr>
+                                <th></th>
                                 <th><spring:message code="common.id"/></th>
                                 <th><spring:message code="apt_types.personNum"/></th>
                                 <th><spring:message code="apt_types.category"/></th>

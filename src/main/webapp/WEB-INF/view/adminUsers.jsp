@@ -41,6 +41,7 @@
                     <table class="table responsive table-striped table-bordered display" id="usersDatatable">
                         <thead>
                         <tr>
+                            <th></th>
                             <th><spring:message code="common.id"/></th>
                             <th><spring:message code="user.name"/></th>
                             <th><spring:message code="user.email"/></th>

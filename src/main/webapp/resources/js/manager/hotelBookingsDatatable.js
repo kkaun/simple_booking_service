@@ -63,6 +63,11 @@ $(function () {
     datatableApi = $('#hotelBookingsDatatable').DataTable(extendsOpts({
         "columns": [
             {
+                "render": renderExpandBtn,
+                "defaultContent": "",
+                "orderable": false
+            },
+            {
                 "data": "id",
                 "render": function(data, type, row, meta){
                     if(type === 'display'){

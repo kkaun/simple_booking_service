@@ -28,17 +28,6 @@ public class HotelBookingsAjaxController extends ManagerObjectAbstractController
         super(apartmentService, aptTypeService, hotelService, bookingService, subBookingService, voteService, managerObjectService);
     }
 
-//    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-//    public void updateBookingByManager(@Valid ManagerBookingTo managerBookingTo) {
-//        super.updateManagerObjectBooking(managerBookingTo);
-//    }
-
-//    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-//    @JsonView(View.JsonUI.class)
-//    public ManagerBookingTo getBookingForManager(@PathVariable("id") int id) {
-//        return super.getObjectBooking(id);
-//    }
-
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @JsonView(View.JsonUI.class)

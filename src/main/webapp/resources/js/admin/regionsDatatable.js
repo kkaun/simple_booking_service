@@ -27,6 +27,11 @@ $(function () {
     datatableApi = $('#placesDatatable').DataTable(extendsOpts({
         "columns": [
             {
+                "render": renderExpandBtn,
+                "defaultContent": "",
+                "orderable": false
+            },
+            {
                 "data": "id"
             },
             {
@@ -65,7 +70,5 @@ $(function () {
         ],
         "pageLength": 50
     }));
-
 });
-
 

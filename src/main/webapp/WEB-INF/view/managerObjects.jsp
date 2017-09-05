@@ -38,6 +38,7 @@
                         <table class="table responsive table-striped table-bordered hover display" id="managerHotelsDatatable">
                             <thead>
                             <tr>
+                                <th></th>
                                 <th><spring:message code="common.id"/><spring:message code="proceed"/></th>
                                 <th><spring:message code="common.name"/></th>
                                 <th><spring:message code="hotels.rating"/></th>

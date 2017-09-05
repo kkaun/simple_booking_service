@@ -13,6 +13,11 @@ $(function () {
     datatableApi = $('#userHotelsDatatable').DataTable(extendsOpts({
         "columns": [
             {
+                "render": renderExpandBtn,
+                "defaultContent": "",
+                "orderable": false
+            },
+            {
                 "data": "imgPath",
                 "render": function(data, type, row, meta) {
                     if (type === 'display') {

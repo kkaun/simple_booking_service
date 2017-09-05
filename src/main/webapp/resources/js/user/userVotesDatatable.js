@@ -14,6 +14,11 @@ $(function () {
     datatableApi = $('#userVotesDatatable').DataTable(extendsOpts({
         "columns": [
             {
+                "render": renderExpandBtn,
+                "defaultContent": "",
+                "orderable": false
+            },
+            {
                 "data": "dateAdded"
             },
             {

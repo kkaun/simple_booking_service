@@ -27,15 +27,36 @@ function extendsSubBookingOpts(opts) {
                 "url": subBookingAjaxUrl + "getAll?bookingId=" + bookingId,
                 "dataSrc": ""
             },
+            "autoWidth": false,
+            responsive: true,
             "paging": true,
             "info": true,
             "language": {
-                "search": i18n["common.search"]
+                "search": i18n["common.search"],
+                "processing": i18n["common.processing"],
+                "info": i18n["common.table_info"],
+                "lengthMenu":    i18n["common.menu_length"],
+                "loadingRecords": i18n["common.loading_records"],
+                "zeroRecords":    i18n["common.zero_records"],
+                "emptyTable":     i18n["common.empty_table"],
+                "paginate": {
+                    "first":      i18n["common.paging_first"],
+                    "previous":   i18n["common.paging_previous"],
+                    "next":       i18n["common.paging_next"],
+                    "last":       i18n["common.paging_last"]
+                }
             },
-            "initComplete": makeSubBookingEditable
+            "initComplete": makeEditable
         }
     );
     return opts;
+}
+
+
+function renderExpandBtn(data, type, row) {
+    if (type === 'display') {
+        return '<span><i class="fa fa-bars" aria-hidden="true"></i></span>';
+    }
 }
 
 

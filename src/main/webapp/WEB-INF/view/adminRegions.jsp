@@ -27,7 +27,7 @@
                             <form:form class="form-horizontal filter" id="placesAdminFilter">
                                 <div class="form-group">
                                     <label class="control-label col-sm-4" for="region">
-                                        <spring:message code="common.filter_title"/> <spring:message code="city.byRegion"/>:</label>
+                                        <spring:message code="city.byRegion"/>:</label>
                                     <div class="col-sm-5">
                                         <input class="form-control" name="region" id="region">
                                     </div>
@@ -68,6 +68,7 @@
                         <table class="table responsive table-striped table-bordered display" id="placesDatatable">
                             <thead>
                             <tr>
+                                <th></th>
                                 <th><spring:message code="common.id"/></th>
                                 <th><spring:message code="common.name"/></th>
                                 <th><spring:message code="common.country"/></th>
@@ -187,7 +188,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-xs-8">
-                            <button class="btn btn-primary" type="submit" onclick="saveRegionImage()">
+                            <button class="btn btn-primary" type="button" onclick="saveRegionImage()">
                                 <spring:message code="common.save"/>&nbsp;&nbsp;
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                             </button>
@@ -201,6 +202,7 @@
         </div>
     </div>
 </div>
+
 
 </body>
 <jsp:include page="fragments/i18nUtil.jsp"/>

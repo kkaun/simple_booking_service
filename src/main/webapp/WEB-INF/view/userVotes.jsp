@@ -41,6 +41,7 @@
                             <table class="table responsive table-striped table-bordered display" id="userVotesDatatable">
                                 <thead>
                                 <tr>
+                                    <th></th>
                                     <th><spring:message code="common.dateAdded"/></th>
                                     <th><spring:message code="common.rate"/></th>
                                     <th><spring:message code="common.hotelId"/></th>

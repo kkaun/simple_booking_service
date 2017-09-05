@@ -43,6 +43,7 @@
                                 <table class="table responsive table-striped table-bordered display" id="userBookingsDatatable">
                                     <thead>
                                     <tr>
+                                        <th></th>
                                         <th><spring:message code="common.id"/><spring:message code="proceed"/></th>
                                         <th><spring:message code="common.dateAdded"/></th>
                                         <th><spring:message code="common.inDate"/></th>

@@ -42,6 +42,7 @@
                         <table class="table responsive table-striped table-bordered display" id="apartmentsDatatable">
                             <thead>
                             <tr>
+                                <th></th>
                                 <th><spring:message code="apt_types.personNum"/>
                                     , <spring:message code="apt_types.category"/>
                                     , <spring:message code="apt_types.bedsArrangement"/>

@@ -35,6 +35,7 @@
                         <table class="table responsive table-striped table-bordered display" id="votesDatatable">
                             <thead>
                             <tr>
+                                <th></th>
                                 <th><spring:message code="common.id"/></th>
                                 <th><spring:message code="common.dateAdded"/></th>
                                 <th><spring:message code="common.rate"/></th>

@@ -52,12 +52,9 @@ function extendsOpts(opts) {
 }
 
 
-
-
 function updateTableByData(data) {
     datatableApi.clear().rows.add(data).draw();
 }
-
 
 
 function getDelayedTable() {
@@ -100,6 +97,12 @@ function failNoty(jqXHR) {
 }
 
 
+
+function renderExpandBtn(data, type, row) {
+    if (type === 'display') {
+        return '<span><i class="fa fa-bars" aria-hidden="true"></i></span>';
+    }
+}
 
 
 

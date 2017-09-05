@@ -14,6 +14,11 @@ $(function () {
     datatableApi = $('#apartmentsDatatable').DataTable(extendsOpts({
         "columns": [
             {
+                "render": renderExpandBtn,
+                "defaultContent": "",
+                "orderable": false
+            },
+            {
                 "data": "stringAptType"
             },
             {

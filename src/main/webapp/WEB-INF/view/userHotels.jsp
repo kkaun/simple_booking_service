@@ -42,6 +42,7 @@
                                 <table class="table responsive table-striped table-bordered display" id="userHotelsDatatable">
                                     <thead>
                                     <tr>
+                                        <th></th>
                                         <th><spring:message code="common.image"/></th>
                                         <th><spring:message code="common.id"/></th>
                                         <th><spring:message code="common.name"/></th>

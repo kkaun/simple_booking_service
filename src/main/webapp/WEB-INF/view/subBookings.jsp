@@ -93,7 +93,7 @@
                         <table class="table table-striped table-bordered display" id="bookingsDatatable">
                             <thead>
                             <tr>
-                                <%--<th>Sub-<spring:message code="common.id"/></th>--%>
+                                <th></th>
                                 <th><spring:message code="common.inDate"/></th>
                                 <th><spring:message code="common.outDate"/></th>
                                 <th><spring:message code="subBookings.sum"/></th>
