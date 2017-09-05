@@ -72,6 +72,7 @@
                 <h2 class="modal-title" id="userHotelVoteModalTitle"><spring:message code="common.edit_vote"/></h2>
             </div>
             <div class="modal-body">
+
                 <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
                     <input type="hidden" id="dateAdded" name="dateAdded">
@@ -90,7 +91,7 @@
                         <label for="voteRate" class="control-label col-xs-3"><spring:message
                                 code="common.rate"/></label>
                         <div class="col-xs-3">
-                            <input class="form-control" id="voteRate" name="rate">
+                            <input class="form-control" id="voteRate" name="rate" min="0" max="10">
                         </div>
                     </div>
 
@@ -102,10 +103,10 @@
                             </textarea>
                         </div>
                     </div>
-
+                    <hr>
                     <div class="form-group">
-                        <div class="col-xs-offset-3 col-xs-9">
-                            <button class="btn btn-primary" type="button"
+                        <div class="col-xs-8">
+                            <button class="btn btn-primary pull-right" type="button"
                                     onclick="createUserVoteByHotel()">
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                             </button>

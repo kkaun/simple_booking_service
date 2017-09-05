@@ -1,5 +1,5 @@
 
-//datetimepicker
+
 $(function() {
     $('.out_date').datepicker({
         dateFormat: 'yy-mm-dd',
@@ -31,14 +31,14 @@ $(function() {
 
 
 $(function() {
-    $('.from_date').datepicker({
+    $('.end_date').datepicker({
         dateFormat: 'yy-mm-dd',
         onSelect: function() {},
         onClose: function() {
             $(this).focus();
         }
     });
-    $('.to_date').datepicker({
+    $('.start_date').datepicker({
         dateFormat: 'yy-mm-dd',
         onSelect: function () {},
         onClose: function () {
@@ -49,39 +49,7 @@ $(function() {
 
 
 
-
-//
-// $.datetimepicker.setLocale(localeCode);
-//
-// //  http://xdsoft.net/jqplugins/datetimepicker/
-// var startDate = $('#startDate');
-// var endDate = $('#endDate');
-// startDate.datetimepicker({
-//     timepicker: false,
-//     format: 'Y-m-d',
-//     formatDate: 'Y-m-d',
-//     onShow: function (ct) {
-//         this.setOptions({
-//             maxDate: endDate.val() ? endDate.val() : false
-//         })
-//     }
-// });
-// endDate.datetimepicker({
-//     timepicker: false,
-//     format: 'Y-m-d',
-//     formatDate: 'Y-m-d',
-//     onShow: function (ct) {
-//         this.setOptions({
-//             minDate: startDate.val() ? startDate.val() : false
-//         })
-//     }
-// });
-//
-// $('#startTime, #endTime').datetimepicker({
-//     datepicker: false,
-//     format: 'H:i'
-// });
-//
-// $('#dateTime').datetimepicker({
-//     format: 'Y-m-d H:i'
-// });
+$('.in_time, .out_time').datetimepicker({
+    datepicker: false,
+    format: 'H:i'
+});

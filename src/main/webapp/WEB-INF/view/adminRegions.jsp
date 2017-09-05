@@ -97,6 +97,7 @@
                 <h2 class="modal-title" id="regionModalTitle"><spring:message code="common.region_editing"/></h2>
             </div>
             <div class="modal-body">
+
                 <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
 
@@ -137,9 +138,10 @@
                             </textarea>
                         </div>
                     </div>
+                    <hr>
                     <div class="form-group">
                         <div class="col-xs-8">
-                            <button class="btn btn-primary" type="button" onclick="saveRegion()">
+                            <button class="btn btn-primary pull-right" type="button" onclick="saveRegion()">
                                 <spring:message code="common.save"/>&nbsp;&nbsp;
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                             </button>
@@ -185,7 +187,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-xs-8">
-                            <button class="btn btn-primary" type="button" onclick="saveRegionImage()">
+                            <button class="btn btn-primary" type="submit" onclick="saveRegionImage()">
                                 <spring:message code="common.save"/>&nbsp;&nbsp;
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                             </button>
@@ -199,7 +201,6 @@
         </div>
     </div>
 </div>
-
 
 </body>
 <jsp:include page="fragments/i18nUtil.jsp"/>

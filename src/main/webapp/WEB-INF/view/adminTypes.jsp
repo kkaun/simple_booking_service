@@ -70,12 +70,14 @@
                 <h2 class="modal-title" id="aptTypeModalTitle"><spring:message code="common.edit_apt_type"/></h2>
             </div>
             <div class="modal-body">
+
                 <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
+
                     <div class="form-group">
                         <label for="personNum" class="control-label col-xs-3"><spring:message
                                 code="apt_types.personNum"/></label>
-                        <div class="col-xs-9">
+                        <div class="col-xs-3">
                             <input class="form-control" id="personNum" name="personNum">
                         </div>
                     </div>
@@ -93,9 +95,10 @@
                             <input class="form-control" id="bedsArrangement" name="bedsArrangement">
                         </div>
                     </div>
+                    <hr>
                     <div class="form-group">
                         <div class="col-xs-8">
-                            <button class="btn btn-primary" type="button" onclick="saveAptType()">
+                            <button class="btn btn-primary pull-right" type="button" onclick="saveAptType()">
                                 <spring:message code="common.save"/>&nbsp;&nbsp;
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                             </button>

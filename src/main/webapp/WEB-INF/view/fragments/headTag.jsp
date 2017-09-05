@@ -34,5 +34,4 @@
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/datepicker.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/scripts.js"></script>
-
 </head>

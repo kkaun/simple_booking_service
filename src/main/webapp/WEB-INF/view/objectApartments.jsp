@@ -70,6 +70,7 @@
                 <h2 class="modal-title" id="apartmentModalTitle"><spring:message code="common.edit_apartment"/></h2>
             </div>
             <div class="modal-body">
+
                 <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
                     <input type="hidden" id="hotelId" name="hotelId">
@@ -98,9 +99,10 @@
                             </div>
                         </div>
                     </div>
+                    <hr>
                     <div class="form-group">
                         <div class="col-xs-8">
-                            <button class="btn btn-primary" type="button" onclick="saveApartment()">
+                            <button class="btn btn-primary pull-right" type="button" onclick="saveApartment()">
                                 <spring:message code="common.save"/>&nbsp;&nbsp;
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                             </button>
@@ -144,9 +146,10 @@
                             <input name="image" id="image" type="file" /><br/>
                         </div>
                     </div>
-                    <div class="form-group text-center">
+                    <hr>
+                    <div class="form-group">
                         <div class="col-xs-8">
-                            <button class="btn btn-primary" type="button" onclick="saveApartmentImage()">
+                            <button class="btn btn-primary pull-right" type="button" onclick="saveApartmentImage()">
                                 <spring:message code="common.save"/>&nbsp;&nbsp;
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                             </button>

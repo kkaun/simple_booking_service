@@ -123,6 +123,7 @@
                 <h2 class="modal-title" id="bookingModalTitle"></h2>
             </div>
             <div class="modal-body">
+
                 <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
                     <input type="hidden" id="edited" name="edited">
@@ -200,7 +201,6 @@
         </div>
     </div>
 </div>
-
 
 </body>
 <jsp:include page="fragments/i18nUtil.jsp"/>

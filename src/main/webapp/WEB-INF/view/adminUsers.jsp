@@ -73,6 +73,7 @@
                 <h2 class="modal-title" id="voteShowModalTitle"><spring:message code="common.edit_user"/></h2>
             </div>
             <div class="modal-body">
+
                 <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="enabled" name="enabled">
                     <input type="hidden" id="id" name="id">
@@ -114,9 +115,10 @@
                             </div>
                         </c:if>
                     </div>
+                    <hr>
                     <div class="form-group">
                         <div class="col-xs-8">
-                            <button type="button" onclick="saveUser()" class="btn btn-primary">
+                            <button class="btn btn-primary pull-right" type="button" onclick="saveUser()" class="btn btn-primary">
                                 <spring:message code="common.save"/>&nbsp;&nbsp;
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                             </button>

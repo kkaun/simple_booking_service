@@ -70,7 +70,8 @@
                 <h2 class="modal-title" id="userVoteModalTitle"><spring:message code="common.edit_vote"/></h2>
             </div>
             <div class="modal-body">
-                <form:form class="form-horizontal detailsForm">
+
+                <form:form class="form-horizontal detailsForm" id="details_form">
                     <input type="hidden" id="id" name="id">
                     <input type="hidden" id="dateAdded" name="dateAdded">
                     <input type="hidden" id="userName" name="userName">
@@ -88,7 +89,7 @@
                         <label for="voteRate" class="control-label col-xs-3"><spring:message
                                 code="common.rate"/></label>
                         <div class="col-xs-3">
-                            <input class="form-control" id="voteRate" name="rate">
+                            <input class="form-control" id="voteRate" name="rate" min="0" max="10">
                         </div>
                     </div>
 
@@ -100,10 +101,10 @@
                             </textarea>
                         </div>
                     </div>
-
+                    <hr>
                     <div class="form-group">
                         <div class="col-xs-8">
-                            <button class="btn btn-primary" type="button"
+                            <button class="btn btn-primary pull-right" type="button"
                                     onclick="saveUserVote()"><spring:message code="common.save"/>&nbsp;&nbsp;
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                             </button>

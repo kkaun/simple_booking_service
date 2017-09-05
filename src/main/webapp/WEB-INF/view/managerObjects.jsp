@@ -66,6 +66,7 @@
                 <h2 class="modal-title" id="managerHotelModalTitle"></h2>
             </div>
             <div class="modal-body">
+
                 <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
                     <input type="hidden" id="cityId" name="cityId">
@@ -183,9 +184,10 @@
                             <input name="image" id="image" type="file" /><br/>
                         </div>
                     </div>
+                    <hr>
                     <div class="form-group">
                         <div class="col-xs-8">
-                            <button class="btn btn-primary" type="button" onclick="saveManagerHotelImage()">
+                            <button class="btn btn-primary pull-right" type="button" onclick="saveManagerHotelImage()">
                                 <spring:message code="common.save"/>&nbsp;&nbsp;
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                             </button>
@@ -199,7 +201,6 @@
         </div>
     </div>
 </div>
-
 
 </body>
 <jsp:include page="fragments/i18nUtil.jsp"/>

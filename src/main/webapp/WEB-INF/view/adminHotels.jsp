@@ -167,7 +167,7 @@
                     <div class="form-group">
                         <label for="stars" class="control-label col-xs-3"><spring:message
                                 code="common.hotelStars"/></label>
-                        <div class="col-xs-9">
+                        <div class="col-xs-2">
                             <input class="form-control" id="stars" type="text" name="stars">
                         </div>
                     </div>
@@ -208,9 +208,10 @@
                             <input class="form-control" type="text" id="hotelPhone" name="phone">
                         </div>
                     </div>
+                    <hr>
                     <div class="form-group">
                         <div class="col-xs-8">
-                            <button class="btn btn-primary" type="button" onclick="saveHotel()">
+                            <button class="btn btn-primary pull-right" type="button" onclick="saveHotel()">
                                 <spring:message code="common.save"/>&nbsp;&nbsp;
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                             </button>
@@ -224,7 +225,6 @@
         </div>
     </div>
 </div>
-
 
 </body>
 <jsp:include page="fragments/i18nUtil.jsp"/>
