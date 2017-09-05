@@ -69,37 +69,23 @@
 
 
 
-/*.restNavbar{*/
-    /*margin-left: -20px;*/
-    /*list-style: none;*/
-    /*text-decoration: none;*/
-    /*color: black;*/
-    /*width: 125px;*/
-/*}*/
+#toTopBtn {
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    z-index: 999;
+    height: 45px;
+    padding-top: 3px;
+    font-size: 35px;
+    position: fixed;
+    bottom: -5px;
+    right: 0px;
+    left: 0px;
+    cursor: pointer;
+    display: none;
+}
 
 
-/*.restNavLi{*/
-    /*list-style: none;*/
-    /*text-decoration: none;*/
-    /*color: black;*/
-/*}*/
 
-
-/*.admLink{*/
-    /*text-decoration:none;*/
-    /*color: black;*/
-/*}*/
-
-/*.admLink :hover * {*/
-    /*background-color: #5cb85c !important;*/
-    /*text-decoration:none !important;*/
-    /*color: black !important;*/
-/*}*/
-
-
-/*.sideItem{*/
-    /*height: 40px;*/
-/*}*/
 
 .mini-submenu{
     display:none;

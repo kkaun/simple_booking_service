@@ -8,6 +8,7 @@
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/datatables-responsive/2.1.1/js/dataTables.responsive.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ajaxUtil.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user/userVotesDatatable.js" defer></script>
 <jsp:include page="fragments/header.jsp"/>
@@ -37,7 +38,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered display" id="userVotesDatatable">
+                            <table class="table responsive table-striped table-bordered display" id="userVotesDatatable">
                                 <thead>
                                 <tr>
                                     <th><spring:message code="common.dateAdded"/></th>

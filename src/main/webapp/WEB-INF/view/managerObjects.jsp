@@ -5,6 +5,7 @@
 
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
+<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/datatables-responsive/2.1.1/js/dataTables.responsive.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ajaxUtil.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/managerHotelsDatatable.js" defer></script>
 <body>
@@ -34,7 +35,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered hover display" id="managerHotelsDatatable">
+                        <table class="table responsive table-striped table-bordered hover display" id="managerHotelsDatatable">
                             <thead>
                             <tr>
                                 <th><spring:message code="common.id"/><spring:message code="proceed"/></th>
