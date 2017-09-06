@@ -139,7 +139,7 @@
                                 </c:if>
                             </div>
                             <c:if test="${hotel.votesNum > 0}">
-                                <h3> Average <c:out value="${hotel.rating}"/> <small> / </small> 10 </h3>
+                                <h3> <spring:message code="common.average"/> <c:out value="${hotel.rating}"/> <small> / </small> 10 </h3>
                                 <h4> <c:out value="${hotel.votesNum}"/> <small> <spring:message code="hotels.votesNum"/> </small></h4>
                             </c:if>
                             <c:if test="${empty hotel.votesNum || hotel.votesNum == 0}">

@@ -64,10 +64,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h2 class="modal-title" id="managerHotelModalTitle"></h2>
+                <h2 class="modal-title" id="hotelModalTitle"><spring:message code="common.edit_object"/> </h2>
             </div>
             <div class="modal-body">
-
+                <h4><span><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>
+                    <spring:message code="common.all_active_inputs_required"/></h4>
+                <hr>
                 <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
                     <input type="hidden" id="cityId" name="cityId">
@@ -75,18 +77,18 @@
 
                     <div class="form-group countryNameForm">
                         <label for="countryName" class="control-label col-xs-3">
-                            <spring:message code="common.countryName"/>
+                            <spring:message code="common.countryName"/><spring:message code="commin.in_latin"/>
                         </label>
-                        <div class="col-xs-9">
+                        <div class="col-xs-8">
                             <input class="form-control" type="text" id="countryName" name="countryName">
                         </div>
                     </div>
 
                     <div class="form-group cityNameForm">
                         <label for="cityName" class="control-label col-xs-3">
-                            <spring:message code="common.placeName"/>
+                            <spring:message code="common.placeName"/><spring:message code="commin.in_latin"/>
                         </label>
-                        <div class="col-xs-9">
+                        <div class="col-xs-8">
                             <input class="form-control" type="text" id="cityName" name="cityName">
                         </div>
                     </div>
@@ -95,14 +97,14 @@
                         <label for="hotelName" class="control-label col-xs-3"><spring:message
                                 code="common.hotelName"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="hotelName" name="name">
+                            <input class="form-control" type="text" id="hotelName" name="name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="stars" class="control-label col-xs-3"><spring:message
-                                code="common.hotelStars"/></label>
-                        <div class="col-xs-9">
-                            <input class="form-control" id="stars" min="1" max="5" name="stars">
+                                code="common.hotelStars"/><spring:message code="common.stars_req"/></label>
+                        <div class="col-xs-2">
+                            <input class="form-control" id="stars" type="text" name="stars">
                         </div>
                     </div>
                     <div class="form-group">
@@ -131,7 +133,7 @@
                         <label for="address" class="control-label col-xs-3"><spring:message
                                 code="hotels.address"/></label>
                         <div class="col-xs-9">
-                            <input class="form-control" id="address" name="address">
+                            <input class="form-control" type="text" id="address" name="address">
                         </div>
                     </div>
                     <div class="form-group">
@@ -139,18 +141,22 @@
                                 code="hotels.phone"/></label>
 
                         <div class="col-xs-9">
-                            <input class="form-control" id="hotelPhone" name="phone">
+                            <input class="form-control" type="text" id="hotelPhone" name="phone">
                         </div>
                     </div>
-
+                    <hr>
                     <div class="form-group">
-                        <div class="col-xs-offset-3 col-xs-9">
-                            <button class="btn btn-primary" type="button" onclick="saveManagerHotel()">
+                        <div class="col-xs-8">
+                            <button class="btn btn-primary pull-right" type="button" onclick="saveManagerHotel()">
+                                <spring:message code="common.save"/>&nbsp;&nbsp;
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                             </button>
                         </div>
                     </div>
                 </form:form>
+            </div>
+            <div class="modal-footer">
+                <div class="load-bar"></div>
             </div>
         </div>
     </div>

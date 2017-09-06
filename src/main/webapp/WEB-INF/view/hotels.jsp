@@ -31,7 +31,8 @@
                 <div class="col-md-4">
                 </div>
                 <div class="col-md-8" style="padding-left: 20px; padding-right: 20px">
-                    <h3 style="color: #f6f6f6; margin-top: -170px;"><c:out value="${city.name}"/>. <br><c:out value="${city.description}"/></h3>
+                    <h3 style="color: #f6f6f6; margin-top: -170px;"><c:out value="${city.name}"/>. <br><c:out
+                            value="${city.description}"/></h3>
                 </div>
             </div>
         </c:if>
@@ -53,32 +54,39 @@
 
         <div class="col-md-8">
             <div class="well">
-                <a class="list-group">
-                    <c:if test="${not empty badRegion && empty hotels}">
-                        <div class="list-group-item listItem">
-                            <h3>
-                                <spring:message code="common.unfortunately_request"/> "<c:out value="${badRegion}"/>"
-                                <spring:message code="common.no_results"/>
-                                <br>
-                                <spring:message code="common.maybe_shortage"/>
-                                <br>
-                                <spring:message code="common.also_check"/>
-                            </h3>
-                        </div>
-                    </c:if>
-                    <c:if test="${not empty notAvailablePlacementList && empty hotels}">
-                        <h3><c:out value="${notAvailablePlacementList}"/></h3>
+                <c:if test="${not empty badRegion && empty hotels}">
+                    <div class="list-group-item listItem">
+                        <h3>
+                            <spring:message code="common.unfortunately_request"/> "<c:out value="${badRegion}"/>"
+                            <spring:message code="common.no_results"/>
+                            <br>
+                            <spring:message code="common.maybe_shortage"/>
+                            <br>
+                            <spring:message code="common.also_check"/>
+                        </h3>
+                    </div>
+                </c:if>
+                <c:if test="${not empty placementNotAvailable && empty hotels}">
+                    <div class="list-group-item listItem">
+                        <h3><spring:message code="common.unfortunately_request"/> <spring:message code="common.no_results"/></h3>
                         <br>
                         <h5><spring:message code="common.maybe_shortage"/>
+                            <br>
+                            <br>
                             <spring:message code="common.might_try_search"/>
+                            <br>
                             <br>
                             <spring:message code="common.try_also"/>
                         </h5>
-                    </c:if>
+                    </div>
+                </c:if>
+
+                <a class="list-group">
                     <c:if test="${not empty hotels}">
                         <c:forEach items="${hotels}" var="hotel">
                             <jsp:useBean id="hotel" scope="page" type="com.kirak.to.HotelTo"/>
-                            <a class="list-group-item listItem" href="inspect_hotel?id=${hotel.id}" style="padding-top: 20px;">
+                            <a class="list-group-item listItem" href="inspect_hotel?id=${hotel.id}"
+                               style="padding-top: 20px;">
                                 <div class="media col-md-3">
                                     <figure class="pull-left">
                                         <c:if test="${not empty hotel.imgPath && hotel.imgPath.length() >= 1}">
@@ -92,8 +100,8 @@
                                     </figure>
                                 </div>
                                 <div class="col-md-4">
-                                    <h4 class="list-group-item-heading"> <c:out value="${hotel.name}"/> </h4>
-                                    <p class="list-group-item-text"> <c:out value="${hotel.description}"/>
+                                    <h4 class="list-group-item-heading"><c:out value="${hotel.name}"/></h4>
+                                    <p class="list-group-item-text"><c:out value="${hotel.description}"/>
                                     </p>
                                 </div>
                                 <div class="col-md-5 text-center">
@@ -104,23 +112,24 @@
                                             </c:forEach>
                                         </c:if>
                                         <c:if test="${empty hotel.stars || hotel.stars == 0}">
-                                            <p> <spring:message code="common.no_stars"/> </p>
+                                            <p><spring:message code="common.no_stars"/></p>
                                         </c:if>
                                     </div>
                                     <c:if test="${hotel.votesNum > 0}">
-                                        <h3> <spring:message code="common.average"/> <c:out value="${hotel.rating}"/>
+                                        <h3><spring:message code="common.average"/> <c:out value="${hotel.rating}"/>
                                             <small> /</small>
                                             10
                                         </h3>
-                                        <h4> <c:out value="${hotel.votesNum}"/>
-                                            <small> <spring:message code="hotels.votesNum"/> </small>
+                                        <h4><c:out value="${hotel.votesNum}"/>
+                                            <small><spring:message code="hotels.votesNum"/></small>
                                         </h4>
                                     </c:if>
                                     <c:if test="${empty hotel.votesNum || hotel.votesNum == 0}">
-                                        <h4> <spring:message code="common.no_votes"/> </h4>
+                                        <h4><spring:message code="common.no_votes"/></h4>
                                     </c:if>
                                     <button type="button" href="inspect_hotel?id=${hotel.id}"
-                                            class="btn btn-default btn-lg btn-block"> <spring:message code="common.view_book"/>&nbsp;
+                                            class="btn btn-default btn-lg btn-block"><spring:message
+                                            code="common.view_book"/>&nbsp;
                                     </button>
                                 </div>
                             </a>
@@ -144,28 +153,34 @@
                                         </c:if>
                                     </figure>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="col-md-12">
-                                        <h4 class="list-group-item-heading"> <c:out value="${placement.hotel.name}"/> </h4>
+                                        <h4 class="list-group-item-heading"><c:out
+                                                value="${placement.hotel.name}"/></h4>
                                         <hr>
                                     </div>
                                     <div class="col-md-12">
-                                        <h5 style="margin-top: 7px;"><strong> <spring:message code="common.optimal_placement_title"/> </strong></h5>
-                                        <div class="well" style="background-color: lightgreen; padding-top: 5px; padding-bottom: 5px;">
+                                        <h5 style="margin-top: 7px;"><strong> <spring:message
+                                                code="common.optimal_placement_title"/> </strong></h5>
+                                        <div class="well"
+                                             style="background-color: lightgreen; padding-top: 5px; padding-bottom: 5px;">
                                             <table class="table-responsive">
                                                 <c:forEach items="${placement.option}" var="option">
                                                     <tr>
                                                         <td><h6><strong><c:out value="${option.key.category}"/>
-                                                                <spring:message code="common.with"/>
-                                                                <c:out value="${option.key.bedsArrangement}"/></strong></h6></td>
-                                                        <td><h6>&nbsp;&nbsp;&nbsp;x<strong>${fn:length(option.value)}</strong></h6></td>
+                                                            <spring:message code="common.with"/>
+                                                            <c:out value="${option.key.bedsArrangement}"/></strong></h6>
+                                                        </td>
+                                                        <td><h6>
+                                                            &nbsp;&nbsp;&nbsp;x<strong>${fn:length(option.value)}</strong>
+                                                        </h6></td>
                                                     </tr>
                                                 </c:forEach>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 text-center">
+                                <div class="col-md-5 text-center">
                                     <div class="stars">
                                         <c:if test="${placement.hotel.stars > 0}">
                                             <c:forEach begin="0" end="${placement.hotel.stars - 1}"
@@ -174,31 +189,32 @@
                                             </c:forEach>
                                         </c:if>
                                         <c:if test="${empty placement.hotel.stars || placement.hotel.stars == 0}">
-                                            <p> <spring:message code="common.no_stars"/> </p>
+                                            <p><spring:message code="common.no_stars"/></p>
                                         </c:if>
                                     </div>
                                     <c:if test="${placement.hotel.votesNum > 0}">
-                                        <h3> <spring:message code="common.average"/> <c:out value="${hotel.rating}"/>
+                                        <h3><spring:message code="common.average"/> <c:out value="${hotel.rating}"/>
                                             <small> /</small>
                                             10
                                         </h3>
-                                        <h4> <c:out value="${placement.hotel.votesNum}"/>
-                                            <small> <spring:message code="hotels.votesNum"/> </small>
+                                        <h4><c:out value="${placement.hotel.votesNum}"/>
+                                            <small><spring:message code="hotels.votesNum"/></small>
                                         </h4>
                                     </c:if>
                                     <c:if test="${empty placement.hotel.votesNum || placement.hotel.votesNum == 0}">
-                                        <h4> <spring:message code="common.no_votes"/> </h4>
+                                        <h4><spring:message code="common.no_votes"/></h4>
                                     </c:if>
                                     <button type="button"
                                             href="inspect_placement?id=${placement.id}&personNum=${placementPersonNum}&
                                         apartmentNum=${placementApartmentNum}&inDate=${placementInDate}&outDate=${placementOutDate}"
-                                            class="btn btn-default btn-lg btn-block"> <spring:message code="common.book_now"/>
+                                            class="btn btn-default btn-lg btn-block"><spring:message
+                                            code="common.book_now"/>
                                     </button>
                                 </div>
                             </a>
                         </c:forEach>
                     </c:if>
-                </div>
+                </a>
             </div>
         </div>
     </div>

@@ -43,6 +43,7 @@
                                 <th><spring:message code="common.bookerName"/></th>
                                 <th><spring:message code="common.hotelId"/></th>
                                 <th><spring:message code="common.hotelName"/></th>
+                                <th><spring:message code="votes.usercomment"/></th>
                                 <th></th>
                                 <th></th>
                             </thead>
@@ -54,51 +55,6 @@
         </div>
     </div>
 </div>
-
-
-<div class="modal fade" id="showVoteRow">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h2 class="modal-title" id="userVoteModalTitle"><spring:message code="common.view_vote"/></h2>
-            </div>
-            <div class="modal-body">
-                <form:form class="form-horizontal detailsForm">
-
-                    <div class="form-group">
-                        <label for="hotelName" class="control-label col-xs-3"><spring:message
-                                code="common.bookerName"/></label>
-                        <div class="col-xs-9">
-                            <input class="form-control" id="hotelName" name="hotelName" readonly>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="voteRate" class="control-label col-xs-3"><spring:message
-                                code="common.rate"/></label>
-                        <div class="col-xs-3">
-                            <input class="form-control" id="voteRate" name="rate" readonly>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="voteUserComment" class="control-label col-xs-3"><spring:message
-                                code="common.comment"/></label>
-                        <div class="col-xs-9">
-                            <textarea class="form-control" id="voteUserComment" name="userComment" readonly>
-                            </textarea>
-                        </div>
-                    </div>
-                </form:form>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <div class="load-bar"></div>
-        </div>
-    </div>
-</div>
-
 
 </body>
 <jsp:include page="fragments/i18nUtil.jsp"/>

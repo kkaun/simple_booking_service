@@ -71,7 +71,9 @@
                 <h2 class="modal-title" id="apartmentModalTitle"><spring:message code="common.edit_apartment"/></h2>
             </div>
             <div class="modal-body">
-
+                <h4><span><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>
+                    <spring:message code="common.all_active_inputs_required"/></h4>
+                <hr>
                 <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
                     <input type="hidden" id="hotelId" name="hotelId">

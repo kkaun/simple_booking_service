@@ -64,9 +64,12 @@ public class AptTypeUtil {
 
     public static List<String> getAllToStringsFromAptTypes(List<AptType> aptTypes){
 
+        Comparator<AptType> comparator = (AptType t1, AptType t2) ->
+                (t1.getPersonNum().compareTo(t2.getPersonNum()));
+
         return aptTypes.stream()
+                .sorted(comparator)
                 .map(AptTypeUtil::getToStringFromAptType)
-                .sorted()
                 .collect(Collectors.toList());
     }
 

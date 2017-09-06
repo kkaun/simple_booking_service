@@ -55,7 +55,7 @@ public class ManagerController {
     @PreAuthorize("hasRole('ROLE_MANAGER')")
     @GetMapping("/hotel_manager/manage_object")
     public String manageObject(Model model, @RequestParam("id") int hotelId){
-        //int hotelId = Integer.parseInt(id);
+
         Hotel hotel = hotelService.get(hotelId);
 
         int managerId = AuthorizedUser.id();

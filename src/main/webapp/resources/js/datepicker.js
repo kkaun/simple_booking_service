@@ -1,6 +1,5 @@
 
 
-
 $(function() {
     $('.out_date').datepicker({
         dateFormat: 'yy-mm-dd',

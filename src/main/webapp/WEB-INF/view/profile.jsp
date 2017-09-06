@@ -38,8 +38,7 @@
                                 </div>
 
                                 <form:form modelAttribute="userTo" class="form-horizontal registration_form" method="post"
-                                           action="register_user"
-                                           charset="utf-8" accept-charset="UTF-8">
+                                           action="register_user" charset="utf-8" accept-charset="UTF-8">
 
                                     <div class="form-group">
                                         <div class="input-group">
@@ -136,8 +135,7 @@
                                 </div>
 
                                 <form:form modelAttribute="userTo" class="form-horizontal registration_form" method="post"
-                                           action="registerUser"
-                                           charset="utf-8" accept-charset="UTF-8">
+                                           action="register_manager" charset="utf-8" accept-charset="UTF-8">
 
                                     <div class="form-group">
                                         <div class="input-group">

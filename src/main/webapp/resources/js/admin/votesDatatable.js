@@ -39,9 +39,7 @@ $(function () {
                 "data": "hotelName"
             },
             {
-                "render": renderViewVoteBtn,
-                "defaultContent": "",
-                "orderable": false
+                "data": "userComment"
             },
             {
                 "render": renderDeleteVoteBtn,

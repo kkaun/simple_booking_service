@@ -104,8 +104,7 @@ public class BusinessController extends BusinessAbstractController {
             model.addAttribute("placementInDate", inDate);
             model.addAttribute("placementOutDate", outDate);
         } else{
-        model.addAttribute("notAvailablePlacementList", "Unfortunately, searching by requested parameters " +
-                "brought no results.");
+        model.addAttribute("placementNotAvailable", "placementNotAvailable");
         }
         return "hotels";
     }
@@ -122,6 +121,7 @@ public class BusinessController extends BusinessAbstractController {
                 PlacementUtil.calculateBookingSumForPlacement(placement, LocalDate.parse(inDate), LocalDate.parse(outDate)), inDate, outDate);
         ModelUtil.addInspectPlacementView(model, placement, apartmentService.getAllByHotel(hotelId),
                 HotelUtil.asHotelTo(hotelService.get(hotelId)));
+        model.addAttribute("defaultInDate", String.valueOf(LocalDate.now()));
         return "hotel";
     }
 

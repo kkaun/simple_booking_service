@@ -75,21 +75,31 @@
         <div class="col-md-8">
 
             <c:if test="${not empty notAvailableApartment}">
-                <div class="panel-warning">
-                    <h3><spring:message code="common.unfortunately"/>
-                    <c:out value="${notAvailableApartment.type.personNum}"/><spring:message code="common._person"/>
-                    <c:out value="${notAvailableApartment.type.category}"/>
-                    <spring:message code="common.with"/>
-                    <c:out value="${notAvailableApartment.type.bedsArrangement}"/> <spring:message code="common.not_available"/>
-                    </h3>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-warning">
+                            <h4><spring:message code="common.unfortunately"/>
+                                <c:out value="${notAvailableApartment.type.personNum}"/><spring:message
+                                        code="common._person"/>
+                                <c:out value="${notAvailableApartment.type.category}"/>
+                                <spring:message code="common.with"/>
+                                <c:out value="${notAvailableApartment.type.bedsArrangement}"/> <spring:message
+                                        code="common.not_available"/>
+                            </h4>
+                        </div>
+                    </div>
                 </div>
             </c:if>
             <c:if test="${not empty notAvailablePlacement}">
-                <div class="panel-warning">
-                    <h3>
-                    <c:out value="${notAvailablePlacement}"/>
-                    </h3>
-                    <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-warning">
+                            <h4>
+                                <c:out value="${notAvailablePlacement}"/>
+                            </h4>
+                            <br>
+                        </div>
+                    </div>
                 </div>
             </c:if>
             <c:if test="${not empty placement}">

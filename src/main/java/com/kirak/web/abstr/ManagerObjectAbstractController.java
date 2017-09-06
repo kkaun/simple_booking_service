@@ -80,18 +80,6 @@ public abstract class ManagerObjectAbstractController {
 
     //--------------------------------------  Booking methods --------------------------------//
 
-
-//    public void updateManagerObjectBooking(ManagerBookingTo managerBookingTo){
-//        LOG.info("Saving Booking {}", managerBookingTo);
-//        bookingService.update(managerBookingTo);
-//    }
-//
-//    public ManagerBookingTo getObjectBooking(int id){
-//        LOG.info("Saving Booking {}", id);
-//        Booking booking = bookingService.get(id);
-//        return asManagerBookingTo(booking, getBookingInDate(booking), getBookingOutDate(booking));
-//    }
-
     public List<ManagerBookingTo> getAllBookingsFromCurrentObject(){
         LOG.info("Getting all Bookings {}");
         Integer hotelManagerId = AuthorizedUser.id();
