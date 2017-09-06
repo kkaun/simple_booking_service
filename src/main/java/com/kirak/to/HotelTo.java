@@ -208,13 +208,14 @@ public class HotelTo extends BasicIntTo implements Serializable {
                 ", stars=" + stars +
                 ", description='" + description + '\'' +
                 ", votesNum=" + votesNum +
-                ", checkIn=" + checkIn +
-                ", checkOut=" + checkOut +
+                ", checkIn='" + checkIn + '\'' +
+                ", checkOut='" + checkOut + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 ", cityId=" + cityId +
                 ", cityName='" + cityName + '\'' +
                 ", countryName='" + countryName + '\'' +
+                ", imgPath='" + imgPath + '\'' +
                 '}';
     }
 }

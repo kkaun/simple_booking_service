@@ -21,7 +21,7 @@
                                     <h2><spring:message code="common.booking_done"/></h2>
                                     <hr>
                                     <h4><spring:message code="common.trip_id"/> <strong>${booking.id}</strong>
-                                        . <spring:message code="common.booking_compl_add"/>${user.email}</h4>
+                                        . <spring:message code="common.booking_compl_add"/> ${user.email}</h4>
                                 </div>
                             </div>
                         </div>

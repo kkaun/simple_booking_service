@@ -214,11 +214,18 @@
                 <div class="col-md-8">
                     <div class="panel panel-default text-center">
                         <div class="panel-heading">
+                            <c:if test="${not empty successEdit}">
+                                <h3 style="color: #00694a">
+                                    <strong><spring:message code="common.success_profile_edit"/></strong>
+                                </h3>
+                                <br>
+                                <hr>
+                            </c:if>
                             <h2><spring:message code="app.profile"/> ${userTo.name}</h2>
                         </div>
                         <div class="panel-body">
                             <form:form modelAttribute="userTo" class="form-horizontal" method="post"
-                                       action="profile'"
+                                       action="profile"
                                        charset="utf-8" accept-charset="UTF-8">
 
                                 <spring:message code="user.name" var="userName"/>
@@ -248,6 +255,19 @@
             </div>
         </sec:authorize>
     </sec:authorize>
+
+
+    <sec:authorize access="isAuthenticated()">
+        <sec:authorize access="hasRole('ROLE_ADMIN')">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h2><spring:message code="common.profile_restricted_for_admin"/></h2>
+            </div>
+            <div class="col-md-2"></div>
+        </sec:authorize>
+    </sec:authorize>
+
+
 </div>
 
 <script type="text/javascript">

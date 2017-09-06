@@ -13,8 +13,8 @@ public class RegionUtil {
 
     public static PlaceTo asPlaceTo(City city){
 
-        return new PlaceTo(city.getId(), "", city.getName(), city.getCountry().getName(), city.getDescription(),
-                city.getHotels().size());
+        return new PlaceTo(city.getId(), city.getImgPath(), city.getName(), city.getCountry().getName(),
+                city.getDescription(), city.getHotels().size());
     }
 
     public static City createCityFromPlaceTo(PlaceTo placeTo, List<Country> countries){
@@ -32,7 +32,6 @@ public class RegionUtil {
 
         city.setDescription(placeTo.getDescription());
         city.setName(placeTo.getName());
-        city.setImgPath(placeTo.getImgPath());
         return city;
     }
 

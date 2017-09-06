@@ -132,7 +132,7 @@
                     <div class="col-md-10 text-center">
                         <h4><spring:message code="common.image"/></h4>
                         <br>
-                        <img src="imgPath" class="img-responsive imgTag" alt="This item has no available image yet">
+                        <img src="" class="img-responsive" id="imgTag" alt="This item has no available image yet">
                     </div>
                     <div class="col-md-1"></div>
                 </div>

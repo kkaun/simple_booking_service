@@ -290,15 +290,13 @@ function saveRegion() {
 }
 
 function updateRegionImage(id) {
+    $('#imgTag').attr('src', '');
     $('#regionImageModalTitle').html(i18n["editTitle"]);
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
-            $('.imgTag').each(function () {
-                var curSrc = $(this).attr('src');
-                if ( curSrc === key ) {
-                    $(this).attr('src', value);
-                }
-            });
+            if (key === 'imgPath') {
+                $('#imgTag').attr('src', value);
+            }
             form.find("input[name='" + key + "']").val(value);
         });
         $('.load-bar').hide();
@@ -488,15 +486,13 @@ function renderApartmentImageBtn(data, type, row) {
 }
 
 function updateApartmentImage(id) {
+    $('#imgTag').attr('src', '');
     $('#apartmentImageModalTitle').html(i18n["editTitle"]);
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
-            $('.imgTag').each(function () {
-                var curSrc = $(this).attr('src');
-                if ( curSrc === key ) {
-                    $(this).attr('src', value);
-                }
-            });
+            if (key === 'imgPath') {
+                $('#imgTag').attr('src', value);
+            }
             form.find("input[name='" + key + "']").val(value);
         });
         $('.load-bar').hide();
@@ -597,15 +593,13 @@ function renderManagerHotelImageBtn(data, type, row) {
 }
 
 function updateManagerHotelImage(id) {
+    $('#imgTag').attr('src', '');
     $('#managerHotelImageModalTitle').html(i18n["editTitle"]);
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
-            $('.imgTag').each(function () {
-                var curSrc = $(this).attr('src');
-                if ( curSrc === key ) {
-                    $(this).attr('src', value);
-                }
-            });
+            if (key === 'imgPath') {
+                $('#imgTag').attr('src', value);
+            }
             form.find("input[name='" + key + "']").val(value);
         });
         $('.load-bar').hide();

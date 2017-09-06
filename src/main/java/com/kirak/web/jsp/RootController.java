@@ -2,6 +2,9 @@ package com.kirak.web.jsp;
 
 import com.kirak.service.*;
 import com.kirak.to.UserTo;
+import com.kirak.util.exception.model.user.AdminModificationException;
+import com.kirak.util.exception.model.user.DemoManagerModificationException;
+import com.kirak.util.exception.model.user.DemoUserModificationException;
 import com.kirak.util.model.UserUtil;
 import com.kirak.web.abstr.UserAbstractController;
 import com.kirak.web.session.AuthorizedUser;
@@ -78,15 +81,22 @@ public class RootController extends UserAbstractController {
 
     @PostMapping("/profile")
     public String updateProfile(@Valid UserTo userTo, BindingResult result, SessionStatus status,
-                                @AuthenticationPrincipal AuthorizedUser authorizedUser) {
+                                @AuthenticationPrincipal AuthorizedUser authorizedUser, Model model) {
         if (!result.hasErrors()) {
             try {
                 super.update(userTo, AuthorizedUser.id());
                 authorizedUser.update(userTo);
                 status.setComplete();
-                return "redirect:meals";
+                model.addAttribute("successEdit", "successEdit");
+                return "profile";
             } catch (DataIntegrityViolationException ex) {
                 result.rejectValue("email", EXCEPTION_DUPLICATE_EMAIL);
+            } catch (AdminModificationException ex){
+                result.rejectValue("password", EXCEPTION_USER_IS_DEMO_ADMIN);
+            } catch (DemoManagerModificationException ex){
+                result.rejectValue("password", EXCEPTION_USER_IS_DEMO_MANAGER);
+            } catch (DemoUserModificationException ex) {
+                result.rejectValue("password", EXCEPTION_USER_IS_DEMO_USER);
             }
         }
         return "profile";

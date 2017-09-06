@@ -19,7 +19,7 @@ import java.util.Set;
 public class Hotel extends NamedEntity {
 
     @NotNull
-    @Range(min = 1, max = 5)
+    @Range(min = 0, max = 5)
     @Column(name = "stars")
     private Short stars;
 
@@ -250,13 +250,18 @@ public class Hotel extends NamedEntity {
     @Override
     public String toString() {
         return "Hotel{" +
-                "id='" + getId() + "\'" +
-                ", name='" + getName() + "\'" +
-                ", country=" + country.getId() +
-                ", city=" + city.getName() +
+                "name='" + name + '\'' +
+                ", stars=" + stars +
+                ", country=" + country +
+                ", city=" + city +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 ", description='" + description + '\'' +
+                ", checkIn=" + checkIn +
+                ", checkOut=" + checkOut +
+                ", maxExtraBedsPerDay=" + maxExtraBedsPerDay +
+                ", manager=" + manager +
+                ", imgPath='" + imgPath + '\'' +
                 '}';
     }
 }

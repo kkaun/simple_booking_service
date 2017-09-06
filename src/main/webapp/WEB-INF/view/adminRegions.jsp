@@ -171,7 +171,7 @@
                     <div class="col-md-10">
                         <h4><spring:message code="common.image"/></h4>
                         <br>
-                        <img src="imgPath" class="img-responsive imgTag" alt="This item has no available image yet">
+                        <img src="" class="img-responsive" id="imgTag" alt="This item has no available image yet">
                     </div>
                     <div class="col-md-1"></div>
                 </div>
@@ -186,9 +186,10 @@
                             <input name="image" id="image" type="file" /><br/>
                         </div>
                     </div>
+                    <hr>
                     <div class="form-group">
                         <div class="col-xs-8">
-                            <button class="btn btn-primary" type="button" onclick="saveRegionImage()">
+                            <button class="btn btn-primary pull-right" type="button" onclick="saveRegionImage()">
                                 <spring:message code="common.save"/>&nbsp;&nbsp;
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                             </button>
