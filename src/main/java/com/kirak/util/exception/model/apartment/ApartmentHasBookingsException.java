@@ -3,7 +3,7 @@ package com.kirak.util.exception.model.apartment;
 import org.springframework.http.HttpStatus;
 
 /**
- * Created by Kir on 02.09.2017.
+ * Created by Kir on 06.09.2017.
  */
 public class ApartmentHasBookingsException extends RuntimeException {
 
@@ -22,4 +22,5 @@ public class ApartmentHasBookingsException extends RuntimeException {
     public HttpStatus getHttpStatus() {
         return httpStatus;
     }
+
 }

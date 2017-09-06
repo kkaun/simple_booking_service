@@ -9,10 +9,8 @@ import com.kirak.to.booking.ChartTo;
 import com.kirak.to.booking.ManagerBookingTo;
 import com.kirak.util.ErrorInfo;
 import com.kirak.util.FileUploadUtil;
+import com.kirak.util.exception.model.apartment.ApartmentHasActiveBookingsException;
 import com.kirak.util.exception.model.apartment.ApartmentHasBookingsException;
-import com.kirak.util.exception.model.booking.BookingAccomplishedException;
-import com.kirak.util.exception.model.booking.BookingApartmentOccupiedException;
-import com.kirak.util.exception.model.booking.BookingDeactivatedException;
 import com.kirak.util.model.ApartmentUtil;
 import com.kirak.util.model.ManagerObjectUtil;
 import com.kirak.util.model.BookingUtil;
@@ -33,17 +31,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-import static com.kirak.util.model.BookingUtil.asManagerBookingTo;
-import static com.kirak.util.model.BookingUtil.getBookingInDate;
-import static com.kirak.util.model.BookingUtil.getBookingOutDate;
-import static com.kirak.web.abstr.BookingAbstractController.*;
-
 /**
  * Created by Kir on 19.08.2017.
  */
 public abstract class ManagerObjectAbstractController {
 
     public static final String EXCEPTION_APARTMENT_HAS_BOOKINGS = "exception.apartment.hasBookings";
+    public static final String EXCEPTION_APARTMENT_HAS_ACTIVE_BOOKINGS = "exception.apartment.hasActiveBookings";
     public static final String EXCEPTION_APARTMENT_MODIFICATION_RESTRICTION = "exception.apartment.modificationRestriction";
 
     private final Logger LOG = LoggerFactory.getLogger(getClass());
@@ -157,7 +151,7 @@ public abstract class ManagerObjectAbstractController {
 
     public void update(ApartmentTo apartmentTo){
         LOG.info("Updating {}", apartmentTo);
-        checkAllApartmentBusinessRestrictions(apartmentTo.getId());
+        checkEditApartmentBusinessRestrictions(apartmentTo.getId());
         apartmentService.update(apartmentTo, aptTypeService.getAll());
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(AuthorizedUser.id(),
                 managerObjectService.getManagerObjects());
@@ -178,7 +172,7 @@ public abstract class ManagerObjectAbstractController {
 
     public void delete(Integer id){
         LOG.info("Deleting city {}", id);
-        checkAllApartmentBusinessRestrictions(id);
+        checkDeleteApartmentBusinessRestrictions(id);
         apartmentService.delete(id);
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(AuthorizedUser.id(),
                 managerObjectService.getManagerObjects());
@@ -230,9 +224,20 @@ public abstract class ManagerObjectAbstractController {
     //--------------------------------------  MVC Exception Handling methods --------------------------------//
 
 
-    public void checkAllApartmentBusinessRestrictions(int id){
+    public void checkEditApartmentBusinessRestrictions(int id){
         if(!ApartmentUtil.isSingleApartmentAvailable(apartmentService.get(id), LocalDate.now().minusDays(1), LocalDate.MAX))
+            throw new ApartmentHasActiveBookingsException(EXCEPTION_APARTMENT_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
+    }
+
+    public void checkDeleteApartmentBusinessRestrictions(int id){
+        if(!apartmentService.get(id).getSubBookings().isEmpty()){
             throw new ApartmentHasBookingsException(EXCEPTION_APARTMENT_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
+        }
+    }
+
+    @ExceptionHandler(ApartmentHasActiveBookingsException.class)
+    public ResponseEntity<ErrorInfo> apartmentHasActiveBookings(HttpServletRequest req, ApartmentHasActiveBookingsException e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_APARTMENT_HAS_ACTIVE_BOOKINGS, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(ApartmentHasBookingsException.class)

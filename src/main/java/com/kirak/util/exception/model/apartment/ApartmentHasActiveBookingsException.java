@@ -1,16 +1,16 @@
-package com.kirak.util.exception.model.hotel;
+package com.kirak.util.exception.model.apartment;
 
 import org.springframework.http.HttpStatus;
 
 /**
- * Created by Kir on 06.09.2017.
+ * Created by Kir on 02.09.2017.
  */
-public class HotelHasBookingsException extends RuntimeException {
+public class ApartmentHasActiveBookingsException extends RuntimeException {
 
     private String msgCode;
     private HttpStatus httpStatus;
 
-    public HotelHasBookingsException(String msgCode, HttpStatus httpStatus) {
+    public ApartmentHasActiveBookingsException(String msgCode, HttpStatus httpStatus) {
         this.msgCode = msgCode;
         this.httpStatus = httpStatus;
     }
@@ -22,5 +22,4 @@ public class HotelHasBookingsException extends RuntimeException {
     public HttpStatus getHttpStatus() {
         return httpStatus;
     }
-
 }

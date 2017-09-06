@@ -22,7 +22,7 @@
                     </c:if>
                     <c:if test="${not empty param.message}">
                         <div class="message">
-                            <spring:message code="${param.message}"/>
+                            <h5 style="color: #00694a"><spring:message code="${param.message}"/></h5>
                         </div>
                     </c:if>
                     <c:if test="${not empty enterAsManager}">

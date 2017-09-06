@@ -122,6 +122,7 @@ public class RootController extends UserAbstractController {
             }
         }
         model.addAttribute("registerUserAction", true);
+        model.addAttribute("duplicateEmail", true);
         return "profile";
     }
 
@@ -145,6 +146,7 @@ public class RootController extends UserAbstractController {
             }
         }
         model.addAttribute("registerManagerAction", true);
+        model.addAttribute("duplicateEmail", true);
         return "profile";
     }
 

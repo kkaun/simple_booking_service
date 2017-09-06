@@ -27,6 +27,10 @@
 
                             <div class="col-md-8">
 
+                                <c:if test="${not empty duplicateEmail}">
+                                    <h5 style="color:#D9230F;"><spring:message code="exception.reg_email_duplicated"/></h5>
+                                </c:if>
+
                                 <div class="panel panel-warning hidden" style="padding: 15px; margin-bottom: 20px">
                                     <h4><spring:message code="common.damn"/></h4>
                                     <p><spring:message code="common.damn_discl"/></p>
@@ -44,7 +48,6 @@
                                         <div class="input-group">
                                             <input id="user_name" type="text" class="form-control"
                                                    name="name"
-                                                   data-parsley-pattern="^[a-zA-Z]+$"
                                                    data-parsley-required="true"
                                                    data-parsley-length="[3, 44]"
                                                    placeholder="<spring:message code="common.usr_name"/>" required>
@@ -124,6 +127,10 @@
 
                             <div class="col-md-8">
 
+                                <c:if test="${not empty duplicateEmail}">
+                                    <h5 style="color:#D9230F;"><spring:message code="exception.user.duplicateEmail"/></h5>
+                                </c:if>
+
                                 <div class="panel panel-warning hidden" style="padding: 15px; margin-bottom: 20px">
                                     <h4><spring:message code="common.damn"/></h4>
                                     <p><spring:message code="common.damn_discl"/></p>
@@ -141,7 +148,6 @@
                                         <div class="input-group">
                                             <input id="manager_name" type="text" class="form-control"
                                                    name="name"
-                                                   data-parsley-pattern="^[a-zA-Z]+$"
                                                    data-parsley-required="true"
                                                    data-parsley-length="[3, 44]"
                                                    placeholder="<spring:message code="common.usr_name"/>" required>
@@ -239,8 +245,9 @@
                                 <custom:inputField label='${userPassword}' name="password" inputType="password"/>
 
                                 <div class="form-group">
-                                    <div class="col-xs-offset-2 col-xs-10">
-                                        <button type="submit" class="btn btn-primary">
+                                    <div class="col-xs-offset-2 col-xs-8">
+                                        <button class="btn btn-primary" type="submit">
+                                            <spring:message code="common.save"/>&nbsp;&nbsp;
                                             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                                         </button>
                                     </div>

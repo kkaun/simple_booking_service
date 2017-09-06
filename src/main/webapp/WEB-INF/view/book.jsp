@@ -64,7 +64,6 @@
                                                     <div class="input-group">
                                                         <input id="user_name" type="text" class="form-control"
                                                                name="userName"
-                                                               data-parsley-pattern="^[a-zA-Z]+$"
                                                                data-parsley-required="true"
                                                                data-parsley-length="[3, 44]"
                                                                placeholder="<spring:message code="common.usr_name"/>" required>
@@ -163,6 +162,20 @@
                                         </form:form>
                                     </sec:authorize>
                                     </sec:authorize>
+
+
+                                    <sec:authorize access="isAuthenticated()">
+                                    <sec:authorize access="!hasRole('ROLE_USER')">
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-10 text-center">
+                                                <h4><spring:message code="exception.adm_booking_restriction"/></h4>
+                                            </div>
+                                            <div class="col-md-1"></div>
+                                        </div>
+                                    </sec:authorize>
+                                    </sec:authorize>
+
 
                                 </div>
                                 <div class="col-md-1"></div>
