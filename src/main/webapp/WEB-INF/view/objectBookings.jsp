@@ -143,7 +143,7 @@
                             <thead>
                             <tr>
                                 <th></th>
-                                <th><spring:message code="common.id"/><spring:message code="proceed"/></th>
+                                <th><spring:message code="common.id"/><spring:message code="common.proceed"/></th>
                                 <th><spring:message code="common.dateAdded"/></th>
                                 <th><spring:message code="super_bookings.inDate"/></th>
                                 <th><spring:message code="super_bookings.outDate"/></th>

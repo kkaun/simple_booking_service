@@ -2,10 +2,15 @@ package com.kirak.to;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kirak.to.abstr.BasicIntTo;
+
+import java.io.Serializable;
+
 /**
  * Created by Kir on 01.09.2017.
  */
-public class VoteTo extends BasicIntTo {
+public class VoteTo extends BasicIntTo implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Double rate;
 

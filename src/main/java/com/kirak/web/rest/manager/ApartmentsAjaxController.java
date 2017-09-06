@@ -39,9 +39,9 @@ public class ApartmentsAjaxController extends ManagerObjectAbstractController{
     }
 
     @Override
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @JsonView(View.JsonUI.class)
-    public ApartmentTo get(@PathVariable("id") int id) {
+    public ApartmentTo get(@PathVariable("id") Integer id) {
         return super.get(id);
     }
 

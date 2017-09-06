@@ -43,11 +43,11 @@
                             <thead>
                             <tr>
                                 <th></th>
-                                <th><spring:message code="apt_types.personNum"/>
-                                    , <spring:message code="apt_types.category"/>
-                                    , <spring:message code="apt_types.bedsArrangement"/>
+                                <th><spring:message code="apt_types.person_num_short"/>
+                                    - <spring:message code="apt_types.category"/>
+                                    - <spring:message code="apt_types.bedsArrangement"/>
                                 </th>
-                                <th><spring:message code="common.pricePerNight"/></th>
+                                <th><spring:message code="common.pricePerNight"/>, <i class="fa fa-btc"></i></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>

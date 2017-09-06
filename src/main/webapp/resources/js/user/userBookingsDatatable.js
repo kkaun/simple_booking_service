@@ -46,7 +46,18 @@ $(function () {
                 }
             },
             {
-                "data": "dateAdded"
+                "data": "active",
+                "render": function (data, type, row) {
+                    if (type === 'display') {
+                        if (data) {
+                            return '<input type="checkbox" ' + (data ? 'checked' : '') + ' onclick="deactivateUserBooking($(this),' + row.id + ');"/>';
+                        } else {
+                            return '<input type="checkbox" ' + ' disabled readonly' + '/>';
+
+                        }
+                    }
+                    return data;
+                }
             },
             {
                 "data": "inDate"
@@ -64,18 +75,10 @@ $(function () {
                 "data": "apartmentsNum"
             },
             {
-                "data": "active",
-                "render": function (data, type, row) {
-                    if (type === 'display') {
-                        if (data) {
-                            return '<input type="checkbox" ' + (data ? 'checked' : '') + ' onclick="deactivateUserBooking($(this),' + row.id + ');"/>';
-                        } else {
-                            return '<input type="checkbox" ' + ' disabled readonly' + '/>';
-
-                        }
-                    }
-                    return data;
-                }
+                "data": "overallSum"
+            },
+            {
+                "data": "dateAdded"
             }
         ],
         "order": [

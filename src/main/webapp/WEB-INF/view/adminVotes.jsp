@@ -45,7 +45,6 @@
                                 <th><spring:message code="common.hotelName"/></th>
                                 <th><spring:message code="votes.usercomment"/></th>
                                 <th></th>
-                                <th></th>
                             </thead>
                         </table>
                     </div>

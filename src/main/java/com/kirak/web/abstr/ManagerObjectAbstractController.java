@@ -28,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -144,6 +145,11 @@ public abstract class ManagerObjectAbstractController {
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(AuthorizedUser.id(),
                 managerObjectService.getManagerObjects());
         List<ApartmentTo> apartmentTos = managerObject.getObjectApartmentTos();
+        Comparator<Apartment> byId = (Apartment a1, Apartment a2) -> (a2.getId().compareTo(a1.getId()));
+        Apartment entity = apartmentService.getAllByHotel(ownHotel.getId()).stream()
+                .sorted(byId).findFirst().orElse(null);
+        apartmentTo.setId(entity.getId());
+        apartmentTo.setHotelId(entity.getHotel().getId());
         apartmentTos.add(apartmentTo);
         managerObject.setObjectApartmentTos(apartmentTos);
         managerObjectService.addManagerObject(managerObject);
@@ -158,7 +164,7 @@ public abstract class ManagerObjectAbstractController {
         managerObjectService.addManagerObject(ManagerObjectUtil.modifyManagerObjectApartmentTo(managerObject, apartmentTo));
     }
 
-    public ApartmentTo get(int id){
+    public ApartmentTo get(Integer id){
         LOG.info("Getting apartment {}", id);
         return ApartmentUtil.asApartmentTo(apartmentService.get(id));
     }

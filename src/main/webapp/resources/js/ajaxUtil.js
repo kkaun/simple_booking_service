@@ -410,24 +410,6 @@ function deleteUserRow(id) {
 
 
 
-function renderViewVoteBtn(data, type, row) {
-    if (type === 'display') {
-        return '<a class="btn btn-default" onclick="showVoteRow(' + row.id + ');">' +
-            '<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>';
-    }
-}
-
-function showVoteRow(id) {
-    $('#voteShowModalTitle').html(i18n["editTitle"]);
-    $.get(ajaxUrl + id, function (data) {
-        $.each(data, function (key, value) {
-            form.find("input[name='" + key + "']").val(value);
-            form.find("textarea[name='" + key + "']").val(value);
-        });
-        $('.load-bar').hide();
-        $('#voteShowRow').modal();
-    });
-}
 
 function renderDeleteVoteBtn(data, type, row) {
     if (type === 'display') {

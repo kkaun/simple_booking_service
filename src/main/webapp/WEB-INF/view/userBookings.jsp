@@ -44,14 +44,15 @@
                                     <thead>
                                     <tr>
                                         <th></th>
-                                        <th><spring:message code="common.id"/><spring:message code="proceed"/></th>
-                                        <th><spring:message code="common.dateAdded"/></th>
+                                        <th><spring:message code="common.id"/><spring:message code="common.proceed"/></th>
+                                        <th><spring:message code="bookings.active"/></th>
                                         <th><spring:message code="common.inDate"/></th>
                                         <th><spring:message code="common.outDate"/></th>
                                         <th><spring:message code="super_bookings.hotelId"/></th>
                                         <th><spring:message code="super_bookings.hotelName"/></th>
                                         <th><spring:message code="super_bookings.apartmentsNum"/></th>
-                                        <th><spring:message code="bookings.active"/></th>
+                                        <th><spring:message code="common.total_sum"/>, <i class="fa fa-btc"></i></th>
+                                        <th><spring:message code="common.dateAdded"/></th>
                                     </tr>
                                     </thead>
                                 </table>

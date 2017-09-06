@@ -24,6 +24,8 @@ public class UserBookingTo extends BasicIntTo implements Serializable {
 
     private Short apartmentsNum;
 
+    private Double overallSum;
+
     public UserBookingTo(){}
 
     public UserBookingTo(@JsonProperty("id") Integer id,
@@ -33,7 +35,8 @@ public class UserBookingTo extends BasicIntTo implements Serializable {
                          @JsonProperty("outDate") LocalDate outDate,
                          @JsonProperty("hotelId") Integer hotelId,
                          @JsonProperty("hotelName") String hotelName,
-                         @JsonProperty("apartmentsNum") Short apartmentsNum) {
+                         @JsonProperty("apartmentsNum") Short apartmentsNum,
+                         @JsonProperty("overallSum") Double overallSum) {
         super(id);
         this.active = active;
         this.dateAdded = dateAdded;
@@ -42,6 +45,7 @@ public class UserBookingTo extends BasicIntTo implements Serializable {
         this.hotelId = hotelId;
         this.hotelName = hotelName;
         this.apartmentsNum = apartmentsNum;
+        this.overallSum = overallSum;
     }
 
     
@@ -99,6 +103,14 @@ public class UserBookingTo extends BasicIntTo implements Serializable {
 
     public void setApartmentsNum(Short apartmentsNum) {
         this.apartmentsNum = apartmentsNum;
+    }
+
+    public Double getOverallSum() {
+        return overallSum;
+    }
+
+    public void setOverallSum(Double overallSum) {
+        this.overallSum = overallSum;
     }
 
     @Override

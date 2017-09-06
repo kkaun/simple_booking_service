@@ -35,7 +35,7 @@ public class BookingUtil {
 
         return new UserBookingTo(booking.getId(), booking.isActive(), formatDateTime(booking.getDateAdded()),
                 inDate, outDate, booking.getHotel().getId(), booking.getHotel().getName(),
-                (short) booking.getSubBookings().size());
+                (short) booking.getSubBookings().size(), booking.getOverallSum());
     }
 
     public static Booking updateFromManagerBookingTo(ManagerBookingTo managerBookingTo, Booking booking){

@@ -14,6 +14,8 @@ import java.io.Serializable;
  */
 public class PlaceTo extends BasicIntTo implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     private String imgPath;
 
     private String name;

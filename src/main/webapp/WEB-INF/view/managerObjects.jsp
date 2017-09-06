@@ -39,7 +39,7 @@
                             <thead>
                             <tr>
                                 <th></th>
-                                <th><spring:message code="common.id"/><spring:message code="proceed"/></th>
+                                <th><spring:message code="common.id"/><spring:message code="common.proceed"/></th>
                                 <th><spring:message code="common.name"/></th>
                                 <th><spring:message code="hotels.rating"/></th>
                                 <th><spring:message code="hotels.votesNum"/></th>
@@ -76,74 +76,81 @@
                     <input type="hidden" id="managerId" name="managerId">
 
                     <div class="form-group countryNameForm">
-                        <label for="countryName" class="control-label col-xs-3">
-                            <spring:message code="common.countryName"/><spring:message code="commin.in_latin"/>
+                        <label for="countryName" class="control-label col-xs-4">
+                            <spring:message code="common.countryName"/><spring:message code="common.in_latin"/>
                         </label>
-                        <div class="col-xs-8">
+                        <div class="col-xs-5">
                             <input class="form-control" type="text" id="countryName" name="countryName">
                         </div>
                     </div>
 
                     <div class="form-group cityNameForm">
-                        <label for="cityName" class="control-label col-xs-3">
-                            <spring:message code="common.placeName"/><spring:message code="commin.in_latin"/>
+                        <label for="cityName" class="control-label col-xs-4">
+                            <spring:message code="common.placeName"/><spring:message code="common.in_latin"/>
                         </label>
-                        <div class="col-xs-8">
+                        <div class="col-xs-5">
                             <input class="form-control" type="text" id="cityName" name="cityName">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="hotelName" class="control-label col-xs-3"><spring:message
+                        <label for="hotelName" class="control-label col-xs-4"><spring:message
                                 code="common.hotelName"/></label>
-                        <div class="col-xs-9">
+                        <div class="col-xs-7">
                             <input class="form-control" type="text" id="hotelName" name="name">
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <label for="stars" class="control-label col-xs-3"><spring:message
+                        <label for="hotelDescription" class="control-label col-xs-4"><spring:message
+                                code="hotels.description"/></label>
+                        <div class="col-xs-7">
+                            <textarea class="form-control" id="hotelDescription" name="description">
+                            </textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address" class="control-label col-xs-4"><spring:message
+                                code="hotels.address"/></label>
+                        <div class="col-xs-7">
+                            <input class="form-control" type="text" id="address" name="address">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hotelPhone" class="control-label col-xs-4"><spring:message
+                                code="hotels.phone"/></label>
+
+                        <div class="col-xs-7">
+                            <input class="form-control" type="text" id="hotelPhone" name="phone">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="checkIn" class="control-label col-xs-4"><spring:message
+                                code="hotels.checkIn"/></label>
+                        <div class="col-xs-3">
+                            <input class="form-control in_time" id="checkIn" name="checkIn">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="checkOut" class="control-label col-xs-4"><spring:message
+                                code="hotels.checkOut"/></label>
+                        <div class="col-xs-3">
+                            <input class="form-control out_time" id="checkOut" name="checkOut">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stars" class="control-label col-xs-4"><spring:message
                                 code="common.hotelStars"/><spring:message code="common.stars_req"/></label>
                         <div class="col-xs-2">
                             <input class="form-control" id="stars" type="text" name="stars">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="hotelDescription" class="control-label col-xs-3"><spring:message
-                                code="hotels.description"/></label>
-                        <div class="col-xs-9">
-                            <textarea class="form-control" id="hotelDescription" name="description">
-                            </textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="checkIn" class="control-label col-xs-3"><spring:message
-                                code="hotels.checkIn"/></label>
-                        <div class="col-xs-9">
-                            <input class="form-control in_time" id="checkIn" name="checkIn">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="checkOut" class="control-label col-xs-3"><spring:message
-                                code="hotels.checkOut"/></label>
-                        <div class="col-xs-9">
-                            <input class="form-control out_time" id="checkOut" name="checkOut">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="address" class="control-label col-xs-3"><spring:message
-                                code="hotels.address"/></label>
-                        <div class="col-xs-9">
-                            <input class="form-control" type="text" id="address" name="address">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="hotelPhone" class="control-label col-xs-3"><spring:message
-                                code="hotels.phone"/></label>
 
-                        <div class="col-xs-9">
-                            <input class="form-control" type="text" id="hotelPhone" name="phone">
-                        </div>
-                    </div>
                     <hr>
                     <div class="form-group">
                         <div class="col-xs-8">

@@ -96,7 +96,7 @@
                                 <th></th>
                                 <th><spring:message code="common.inDate"/></th>
                                 <th><spring:message code="common.outDate"/></th>
-                                <th><spring:message code="subBookings.sum"/></th>
+                                <th><spring:message code="subBookings.sum"/>, <i class="fa fa-btc"></i></th>
                                 <th><spring:message code="apt_types.personNum"/>,
                                     <spring:message code="apt_types.category"/>,
                                     <spring:message code="apt_types.bedsArrangement"/></th>

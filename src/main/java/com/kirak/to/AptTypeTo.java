@@ -11,6 +11,8 @@ import java.io.Serializable;
  */
 public class AptTypeTo extends BasicShortTo implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     private Short personNum;
 
     private String category;
