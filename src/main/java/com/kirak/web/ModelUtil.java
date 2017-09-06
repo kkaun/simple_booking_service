@@ -5,6 +5,7 @@ import com.kirak.to.ApartmentTo;
 import com.kirak.to.HotelTo;
 import com.kirak.to.Placement;
 import com.kirak.util.model.ApartmentUtil;
+import com.kirak.util.model.AptTypeUtil;
 import com.kirak.util.model.HotelUtil;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
@@ -33,13 +34,9 @@ public class ModelUtil {
         model.addAttribute("uniqueAptNums", HotelUtil.getUniqueApartmentNums(hotel));
     }
 
-    public static void getManagerView(Model model, int hotelId, List<AptType> aptTypes, List<Country> countries,
-                                      List<City> cities, List<ApartmentTo> objectApartments){
-        Comparator<City> byName = (City c1, City c2) -> (c1.getName().compareTo(c2.getName()));
-        model.addAttribute("aptTypes", aptTypes);
-        model.addAttribute("countries", countries);
-        model.addAttribute("cities", cities.stream().sorted(byName).collect(Collectors.toList()));
+    public static void getManagerView(Model model, int hotelId, List<ApartmentTo> objectApartments, List<AptType> aptTypes){
         model.addAttribute("objectApartments", objectApartments);
+        model.addAttribute("aptTypes", AptTypeUtil.getAllToStringsFromAptTypes(aptTypes));
         model.addAttribute("objectId", hotelId);
     }
 

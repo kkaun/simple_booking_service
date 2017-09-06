@@ -46,7 +46,7 @@ function extendsSubBookingOpts(opts) {
                     "last":       i18n["common.paging_last"]
                 }
             },
-            "initComplete": makeEditable
+            "initComplete": makeSubBookingEditable
         }
     );
     return opts;

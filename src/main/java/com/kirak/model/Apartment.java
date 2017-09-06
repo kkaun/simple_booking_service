@@ -93,7 +93,7 @@ public class Apartment extends BaseIntEntity {
         return "Apartment{" +
                 "id='" + getId() + '\'' +
                 ", type='" + type + '\'' +
-                ", hotel=" + hotel +
+                ", hotel=" + hotel.getName() +
                 ", price=" + price +
                 '}';
     }

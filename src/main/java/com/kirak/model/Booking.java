@@ -191,18 +191,17 @@ public class Booking extends BaseIntEntity {
         this.bookerPhone = bookerPhone;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Booking{" +
-//                "id='" + getId() + '\'' +
-//                ", active=" + active +
-//                ", dateAdded=" + dateAdded +
-//                ", extraBeds=" + extraBeds +
-//                ", overallSum=" + overallSum +
-//                ", overallPersonNum=" + overallPersonNum +
-//                ", user=" + user +
-//                ", hotel=" + hotel +
-//                ", subBookings=" + subBookings +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "id='" + getId() + '\'' +
+                ", active=" + active +
+                ", dateAdded=" + dateAdded +
+                ", extraBeds=" + extraBeds +
+                ", overallSum=" + overallSum +
+                ", overallPersonNum=" + overallPersonNum +
+                ", user=" + user.getId() +
+                ", hotel=" + hotel.getId() +
+                '}';
+    }
 }

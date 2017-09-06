@@ -97,7 +97,7 @@ public class Vote extends BaseIntEntity {
                 ", comment=" + userComment + '\'' +
                 ", rate=" + rate +
                 ", dateAdded=" + dateAdded +
-                ", hotel=" + hotel +
+                ", hotel=" + hotel.getId() +
                 '}';
     }
 }

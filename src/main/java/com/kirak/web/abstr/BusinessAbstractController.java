@@ -7,6 +7,7 @@ import com.kirak.service.*;
 import com.kirak.to.Placement;
 import com.kirak.util.model.HotelUtil;
 import com.kirak.util.model.PlacementUtil;
+import com.kirak.util.model.SubBookingUtil;
 import com.kirak.web.ModelUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -53,16 +54,21 @@ public class BusinessAbstractController {
     }
 
     public void accomplishBooking(Model model, User user, String sum, String personNum, String hotelId, String placementId,
-                                  String apartmentNum, String inDate, String outDate){
+                                  String apartmentNum, String inDateStr, String outDateStr){
+
+        LocalDate inDate = LocalDate.parse(inDateStr);
+        LocalDate outDate = LocalDate.parse(outDateStr);
 
         Booking booking = new Booking(true, LocalDateTime.now(), (short)0, Double.parseDouble(sum),
                 Short.parseShort(personNum), user, hotelService.get(Integer.parseInt(hotelId)),
                 user.getName(), user.getEmail(), user.getPhone());
         bookingService.save(booking, user.getId());
+
         Placement placement = PlacementUtil.getPlacementFromId(sessionPlacementsService, Integer.parseInt(placementId));
+
         placement.getOption().values().forEach(apartments -> apartments.forEach(apartment -> {
-            SubBooking subBooking = new SubBooking(LocalDate.parse(inDate), LocalDate.parse(outDate), apartment.getPrice(),
-                    apartment.getType().getPersonNum(), booking, apartment,
+            SubBooking subBooking = new SubBooking(inDate, outDate, SubBookingUtil.calculateSubBookingSumForApt(apartment,
+                    inDate, outDate), apartment.getType().getPersonNum(), booking, apartment,
                     hotelService.get(Integer.parseInt(hotelId)), LocalDateTime.now());
             subBookingService.save(subBooking, booking.getId(), apartment.getId());
         }));
@@ -70,7 +76,7 @@ public class BusinessAbstractController {
         model.addAttribute("booking", booking);
         model.addAttribute("hotel", HotelUtil.asHotelTo(hotelService.get(Integer.parseInt(hotelId))));
         ModelUtil.addPlacementView(model, placement, Short.parseShort(apartmentNum), Short.parseShort(personNum),
-                Double.parseDouble(sum), inDate, outDate);
+                Double.parseDouble(sum), inDateStr, outDateStr);
     }
 
 }

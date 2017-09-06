@@ -75,15 +75,20 @@
         <div class="col-md-8">
 
             <c:if test="${not empty notAvailableApartment}">
-                <div class="alert-warning">
-                    <spring:message code="common.unfortunately"/> <c:out value="${notAvailableApartment.type.personNum}"/><spring:message code="common._person"/>
+                <div class="panel-warning">
+                    <h3><spring:message code="common.unfortunately"/>
+                    <c:out value="${notAvailableApartment.type.personNum}"/><spring:message code="common._person"/>
                     <c:out value="${notAvailableApartment.type.category}"/>
-                    <spring:message code="common.with"/> <c:out value="${notAvailableApartment.type.bedsArrangement}"/> <spring:message code="common.not_available"/>
+                    <spring:message code="common.with"/>
+                    <c:out value="${notAvailableApartment.type.bedsArrangement}"/> <spring:message code="common.not_available"/>
+                    </h3>
                 </div>
             </c:if>
             <c:if test="${not empty notAvailablePlacement}">
-                <div class="alert-warning">
+                <div class="panel-warning">
+                    <h3>
                     <c:out value="${notAvailablePlacement}"/>
+                    </h3>
                     <br>
                 </div>
             </c:if>

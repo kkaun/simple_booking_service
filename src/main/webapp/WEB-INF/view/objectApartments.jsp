@@ -91,9 +91,9 @@
                                     code="apt_types.bedsArrangement"/></label>
                             <div class="col-xs-8">
                                 <select class="form-control" name="stringAptType" id="apartmentType">
-                                    <c:if test="${not empty objectApartments}">
-                                    <c:forEach items="${objectApartments}" var="objectApartment">
-                                        <option value="${objectApartment.stringAptType}">${objectApartment.stringAptType}</option>
+                                    <c:if test="${not empty aptTypes}">
+                                    <c:forEach items="${aptTypes}" var="aptType">
+                                        <option value="${aptType}">${aptType}</option>
                                     </c:forEach>
                                 </select>
                                 </c:if>

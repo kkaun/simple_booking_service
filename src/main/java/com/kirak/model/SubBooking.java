@@ -148,9 +148,9 @@ public class SubBooking extends BaseLongEntity {
                 ", sum=" + sum +
                 ", personNum=" + personNum +
                 ", edited=" + edited +
-                ", booking=" + booking +
-                ", apartment=" + apartment +
-                ", hotel=" + hotel +
+                ", booking=" + booking.getId() +
+                ", apartment=" + apartment.getId() +
+                ", hotel=" + hotel.getId() +
                 '}';
     }
 }

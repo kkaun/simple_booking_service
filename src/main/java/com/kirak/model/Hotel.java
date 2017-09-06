@@ -252,15 +252,15 @@ public class Hotel extends NamedEntity {
         return "Hotel{" +
                 "name='" + name + '\'' +
                 ", stars=" + stars +
-                ", country=" + country +
-                ", city=" + city +
+                ", country=" + country.getName() +
+                ", city=" + city.getName() +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 ", description='" + description + '\'' +
                 ", checkIn=" + checkIn +
                 ", checkOut=" + checkOut +
                 ", maxExtraBedsPerDay=" + maxExtraBedsPerDay +
-                ", manager=" + manager +
+                ", manager=" + manager.getId() +
                 ", imgPath='" + imgPath + '\'' +
                 '}';
     }

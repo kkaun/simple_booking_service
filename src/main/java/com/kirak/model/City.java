@@ -99,7 +99,7 @@ public class City extends BaseIntEntity {
         return "City{" +
                 "id" + getId() + "\'" +
                 ", name='" + name + '\'' +
-                ", country=" + country +
+                ", country=" + country.getName() +
                 ", hotels=" + hotels.toString() +
                 '}';
     }

@@ -219,10 +219,7 @@ public class User extends NamedEntity {
                 ", password='" + password + '\'' +
                 ", enabled=" + enabled +
                 ", registered=" + registered +
-                ", roles=" + roles +
-                ", bookings=" + bookings +
-                ", votes=" + votes +
-                ", hotels=" + hotels +
+                ", roles=" + roles.toString() +
                 "\n" + "\n" +
                 '}';
     }

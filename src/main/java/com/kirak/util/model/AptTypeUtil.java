@@ -59,8 +59,17 @@ public class AptTypeUtil {
 
     public static String getToStringFromAptType(AptType aptType){
 
-        return String.valueOf(aptType.getPersonNum()) + ", " + aptType.getCategory() + ", " + aptType.getBedsArrangement();
+        return String.valueOf(aptType.getPersonNum()) + " - " + aptType.getCategory() + " - " + aptType.getBedsArrangement();
     }
+
+    public static List<String> getAllToStringsFromAptTypes(List<AptType> aptTypes){
+
+        return aptTypes.stream()
+                .map(AptTypeUtil::getToStringFromAptType)
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
 
     public static List<String> getUniqueCategories(List<AptType> types){
         List<String> categories = types.stream().map(AptType::getCategory).collect(Collectors.toList());

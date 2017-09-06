@@ -181,7 +181,7 @@ public class HotelUtil {
                                                  String category, List<Placement> potentialPlacements){
 
         Map<AptType, List<Apartment>> apartments = ApartmentUtil.aggregateDifferentAvailableApartmentsWithCount(ApartmentUtil.
-                findHotelApartmentsByCategory(hotel, inDate, outDate, category), inDate, outDate, personNum, apartmentNum);
+                findHotelApartmentsByCategory(hotel, category), inDate, outDate, personNum, apartmentNum);
         Placement placement = new Placement(asHotelTo(hotel), apartments);
         if(!placement.getOption().isEmpty()) {
             potentialPlacements.add(placement);
