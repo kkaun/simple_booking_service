@@ -110,7 +110,7 @@
                 <c:forEach items="${hotelsFive}" var="hotel">
                 <jsp:useBean id="hotel" scope="page" type="com.kirak.to.HotelTo"/>
                     <a href="inspect_hotel?id=${hotel.id}" class="list-group-item listItem">
-                        <div class="media col-md-3">
+                        <div class="media col-md-3" style="margin-top: 10px">
                             <figure class="pull-left">
                                 <c:if test="${not empty hotel.imgPath && hotel.imgPath.length() >= 1}">
                                     <img class="media-object img-rounded img-responsive"
@@ -122,12 +122,12 @@
                                 </c:if>
                             </figure>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-5" style="margin-top: 10px">
                             <h4 class="list-group-item-heading"> <c:out value="${hotel.name}"/> </h4>
                             <p class="list-group-item-text"> <c:out value="${hotel.description}"/>
                             </p>
                         </div>
-                        <div class="col-md-4 text-center">
+                        <div class="col-md-4 text-center" style="margin-top: 5px">
                             <div class="stars">
                                 <c:if test="${not empty hotel.stars && hotel.stars > 0}">
                                     <c:forEach begin="0" end="${hotel.stars - 1}" varStatus="loop">
@@ -139,8 +139,9 @@
                                 </c:if>
                             </div>
                             <c:if test="${hotel.votesNum > 0}">
-                                <h3> <spring:message code="common.average"/> <c:out value="${hotel.rating}"/> <small> / </small> 10 </h3>
-                                <h4> <c:out value="${hotel.votesNum}"/> <small> <spring:message code="hotels.votesNum"/> </small></h4>
+                                <h3> <spring:message code="common.average"/> <c:out value="${hotel.rating}"/><small> /10</small></h3>
+                                <h4><small><spring:message code="common.votes_num"/></small>
+                                    <c:out value="${hotel.votesNum}"/></h4>
                             </c:if>
                             <c:if test="${empty hotel.votesNum || hotel.votesNum == 0}">
                                 <h4> <spring:message code="common.no_votes"/> </h4>

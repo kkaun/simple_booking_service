@@ -228,6 +228,13 @@
                             <h2><spring:message code="app.profile"/> ${userTo.name}</h2>
                         </div>
                         <div class="panel-body">
+
+                            <h5><span><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>
+                                <spring:message code="common.reg_instructions"/>
+                            </h5>
+                            <br>
+                            <hr>
+
                             <form:form modelAttribute="userTo" class="form-horizontal" method="post"
                                        action="profile"
                                        charset="utf-8" accept-charset="UTF-8">

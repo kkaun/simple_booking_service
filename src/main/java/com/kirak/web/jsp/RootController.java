@@ -84,6 +84,8 @@ public class RootController extends UserAbstractController {
                                 @AuthenticationPrincipal AuthorizedUser authorizedUser, Model model) {
         if (!result.hasErrors()) {
             try {
+                userTo.setPassword(authorizedUser.getPassword());
+
                 super.update(userTo, AuthorizedUser.id());
                 authorizedUser.update(userTo);
                 status.setComplete();

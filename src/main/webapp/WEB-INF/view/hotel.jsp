@@ -53,12 +53,10 @@
                                     </figure>
                                 </div>
                                 <div class="col-md-6 text-center">
-                                    <h3> <spring:message code="common.average"/> <c:out value="${hotel.rating}"/>
-                                        <small> /</small>
-                                        10
+                                    <h3> <spring:message code="common.average"/> <c:out value="${hotel.rating}"/><small> /10</small>
                                     </h3>
-                                    <h4> <c:out value="${hotel.votesNum}"/>
-                                        <small> votes</small>
+                                    <h4>
+                                        <small><spring:message code="common.votes_num"/></small> <c:out value="${hotel.votesNum}"/>
                                     </h4>
                                 </div>
                             </div>

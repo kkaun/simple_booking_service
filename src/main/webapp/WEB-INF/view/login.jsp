@@ -15,22 +15,7 @@
         <div class="col-md-10">
             <div class="panel panel-default text-center">
                 <div class="panel-heading">
-                    <c:if test="${param.error}">
-                        <div class="error">
-                                ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
-                        </div>
-                    </c:if>
-                    <c:if test="${not empty param.message}">
-                        <div class="message">
-                            <h5 style="color: #00694a"><spring:message code="${param.message}"/></h5>
-                        </div>
-                    </c:if>
-                    <c:if test="${not empty enterAsManager}">
-                        <div>
-                            <spring:message code="common.enter_as"/>&nbsp;<spring:message code="app.manager"/>
-                        </div>
-                    </c:if>
-                    <br/>
+                    <br>
                     <p>
                         <button type="submit" class="btn btn-lg btn-primary"
                                 onclick="setCredentials('user1@yandex.ru', 'password1')">
@@ -67,6 +52,23 @@
                     <br>
                 </div>
                 <div class="panel-footer">
+                    <c:if test="${param.error}">
+                        <div class="error">
+                                ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+                        </div>
+                    </c:if>
+                    <c:if test="${not empty param.message}">
+                        <div class="message">
+                            <h5 style="color: #00694a"><spring:message code="${param.message}"/></h5>
+                        </div>
+                    </c:if>
+                    <c:if test="${not empty enterAsManager}">
+                        <div>
+                            <spring:message code="common.enter_as"/>&nbsp;<spring:message code="app.manager"/>
+                        </div>
+                    </c:if>
+                    <br>
+                    <hr>
                     <a class="btn btn-lg btn-info" href="register_user">
                         <spring:message code="app.register"/> <spring:message code="common.as_user"/> &raquo;
                     </a>

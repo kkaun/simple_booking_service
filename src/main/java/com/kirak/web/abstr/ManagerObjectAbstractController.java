@@ -132,12 +132,10 @@ public abstract class ManagerObjectAbstractController {
 
     public void create(ApartmentTo apartmentTo){
         LOG.info("Saving {}", apartmentTo);
-        Hotel ownHotel = hotelService.getAll().stream().filter(hotel ->
-                Objects.equals(hotel.getManager().getId(), AuthorizedUser.id()))
-                .findFirst().orElse(null);
-        apartmentService.save(apartmentTo, ownHotel, aptTypeService.getAll());
         ManagerObject managerObject = ManagerObjectUtil.getCurrentManagerObject(AuthorizedUser.id(),
                 managerObjectService.getManagerObjects());
+        Hotel ownHotel = hotelService.get(managerObject.getHotelId());
+        apartmentService.save(apartmentTo, ownHotel, aptTypeService.getAll());
         List<ApartmentTo> apartmentTos = managerObject.getObjectApartmentTos();
         Comparator<Apartment> byId = (Apartment a1, Apartment a2) -> (a2.getId().compareTo(a1.getId()));
         Apartment entity = apartmentService.getAllByHotel(ownHotel.getId()).stream()
