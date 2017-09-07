@@ -6,7 +6,7 @@ var ajaxUrl = "/hotel_manager/object/apartments/";
 var datatableApi;
 
 function updateApartmentsTable() {
-    $.get(ajaxUrl + "getAll?hotelId=" + objectId, updateObjectChildrenTableByData);
+    $.get(ajaxUrl + "getAll?objectId=" + objectId, updateObjectChildrenTableByData);
 }
 
 

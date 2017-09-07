@@ -20,7 +20,7 @@ public interface SubBookingService {
 
     SubBooking update(SubBooking subBooking, int bookingId, int apartmentId) throws NotFoundException;
 
-    SubBooking update(SubBookingTo subBookingTo) throws NotFoundException;
+    SubBooking update(SubBookingTo subBookingTo, Apartment apartment) throws NotFoundException;
 
     default boolean delete(Long id, int bookingId, int apartmentId){
         throw new UnsupportedOperationException("SubBooking cannot be deleted, only modified!");

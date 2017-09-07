@@ -1,5 +1,6 @@
 package com.kirak.web.abstr;
 
+import com.kirak.model.Apartment;
 import com.kirak.model.Booking;
 import com.kirak.model.SubBooking;
 import com.kirak.service.ApartmentService;
@@ -66,12 +67,6 @@ public abstract class BookingAbstractController {
     }
 
     //-------------------------------------- Admin Booking methods --------------------------------//
-
-    public ManagerBookingTo getManagerBookingForAdmin(int id){
-        LOG.info("Saving Booking {}", id);
-        Booking booking = bookingService.get(id);
-        return asManagerBookingTo(booking, getBookingInDate(booking), getBookingOutDate(booking));
-    }
 
     public List<AdminBookingTo> getAllBookingsForAdmin() {
         LOG.info("Getting all Bookings {}");
@@ -163,6 +158,7 @@ public abstract class BookingAbstractController {
     public void createSubBooking(SubBookingTo subBookingTo, Integer bookingId){
         LOG.info("Saving subBooking {}", subBookingTo);
         checkAllBookingBusinessRestrictions(bookingId);
+        checkAllSubBookingCreateBusinessRestrictions(subBookingTo.getAptId());
         SubBooking subBooking = subBookingService.save(subBookingTo, bookingId,
                 apartmentService.getAll(), bookingService.getAll());
         Booking booking = bookingService.get(bookingId);
@@ -173,8 +169,10 @@ public abstract class BookingAbstractController {
 
     public void updateSubBooking(SubBookingTo subBookingTo, Integer bookingId){
         LOG.info("Updating booking {}", subBookingTo);
-        checkAllSubBookingBusinessRestrictions(subBookingTo.getId());
-        SubBooking updatedSubBooking = subBookingService.update(subBookingTo);
+        checkAllBookingBusinessRestrictions(bookingId);
+        checkAllSubBookingUpdateBusinessRestrictions(subBookingService.get(subBookingTo.getId()), subBookingTo,
+                apartmentService.getAll());
+        SubBooking updatedSubBooking = subBookingService.update(subBookingTo, apartmentService.get(subBookingTo.getAptId()));
         Booking booking = bookingService.get(bookingId);
         Set<SubBooking> subBookings = booking.getSubBookings();
         Set<SubBooking> editedSubBookings = new HashSet<>();
@@ -198,15 +196,27 @@ public abstract class BookingAbstractController {
 
 
 
-    public void checkAllSubBookingBusinessRestrictions(long id){
-        if(!ApartmentUtil.isSingleApartmentAvailable(subBookingService.get(id).getApartment(),
-                LocalDate.now().minusDays(1), LocalDate.MAX))
-            throw new BookingApartmentOccupiedException(EXCEPTION_SUB_BOOKING_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
-        if(BookingUtil.getBookingOutDate(subBookingService.get(id).getBooking()).isBefore(LocalDate.now()))
-            throw new BookingAccomplishedException(EXCEPTION_SUB_BOOKING_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
-        if(!subBookingService.get(id).getBooking().isActive()){
-            throw new BookingDeactivatedException(EXCEPTION_SUB_BOOKING_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
+    public void checkAllSubBookingUpdateBusinessRestrictions(SubBooking subBooking, SubBookingTo subBookingTo,
+                                                             List<Apartment> apartments){
+        LocalDate requestedInDate = subBookingTo.getAptInDate();
+        LocalDate requestedOutDate = subBookingTo.getAptOutDate();
+        Apartment requestedApartment;
+        if(!Objects.equals(subBooking.getApartment().getId(), subBookingTo.getAptId())) {
+            requestedApartment = apartments.stream().filter(apartment ->
+                    Objects.equals(apartment.getId(), subBookingTo.getAptId()))
+                    .findFirst().orElse(null);
+        } else {
+            requestedApartment = subBooking.getApartment();
         }
+        if(!ApartmentUtil.isSingleApartmentAvailableWithoutCurrentSubBooking(requestedApartment, subBookingTo,
+                requestedInDate, requestedOutDate)) {
+            throw new BookingApartmentOccupiedException(EXCEPTION_SUB_BOOKING_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
+        }
+    }
+
+    public void checkAllSubBookingCreateBusinessRestrictions(int apartmentId){
+        if(!ApartmentUtil.isSingleApartmentAvailable(apartmentService.get(apartmentId), LocalDate.now().minusDays(1), LocalDate.MAX))
+            throw new BookingApartmentOccupiedException(EXCEPTION_SUB_BOOKING_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
     }
 
     public void checkAllBookingBusinessRestrictions(int id){
@@ -215,6 +225,7 @@ public abstract class BookingAbstractController {
         if(BookingUtil.getBookingOutDate(bookingService.get(id)).isBefore(LocalDate.now()))
             throw new BookingAccomplishedException(EXCEPTION_SUB_BOOKING_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
     }
+
 
     @ExceptionHandler(BookingDeactivatedException.class)
     public ResponseEntity<ErrorInfo> bookingDeactivated(HttpServletRequest req, BookingDeactivatedException e) {

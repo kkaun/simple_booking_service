@@ -132,31 +132,30 @@ public class ApartmentUtil {
     public static boolean isSingleApartmentAvailable(Apartment apartment, LocalDate inDate, LocalDate outDate){
 
         final int[] daysOccupied = {0};
-        apartment.getSubBookings().stream().filter(booking -> booking.getBooking().isActive())
-                .forEach(booking -> {
-                    int daysByPeriod = getOccupiedDaysForSingleApartmentInPeriod(booking, inDate, outDate);
+
+        apartment.getSubBookings().stream().filter(subBooking -> subBooking.getBooking().isActive())
+                .forEach(subBooking -> {
+                    int daysByPeriod = getOccupiedDaysForSingleApartmentInPeriod(subBooking, inDate, outDate);
                     if (daysByPeriod > 0){
                         daysOccupied[0] += daysByPeriod;
                     }
                 });
-
         return daysOccupied[0] == 0;
     }
 
 
-    public static boolean isSingleApartmentAvailableWithoutCurrentBooking(Apartment apartment, SubBookingTo currentBooking,
-                                                                LocalDate inDate, LocalDate outDate){
+    public static boolean isSingleApartmentAvailableWithoutCurrentSubBooking(Apartment apartment, SubBookingTo currentBooking,
+                                                                             LocalDate inDate, LocalDate outDate){
         final int[] daysOccupied = {0};
 
-        apartment.getSubBookings().stream().filter(booking -> booking.getBooking().isActive())
-                .filter(booking -> !Objects.equals(booking.getId(), currentBooking.getId()))
-                .forEach(booking -> {
-                    int daysByPeriod = getOccupiedDaysForSingleApartmentInPeriod(booking, inDate, outDate);
+        apartment.getSubBookings().stream().filter(subBooking -> subBooking.getBooking().isActive())
+                .filter(subBooking -> !Objects.equals(subBooking.getId(), currentBooking.getId()))
+                .forEach(subBooking -> {
+                    int daysByPeriod = getOccupiedDaysForSingleApartmentInPeriod(subBooking, inDate, outDate);
                     if (daysByPeriod > 0){
                         daysOccupied[0] += daysByPeriod;
                     }
                 });
-
         return daysOccupied[0] == 0;
     }
 

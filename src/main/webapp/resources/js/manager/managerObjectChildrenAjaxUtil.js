@@ -8,7 +8,7 @@ function extendsObjectChildrenOpts(opts) {
     $.extend(true, opts,
         {
             "ajax": {
-                "url": ajaxUrl + "getAll?hotelId=" + objectId,
+                "url": ajaxUrl + "getAll?objectId=" + objectId,
                 "dataSrc": ""
             },
             "autoWidth": false,

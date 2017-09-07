@@ -11,6 +11,9 @@
 <script type="text/javascript">
     var bookingId = '${bookingId}';
 </script>
+<script type="text/javascript">
+    var objectId = '${objectId}';
+</script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/datatablesUtil.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/notifications.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/cross_role/subBookingAjaxUtil.js" defer></script>
@@ -122,7 +125,7 @@
                 <button type="button" class="close" data-dismiss="modal"
                         aria-hidden="true">&times;
                 </button>
-                <h2 class="modal-title" id="bookingModalTitle"></h2>
+                <h2 class="modal-title" id="bookingModalTitle"><spring:message code="subBookings.edit"/></h2>
             </div>
             <div class="modal-body">
                 <h4><span><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>

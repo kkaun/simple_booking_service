@@ -32,57 +32,36 @@ public class SubBookingUtil {
                 subBooking.getOutDate()), formatDateTime(subBooking.getEdited()));
     }
 
-    public static Map<SubBooking, Boolean> createFromToWithResult(SubBookingTo subBookingTo, int bookingId,
+    public static SubBooking createFromToWithResult(SubBookingTo subBookingTo, int bookingId,
                                                                   List<Apartment> apartments, List<Booking> bookings){
 
         Booking expectedBooking = bookings.stream().filter(booking -> Objects.equals(booking.getId(),
                 bookingId)).findAny().orElse(null);
-        Apartment expectedApartment = apartments.stream().filter(apartment -> Objects.equals(subBookingTo.getAptId(), apartment.getId()))
+        Apartment expectedApartment = apartments.stream().filter(apartment ->
+                Objects.equals(subBookingTo.getAptId(), apartment.getId()))
                 .findFirst().orElse(null);
-
         Short aptPersonNum = expectedApartment.getType().getPersonNum();
 
-        SubBooking creatableSubBooking = new SubBooking(subBookingTo.getAptInDate(),
+        return new SubBooking(subBookingTo.getAptInDate(),
                 subBookingTo.getAptOutDate(), calculateSubBookingSumForApt(expectedApartment,
                 subBookingTo.getAptInDate(), subBookingTo.getAptOutDate()),
                 aptPersonNum, expectedBooking, expectedApartment, expectedApartment.getHotel(), LocalDateTime.now());
-
-        if(expectedBooking != null && ApartmentUtil.isSingleApartmentAvailable(expectedApartment,
-                subBookingTo.getAptInDate(), subBookingTo.getAptOutDate())) {
-            return Collections.singletonMap(creatableSubBooking, true);
-        }
-        return Collections.singletonMap(creatableSubBooking, false);
     }
 
-    public static Map<SubBooking, Boolean> updateFromToWithResult(SubBookingTo subBookingTo, SubBooking subBooking,
-                                                                  List<Apartment> apartments){
+    public static SubBooking updateFromToWithResult(SubBookingTo subBookingTo, SubBooking subBooking,
+                                                                  Apartment requestedApartment){
         LocalDate requestedInDate = subBookingTo.getAptInDate();
         LocalDate requestedOutDate = subBookingTo.getAptOutDate();
-        Apartment requestedApartment;
 
-        if(!Objects.equals(subBooking.getApartment().getId(), subBookingTo.getAptId())) {
-            requestedApartment = apartments.stream().filter(apartment ->
-                    Objects.equals(apartment.getId(), subBookingTo.getAptId()))
-                    .findFirst().orElse(null);
-        } else {
-            requestedApartment = subBooking.getApartment();
-        }
+        Short aptPersonNum = requestedApartment.getType().getPersonNum();
+        subBooking.setApartment(requestedApartment);
+        subBooking.setInDate(requestedInDate);
+        subBooking.setOutDate(requestedOutDate);
+        subBooking.setSum(calculateSubBookingSum(subBooking, requestedInDate, requestedOutDate));
+        subBooking.setPersonNum(aptPersonNum);
+        subBooking.setEdited(LocalDateTime.now());
 
-        if(requestedApartment != null && ApartmentUtil.isSingleApartmentAvailableWithoutCurrentBooking(requestedApartment,
-                subBookingTo, requestedInDate, requestedOutDate)) {
-
-            Short aptPersonNum = requestedApartment.getType().getPersonNum();
-
-            subBooking.setApartment(requestedApartment);
-            subBooking.setInDate(requestedInDate);
-            subBooking.setOutDate(requestedOutDate);
-            subBooking.setSum(calculateSubBookingSum(subBooking, requestedInDate, requestedOutDate));
-            subBooking.setPersonNum(aptPersonNum);
-            subBooking.setEdited(LocalDateTime.now());
-
-            return Collections.singletonMap(subBooking, true);
-        }
-        return Collections.singletonMap(subBooking, false);
+        return subBooking;
     }
 
     public static List<SubBookingTo> generateSubBookingsFromBookingTo(Booking booking){
