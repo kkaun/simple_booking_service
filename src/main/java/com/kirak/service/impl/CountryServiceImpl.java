@@ -3,9 +3,7 @@ package com.kirak.service.impl;
 import com.kirak.model.Country;
 import com.kirak.repository.CountryRepository;
 import com.kirak.service.CountryService;
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

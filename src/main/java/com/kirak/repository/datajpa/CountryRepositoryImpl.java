@@ -1,12 +1,9 @@
 package com.kirak.repository.datajpa;
 
 import com.kirak.model.Country;
-import com.kirak.repository.CityRepository;
 import com.kirak.repository.CountryRepository;
 import com.kirak.repository.datajpa.DataJpaCountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

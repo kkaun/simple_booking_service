@@ -1,6 +1,5 @@
 package com.kirak.util;
 
-import com.kirak.model.abstraction.BaseEntity;
 import com.kirak.model.abstraction.HasId;
 import com.kirak.util.exception.NotFoundException;
 import org.slf4j.Logger;

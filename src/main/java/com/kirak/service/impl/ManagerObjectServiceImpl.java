@@ -2,7 +2,6 @@ package com.kirak.service.impl;
 
 import com.kirak.service.ManagerObjectService;
 import com.kirak.to.ManagerObject;
-import com.kirak.to.Placement;
 import com.kirak.web.session.SessionManagerObjects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

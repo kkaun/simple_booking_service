@@ -2,12 +2,9 @@ package com.kirak.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kirak.model.abstraction.BaseIntEntity;
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 import java.util.Set;
 
 /**

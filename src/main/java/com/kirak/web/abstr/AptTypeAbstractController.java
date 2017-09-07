@@ -1,6 +1,5 @@
 package com.kirak.web.abstr;
 
-import com.kirak.model.AptType;
 import com.kirak.service.ApartmentService;
 import com.kirak.service.AptTypeService;
 import com.kirak.service.HotelService;

@@ -2,7 +2,6 @@ package com.kirak.web.rest.admin;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.kirak.service.CityService;
-import com.kirak.service.CountryService;
 import com.kirak.service.HotelService;
 import com.kirak.service.UserService;
 import com.kirak.to.HotelTo;

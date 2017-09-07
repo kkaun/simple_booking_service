@@ -2,7 +2,6 @@ package com.kirak.repository;
 
 import com.kirak.model.Vote;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**

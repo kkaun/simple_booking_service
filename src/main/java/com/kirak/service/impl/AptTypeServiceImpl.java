@@ -5,11 +5,8 @@ import com.kirak.model.Hotel;
 import com.kirak.repository.AptTypeRepository;
 import com.kirak.service.AptTypeService;
 import com.kirak.to.AptTypeTo;
-import com.kirak.util.ValidationUtil;
 import com.kirak.util.model.AptTypeUtil;
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -17,7 +14,6 @@ import org.springframework.util.Assert;
 import java.util.List;
 import java.util.Map;
 
-import static com.kirak.util.ValidationUtil.checkId;
 import static com.kirak.util.ValidationUtil.checkNotFoundWithId;
 
 /**

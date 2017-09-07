@@ -2,10 +2,7 @@ package com.kirak.to;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 import com.kirak.to.abstr.BasicIntTo;
-import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.SafeHtml;
 
 import java.io.Serializable;
 

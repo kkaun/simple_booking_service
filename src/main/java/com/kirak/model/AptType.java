@@ -2,7 +2,6 @@ package com.kirak.model;
 
 import com.kirak.model.abstraction.BaseShortEntity;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 

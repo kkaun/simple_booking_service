@@ -1,13 +1,11 @@
 package com.kirak.util.model;
 
-import com.kirak.model.Hotel;
 import com.kirak.model.User;
 import com.kirak.model.UserRole;
 import com.kirak.to.UserTo;
 import com.kirak.util.PasswordUtil;
 import org.apache.commons.lang3.StringUtils;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 

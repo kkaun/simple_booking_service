@@ -3,8 +3,7 @@ package com.kirak.to;
 import com.kirak.model.Apartment;
 import com.kirak.model.AptType;
 import com.kirak.util.session.SessionObjectsIdGenerator;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;

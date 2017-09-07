@@ -2,7 +2,6 @@ package com.kirak.web.rest.manager;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.kirak.service.CityService;
-import com.kirak.service.CountryService;
 import com.kirak.service.HotelService;
 import com.kirak.service.UserService;
 import com.kirak.to.HotelTo;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.text.ParseException;
 import java.util.List;
 
 /**

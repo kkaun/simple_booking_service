@@ -6,7 +6,6 @@ import com.kirak.repository.datajpa.DataJpaApartmentRepository;
 import com.kirak.repository.datajpa.DataJpaHotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

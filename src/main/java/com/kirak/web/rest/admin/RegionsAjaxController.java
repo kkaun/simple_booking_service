@@ -1,7 +1,6 @@
 package com.kirak.web.rest.admin;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.kirak.model.City;
 import com.kirak.service.CityService;
 import com.kirak.service.CountryService;
 import com.kirak.to.PlaceTo;
@@ -9,7 +8,6 @@ import com.kirak.web.View;
 import com.kirak.web.abstr.RegionAbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 

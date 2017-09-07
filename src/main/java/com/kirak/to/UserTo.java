@@ -1,17 +1,10 @@
 package com.kirak.to;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.kirak.model.User;
-import com.kirak.model.abstraction.BaseEntity;
-import com.kirak.model.abstraction.BaseIntEntity;
 import com.kirak.to.abstr.BasicIntTo;
-import org.hibernate.validator.constraints.*;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Kir on 16.06.2017.

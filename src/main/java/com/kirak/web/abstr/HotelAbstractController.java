@@ -8,7 +8,6 @@ import com.kirak.util.ErrorInfo;
 import com.kirak.util.FileUploadUtil;
 import com.kirak.util.exception.model.hotel.HotelHasBookingsException;
 import com.kirak.util.exception.model.hotel.ManagerHotelHasBookingsException;
-import com.kirak.util.model.BookingUtil;
 import com.kirak.util.model.HotelUtil;
 import com.kirak.web.ExceptionViewHandler;
 import com.kirak.web.session.AuthorizedUser;

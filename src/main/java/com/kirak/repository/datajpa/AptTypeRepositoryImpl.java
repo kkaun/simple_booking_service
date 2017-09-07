@@ -5,7 +5,6 @@ import com.kirak.repository.AptTypeRepository;
 import com.kirak.repository.datajpa.DataJpaAptTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -8,6 +8,7 @@ import java.time.LocalDate;
 /**
  * Created by Kir on 25.06.2017.
  */
+
 public class SubBookingTo extends BasicLongTo implements Serializable {
 
     private static final long serialVersionUID = 1L;

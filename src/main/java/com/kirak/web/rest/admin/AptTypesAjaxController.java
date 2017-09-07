@@ -1,7 +1,6 @@
 package com.kirak.web.rest.admin;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.kirak.model.AptType;
 import com.kirak.service.ApartmentService;
 import com.kirak.service.AptTypeService;
 import com.kirak.service.HotelService;
@@ -10,7 +9,6 @@ import com.kirak.web.View;
 import com.kirak.web.abstr.AptTypeAbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

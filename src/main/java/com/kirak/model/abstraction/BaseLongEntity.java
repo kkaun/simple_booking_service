@@ -5,8 +5,6 @@ import org.springframework.data.domain.Persistable;
 
 import javax.persistence.*;
 
-import static com.kirak.model.abstraction.BaseIntEntity.START_SEQ;
-
 /**
  * Created by Kir on 13.06.2017.
  */

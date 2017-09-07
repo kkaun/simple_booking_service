@@ -1,7 +1,6 @@
 package com.kirak.web.rest.manager;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.kirak.model.Vote;
 import com.kirak.service.*;
 import com.kirak.to.VoteTo;
 import com.kirak.web.View;

@@ -3,7 +3,6 @@ package com.kirak.util.model;
 import com.kirak.model.Apartment;
 import com.kirak.model.Booking;
 import com.kirak.model.SubBooking;
-import com.kirak.model.Vote;
 import com.kirak.to.ApartmentTo;
 import com.kirak.to.ManagerObject;
 import com.kirak.to.VoteTo;

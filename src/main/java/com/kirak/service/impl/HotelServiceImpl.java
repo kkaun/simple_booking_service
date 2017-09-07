@@ -6,7 +6,6 @@ import com.kirak.service.HotelService;
 import com.kirak.to.HotelTo;
 import com.kirak.util.model.HotelUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;

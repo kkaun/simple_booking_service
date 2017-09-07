@@ -1,19 +1,16 @@
 package com.kirak.web.abstr;
 
-import com.kirak.Profile;
 import com.kirak.model.User;
 import com.kirak.model.UserRole;
 import com.kirak.service.UserService;
 import com.kirak.to.UserTo;
 import com.kirak.util.ErrorInfo;
-import com.kirak.util.exception.ApplicationException;
 import com.kirak.util.exception.model.user.*;
 import com.kirak.util.model.UserUtil;
 import com.kirak.web.ExceptionViewHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,13 +43,6 @@ public abstract class UserAbstractController {
     @Autowired
     private ExceptionViewHandler exceptionInfoHandler;
 
-    private boolean modificationRestriction;
-
-    @Autowired
-    public void setEnvironment(Environment environment) {
-        modificationRestriction = environment.acceptsProfiles(Profile.HEROKU);
-    }
-
     @Autowired
     public UserAbstractController(UserService service) {
         this.userService = service;
@@ -83,7 +73,6 @@ public abstract class UserAbstractController {
 
     public void delete(int id) {
         log.info("delete {}", id);
-        checkModificationAllowed(id);
         checkBusinessRestrictions(id);
         checkActivityRestrictions(id);
         userService.delete(id);
@@ -110,14 +99,8 @@ public abstract class UserAbstractController {
 
     public void enable(int id, boolean enabled) {
         log.info((enabled ? "enable " : "deactivate ") + id);
-        checkModificationAllowed(id);
         checkBusinessRestrictions(id);
         userService.enable(id, enabled);
-    }
-
-    public void checkModificationAllowed(int id) {
-        if (modificationRestriction)
-            throw new ApplicationException(EXCEPTION_USER_MODIFICATION_RESTRICTION, HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
     }
 
     public void checkActivityRestrictions(int id){

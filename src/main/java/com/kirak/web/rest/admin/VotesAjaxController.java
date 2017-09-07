@@ -1,7 +1,6 @@
 package com.kirak.web.rest.admin;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.kirak.model.Vote;
 import com.kirak.service.HotelService;
 import com.kirak.service.UserService;
 import com.kirak.service.VoteService;
@@ -9,7 +8,6 @@ import com.kirak.to.VoteTo;
 import com.kirak.web.View;
 import com.kirak.web.abstr.VoteAbstractController;
 import org.springframework.http.MediaType;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
