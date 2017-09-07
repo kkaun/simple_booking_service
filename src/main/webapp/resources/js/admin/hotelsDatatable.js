@@ -10,7 +10,7 @@ function updateHotelsTableByCity() {
         type: "POST",
         url: ajaxUrl + "by_city",
         data: $("#hotelsByCityAdminFilter").serialize(),
-        success: updateTableByData
+        success: updateAdminTableByData
     });
 }
 
@@ -19,18 +19,18 @@ function updateHotelsTableByRating() {
         type: "POST",
         url: ajaxUrl + "between_ratings",
         data: $("#hotelsByRatingAdminFilter").serialize(),
-        success: updateTableByData
+        success: updateAdminTableByData
     });
 }
 
 function clearHotelsByCityFilter() {
     $("#hotelsByCityAdminFilter")[0].reset();
-    $.get(ajaxUrl, updateTableByData);
+    $.get(ajaxUrl, updateAdminTableByData);
 }
 
 function clearHotelsByRatingFilter() {
     $("#hotelsByCityAdminFilter")[0].reset();
-    $.get(ajaxUrl, updateTableByData);
+    $.get(ajaxUrl, updateAdminTableByData);
 }
 
 

@@ -6,7 +6,7 @@ var ajaxUrl = "/admin/votes/";
 var datatableApi;
 
 function updateVotesTable() {
-    $.get(ajaxUrl, updateTableByData);
+    $.get(ajaxUrl, updateAdminTableByData);
 }
 
 $(function () {

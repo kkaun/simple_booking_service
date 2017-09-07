@@ -6,12 +6,12 @@ var ajaxUrl = "/user/votes/";
 var datatableApi;
 
 function updateUserVotesTable() {
-    $.get(ajaxUrl, updateTableByData);
+    $.get(ajaxUrl, updateUserTableByData);
 }
 
 
 $(function () {
-    datatableApi = $('#userVotesDatatable').DataTable(extendsOpts({
+    datatableApi = $('#userVotesDatatable').DataTable(extendsUserOpts({
         "columns": [
             {
                 "render": renderExpandBtn,

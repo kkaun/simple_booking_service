@@ -28,7 +28,7 @@ public class SubBookingsAjaxController extends BookingAbstractController {
         super(bookingService, subBookingService, apartmentService);
     }
 
-    @PostMapping(value = "/crud")
+    @PostMapping(value = "/create_update")
     @JsonView(View.JsonUI.class)
     public void createOrUpdateSubBooking(@Valid SubBookingTo subBookingTo, @RequestParam("bookingId") Integer bookingId) {
         if (subBookingTo.isNew()) {

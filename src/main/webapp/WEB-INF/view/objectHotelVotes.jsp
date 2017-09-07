@@ -9,7 +9,9 @@
 <script type="text/javascript">
     var objectId = '${objectId}';
 </script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ajaxUtil.js" defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/datatablesUtil.js" defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/notifications.js" defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/managerObjectChildrenAjaxUtil.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/hotelVotesDatatable.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/datatables-responsive/2.1.1/js/dataTables.responsive.js" defer></script>
 <jsp:include page="fragments/header.jsp"/>

@@ -7,12 +7,12 @@ var datatableApi;
 
 
 function updateManagerHotelsTable() {
-    $.get(ajaxUrl, updateTableByData);
+    $.get(ajaxUrl, updateManagerObjectTableByData);
 }
 
 
 $(function () {
-    datatableApi = $('#managerHotelsDatatable').DataTable(extendsOpts({
+    datatableApi = $('#managerHotelsDatatable').DataTable(extendsManagerObjectOpts({
         "columns": [
             {
                 "render": renderExpandBtn,
@@ -23,7 +23,7 @@ $(function () {
                 "data": "id",
                 "render": function(data, type, row, meta){
                     if(type === 'display'){
-                        return '<a class="btn btn-default" href="/hotel_manager/manage_object?id=' + data + '">'
+                        return '<a class="btn btn-default" href="/hotel_manager/manage_object?objectId=' + data + '">'
                             + '<span class="glyphicon glyphicon-share" aria-hidden="true"></span>' +
                             '&nbsp;&nbsp;&nbsp;' + data + '</a>';
                     }

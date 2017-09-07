@@ -26,7 +26,7 @@ public class ApartmentsAjaxController extends ApartmentAbstractController{
         super(apartmentService, aptTypeService, hotelService);
     }
 
-    @PostMapping
+    @PostMapping(value = "/create_update")
     @JsonView(View.JsonUI.class)
     public void createOrUpdate(@Valid ApartmentTo apartmentTo, @RequestParam("objectId") Integer hotelId) {
         if(apartmentTo.isNew()) {
@@ -44,7 +44,7 @@ public class ApartmentsAjaxController extends ApartmentAbstractController{
     }
 
     @Override
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
     @JsonView(View.JsonUI.class)
     public List<ApartmentTo> getAllApartmentsFromCurrentObject(@RequestParam("objectId") Integer hotelId) {
         return super.getAllApartmentsFromCurrentObject(hotelId);

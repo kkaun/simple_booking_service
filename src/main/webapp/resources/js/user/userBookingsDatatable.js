@@ -23,7 +23,7 @@ function deactivateUserBooking(chkbox, id) {
 }
 
 $(function () {
-    datatableApi = $('#userBookingsDatatable').DataTable(extendsOpts({
+    datatableApi = $('#userBookingsDatatable').DataTable(extendsUserOpts({
         "columns": [
             {
                 "render": renderExpandBtn,

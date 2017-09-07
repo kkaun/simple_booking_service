@@ -7,7 +7,7 @@ var datatableApi;
 
 
 function updateUsersTable() {
-    $.get(ajaxUrl, updateTableByData);
+    $.get(ajaxUrl, updateAdminTableByData);
 }
 
 function enable(chkbox, id) {

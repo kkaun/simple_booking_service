@@ -5,22 +5,19 @@
 var ajaxUrl = "/admin/regions/";
 var datatableApi;
 
-// function updatePlacesTable() {
-//     $.get(ajaxUrl, updateTableByData);
-// }
 
 function updatePlacesTable() {
     $.ajax({
         type: "POST",
         url: ajaxUrl + "by_region",
         data: $("#placesAdminFilter").serialize(),
-        success: updateTableByData
+        success: updateAdminTableByData
     });
 }
 
 function clearPlacesFilter() {
     $("#placesAdminFilter")[0].reset();
-    $.get(ajaxUrl, updateTableByData);
+    $.get(ajaxUrl, updateAdminTableByData);
 }
 
 $(function () {

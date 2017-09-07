@@ -5,7 +5,7 @@ var ajaxUrl = "/admin/apt_types/";
 var datatableApi;
 
 function updateAptTypesTable() {
-    $.get(ajaxUrl, updateTableByData);
+    $.get(ajaxUrl, updateAdminTableByData);
 }
 
 $(function () {

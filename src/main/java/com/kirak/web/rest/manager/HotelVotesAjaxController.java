@@ -28,7 +28,7 @@ public class HotelVotesAjaxController extends VoteAbstractController{
     }
 
     @Override
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
     @JsonView(View.JsonUI.class)
     public List<VoteTo> getVotesFromCurrentObject(@RequestParam("objectId") Integer hotelId) {
         return super.getVotesFromCurrentObject(hotelId);

@@ -10,57 +10,57 @@ var datatableApi;
 function updateManagerBookingTableByDatesAdded() {
     $.ajax({
         type: "POST",
-        url: ajaxUrl + "between_dates",
+        url: ajaxUrl + "between_dates?hotelId=" + objectId,
         data: $("#bookingsManagerDatesAddedFilter").serialize(),
-        success: updateTableByData
+        success: updateObjectChildrenTableByData
     });
 }
 function updateManagerBookingTableByInDate() {
     $.ajax({
         type: "POST",
-        url: ajaxUrl + "by_in_date",
+        url: ajaxUrl + "by_in_date?hotelId=" + objectId,
         data: $("#bookingsManagerInDateFilter").serialize(),
-        success: updateTableByData
+        success: updateObjectChildrenTableByData
     });
 }
 function updateManagerBookingTableByOutDate() {
     $.ajax({
         type: "POST",
-        url: ajaxUrl + "by_out_date",
+        url: ajaxUrl + "by_out_date?hotelId=" + objectId,
         data: $("#bookingsManagerOutDateFilter").serialize(),
-        success: updateTableByData
+        success: updateObjectChildrenTableByData
     });
 }
 function updateManagerBookingTableByUserId() {
     $.ajax({
         type: "POST",
-        url: ajaxUrl + "by_user_id",
+        url: ajaxUrl + "by_user_id?hotelId=" + objectId,
         data: $("#bookingsManagerUserIdFilter").serialize(),
-        success: updateTableByData
+        success: updateObjectChildrenTableByData
     });
 }
 
 function clearBookingDatesAddedManagerFilter() {
     $("#bookingsManagerDatesAddedFilter")[0].reset();
-    $.get(ajaxUrl, updateTableByData);
+    $.get(ajaxUrl, updateObjectChildrenTableByData);
 }
 function clearBookingInDateManagerFilter() {
     $("#bookingsManagerInDateFilter")[0].reset();
-    $.get(ajaxUrl, updateTableByData);
+    $.get(ajaxUrl, updateObjectChildrenTableByData);
 }
 function clearBookingOutDateManagerFilter() {
     $("#bookingsManagerOutDateFilter")[0].reset();
-    $.get(ajaxUrl, updateTableByData);
+    $.get(ajaxUrl, updateObjectChildrenTableByData);
 }
 function clearBookingUserIdManagerFilter() {
     $("#bookingsManagerUserIdFilter")[0].reset();
-    $.get(ajaxUrl, updateTableByData);
+    $.get(ajaxUrl, updateObjectChildrenTableByData);
 }
 
 
 
 $(function () {
-    datatableApi = $('#hotelBookingsDatatable').DataTable(extendsOpts({
+    datatableApi = $('#hotelBookingsDatatable').DataTable(extendsObjectChildrenOpts({
         "columns": [
             {
                 "render": renderExpandBtn,

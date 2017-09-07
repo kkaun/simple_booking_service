@@ -11,7 +11,7 @@ function updateAdminSBTableByDatesAdded() {
         type: "POST",
         url: ajaxUrl + "between_dates",
         data: $("#bookingsAdminDatesAddedFilter").serialize(),
-        success: updateTableByData
+        success: updateAdminTableByData
     });
 }
 function updateAdminSBTableByInDate() {
@@ -19,7 +19,7 @@ function updateAdminSBTableByInDate() {
         type: "POST",
         url: ajaxUrl + "by_in_date",
         data: $("#bookingsAdminInDateFilter").serialize(),
-        success: updateTableByData
+        success: updateAdminTableByData
     });
 }
 function updateAdminSBTableByOutDate() {
@@ -27,7 +27,7 @@ function updateAdminSBTableByOutDate() {
         type: "POST",
         url: ajaxUrl + "by_out_date",
         data: $("#bookingsAdminOutDateFilter").serialize(),
-        success: updateTableByData
+        success: updateAdminTableByData
     });
 }
 function updateAdminSBTableByUserId() {
@@ -35,7 +35,7 @@ function updateAdminSBTableByUserId() {
         type: "POST",
         url: ajaxUrl + "by_user_id",
         data: $("#bookingsAdminUserIdFilter").serialize(),
-        success: updateTableByData
+        success: updateAdminTableByData
     });
 }
 function updateAdminSBTableByHotelId() {
@@ -43,26 +43,26 @@ function updateAdminSBTableByHotelId() {
         type: "POST",
         url: ajaxUrl + "by_hotel_id",
         data: $("#bookingsAdminHotelIdFilter").serialize(),
-        success: updateTableByData
+        success: updateAdminTableByData
     });
 }
 
 
 function clearSBDatesAddedAdminFilter() {
     $("#bookingsAdminDatesAddedFilter")[0].reset();
-    $.get(ajaxUrl, updateTableByData);
+    $.get(ajaxUrl, updateAdminTableByData);
 }
 function clearSBInDateAdminFilter() {
     $("#bookingsAdminInDateFilter")[0].reset();
-    $.get(ajaxUrl, updateTableByData);
+    $.get(ajaxUrl, updateAdminTableByData);
 }
 function clearSBOutDateAdminFilter() {
     $("#bookingsAdminOutDateFilter")[0].reset();
-    $.get(ajaxUrl, updateTableByData);
+    $.get(ajaxUrl, updateAdminTableByData);
 }
 function clearSBUserIdAdminFilter() {
     $("#bookingsAdminUserIdFilter")[0].reset();
-    $.get(ajaxUrl, updateTableByData);
+    $.get(ajaxUrl, updateAdminTableByData);
 }
 function clearSBHotelIdAdminFilter() {
     $("#bookingsAdminHotelIdFilter")[0].reset();

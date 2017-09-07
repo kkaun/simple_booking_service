@@ -27,7 +27,7 @@ public class HotelBookingsAjaxController extends BookingAbstractController {
     }
 
     @Override
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
     @JsonView(View.JsonUI.class)
     public List<ManagerBookingTo> getObjectBookingsForManager(@RequestParam("objectId") Integer hotelId) {
         return super.getObjectBookingsForManager(hotelId);

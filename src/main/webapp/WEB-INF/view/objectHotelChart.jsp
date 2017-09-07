@@ -10,7 +10,6 @@
     var objectId = '${objectId}';
 </script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/gantt/css/style.css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ajaxUtil.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/dataDays.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/dataDaysEnh.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/dataHours.js" defer></script>

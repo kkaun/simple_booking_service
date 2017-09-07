@@ -33,7 +33,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="hotel_manager/object/show_chart">
+                <a href="hotel_manager/object/show_chart?objectId=${objectId}">
                     <div class="panel-footer">
                         <span class="pull-left"><spring:message code="common.view"/> </span>
                         <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="hotel_manager/object/show_bookings">
+                <a href="hotel_manager/object/show_bookings?objectId=${objectId}">
                     <div class="panel-footer">
                         <span class="pull-left"><spring:message code="common.view_manage"/> </span>
                         <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="hotel_manager/object/show_hotel_votes">
+                <a href="hotel_manager/object/show_hotel_votes?objectId=${objectId}">
                     <div class="panel-footer">
                         <span class="pull-left"><spring:message code="common.view"/></span>
                         <span class="pull-right glyphicon glyphicon glyphicon-open"></span>
@@ -87,7 +87,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="hotel_manager/object/show_apartments">
+                <a href="hotel_manager/object/show_apartments?objectId=${objectId}">
                     <div class="panel-footer">
                         <span class="pull-left"><spring:message code="common.view_manage"/></span>
                         <span class="pull-right glyphicon glyphicon glyphicon-open"></span>

@@ -6,12 +6,12 @@ var ajaxUrl = "/hotel_manager/object/apartments/";
 var datatableApi;
 
 function updateApartmentsTable() {
-    $.get(ajaxUrl, updateTableByData);
+    $.get(ajaxUrl + "getAll?hotelId=" + objectId, updateObjectChildrenTableByData);
 }
 
 
 $(function () {
-    datatableApi = $('#apartmentsDatatable').DataTable(extendsOpts({
+    datatableApi = $('#apartmentsDatatable').DataTable(extendsObjectChildrenOpts({
         "columns": [
             {
                 "render": renderExpandBtn,
