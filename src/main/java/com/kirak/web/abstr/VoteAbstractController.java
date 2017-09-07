@@ -7,10 +7,12 @@ import com.kirak.model.Vote;
 import com.kirak.service.HotelService;
 import com.kirak.service.UserService;
 import com.kirak.service.VoteService;
+import com.kirak.to.ManagerObject;
 import com.kirak.to.VoteTo;
 import com.kirak.util.ErrorInfo;
 import com.kirak.util.exception.model.vote.VoteBookingNotInitException;
 import com.kirak.util.model.BookingUtil;
+import com.kirak.util.model.ManagerObjectUtil;
 import com.kirak.util.model.VoteUtil;
 import com.kirak.web.ExceptionViewHandler;
 import com.kirak.web.session.AuthorizedUser;
@@ -102,6 +104,11 @@ public abstract class VoteAbstractController {
     public List<VoteTo> getAll(){
         LOG.info("Getting all votes");
         return VoteUtil.getAllTos(voteService.getAll());
+    }
+
+    public List<VoteTo> getVotesFromCurrentObject(Integer hotelId){
+        LOG.info("Getting all current object votes");
+        return VoteUtil.getAllTos(voteService.getAllByHotel(hotelId));
     }
 
     public List<VoteTo> getVotesForUser(){

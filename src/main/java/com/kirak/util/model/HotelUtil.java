@@ -188,27 +188,4 @@ public class HotelUtil {
             sessionPlacementsService.putPlacement(placement);
         }
     }
-
-
-    public static List<Apartment> filterHotelApartmentsWithDuplicateTypes(Hotel hotel){
-
-        List<Apartment> apartments = new ArrayList<>();
-
-        Map<AptType, Integer> uniqueApartmentIds = hotel.getApartments().stream()
-                .collect(Collectors.toMap(Apartment::getType, Apartment::getId, (t, id) -> t));
-
-        uniqueApartmentIds.values().forEach(id -> hotel.getApartments().stream()
-                .filter(apartment -> Objects.equals(apartment.getId(), id)).forEach(apartments::add));
-
-        return apartments;
-    }
-
-    public static double getMaxOverallApartmentPrice(List<Hotel> hotels) {
-
-        return hotels.stream()
-                .flatMap(hotel -> hotel.getApartments().stream())
-                .map(Apartment::getPrice)
-                .max(Double::compare)
-                .orElse(null);
-    }
 }

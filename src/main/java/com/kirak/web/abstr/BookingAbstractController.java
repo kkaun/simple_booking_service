@@ -116,16 +116,44 @@ public abstract class BookingAbstractController {
 
     //-------------------------------------- User methods --------------------------------//
 
-
-    public UserBookingTo getUserBooking(int id){
-        LOG.info("Saving  SubBooking {}", id);
-        Booking booking = bookingService.get(id);
-        return asUserBookingTo(booking, getBookingInDate(booking), getBookingOutDate(booking));
-    }
-
     public List<UserBookingTo> getOwnBookingsForUser(){
         LOG.info("Getting all  Bookings {}");
         return BookingUtil.generateUserBookingTos(bookingService.getAll(), AuthorizedUser.id());
+    }
+
+    //-------------------------------------- Manager methods --------------------------------//
+
+    public List<ManagerBookingTo> getObjectBookingsForManager(Integer hotelId){
+        LOG.info("Getting all  Bookings {}");
+        return BookingUtil.generateManagerObjectBookingTos(bookingService.getAll(), AuthorizedUser.id(), hotelId);
+    }
+
+    public List<ManagerBookingTo> getBookingsByUserIdForManager(Integer hotelId, Integer userId){
+        LOG.info("Getting all  Bookings by user {}", userId);
+        return userId != null ?
+                generateManagerObjectBookingTos(bookingService.getAllByUserId(userId), AuthorizedUser.id(), hotelId)
+                : generateManagerObjectBookingTos(bookingService.getAll(), AuthorizedUser.id(), hotelId);
+    }
+
+    public List<ManagerBookingTo> getBookingsBetweenDatesForManager(Integer hotelId, LocalDate startDate, LocalDate endDate) {
+        LOG.info("Getting all  Bookings between dates {}", startDate, endDate);
+        return generateManagerObjectBookingTos(bookingService.getAllBetweenCreatedDates(
+                startDate != null ? startDate : LocalDate.MIN,
+                endDate != null ? endDate : LocalDate.MAX), AuthorizedUser.id(), hotelId);
+    }
+
+    public List<ManagerBookingTo> getBookingsByInDateForManager(Integer hotelId, LocalDate inDate){
+        LOG.info("Getting all  Bookings by in date {}", inDate);
+        return inDate != null ? generateManagerObjectBookingTos(BookingUtil
+                .getAllBookingsByInDate(bookingService.getAll(), inDate), AuthorizedUser.id(), hotelId)
+                : generateManagerObjectBookingTos(bookingService.getAll(), AuthorizedUser.id(), hotelId);
+    }
+
+    public List<ManagerBookingTo> getBookingsByOutDateForManager(Integer hotelId, LocalDate outDate){
+        LOG.info("Getting all  Bookings by out date {}", outDate);
+        return outDate != null ? generateManagerObjectBookingTos(BookingUtil
+                .getAllBookingsByOutDate(bookingService.getAll(), outDate), AuthorizedUser.id(), hotelId)
+                : generateManagerObjectBookingTos(bookingService.getAll(), AuthorizedUser.id(), hotelId);
     }
 
 

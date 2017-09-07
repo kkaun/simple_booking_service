@@ -5,10 +5,6 @@
 var ajaxUrl = "/user/bookings/";
 var datatableApi;
 
-function updateUserBookingsTable() {
-    $.get(ajaxUrl, updateTableByData);
-}
-
 function deactivateUserBooking(chkbox, id) {
     var enabled = chkbox.is(":checked");
     $.ajax({

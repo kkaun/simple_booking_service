@@ -58,26 +58,29 @@
                     <div class="list-group-item listItem">
                         <h3>
                             <spring:message code="common.unfortunately_request"/> "<c:out value="${badRegion}"/>"
-                            <spring:message code="common.no_results"/>
-                            <br>
+                                <spring:message code="common.no_results"/>
+                        </h3>
+                        <br>
+                        <h4>
                             <spring:message code="common.maybe_shortage"/>
                             <br>
+                            <br>
                             <spring:message code="common.also_check"/>
-                        </h3>
+                        </h4>
                     </div>
                 </c:if>
                 <c:if test="${not empty placementNotAvailable && empty hotels}">
                     <div class="list-group-item listItem">
                         <h3><spring:message code="common.unfortunately_request"/> <spring:message code="common.no_results"/></h3>
                         <br>
-                        <h5><spring:message code="common.maybe_shortage"/>
+                        <h4><spring:message code="common.maybe_shortage"/>
                             <br>
                             <br>
                             <spring:message code="common.might_try_search"/>
                             <br>
                             <br>
                             <spring:message code="common.try_also"/>
-                        </h5>
+                        </h4>
                     </div>
                 </c:if>
 

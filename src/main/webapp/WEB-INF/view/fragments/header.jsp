@@ -70,8 +70,9 @@
                                 <sec:authorize access="!hasRole('ROLE_ADMIN')">
                                     <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/profile'}">
                                         <a class="btn btn-info" href="profile" style="border-bottom-left-radius: 15px; border-top-left-radius: 15px;">
-                                            <sec:authentication property="principal.userTo.name"/>
-                                            <spring:message code="app.profile"/></a>
+                                            <spring:message code="app.profile"/>
+                                            <sec:authentication property="principal.userTo.name"/></a>
+
                                     </c:if>
                                 </sec:authorize>
                                 <button class="btn btn-default" type="submit">

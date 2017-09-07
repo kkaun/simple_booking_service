@@ -55,15 +55,6 @@ public class BookingUtil {
         return booking;
     }
 
-    public static List<ManagerBookingTo> getObjectManagerBookingTos(List<Booking> bookings,
-                                                                         ManagerObject managerObject, int managerId) {
-
-        List<ManagerBookingTo> managerBookingTos = generateManagerBookingTos(bookings, managerId);
-
-        return managerBookingTos.stream().filter(managerBookingTo ->
-                managerObject.getObjectManagerBookingTos().contains(managerBookingTo)).collect(Collectors.toList());
-    }
-
     public static LocalDate getBookingInDate(Booking booking){
 
         Comparator<SubBooking> dateNaturalComparator = Comparator.comparing(SubBooking::getInDate);
@@ -94,8 +85,9 @@ public class BookingUtil {
                 .collect(Collectors.toList());
     }
 
-    public static List<ManagerBookingTo> generateManagerBookingTos(List<Booking> bookings, int managerId){
+    public static List<ManagerBookingTo> generateManagerObjectBookingTos(List<Booking> bookings, int managerId, int hotelId){
         return bookings.stream().filter(booking -> Objects.equals(booking.getHotel().getManager().getId(), managerId))
+                .filter(booking -> Objects.equals(booking.getHotel().getId(), hotelId))
                 .map(booking -> asManagerBookingTo(booking,
                 getBookingInDate(booking), getBookingOutDate(booking)))
                 .collect(Collectors.toList());
@@ -126,7 +118,6 @@ public class BookingUtil {
         booking.setOverallPersonNum(BookingUtil.calculateBookingOverallPersonNum(new ArrayList<>(subBookings)));
         return booking;
     }
-
 
     public static boolean activeBookingsLeft(Set<Booking> bookings){
         return bookings.stream().filter(BookingUtil::isBookingIncomplete).count() > 0;

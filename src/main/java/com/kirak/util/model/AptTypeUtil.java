@@ -83,9 +83,6 @@ public class AptTypeUtil {
         return categories.stream().sorted(comparator).distinct().collect(Collectors.toList());
     }
 
-    public static List<String> getUniqueBedArrangements(List<AptType> types){
-        return types.stream().map(AptType::getBedsArrangement).distinct().collect(Collectors.toList());
-    }
 
     public static List<AptType> getUniqueAptTypes(List<Apartment> apartments){
         return apartments.stream().map(Apartment::getType).distinct().collect(Collectors.toList());

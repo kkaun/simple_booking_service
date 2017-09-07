@@ -70,17 +70,4 @@ public class UserUtil {
         user.setEmail(user.getEmail().toLowerCase());
         return user;
     }
-
-    public static boolean isPhoneDuplicated(String phone, List<User> users){
-        //TODO: Try to use commons validator
-        return users.stream().map(User::getPhone).filter(p -> p.equals(phone)).count() >= 1;
-    }
-
-    public static boolean isEmailDuplicated(String email, List<User> users){
-        //TODO: Try to use commons validator
-        return users.stream().map(User::getEmail).filter(p -> p.equals(email)).count() >= 1;
-    }
-
-
-
 }

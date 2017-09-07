@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.kirak.service.*;
 import com.kirak.to.ApartmentTo;
 import com.kirak.web.View;
-import com.kirak.web.abstr.ManagerObjectAbstractController;
+import com.kirak.web.abstr.ApartmentAbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -19,22 +19,20 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/hotel_manager/object/apartments")
-public class ApartmentsAjaxController extends ManagerObjectAbstractController{
+public class ApartmentsAjaxController extends ApartmentAbstractController{
 
     @Autowired
-    public ApartmentsAjaxController(ApartmentService apartmentService, AptTypeService aptTypeService, HotelService hotelService,
-                                    BookingService bookingService, SubBookingService subBookingService,
-                                    VoteService voteService, ManagerObjectService managerObjectService) {
-        super(apartmentService, aptTypeService, hotelService, bookingService, subBookingService, voteService, managerObjectService);
+    public ApartmentsAjaxController(ApartmentService apartmentService, AptTypeService aptTypeService, HotelService hotelService) {
+        super(apartmentService, aptTypeService, hotelService);
     }
 
     @PostMapping
     @JsonView(View.JsonUI.class)
-    public void createOrUpdate(@Valid ApartmentTo apartmentTo) {
+    public void createOrUpdate(@Valid ApartmentTo apartmentTo, @RequestParam("objectId") Integer hotelId) {
         if(apartmentTo.isNew()) {
-            super.create(apartmentTo);
+            super.create(apartmentTo, hotelId);
         }else {
-            super.update(apartmentTo);
+            super.update(apartmentTo, hotelId);
         }
     }
 
@@ -48,12 +46,12 @@ public class ApartmentsAjaxController extends ManagerObjectAbstractController{
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @JsonView(View.JsonUI.class)
-    public List<ApartmentTo> getAllApartmentsFromCurrentObject() {
-        return super.getAllApartmentsFromCurrentObject();
+    public List<ApartmentTo> getAllApartmentsFromCurrentObject(@RequestParam("objectId") Integer hotelId) {
+        return super.getAllApartmentsFromCurrentObject(hotelId);
     }
 
     @Override
-    @PostMapping(value = "set_image")
+    @PostMapping(value = "/set_image")
     public void setApartmentImage(@RequestParam("id") Integer id, @RequestParam("image") MultipartFile multipartFile) {
         super.setApartmentImage(id, multipartFile);
     }

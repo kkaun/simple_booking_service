@@ -51,14 +51,14 @@ public class RegionsAjaxController extends RegionAbstractController {
     }
 
     @Override
-    @PostMapping(value = "by_region", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/by_region", produces = MediaType.APPLICATION_JSON_VALUE)
     @JsonView(View.JsonUI.class)
     public List<PlaceTo> getAllByRegion(@RequestParam("region") String region) {
         return super.getAllByRegion(region);
     }
 
     @Override
-    @PostMapping(value = "set_image")
+    @PostMapping(value = "/set_image")
     public void setImage(@RequestParam("id") Integer id, @RequestParam("image") MultipartFile multipartFile) {
         super.setImage(id, multipartFile);
     }

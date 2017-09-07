@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Created by Kir on 04.08.2017.
@@ -67,6 +68,10 @@ public class BusinessController extends BusinessAbstractController {
     public String searchHotelsByRegion(@RequestParam("region") String region, Model model){
         List<HotelTo> hotelsFound = HotelUtil.getAllHotelsByRegionName(region, hotelService.getAll());
         if(!hotelsFound.isEmpty()) {
+            City cityFound = RegionUtil.findCityByName(cityService.getAll(), region);
+            if(cityFound != null){
+                model.addAttribute("city", cityFound);
+            }
             model.addAttribute("hotels", hotelsFound);
             model.addAttribute("region", region);
         } else{

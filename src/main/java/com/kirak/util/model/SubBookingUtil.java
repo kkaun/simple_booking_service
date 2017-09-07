@@ -100,6 +100,7 @@ public class SubBookingUtil {
     }
 
 
+
     // ------------------------------- Chart TO methods ----------------------------------- //
 
     public static List<ChartTo> getChartBookingsFromObject(List<Apartment> objectApartments,

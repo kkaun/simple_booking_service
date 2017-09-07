@@ -20,63 +20,15 @@ public class ManagerObject implements Serializable {
 
     private Integer managerId;
 
-    private List<ApartmentTo> objectApartmentTos;
-
-    private List<ManagerBookingTo> objectManagerBookingTos;
-
-    private List<ChartTo> objectChartTos;
-
-    private List<VoteTo> objectVotes;
-
     public ManagerObject(Integer managerId,
-                         Integer hotelId,
-                         List<ApartmentTo> objectApartmentTos,
-                         List<ManagerBookingTo> objectManagerBookingTos,
-                         List<ChartTo> objectChartTos,
-                         List<VoteTo> objectVotes) {
+                         Integer hotelId) {
         this.id = SessionObjectsIdGenerator.getNewId();
         this.hotelId = hotelId;
         this.managerId = managerId;
-        this.objectApartmentTos = objectApartmentTos;
-        this.objectManagerBookingTos = objectManagerBookingTos;
-        this.objectChartTos = objectChartTos;
-        this.objectVotes = objectVotes;
     }
 
     public Integer getId() {
         return id;
-    }
-
-    public List<ApartmentTo> getObjectApartmentTos() {
-        return objectApartmentTos;
-    }
-
-    public void setObjectApartmentTos(List<ApartmentTo> objectApartmentTos) {
-        this.objectApartmentTos = objectApartmentTos;
-    }
-
-    public List<ManagerBookingTo> getObjectManagerBookingTos() {
-        return objectManagerBookingTos;
-    }
-
-    public void setObjectManagerBookingTos(List<ManagerBookingTo> objectManagerBookingTos) {
-        this.objectManagerBookingTos = objectManagerBookingTos;
-    }
-
-    public List<ChartTo> getObjectChartTos() {
-        return objectChartTos;
-    }
-
-    public void setObjectChartTos(List<ChartTo> objectChartTos) {
-        this.objectChartTos = objectChartTos;
-    }
-
-    public List<VoteTo> getObjectVotes() {
-        return objectVotes;
-    }
-
-    public void setObjectVotes(List<VoteTo> objectVotes) {
-        this.objectVotes = objectVotes;
     }
 
     public Integer getManagerId() {
@@ -101,10 +53,6 @@ public class ManagerObject implements Serializable {
                 "id=" + id +
                 ", hotelId=" + hotelId +
                 ", managerId=" + managerId +
-                ", objectApartmentTos=" + objectApartmentTos +
-                ", objectManagerBookingTos=" + objectManagerBookingTos +
-                ", objectChartTos=" + objectChartTos +
-                ", objectVotes=" + objectVotes +
                 '}';
     }
 }

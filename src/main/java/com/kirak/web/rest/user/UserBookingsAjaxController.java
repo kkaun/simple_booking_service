@@ -24,18 +24,10 @@ public class UserBookingsAjaxController extends BookingAbstractController {
     }
 
     @Override
-    @GetMapping(value = "/{id}")
-    public UserBookingTo getUserBooking(@PathVariable("id") int id) {
-        return super.getUserBooking(id);
-    }
-
-
-    @Override
     @PostMapping(value = "/{id}")
     public void deactivate(@PathVariable("id") int id, @RequestParam("active") boolean active) {
         super.deactivate(id, active);
     }
-
 
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)

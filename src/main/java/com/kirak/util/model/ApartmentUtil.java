@@ -56,11 +56,6 @@ public class ApartmentUtil {
     // --------------------------- General Methods ----------------------- //
 
 
-    public static boolean isApartmentAcceptedByPersonNum(Apartment apartment, Short personNum){
-
-        return Objects.equals(apartment.getType().getPersonNum(), personNum);
-    }
-
     public static boolean isApartmentAcceptedByCategory(Apartment apartment, String category){
 
         return category.isEmpty() || apartment.getType().getCategory().equals(category);

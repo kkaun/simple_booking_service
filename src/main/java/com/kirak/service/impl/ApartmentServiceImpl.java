@@ -6,6 +6,7 @@ import com.kirak.model.Hotel;
 import com.kirak.repository.ApartmentRepository;
 import com.kirak.service.ApartmentService;
 import com.kirak.to.ApartmentTo;
+import com.kirak.util.exception.NotFoundException;
 import com.kirak.util.model.ApartmentUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,6 +56,14 @@ public class ApartmentServiceImpl implements ApartmentService {
         Apartment toUpdate = checkNotFoundWithId(repository.get(apartmentTo.getId()), apartmentTo.getId());
         return checkNotFoundWithId(repository.save(ApartmentUtil.updateFromTo(apartmentTo, toUpdate, existingTypes),
                 toUpdate.getHotel().getId()), toUpdate.getId());
+    }
+
+    @Override
+    public Apartment update(ApartmentTo apartmentTo, int hotelId, List<AptType> existingTypes) throws NotFoundException {
+        Assert.notNull(apartmentTo, "Apartment must not be null!");
+        Apartment toUpdate = checkNotFoundWithId(repository.get(apartmentTo.getId()), apartmentTo.getId());
+        return checkNotFoundWithId(repository.save(ApartmentUtil.updateFromTo(apartmentTo, toUpdate, existingTypes),
+                hotelId), toUpdate.getId());
     }
 
     @Override

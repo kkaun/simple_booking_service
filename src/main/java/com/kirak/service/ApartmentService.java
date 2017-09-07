@@ -21,6 +21,8 @@ public interface ApartmentService {
 
     Apartment update(ApartmentTo apartmentTo, List<AptType> existingTypes) throws NotFoundException;
 
+    Apartment update(ApartmentTo apartmentTo, int hotelId, List<AptType> existingTypes) throws NotFoundException;
+
     void delete(Integer id, int hotelId) throws NotFoundException;
 
     void delete(Integer id) throws NotFoundException;

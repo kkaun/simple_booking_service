@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.kirak.service.*;
 import com.kirak.to.booking.ManagerBookingTo;
 import com.kirak.web.View;
-import com.kirak.web.abstr.ManagerObjectAbstractController;
+import com.kirak.web.abstr.BookingAbstractController;
+import com.kirak.web.abstr.HotelAbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -18,49 +19,51 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/hotel_manager/object/bookings")
-public class HotelBookingsAjaxController extends ManagerObjectAbstractController {
+public class HotelBookingsAjaxController extends BookingAbstractController {
 
-    @Autowired
-    public HotelBookingsAjaxController(ApartmentService apartmentService, AptTypeService aptTypeService, HotelService hotelService,
-                                       BookingService bookingService, SubBookingService subBookingService,
-                                       VoteService voteService, ManagerObjectService managerObjectService) {
-        super(apartmentService, aptTypeService, hotelService, bookingService, subBookingService, voteService, managerObjectService);
+    public HotelBookingsAjaxController(BookingService bookingService, SubBookingService subBookingService,
+                                       ApartmentService apartmentService) {
+        super(bookingService, subBookingService, apartmentService);
     }
 
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @JsonView(View.JsonUI.class)
-    public List<ManagerBookingTo> getAllBookingsFromCurrentObject() {
-        return super.getAllBookingsFromCurrentObject();
+    public List<ManagerBookingTo> getObjectBookingsForManager(@RequestParam("objectId") Integer hotelId) {
+        return super.getObjectBookingsForManager(hotelId);
     }
 
     @Override
     @JsonView(View.JsonUI.class)
-    @PostMapping(value = "/between_dates", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ManagerBookingTo> getBookingsBetweenDatesFromCurrentObject(@RequestParam("inDate")LocalDate startDate,
-                                                                                @RequestParam("outDate")LocalDate endDate){
-        return super.getBookingsBetweenDatesFromCurrentObject(startDate, endDate);
+    @PostMapping(value = "/between_dates")
+    public List<ManagerBookingTo> getBookingsBetweenDatesForManager(@RequestParam("objectId") Integer hotelId,
+                                                                    @RequestParam("startDate")LocalDate startDate,
+                                                                @RequestParam("endDate")LocalDate endDate){
+        return super.getBookingsBetweenDatesForManager(hotelId, startDate, endDate);
     }
 
     @Override
     @JsonView(View.JsonUI.class)
     @PostMapping(value = "/by_in_date", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ManagerBookingTo> getBookingsByInDateFromCurrentObject(@RequestParam("inDate")LocalDate inDate) {
-        return super.getBookingsByInDateFromCurrentObject(inDate);
+    public List<ManagerBookingTo> getBookingsByInDateForManager(@RequestParam("objectId") Integer hotelId,
+                                                                @RequestParam("inDate")LocalDate inDate) {
+        return super.getBookingsByInDateForManager(hotelId, inDate);
     }
 
     @Override
     @JsonView(View.JsonUI.class)
     @PostMapping(value = "/by_out_date", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ManagerBookingTo> getBookingsByOutDateFromCurrentObject(@RequestParam("outDate")LocalDate outDate) {
-        return super.getBookingsByOutDateFromCurrentObject(outDate);
+    public List<ManagerBookingTo> getBookingsByOutDateForManager(@RequestParam("objectId") Integer hotelId,
+                                                                 @RequestParam("outDate")LocalDate outDate) {
+        return super.getBookingsByOutDateForManager(hotelId, outDate);
     }
 
     @Override
     @JsonView(View.JsonUI.class)
     @PostMapping(value = "/by_user_id", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ManagerBookingTo> getBookingsFromCurrentObject(@RequestParam("userId") Integer userId) {
-        return super.getBookingsFromCurrentObject(userId);
+    public List<ManagerBookingTo> getBookingsByUserIdForManager(@RequestParam("objectId") Integer hotelId,
+                                                                @RequestParam("userId") Integer userId) {
+        return super.getBookingsByUserIdForManager(hotelId, userId);
     }
 
 }

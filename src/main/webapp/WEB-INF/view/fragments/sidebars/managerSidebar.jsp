@@ -26,16 +26,16 @@
                 </div>
             </div>
         </div>
-        <a href="hotel_manager/object/show_chart" class="list-group-item">
+        <a href="hotel_manager/object/show_chart?objectId=${objectId}" class="list-group-item">
             <strong><spring:message code="side.chart"/></strong><i class="fa fa-calendar fa-pull-right" aria-hidden="true"></i>
         </a>
-        <a href="hotel_manager/object/show_bookings" class="list-group-item">
+        <a href="hotel_manager/object/show_bookings?objectId=${objectId}" class="list-group-item">
             <strong><spring:message code="side.manage_bookings"/></strong><i class="fa fa-ticket fa-pull-right" aria-hidden="true"></i>
         </a>
-        <a href="hotel_manager/object/show_hotel_votes" class="list-group-item">
+        <a href="hotel_manager/object/show_hotel_votes?objectId=${objectId}" class="list-group-item">
             <strong><spring:message code="side.view_feedback"/></strong><i class="fa fa-comments-o fa-pull-right" aria-hidden="true"></i>
         </a>
-        <a href="hotel_manager/object/show_apartments" class="list-group-item">
+        <a href="hotel_manager/object/show_apartments?objectId=${objectId}" class="list-group-item">
             <strong><spring:message code="side.manage_apts"/></strong><i class="fa fa-bed fa-pull-right" aria-hidden="true"></i>
         </a>
     </div>

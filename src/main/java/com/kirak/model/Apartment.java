@@ -28,8 +28,7 @@ public class Apartment extends BaseIntEntity {
     @JoinColumn(name = "hotel_id", nullable = false)
     private Hotel hotel;
 
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "apartment")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "apartment")
     private Set<SubBooking> subBookings;
 
     @Column(name = "img_path")

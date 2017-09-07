@@ -7,6 +7,9 @@
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
+<script type="text/javascript">
+    var objectId = '${objectId}';
+</script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ajaxUtil.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/hotelBookingsDatatable.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/datatables-responsive/2.1.1/js/dataTables.responsive.js" defer></script>

@@ -57,12 +57,11 @@ public class RegionUtil {
 
     public static City findCityByName(List<City> cities, String cityName){
 
-        List<City> citySingleton = cities.stream().
-                filter(city -> Arrays.equals(city.getName().toLowerCase().split(" "),
-                        cityName.toLowerCase().split(" ")))
-                .collect(Collectors.toList());
+        Optional<City> cityFound = cities.stream().filter(city ->
+                Arrays.equals(city.getName().toLowerCase().split(" "), cityName.toLowerCase().split(" ")))
+                .findFirst();
 
-        return !citySingleton.isEmpty() ? citySingleton.get(0) : null;
+        return cityFound.orElse(null);
     }
 
     public static Country getCountryByRegionName(List<City> cities, String regionName){
