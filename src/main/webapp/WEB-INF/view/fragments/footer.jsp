@@ -36,7 +36,7 @@
                 </li>
                 <li>
                     <a class="authorLink" href="https://kkaun.github.io/">
-                    <img src="${pageContext.request.contextPath}/resources/util/author_logo_min.png"
+                    <img src="${pageContext.request.contextPath}/resources/suppl/author_logo_min.png"
                          style="width: 70px; height: 14px;"/></a>
                 </li>
                 <li>

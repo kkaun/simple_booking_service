@@ -7,6 +7,7 @@ import com.kirak.service.VoteService;
 import com.kirak.to.VoteTo;
 import com.kirak.web.View;
 import com.kirak.web.abstr.VoteAbstractController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,7 @@ import java.util.List;
 @RequestMapping(value = "/user/votes")
 public class UserVotesAjaxController  extends VoteAbstractController {
 
+    @Autowired
     public UserVotesAjaxController(VoteService voteService, HotelService hotelService, UserService userService) {
         super(voteService, hotelService, userService);
     }

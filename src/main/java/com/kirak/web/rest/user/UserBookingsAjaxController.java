@@ -5,6 +5,7 @@ import com.kirak.service.BookingService;
 import com.kirak.service.SubBookingService;
 import com.kirak.to.booking.UserBookingTo;
 import com.kirak.web.abstr.BookingAbstractController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,7 @@ import java.util.List;
 @RequestMapping(value = "/user/bookings")
 public class UserBookingsAjaxController extends BookingAbstractController {
 
+    @Autowired
     public UserBookingsAjaxController(BookingService bookingService, SubBookingService subBookingService,
                                       ApartmentService apartmentService) {
         super(bookingService, subBookingService, apartmentService);

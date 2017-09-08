@@ -7,6 +7,7 @@
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util/citiesDataLoad.js" defer></script>
 <jsp:include page="fragments/header.jsp"/>
 
 <div class="container">
@@ -19,10 +20,10 @@
         <div class="col-md-6">
             <div id="custom-search-input" style="margin-right: -20px">
                 <div class="input-group col-md-12">
-                    <form method = "get" id="search_form" action="search">
-                        <input type="text" class="search-query form-control"
+                    <form:form method = "get" role="form" id="search_form" action="search">
+                        <input type="text" class="search-query form-control cities-input"
                                name="region" placeholder="<spring:message code="app.search_fast"/>" />
-                    </form>
+                    </form:form>
                     <span class="input-group-btn">
                         <button class="btn btn-danger" form="search_form" type="submit">
                             <span class="glyphicon glyphicon-search"></span>
@@ -39,7 +40,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse1"><h4 class="text-center"><spring:message code="app.advanced_search"/></h4></a>
+                            <a data-toggle="collapse" href="#collapse1"><h4 class="text-center">
+                                <spring:message code="app.advanced_search"/></h4></a>
                         </h4>
                     </div>
                     <div id="collapse1" class="panel-collapse collapse">

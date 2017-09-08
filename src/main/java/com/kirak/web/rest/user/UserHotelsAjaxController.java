@@ -3,6 +3,7 @@ package com.kirak.web.rest.user;
 import com.kirak.service.*;
 import com.kirak.to.HotelTo;
 import com.kirak.web.abstr.HotelAbstractController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ import java.util.List;
 @RequestMapping(value = "/user/hotels")
 public class UserHotelsAjaxController extends HotelAbstractController {
 
+    @Autowired
     public UserHotelsAjaxController(HotelService hotelService, CityService cityService, UserService userService) {
         super(hotelService, cityService, userService);
     }

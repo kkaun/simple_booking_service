@@ -278,7 +278,7 @@
             <version>1.2</version>
         </dependency>
 
-        <!-- Webjars (static dependencies distributed as JAR files) -->
+        <!-- jQuery core, Bootstrap -->
         <dependency>
             <groupId>org.webjars.bower</groupId>
             <artifactId>jquery</artifactId>
@@ -350,7 +350,6 @@
             <artifactId>parsleyjs</artifactId>
             <version>2.7.2-1</version>
         </dependency>
-
 
 
         <!--JSON-->

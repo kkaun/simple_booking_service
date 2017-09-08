@@ -5,10 +5,10 @@
 
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/datatablesUtil.js" defer></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/notifications.js" defer></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/managerObjectsAjaxUtil.js" defer></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/managerObjectsDatatable.js" defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util/datatablesUtil.js" defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util/notifications.js" defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/dt_manager/managerObjectsAjaxUtil.js" defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/dt_manager/managerObjectsDatatable.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/datatables-responsive/2.1.1/js/dataTables.responsive.js" defer></script>
 <body>
 <jsp:include page="fragments/header.jsp"/>

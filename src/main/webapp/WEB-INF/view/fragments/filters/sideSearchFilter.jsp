@@ -18,7 +18,7 @@
                 <div class="form-group">
                     <label for="location" class="control-label"><spring:message code="common.location_city"/></label>
                     <div class="input-group">
-                        <input type="text" class="form-control" name="location" id="location" value="${param.region}">
+                        <input type="text" class="form-control cities-input" name="location" id="location" value="${param.region}">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-globe"></span>
                         </span>

@@ -21,6 +21,7 @@ import java.util.List;
 @RequestMapping(value = "/hotel_manager/object/bookings")
 public class HotelBookingsAjaxController extends BookingAbstractController {
 
+    @Autowired
     public HotelBookingsAjaxController(BookingService bookingService, SubBookingService subBookingService,
                                        ApartmentService apartmentService) {
         super(bookingService, subBookingService, apartmentService);

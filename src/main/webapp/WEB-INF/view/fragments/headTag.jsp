@@ -13,7 +13,7 @@
     <meta name="_csrf" content="${_csrf.token}"/>
     <meta name="_csrf_header" content="${_csrf.headerName}"/>
 
-    <link href="/favicon.ico" rel="icon" type="image/x-icon">
+    <link href="favicon.ico" rel="icon" type="image/x-icon">
 
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
 
@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="webjars/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="webjars/datatables-responsive/2.1.1/css/responsive.dataTables.scss">
     <link rel="stylesheet" href="webjars/datatables-responsive/2.1.1/css/responsive.jqueryui.scss">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/extensions/autocomplete/easy-autocomplete.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 
     <!--http://stackoverflow.com/a/24070373/548473-->
@@ -36,8 +37,9 @@
     <script type="text/javascript" src="webjars/noty/2.4.1/js/noty/packaged/jquery.noty.packaged.min.js" defer></script>
     <script type="text/javascript" src="webjars/datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js" defer></script>
 
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/datepicker.js" defer></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.ui.datepicker-en.js" defer></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.ui.datepicker-ru.js" defer></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/scripts.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util/datepicker.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util/jquery.ui.datepicker-en.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util/jquery.ui.datepicker-ru.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/extensions/autocomplete/jquery.easy-autocomplete.min.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util/scripts.js"></script>
 </head>
