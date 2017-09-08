@@ -9,12 +9,12 @@
 <script type="text/javascript">
     var objectId = '${objectId}';
 </script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/gantt/css/style.css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/dataDays.js" defer></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/dataDaysEnh.js" defer></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/dataHours.js" defer></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/jquery.cookie.js" defer></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/gantt/js/jquery.fn.gantt.js" defer></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/js/gantt/css/style.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/gantt/js/dataDays.js" defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/gantt/js/dataDaysEnh.js" defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/gantt/js/dataHours.js" defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/gantt/js/jquery.cookie.js" defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/gantt/js/jquery.fn.gantt.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/manager/hotelChart.js" defer></script>
 <jsp:include page="fragments/header.jsp"/>
 

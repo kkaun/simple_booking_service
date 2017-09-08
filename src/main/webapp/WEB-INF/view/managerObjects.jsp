@@ -79,10 +79,10 @@
 
                     <div class="form-group countryNameForm">
                         <label for="countryNamesList" class="control-label col-xs-4">
-                            <spring:message code="common.countryName"/><spring:message code="common.in_latin"/>
+                            <spring:message code="common.countryName"/>
                         </label>
                         <c:if test="${not empty countries}">
-                            <div class="col-xs-7">
+                            <div class="col-xs-7 countryNameOptions">
                                 <select class="form-control" name="countryName" id="countryNamesList">
                                     <c:forEach items="${countries}" var="country">
                                         <option name="countryName" value="${country.name}">${country.name}</option>
@@ -94,10 +94,10 @@
 
                     <div class="form-group cityNameForm">
                         <label for="cityNamesList" class="control-label col-xs-4">
-                            <spring:message code="common.placeName"/><spring:message code="common.in_latin"/>
+                            <spring:message code="common.placeName"/>
                         </label>
                         <c:if test="${not empty cities}">
-                            <div class="col-xs-7">
+                            <div class="col-xs-7 cityNameOptions">
                                 <select class="form-control" name="cityName" id="cityNamesList">
                                     <c:forEach items="${cities}" var="city">
                                         <option name="cityName" value="${city.name}">

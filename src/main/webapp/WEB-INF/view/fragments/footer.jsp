@@ -36,7 +36,8 @@
                 </li>
                 <li>
                     <a class="authorLink" href="https://kkaun.github.io/">
-                    <img src="/images/author_logo_min.png" style="width: 70px; height: 14px;"/></a>
+                    <img src="${pageContext.request.contextPath}/resources/util/author_logo_min.png"
+                         style="width: 70px; height: 14px;"/></a>
                 </li>
                 <li>
                     <a href="mailto:kirkaun@gmail.com"><spring:message code="common.contact_author_mail"/></a>

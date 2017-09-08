@@ -62,14 +62,13 @@ public abstract class HotelAbstractController {
     public void create(HotelTo hotelTo){
         LOG.info("Saving {}", hotelTo);
         checkNew(hotelTo);
-        checkCreateUpdateBusinessRestrictions(hotelTo);
+        checkCreateBusinessRestrictions(hotelTo);
         hotelService.save(HotelUtil.createNewFromTo(hotelTo, getAllCities(), userService.get(AuthorizedUser.id())));
     }
 
     public void update(HotelTo hotelTo, int id){
         LOG.info("Updating {}", hotelTo);
         checkIdConsistency(hotelTo, id);
-        checkCreateUpdateBusinessRestrictions(hotelTo);
         hotelService.update(hotelTo);
     }
 
@@ -143,7 +142,7 @@ public abstract class HotelAbstractController {
         }
     }
 
-    private void checkCreateUpdateBusinessRestrictions(HotelTo hotelTo) {
+    private void checkCreateBusinessRestrictions(HotelTo hotelTo) {
         Optional<City> requestedCity = cityService.getAll().stream()
                 .filter(city -> Objects.equals(city.getName(), hotelTo.getCityName()))
                 .filter(city -> Objects.equals(city.getCountry().getName(), hotelTo.getCountryName()))

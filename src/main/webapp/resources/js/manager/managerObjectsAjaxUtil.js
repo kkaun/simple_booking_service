@@ -47,10 +47,12 @@ function updateManagerObjectTableByData(data) {
 
 function addManagerHotel() {
     $('#managerHotelModalTitle').html(i18n["addTitle"]);
+    $('.countryNameForm').show();
+    $('.cityNameForm').show();
+    $('.countryNameOptions  :input').prop("disabled", false);
+    $('.cityNameOptions :input').prop("disabled", false);
     form.find(":input").val("");
     form.find("textarea[name='" + 'description' + "']").val("");
-    $('.cityNameForm :input').removeAttr('readonly');
-    $('.countryNameForm :input').removeAttr('readonly');
     $('.load-bar').hide();
     $('#managerHotelEditRow').modal();
 }
@@ -64,15 +66,31 @@ function renderManagerHotelEditBtn(data, type, row) {
 
 function updateManagerHotelRow(id) {
     $('#managerHotelModalTitle').html(i18n["editTitle"]);
+    $('.countryNameOptions :input').prop("disabled", true);
+    $('.cityNameOptions :input').prop("disabled", true);
+    $('.countryNameForm').hide();
+    $('.cityNameForm').hide();
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(value);
             form.find("textarea[name='" + key + "']").val(value);
-            $('.cityNameForm :input').attr('readonly','readonly');
-            $('.countryNameForm :input').attr('readonly','readonly');
         });
         $('.load-bar').hide();
         $('#managerHotelEditRow').modal();
+    });
+}
+
+function saveManagerHotel() {
+    $('.load-bar').show();
+    $.ajax({
+        type: "POST",
+        url: ajaxUrl,
+        data: form.serialize(),
+        success: function () {
+            $('#managerHotelEditRow').modal('hide');
+            updateManagerHotelsTable();
+            successNoty('common.saved');
+        }
     });
 }
 
@@ -95,20 +113,6 @@ function updateManagerHotelImage(id) {
         });
         $('.load-bar').hide();
         $('#managerHotelImageEditRow').modal();
-    });
-}
-
-function saveManagerHotel() {
-    $('.load-bar').show();
-    $.ajax({
-        type: "POST",
-        url: ajaxUrl,
-        data: form.serialize(),
-        success: function () {
-            $('#managerHotelEditRow').modal('hide');
-            updateManagerHotelsTable();
-            successNoty('common.saved');
-        }
     });
 }
 
