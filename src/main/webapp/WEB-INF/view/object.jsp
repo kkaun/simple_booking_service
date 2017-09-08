@@ -22,10 +22,9 @@
         </div>
     </div>
 
-    <!-- /.row -->
     <div class="row">
         <div class="col-lg-6 col-md-6">
-            <div class="panel panel-primary">
+            <div class="panel panel-lilac">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-12 text-center">
@@ -43,7 +42,7 @@
             </div>
         </div>
         <div class="col-lg-6 col-md-6">
-            <div class="panel panel-green">
+            <div class="panel panel-lilac">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-12 text-center">
@@ -61,7 +60,7 @@
             </div>
         </div>
         <div class="col-lg-6 col-md-6">
-            <div class="panel panel-yellow">
+            <div class="panel panel-cream">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-12 text-center">
@@ -79,7 +78,7 @@
             </div>
         </div>
         <div class="col-lg-6 col-md-6">
-            <div class="panel panel-grey">
+            <div class="panel panel-cream">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-12 text-center">

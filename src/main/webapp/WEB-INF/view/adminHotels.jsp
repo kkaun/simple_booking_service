@@ -23,19 +23,19 @@
         <div class="col-md-10">
 
             <div class="row">
-                <div class="col-sm-7">
+                <div class="col-sm-6">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <form:form class="form-horizontal filter" id="hotelsByRatingAdminFilter">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-4" for="minRating">
+                                    <label class="control-label col-sm-3" for="minRating">
                                         <spring:message code="hotels.minRating"/>:</label>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-3">
                                         <input class="form-control" name="minRating" id="minRating">
                                     </div>
-                                    <label class="control-label col-sm-4" for="maxRating">
+                                    <label class="control-label col-sm-3" for="maxRating">
                                         <spring:message code="hotels.maxRating"/>:</label>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-3">
                                         <input class="form-control" name="maxRating" id="maxRating">
                                     </div>
                                 </div>
@@ -52,7 +52,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-5">
+                <div class="col-sm-6">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <form:form class="form-horizontal filter" id="hotelsByCityAdminFilter">

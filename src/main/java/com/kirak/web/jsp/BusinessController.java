@@ -221,6 +221,7 @@ public class BusinessController extends BusinessAbstractController {
         String saltedEmail = String.valueOf(random.nextInt(10000) + 1) + "anon" + userEmail;
         User user = new User(userName, saltedEmail, userPhone);
         userService.save(user);
+        model.addAttribute("anonEmail", userEmail);
         super.accomplishBooking(model, user, sum, personNum, hotelId, placementId, apartmentNum, inDate, outDate);
         return "confirmation";
     }

@@ -30,8 +30,8 @@ public class BookingsAjaxController extends BookingAbstractController {
     }
 
     @Override
-    @PostMapping(value = "/{id}")
-    public void deactivate(@PathVariable("id") int id, @RequestParam("active") boolean active) {
+    @PostMapping(value = "/deactivate")
+    public void deactivate(@RequestParam("id") int id, @RequestParam("active") boolean active) {
         super.deactivate(id, active);
     }
 

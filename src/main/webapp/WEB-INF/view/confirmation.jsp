@@ -21,7 +21,10 @@
                                     <h2><spring:message code="common.booking_done"/></h2>
                                     <hr>
                                     <h4><spring:message code="common.trip_id"/> <strong>${booking.id}</strong>
-                                        . <spring:message code="common.booking_compl_add"/> ${user.email}</h4>
+                                        . <spring:message code="common.booking_compl_add"/>
+                                        <c:if test="${not empty anonEmail}"><c:out value="${anonEmail}"/></c:if>
+                                        <c:if test="${empty anonEmail}"><c:out value="${user.email}"/></c:if>
+                                    </h4>
                                 </div>
                             </div>
                         </div>
@@ -117,7 +120,12 @@
                                             <table class="table table-responsive">
                                                 <tr>
                                                     <td><c:out value="${user.name}"/></td>
-                                                    <td><c:out value="${user.email}"/></td>
+                                                    <c:if test="${not empty anonEmail}">
+                                                        <td><c:out value="${anonEmail}"/></td>
+                                                    </c:if>
+                                                    <c:if test="${empty anonEmail}">
+                                                        <td><c:out value="${user.email}"/></td>
+                                                    </c:if>
                                                     <td><c:out value="${user.phone}"/></td>
                                                 </tr>
                                             </table>

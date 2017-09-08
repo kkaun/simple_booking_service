@@ -44,7 +44,7 @@
         </div>
 
         <div class="col-lg-4 col-md-4">
-            <div class="panel panel-primary">
+            <div class="panel panel-lilac">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-12 text-center">
@@ -63,7 +63,7 @@
         </div>
 
         <div class="col-lg-4 col-md-4">
-            <div class="panel panel-yellow">
+            <div class="panel panel-cream">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-12 text-center">

@@ -33,7 +33,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <sec:authorize access="isAuthenticated()">
                         <sec:authorize access="hasAuthority('ROLE_ADMIN')">
-                            <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/admin'}">
+                            <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/administrate'}">
                                 <li style="margin-left: 10px;">
                                     <form>
                                         <a class="btn navbar-btn btn-success" href="administrate"
@@ -44,20 +44,22 @@
                             </c:if>
                         </sec:authorize>
                         <sec:authorize access="hasAuthority('ROLE_MANAGER')">
-                            <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/managerObjects'}">
+                            <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/manage'}">
                                 <li style="margin-left: 10px;">
                                     <form>
-                                        <a class="btn navbar-btn btn-success" href="manage" style="border-radius: 15px">
+                                        <a class="btn navbar-btn btn-success" href="manage"
+                                           style="border-radius: 15px">
                                             <spring:message code="common.manager"/></a>
                                     </form>
                                 </li>
                             </c:if>
                         </sec:authorize>
                         <sec:authorize access="hasAuthority('ROLE_USER')">
-                            <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/user'}">
+                            <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/user_activity'}">
                                 <li style="margin-left: 10px;">
                                     <form>
-                                        <a class="btn navbar-btn btn-success" href="user_activity" style="border-radius: 15px">
+                                        <a class="btn navbar-btn btn-success" href="user_activity"
+                                           style="border-radius: 15px">
                                             <spring:message code="common.user"/></a>
                                     </form>
                                 </li>

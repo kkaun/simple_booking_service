@@ -49,17 +49,15 @@ function clearSBOutDateAdminFilter() {
 function deactivateAdminSB(chkbox, id) {
     var enabled = chkbox.is(":checked");
     $.ajax({
-        url: ajaxUrl + id,
+        url: ajaxUrl + "deactivate" + "?id=" + id + "&active=" + !enabled,
         type: 'POST',
-        data: 'active=' + enabled,
         success: function () {
             chkbox.closest('checkbox').attr('checked', false);
-            //chkbox.closest('tr').toggleClass('disabled');
             successNoty(enabled ? 'common.booking_activated' : 'common.booking_deactivated');
             delayedUpdate();
         },
         error: function () {
-            $(chkbox).prop("checked", !enabled);
+            $(chkbox).prop("checked", enabled);
         }
     });
 }
@@ -107,7 +105,8 @@ $(function () {
                 "render": function (data, type, row) {
                     if (type === 'display') {
                         if (data) {
-                            return '<input type="checkbox" ' + (data ? 'checked' : '') + ' onclick="deactivateAdminSB($(this),' + row.id + ');"/>';
+                            return '<input type="checkbox" ' + (data ? 'checked' : '') +
+                                ' onclick="deactivateAdminSB($(this),' + row.id + ');"/>';
                         } else {
                             return '<input type="checkbox" ' + ' disabled readonly' + '/>';
 
