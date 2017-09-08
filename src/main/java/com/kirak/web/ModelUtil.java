@@ -3,13 +3,16 @@ package com.kirak.web;
 import com.kirak.model.*;
 import com.kirak.to.ApartmentTo;
 import com.kirak.to.HotelTo;
+import com.kirak.to.PlaceTo;
 import com.kirak.to.Placement;
 import com.kirak.util.model.ApartmentUtil;
 import com.kirak.util.model.AptTypeUtil;
 import com.kirak.util.model.HotelUtil;
+import com.kirak.util.model.RegionUtil;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -33,21 +36,31 @@ public class ModelUtil {
         model.addAttribute("uniqueAptNums", HotelUtil.getUniqueApartmentNums(hotel));
     }
 
-    public static void getManagerView(Model model, int hotelId, List<ApartmentTo> objectApartments, List<AptType> aptTypes){
+    public static void setManagerAptView(Model model, List<ApartmentTo> objectApartments, List<AptType> aptTypes){
         model.addAttribute("objectApartments", objectApartments);
         model.addAttribute("aptTypes", AptTypeUtil.getAllToStringsFromAptTypes(aptTypes));
+    }
+
+    public static void setObjectId(Model model, int hotelId){
         model.addAttribute("objectId", hotelId);
     }
 
-    public static void getAdminView(Model model, List<AptType> aptTypes, List<Country> countries,
-                                      List<City> cities, List<Apartment> apartments){
+    public static void setAdminAptView(Model model, List<AptType> aptTypes, List<Apartment> apartments){
         model.addAttribute("aptTypes", aptTypes);
-        model.addAttribute("countries", countries);
-        model.addAttribute("cities", cities);
         model.addAttribute("apartments", ApartmentUtil.getApartmentTos(apartments));
         model.addAttribute("roles",  Arrays.asList("User", "Manager"));
     }
 
+    public static void setRegionView(Model model, List<City> cities, List<Country> countries){
+
+        Comparator<City> cityNameComparator = (City c1, City c2) -> (c1.getName().compareTo(c2.getName()));
+        Comparator<Country> countryNameComparator = (Country c1, Country c2) -> (c1.getName().compareTo(c2.getName()));
+
+        model.addAttribute("cities", RegionUtil.getPlaceTos(cities.stream()
+                .sorted(cityNameComparator).collect(Collectors.toList())));
+        model.addAttribute("countries", countries.stream()
+                .sorted(countryNameComparator).collect(Collectors.toList()));
+    }
 
     public static void addOptionsView(Model model, Placement placement){
         model.addAttribute("options", placement.getOption().values());

@@ -35,6 +35,14 @@ public class AdminController {
         this.apartmentService = apartmentService;
     }
 
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/administrate")
+    public String getAdminPanel() {
+        return "admin";
+    }
+
+
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/admin_panel")
     public String adminPanel() {
@@ -45,35 +53,28 @@ public class AdminController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("admin/show_hotels")
     public String showHotels(Model model) {
-        ModelUtil.getAdminView(model, aptTypeService.getAll(), countryService.getAll(),
-                cityService.getAll(), apartmentService.getAll());
+        ModelUtil.setRegionView(model, cityService.getAll(), countryService.getAll());
         return "adminHotels";
     }
 
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("admin/show_users")
-    public String showUsers(Model model) {
-        ModelUtil.getAdminView(model, aptTypeService.getAll(), countryService.getAll(),
-                cityService.getAll(), apartmentService.getAll());
+    public String showUsers() {
         return "adminUsers";
     }
 
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("admin/show_bookings")
-    public String showBookings(Model model) {
-        ModelUtil.getAdminView(model, aptTypeService.getAll(), countryService.getAll(),
-                cityService.getAll(), apartmentService.getAll());
+    public String showBookings() {
         return "adminBookings";
     }
 
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("admin/show_votes")
-    public String showVotes(Model model) {
-        ModelUtil.getAdminView(model, aptTypeService.getAll(), countryService.getAll(),
-                cityService.getAll(), apartmentService.getAll());
+    public String showVotes() {
         return "adminVotes";
     }
 
@@ -81,16 +82,14 @@ public class AdminController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("admin/show_apt_types")
     public String showAptTypes(Model model) {
-        ModelUtil.getAdminView(model, aptTypeService.getAll(), countryService.getAll(),
-                cityService.getAll(), apartmentService.getAll());
+        ModelUtil.setAdminAptView(model, aptTypeService.getAll(), apartmentService.getAll());
         return "adminTypes";
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("admin/show_regions")
     public String showRegions(Model model) {
-        ModelUtil.getAdminView(model, aptTypeService.getAll(), countryService.getAll(),
-                cityService.getAll(), apartmentService.getAll());
+        ModelUtil.setRegionView(model, cityService.getAll(), countryService.getAll());
         return "adminRegions";
     }
 

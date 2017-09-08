@@ -3,10 +3,12 @@ package com.kirak.web.abstr;
 import com.kirak.model.*;
 import com.kirak.service.CityService;
 import com.kirak.service.HotelService;
+import com.kirak.service.UserService;
 import com.kirak.to.HotelTo;
 import com.kirak.util.ErrorInfo;
 import com.kirak.util.FileUploadUtil;
 import com.kirak.util.exception.model.hotel.HotelHasBookingsException;
+import com.kirak.util.exception.model.hotel.HotelRegionsNotMatchingException;
 import com.kirak.util.exception.model.hotel.ManagerHotelHasBookingsException;
 import com.kirak.util.model.HotelUtil;
 import com.kirak.web.ExceptionViewHandler;
@@ -18,13 +20,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
-
 import static com.kirak.util.ValidationUtil.checkIdConsistency;
 import static com.kirak.util.ValidationUtil.checkNew;
 
@@ -35,6 +36,8 @@ public abstract class HotelAbstractController {
 
     public static final String EXCEPTION_HOTEL_HAS_BOOKINGS = "exception.hotel.apartments.haveBookings";
     public static final String EXCEPTION_HOTEL_REMOVING_RESTRICTION = "exception.hotel.removingRestriction";
+    public static final String EXCEPTION_HOTEL_MODIFICATION_RESTRICTION = "exception.hotel.modificationRestriction";
+    public static final String EXCEPTION_HOTEL_REGIONS_NOT_MATCHING = "exception.hotel.regions.notMatching";
     public static final String EXCEPTION_MANAGER_HOTEL_HAS_BOOKINGS = "exception.manager.hotel.apartments.haveBookings";
     public static final String EXCEPTION_MANAGER_HOTEL_REMOVING_RESTRICTION = "exception.manager.hotel.removingRestriction";
 
@@ -44,30 +47,35 @@ public abstract class HotelAbstractController {
 
     private final CityService cityService;
 
+    private final UserService userService;
+
     @Autowired
     private ExceptionViewHandler exceptionInfoHandler;
 
     @Autowired
-    public HotelAbstractController(HotelService hotelService, CityService cityService){
+    public HotelAbstractController(HotelService hotelService, CityService cityService, UserService userService){
         this.hotelService = hotelService;
         this.cityService = cityService;
+        this.userService = userService;
     }
 
-    public void create(Hotel hotel){
-        LOG.info("Saving {}", hotel);
-        checkNew(hotel);
-        hotelService.save(hotel);
+    public void create(HotelTo hotelTo){
+        LOG.info("Saving {}", hotelTo);
+        checkNew(hotelTo);
+        checkCreateUpdateBusinessRestrictions(hotelTo);
+        hotelService.save(HotelUtil.createNewFromTo(hotelTo, getAllCities(), userService.get(AuthorizedUser.id())));
     }
 
     public void update(HotelTo hotelTo, int id){
         LOG.info("Updating {}", hotelTo);
         checkIdConsistency(hotelTo, id);
+        checkCreateUpdateBusinessRestrictions(hotelTo);
         hotelService.update(hotelTo);
     }
 
     public void delete(Integer id){
         LOG.info("Deleting hotel {}", id);
-        checkAllBusinessRestrictions(id);
+        checkDeleteBusinessRestrictions(id);
         hotelService.delete(id);
     }
 
@@ -110,7 +118,7 @@ public abstract class HotelAbstractController {
                 .collect(Collectors.toList()));
     }
 
-    public List<City> getAllCities() {
+    private List<City> getAllCities() {
         return cityService.getAll();
     }
 
@@ -125,8 +133,7 @@ public abstract class HotelAbstractController {
         }
     }
 
-    public void checkAllBusinessRestrictions(int id){
-
+    private void checkDeleteBusinessRestrictions(int id){
         if(Objects.equals(hotelService.get(id).getManager().getId(), AuthorizedUser.id())){
             if (!hotelService.get(id).getBookings().isEmpty())
                 throw new ManagerHotelHasBookingsException(EXCEPTION_MANAGER_HOTEL_REMOVING_RESTRICTION, HttpStatus.CONFLICT);
@@ -135,6 +142,17 @@ public abstract class HotelAbstractController {
                 throw new HotelHasBookingsException(EXCEPTION_HOTEL_REMOVING_RESTRICTION, HttpStatus.CONFLICT);
         }
     }
+
+    private void checkCreateUpdateBusinessRestrictions(HotelTo hotelTo) {
+        Optional<City> requestedCity = cityService.getAll().stream()
+                .filter(city -> Objects.equals(city.getName(), hotelTo.getCityName()))
+                .filter(city -> Objects.equals(city.getCountry().getName(), hotelTo.getCountryName()))
+                .findAny();
+        if(requestedCity == null){
+            throw new HotelRegionsNotMatchingException(EXCEPTION_HOTEL_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
+        }
+    }
+
 
     @ExceptionHandler(HotelHasBookingsException.class)
     public ResponseEntity<ErrorInfo> objectHasActiveBookings(HttpServletRequest req, HotelHasBookingsException e) {
@@ -146,4 +164,8 @@ public abstract class HotelAbstractController {
         return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_MANAGER_HOTEL_HAS_BOOKINGS, HttpStatus.CONFLICT);
     }
 
+    @ExceptionHandler(HotelRegionsNotMatchingException.class)
+    public ResponseEntity<ErrorInfo> managerObjectHasActiveBookings(HttpServletRequest req, HotelRegionsNotMatchingException e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_HOTEL_REGIONS_NOT_MATCHING, HttpStatus.CONFLICT);
+    }
 }

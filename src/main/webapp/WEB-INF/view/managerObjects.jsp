@@ -78,21 +78,34 @@
                     <input type="hidden" id="managerId" name="managerId">
 
                     <div class="form-group countryNameForm">
-                        <label for="countryName" class="control-label col-xs-4">
+                        <label for="countryNamesList" class="control-label col-xs-4">
                             <spring:message code="common.countryName"/><spring:message code="common.in_latin"/>
                         </label>
-                        <div class="col-xs-5">
-                            <input class="form-control" type="text" id="countryName" name="countryName">
-                        </div>
+                        <c:if test="${not empty countries}">
+                            <div class="col-xs-7">
+                                <select class="form-control" name="countryName" id="countryNamesList">
+                                    <c:forEach items="${countries}" var="country">
+                                        <option name="countryName" value="${country.name}">${country.name}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </c:if>
                     </div>
 
                     <div class="form-group cityNameForm">
-                        <label for="cityName" class="control-label col-xs-4">
+                        <label for="cityNamesList" class="control-label col-xs-4">
                             <spring:message code="common.placeName"/><spring:message code="common.in_latin"/>
                         </label>
-                        <div class="col-xs-5">
-                            <input class="form-control" type="text" id="cityName" name="cityName">
-                        </div>
+                        <c:if test="${not empty cities}">
+                            <div class="col-xs-7">
+                                <select class="form-control" name="cityName" id="cityNamesList">
+                                    <c:forEach items="${cities}" var="city">
+                                        <option name="cityName" value="${city.name}">
+                                                ${city.name} (${city.countryName})</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </c:if>
                     </div>
 
                     <div class="form-group">

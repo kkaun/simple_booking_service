@@ -27,46 +27,41 @@ public class ObjectController {
         this.apartmentService = apartmentService;
     }
 
-
     @PreAuthorize("hasRole('ROLE_MANAGER')")
     @GetMapping("/hotel_manager/manage_object")
     public String manageObject(@RequestParam("objectId") int hotelId, Model model){
-        ModelUtil.getManagerView(model, hotelId,
-                ApartmentUtil.getApartmentTos(apartmentService.getAllByHotel(hotelId)), aptTypeService.getAll());
+        ModelUtil.setObjectId(model, hotelId);
         return "object";
     }
-
 
 
     @PreAuthorize("hasRole('ROLE_MANAGER')")
     @GetMapping("/hotel_manager/object/show_chart")
     public String showChart(@RequestParam("objectId") int hotelId, Model model) {
-        ModelUtil.getManagerView(model, hotelId,
-                ApartmentUtil.getApartmentTos(apartmentService.getAllByHotel(hotelId)), aptTypeService.getAll());
+        ModelUtil.setObjectId(model, hotelId);
         return "objectHotelChart";
     }
 
     @PreAuthorize("hasRole('ROLE_MANAGER')")
     @GetMapping("/hotel_manager/object/show_bookings")
     public String showBookings(@RequestParam("objectId") int hotelId, Model model) {
-        ModelUtil.getManagerView(model, hotelId,
-                ApartmentUtil.getApartmentTos(apartmentService.getAllByHotel(hotelId)), aptTypeService.getAll());
+        ModelUtil.setObjectId(model, hotelId);
         return "objectBookings";
     }
 
     @PreAuthorize("hasRole('ROLE_MANAGER')")
     @GetMapping("/hotel_manager/object/show_hotel_votes")
     public String showObjectVotes(@RequestParam("objectId") int hotelId, Model model) {
-        ModelUtil.getManagerView(model, hotelId,
-                ApartmentUtil.getApartmentTos(apartmentService.getAllByHotel(hotelId)), aptTypeService.getAll());
+        ModelUtil.setObjectId(model, hotelId);
         return "objectHotelVotes";
     }
 
     @PreAuthorize("hasRole('ROLE_MANAGER')")
     @GetMapping("/hotel_manager/object/show_apartments")
     public String showApartments(@RequestParam("objectId") int hotelId, Model model) {
-        ModelUtil.getManagerView(model, hotelId,
-                ApartmentUtil.getApartmentTos(apartmentService.getAllByHotel(hotelId)), aptTypeService.getAll());
+        ModelUtil.setObjectId(model, hotelId);
+        ModelUtil.setManagerAptView(model, ApartmentUtil.getApartmentTos(apartmentService.getAllByHotel(hotelId)),
+                aptTypeService.getAll());
         return "objectApartments";
     }
 

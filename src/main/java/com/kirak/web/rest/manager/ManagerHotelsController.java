@@ -1,14 +1,13 @@
 package com.kirak.web.rest.manager;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.kirak.model.User;
 import com.kirak.service.CityService;
 import com.kirak.service.HotelService;
 import com.kirak.service.UserService;
 import com.kirak.to.HotelTo;
-import com.kirak.util.model.HotelUtil;
 import com.kirak.web.View;
 import com.kirak.web.abstr.HotelAbstractController;
-import com.kirak.web.session.AuthorizedUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -26,17 +25,14 @@ import java.util.List;
 public class ManagerHotelsController extends HotelAbstractController {
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
-    public ManagerHotelsController(HotelService hotelService, CityService cityService) {
-        super(hotelService, cityService);
+    public ManagerHotelsController(HotelService hotelService, CityService cityService, UserService userService) {
+        super(hotelService, cityService, userService);
     }
 
     @PostMapping
     public void createOrUpdate(@Valid HotelTo hotelTo) {
         if (hotelTo.isNew()) {
-            super.create(HotelUtil.createNewFromTo(hotelTo, super.getAllCities(), userService.get(AuthorizedUser.id())));
+            super.create(hotelTo);
         } else {
             super.update(hotelTo, hotelTo.getId());
         }

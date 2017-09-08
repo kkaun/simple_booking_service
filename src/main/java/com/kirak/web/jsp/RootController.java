@@ -31,7 +31,7 @@ import javax.validation.Valid;
 public class RootController extends UserAbstractController {
 
     @Autowired
-    public RootController(UserService userService, HotelService hotelService) {
+    public RootController(UserService userService) {
         super(userService);
     }
 
@@ -39,30 +39,6 @@ public class RootController extends UserAbstractController {
     public String root() {
         return "redirect:index";
     }
-
-
-
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping("/administrate")
-    public String getAdminPanel() {
-        return "admin";
-    }
-
-    @PreAuthorize("hasRole('ROLE_MANAGER')")
-    @GetMapping("/manage")
-    public String getManagerObjects() {
-        return "managerObjects";
-    }
-
-    @PreAuthorize("hasRole('ROLE_USER')")
-    @GetMapping("/user_activity")
-    public String getUserOwnActivity(Model model) {
-        AuthorizedUser user = AuthorizedUser.get();
-        UserTo userTo = user.getUserTo();
-        model.addAttribute("user", userTo);
-        return "user";
-    }
-
 
 
     @GetMapping(value = "/login")
@@ -150,9 +126,6 @@ public class RootController extends UserAbstractController {
         model.addAttribute("duplicateEmail", true);
         return "profile";
     }
-
-
-
 
 
     @GetMapping(value = "/list_object")

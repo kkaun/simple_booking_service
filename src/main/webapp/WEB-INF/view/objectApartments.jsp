@@ -97,12 +97,12 @@
                                     code="apt_types.category"/> - <spring:message
                                     code="apt_types.bedsArrangement"/></label>
                             <div class="col-xs-8">
-                                <select class="form-control" name="stringAptType" id="apartmentType">
-                                    <c:if test="${not empty aptTypes}">
-                                    <c:forEach items="${aptTypes}" var="aptType">
-                                        <option value="${aptType}">${aptType}</option>
-                                    </c:forEach>
-                                </select>
+                                <c:if test="${not empty aptTypes}">
+                                    <select class="form-control" name="stringAptType" id="apartmentType">
+                                        <c:forEach items="${aptTypes}" var="aptType">
+                                            <option value="${aptType}">${aptType}</option>
+                                        </c:forEach>
+                                    </select>
                                 </c:if>
                             </div>
                         </div>

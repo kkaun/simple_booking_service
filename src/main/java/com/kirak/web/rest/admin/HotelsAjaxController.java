@@ -24,17 +24,14 @@ import java.util.List;
 public class HotelsAjaxController extends HotelAbstractController {
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
-    public HotelsAjaxController(HotelService hotelService, CityService cityService) {
-        super(hotelService, cityService);
+    public HotelsAjaxController(HotelService hotelService, CityService cityService, UserService userService) {
+        super(hotelService, cityService, userService);
     }
 
     @PostMapping
     public void createOrUpdate(@Valid HotelTo hotelTo) {
         if (hotelTo.isNew()) {
-            super.create(HotelUtil.createNewFromTo(hotelTo, super.getAllCities(), userService.get(hotelTo.getManagerId())));
+            super.create(hotelTo);
         } else {
             super.update(hotelTo, hotelTo.getId());
         }
