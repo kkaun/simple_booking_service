@@ -63,19 +63,4 @@ public class BookingsAjaxController extends BookingAbstractController {
     public List<AdminBookingTo> getBookingsByOutDateForAdmin(@RequestParam("outDate")LocalDate outDate) {
         return super.getBookingsByOutDateForAdmin(outDate);
     }
-
-    @Override
-    @JsonView(View.JsonUI.class)
-    @PostMapping(value = "/by_user_id", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<AdminBookingTo> getBookingsByUserIdForAdmin(@RequestParam("userId") Integer userId) {
-        return super.getBookingsByUserIdForAdmin(userId);
-    }
-
-    @Override
-    @JsonView(View.JsonUI.class)
-    @PostMapping(value = "/by_hotel_id", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<AdminBookingTo> getBookingsByHotelIdForAdmin(@RequestParam("hotelId") Integer hotelId) {
-        return super.getBookingsByHotelIdForAdmin(hotelId);
-    }
-
 }

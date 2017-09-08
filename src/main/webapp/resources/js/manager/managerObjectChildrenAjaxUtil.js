@@ -42,14 +42,6 @@ function updateObjectChildrenTableByData(data) {
 }
 
 
-function renderExpandBtn(data, type, row) {
-    if (type === 'display') {
-        return '<span><i class="fa fa-bars" aria-hidden="true"></i></span>';
-    }
-}
-
-
-
 
 
 function addApartment() {

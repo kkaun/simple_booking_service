@@ -22,22 +22,21 @@
 
         <div class="col-md-10">
 
-            <h3><spring:message code="super_bookings.title"/></h3>
-
             <div class="row">
+
                 <div class="col-sm-6">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <form:form class="form-horizontal filter" id="bookingsAdminDatesAddedFilter">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-3" for="startDate">
+                                    <label class="control-label col-sm-2" for="startDate">
                                         <spring:message code="super_bookings.fromDate"/>:</label>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <input class="form-control start_date" name="startDate" id="startDate">
                                     </div>
-                                    <label class="control-label col-sm-3" for="endDate">
+                                    <label class="control-label col-sm-2" for="endDate">
                                         <spring:message code="super_bookings.toDate"/>:</label>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <input class="form-control end_date" name="endDate" id="endDate">
                                     </div>
                                 </div>
@@ -57,59 +56,9 @@
                 <div class="col-sm-3">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <form:form class="form-horizontal filter" id="bookingsAdminUserIdFilter">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-5" for="userId">
-                                        <spring:message code="super_bookings.byUser"/>:</label>
-                                    <div class="col-sm-7">
-                                        <input class="form-control" name="userId" id="userId">
-                                    </div>
-                                </div>
-                            </form:form>
-                        </div>
-                        <div class="panel-footer text-right">
-                            <a class="btn btn-default" type="button" onclick="clearSBUserIdAdminFilter()">
-                                <span><i class="fa fa-eraser" aria-hidden="true"></i></span>
-                            </a>
-                            <a class="btn btn-primary" type="button" onclick="updateAdminSBTableByUserId()">
-                                <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-3">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <form:form class="form-horizontal filter" id="bookingsAdminHotelIdFilter">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-5" for="hotelId">
-                                        <spring:message code="super_bookings.byHotel"/>:</label>
-                                    <div class="col-sm-7">
-                                        <input class="form-control" name="hotelId" id="hotelId">
-                                    </div>
-                                </div>
-                            </form:form>
-                        </div>
-                        <div class="panel-footer text-right">
-                            <a class="btn btn-default" type="button" onclick="clearSBHotelIdAdminFilter()">
-                                <span><i class="fa fa-eraser" aria-hidden="true"></i></span>
-                            </a>
-                            <a class="btn btn-primary" type="button" onclick="updateAdminSBTableByHotelId()">
-                                <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
                             <form:form class="form-horizontal filter" id="bookingsAdminInDateFilter">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-4" for="inDate">
+                                    <label class="control-label col-sm-5" for="inDate">
                                         <spring:message code="super_bookings.inDate"/>:</label>
                                     <div class="col-sm-7">
                                         <input class="form-control in_date" name="inDate" id="inDate">
@@ -128,12 +77,12 @@
                     </div>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-3">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <form:form class="form-horizontal filter" id="bookingsAdminOutDateFilter">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-4" for="outDate">
+                                    <label class="control-label col-sm-5" for="outDate">
                                         <spring:message code="super_bookings.outDate"/>:</label>
                                     <div class="col-sm-7">
                                         <input class="form-control out_date" name="outDate" id="outDate">
@@ -151,6 +100,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
 
             <div class="row" style="height: 70px">

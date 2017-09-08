@@ -31,14 +31,6 @@ function updateManagerBookingTableByOutDate() {
         success: updateObjectChildrenTableByData
     });
 }
-function updateManagerBookingTableByUserId() {
-    $.ajax({
-        type: "POST",
-        url: ajaxUrl + "by_user_id?objectId=" + objectId,
-        data: $("#bookingsManagerUserIdFilter").serialize(),
-        success: updateObjectChildrenTableByData
-    });
-}
 
 function clearBookingDatesAddedManagerFilter() {
     $("#bookingsManagerDatesAddedFilter")[0].reset();
@@ -50,10 +42,6 @@ function clearBookingInDateManagerFilter() {
 }
 function clearBookingOutDateManagerFilter() {
     $("#bookingsManagerOutDateFilter")[0].reset();
-    $.get(ajaxUrl, updateObjectChildrenTableByData);
-}
-function clearBookingUserIdManagerFilter() {
-    $("#bookingsManagerUserIdFilter")[0].reset();
     $.get(ajaxUrl, updateObjectChildrenTableByData);
 }
 

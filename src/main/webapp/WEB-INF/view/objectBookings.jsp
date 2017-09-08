@@ -27,19 +27,20 @@
         <div class="col-md-10">
 
             <div class="row">
-                <div class="col-sm-12">
+
+                <div class="col-sm-6">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <form:form class="form-horizontal filter" id="bookingsManagerDatesAddedFilter">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-3" for="startDate">
+                                    <label class="control-label col-sm-2" for="startDate">
                                         <spring:message code="super_bookings.fromDate"/>:</label>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <input class="form-control start_date" name="startDate" id="startDate">
                                     </div>
-                                    <label class="control-label col-sm-3" for="endDate">
+                                    <label class="control-label col-sm-2" for="endDate">
                                         <spring:message code="super_bookings.toDate"/>:</label>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <input class="form-control end_date" name="endDate" id="endDate">
                                     </div>
                                 </div>
@@ -55,17 +56,15 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <form:form class="form-horizontal filter" id="bookingsManagerInDateFilter">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-3" for="inDate">
+                                    <label class="control-label col-sm-5" for="inDate">
                                         <spring:message code="super_bookings.inDate"/>:</label>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-7">
                                         <input class="form-control in_date" name="inDate" id="inDate">
                                     </div>
                                 </div>
@@ -73,7 +72,7 @@
                         </div>
                         <div class="panel-footer text-right">
                             <a class="btn btn-default" type="button" onclick="clearBookingInDateManagerFilter()">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                <span><i class="fa fa-eraser" aria-hidden="true"></i></span>
                             </a>
                             <a class="btn btn-primary" type="button" onclick="updateManagerBookingTableByInDate()">
                                 <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
@@ -82,14 +81,14 @@
                     </div>
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <form:form class="form-horizontal filter" id="bookingsManagerOutDateFilter">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-4" for="outDate">
+                                    <label class="control-label col-sm-5" for="outDate">
                                         <spring:message code="super_bookings.outDate"/>:</label>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-7">
                                         <input class="form-control out_date" name="outDate" id="outDate">
                                     </div>
                                 </div>
@@ -97,7 +96,7 @@
                         </div>
                         <div class="panel-footer text-right">
                             <a class="btn btn-default" type="button" onclick="clearBookingOutDateManagerFilter()">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                <span><i class="fa fa-eraser" aria-hidden="true"></i></span>
                             </a>
                             <a class="btn btn-primary" type="button" onclick="updateManagerBookingTableByOutDate()">
                                 <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
@@ -106,29 +105,6 @@
                     </div>
                 </div>
 
-                <div class="col-sm-4">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <form:form class="form-horizontal filter" id="bookingsManagerUserIdFilter">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-4" for="userId">
-                                        <spring:message code="super_bookings.byUser"/>:</label>
-                                    <div class="col-sm-5">
-                                        <input class="form-control" name="userId" id="userId">
-                                    </div>
-                                </div>
-                            </form:form>
-                        </div>
-                        <div class="panel-footer text-right">
-                            <a class="btn btn-default" type="button" onclick="clearBookingUserIdManagerFilter()">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            </a>
-                            <a class="btn btn-primary" type="button" onclick="updateManagerBookingTableByUserId()">
-                                <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div class="row" style="height: 70px">

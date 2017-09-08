@@ -30,22 +30,6 @@ function updateAdminSBTableByOutDate() {
         success: updateAdminTableByData
     });
 }
-function updateAdminSBTableByUserId() {
-    $.ajax({
-        type: "POST",
-        url: ajaxUrl + "by_user_id",
-        data: $("#bookingsAdminUserIdFilter").serialize(),
-        success: updateAdminTableByData
-    });
-}
-function updateAdminSBTableByHotelId() {
-    $.ajax({
-        type: "POST",
-        url: ajaxUrl + "by_hotel_id",
-        data: $("#bookingsAdminHotelIdFilter").serialize(),
-        success: updateAdminTableByData
-    });
-}
 
 
 function clearSBDatesAddedAdminFilter() {
@@ -60,14 +44,6 @@ function clearSBOutDateAdminFilter() {
     $("#bookingsAdminOutDateFilter")[0].reset();
     $.get(ajaxUrl, updateAdminTableByData);
 }
-function clearSBUserIdAdminFilter() {
-    $("#bookingsAdminUserIdFilter")[0].reset();
-    $.get(ajaxUrl, updateAdminTableByData);
-}
-function clearSBHotelIdAdminFilter() {
-    $("#bookingsAdminHotelIdFilter")[0].reset();
-
-}
 
 
 function deactivateAdminSB(chkbox, id) {
@@ -77,7 +53,8 @@ function deactivateAdminSB(chkbox, id) {
         type: 'POST',
         data: 'active=' + enabled,
         success: function () {
-            chkbox.closest('tr').toggleClass('disabled');
+            chkbox.closest('checkbox').attr('checked', false);
+            //chkbox.closest('tr').toggleClass('disabled');
             successNoty(enabled ? 'common.booking_activated' : 'common.booking_deactivated');
             delayedUpdate();
         },

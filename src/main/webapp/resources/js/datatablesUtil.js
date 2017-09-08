@@ -18,3 +18,11 @@ function makeEditable() {
         xhr.setRequestHeader(header, token);
     });
 }
+
+
+function renderExpandBtn(data, type, row) {
+    if (type === 'display') {
+        return '<span><i class="fa fa-bars" aria-hidden="true" ' +
+            'title="Show hidden Data/Buttons of this row" style="cursor: pointer;"></i></span>';
+    }
+}

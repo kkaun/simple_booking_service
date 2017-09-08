@@ -27,8 +27,6 @@
     padding-right: 4px \9;
     padding-left: 3px;
     padding-left: 4px \9;
-    /* IE7-8 doesn't have border-radius, so don't indent the padding */
-
     margin-bottom: 0;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -44,8 +42,6 @@
     padding-right: 4px \9;
     padding-left: 3px;
     padding-left: 4px \9;
-    /* IE7-8 doesn't have border-radius, so don't indent the padding */
-
     margin-bottom: 0;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -55,12 +51,10 @@
 #custom-search-input button {
     border: 0;
     background: none;
-    /** belows styles are working good */
     padding: 2px 5px;
     margin-top: 2px;
     position: relative;
     left: -28px;
-    /* IE7-8 doesn't have border-radius, so don't indent the padding */
     margin-bottom: 0;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -99,7 +93,6 @@
     border: 1px solid rgba(0, 0, 0, 0.9);
     border-radius: 4px;
     padding: 9px;
-    /*position: relative;*/
     width: 42px;
 
 }
@@ -131,37 +124,36 @@
 
 
 
-
-
-.panel-green {
-    border-color: #7eb879;
+.panel-lilac {
+    border-color: #79859e;
 }
-.panel-green > .panel-heading {
-    border-color: #7eb879;
+.panel-lilac > .panel-heading {
+    border-color: #79859e;
     color: white;
-    background-color: #7eb879;
+    background-color: #79859e;
 }
-.panel-green > a {
-    color: #7eb879;
+.panel-lilac> a {
+    color: #79859e;
 }
-.panel-green > a:hover {
-    color: #3d8b3d;
+.panel-lilac > a:hover {
+    color: #50506c;
 }
 
-.panel-aqua {
-    border-color: #00694a;
+.panel-cream {
+    border-color: #cfa760;
 }
-.panel-aqua > .panel-heading {
-    border-color: #00694a;
+.panel-cream > .panel-heading {
+    border-color: #cfa760;
     color: white;
-    background-color: #00694a;
+    background-color: #cfa760;
 }
-.panel-aqua > a {
-    color: #00694a;
+.panel-cream > a {
+    color: #cfa760;
 }
-.panel-aqua > a:hover {
-    color: #00584b;
+.panel-cream > a:hover {
+    color: #7c6341;
 }
+
 
 
 .panel-red {
@@ -193,6 +185,7 @@
 .panel-purple > a:hover {
     color: #6b2a5a;
 }
+
 
 
 .panel-yellow {
@@ -227,6 +220,37 @@
 
 
 
+.panel-green {
+    border-color: #7eb879;
+}
+.panel-green > .panel-heading {
+    border-color: #7eb879;
+    color: white;
+    background-color: #7eb879;
+}
+.panel-green > a {
+    color: #7eb879;
+}
+.panel-green > a:hover {
+    color: #3d8b3d;
+}
+
+.panel-aqua {
+    border-color: #00694a;
+}
+.panel-aqua > .panel-heading {
+    border-color: #00694a;
+    color: white;
+    background-color: #00694a;
+}
+.panel-aqua > a {
+    color: #00694a;
+}
+.panel-aqua > a:hover {
+    color: #00584b;
+}
+
+
 
 .panel-grey {
     border-color: #939496;
@@ -242,13 +266,6 @@
 .panel-grey > a:hover {
     color: #555555;
 }
-
-
-
-
-
-
-
 
 
 
@@ -309,9 +326,6 @@
 
 
 
-/*------------------------------------*/
-
-
 a.listItem {
     height:auto;
     min-height:220px;
@@ -323,8 +337,6 @@ a.listItem.active small {
     margin:20px auto 1px;
 }
 
-
-/*------------------------------------*/
 
 
 dl {
@@ -360,8 +372,6 @@ header, footer {
     margin: 6px 0;
 }
 
-
-/*------------------------------------*/
 
 
 .load-bar {

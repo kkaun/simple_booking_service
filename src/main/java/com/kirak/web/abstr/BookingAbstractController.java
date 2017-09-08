@@ -73,20 +73,6 @@ public abstract class BookingAbstractController {
         return generateAdminBookingTos(bookingService.getAll());
     }
 
-    public List<AdminBookingTo> getBookingsByUserIdForAdmin(Integer userId){
-        LOG.info("Getting all  Bookings by user {}", userId);
-        return userId != null ?
-                generateAdminBookingTos(bookingService.getAllByUserId(userId))
-                : generateAdminBookingTos(bookingService.getAll());
-    }
-
-    public List<AdminBookingTo> getBookingsByHotelIdForAdmin(Integer hotelId){
-        LOG.info("Getting all  Bookings by hotel {}", hotelId);
-        return hotelId != null ?
-                generateAdminBookingTos(bookingService.getAllByHotelId(hotelId))
-                : generateAdminBookingTos(bookingService.getAll());
-    }
-
     public List<AdminBookingTo> getBookingsBetweenDatesForAdmin(LocalDate startDate, LocalDate endDate) {
         LOG.info("Getting all  Bookings between dates {}", startDate, endDate);
         return generateAdminBookingTos(bookingService.getAllBetweenCreatedDates(
@@ -121,13 +107,6 @@ public abstract class BookingAbstractController {
     public List<ManagerBookingTo> getObjectBookingsForManager(Integer hotelId){
         LOG.info("Getting all  Bookings {}");
         return BookingUtil.generateManagerObjectBookingTos(bookingService.getAll(), AuthorizedUser.id(), hotelId);
-    }
-
-    public List<ManagerBookingTo> getBookingsByUserIdForManager(Integer hotelId, Integer userId){
-        LOG.info("Getting all  Bookings by user {}", userId);
-        return userId != null ?
-                generateManagerObjectBookingTos(bookingService.getAllByUserId(userId), AuthorizedUser.id(), hotelId)
-                : generateManagerObjectBookingTos(bookingService.getAll(), AuthorizedUser.id(), hotelId);
     }
 
     public List<ManagerBookingTo> getBookingsBetweenDatesForManager(Integer hotelId, LocalDate startDate, LocalDate endDate) {
