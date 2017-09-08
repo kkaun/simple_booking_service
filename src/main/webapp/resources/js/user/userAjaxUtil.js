@@ -42,15 +42,6 @@ function updateUserTableByData(data) {
 }
 
 
-function getDelayedTable() {
-    $.get(ajaxUrl, updateUserTableByData);
-}
-
-function delayedUpdate() {
-    setTimeout(getDelayedTable, 2000);
-}
-
-
 
 
 

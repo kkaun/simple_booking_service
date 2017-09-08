@@ -4,19 +4,27 @@ import com.kirak.model.*;
 import com.kirak.service.*;
 import com.kirak.to.HotelTo;
 import com.kirak.to.Placement;
+import com.kirak.util.ErrorInfo;
 import com.kirak.util.model.*;
+import com.kirak.web.ExceptionViewHandler;
 import com.kirak.web.ModelUtil;
 import com.kirak.web.abstr.BusinessAbstractController;
 import com.kirak.web.session.AuthorizedUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -27,7 +35,7 @@ import java.util.Random;
  */
 
 @Controller
-@Scope("session")
+//@Scope("session")
 public class BusinessController extends BusinessAbstractController {
 
     private final HotelService hotelService;
@@ -166,24 +174,24 @@ public class BusinessController extends BusinessAbstractController {
     public String checkApartmentAvailability(@RequestParam ("apartmentId") String apartmentId,
                                              @RequestParam("hotelId") String hotelId, @RequestParam ("aptInDate") String inDate,
                                              @RequestParam ("aptOutDate") String outDate, Model model) {
-        Map<Apartment, Integer> availableApartmentMap = ApartmentUtil.isHotelApartmentAvailableByRequest(apartmentService
-                        .get(Integer.parseInt(apartmentId)), LocalDate.parse(inDate), LocalDate.parse(outDate));
-        if(!availableApartmentMap.isEmpty()){
-            model.addAttribute("availableAptNum", availableApartmentMap.values().iterator().next());
-            Placement placement = PlacementUtil.convertAvailableApartmentToPlacement(sessionPlacementsService,
-                    availableApartmentMap.keySet().iterator().next());
-            ModelUtil.addPlacementView(model, placement, (short)1,
-                    apartmentService.get(Integer.parseInt(apartmentId)).getType().getPersonNum(),
-                    PlacementUtil.calculateBookingSumForPlacement(placement, LocalDate.parse(inDate), LocalDate.parse(outDate)),
-                    inDate, outDate);
-            ModelUtil.addOptionsView(model, placement);
-        } else {
-            model.addAttribute("notAvailableApartment", apartmentService.get(Integer.parseInt(apartmentId)));
-        }
-        ModelUtil.addUniqueHotelParams(hotelService.get(Integer.parseInt(hotelId)), model);
-        ModelUtil.addUniqueFilterParams(model, AptTypeUtil.getUniqueCategories(aptTypeService.getAll()));
-        model.addAttribute("apartments", apartmentService.getAllByHotel(Integer.parseInt(hotelId)));
-        model.addAttribute("hotel", HotelUtil.asHotelTo(hotelService.get(Integer.parseInt(hotelId))));
+            Map<Apartment, Integer> availableApartmentMap = ApartmentUtil.isHotelApartmentAvailableByRequest(apartmentService
+                    .get(Integer.parseInt(apartmentId)), LocalDate.parse(inDate), LocalDate.parse(outDate));
+            if (!availableApartmentMap.isEmpty()) {
+                model.addAttribute("availableAptNum", availableApartmentMap.values().iterator().next());
+                Placement placement = PlacementUtil.convertAvailableApartmentToPlacement(sessionPlacementsService,
+                        availableApartmentMap.keySet().iterator().next());
+                ModelUtil.addPlacementView(model, placement, (short) 1,
+                        apartmentService.get(Integer.parseInt(apartmentId)).getType().getPersonNum(),
+                        PlacementUtil.calculateBookingSumForPlacement(placement, LocalDate.parse(inDate), LocalDate.parse(outDate)),
+                        inDate, outDate);
+                ModelUtil.addOptionsView(model, placement);
+            } else {
+                model.addAttribute("notAvailableApartment", apartmentService.get(Integer.parseInt(apartmentId)));
+            }
+            ModelUtil.addUniqueHotelParams(hotelService.get(Integer.parseInt(hotelId)), model);
+            ModelUtil.addUniqueFilterParams(model, AptTypeUtil.getUniqueCategories(aptTypeService.getAll()));
+            model.addAttribute("apartments", apartmentService.getAllByHotel(Integer.parseInt(hotelId)));
+            model.addAttribute("hotel", HotelUtil.asHotelTo(hotelService.get(Integer.parseInt(hotelId))));
         return "hotel";
     }
 
@@ -236,4 +244,16 @@ public class BusinessController extends BusinessAbstractController {
         super.accomplishBooking(model, user, sum, personNum, hotelId, placementId, apartmentNum, inDate, outDate);
         return "confirmation";
     }
+
+
+
+
+    @ExceptionHandler({DateTimeParseException.class, NullPointerException.class})
+    public String voteHotelNotVisited(Model model, DateTimeParseException e) {
+        //return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, "Request Dates were not added or input was incorrect",
+        //        HttpStatus.CONFLICT);
+        model.addAttribute("exception", e);
+        return "exception";
+    }
+
 }

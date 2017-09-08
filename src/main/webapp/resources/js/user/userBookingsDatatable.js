@@ -5,6 +5,12 @@
 var ajaxUrl = "/user/bookings/";
 var datatableApi;
 
+
+function updateUserBookingsTable() {
+    $.get(ajaxUrl, updateUserTableByData);
+}
+
+
 function deactivateUserBooking(chkbox, id) {
     var enabled = chkbox.is(":checked");
     $.ajax({
@@ -13,7 +19,7 @@ function deactivateUserBooking(chkbox, id) {
         success: function () {
             chkbox.closest('checkbox').attr('checked', false);
             successNoty(enabled ? 'common.booking_activated' : 'common.booking_deactivated');
-            delayedUpdate();
+            updateUserBookingsTable();
         },
         error: function () {
             $(chkbox).prop("checked", enabled);
@@ -62,9 +68,6 @@ $(function () {
                 "data": "outDate"
             },
             {
-                "data": "hotelId"
-            },
-            {
                 "data": "hotelName"
             },
             {
@@ -72,6 +75,9 @@ $(function () {
             },
             {
                 "data": "overallSum"
+            },
+            {
+                "data": "hotelId"
             },
             {
                 "data": "dateAdded"

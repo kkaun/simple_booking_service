@@ -46,7 +46,7 @@
         <div class="col-md-10">
 
             <div class="row" style="height: 70px">
-                <div class="col-md-7">
+                <div class="col-md-5">
                     <div class="panel panel-default">
                         <div class="panel-body" style="padding: 10px;">
                             <h4 class="pull-left"><strong><spring:message code="common.sub_bookings_info"/></strong>
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <sec:authorize access="isAuthenticated()">
                         <sec:authorize access="hasAuthority('ROLE_ADMIN')">
                             <a id="backBtn" class="btn btn-lg btn-default pull-left"
@@ -97,7 +97,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered display" id="bookingsDatatable">
+                        <table class="table responsive table-striped table-bordered display" id="bookingsDatatable">
                             <thead>
                             <tr>
                                 <th></th>

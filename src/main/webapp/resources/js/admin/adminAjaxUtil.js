@@ -42,17 +42,6 @@ function updateAdminTableByData(data) {
 }
 
 
-function getDelayedTable() {
-    $.get(ajaxUrl, updateAdminTableByData);
-}
-
-function delayedUpdate() {
-    setTimeout(getDelayedTable, 2000);
-}
-
-
-
-
 
 
 function addAptType() {

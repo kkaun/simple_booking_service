@@ -22,7 +22,6 @@
         <sec:authorize access="isAuthenticated()">
             <sec:authorize access="hasRole('ROLE_USER')">
 
-
             <div class="col-md-2">
                 <jsp:include page="fragments/sidebars/userSidebar.jsp"/>
             </div>
@@ -50,10 +49,10 @@
                                         <th><spring:message code="bookings.active"/></th>
                                         <th><spring:message code="common.inDate"/></th>
                                         <th><spring:message code="common.outDate"/></th>
-                                        <th><spring:message code="super_bookings.hotelId"/></th>
                                         <th><spring:message code="super_bookings.hotelName"/></th>
                                         <th><spring:message code="super_bookings.apartmentsNum"/></th>
                                         <th><spring:message code="common.total_sum"/>, <i class="fa fa-btc"></i></th>
+                                        <th><spring:message code="super_bookings.hotelId"/></th>
                                         <th><spring:message code="common.dateAdded"/></th>
                                     </tr>
                                     </thead>

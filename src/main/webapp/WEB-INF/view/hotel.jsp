@@ -245,7 +245,7 @@
                                 </div>
                                 <div id="collapse1" class="panel-collapse collapse">
                                     <div class="panel-body" style="padding: 5px">
-                                        <form class="form-horizontal" method="get" action="check_hotel_overall">
+                                        <form:form class="form-horizontal" role="form" method="get" action="check_hotel_overall">
                                             <h5 class="text-center"><spring:message code="common.note_booking_duration"/> </h5>
                                             <fieldset>
                                                 <input type="hidden" name="hotelId" value="${hotel.id}">
@@ -325,7 +325,7 @@
                                                 <button type="submit" class="btn btn-default btn-lg btn-block"> <spring:message code="common.check"/>
                                                 </button>
                                             </fieldset>
-                                        </form>
+                                        </form:form>
                                     </div>
                                 </div>
                             </div>
@@ -378,7 +378,7 @@
                                     <div class="col-md-12">
                                         <div class="collapse" id="checkAvCollapseId${vs.index}" style="margin-top: 10px; margin-left: 5px; margin-right: 10px">
                                             <div class="well">
-                                                <form class="form-horizontal" method="get" action="check_hotel_apt">
+                                                <form:form class="form-horizontal" role="form" method="get" action="check_hotel_apt">
                                                     <input type="hidden" name="apartmentId" value="${apartment.id}">
                                                     <input type="hidden" name="hotelId" value="${hotel.id}">
                                                     <div class="col-md-12">
@@ -415,7 +415,7 @@
                                                     <button type="submit" class="btn btn-default btn-lg btn-block">
                                                         <spring:message code="common.check"/>
                                                     </button>
-                                                </form>
+                                                </form:form>
                                             </div>
                                         </div>
                                     </div>
