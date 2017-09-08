@@ -60,12 +60,12 @@ INSERT INTO user_role (user_id, role) VALUES
   (100004, 'ROLE_ADMIN');
 
 
-INSERT INTO hotel (name, stars, country_id, city_id, address, phone, description, check_in, check_out, max_extra_per_day, manager)
+INSERT INTO hotel (name, stars, country_id, city_id, address, phone, description, check_in, check_out, manager)
 VALUES
-  ('HOTEL1', 3, 1, 100000, 'Address1', '89431543453', '', '14:00:00', '12:00:00', 3, 100003),
-  ('HOTEL2', 4, 1, 100001, 'Address2', '89431564565', 'Description2', '14:00:00', '12:00:00', 3, 100003),
-  ('HOTEL3', 0, 2, 100002, 'Address3', '894312223222', 'Description3', '14:00:00', '12:00:00', 3, 100003),
-  ('HOTEL4', 4, 2, 100003, 'Address4', '894312223222', 'Description4', '14:00:00', '12:00:00', 3, 100003);
+  ('HOTEL1', 3, 1, 100000, 'Address1', '89431543453', '', '14:00:00', '12:00:00', 100003),
+  ('HOTEL2', 4, 1, 100001, 'Address2', '89431564565', 'Description2', '14:00:00', '12:00:00', 100003),
+  ('HOTEL3', 0, 2, 100002, 'Address3', '894312223222', 'Description3', '14:00:00', '12:00:00', 100003),
+  ('HOTEL4', 4, 2, 100003, 'Address4', '894312223222', 'Description4', '14:00:00', '12:00:00', 100003);
 
 
 INSERT INTO apt_type(beds_arrangement, category, person_num)
@@ -87,14 +87,14 @@ VALUES
   (1, 1200.00, 100003);
 
 
-INSERT INTO booking (active, date_added, extra_beds, overall_sum, overall_person_num, user_id,
+INSERT INTO booking (active, date_added, overall_sum, overall_person_num, user_id,
                            hotel_id, booker_name, booker_email, booker_phone)
 VALUES
-  (1, '2017-05-12 16:17:00', 0, 6000.00, 1, 100000, 100000, 'Name1', 'email1@gmail.com', '384543534822'),
-  (1, '2017-01-23 11:21:00', 0, 4500.00, 2, 100001, 100000, 'Name2', 'email2@gmail.com', '384546474822'),
-  (1, '2017-03-08 19:25:00', 0, 3200.00, 2, 100002, 100001, 'Name3', 'email3@gmail.com', '384367654822'),
-  (1, '2017-05-02 10:43:00', 0, 10000.00, 2, 100000, 100002, 'Name4', 'emai41@gmail.com', '3842344822'),
-  (0, '2017-02-15 16:35:00', 0, 31200.00, 2, 100004, 100003, 'Name5', 'email5@gmail.com', '384376754822');
+  (1, '2017-05-12 16:17:00', 6000.00, 1, 100000, 100000, 'Name1', 'email1@gmail.com', '384543534822'),
+  (1, '2017-01-23 11:21:00', 4500.00, 2, 100001, 100000, 'Name2', 'email2@gmail.com', '384546474822'),
+  (1, '2017-03-08 19:25:00', 3200.00, 2, 100002, 100001, 'Name3', 'email3@gmail.com', '384367654822'),
+  (1, '2017-05-02 10:43:00', 10000.00, 2, 100000, 100002, 'Name4', 'emai41@gmail.com', '3842344822'),
+  (0, '2017-02-15 16:35:00', 31200.00, 2, 100004, 100003, 'Name5', 'email5@gmail.com', '384376754822');
 
 
 INSERT INTO sub_booking (in_date, out_date, sum, person_num, booking_id, apartment_id, apartment_hotel_id, edited)

@@ -20,6 +20,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Random;
 
 /**
  * Created by Kir on 04.08.2017.
@@ -216,7 +217,9 @@ public class BusinessController extends BusinessAbstractController {
                                           @RequestParam ("bookingInDate") String inDate, @RequestParam ("bookingOutDate") String outDate,
                                           @RequestParam ("bookingPersonNum") String personNum, @RequestParam ("userName") String userName,
                                           @RequestParam ("userEmail") String userEmail, @RequestParam ("userPhone") String userPhone, Model model) {
-        User user = new User(userName, userEmail, userPhone);
+        Random random = new Random();
+        String saltedEmail = String.valueOf(random.nextInt(10000) + 1) + "anon" + userEmail;
+        User user = new User(userName, saltedEmail, userPhone);
         userService.save(user);
         super.accomplishBooking(model, user, sum, personNum, hotelId, placementId, apartmentNum, inDate, outDate);
         return "confirmation";

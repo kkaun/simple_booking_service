@@ -55,6 +55,9 @@ public class BookingUtil {
         return booking;
     }
 
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
     public static LocalDate getBookingInDate(Booking booking){
 
         Comparator<SubBooking> dateNaturalComparator = Comparator.comparing(SubBooking::getInDate);
@@ -66,6 +69,9 @@ public class BookingUtil {
         Comparator<SubBooking> dateNaturalComparator = Comparator.comparing(SubBooking::getInDate);
         return booking.getSubBookings().stream().max(dateNaturalComparator).orElse(null).getOutDate();
     }
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 
     public static List<Booking> getAllBookingsByInDate(List<Booking> bookings, LocalDate inDate){
 

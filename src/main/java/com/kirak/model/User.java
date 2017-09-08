@@ -26,17 +26,16 @@ import java.util.*;
 @Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "user_unique_email_idx")})
 public class User extends NamedEntity {
 
-    @Column(name = "email", nullable = false, unique = true)
     @Email
     @NotBlank
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "phone", nullable = false, unique = true)
+    @Column(name = "phone", nullable = false)
     private String phone;
 
-    @JsonView(View.JsonREST.class)
     @SafeHtml
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     @Length(min = 5)
     private String password;
 
@@ -46,13 +45,13 @@ public class User extends NamedEntity {
     @Column(name = "registered", columnDefinition = "timestamp default now()")
     private Date registered = new Date();
 
-    @JsonIgnore
-    //@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @Column(name = "anon", nullable = false)
+    private boolean anon = false;
+
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
     @ElementCollection(fetch = FetchType.EAGER)
-    //@Fetch(FetchMode.SUBSELECT)
     @BatchSize(size = 200)
     private Set<UserRole> roles;
 
@@ -64,29 +63,32 @@ public class User extends NamedEntity {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private Set<Vote> votes;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "manager")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "manager")
     private Set<Hotel> hotels;
 
     public User(){}
 
     //For anonymous user
     public User(String name, String email, String phone) {
-        this(null, name, email, phone, new Date(), false, EnumSet.of(UserRole.ROLE_USER));
+        this(null, name, email, phone, new Date(), false, true, EnumSet.of(UserRole.ROLE_USER));
     }
 
     public User(Integer id, String name, String email, String phone) {
-        this(id, name, email, phone, new Date(), false, EnumSet.of(UserRole.ROLE_USER));
+        this(id, name, email, phone, new Date(), false, true, EnumSet.of(UserRole.ROLE_USER));
     }
 
-    public User(Integer id, String name, String email, String phone, Date registered, boolean enabled, Collection<UserRole> roles) {
+    public User(Integer id, String name, String email, String phone, Date registered, boolean enabled,
+                boolean anon, Collection<UserRole> roles) {
         super(id, name);
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.registered = registered;
         this.enabled = enabled;
+        this.anon = anon;
         setRoles(roles);
     }
+
 
     //For registered user
     public User(User u) {
@@ -98,6 +100,7 @@ public class User extends NamedEntity {
         this(id, name, email, phone, password, new Date(), true, EnumSet.of(role, roles));
     }
 
+
     //For Tests
     public User(Integer id, String name, String email, String phone, String password,
                 Set<Booking> bookings, Set<Vote> votes, Set<Hotel> hotels, UserRole role, UserRole... roles) {
@@ -106,6 +109,22 @@ public class User extends NamedEntity {
 
     public User(Integer id, String name, String email, String password, UserRole role, UserRole... roles) {
         this(id, name, email, password, new Date(), true, EnumSet.of(role, roles));
+    }
+
+
+    //General constructors
+    public User(Integer id, String name, String email, String phone, String password, Date registered,
+                boolean enabled, Set<Booking> bookings, Set<Vote> votes, Set<Hotel> hotels, Collection<UserRole> roles) {
+        super(id, name);
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.registered = registered;
+        this.enabled = enabled;
+        this.bookings = bookings;
+        this.votes = votes;
+        this.hotels = hotels;
+        setRoles(roles);
     }
 
     public User(Integer id, String name, String email, String phone, String password, Date registered,
@@ -119,17 +138,13 @@ public class User extends NamedEntity {
         setRoles(roles);
     }
 
-    public User(Integer id, String name, String email, String phone, String password, Date registered,
-                boolean enabled, Set<Booking> bookings, Set<Vote> votes, Set<Hotel> hotels, Collection<UserRole> roles) {
+    public User(Integer id, String name, String email, String password, Date registered,
+                boolean enabled, Collection<UserRole> roles) {
         super(id, name);
         this.email = email;
         this.password = password;
-        this.phone = phone;
         this.registered = registered;
         this.enabled = enabled;
-        this.bookings = bookings;
-        this.votes = votes;
-        this.hotels = hotels;
         setRoles(roles);
     }
 
@@ -210,13 +225,21 @@ public class User extends NamedEntity {
         this.enabled = enabled;
     }
 
+    public boolean isAnon() {
+        return anon;
+    }
+
+    public void setAnon(boolean anon) {
+        this.anon = anon;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + getId() +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
-                ", password='" + password + '\'' +
+                ", anon='" + anon + '\'' +
                 ", enabled=" + enabled +
                 ", registered=" + registered +
                 ", roles=" + roles.toString() +

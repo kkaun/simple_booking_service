@@ -29,6 +29,7 @@ import static com.kirak.util.ValidationUtil.*;
 public abstract class UserAbstractController {
 
     public static final String EXCEPTION_DUPLICATE_EMAIL = "exception.user.duplicateEmail";
+    public static final String EXCEPTION_USER_IS_ANONYMOUS = "exception.user.isAnonymous";
     public static final String EXCEPTION_USER_HAS_BOOKINGS = "exception.user.hasActiveBookings";
     public static final String EXCEPTION_USER_IS_DEMO_MANAGER = "exception.user.isDemoManager";
     public static final String EXCEPTION_USER_IS_DEMO_ADMIN = "exception.user.isDemoAdmin";
@@ -118,12 +119,19 @@ public abstract class UserAbstractController {
             throw new AdminModificationException(EXCEPTION_USER_MODIFICATION_RESTRICTION, HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
         if (id == 100003)
             throw new DemoManagerModificationException(EXCEPTION_USER_MODIFICATION_RESTRICTION, HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
+        if (userService.get(id).isAnon())
+            throw new UserIsAnonymousException(EXCEPTION_USER_MODIFICATION_RESTRICTION, HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
     }
 
 
     @ExceptionHandler(UserHasBookingsException.class)
     public ResponseEntity<ErrorInfo> hasBookingsException(HttpServletRequest req, UserHasBookingsException e) {
         return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_USER_HAS_BOOKINGS, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(UserIsAnonymousException.class)
+    public ResponseEntity<ErrorInfo> isAnon(HttpServletRequest req, UserIsAnonymousException e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_USER_IS_ANONYMOUS, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(DemoUserModificationException.class)

@@ -1,6 +1,5 @@
 package com.kirak.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kirak.model.abstraction.BaseIntEntity;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Range;
@@ -27,10 +26,6 @@ public class Booking extends BaseIntEntity {
     @Column(name = "date_added", nullable = false)
     private LocalDateTime dateAdded;
 
-    @Range(min = 0, max = 10)
-    @Column(name = "extra_beds")
-    private Short extraBeds = 0;
-
     @NotNull
     @Column(name = "overall_sum", precision=11, scale=2, nullable = false)
     private Double overallSum;
@@ -40,12 +35,10 @@ public class Booking extends BaseIntEntity {
     @Column(name = "overall_person_num")
     private Short overallPersonNum;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
@@ -66,34 +59,30 @@ public class Booking extends BaseIntEntity {
     public Booking(){}
 
     //For calendar bookings
-    public Booking(boolean active, LocalDateTime dateAdded, Short extraBeds, Double overallSum,
-                   Short overallPersonNum, Hotel hotel) {
-        this(null, active, dateAdded, extraBeds, overallSum, overallPersonNum, hotel);
+    public Booking(boolean active, LocalDateTime dateAdded, Double overallSum, Short overallPersonNum, Hotel hotel) {
+        this(null, active, dateAdded, overallSum, overallPersonNum, hotel);
     }
 
-    public Booking(Integer id, boolean active, LocalDateTime dateAdded, Short extraBeds, Double overallSum,
-                   Short overallPersonNum, Hotel hotel) {
+    public Booking(Integer id, boolean active, LocalDateTime dateAdded, Double overallSum, Short overallPersonNum, Hotel hotel) {
         super(id);
         this.active = active;
         this.dateAdded = dateAdded;
-        this.extraBeds = extraBeds;
         this.overallSum = overallSum;
         this.overallPersonNum = overallPersonNum;
         this.hotel = hotel;
     }
 
     //For anonymous user's bookings
-    public Booking(boolean active, LocalDateTime dateAdded, Short extraBeds, Double overallSum,
+    public Booking(boolean active, LocalDateTime dateAdded, Double overallSum,
                    Short overallPersonNum, User user, Hotel hotel, String bookerName, String bookerEmail, String bookerPhone) {
-        this(null, active, dateAdded, extraBeds, overallSum, overallPersonNum, user, hotel, bookerName, bookerEmail, bookerPhone);
+        this(null, active, dateAdded, overallSum, overallPersonNum, user, hotel, bookerName, bookerEmail, bookerPhone);
     }
 
-    public Booking(Integer id, boolean active, LocalDateTime dateAdded, Short extraBeds, Double overallSum,
+    public Booking(Integer id, boolean active, LocalDateTime dateAdded, Double overallSum,
                    Short overallPersonNum, User user, Hotel hotel, String bookerName, String bookerEmail, String bookerPhone) {
         super(id);
         this.active = active;
         this.dateAdded = dateAdded;
-        this.extraBeds = extraBeds;
         this.overallSum = overallSum;
         this.overallPersonNum = overallPersonNum;
         this.user = user;
@@ -117,14 +106,6 @@ public class Booking extends BaseIntEntity {
 
     public void setDateAdded(LocalDateTime dateAdded) {
         this.dateAdded = dateAdded;
-    }
-
-    public Short getExtraBeds() {
-        return extraBeds;
-    }
-
-    public void setExtraBeds(Short extraBeds) {
-        this.extraBeds = extraBeds;
     }
 
     public Double getOverallSum() {
@@ -197,7 +178,6 @@ public class Booking extends BaseIntEntity {
                 "id='" + getId() + '\'' +
                 ", active=" + active +
                 ", dateAdded=" + dateAdded +
-                ", extraBeds=" + extraBeds +
                 ", overallSum=" + overallSum +
                 ", overallPersonNum=" + overallPersonNum +
                 ", user=" + user.getId() +

@@ -41,11 +41,11 @@
                                 <th><spring:message code="common.id"/></th>
                                 <th><spring:message code="common.dateAdded"/></th>
                                 <th><spring:message code="common.rate"/></th>
-                                <th><spring:message code="common.userId"/></th>
-                                <th><spring:message code="common.bookerName"/></th>
-                                <th><spring:message code="common.hotelId"/></th>
-                                <th><spring:message code="common.hotelName"/></th>
                                 <th><spring:message code="votes.usercomment"/></th>
+                                <th><spring:message code="common.userId"/></th>
+                                <th><spring:message code="common.hotelId"/></th>
+                                <th><spring:message code="common.bookerName"/></th>
+                                <th><spring:message code="common.hotelName"/></th>
                                 <th></th>
                             </thead>
                         </table>

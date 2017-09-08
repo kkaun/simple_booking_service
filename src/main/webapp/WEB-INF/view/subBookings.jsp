@@ -57,7 +57,8 @@
                 <div class="col-md-4">
                     <sec:authorize access="isAuthenticated()">
                         <sec:authorize access="hasAuthority('ROLE_ADMIN')">
-                            <a id="backBtn" class="btn btn-lg btn-default pull-left" href="admin/show_bookings"
+                            <a id="backBtn" class="btn btn-lg btn-default pull-left"
+                               href="admin/show_bookings"
                                style="margin: 0 auto;">
                                 <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&nbsp;&nbsp;
                                 <spring:message code="common.submit_return"/>
@@ -67,7 +68,7 @@
                     <sec:authorize access="isAuthenticated()">
                         <sec:authorize access="hasAuthority('ROLE_MANAGER')">
                             <a id="backBtn" class="btn btn-lg btn-default pull-left"
-                               href="hotel_manager/object/show_bookings"
+                               href="hotel_manager/object/show_bookings?objectId=${objectId}"
                                style="margin: 0 auto;">
                                 <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&nbsp;&nbsp;
                                 <spring:message code="common.submit_return"/>
@@ -76,7 +77,8 @@
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
                         <sec:authorize access="hasAuthority('ROLE_USER')">
-                            <a id="backBtn" class="btn btn-lg btn-default pull-left" href="user/show_bookings"
+                            <a id="backBtn" class="btn btn-lg btn-default pull-left"
+                               href="user/show_bookings"
                                style="margin: 0 auto;">
                                 <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&nbsp;&nbsp;
                                 <spring:message code="common.submit_return"/>

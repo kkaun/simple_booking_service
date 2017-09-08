@@ -56,10 +56,6 @@ public class Hotel extends NamedEntity {
     @Column(name = "check_out")
     private LocalTime checkOut;
 
-    @Range(min = 0, max = 10)
-    @Column(name = "max_extra_per_day")
-    private Short maxExtraBedsPerDay;
-
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "manager", nullable = false)
@@ -215,14 +211,6 @@ public class Hotel extends NamedEntity {
         this.apartments = apartments;
     }
 
-    public Short getMaxExtraBedsPerDay() {
-        return maxExtraBedsPerDay;
-    }
-
-    public void setMaxExtraBedsPerDay(Short maxExtraBedsPerDay) {
-        this.maxExtraBedsPerDay = maxExtraBedsPerDay;
-    }
-
     public Set<SubBooking> getSubBookings() {
         return subBookings;
     }
@@ -259,7 +247,6 @@ public class Hotel extends NamedEntity {
                 ", description='" + description + '\'' +
                 ", checkIn=" + checkIn +
                 ", checkOut=" + checkOut +
-                ", maxExtraBedsPerDay=" + maxExtraBedsPerDay +
                 ", manager=" + manager.getId() +
                 ", imgPath='" + imgPath + '\'' +
                 '}';

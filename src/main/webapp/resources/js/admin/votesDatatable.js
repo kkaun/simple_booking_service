@@ -27,19 +27,19 @@ $(function () {
                 "data": "rate"
             },
             {
-                "data": "userId"
+                "data": "userComment"
             },
             {
-                "data": "userName"
+                "data": "userId"
             },
             {
                 "data": "hotelId"
             },
             {
-                "data": "hotelName"
+                "data": "userName"
             },
             {
-                "data": "userComment"
+                "data": "hotelName"
             },
             {
                 "render": renderDeleteVoteBtn,

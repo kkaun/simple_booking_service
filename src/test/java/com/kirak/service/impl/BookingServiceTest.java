@@ -64,7 +64,7 @@ public class BookingServiceTest extends AbstractServiceTest{
     public void updateNotFound() throws Exception {
         thrown.expect(NotFoundException.class);
         service.update(new Booking(SUPER_BOOKING1_ID  + 11, true,
-                of(2016, Month.MAY, 12, 16, 17), (short)0, 6000.00, (short)1, USER1, HOTEL1,
+                of(2016, Month.MAY, 12, 16, 17), 6000.00, (short)1, USER1, HOTEL1,
                 "Name1", "email1@gmail.com", "384543534822"), USER1_ID);
     }
 

@@ -59,7 +59,7 @@ public class BusinessAbstractController {
         LocalDate inDate = LocalDate.parse(inDateStr);
         LocalDate outDate = LocalDate.parse(outDateStr);
 
-        Booking booking = new Booking(true, LocalDateTime.now(), (short)0, Double.parseDouble(sum),
+        Booking booking = new Booking(true, LocalDateTime.now(), Double.parseDouble(sum),
                 Short.parseShort(personNum), user, hotelService.get(Integer.parseInt(hotelId)),
                 user.getName(), user.getEmail(), user.getPhone());
         bookingService.save(booking, user.getId());

@@ -10,7 +10,7 @@ var datatableApi;
 function updateManagerBookingTableByDatesAdded() {
     $.ajax({
         type: "POST",
-        url: ajaxUrl + "between_dates?hotelId=" + objectId,
+        url: ajaxUrl + "between_dates?objectId=" + objectId,
         data: $("#bookingsManagerDatesAddedFilter").serialize(),
         success: updateObjectChildrenTableByData
     });
@@ -18,7 +18,7 @@ function updateManagerBookingTableByDatesAdded() {
 function updateManagerBookingTableByInDate() {
     $.ajax({
         type: "POST",
-        url: ajaxUrl + "by_in_date?hotelId=" + objectId,
+        url: ajaxUrl + "by_in_date?objectId=" + objectId,
         data: $("#bookingsManagerInDateFilter").serialize(),
         success: updateObjectChildrenTableByData
     });
@@ -26,7 +26,7 @@ function updateManagerBookingTableByInDate() {
 function updateManagerBookingTableByOutDate() {
     $.ajax({
         type: "POST",
-        url: ajaxUrl + "by_out_date?hotelId=" + objectId,
+        url: ajaxUrl + "by_out_date?objectId=" + objectId,
         data: $("#bookingsManagerOutDateFilter").serialize(),
         success: updateObjectChildrenTableByData
     });
@@ -34,7 +34,7 @@ function updateManagerBookingTableByOutDate() {
 function updateManagerBookingTableByUserId() {
     $.ajax({
         type: "POST",
-        url: ajaxUrl + "by_user_id?hotelId=" + objectId,
+        url: ajaxUrl + "by_user_id?objectId=" + objectId,
         data: $("#bookingsManagerUserIdFilter").serialize(),
         success: updateObjectChildrenTableByData
     });

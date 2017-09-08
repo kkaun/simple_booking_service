@@ -158,7 +158,8 @@ public abstract class BookingAbstractController {
     public void createSubBooking(SubBookingTo subBookingTo, Integer bookingId){
         LOG.info("Saving subBooking {}", subBookingTo);
         checkAllBookingBusinessRestrictions(bookingId);
-        checkAllSubBookingCreateBusinessRestrictions(subBookingTo.getAptId());
+        checkAllSubBookingCreateBusinessRestrictions(subBookingTo.getAptId(),
+                subBookingTo.getAptInDate(), subBookingTo.getAptOutDate());
         SubBooking subBooking = subBookingService.save(subBookingTo, bookingId,
                 apartmentService.getAll(), bookingService.getAll());
         Booking booking = bookingService.get(bookingId);
@@ -214,8 +215,8 @@ public abstract class BookingAbstractController {
         }
     }
 
-    public void checkAllSubBookingCreateBusinessRestrictions(int apartmentId){
-        if(!ApartmentUtil.isSingleApartmentAvailable(apartmentService.get(apartmentId), LocalDate.now().minusDays(1), LocalDate.MAX))
+    public void checkAllSubBookingCreateBusinessRestrictions(int apartmentId, LocalDate inDate, LocalDate outDate){
+        if(!ApartmentUtil.isSingleApartmentAvailable(apartmentService.get(apartmentId), inDate, outDate))
             throw new BookingApartmentOccupiedException(EXCEPTION_SUB_BOOKING_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
     }
 
