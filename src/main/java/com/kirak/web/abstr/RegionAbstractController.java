@@ -1,6 +1,7 @@
 package com.kirak.web.abstr;
 
 import com.kirak.model.City;
+import com.kirak.model.Country;
 import com.kirak.service.CityService;
 import com.kirak.service.CountryService;
 import com.kirak.to.PlaceTo;
@@ -73,6 +74,10 @@ public abstract class RegionAbstractController {
     public List<PlaceTo> getAll(){
         LOG.info("Getting all cities");
         return RegionUtil.getPlaceTos(cityService.getAll());
+    }
+
+    public List<Country> getAllCountries(){
+        return countryService.getAll();
     }
 
     public List<PlaceTo> getAllByRegion(String region){

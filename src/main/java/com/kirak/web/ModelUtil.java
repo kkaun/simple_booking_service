@@ -53,7 +53,7 @@ public class ModelUtil {
 
     public static void setRegionView(Model model, List<City> cities, List<Country> countries){
 
-        Comparator<City> cityNameComparator = (City c1, City c2) -> (c1.getName().compareTo(c2.getName()));
+        Comparator<City> cityNameComparator = (City c1, City c2) -> (c1.getCountry().getName().compareTo(c2.getCountry().getName()));
         Comparator<Country> countryNameComparator = (Country c1, Country c2) -> (c1.getName().compareTo(c2.getName()));
 
         model.addAttribute("cities", RegionUtil.getPlaceTos(cities.stream()

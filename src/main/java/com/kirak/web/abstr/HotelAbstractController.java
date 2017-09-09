@@ -144,8 +144,8 @@ public abstract class HotelAbstractController {
 
     private void checkCreateBusinessRestrictions(HotelTo hotelTo) {
         Optional<City> requestedCity = cityService.getAll().stream()
-                .filter(city -> Objects.equals(city.getName(), hotelTo.getCityName()))
-                .filter(city -> Objects.equals(city.getCountry().getName(), hotelTo.getCountryName()))
+                .filter(city -> Objects.equals(city.getName(), hotelTo.getCityName())
+                && Objects.equals(city.getCountry().getName(), hotelTo.getCountryName()))
                 .findAny();
         if(requestedCity == null){
             throw new HotelRegionsNotMatchingException(EXCEPTION_HOTEL_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);

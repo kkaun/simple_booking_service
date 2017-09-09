@@ -6,6 +6,7 @@
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util/citiesDataLoad.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util/datatablesUtil.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util/notifications.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/dt_admin/adminAjaxUtil.js" defer></script>
@@ -149,31 +150,37 @@
                         <label for="countryNamesList" class="control-label col-xs-4">
                             <spring:message code="common.countryName"/>
                         </label>
-                        <c:if test="${not empty countries}">
+                        <%--<c:if test="${not empty countries}">--%>
+                            <%--<div class="col-xs-7">--%>
+                                <%--<select class="form-control" name="countryName" id="countryNamesList">--%>
+                                    <%--<c:forEach items="${countries}" var="country">--%>
+                                        <%--<option name="countryName" value="${country.name}">${country.name}</option>--%>
+                                    <%--</c:forEach>--%>
+                                <%--</select>--%>
+                            <%--</div>--%>
+                        <%--</c:if>--%>
                             <div class="col-xs-7">
-                                <select class="form-control" name="countryName" id="countryNamesList">
-                                    <c:forEach items="${countries}" var="country">
-                                        <option name="countryName" value="${country.name}">${country.name}</option>
-                                    </c:forEach>
-                                </select>
+                                <input class="form-control" name="countryName" id="countryNamesList">
                             </div>
-                        </c:if>
                     </div>
 
                     <div class="form-group cityNameForm">
                         <label for="cityNamesList" class="control-label col-xs-4">
                             <spring:message code="common.placeName"/>
                         </label>
-                        <c:if test="${not empty cities}">
+                        <%--<c:if test="${not empty cities}">--%>
+                            <%--<div class="col-xs-7">--%>
+                                <%--<select class="form-control" name="cityName" id="cityNamesList">--%>
+                                    <%--<c:forEach items="${cities}" var="city">--%>
+                                        <%--<option name="cityName" value="${city.name}">--%>
+                                                <%--${city.name} (${city.countryName})</option>--%>
+                                    <%--</c:forEach>--%>
+                                <%--</select>--%>
+                            <%--</div>--%>
+                        <%--</c:if>--%>
                             <div class="col-xs-7">
-                                <select class="form-control" name="cityName" id="cityNamesList">
-                                    <c:forEach items="${cities}" var="city">
-                                        <option name="cityName" value="${city.name}">
-                                                ${city.name} (${city.countryName})</option>
-                                    </c:forEach>
-                                </select>
+                                <input class="form-control" name="cityName" id="cityNamesList">
                             </div>
-                        </c:if>
                     </div>
 
                     <div class="form-group">

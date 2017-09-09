@@ -17,17 +17,22 @@
             <h3 style="margin-top: 3px"><spring:message code="app.moto"/></h3>
         </div>
 
-        <div class="col-md-5 text-left">
-            <div id="custom-search-input">
-                    <form:form method="get" role="form" id="search_form" action="search">
-                        <input type="text" class="index-cities-input"
-                               name="region" placeholder="<spring:message code="app.search_fast"/>"/>
-                    </form:form>
-                    <%--<div class="col-md-2">--%>
-                        <%--<button class="btn btn-danger" form="search_form" type="submit">--%>
-                            <%--<span class="glyphicon glyphicon-search"></span>--%>
-                        <%--</button>--%>
-                    <%--</div>--%>
+        <div class="col-md-6">
+            <div class="row">
+                <div id="custom-search-input">
+                    <div class="col-md-1">
+                        <button class="btn btn-default" form="search_form" type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </div>
+                    <div class="col-md-10">
+                        <form:form method="get" role="form" id="search_form" action="search">
+                            <input type="text" class="index-cities-input"
+                                   name="region" placeholder="<spring:message code="app.search_fast"/>"/>
+                        </form:form>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
             </div>
         </div>
     </div>

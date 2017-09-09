@@ -1,6 +1,7 @@
 package com.kirak.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kirak.model.abstraction.BaseShortEntity;
 
 import javax.persistence.*;
@@ -26,6 +27,12 @@ public class Country extends BaseShortEntity {
         super(id);
         this.name = name;
         this.cities = cities;
+    }
+
+    public Country(@JsonProperty Short id,
+                   @JsonProperty("name") String name){
+        super(id);
+        this.name = name;
     }
 
     public String getName() {

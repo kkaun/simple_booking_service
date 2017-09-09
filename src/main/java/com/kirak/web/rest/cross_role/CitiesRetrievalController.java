@@ -1,6 +1,8 @@
 package com.kirak.web.rest.cross_role;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.kirak.model.City;
+import com.kirak.model.Country;
 import com.kirak.service.CityService;
 import com.kirak.service.CountryService;
 import com.kirak.to.PlaceTo;
@@ -19,18 +21,25 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/retrieve_city_names")
-public class RegionsRetrievalController extends RegionAbstractController {
+@RequestMapping("/retrieve_regions")
+public class CitiesRetrievalController extends RegionAbstractController {
 
     @Autowired
-    public RegionsRetrievalController(CityService cityService, CountryService countryService) {
+    public CitiesRetrievalController(CityService cityService, CountryService countryService) {
         super(cityService, countryService);
     }
 
     @Override
     @JsonView(View.JsonUI.class)
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/cities", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<PlaceTo> getAll(){
         return super.getAll();
+    }
+
+    @Override
+    @JsonView(View.JsonUI.class)
+    @GetMapping(value = "/countries", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Country> getAllCountries() {
+        return super.getAllCountries();
     }
 }
