@@ -8,15 +8,17 @@
 <body>
 
 <div class="well">
-    <div class="row">
+    <div class="row" style="margin-bottom: 40px">
         <div class="col-md-12">
             <form:form class="form-horizontal" role="form" method="get" action="parametric_search">
                 <div class="col-md-12">
                     <div class="form-group row">
                         <div class="col-md-3">
-                            <label for="location" class="control-label" style="border-radius: 3px"><spring:message code="common.location_city"/></label>
+                            <label for="primary-cities-input" class="control-label" style="border-radius: 3px">
+                                <spring:message code="common.city"/><spring:message code="common.in_latin"/></label>
                             <div class="input-group">
-                                <input type="text" class="form-control cities-input" name="location" id="location" value="${param.city}">
+                                <input type="text" name="location" class="primary-cities-input"
+                                       id="primary-cities-input" value="${param.city}">
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-globe"></span>
                                 </span>

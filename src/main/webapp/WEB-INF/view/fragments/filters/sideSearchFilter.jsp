@@ -16,14 +16,19 @@
         <div class="col-md-10">
             <form:form class="form-horizontal" role="form" method="get" action="parametric_search">
                 <div class="form-group">
-                    <label for="location" class="control-label"><spring:message code="common.location_city"/></label>
+                    <label for="side-cities-input" class="control-label">
+                        <spring:message code="common.city"/><spring:message code="common.in_latin"/></label>
                     <div class="input-group">
-                        <input type="text" class="form-control cities-input" name="location" id="location" value="${param.region}">
+                        <input type="text" class="side-cities-input" name="location"
+                               id="side-cities-input" value="${param.region}">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-globe"></span>
                         </span>
                     </div>
                 </div>
+                <br>
+                <hr>
+                <br>
                 <div class="form-group">
                     <label for="in_date" class="control-label"><spring:message code="hotels.checkIn"/></label>
                     <div class="input-group">

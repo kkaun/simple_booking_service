@@ -72,5 +72,19 @@ public class RegionUtil {
                 .findFirst().orElse(null).getCountry();
     }
 
+//    public static List<AutocompletePlaceTo> getAutocompletePlaceTos(List<City> cities){
+//        return cities.stream()
+//                .map(RegionUtil::getAutocompletePlaceTosForCity)
+//                .collect(Collectors.toList());
+//    }
 
+//    public static AutocompletePlaceTo getAutocompletePlaceTosForCity(City city){
+//        String[] arr = city.getName().split("[-.,_ :]");
+//        StringBuilder shortName = new StringBuilder();
+//
+//        for(String s : arr){
+//            shortName.append(s.substring(0,1));
+//        }
+//        return new AutocompletePlaceTo(city.getName(), shortName.toString());
+//    }
 }

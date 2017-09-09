@@ -3,14 +3,49 @@
  */
 
 
-var options = {
-    url: "/retrieve_city_names/",
+var indexOptions = {
+    url: "/retrieve_city_names",
     getValue: "name",
     list: {
         match: {
             enabled: true
-        }
-    }
+        },
+        maxNumberOfElements: 5
+    },
+
+    theme: "plate-dark"
 };
 
-$(".cities-input").easyAutocomplete(options);
+
+var primaryFilterOptions = {
+    url: "/retrieve_city_names",
+    getValue: "name",
+    list: {
+        match: {
+            enabled: true
+        },
+        maxNumberOfElements: 4
+    },
+
+    theme: "primary-filter-plate-dark"
+};
+
+
+var sideFilterOptions = {
+    url: "/retrieve_city_names",
+    getValue: "name",
+    list: {
+        match: {
+            enabled: true
+        },
+        maxNumberOfElements: 4
+    },
+
+    theme: "side-filter-plate-dark"
+};
+
+
+
+$(".index-cities-input").easyAutocomplete(indexOptions);
+$(".primary-cities-input").easyAutocomplete(primaryFilterOptions);
+$(".side-cities-input").easyAutocomplete(sideFilterOptions);

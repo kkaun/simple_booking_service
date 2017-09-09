@@ -1,6 +1,7 @@
 package com.kirak.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kirak.model.abstraction.BaseIntEntity;
 
 import javax.persistence.*;

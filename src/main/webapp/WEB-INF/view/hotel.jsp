@@ -11,6 +11,7 @@
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util/citiesDataLoad.js" defer></script>
 <jsp:include page="fragments/header.jsp"/>
 
 <div class="container">

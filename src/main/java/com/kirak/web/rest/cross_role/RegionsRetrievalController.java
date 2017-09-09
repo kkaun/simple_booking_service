@@ -19,7 +19,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/retrieve_cities")
+@RequestMapping("/retrieve_city_names")
 public class RegionsRetrievalController extends RegionAbstractController {
 
     @Autowired

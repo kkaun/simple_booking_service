@@ -24,7 +24,8 @@
     <link rel="stylesheet" href="webjars/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="webjars/datatables-responsive/2.1.1/css/responsive.dataTables.scss">
     <link rel="stylesheet" href="webjars/datatables-responsive/2.1.1/css/responsive.jqueryui.scss">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/extensions/autocomplete/easy-autocomplete.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/extensions/autocomplete/easy-autocomplete.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/extensions/autocomplete/easy-autocomplete.themes.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 
     <!--http://stackoverflow.com/a/24070373/548473-->
