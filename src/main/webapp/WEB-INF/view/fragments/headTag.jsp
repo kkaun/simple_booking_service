@@ -13,9 +13,13 @@
     <meta name="_csrf" content="${_csrf.token}"/>
     <meta name="_csrf_header" content="${_csrf.headerName}"/>
 
-    <link href="favicon.ico" rel="icon" type="image/x-icon">
+    <link rel="shortcut icon" href='<c:url value="/resources/favicon.ico"/>' type="image/x-icon">
+    <link rel="icon" href='<c:url value="/resources/favicon.ico"/>' type="image/x-icon">
 
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
     <link rel="stylesheet" href="webjars/jquery-ui/1.9.2/css/smoothness/jquery-ui-1.9.2.custom.min.css">
     <link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
@@ -28,7 +32,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/extensions/autocomplete/easy-autocomplete.themes.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 
-    <!--http://stackoverflow.com/a/24070373/548473-->
     <script type="text/javascript" src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
     <script type="text/javascript" src="webjars/jquery-ui/1.9.2/js/jquery-ui-1.9.2.custom.min.js"></script>
     <script type="text/javascript" src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>

@@ -88,14 +88,14 @@
                     </div>
                     <div class="form-group">
                         <label for="category" class="control-label col-xs-3"><spring:message
-                                code="apt_types.category"/></label>
+                                code="apt_types.category"/> <spring:message code="common.in_latin"/></label>
                         <div class="col-xs-9">
                             <input class="form-control" id="category" name="category">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="bedsArrangement" class="control-label col-xs-3"><spring:message
-                                code="apt_types.bedsArrangement"/></label>
+                                code="apt_types.bedsArrangement"/> <spring:message code="common.in_latin"/></label>
                         <div class="col-xs-9">
                             <input class="form-control" id="bedsArrangement" name="bedsArrangement">
                         </div>

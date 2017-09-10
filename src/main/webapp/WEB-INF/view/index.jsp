@@ -14,7 +14,8 @@
     <div class="row" style="margin-bottom: 10px">
 
         <div class="col-md-6">
-            <h3 style="margin-top: 3px"><spring:message code="app.moto"/></h3>
+            <h3 style="margin-top: 3px; font-family: 'Comfortaa', cursive;">
+                <strong><spring:message code="app.moto"/></strong></h3>
         </div>
 
         <div class="col-md-6">
@@ -43,7 +44,9 @@
                         <div class="panel-title">
                             <a data-toggle="collapse" href="#collapse1">
                                 <h4 class="text-center">
-                                <spring:message code="app.advanced_search"/>
+                                    <span style="font-family: 'Poiret One', cursive;">
+                                        <strong><spring:message code="app.advanced_search"/></strong>
+                                    </span>
                                 </h4>
                             </a>
                         </div>
@@ -109,10 +112,10 @@
     <br>
 
     <div class="row">
-        <div class="well">
-            <h3 class="text-center"><spring:message code="app.inspect_top_5"/></h3>
+        <div class="well" style="background-color: #dfd7ad">
+            <h3 class="text-center" style="font-family: 'Poiret One', cursive;"><spring:message code="app.inspect_top_5"/></h3>
             <hr>
-            <div class="list-group">
+            <div class="list-group" style="background-color: #dfd7ad">
                 <c:forEach items="${hotelsFive}" var="hotel">
                 <jsp:useBean id="hotel" scope="page" type="com.kirak.to.HotelTo"/>
                     <a href="inspect_hotel?id=${hotel.id}" class="list-group-item listItem">

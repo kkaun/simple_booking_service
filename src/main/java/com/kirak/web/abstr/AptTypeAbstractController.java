@@ -6,6 +6,7 @@ import com.kirak.service.HotelService;
 import com.kirak.to.AptTypeTo;
 import com.kirak.util.ErrorInfo;
 import com.kirak.util.exception.model.apt_type.AptTypeHasApartmentsException;
+import com.kirak.util.exception.model.apt_type.AptTypeIsDemoException;
 import com.kirak.util.model.AptTypeUtil;
 import com.kirak.web.ExceptionViewHandler;
 import org.slf4j.Logger;
@@ -25,6 +26,7 @@ import java.util.Objects;
 public abstract class AptTypeAbstractController {
 
     public static final String EXCEPTION_APT_TYPE_HAS_APARTMENTS = "exception.aptType.hasApartments";
+    public static final String EXCEPTION_APT_TYPE_IS_DEMO_TYPE = "exception.aptType.iDemoAptType";
     public static final String EXCEPTION_APT_TYPE_MODIFICATION_RESTRICTION = "exception.aptType.modificationRestriction";
 
     private final Logger LOG = LoggerFactory.getLogger(getClass());
@@ -74,10 +76,11 @@ public abstract class AptTypeAbstractController {
 
 
     public void checkAllBusinessRestrictions(short id){
+        if(id >= 1 && id < 29)
+            throw new AptTypeIsDemoException(EXCEPTION_APT_TYPE_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
         if(apartmentService.getAll().stream()
-                .filter(apartment -> Objects.equals(apartment.getType().getId(), id)).count() > 0){
+                .filter(apartment -> Objects.equals(apartment.getType().getId(), id)).count() > 0)
             throw new AptTypeHasApartmentsException(EXCEPTION_APT_TYPE_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
-        }
     }
 
     @ExceptionHandler(AptTypeHasApartmentsException.class)
@@ -85,4 +88,8 @@ public abstract class AptTypeAbstractController {
         return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_APT_TYPE_HAS_APARTMENTS, HttpStatus.CONFLICT);
     }
 
+    @ExceptionHandler(AptTypeIsDemoException.class)
+    public ResponseEntity<ErrorInfo> aptTypeIsDemo(HttpServletRequest req, AptTypeIsDemoException e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_APT_TYPE_IS_DEMO_TYPE, HttpStatus.CONFLICT);
+    }
 }

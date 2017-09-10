@@ -139,10 +139,10 @@
                     <input type="hidden" id="cityId" name="cityId">
 
                     <div class="form-group managerIdForm">
-                        <label for="managerId" class="control-label col-xs-3">
+                        <label for="managerId" class="control-label col-xs-4">
                             <spring:message code="app.manager"/> <spring:message code="common.id"/>
                             <spring:message code="common.def_managerId"/></label>
-                        <div class="col-xs-5">
+                        <div class="col-xs-3">
                             <input class="form-control" type="text" id="managerId" name="managerId" readonly>
                         </div>
                     </div>
