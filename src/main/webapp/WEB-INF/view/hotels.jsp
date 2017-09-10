@@ -55,6 +55,11 @@
 
         <div class="col-md-8">
             <div class="well">
+                <c:if test="${not empty noRegion}">
+                    <div class="list-group-item listItem">
+                        <h3><spring:message code="common.no_region"/></h3>
+                    </div>
+                </c:if>
                 <c:if test="${not empty badRegion && empty hotels}">
                     <div class="list-group-item listItem">
                         <h3>

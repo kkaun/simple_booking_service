@@ -2,6 +2,7 @@
 
 $(function() {
     $('.out_date').datepicker({
+        defaultDate: 'today + 1',
         dateFormat: 'yy-mm-dd',
         onSelect: function() {
             $("#out_date").datepicker(navigator.userLanguage,
@@ -33,6 +34,9 @@ $(function() {
     });
 });
 
+
+$(".in_date").datepicker("setDate", "0");
+$(".out_date").datepicker("setDate", "1");
 
 
 $(function() {

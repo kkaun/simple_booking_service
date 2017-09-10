@@ -14,21 +14,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ManagerController {
 
-    private final CityService cityService;
-
-    private final CountryService countryService;
-
     @Autowired
-    public ManagerController(CityService cityService, CountryService countryService) {
-        this.cityService = cityService;
-        this.countryService = countryService;
-    }
-
+    public ManagerController() {}
 
     @PreAuthorize("hasRole('ROLE_MANAGER')")
     @GetMapping("/manage")
-    public String getManagerObjects(Model model) {
-        ModelUtil.setRegionView(model, cityService.getAll(), countryService.getAll());
+    public String getManagerObjects() {
         return "managerObjects";
     }
 }

@@ -20,18 +20,16 @@
         <div class="col-md-6">
             <div class="row">
                 <div id="custom-search-input">
-                    <div class="col-md-1">
-                        <button class="btn btn-default" form="search_form" type="submit">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </div>
                     <div class="col-md-10">
                         <form:form method="get" role="form" id="search_form" action="search">
                             <input type="text" class="index-cities-input"
                                    name="region" placeholder="<spring:message code="app.search_fast"/>"/>
                         </form:form>
                     </div>
-                    <div class="col-md-1"></div>
+                    <div class="col-md-1">
+                        <button class="btn btn-default glyphicon glyphicon-search" form="search_form" type="submit"
+                        style="height: 31px"></button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -109,7 +107,7 @@
 
     <div class="row">
         <div class="well">
-            <h1 class="text-center"><spring:message code="app.inspect_top_5"/></h1>
+            <h3 class="text-center"><spring:message code="app.inspect_top_5"/></h3>
             <hr>
             <div class="list-group">
                 <c:forEach items="${hotelsFive}" var="hotel">

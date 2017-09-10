@@ -82,17 +82,9 @@
                         <label for="countryNamesList" class="control-label col-xs-4">
                             <spring:message code="common.countryName"/>
                         </label>
-                            <%--<c:if test="${not empty countries}">--%>
-                            <%--<div class="col-xs-7">--%>
-                            <%--<select class="form-control" name="countryName" id="countryNamesList">--%>
-                            <%--<c:forEach items="${countries}" var="country">--%>
-                            <%--<option name="countryName" value="${country.name}">${country.name}</option>--%>
-                            <%--</c:forEach>--%>
-                            <%--</select>--%>
-                            <%--</div>--%>
-                            <%--</c:if>--%>
                         <div class="col-xs-7">
-                            <input class="form-control" name="countryName" id="countryNamesList">
+                            <input class="form-control" name="countryName" id="countryNamesList"
+                                   placeholder="<spring:message code="common.form_in_latin"/>">
                         </div>
                     </div>
 
@@ -100,18 +92,9 @@
                         <label for="cityNamesList" class="control-label col-xs-4">
                             <spring:message code="common.placeName"/>
                         </label>
-                            <%--<c:if test="${not empty cities}">--%>
-                            <%--<div class="col-xs-7">--%>
-                            <%--<select class="form-control" name="cityName" id="cityNamesList">--%>
-                            <%--<c:forEach items="${cities}" var="city">--%>
-                            <%--<option name="cityName" value="${city.name}">--%>
-                            <%--${city.name} (${city.countryName})</option>--%>
-                            <%--</c:forEach>--%>
-                            <%--</select>--%>
-                            <%--</div>--%>
-                            <%--</c:if>--%>
                         <div class="col-xs-7">
-                            <input class="form-control" name="cityName" id="cityNamesList">
+                            <input class="form-control" name="cityName" id="cityNamesList"
+                                   placeholder="<spring:message code="common.form_in_latin"/>">
                         </div>
                     </div>
 

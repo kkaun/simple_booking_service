@@ -12,15 +12,19 @@
         <div class="col-md-2"></div>
 
         <div class="col-md-8">
-            <div class="panel-warning text-center" style="border-width: 5px">
-                <br>
-                <h4>Application error: </h4>
-                <br>
-                <h2>${exception.message}</h2>
-                <br>
-                <c:forEach items="${exception.stackTrace}" var="stackTrace">
-                    ${stackTrace}
-                </c:forEach>
+            <div class="panel panel-warning text-center">
+                <div class="panel-body">
+                    <c:if test="${not empty exception}">
+                        <br>
+                        <h4>Application error: </h4>
+                        <br>
+                        <h2>${exception.message}</h2>
+                        <br>
+                        <c:forEach items="${exception.stackTrace}" var="stackTrace">
+                            ${stackTrace}
+                        </c:forEach>
+                    </c:if>
+                </div>
             </div>
         </div>
 

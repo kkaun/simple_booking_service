@@ -86,6 +86,9 @@ public class BusinessController extends BusinessAbstractController {
         } else{
             model.addAttribute("badRegion", region);
         }
+        if(region.isEmpty()){
+            model.addAttribute("noRegion", true);
+        }
         ModelUtil.addUniqueFilterParams(model, AptTypeUtil.getUniqueCategories(aptTypeService.getAll()));
         return "hotels";
     }
@@ -247,11 +250,8 @@ public class BusinessController extends BusinessAbstractController {
 
 
 
-
-    @ExceptionHandler({DateTimeParseException.class, NullPointerException.class})
-    public String voteHotelNotVisited(Model model, DateTimeParseException e) {
-        //return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, "Request Dates were not added or input was incorrect",
-        //        HttpStatus.CONFLICT);
+    @ExceptionHandler({RuntimeException.class})
+    public String voteHotelNotVisited(Model model, RuntimeException e) {
         model.addAttribute("exception", e);
         return "exception";
     }

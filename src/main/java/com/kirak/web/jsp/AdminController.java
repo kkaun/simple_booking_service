@@ -52,8 +52,7 @@ public class AdminController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("admin/show_hotels")
-    public String showHotels(Model model) {
-        ModelUtil.setRegionView(model, cityService.getAll(), countryService.getAll());
+    public String showHotels() {
         return "adminHotels";
     }
 
