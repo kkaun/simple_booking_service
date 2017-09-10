@@ -39,11 +39,14 @@
         <div class="col-md-12">
             <div class="panel-group">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse1"><h4 class="text-center">
-                                <spring:message code="app.advanced_search"/></h4></a>
-                        </h4>
+                    <div class="panel-heading filterHeading">
+                        <div class="panel-title">
+                            <a data-toggle="collapse" href="#collapse1">
+                                <h4 class="text-center">
+                                <spring:message code="app.advanced_search"/>
+                                </h4>
+                            </a>
+                        </div>
                     </div>
                     <div id="collapse1" class="panel-collapse collapse">
                         <div class="panel-body" style="padding: 5px">
@@ -149,7 +152,7 @@
                             <c:if test="${empty hotel.votesNum || hotel.votesNum == 0}">
                                 <h4> <spring:message code="common.no_votes"/> </h4>
                             </c:if>
-                            <button type="button" href="inspect_hotel?id=${hotel.id}" class="btn btn-default btn-lg btn-block">
+                            <button type="button" href="inspect_hotel?id=${hotel.id}" class="btn btn-info btn-lg btn-block">
                                 <spring:message code="app.view_and_book"/></button>
                         </div>
                     </a>

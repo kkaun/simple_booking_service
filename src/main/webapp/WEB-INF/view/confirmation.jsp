@@ -9,7 +9,7 @@
 <body>
 <jsp:include page="fragments/header.jsp"/>
 
-<div class="container" style="background-color: lightgreen; margin-top: -30px; padding-top: 10px;">
+<div class="container" style="background-color: #adfdbd; margin-top: -30px; padding-top: 10px;">
     <div class="row">
 
             <div class="col-md-12">

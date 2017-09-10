@@ -187,7 +187,7 @@
                     <div class="form-group text-center">
                         <label for="image" class="control-label col-md-6"><spring:message code="common.choose_image"/></label>
                         <div class="col-md-6">
-                            <input name="image" id="image" type="file" /><br/>
+                            <input name="image" id="image" type="file" style="margin-top: 6px"/><br/>
                         </div>
                     </div>
                     <hr>

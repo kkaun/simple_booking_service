@@ -38,7 +38,7 @@
     <script type="text/javascript" src="webjars/noty/2.4.1/js/noty/packaged/jquery.noty.packaged.min.js" defer></script>
     <script type="text/javascript" src="webjars/datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js" defer></script>
 
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util/datepicker.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util/datetimepickers.js" defer></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util/jquery.ui.datepicker-en.js" defer></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util/jquery.ui.datepicker-ru.js" defer></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/extensions/autocomplete/jquery.easy-autocomplete.min.js" defer></script>

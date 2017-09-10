@@ -62,9 +62,9 @@
                         <div class="panel-body">
                             <form:form class="form-horizontal filter" id="bookingsManagerInDateFilter">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5" for="inDate">
+                                    <label class="control-label col-sm-4" for="inDate">
                                         <spring:message code="super_bookings.inDate"/>:</label>
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-8">
                                         <input class="form-control in_date" name="inDate" id="inDate">
                                     </div>
                                 </div>
@@ -86,9 +86,9 @@
                         <div class="panel-body">
                             <form:form class="form-horizontal filter" id="bookingsManagerOutDateFilter">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5" for="outDate">
+                                    <label class="control-label col-sm-4" for="outDate">
                                         <spring:message code="super_bookings.outDate"/>:</label>
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-8">
                                         <input class="form-control out_date" name="outDate" id="outDate">
                                     </div>
                                 </div>

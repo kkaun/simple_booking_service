@@ -46,7 +46,7 @@
         <div class="col-md-10">
 
             <div class="row" style="height: 70px">
-                <div class="col-md-5">
+                <div class="col-md-7 col-sm-7">
                     <div class="panel panel-default">
                         <div class="panel-body" style="padding: 10px;">
                             <h4 class="pull-left"><strong><spring:message code="common.sub_bookings_info"/></strong>
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4 col-sm-4">
                     <sec:authorize access="isAuthenticated()">
                         <sec:authorize access="hasAuthority('ROLE_ADMIN')">
                             <a id="backBtn" class="btn btn-lg btn-default pull-left"
@@ -138,7 +138,7 @@
                     <input type="hidden" id="edited" name="edited">
 
                     <div class="form-group">
-                        <c:if test="${not empty objectApartments && fn:length(objectApartments) >= 2}">
+                        <c:if test="${not empty objectApartments && fn:length(objectApartments) >= 1}">
                             <label for="bookingApt" class="control-label col-xs-5">
                                 <spring:message code="apt_types.personNum"/>,
                                 <spring:message code="apt_types.category"/>,
@@ -152,7 +152,7 @@
                                 </select>
                             </div>
                         </c:if>
-                        <c:if test="${empty objectApartments || fn:length(objectApartments) < 2}">
+                        <c:if test="${empty objectApartments || fn:length(objectApartments) < 1}">
                             <label for="existingBookingApt" class="control-label col-xs-5">
                                 <spring:message code="apt_types.personNum"/>,
                                 <spring:message code="apt_types.category"/>,
@@ -168,14 +168,15 @@
                         <label for="bookingInDate" class="control-label col-xs-5"><spring:message
                                 code="common.inDate"/></label>
                         <div class="col-xs-4">
-                            <input class="form-control in_date" id="bookingInDate" name="aptInDate">
+                            <input class="form-control booking_in_date" id="bookingInDate" name="aptInDate">
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label for="bookingOutDate" class="control-label col-xs-5"><spring:message
                                 code="common.outDate"/></label>
                         <div class="col-xs-4">
-                            <input class="form-control out_date" id="bookingOutDate" name="aptOutDate">
+                            <input class="form-control booking_out_date" id="bookingOutDate" name="aptOutDate">
                         </div>
                     </div>
 
@@ -186,6 +187,7 @@
                             <input class="form-control" id="bookingAptPrice" name="aptPrice" readonly>
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label for="bookingSum" class="control-label col-xs-5"><spring:message
                                 code="subBookings.sum"/> <spring:message code="common.will_change"/></label>
@@ -193,6 +195,7 @@
                             <input class="form-control" id="bookingSum" name="sum" readonly>
                         </div>
                     </div>
+
                     <hr>
                     <div class="form-group">
                         <div class="col-xs-8">

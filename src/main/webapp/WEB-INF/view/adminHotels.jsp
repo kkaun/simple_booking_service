@@ -24,7 +24,7 @@
         <div class="col-md-10">
 
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-5">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <form:form class="form-horizontal filter" id="hotelsByRatingAdminFilter">
@@ -53,14 +53,15 @@
                     </div>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <form:form class="form-horizontal filter" id="hotelsByCityAdminFilter">
                                 <div class="form-group">
-                                    <label for="regionName" class="control-label col-xs-5">
-                                        <spring:message code="common.filter_by_location"/></label>
-                                    <div class="col-xs-7">
+                                    <label for="regionName" class="control-label col-xs-6">
+                                        <spring:message code="common.filter_by_location"/>
+                                    </label>
+                                    <div class="col-xs-6">
                                         <input class="form-control" type="text" id="regionName" name="regionName">
                                     </div>
                                 </div>

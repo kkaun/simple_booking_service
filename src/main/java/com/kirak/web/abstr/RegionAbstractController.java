@@ -8,6 +8,7 @@ import com.kirak.to.PlaceTo;
 import com.kirak.util.ErrorInfo;
 import com.kirak.util.FileUploadUtil;
 import com.kirak.util.exception.model.region.RegionHasHotelsException;
+import com.kirak.util.exception.model.region.RegionIsDemoCityException;
 import com.kirak.util.model.RegionUtil;
 import com.kirak.web.ExceptionViewHandler;
 import org.slf4j.Logger;
@@ -30,6 +31,7 @@ import static com.kirak.util.ValidationUtil.checkNew;
 public abstract class RegionAbstractController {
 
     public static final String EXCEPTION_REGION_HAS_HOTELS = "exception.region.hasHotels";
+    public static final String EXCEPTION_REGION_IS_DEMO_CITY = "exception.region.isDemoCity";
     public static final String EXCEPTION_REGION_MODIFICATION_RESTRICTION = "exception.region.modificationRestriction";
     
     private final Logger LOG = LoggerFactory.getLogger(getClass());
@@ -56,6 +58,7 @@ public abstract class RegionAbstractController {
     public void update(PlaceTo placeTo, int id){
         LOG.info("Updating {}", placeTo);
         checkId(placeTo, id);
+        checkAllBusinessRestrictions(id);
         City city = cityService.get(id);
         cityService.update(RegionUtil.updateCityFromPlaceTo(placeTo, city));
     }
@@ -68,6 +71,7 @@ public abstract class RegionAbstractController {
     public void delete(Integer id){
         LOG.info("Deleting city {}", id);
         checkAllBusinessRestrictions(id);
+        checkAllDeleteBusinessRestrictions(id);
         cityService.delete(id);
     }
 
@@ -100,6 +104,11 @@ public abstract class RegionAbstractController {
 
 
     public void checkAllBusinessRestrictions(int id){
+        if(id >= 100000 && id < 100595)
+            throw new RegionIsDemoCityException(EXCEPTION_REGION_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
+    }
+
+    public void checkAllDeleteBusinessRestrictions(int id){
         if(cityService.get(id).getHotels().size() > 0)
             throw new RegionHasHotelsException(EXCEPTION_REGION_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
     }
@@ -107,5 +116,10 @@ public abstract class RegionAbstractController {
     @ExceptionHandler(RegionHasHotelsException.class)
     public ResponseEntity<ErrorInfo> regionHasHotels(HttpServletRequest req, RegionHasHotelsException e) {
         return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_REGION_HAS_HOTELS, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(RegionIsDemoCityException.class)
+    public ResponseEntity<ErrorInfo> regionIsDemoCity(HttpServletRequest req, RegionIsDemoCityException e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_REGION_IS_DEMO_CITY, HttpStatus.CONFLICT);
     }
 }

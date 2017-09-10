@@ -238,16 +238,21 @@
                     <div class="col-md-12">
                         <div class="panel-group">
                             <div class="panel panel-default">
-                                <div class="panel-heading">
+                                <div class="panel-heading filterHeading">
                                     <h3 class="panel-title">
-                                        <a data-toggle="collapse" href="#collapse1"><h4 class="text-center">
-                                            <spring:message code="common.check_av"/></h4></a>
+                                        <a data-toggle="collapse" href="#collapse1">
+                                            <h4 class="text-center">
+                                                <spring:message code="common.check_av"/>
+                                            </h4>
+                                        </a>
                                     </h3>
                                 </div>
                                 <div id="collapse1" class="panel-collapse collapse">
                                     <div class="panel-body" style="padding: 5px">
                                         <form:form class="form-horizontal" role="form" method="get" action="check_hotel_overall">
-                                            <h5 class="text-center"><spring:message code="common.note_booking_duration"/> </h5>
+                                            <h5 class="text-center">
+                                                <spring:message code="common.note_booking_duration"/>
+                                            </h5>
                                             <fieldset>
                                                 <input type="hidden" name="hotelId" value="${hotel.id}">
                                                 <div class="col-md-12">
@@ -294,7 +299,7 @@
                                                         <div class="col-md-5">
                                                             <div class="form-group">
                                                                 <label for="hotel_in_date" class="control-label text-center">
-                                                                    <spring:message code="super_bookings.fromDate"/>
+                                                                    <spring:message code="hotels.checkIn"/>
                                                                 </label>
                                                                 <div class="input-group">
                                                                     <input class="form-control in_date" id="hotel_in_date"
@@ -309,7 +314,7 @@
                                                         <div class="col-md-5">
                                                             <div class="form-group">
                                                                 <label for="hotel_out_date" class="control-label text-center">
-                                                                    <spring:message code="super_bookings.toDate"/>
+                                                                    <spring:message code="hotels.checkOut"/>
                                                                 </label>
                                                                 <div class="input-group">
                                                                     <input class="form-control out_date" id="hotel_out_date"
@@ -413,7 +418,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button type="submit" class="btn btn-default btn-lg btn-block">
+                                                    <button type="submit" class="btn btn-success btn-lg btn-block">
                                                         <spring:message code="common.check"/>
                                                     </button>
                                                 </form:form>
