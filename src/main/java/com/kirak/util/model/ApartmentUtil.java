@@ -109,7 +109,7 @@ public class ApartmentUtil {
                 aggregatedApartmentLists.put(availableApartmentsSortedByType.get(0).getType(),
                         Collections.singletonList(availableApartmentsSortedByType.get(0)));
             } else {
-                for (int i = 0; i < personNum; i++) {
+                for (int i = 0; i <= personNum; i++) {
                     for(Apartment a : availableApartmentsSortedByType) {
                         if (i == a.getType().getPersonNum()) {
                             if(!isAggregatedAptListCompleted(aggregatedApartments, personNum.intValue(), apartmentNum)) {

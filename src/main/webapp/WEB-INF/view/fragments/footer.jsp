@@ -32,7 +32,7 @@
             <ul class="nav nav-pills nav-justified" style="margin-bottom: 15px">
                 <li>
                     <a href="#disclaimerModal" data-toggle="modal" data-target="#disclaimerModal">
-                        <spring:message code="common.licence"/></a>
+                        <strong><spring:message code="common.licence"/></strong></a>
                 </li>
                 <li>
                     <a class="authorLink" href="https://kkaun.github.io/">
@@ -40,7 +40,8 @@
                          style="width: 70px; height: 14px;"/></a>
                 </li>
                 <li>
-                    <a href="mailto:kirkaun@gmail.com"><spring:message code="common.contact_author_mail"/></a>
+                    <a href="mailto:kirkaun@gmail.com">
+                        <strong><spring:message code="common.contact_author_mail"/></strong></a>
                 </li>
             </ul>
         </div>

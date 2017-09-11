@@ -14,8 +14,8 @@
     <div class="row" style="margin-bottom: 10px">
 
         <div class="col-md-6">
-            <h3 style="margin-top: 3px; font-family: 'Comfortaa', cursive;">
-                <strong><spring:message code="app.moto"/></strong></h3>
+            <h4 style="margin-top: 8px; font-family: 'Comfortaa', cursive;">
+                <strong><spring:message code="app.moto"/></strong></h4>
         </div>
 
         <div class="col-md-6">
@@ -44,8 +44,8 @@
                         <div class="panel-title">
                             <a data-toggle="collapse" href="#collapse1">
                                 <h4 class="text-center">
-                                    <span style="font-family: 'Poiret One', cursive;">
-                                        <strong><spring:message code="app.advanced_search"/></strong>
+                                    <span style="font-family: 'Poiret One', cursive; font-weight: 900">
+                                        <spring:message code="app.advanced_search"/>
                                     </span>
                                 </h4>
                             </a>
@@ -113,7 +113,8 @@
 
     <div class="row">
         <div class="well" style="background-color: #dfd7ad">
-            <h3 class="text-center" style="font-family: 'Poiret One', cursive;"><spring:message code="app.inspect_top_5"/></h3>
+            <h3 class="text-center" style="font-family: 'Poiret One', cursive; font-weight: 500">
+                <strong><spring:message code="app.inspect_top_5"/></strong></h3>
             <hr>
             <div class="list-group" style="background-color: #dfd7ad">
                 <c:forEach items="${hotelsFive}" var="hotel">

@@ -99,10 +99,10 @@
                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                 <h4>
                                     <spring:message code="common.nice_catch"/> <strong><c:out value="${placementPersonNum}"/></strong>
-                                    <spring:message code="common.solution"/>
-                                    <spring:message code="common.is_av_in_period"/> <strong><c:out value="${placementInDate}"/></strong>
+                                    <spring:message code="common.solutions"/>
+                                    <spring:message code="common.are_av_in_period"/> <strong><c:out value="${placementInDate}"/></strong>
                                     <spring:message code="common.and"/> <strong><c:out value="${placementOutDate}"/></strong>.
-                                    <spring:message code="common.feel_free"/>
+                                    <spring:message code="common.feel_free_multiple"/>
                                 </h4>
                             </div>
                             <hr>

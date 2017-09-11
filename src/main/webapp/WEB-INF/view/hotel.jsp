@@ -94,7 +94,7 @@
                     <div class="col-md-12">
                         <div class="alert alert-warning">
                             <h4>
-                                <c:out value="${notAvailablePlacement}"/>
+                                <spring:message code="common.placement_not_available"/>
                             </h4>
                             <br>
                         </div>

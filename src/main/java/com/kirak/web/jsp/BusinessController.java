@@ -164,10 +164,10 @@ public class BusinessController extends BusinessAbstractController {
                     PlacementUtil.calculateBookingSumForPlacement(placement, LocalDate.parse(inDate), LocalDate.parse(outDate)),
                     inDate, outDate);
         } else {
-            model.addAttribute("notAvailablePlacement", "Unfortunately, requested option is not " +
-                    "available for this object right now.");
+            model.addAttribute("notAvailablePlacement", true);
         }
         model.addAttribute("hotel", HotelUtil.asHotelTo(hotelService.get(Integer.parseInt(hotelId))));
+        model.addAttribute("apartments", apartmentService.getAllByHotel(Integer.parseInt(hotelId)));
         ModelUtil.addUniqueHotelParams(hotelService.get(Integer.parseInt(hotelId)), model);
         ModelUtil.addUniqueFilterParams(model, AptTypeUtil.getUniqueCategories(aptTypeService.getAll()));
         return "hotel";

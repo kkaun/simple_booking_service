@@ -122,11 +122,9 @@ public class HotelUtil {
 
     public static boolean isHotelSuitableByPersonNum(Hotel hotel, Short personNum){
 
-        return hotel.getApartments().stream()
-                .map(Apartment::getType)
-                .map(AptType::getPersonNum)
-                .collect(Collectors.toList()).stream()
-                .mapToInt(Short::shortValue).sum() >= (int)personNum;
+        final short[] hotelPersonSum = {0};
+        hotel.getApartments().forEach(apartment -> hotelPersonSum[0] += apartment.getType().getPersonNum());
+        return hotelPersonSum[0] >= personNum;
     }
 
     public static boolean isHotelSuitableByApartmentNum(Hotel hotel, Integer apartmentNum){
