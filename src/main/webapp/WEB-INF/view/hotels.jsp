@@ -233,7 +233,7 @@
                                     <c:if test="${empty placement.hotel.votesNum || placement.hotel.votesNum == 0}">
                                         <h4><spring:message code="common.no_votes"/></h4>
                                     </c:if>
-                                    <button type="button"
+                                    <button type="button" style="margin-top: 50px"
                                             href="inspect_placement?id=${placement.id}&personNum=${placementPersonNum}&
                                         apartmentNum=${placementApartmentNum}&inDate=${placementInDate}&outDate=${placementOutDate}"
                                             class="btn btn-info btn-lg btn-block"><spring:message code="common.view_book"/>

@@ -13,8 +13,8 @@
     <meta name="_csrf" content="${_csrf.token}"/>
     <meta name="_csrf_header" content="${_csrf.headerName}"/>
 
-    <link rel="shortcut icon" href='<c:url value="/resources/favicon.ico"/>' type="image/x-icon">
-    <link rel="icon" href='<c:url value="/resources/favicon.ico"/>' type="image/x-icon">
+    <link rel="shortcut icon" href='<c:url value="/resources/suppl/favicon.ico"/>' type="image/x-icon">
+    <link rel="icon" href='<c:url value="/resources/suppl/favicon.ico"/>' type="image/x-icon">
 
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">

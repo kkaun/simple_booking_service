@@ -93,33 +93,63 @@ public class ApartmentUtil {
 
     public static Map<AptType, List<Apartment>> aggregateDifferentAvailableApartmentsWithCount(List<Apartment> hotelApartments,
                                                                                                LocalDate inDate, LocalDate outDate,
-                                                                                               Short personNum, Integer apartmentNum){
+                                                                                               Short personNum, Integer apartmentNum) {
         Map<AptType, List<Apartment>> aggregatedApartmentLists = new HashMap<>();
-
-        Comparator<Apartment> byPersonNum = (Apartment a1, Apartment a2)-> Integer.compare(a2.getType().getPersonNum(),
-                a1.getType().getPersonNum());
-
-        List<Apartment> availableApartmentsSortedByType = hotelApartments.stream()
-                .filter(apartment -> isSingleApartmentAvailable(apartment, inDate, outDate))
-                .sorted(byPersonNum).collect(Collectors.toList());
-
         List<Apartment> aggregatedApartments = new ArrayList<>();
-        if(!availableApartmentsSortedByType.isEmpty()) {
-            if (apartmentNum == 1 && Objects.equals(personNum, availableApartmentsSortedByType.get(0).getType().getPersonNum())){
-                aggregatedApartmentLists.put(availableApartmentsSortedByType.get(0).getType(),
-                        Collections.singletonList(availableApartmentsSortedByType.get(0)));
-            } else {
-                for (int i = 0; i <= personNum; i++) {
-                    for(Apartment a : availableApartmentsSortedByType) {
-                        if (i == a.getType().getPersonNum()) {
-                            if(!isAggregatedAptListCompleted(aggregatedApartments, personNum.intValue(), apartmentNum)) {
-                                aggregatedApartments.add(a);
-        }}}}}}
 
+        Comparator<Apartment> byPersonNumDesc = (Apartment a1, Apartment a2) -> Integer.compare(a2.getType().getPersonNum(),
+                a1.getType().getPersonNum());
+        Comparator<Apartment> byPersonNumAsc = Comparator.comparingInt(a1 -> a1.getType().getPersonNum());
+
+        List<Apartment> availableApartmentsSortedByTypeDesc = hotelApartments.stream()
+                .filter(apartment -> isSingleApartmentAvailable(apartment, inDate, outDate))
+                .sorted(byPersonNumDesc).collect(Collectors.toList());
+        if (!availableApartmentsSortedByTypeDesc.isEmpty()) {
+            if (apartmentNum == 1) {
+                for (Apartment a : availableApartmentsSortedByTypeDesc) {
+                    if (personNum == (int) a.getType().getPersonNum()) {
+                        aggregatedApartmentLists.put(a.getType(), Collections.singletonList(a));
+                        break;
+                    }
+                }
+            }
+            if ((apartmentNum > 1 && apartmentNum <= availableApartmentsSortedByTypeDesc.size())
+                    && (availableApartmentsSortedByTypeDesc.stream().map(Apartment::getType).map(AptType::getPersonNum)
+                    .collect(Collectors.toList()).stream().mapToInt(Short::shortValue).sum() >= personNum)) {
+
+                List<Apartment> availableApartmentsSortedByTypeAsc = hotelApartments.stream()
+                        .filter(apartment -> isSingleApartmentAvailable(apartment, inDate, outDate))
+                        .sorted(byPersonNumAsc).collect(Collectors.toList());
+
+                List<Apartment> tempAptList = new ArrayList<>();
+                int generatedPersonNum = 0;
+                int generatedAptNum = 0;
+
+                for (Apartment a : availableApartmentsSortedByTypeAsc) {
+                    if (generatedPersonNum >= personNum && generatedAptNum >= apartmentNum) {
+                        break;
+                    }
+                    if (generatedPersonNum < personNum && generatedAptNum < apartmentNum) {
+                        for (int iterPersNum = 0; iterPersNum <= personNum; iterPersNum++) {
+                            if (iterPersNum == a.getType().getPersonNum()) {
+                                tempAptList.add(a);
+                                generatedPersonNum += a.getType().getPersonNum();
+                                generatedAptNum++;
+                            }
+                        }
+                    }
+                }
+                if (generatedPersonNum == personNum && generatedAptNum == apartmentNum) {
+                    for (Apartment fittingApt : tempAptList) {
+                        aggregatedApartmentLists.put(fittingApt.getType(), Collections.singletonList(fittingApt));
+                    }
+                }
+            }
+        }
         AptTypeUtil.getUniqueAptTypes(aggregatedApartments).forEach((aptType) -> {
             List<Apartment> typedApts = new ArrayList<>();
             aggregatedApartments.forEach(apartment -> {
-                if(apartment.getType().equals(aptType)){
+                if (apartment.getType().equals(aptType)) {
                     typedApts.add(apartment);
                 }
             });
@@ -138,8 +168,7 @@ public class ApartmentUtil {
                     int daysByPeriod = getOccupiedDaysForSingleApartmentInPeriod(subBooking, inDate, outDate);
                     if (daysByPeriod > 0){
                         daysOccupied[0] += daysByPeriod;
-                    }
-                });
+                    }});
         return daysOccupied[0] == 0;
     }
 
@@ -154,8 +183,7 @@ public class ApartmentUtil {
                     int daysByPeriod = getOccupiedDaysForSingleApartmentInPeriod(subBooking, inDate, outDate);
                     if (daysByPeriod > 0){
                         daysOccupied[0] += daysByPeriod;
-                    }
-                });
+                    }});
         return daysOccupied[0] == 0;
     }
 
@@ -179,8 +207,7 @@ public class ApartmentUtil {
             int daysByPeriod = getOccupiedDaysForSingleApartmentInPeriod(booking, inDate, outDate);
             if (daysByPeriod > 0){
                 daysOccupied[0] += daysByPeriod;
-            }
-        });
+            }});
 
         int requestPeriod = (int)ChronoUnit.DAYS.between(inDate, outDate);
         int daysInRequestPeriod = similarApartments.size()*requestPeriod;
@@ -216,15 +243,5 @@ public class ApartmentUtil {
         }
 
         return daysOccupied;
-    }
-
-
-    public static boolean isAggregatedAptListCompleted(List<Apartment> apartments, Integer personNum, Integer apartmentNum){
-
-        return (apartments.stream()
-                .map(Apartment::getType)
-                .map(AptType::getPersonNum)
-                .collect(Collectors.toList())
-                .stream().mapToInt(Short::shortValue).sum() == personNum) && apartments.size() == apartmentNum;
     }
 }
