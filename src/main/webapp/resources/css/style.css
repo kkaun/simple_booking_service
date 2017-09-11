@@ -288,9 +288,13 @@ a.listItem {
     height:auto;
     min-height:220px;
 }
+
+
 a.listItem.active small {
     color:#fff;
 }
+
+
 .stars {
     margin:20px auto 1px;
 }

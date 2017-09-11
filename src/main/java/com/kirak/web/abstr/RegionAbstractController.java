@@ -7,8 +7,8 @@ import com.kirak.service.CountryService;
 import com.kirak.to.PlaceTo;
 import com.kirak.util.ErrorInfo;
 import com.kirak.util.FileUploadUtil;
+import com.kirak.util.exception.model.cross_model.DemoEntityModificationException;
 import com.kirak.util.exception.model.region.RegionHasHotelsException;
-import com.kirak.util.exception.model.region.RegionIsDemoCityException;
 import com.kirak.util.model.RegionUtil;
 import com.kirak.web.ExceptionViewHandler;
 import org.slf4j.Logger;
@@ -105,7 +105,7 @@ public abstract class RegionAbstractController {
 
     public void checkAllBusinessRestrictions(int id){
         if(id >= 100000 && id < 100595)
-            throw new RegionIsDemoCityException(EXCEPTION_REGION_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
+            throw new DemoEntityModificationException(EXCEPTION_REGION_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
     }
 
     public void checkAllDeleteBusinessRestrictions(int id){
@@ -118,8 +118,8 @@ public abstract class RegionAbstractController {
         return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_REGION_HAS_HOTELS, HttpStatus.CONFLICT);
     }
 
-    @ExceptionHandler(RegionIsDemoCityException.class)
-    public ResponseEntity<ErrorInfo> regionIsDemoCity(HttpServletRequest req, RegionIsDemoCityException e) {
+    @ExceptionHandler(DemoEntityModificationException.class)
+    public ResponseEntity<ErrorInfo> regionIsDemoCity(HttpServletRequest req, DemoEntityModificationException e) {
         return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_REGION_IS_DEMO_CITY, HttpStatus.CONFLICT);
     }
 }

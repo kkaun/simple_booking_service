@@ -16,7 +16,7 @@
         <c:if test="${not empty city}">
             <c:choose>
                 <c:when test="${not empty city.imgPath && city.imgPath.length() >= 1}">
-                    <div class="jumbotron" style="height:200px;
+                    <div class="jumbotron" style="height:200px; background-size: cover;
                     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
                      url(${city.imgPath}) no-repeat center center; z-index:1;">
                     </div>
@@ -168,7 +168,7 @@
                     <c:if test="${not empty placements && empty hotels}">
                         <c:forEach items="${placements}" var="placement">
                             <jsp:useBean id="placement" scope="page" type="com.kirak.to.Placement"/>
-                            <a class="list-group-item listItem" style="padding-top: 20px; padding-bottom: 10px;"
+                            <a class="list-group-item listItem" style="padding-top: 20px; padding-bottom: 10px; min-height:400px"
                                href="inspect_placement?id=${placement.id}&personNum=${placementPersonNum}&apartmentNum=${placementApartmentNum}&inDate=${placementInDate}&outDate=${placementOutDate}">
                                 <div class="media col-md-3">
                                     <figure class="pull-left">

@@ -85,7 +85,7 @@
 
                     <div class="form-group">
                         <label for="aptPrice" class="control-label col-xs-3"><spring:message
-                                code="apartments.price"/></label>
+                                code="apartments.price"/>, <i class="fa fa-btc"></i></label>
                         <div class="col-xs-3">
                             <input class="form-control" type="text" id="aptPrice" name="price">
                         </div>

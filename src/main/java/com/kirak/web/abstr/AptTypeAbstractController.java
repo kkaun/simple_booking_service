@@ -5,8 +5,8 @@ import com.kirak.service.AptTypeService;
 import com.kirak.service.HotelService;
 import com.kirak.to.AptTypeTo;
 import com.kirak.util.ErrorInfo;
+import com.kirak.util.exception.model.cross_model.DemoEntityModificationException;
 import com.kirak.util.exception.model.apt_type.AptTypeHasApartmentsException;
-import com.kirak.util.exception.model.apt_type.AptTypeIsDemoException;
 import com.kirak.util.model.AptTypeUtil;
 import com.kirak.web.ExceptionViewHandler;
 import org.slf4j.Logger;
@@ -77,7 +77,7 @@ public abstract class AptTypeAbstractController {
 
     public void checkAllBusinessRestrictions(short id){
         if(id >= 1 && id < 29)
-            throw new AptTypeIsDemoException(EXCEPTION_APT_TYPE_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
+            throw new DemoEntityModificationException(EXCEPTION_APT_TYPE_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
         if(apartmentService.getAll().stream()
                 .filter(apartment -> Objects.equals(apartment.getType().getId(), id)).count() > 0)
             throw new AptTypeHasApartmentsException(EXCEPTION_APT_TYPE_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
@@ -88,8 +88,8 @@ public abstract class AptTypeAbstractController {
         return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_APT_TYPE_HAS_APARTMENTS, HttpStatus.CONFLICT);
     }
 
-    @ExceptionHandler(AptTypeIsDemoException.class)
-    public ResponseEntity<ErrorInfo> aptTypeIsDemo(HttpServletRequest req, AptTypeIsDemoException e) {
+    @ExceptionHandler(DemoEntityModificationException.class)
+    public ResponseEntity<ErrorInfo> aptTypeIsDemo(HttpServletRequest req, DemoEntityModificationException e) {
         return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_APT_TYPE_IS_DEMO_TYPE, HttpStatus.CONFLICT);
     }
 }

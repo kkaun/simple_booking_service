@@ -7,8 +7,8 @@ import com.kirak.service.UserService;
 import com.kirak.to.HotelTo;
 import com.kirak.util.ErrorInfo;
 import com.kirak.util.FileUploadUtil;
+import com.kirak.util.exception.model.cross_model.DemoEntityModificationException;
 import com.kirak.util.exception.model.hotel.HotelHasBookingsException;
-import com.kirak.util.exception.model.hotel.HotelIsDemoException;
 import com.kirak.util.exception.model.hotel.HotelRegionsNotMatchingException;
 import com.kirak.util.exception.model.hotel.ManagerHotelHasBookingsException;
 import com.kirak.util.model.HotelUtil;
@@ -24,7 +24,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 import static com.kirak.util.ValidationUtil.checkIdConsistency;
@@ -71,13 +70,13 @@ public abstract class HotelAbstractController {
     public void update(HotelTo hotelTo, int id){
         LOG.info("Updating {}", hotelTo);
         checkIdConsistency(hotelTo, id);
-        checkOtherBusinessRestrictions(id);
+        checkOverallBusinessRestrictions(id);
         hotelService.update(hotelTo);
     }
 
     public void delete(Integer id){
         LOG.info("Deleting hotel {}", id);
-        checkOtherBusinessRestrictions(id);
+        checkOverallBusinessRestrictions(id);
         checkDeleteBusinessRestrictions(id);
         hotelService.delete(id);
     }
@@ -136,9 +135,9 @@ public abstract class HotelAbstractController {
         }
     }
 
-    private void checkOtherBusinessRestrictions(int id){
+    private void checkOverallBusinessRestrictions(int id){
         if(id >= 100000 && id <= 100022)
-            throw new HotelIsDemoException(EXCEPTION_HOTEL_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
+            throw new DemoEntityModificationException(EXCEPTION_HOTEL_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
     }
 
     private void checkDeleteBusinessRestrictions(int id){
@@ -177,8 +176,8 @@ public abstract class HotelAbstractController {
         return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_HOTEL_REGIONS_NOT_MATCHING, HttpStatus.CONFLICT);
     }
 
-    @ExceptionHandler(HotelIsDemoException.class)
-    public ResponseEntity<ErrorInfo> objectIsDemo(HttpServletRequest req, HotelIsDemoException e) {
+    @ExceptionHandler(DemoEntityModificationException.class)
+    public ResponseEntity<ErrorInfo> objectIsDemo(HttpServletRequest req, DemoEntityModificationException e) {
         return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_HOTEL_IS_DEMO_OBJECT, HttpStatus.CONFLICT);
     }
 }

@@ -6,8 +6,17 @@
 var indexOptions = {
     url: "/retrieve_regions/cities",
     getValue: "name",
+    template: {
+        type: "description",
+        fields: {
+            description: "countryName"
+        }
+    },
     list: {
         match: {
+            enabled: true
+        },
+        sort: {
             enabled: true
         },
         maxNumberOfElements: 5
@@ -19,8 +28,17 @@ var indexOptions = {
 var primaryFilterOptions = {
     url: "/retrieve_regions/cities",
     getValue: "name",
+    template: {
+        type: "description",
+        fields: {
+            description: "countryName"
+        }
+    },
     list: {
         match: {
+            enabled: true
+        },
+        sort: {
             enabled: true
         },
         maxNumberOfElements: 4
@@ -32,8 +50,17 @@ var primaryFilterOptions = {
 var sideFilterOptions = {
     url: "/retrieve_regions/cities",
     getValue: "name",
+    template: {
+        type: "description",
+        fields: {
+            description: "countryName"
+        }
+    },
     list: {
         match: {
+            enabled: true
+        },
+        sort: {
             enabled: true
         },
         maxNumberOfElements: 4

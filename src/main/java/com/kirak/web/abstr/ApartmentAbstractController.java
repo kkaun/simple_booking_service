@@ -6,6 +6,7 @@ import com.kirak.service.*;
 import com.kirak.to.ApartmentTo;
 import com.kirak.util.ErrorInfo;
 import com.kirak.util.FileUploadUtil;
+import com.kirak.util.exception.model.cross_model.DemoEntityModificationException;
 import com.kirak.util.exception.model.apartment.ApartmentHasActiveBookingsException;
 import com.kirak.util.exception.model.apartment.ApartmentHasBookingsException;
 import com.kirak.util.model.ApartmentUtil;
@@ -28,6 +29,7 @@ import java.util.Random;
 public abstract class ApartmentAbstractController {
 
     public static final String EXCEPTION_APARTMENT_HAS_BOOKINGS = "exception.apartment.hasBookings";
+    public static final String EXCEPTION_APARTMENT_IS_DEMO_APARTMENT = "exception.apartment.isDemoApartment";
     public static final String EXCEPTION_APARTMENT_HAS_ACTIVE_BOOKINGS = "exception.apartment.hasActiveBookings";
     public static final String EXCEPTION_APARTMENT_MODIFICATION_RESTRICTION = "exception.apartment.modificationRestriction";
 
@@ -58,7 +60,8 @@ public abstract class ApartmentAbstractController {
 
     public void update(ApartmentTo apartmentTo, Integer hotelId){
         LOG.info("Updating {}", apartmentTo);
-        checkEditApartmentBusinessRestrictions(apartmentTo.getId());
+        checkOverallBusinessRestrictions(apartmentTo.getId());
+        checkEditBusinessRestrictions(apartmentTo.getId());
         apartmentService.update(apartmentTo, hotelId, aptTypeService.getAll());
     }
 
@@ -74,7 +77,8 @@ public abstract class ApartmentAbstractController {
 
     public void delete(Integer id){
         LOG.info("Deleting city {}", id);
-        checkDeleteApartmentBusinessRestrictions(id);
+        checkOverallBusinessRestrictions(id);
+        checkDeleteBusinessRestrictions(id);
         apartmentService.delete(id);
     }
 
@@ -93,16 +97,19 @@ public abstract class ApartmentAbstractController {
         }
     }
 
+    public void checkOverallBusinessRestrictions(int id){
+        if(id >= 100000 && id <= 100022)
+            throw new DemoEntityModificationException(EXCEPTION_APARTMENT_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
+    }
 
-    public void checkEditApartmentBusinessRestrictions(int id){
+    public void checkEditBusinessRestrictions(int id){
         if(!ApartmentUtil.isSingleApartmentAvailable(apartmentService.get(id), LocalDate.now().minusDays(1), LocalDate.MAX))
             throw new ApartmentHasActiveBookingsException(EXCEPTION_APARTMENT_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
     }
 
-    public void checkDeleteApartmentBusinessRestrictions(int id){
-        if(!apartmentService.get(id).getSubBookings().isEmpty()){
+    public void checkDeleteBusinessRestrictions(int id){
+        if(!apartmentService.get(id).getSubBookings().isEmpty())
             throw new ApartmentHasBookingsException(EXCEPTION_APARTMENT_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
-        }
     }
 
     @ExceptionHandler(ApartmentHasActiveBookingsException.class)
@@ -113,6 +120,11 @@ public abstract class ApartmentAbstractController {
     @ExceptionHandler(ApartmentHasBookingsException.class)
     public ResponseEntity<ErrorInfo> apartmentHasBookings(HttpServletRequest req, ApartmentHasBookingsException e) {
         return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_APARTMENT_HAS_BOOKINGS, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(DemoEntityModificationException.class)
+    public ResponseEntity<ErrorInfo> apartmentIsDemo(HttpServletRequest req, DemoEntityModificationException e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_APARTMENT_IS_DEMO_APARTMENT, HttpStatus.CONFLICT);
     }
 
 }

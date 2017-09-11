@@ -29,7 +29,7 @@
                             <form:form class="form-horizontal filter" id="placesAdminFilter">
                                 <div class="form-group">
                                     <label class="control-label col-sm-4" for="region">
-                                        <spring:message code="city.byRegion"/>:</label>
+                                        <spring:message code="city.byRegion"/> <spring:message code="common.in_latin"/> :</label>
                                     <div class="col-sm-5">
                                         <input class="form-control" name="region" id="region">
                                     </div>
