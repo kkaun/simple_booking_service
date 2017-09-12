@@ -103,6 +103,9 @@
                 <h4><span><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>
                     <spring:message code="common.all_active_inputs_required"/></h4>
                 <hr>
+                <h5><span><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>
+                    <spring:message code="common.latin_letters_req"/></h5>
+                <hr>
                 <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
 

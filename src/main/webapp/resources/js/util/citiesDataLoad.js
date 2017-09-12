@@ -114,3 +114,4 @@ $("#cityNamesList").easyAutocomplete(objectPlacesOptions);
 $(".index-cities-input").easyAutocomplete(indexOptions);
 $(".primary-cities-input").easyAutocomplete(primaryFilterOptions);
 $(".side-cities-input").easyAutocomplete(sideFilterOptions);
+$("#region").easyAutocomplete(objectCountriesOptions);

@@ -2,11 +2,13 @@
 
 --- js Gantt Chart is http://taitems.github.io/jQuery.Gantt/ project. All credits belong to project's contributors.
 
---- Favicon image and author logo: graphic by <a href="https://thenounproject.com/xinhstudio">tnp_xinhstudio</a> from
+--- Favicon image: graphic by <a href="https://thenounproject.com/xinhstudio">tnp_xinhstudio</a> from
 <a href="https://thenounproject.com/">TheNounProject</a> is licensed under
 <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>.
 Check out the new logo that I created on <a href="http://logomakr.com" title="Logo Maker">LogoMaker.com</a>
 https://logomakr.com/36fszS36fszS
+
+--- Author logo: <a href="https://thenounproject.com>"></a>
 
 --- Favicon set generated from image by https://www.favicon-generator.org/
 

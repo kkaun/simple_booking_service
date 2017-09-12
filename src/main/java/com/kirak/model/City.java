@@ -1,11 +1,10 @@
 package com.kirak.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kirak.model.abstraction.BaseIntEntity;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.Set;
 
 /**
@@ -15,6 +14,7 @@ import java.util.Set;
 @Table(name = "city")
 public class City extends BaseIntEntity {
 
+    @Pattern(regexp = "^[A-Za-z .'-]+$")
     @Column(name = "name")
     private String name;
 

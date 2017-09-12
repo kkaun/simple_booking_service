@@ -4,6 +4,7 @@ import com.kirak.model.abstraction.BaseShortEntity;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 
 /**
  * Created by Kir on 11.06.2017.
@@ -12,10 +13,12 @@ import javax.persistence.*;
 @Table(name = "apt_type")
 public class AptType extends BaseShortEntity {
 
+    @Pattern(regexp = "^[A-Za-z .'-]+$")
     @Length(min = 3, max = 255)
     @Column(name = "beds_arrangement")
     private String bedsArrangement;
 
+    @Pattern(regexp = "^[A-Za-z .'-]+$")
     @Length(min = 3, max = 255)
     @Column(name = "category")
     private String category;

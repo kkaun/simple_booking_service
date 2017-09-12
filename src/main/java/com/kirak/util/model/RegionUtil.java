@@ -72,19 +72,18 @@ public class RegionUtil {
                 .findFirst().orElse(null).getCountry();
     }
 
-//    public static List<AutocompletePlaceTo> getAutocompletePlaceTos(List<City> cities){
-//        return cities.stream()
-//                .map(RegionUtil::getAutocompletePlaceTosForCity)
-//                .collect(Collectors.toList());
-//    }
+    public static boolean isEditedPlaceNameDuplicated(List<City> countryPlaces, Country foundCountry, PlaceTo placeTo){
 
-//    public static AutocompletePlaceTo getAutocompletePlaceTosForCity(City city){
-//        String[] arr = city.getName().split("[-.,_ :]");
-//        StringBuilder shortName = new StringBuilder();
-//
-//        for(String s : arr){
-//            shortName.append(s.substring(0,1));
-//        }
-//        return new AutocompletePlaceTo(city.getName(), shortName.toString());
-//    }
+        return foundCountry != null && countryPlaces.stream()
+                .filter(city -> !Objects.equals(city.getId(), placeTo.getId()))
+                .filter(city -> Arrays.equals(city.getName().toLowerCase().split(" "),
+                        placeTo.getName().toLowerCase().split(" "))).count() > 0;
+    }
+
+    public static boolean isNewRegionNameDuplicated(List<City> countryPlaces, Country foundCountry, PlaceTo placeTo){
+
+        return foundCountry != null && countryPlaces.stream()
+                .filter(city -> Arrays.equals(city.getName().toLowerCase().split(" "),
+                        placeTo.getName().toLowerCase().split(" "))).count() > 0;
+    }
 }

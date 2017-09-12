@@ -79,25 +79,25 @@
                                             <table class="table table-responsive" style="margin: 0 auto">
                                                 <tr>
                                                     <td><spring:message code="subBookings.personNum"/></td>
-                                                    <td><c:out value="${placementPersonNum}"/></td>
+                                                    <td><strong><c:out value="${placementPersonNum}"/></strong></td>
                                                 </tr>
                                                 <tr>
                                                     <td><spring:message code="super_bookings.apartmentsNum"/></td>
-                                                    <td><c:out value="${placementApartmentNum}"/></td>
+                                                    <td><strong><c:out value="${placementApartmentNum}"/></strong></td>
                                                 </tr>
                                                 <tr>
                                                     <td><spring:message code="hotels.checkIn"/></td>
-                                                    <td><c:out value="${placementInDate}"/>
+                                                    <td><strong><c:out value="${placementInDate}"/></strong>
                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<c:out value="${hotel.checkIn}"/></td>
                                                 </tr>
                                                 <tr>
                                                     <td><spring:message code="hotels.checkOut"/></td>
-                                                    <td><c:out value="${placementOutDate}"/>
+                                                    <td><strong><c:out value="${placementOutDate}"/></strong>
                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<c:out value="${hotel.checkOut}"/></td>
                                                 </tr>
                                                 <tr>
                                                     <td><spring:message code="common.total_sum"/></td>
-                                                    <td><i class="fa fa-btc"></i> <c:out value="${placementSum}"/>0</td>
+                                                    <td><i class="fa fa-btc"></i> <strong><c:out value="${placementSum}"/>0</strong></td>
                                                 </tr>
                                             </table>
                                         </div>
