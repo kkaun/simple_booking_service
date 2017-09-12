@@ -12,8 +12,10 @@
     <bean class="com.kirak.web.json.JacksonObjectMapper" id="objectMapper" factory-method="getMapper"/>
 
     <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
-    <mvc:resources mapping="/images/**" location="file:///D:/booking_demo_images/"/>
     <mvc:resources mapping="/resources/**" location="/resources/"/>
+
+    <!--changed for linux deployment-->
+    <mvc:resources mapping="/images/**" location="file:////booking_demo_resources/booking_demo_images/"/>
 
     <mvc:default-servlet-handler/>
     <mvc:annotation-driven/>

@@ -68,7 +68,7 @@
                                                         <td>x<strong>${fn:length(apartment.value)}</strong>
                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                             <i class="fa fa-btc"></i>
-                                                            <strong>${apartment.value[0].price}</strong> <spring:message code="common.per_night"/>
+                                                            <strong>${apartment.value[0].price}0</strong> <spring:message code="common.per_night"/>
                                                         </td>
                                                     </tr>
                                                 </c:forEach>

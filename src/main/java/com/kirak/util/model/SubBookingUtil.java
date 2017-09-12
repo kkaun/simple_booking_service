@@ -88,10 +88,7 @@ public class SubBookingUtil {
         Map<Apartment, List<SubBooking>> apartmentsWithOwnSubBookings = new HashMap<>();
         List<ChartTo> chartBookingTos = new ArrayList<>();
 
-        Comparator<Apartment> byPersonNum = (Apartment a1, Apartment a2) ->
-                (a1.getType().getPersonNum().compareTo(a2.getType().getPersonNum()));
-
-        objectApartments.stream().sorted(byPersonNum).forEach(apartment -> {
+        objectApartments.forEach(apartment -> {
             List<SubBooking> ownSubBookings = new ArrayList<>();
             activeHotelSubBookings.forEach(subBooking -> {
                 if(subBooking.getApartment().equals(apartment))
@@ -104,7 +101,7 @@ public class SubBookingUtil {
 
             List<ChartValue> chartValues = new ArrayList<>();
 
-            String name = String.valueOf(apartment.getType().getPersonNum()) + "-p. "
+            String name = String.valueOf(apartment.getType().getPersonNum()) + " "
                     + StringUtils.capitalize(apartment.getType().getCategory())
                     + " | " + StringUtils.capitalize(apartment.getType().getBedsArrangement().toLowerCase());
 
@@ -133,7 +130,10 @@ public class SubBookingUtil {
             chartBookingTos.add(new ChartTo(name, chartValues));
         });
 
-        return chartBookingTos;
+        Comparator<ChartTo> byPersonNum = Comparator.comparingInt(c ->
+                Integer.parseInt(c.getName().substring(0, c.getName().indexOf(" "))));
+
+        return chartBookingTos.stream().sorted(byPersonNum).collect(Collectors.toList());
     }
 
 }
