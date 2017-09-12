@@ -136,7 +136,7 @@ public abstract class HotelAbstractController {
     }
 
     private void checkOverallBusinessRestrictions(int id){
-        if(id >= 100000 && id <= 100022)
+        if(id >= 100000 && id <= 100021)
             throw new DemoEntityModificationException(EXCEPTION_HOTEL_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
     }
 

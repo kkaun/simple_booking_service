@@ -28,7 +28,7 @@
 <div class="container text-center" style="margin-bottom: 40px">
     <hr>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 text-center">
             <ul class="nav nav-pills nav-justified" style="margin-bottom: 15px">
                 <li>
                     <a href="#disclaimerModal" data-toggle="modal" data-target="#disclaimerModal">

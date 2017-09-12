@@ -19,7 +19,7 @@ public class Apartment extends BaseIntEntity {
     @NotNull
     private AptType type;
 
-    @Column(name = "price", precision=8, scale=2)
+    @Column(name = "price", precision=8, scale=2, nullable = false)
     @NotNull
     private Double price;
 

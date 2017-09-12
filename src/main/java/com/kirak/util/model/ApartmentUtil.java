@@ -98,7 +98,7 @@ public class ApartmentUtil {
 
         Comparator<Apartment> byPersonNumDesc = (Apartment a1, Apartment a2) -> Integer.compare(a2.getType().getPersonNum(),
                 a1.getType().getPersonNum());
-        Comparator<Apartment> byPersonNumAsc = Comparator.comparingInt(a1 -> a1.getType().getPersonNum());
+        //Comparator<Apartment> byPersonNumAsc = Comparator.comparingInt(a1 -> a1.getType().getPersonNum());
 
         List<Apartment> availableApartmentsSortedByTypeDesc = hotelApartments.stream()
                 .filter(apartment -> isSingleApartmentAvailable(apartment, inDate, outDate))
@@ -113,53 +113,65 @@ public class ApartmentUtil {
                     }
                 }
             }
-            if ((apartmentNum > 1 && apartmentNum <= availableApartmentsSortedByTypeDesc.size())
-                    && (availableApartmentsSortedByTypeDesc.stream().map(Apartment::getType).map(AptType::getPersonNum)
-                    .collect(Collectors.toList()).stream().mapToInt(Short::shortValue).sum() >= personNum)) {
-                aggregatedApartmentLists = getAptMatchingList(availableApartmentsSortedByTypeDesc, personNum,
-                        apartmentNum, aggregatedApartmentLists);
+            if (apartmentNum > 1) {
+                if (availableApartmentsSortedByTypeDesc.stream()
+                        .filter(apartment -> (apartment.getType().getPersonNum() - (personNum/apartmentNum) == 0))
+                        .count() >= apartmentNum) {
+                    int leftAptNum = apartmentNum;
+                    for (Apartment a : availableApartmentsSortedByTypeDesc) {
+                        if(leftAptNum == 0){
+                            break;
+                        }
+                        if (personNum / apartmentNum == (int) a.getType().getPersonNum()) {
+                            aggregatedApartmentLists.put(a.getType(), Collections.singletonList(a));
+                            leftAptNum--;
+                        }
+                    }
+                } else {
+                    aggregatedApartmentLists = getGreedyAptMatchingList(availableApartmentsSortedByTypeDesc, personNum,
+                            apartmentNum, aggregatedApartmentLists);
+                }
             }
         }
-
         return aggregatedApartmentLists;
     }
 
 
-    public static Map<AptType, List<Apartment>> getAptMatchingList(List<Apartment> availableApartmentsSortedByTypeDesc,
-                                                                   short personNum, int apartmentNum,
-                                                                   Map<AptType, List<Apartment>> aggregatedApartmentLists){
+    public static Map<AptType, List<Apartment>> getGreedyAptMatchingList(List<Apartment> availableApartmentsSortedByTypeDesc,
+                                                                         short personNum, int apartmentNum,
+                                                                         Map<AptType, List<Apartment>> aggregatedApartmentLists){
         List<Apartment> matchingAptList = new ArrayList<>();
 
-        int generatedPersonNum = personNum;
-        int generatedAptNum = apartmentNum;
+        int actualAptNum = 0;
+        int leftPersonNum = personNum;
+        int leftAptNum = apartmentNum;
 
-        while (generatedPersonNum > 0) {
-            if(generatedAptNum <= 0){
+        while (leftPersonNum > 0) {
+            if(leftAptNum <= 0){
                 break;
             }
-            if (generatedPersonNum >= 1) {
-                for (Apartment a : availableApartmentsSortedByTypeDesc) {
-                    for(int i = generatedPersonNum; i >= 1; i--) {
-                        if (a.getType().getPersonNum() == i && generatedAptNum > 0) {
-                            matchingAptList.add(a);
-                            generatedPersonNum -= i;
-                            generatedAptNum--;
-                        }
-                        if(generatedPersonNum == 0){
-                            break;
-                        }
+            for (Apartment a : availableApartmentsSortedByTypeDesc) {
+                for(int i = leftPersonNum; i >= 1; i--) {
+                    if (a.getType().getPersonNum() == i && leftAptNum > 0) {
+                        matchingAptList.add(a);
+                        actualAptNum++;
+                        leftPersonNum -= i;
+                        leftAptNum--;
                     }
-                    if(generatedPersonNum == 0){
+                    if(leftPersonNum == 0){
                         break;
                     }
                 }
-                if (generatedPersonNum > 0) {
-                    generatedAptNum--;
+                if(leftPersonNum == 0){
+                    break;
                 }
+            }
+            if (leftPersonNum > 0) {
+                leftAptNum--;
             }
         }
 
-        if (generatedAptNum == 0) {
+        if (leftAptNum == 0 && actualAptNum == apartmentNum) {
             for (Apartment matchingApt : matchingAptList) {
                 aggregatedApartmentLists.put(matchingApt.getType(), Collections.singletonList(matchingApt));
             }

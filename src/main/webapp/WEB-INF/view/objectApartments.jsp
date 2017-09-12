@@ -79,6 +79,9 @@
                 <h4><span><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>
                     <spring:message code="common.all_active_inputs_required"/></h4>
                 <hr>
+                <h5 id="aptEditWarning"><span><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>
+                    <spring:message code="common.all_apt_price_change"/></h5>
+                <hr>
                 <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">
                     <input type="hidden" id="hotelId" name="hotelId">

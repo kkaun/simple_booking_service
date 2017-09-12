@@ -45,6 +45,7 @@ function updateObjectChildrenTableByData(data) {
 
 
 function addApartment() {
+    $('#aptEditWarning').hide();
     $('#apartmentModalTitle').html(i18n["addTitle"]);
     form.find(":input").val("");
     $('.load-bar').hide();
@@ -59,6 +60,7 @@ function renderApartmentEditBtn(data, type, row) {
 }
 
 function updateApartmentRow(id) {
+    $('#aptEditWarning').show();
     $('#apartmentModalTitle').html(i18n["editTitle"]);
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
