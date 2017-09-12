@@ -52,6 +52,21 @@ public class ApartmentUtil {
         return apartment;
     }
 
+    public static List<Apartment> getApartmentsWithUniqueTypes(List<ApartmentTo> apartmentTos, List<Apartment> apartments){
+
+        List<Apartment> readyApartments = new ArrayList<>();
+        Map<String, ApartmentTo> tosWithUniqueTypes = new HashMap<>();
+        apartmentTos.forEach(apartmentTo -> tosWithUniqueTypes.put(apartmentTo.getStringAptType(), apartmentTo));
+
+        apartments.forEach(apartment ->
+                tosWithUniqueTypes.values().forEach(apartmentTo -> {
+                    if (Objects.equals(apartment.getId(), apartmentTo.getId())) {
+                        readyApartments.add(apartment);
+                    }
+                }));
+
+        return readyApartments;
+    }
 
     // --------------------------- General Methods ----------------------- //
 
@@ -114,23 +129,8 @@ public class ApartmentUtil {
                 }
             }
             if (apartmentNum > 1) {
-                if (availableApartmentsSortedByTypeDesc.stream()
-                        .filter(apartment -> (apartment.getType().getPersonNum() - (personNum/apartmentNum) == 0))
-                        .count() >= apartmentNum) {
-                    int leftAptNum = apartmentNum;
-                    for (Apartment a : availableApartmentsSortedByTypeDesc) {
-                        if(leftAptNum == 0){
-                            break;
-                        }
-                        if (personNum / apartmentNum == (int) a.getType().getPersonNum()) {
-                            aggregatedApartmentLists.put(a.getType(), Collections.singletonList(a));
-                            leftAptNum--;
-                        }
-                    }
-                } else {
-                    aggregatedApartmentLists = getGreedyAptMatchingList(availableApartmentsSortedByTypeDesc, personNum,
-                            apartmentNum, aggregatedApartmentLists);
-                }
+                aggregatedApartmentLists = getGreedyAptMatchingList(availableApartmentsSortedByTypeDesc,
+                        personNum, apartmentNum, aggregatedApartmentLists);
             }
         }
         return aggregatedApartmentLists;

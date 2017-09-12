@@ -3,7 +3,6 @@ package com.kirak.web;
 import com.kirak.model.*;
 import com.kirak.to.ApartmentTo;
 import com.kirak.to.HotelTo;
-import com.kirak.to.PlaceTo;
 import com.kirak.to.Placement;
 import com.kirak.util.model.ApartmentUtil;
 import com.kirak.util.model.AptTypeUtil;
@@ -68,7 +67,8 @@ public class ModelUtil {
 
     public static void addInspectPlacementView(Model model, Placement placement, List<Apartment> apartments, HotelTo hotelTo){
         model.addAttribute("options", placement.getOption().values());
-        model.addAttribute("apartments", apartments);
+        model.addAttribute("apartments", ApartmentUtil.getApartmentsWithUniqueTypes(
+                ApartmentUtil.getApartmentTos(apartments), apartments));
         model.addAttribute("hotel", hotelTo);
     }
 

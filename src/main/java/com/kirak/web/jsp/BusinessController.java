@@ -4,17 +4,12 @@ import com.kirak.model.*;
 import com.kirak.service.*;
 import com.kirak.to.HotelTo;
 import com.kirak.to.Placement;
-import com.kirak.util.ErrorInfo;
 import com.kirak.util.model.*;
-import com.kirak.web.ExceptionViewHandler;
 import com.kirak.web.ModelUtil;
 import com.kirak.web.abstr.BusinessAbstractController;
 import com.kirak.web.session.AuthorizedUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Scope;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,12 +17,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Random;
 
 /**
@@ -146,7 +138,9 @@ public class BusinessController extends BusinessAbstractController {
     public String hotel(@RequestParam("id") String hotelId, Model model) {
         ModelUtil.addUniqueHotelParams(hotelService.get(Integer.parseInt(hotelId)), model);
         ModelUtil.addUniqueFilterParams(model, AptTypeUtil.getUniqueCategories(aptTypeService.getAll()));
-        model.addAttribute("apartments", apartmentService.getAllByHotel(Integer.parseInt(hotelId)));
+        List<Apartment> hotelApartments = apartmentService.getAllByHotel(Integer.parseInt(hotelId));
+        model.addAttribute("apartments", ApartmentUtil.getApartmentsWithUniqueTypes(
+                ApartmentUtil.getApartmentTos(hotelApartments), hotelApartments));
         model.addAttribute("hotel", HotelUtil.asHotelTo(hotelService.get(Integer.parseInt(hotelId))));
         return "hotel";
     }

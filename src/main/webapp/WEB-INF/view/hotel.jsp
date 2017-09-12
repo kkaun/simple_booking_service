@@ -54,11 +54,14 @@
                                     </figure>
                                 </div>
                                 <div class="col-md-6 text-center">
-                                    <h3> <spring:message code="common.average"/> <c:out value="${hotel.rating}"/><small> /10</small>
-                                    </h3>
-                                    <h4>
-                                        <small><spring:message code="common.votes_num"/></small> <c:out value="${hotel.votesNum}"/>
-                                    </h4>
+                                    <c:if test="${hotel.votesNum > 0}">
+                                        <h3> <spring:message code="common.average"/> <c:out value="${hotel.rating}"/><small> /10</small></h3>
+                                        <h4><small><spring:message code="common.votes_num"/></small>
+                                            <c:out value="${hotel.votesNum}"/></h4>
+                                    </c:if>
+                                    <c:if test="${empty hotel.votesNum || hotel.votesNum == 0}">
+                                        <h4> <spring:message code="common.no_votes"/> </h4>
+                                    </c:if>
                                 </div>
                             </div>
                         </div>
@@ -347,7 +350,6 @@
                 <c:if test="${not empty hotel && not empty apartments}">
                     <h3 class="text-center"><spring:message code="common.inspect_obj_apts"/></h3>
                     <br>
-
                         <c:forEach items="${apartments}" var="apartment" varStatus="vs">
                             <div class="list-group">
                             <a class="list-group-item listItem">
