@@ -26,7 +26,7 @@ public class ModelUtil {
 
     public static void addUniqueFilterParams(Model model, List<String> types){
         model.addAttribute("categories", types);
-        model.addAttribute("personNums", IntStream.rangeClosed(1, 20).boxed().collect(Collectors.toList()));
+        model.addAttribute("personNums", IntStream.rangeClosed(1, 15).boxed().collect(Collectors.toList()));
         model.addAttribute("apartmentNums", IntStream.rangeClosed(1, 5).boxed().collect(Collectors.toList()));
     }
 

@@ -168,7 +168,7 @@
                     <c:if test="${not empty placements && empty hotels}">
                         <c:forEach items="${placements}" var="placement">
                             <jsp:useBean id="placement" scope="page" type="com.kirak.to.Placement"/>
-                            <a class="list-group-item listItem" style="padding-top: 20px; padding-bottom: 10px; min-height:400px"
+                            <a class="list-group-item listItem" style="padding-top: 20px; padding-bottom: 10px; overflow: auto"
                                href="inspect_placement?id=${placement.id}&personNum=${placementPersonNum}&apartmentNum=${placementApartmentNum}&inDate=${placementInDate}&outDate=${placementOutDate}">
                                 <div class="media col-md-3">
                                     <figure class="pull-left">
@@ -187,10 +187,10 @@
                                         <h4 class="list-group-item-heading"><c:out
                                                 value="${placement.hotel.name}"/></h4>
                                         <hr>
-                                    </div>
-                                    <div class="col-md-12">
                                         <h5 style="margin-top: 7px;"><strong> <spring:message
                                                 code="common.optimal_placement_title"/> </strong></h5>
+                                    </div>
+                                    <div class="col-md-12">
                                         <div class="well"
                                              style="background-color: lightgreen; padding-top: 5px; padding-bottom: 5px;">
                                             <table class="table-responsive">
