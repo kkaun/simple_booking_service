@@ -58,7 +58,6 @@ public abstract class ApartmentAbstractController {
 
     public void create(ApartmentTo apartmentTo, Integer hotelId){
         LOG.info("Saving {}", apartmentTo);
-        checkCreateBusinessRestrictions(apartmentTo, hotelId);
         Hotel ownHotel = hotelService.get(hotelId);
         apartmentService.save(apartmentTo, ownHotel, aptTypeService.getAll());
     }
@@ -67,13 +66,6 @@ public abstract class ApartmentAbstractController {
         LOG.info("Updating {}", apartmentTo);
         checkDemoBusinessRestrictions(apartmentTo.getId());
         checkEditBusinessRestrictions(apartmentTo.getId());
-        List<Apartment> sameApts = apartmentService.getAllByHotel(hotelId).stream()
-                .filter(apartment -> Objects.equals(ApartmentUtil.getStringAptTypeFromApartment(apartment),
-                        apartmentTo.getStringAptType())).collect(Collectors.toList());
-        for (Apartment a : sameApts) {
-            a.setPrice(apartmentTo.getPrice());
-            apartmentService.update(a, hotelId);
-        }
         apartmentService.update(apartmentTo, hotelId, aptTypeService.getAll());
     }
 
@@ -116,15 +108,6 @@ public abstract class ApartmentAbstractController {
             throw new DemoEntityModificationException(EXCEPTION_APARTMENT_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
     }
 
-    public void checkCreateBusinessRestrictions(ApartmentTo apartmentTo, int hotelId){
-        if(apartmentService.getAllByHotel(hotelId).stream()
-                .filter(apartment -> Objects.equals(ApartmentUtil.getStringAptTypeFromApartment(apartment),
-                        apartmentTo.getStringAptType()))
-                .filter(apartment -> (!Objects.equals(apartment.getPrice(), apartmentTo.getPrice()))).count() > 0){
-            throw new ApartmentNotMatchingPriceException(EXCEPTION_APARTMENT_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
-        }
-    }
-
     public void checkEditBusinessRestrictions(int id){
         if(!ApartmentUtil.isSingleApartmentAvailable(apartmentService.get(id), LocalDate.now().minusDays(1), LocalDate.MAX))
             throw new ApartmentHasActiveBookingsException(EXCEPTION_APARTMENT_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
@@ -150,9 +133,18 @@ public abstract class ApartmentAbstractController {
         return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_APARTMENT_IS_DEMO_APARTMENT, HttpStatus.CONFLICT);
     }
 
-    @ExceptionHandler(ApartmentNotMatchingPriceException.class)
-    public ResponseEntity<ErrorInfo> apartmentPriceNotMatching(HttpServletRequest req, ApartmentNotMatchingPriceException e) {
-        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_APARTMENT_PRICE_NOT_MATCHING, HttpStatus.CONFLICT);
-    }
+//    @ExceptionHandler(ApartmentNotMatchingPriceException.class)
+//    public ResponseEntity<ErrorInfo> apartmentPriceNotMatching(HttpServletRequest req, ApartmentNotMatchingPriceException e) {
+//        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_APARTMENT_PRICE_NOT_MATCHING, HttpStatus.CONFLICT);
+//    }
+
+//    public void checkCreateBusinessRestrictions(ApartmentTo apartmentTo, int hotelId){
+//        if(apartmentService.getAllByHotel(hotelId).stream()
+//                .filter(apartment -> Objects.equals(ApartmentUtil.getStringAptTypeFromApartment(apartment),
+//                        apartmentTo.getStringAptType()))
+//                .filter(apartment -> (!Objects.equals(apartment.getPrice(), apartmentTo.getPrice()))).count() > 0){
+//            throw new ApartmentNotMatchingPriceException(EXCEPTION_APARTMENT_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
+//        }
+//    }
 
 }

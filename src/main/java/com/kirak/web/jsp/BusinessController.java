@@ -27,7 +27,6 @@ import java.util.Random;
  */
 
 @Controller
-//@Scope("session")
 public class BusinessController extends BusinessAbstractController {
 
     private final HotelService hotelService;
@@ -157,11 +156,13 @@ public class BusinessController extends BusinessAbstractController {
             ModelUtil.addPlacementView(model, placement, Integer.parseInt(apartmentNum), Short.parseShort(personNum),
                     PlacementUtil.calculateBookingSumForPlacement(placement, LocalDate.parse(inDate), LocalDate.parse(outDate)),
                     inDate, outDate);
+            ModelUtil.addInspectPlacementView(model, placement, apartmentService.getAllByHotel(Integer.parseInt(hotelId)),
+                    HotelUtil.asHotelTo(hotelService.get(Integer.parseInt(hotelId))));
         } else {
             model.addAttribute("notAvailablePlacement", true);
+            model.addAttribute("hotel", HotelUtil.asHotelTo(hotelService.get(Integer.parseInt(hotelId))));
+            model.addAttribute("apartments", apartmentService.getAllByHotel(Integer.parseInt(hotelId)));
         }
-        model.addAttribute("hotel", HotelUtil.asHotelTo(hotelService.get(Integer.parseInt(hotelId))));
-        model.addAttribute("apartments", apartmentService.getAllByHotel(Integer.parseInt(hotelId)));
         ModelUtil.addUniqueHotelParams(hotelService.get(Integer.parseInt(hotelId)), model);
         ModelUtil.addUniqueFilterParams(model, AptTypeUtil.getUniqueCategories(aptTypeService.getAll()));
         return "hotel";

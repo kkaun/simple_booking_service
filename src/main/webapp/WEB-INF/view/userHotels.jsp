@@ -48,8 +48,6 @@
                                         <th><spring:message code="common.image"/></th>
                                         <th><spring:message code="common.id"/></th>
                                         <th><spring:message code="common.name"/></th>
-                                        <th><spring:message code="hotels.rating"/></th>
-                                        <th><spring:message code="hotels.votesNum"/></th>
                                         <th><spring:message code="hotels.city"/></th>
                                         <th><spring:message code="common.country"/></th>
                                         <th></th>

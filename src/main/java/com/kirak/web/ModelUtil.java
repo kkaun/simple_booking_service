@@ -30,9 +30,9 @@ public class ModelUtil {
     }
 
     public static void addUniqueHotelParams(Hotel hotel, Model model){
-        model.addAttribute("uniquePersonNums", HotelUtil.getUniquePersonNums(hotel));
+        model.addAttribute("uniquePersonNums", IntStream.rangeClosed(1, 15).boxed().collect(Collectors.toList()));
         model.addAttribute("uniqueCategories", HotelUtil.getUniqueCategories(hotel));
-        model.addAttribute("uniqueAptNums", HotelUtil.getUniqueApartmentNums(hotel));
+        model.addAttribute("uniqueAptNums", IntStream.rangeClosed(1, 5).boxed().collect(Collectors.toList()));
     }
 
     public static void setManagerAptView(Model model, List<ApartmentTo> objectApartments, List<AptType> aptTypes){

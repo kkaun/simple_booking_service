@@ -109,12 +109,6 @@ public class HotelUtil {
         return categories.stream().sorted(comparator).distinct().collect(Collectors.toList());
     }
 
-    public static List<String> getUniquePersonNums(Hotel hotel){
-
-        return hotel.getApartments().stream().map(Apartment::getType).map(AptType::getPersonNum).map(Object::toString)
-                .distinct().collect(Collectors.toList());
-    }
-
     public static List<String> getUniqueApartmentNums(Hotel hotel){
 
         return IntStream.rangeClosed(1, hotel.getApartments().size()).boxed().map(Object::toString).collect(Collectors.toList());

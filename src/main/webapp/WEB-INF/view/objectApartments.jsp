@@ -29,7 +29,7 @@
                 <div class="col-md-10">
                     <div class="panel panel-default">
                         <div class="panel-body" style="padding: 10px;">
-                            <h4 class="pull-left"><strong><spring:message code="common.obj_apartments_list"/></strong></h4>
+                            <h4 class="pull-left"><strong><spring:message code="common.obj_apartments_list"/> #${objectId}:</strong></h4>
                         </div>
                     </div>
                 </div>
@@ -78,9 +78,6 @@
             <div class="modal-body">
                 <h4><span><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>
                     <spring:message code="common.all_active_inputs_required"/></h4>
-                <hr>
-                <h5 id="aptEditWarning"><span><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>
-                    <spring:message code="common.all_apt_price_change"/></h5>
                 <hr>
                 <form:form class="form-horizontal detailsForm">
                     <input type="hidden" id="id" name="id">

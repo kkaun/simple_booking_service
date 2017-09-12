@@ -35,12 +35,6 @@ $(function () {
                 "data": "name"
             },
             {
-                "data": "rating"
-            },
-            {
-                "data": "votesNum"
-            },
-            {
                 "data": "cityName"
             },
             {

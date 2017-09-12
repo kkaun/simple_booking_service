@@ -86,10 +86,12 @@ public class SubBookingUtil {
                                                            List<SubBooking> activeHotelSubBookings) {
 
         Map<Apartment, List<SubBooking>> apartmentsWithOwnSubBookings = new HashMap<>();
-
         List<ChartTo> chartBookingTos = new ArrayList<>();
 
-        objectApartments.forEach(apartment -> {
+        Comparator<Apartment> byPersonNum = (Apartment a1, Apartment a2) ->
+                (a1.getType().getPersonNum().compareTo(a2.getType().getPersonNum()));
+
+        objectApartments.stream().sorted(byPersonNum).forEach(apartment -> {
             List<SubBooking> ownSubBookings = new ArrayList<>();
             activeHotelSubBookings.forEach(subBooking -> {
                 if(subBooking.getApartment().equals(apartment))

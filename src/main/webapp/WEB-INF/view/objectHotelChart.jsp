@@ -30,7 +30,7 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-body" style="padding: 10px;">
-                            <h4 class="pull-left"><strong><spring:message code="common.obj_chart"/></strong></h4>
+                            <h4 class="pull-left"><strong><spring:message code="common.obj_chart"/> #${objectId}:</strong></h4>
                         </div>
                     </div>
                 </div>

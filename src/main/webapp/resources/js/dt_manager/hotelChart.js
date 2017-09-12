@@ -14,6 +14,7 @@ $(".gantt").gantt({
     minScale: "hours",
     maxScale: "months",
     navigate: "scroll",
+    itemsPerPage: 12,
     // onItemClick: function(data) {
     //     alert("Item clicked - show some details");
     // },

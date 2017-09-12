@@ -109,37 +109,71 @@ public class ApartmentUtil {
     public static Map<AptType, List<Apartment>> aggregateDifferentAvailableApartmentsWithCount(List<Apartment> hotelApartments,
                                                                                                LocalDate inDate, LocalDate outDate,
                                                                                                Short personNum, Integer apartmentNum) {
-        Map<AptType, List<Apartment>> aggregatedApartmentLists = new HashMap<>();
+        List<Apartment> aggregatedApartments = new ArrayList<>();
+        Map<AptType, List<Apartment>>  aggregatedApartmentLists = new HashMap<>();
 
-        Comparator<Apartment> byPersonNumDesc = (Apartment a1, Apartment a2) -> Integer.compare(a2.getType().getPersonNum(),
-                a1.getType().getPersonNum());
-        //Comparator<Apartment> byPersonNumAsc = Comparator.comparingInt(a1 -> a1.getType().getPersonNum());
+        Comparator<Apartment> byPersonNumAsc = Comparator.comparingInt(a1 -> a1.getType().getPersonNum());
 
-        List<Apartment> availableApartmentsSortedByTypeDesc = hotelApartments.stream()
+        List<Apartment> availableApartmentsSortedByTypeAsc = hotelApartments.stream()
                 .filter(apartment -> isSingleApartmentAvailable(apartment, inDate, outDate))
-                .sorted(byPersonNumDesc).collect(Collectors.toList());
+                .sorted(byPersonNumAsc).collect(Collectors.toList());
 
-        if (!availableApartmentsSortedByTypeDesc.isEmpty()) {
+        if (!availableApartmentsSortedByTypeAsc.isEmpty()) {
             if (apartmentNum == 1) {
-                for (Apartment a : availableApartmentsSortedByTypeDesc) {
+                for (Apartment a : availableApartmentsSortedByTypeAsc) {
                     if (personNum == (int) a.getType().getPersonNum()) {
-                        aggregatedApartmentLists.put(a.getType(), Collections.singletonList(a));
+                        aggregatedApartments.add(a);
                         break;
                     }
                 }
             }
             if (apartmentNum > 1) {
-                aggregatedApartmentLists = getGreedyAptMatchingList(availableApartmentsSortedByTypeDesc,
-                        personNum, apartmentNum, aggregatedApartmentLists);
+                List<Apartment> nonGreedyApts = new ArrayList<>();
+                int leftAptNum = apartmentNum;
+                for (Apartment a : availableApartmentsSortedByTypeAsc) {
+                    if (leftAptNum == 0) {
+                        break;
+                    }
+                    if (personNum / apartmentNum == (int) a.getType().getPersonNum()) {
+                        nonGreedyApts.add(a);
+                        leftAptNum--;
+                    }
+                }
+                if (nonGreedyApts.stream().map(apartment -> apartment.getType().getPersonNum())
+                        .mapToInt(Short::shortValue).sum() != (int) personNum) {
+                    aggregatedApartments = getGreedyAptMatchingList(personNum, apartmentNum, aggregatedApartments,
+                            hotelApartments, inDate, outDate);
+                } else {
+                    aggregatedApartments.addAll(nonGreedyApts);
+                }
+
             }
         }
+        List<Apartment> finalAggregatedApartments = aggregatedApartments;
+        AptTypeUtil.getUniqueAptTypes(aggregatedApartments).forEach(aptType -> {
+            List<Apartment> typedApts = new ArrayList<>();
+            finalAggregatedApartments.forEach(apartment -> {
+                if(Objects.equals(apartment.getType(), aptType)){
+                    typedApts.add(apartment);
+                }
+            });
+            aggregatedApartmentLists.put(aptType, typedApts);
+        });
+
         return aggregatedApartmentLists;
     }
 
 
-    public static Map<AptType, List<Apartment>> getGreedyAptMatchingList(List<Apartment> availableApartmentsSortedByTypeDesc,
-                                                                         short personNum, int apartmentNum,
-                                                                         Map<AptType, List<Apartment>> aggregatedApartmentLists){
+    public static List<Apartment> getGreedyAptMatchingList(short personNum, int apartmentNum, List<Apartment> aggregatedApartments,
+                                                           List<Apartment> hotelApartments, LocalDate inDate, LocalDate outDate){
+
+        Comparator<Apartment> byPersonNumDesc = (Apartment a1, Apartment a2) -> Integer.compare(a2.getType().getPersonNum(),
+                a1.getType().getPersonNum());
+
+        List<Apartment> availableApartmentsSortedByTypeDesc = hotelApartments.stream()
+                .filter(apartment -> isSingleApartmentAvailable(apartment, inDate, outDate))
+                .sorted(byPersonNumDesc).collect(Collectors.toList());
+
         List<Apartment> matchingAptList = new ArrayList<>();
 
         int actualAptNum = 0;
@@ -172,11 +206,9 @@ public class ApartmentUtil {
         }
 
         if (leftAptNum == 0 && actualAptNum == apartmentNum) {
-            for (Apartment matchingApt : matchingAptList) {
-                aggregatedApartmentLists.put(matchingApt.getType(), Collections.singletonList(matchingApt));
-            }
+            aggregatedApartments.addAll(matchingAptList);
         }
-        return aggregatedApartmentLists;
+        return aggregatedApartments;
     }
 
 
