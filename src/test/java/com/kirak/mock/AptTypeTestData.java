@@ -28,11 +28,11 @@ public class AptTypeTestData {
     public static final List<AptType> APT_TYPES = Arrays.asList(TYPE1, TYPE2, TYPE3, TYPE4, TYPE5);
 
     public static AptType getCreatedAptType() {
-        return new AptType(null, "ARRANGEMENT325", "FAMILY_NEW", (short) 5);
+        return new AptType(null, "ARRANGEMENT", "FAMILY NEW", (short) 5);
     }
 
     public static AptType getUpdatedAptType() {
-        return new AptType(TYPE1_ID, "ARRANGEMENT325", "STANDARD_EDITED", (short) 1);
+        return new AptType(TYPE1_ID, "ARRANGEMENT", "STANDARD EDITED", (short) 1);
     }
 
 }

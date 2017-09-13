@@ -87,14 +87,14 @@ public class Vote extends BaseIntEntity {
         this.userComment = userComment;
     }
 
-    @Override
-    public String toString() {
-        return "Vote{" +
-                "id=" + getId() + '\'' +
-                ", comment=" + userComment + '\'' +
-                ", rate=" + rate +
-                ", dateAdded=" + dateAdded +
-                ", hotel=" + hotel.getId() +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Vote{" +
+//                "id=" + getId() + '\'' +
+//                ", comment=" + userComment + '\'' +
+//                ", rate=" + rate +
+//                ", dateAdded=" + dateAdded +
+//                ", hotel=" + hotel.getId() +
+//                '}';
+//    }
 }

@@ -32,7 +32,7 @@ public class HotelTestData {
             "89431543453", "", CHECK_IN, CHECK_OUT, MANAGER);
     public static final Hotel HOTEL2 = new Hotel(HOTEL2_ID, "HOTEL2", (short)4, RUSSIA, ST_PETERSBURG, "Address2",
             "89431564565", "Description2", (CHECK_IN), (CHECK_OUT), MANAGER);
-    public static final Hotel HOTEL3 = new Hotel(HOTEL3_ID, "HOTEL3", null, UKRAINE, KYIV, "Address3",
+    public static final Hotel HOTEL3 = new Hotel(HOTEL3_ID, "HOTEL3", (short)0, UKRAINE, KYIV, "Address3",
             "894312223222", "Description3", (CHECK_IN), (CHECK_OUT), MANAGER);
     public static final Hotel HOTEL4 = new Hotel(HOTEL4_ID, "HOTEL4", (short)4, UKRAINE, LVIV, "Address4",
             "894312223222", "Description4", (CHECK_IN), (CHECK_OUT), MANAGER);
