@@ -1,7 +1,6 @@
 package com.kirak.web.rest.cross_role;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.kirak.model.City;
 import com.kirak.model.Country;
 import com.kirak.service.CityService;
 import com.kirak.service.CountryService;

@@ -15,7 +15,7 @@
     <mvc:resources mapping="/resources/**" location="/resources/"/>
 
     <!--changed for linux deployment-->
-    <mvc:resources mapping="/images/**" location="file:////booking_demo_resources/booking_demo_images/"/>
+    <mvc:resources mapping="/images/**" location="file:/booking_demo/resources/uploaded_images/"/>
 
     <mvc:default-servlet-handler/>
     <mvc:annotation-driven/>

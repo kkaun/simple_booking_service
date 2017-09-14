@@ -6,7 +6,6 @@ import com.kirak.service.*;
 import com.kirak.to.ApartmentTo;
 import com.kirak.util.ErrorInfo;
 import com.kirak.util.FileUploadUtil;
-import com.kirak.util.exception.model.apartment.ApartmentNotMatchingPriceException;
 import com.kirak.util.exception.model.cross_model.DemoEntityModificationException;
 import com.kirak.util.exception.model.apartment.ApartmentHasActiveBookingsException;
 import com.kirak.util.exception.model.apartment.ApartmentHasBookingsException;
@@ -22,9 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 /**
  * Created by Kir on 07.09.2017.

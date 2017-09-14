@@ -12,7 +12,7 @@ public class FileUploadUtil {
     public static boolean fileUploaded(MultipartFile multipartFile, String fileName) {
         InputStream inputStream = null;
         OutputStream outputStream = null;
-        File newFile = new File("D:\\booking_demo_images\\" + fileName);
+        File newFile = new File("/booking_demo/resources/uploaded_images/" + fileName);
         try {
             inputStream = multipartFile.getInputStream();
             if (!newFile.exists()) {

@@ -5,7 +5,6 @@ import com.kirak.service.*;
 import com.kirak.to.booking.ManagerBookingTo;
 import com.kirak.web.View;
 import com.kirak.web.abstr.BookingAbstractController;
-import com.kirak.web.abstr.HotelAbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

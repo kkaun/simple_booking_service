@@ -2,7 +2,6 @@ package com.kirak.web.abstr;
 
 import com.kirak.model.User;
 import com.kirak.model.UserRole;
-import com.kirak.service.CityService;
 import com.kirak.service.UserService;
 import com.kirak.to.UserTo;
 import com.kirak.util.ErrorInfo;

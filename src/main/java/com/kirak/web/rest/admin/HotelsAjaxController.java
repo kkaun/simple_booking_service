@@ -5,7 +5,6 @@ import com.kirak.service.CityService;
 import com.kirak.service.HotelService;
 import com.kirak.service.UserService;
 import com.kirak.to.HotelTo;
-import com.kirak.util.model.HotelUtil;
 import com.kirak.web.View;
 import com.kirak.web.abstr.HotelAbstractController;
 import org.springframework.beans.factory.annotation.Autowired;

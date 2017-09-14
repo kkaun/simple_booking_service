@@ -1,9 +1,6 @@
 package com.kirak.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonView;
 import com.kirak.model.abstraction.NamedEntity;
-import com.kirak.web.View;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.validator.constraints.Email;

@@ -1,7 +1,6 @@
 package com.kirak.web.rest.manager;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.kirak.model.User;
 import com.kirak.service.CityService;
 import com.kirak.service.HotelService;
 import com.kirak.service.UserService;

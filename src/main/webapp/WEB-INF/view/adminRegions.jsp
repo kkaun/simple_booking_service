@@ -6,6 +6,7 @@
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util/citiesDataLoad.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util/datatablesUtil.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util/notifications.js" defer></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/dt_admin/adminAjaxUtil.js" defer></script>
@@ -185,7 +186,8 @@
                 <hr>
                 <hr>
                 <br>
-                <form:form class="form-horizontal detailsForm" id="imgForm" method="post" enctype="multipart/form-data">
+                <form:form class="form-horizontal detailsForm"
+                           id="imgForm" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="id" name="id">
                     <div class="form-group text-center">
                         <label for="image" class="control-label col-md-6"><spring:message code="common.choose_image"/></label>

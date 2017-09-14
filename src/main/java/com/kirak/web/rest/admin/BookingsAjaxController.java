@@ -5,7 +5,6 @@ import com.kirak.service.ApartmentService;
 import com.kirak.service.BookingService;
 import com.kirak.service.SubBookingService;
 import com.kirak.to.booking.AdminBookingTo;
-import com.kirak.to.booking.ManagerBookingTo;
 import com.kirak.web.View;
 import com.kirak.web.abstr.BookingAbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
