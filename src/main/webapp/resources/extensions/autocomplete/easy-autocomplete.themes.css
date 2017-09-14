@@ -378,4 +378,55 @@
 
 
 
+
+.easy-autocomplete.eac-object-filter-plate-dark {
+  font-family: "Open Sans", "Helvetica Neue",Helvetica,Arial,sans-serif;
+  width: 100%;
+}
+.easy-autocomplete.eac-object-filter-plate-dark input {
+  font-size: 13px;
+  padding: 6px 12px;
+  width: 100%;
+}
+.easy-autocomplete.eac-object-filter-plate-dark ul {
+  background: #212121;
+  border-radius: 6px;
+  border-width: 0;
+  top: 10px;
+  width: 100%;
+  z-index: 9999;
+}
+.easy-autocomplete.eac-object-filter-plate-dark ul li, .easy-autocomplete.eac-object-filter-plate-dark ul .eac-category {
+  background: #212121;
+  color: #FAFAFA;
+  font-size: 12px;
+  transition: all 0.4s ease 0s;
+  z-index: 9999;
+  width: 100%;
+}
+.easy-autocomplete.eac-object-filter-plate-dark ul li b, .easy-autocomplete.eac-object-filter-plate-dark ul .eac-category b {
+  color: #ffd464;
+  z-index: 9999;
+  width: 100%;
+}
+.easy-autocomplete.eac-object-filter-plate-dark ul li.selected, .easy-autocomplete.eac-object-filter-plate-dark ul .eac-category.selected {
+  background: #656565;
+  z-index: 9999;
+  width: 100%;
+}
+.easy-autocomplete.eac-object-filter-plate-dark ul li:first-child, .easy-autocomplete.eac-object-filter-plate-dark ul .eac-category:first-child {
+  border-radius: 6px 6px 0 0;
+  z-index: 9999;
+  width: 100%;
+}
+.easy-autocomplete.eac-object-filter-plate-dark ul li:last-child, .easy-autocomplete.eac-object-filter-plate-dark ul .eac-category:last-child {
+  border-radius: 0 0 6px 6px;
+  z-index: 9999;
+  width: 100%;
+}
+
+
+
+
+
 /*# sourceMappingURL=easy-autocomplete.themes.css.map */

@@ -120,7 +120,7 @@
                                     <figure class="pull-left">
                                         <c:if test="${not empty hotel.imgPath && hotel.imgPath.length() >= 1}">
                                             <img class="media-object img-rounded img-responsive"
-                                                 src="${hotel.imgPath}" alt="">
+                                                 src="${hotel.imgPath}" alt="" style="max-width: 230px; max-height: 180px">
                                         </c:if>
                                         <c:if test="${empty hotel.imgPath || hotel.imgPath.length() < 1}">
                                             <img class="media-object img-rounded img-responsive"
@@ -174,7 +174,7 @@
                                     <figure class="pull-left">
                                         <c:if test="${not empty placement.hotel.imgPath && placement.hotel.imgPath.length() >= 1}">
                                             <img class="media-object img-rounded img-responsive"
-                                                 src="${placement.hotel.imgPath}" alt="">
+                                                 src="${placement.hotel.imgPath}" alt="" style="max-width: 230px; max-height: 180px">
                                         </c:if>
                                         <c:if test="${empty placement.hotel.imgPath || placement.hotel.imgPath.length() < 1}">
                                             <img class="media-object img-rounded img-responsive"

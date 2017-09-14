@@ -109,9 +109,26 @@ var objectPlacesOptions = {
 };
 
 
+var objectFilterCountriesOptions = {
+
+    url: "/retrieve_regions/countries",
+    getValue: "name",
+    list: {
+        match: {
+            enabled: true
+        },
+        sort: {
+            enabled: true
+        },
+        maxNumberOfElements: 4
+    },
+    theme: "object-filter-plate-dark"
+};
+
+
 $("#countryNamesList").easyAutocomplete(objectCountriesOptions);
 $("#cityNamesList").easyAutocomplete(objectPlacesOptions);
 $(".index-cities-input").easyAutocomplete(indexOptions);
 $(".primary-cities-input").easyAutocomplete(primaryFilterOptions);
 $(".side-cities-input").easyAutocomplete(sideFilterOptions);
-$("#region").easyAutocomplete(objectCountriesOptions);
+$("#region").easyAutocomplete(objectFilterCountriesOptions);

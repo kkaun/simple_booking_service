@@ -45,7 +45,7 @@
                                     <figure class="pull-left">
                                         <c:if test="${not empty hotel.imgPath && hotel.imgPath.length() >= 1}">
                                             <img class="media-object img-rounded img-responsive"
-                                                 src="${hotel.imgPath}" alt="">
+                                                 src="${hotel.imgPath}" alt="" style="max-width: 230px; max-height: 180px">
                                         </c:if>
                                         <c:if test="${empty hotel.imgPath || hotel.imgPath.length() < 1}">
                                             <img class="media-object img-rounded img-responsive"
@@ -140,7 +140,7 @@
                                                         <figure class="pull-left">
                                                             <c:if test="${not empty option.imgPath && option.imgPath.length() >= 1}">
                                                                 <img class="media-object img-rounded img-responsive"
-                                                                     src="${option.imgPath}" alt="">
+                                                                     src="${option.imgPath}" alt="" style="max-width: 260px; max-height: 180px">
                                                             </c:if>
                                                             <c:if test="${empty option.imgPath || option.imgPath.length() < 1}">
                                                                 <img class="media-object img-rounded img-responsive"
@@ -373,7 +373,7 @@
                                         <figure class="pull-left">
                                             <c:if test="${not empty apartment.imgPath && apartment.imgPath.length() >= 1}">
                                                 <img class="media-object img-rounded img-responsive"
-                                                     src="${apartment.imgPath}" alt="">
+                                                     src="${apartment.imgPath}" alt="" style="max-width: 260px; max-height: 180px">
                                             </c:if>
                                             <c:if test="${empty apartment.imgPath || apartment.imgPath.length() < 1}">
                                                 <img class="media-object img-rounded img-responsive"

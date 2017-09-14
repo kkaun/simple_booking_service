@@ -9,6 +9,7 @@ import com.kirak.util.FileUploadUtil;
 import com.kirak.util.exception.model.cross_model.DemoEntityModificationException;
 import com.kirak.util.exception.model.apartment.ApartmentHasActiveBookingsException;
 import com.kirak.util.exception.model.apartment.ApartmentHasBookingsException;
+import com.kirak.util.exception.model.cross_model.FileSizeExceededException;
 import com.kirak.util.model.ApartmentUtil;
 import com.kirak.web.ExceptionViewHandler;
 import org.slf4j.Logger;
@@ -31,8 +32,8 @@ public abstract class ApartmentAbstractController {
     public static final String EXCEPTION_APARTMENT_HAS_BOOKINGS = "exception.apartment.hasBookings";
     public static final String EXCEPTION_APARTMENT_IS_DEMO_APARTMENT = "exception.apartment.isDemoApartment";
     public static final String EXCEPTION_APARTMENT_HAS_ACTIVE_BOOKINGS = "exception.apartment.hasActiveBookings";
-    public static final String EXCEPTION_APARTMENT_PRICE_NOT_MATCHING = "exception.apartment.price.notMatching";
     public static final String EXCEPTION_APARTMENT_MODIFICATION_RESTRICTION = "exception.apartment.modificationRestriction";
+    public final static String MAX_FILE_SIZE_EXCEEDED = "exception.file.size.isExceeded";
 
     private final Logger LOG = LoggerFactory.getLogger(getClass());
 
@@ -88,13 +89,17 @@ public abstract class ApartmentAbstractController {
 
 
     public void setApartmentImage(Integer id, MultipartFile multipartFile) {
-        Apartment apartment = apartmentService.get(id);
-        Random random = new Random();
-        String fileName = "apartment_img_id_" + String.valueOf(id) +
-                "_" + String.valueOf(random.nextInt(10000) + 1) + ".jpg";
-        if(FileUploadUtil.fileUploaded(multipartFile, fileName)) {
-            apartment.setImgPath("/images/" + fileName);
-            apartmentService.save(apartment);
+        if(multipartFile.getSize() > 1024 * 1024){
+            throw new FileSizeExceededException(MAX_FILE_SIZE_EXCEEDED, HttpStatus.CONFLICT);
+        } else {
+            Apartment apartment = apartmentService.get(id);
+            Random random = new Random();
+            String fileName = "apartment_img_id_" + String.valueOf(id) +
+                    "_" + String.valueOf(random.nextInt(10000) + 1) + ".jpg";
+            if (FileUploadUtil.fileUploaded(multipartFile, fileName)) {
+                apartment.setImgPath("/images/" + fileName);
+                apartmentService.save(apartment);
+            }
         }
     }
 
@@ -130,18 +135,9 @@ public abstract class ApartmentAbstractController {
         return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_APARTMENT_IS_DEMO_APARTMENT, HttpStatus.CONFLICT);
     }
 
-//    @ExceptionHandler(ApartmentNotMatchingPriceException.class)
-//    public ResponseEntity<ErrorInfo> apartmentPriceNotMatching(HttpServletRequest req, ApartmentNotMatchingPriceException e) {
-//        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_APARTMENT_PRICE_NOT_MATCHING, HttpStatus.CONFLICT);
-//    }
-
-//    public void checkCreateBusinessRestrictions(ApartmentTo apartmentTo, int hotelId){
-//        if(apartmentService.getAllByHotel(hotelId).stream()
-//                .filter(apartment -> Objects.equals(ApartmentUtil.getStringAptTypeFromApartment(apartment),
-//                        apartmentTo.getStringAptType()))
-//                .filter(apartment -> (!Objects.equals(apartment.getPrice(), apartmentTo.getPrice()))).count() > 0){
-//            throw new ApartmentNotMatchingPriceException(EXCEPTION_APARTMENT_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
-//        }
-//    }
+    @ExceptionHandler(FileSizeExceededException.class)
+    public ResponseEntity<ErrorInfo> fileSizeExceeded(HttpServletRequest req, FileSizeExceededException e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, MAX_FILE_SIZE_EXCEEDED, HttpStatus.CONFLICT);
+    }
 
 }

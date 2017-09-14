@@ -29,7 +29,7 @@
                         <div class="panel-body text-left">
                             <form:form class="form-horizontal filter" id="placesAdminFilter">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-4" for="region">
+                                    <label class="control-label col-sm-5" for="region">
                                         <spring:message code="city.byRegion"/> <spring:message code="common.in_latin"/> :</label>
                                     <div class="col-sm-5">
                                         <input class="form-control" name="region" id="region">
@@ -177,8 +177,11 @@
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
+                        <h5><span><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>
+                            <spring:message code="common.image_upload_tip"/></h5>
+                        <hr>
                         <h4><spring:message code="common.image"/></h4>
-                        <br>
+                        <hr>
                         <img src="" class="img-responsive" id="imgTag" alt="This item has no available image yet">
                     </div>
                     <div class="col-md-1"></div>

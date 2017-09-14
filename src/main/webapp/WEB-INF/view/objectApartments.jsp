@@ -137,8 +137,11 @@
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-10 text-center">
+                        <h5><span><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>
+                            <spring:message code="common.image_upload_tip"/></h5>
+                        <hr>
                         <h4><spring:message code="common.image"/></h4>
-                        <br>
+                        <hr>
                         <img src="" class="img-responsive" id="imgTag" alt="This item has no available image yet">
                     </div>
                     <div class="col-md-1"></div>

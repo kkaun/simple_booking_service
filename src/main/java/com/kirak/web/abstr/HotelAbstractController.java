@@ -8,6 +8,7 @@ import com.kirak.to.HotelTo;
 import com.kirak.util.ErrorInfo;
 import com.kirak.util.FileUploadUtil;
 import com.kirak.util.exception.model.cross_model.DemoEntityModificationException;
+import com.kirak.util.exception.model.cross_model.FileSizeExceededException;
 import com.kirak.util.exception.model.hotel.HotelHasBookingsException;
 import com.kirak.util.exception.model.hotel.HotelRegionsNotMatchingException;
 import com.kirak.util.exception.model.hotel.ManagerHotelHasBookingsException;
@@ -41,6 +42,7 @@ public abstract class HotelAbstractController {
     public static final String EXCEPTION_HOTEL_REGIONS_NOT_MATCHING = "exception.hotel.regions.notMatching";
     public static final String EXCEPTION_MANAGER_HOTEL_HAS_BOOKINGS = "exception.manager.hotel.apartments.haveBookings";
     public static final String EXCEPTION_MANAGER_HOTEL_REMOVING_RESTRICTION = "exception.manager.hotel.removingRestriction";
+    public final static String MAX_FILE_SIZE_EXCEEDED = "exception.file.size.isExceeded";
 
     private final Logger LOG = LoggerFactory.getLogger(getClass());
 
@@ -125,13 +127,17 @@ public abstract class HotelAbstractController {
     }
 
     public void setImage(Integer id, MultipartFile multipartFile) {
-        Hotel hotel = hotelService.get(id);
-        Random random = new Random();
-        String fileName = "hotel_img_id_" + String.valueOf(id) +
-                "_" + String.valueOf(random.nextInt(10000) + 1) + ".jpg";
-        if(FileUploadUtil.fileUploaded(multipartFile, fileName)) {
-            hotel.setImgPath("/images/" + fileName);
-            hotelService.save(hotel);
+        if(multipartFile.getSize() > 1024 * 1024){
+            throw new FileSizeExceededException(MAX_FILE_SIZE_EXCEEDED, HttpStatus.CONFLICT);
+        } else {
+            Hotel hotel = hotelService.get(id);
+            Random random = new Random();
+            String fileName = "hotel_img_id_" + String.valueOf(id) +
+                    "_" + String.valueOf(random.nextInt(10000) + 1) + ".jpg";
+            if (FileUploadUtil.fileUploaded(multipartFile, fileName)) {
+                hotel.setImgPath("/images/" + fileName);
+                hotelService.save(hotel);
+            }
         }
     }
 
@@ -179,5 +185,10 @@ public abstract class HotelAbstractController {
     @ExceptionHandler(DemoEntityModificationException.class)
     public ResponseEntity<ErrorInfo> objectIsDemo(HttpServletRequest req, DemoEntityModificationException e) {
         return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_HOTEL_IS_DEMO_OBJECT, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(FileSizeExceededException.class)
+    public ResponseEntity<ErrorInfo> fileSizeExceeded(HttpServletRequest req, FileSizeExceededException e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, MAX_FILE_SIZE_EXCEEDED, HttpStatus.CONFLICT);
     }
 }

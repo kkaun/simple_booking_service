@@ -120,11 +120,11 @@
                 <c:forEach items="${hotelsFive}" var="hotel">
                 <jsp:useBean id="hotel" scope="page" type="com.kirak.to.HotelTo"/>
                     <a href="inspect_hotel?id=${hotel.id}" class="list-group-item listItem">
-                        <div class="media col-md-3" style="margin-top: 10px">
+                        <div class="media col-md-3" style="margin-top: 10px;">
                             <figure class="pull-left">
                                 <c:if test="${not empty hotel.imgPath && hotel.imgPath.length() >= 1}">
                                     <img class="media-object img-rounded img-responsive"
-                                         src="${hotel.imgPath}" alt="">
+                                         src="${hotel.imgPath}" alt="" style="max-width: 230px; max-height: 180px">
                                 </c:if>
                                 <c:if test="${empty hotel.imgPath || hotel.imgPath.length() < 1}">
                                     <img class="media-object img-rounded img-responsive"

@@ -8,6 +8,7 @@ import com.kirak.to.PlaceTo;
 import com.kirak.util.ErrorInfo;
 import com.kirak.util.FileUploadUtil;
 import com.kirak.util.exception.model.cross_model.DemoEntityModificationException;
+import com.kirak.util.exception.model.cross_model.FileSizeExceededException;
 import com.kirak.util.exception.model.region.RegionDuplNameException;
 import com.kirak.util.exception.model.region.RegionHasHotelsException;
 import com.kirak.util.model.RegionUtil;
@@ -19,7 +20,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.List;
@@ -36,6 +36,7 @@ public abstract class RegionAbstractController {
     public static final String EXCEPTION_REGION_IS_DEMO_CITY = "exception.region.isDemoCity";
     public static final String EXCEPTION_REGION_DUPL_NAME = "exception.region.duplicateName";
     public static final String EXCEPTION_REGION_MODIFICATION_RESTRICTION = "exception.region.modificationRestriction";
+    public final static String MAX_FILE_SIZE_EXCEEDED = "exception.file.size.isExceeded";
     
     private final Logger LOG = LoggerFactory.getLogger(getClass());
 
@@ -97,13 +98,17 @@ public abstract class RegionAbstractController {
     }
 
     public void setImage(Integer id, MultipartFile multipartFile) {
-        City city = cityService.get(id);
-        Random random = new Random();
-        String fileName = "region_img_id_" + String.valueOf(id) +
-                "_" + String.valueOf(random.nextInt(10000) + 1) + ".jpg";
-        if(FileUploadUtil.fileUploaded(multipartFile, fileName)) {
-            city.setImgPath("/images/" + fileName);
-            cityService.save(city);
+        if(multipartFile.getSize() > 1024 * 1024){
+            throw new FileSizeExceededException(MAX_FILE_SIZE_EXCEEDED, HttpStatus.CONFLICT);
+        } else {
+            City city = cityService.get(id);
+            Random random = new Random();
+            String fileName = "region_img_id_" + String.valueOf(id) +
+                    "_" + String.valueOf(random.nextInt(10000) + 1) + ".jpg";
+            if (FileUploadUtil.fileUploaded(multipartFile, fileName)) {
+                city.setImgPath("/images/" + fileName);
+                cityService.save(city);
+            }
         }
     }
 
@@ -151,7 +156,12 @@ public abstract class RegionAbstractController {
     }
 
     @ExceptionHandler(RegionDuplNameException.class)
-    public ResponseEntity<ErrorInfo> regionNmeDuplicated(HttpServletRequest req, RegionDuplNameException e) {
+    public ResponseEntity<ErrorInfo> regionNameDuplicated(HttpServletRequest req, RegionDuplNameException e) {
         return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, EXCEPTION_REGION_DUPL_NAME, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(FileSizeExceededException.class)
+    public ResponseEntity<ErrorInfo> fileSizeExceeded(HttpServletRequest req, FileSizeExceededException e) {
+        return exceptionInfoHandler.getErrorInfoResponseEntity(req, e, MAX_FILE_SIZE_EXCEEDED, HttpStatus.CONFLICT);
     }
 }
