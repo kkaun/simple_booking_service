@@ -13,6 +13,7 @@ import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 import java.util.*;
 
 /**
@@ -28,6 +29,8 @@ public class User extends NamedEntity {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
+    @Length(max = 20)
+    @Pattern(regexp = "^[0-9\\-+\\s()]*$")
     @Column(name = "phone", nullable = false)
     private String phone;
 

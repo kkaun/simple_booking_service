@@ -22,14 +22,16 @@ $(function () {
                 "render": function(data, type, row, meta) {
                     if (type === 'display') {
                         return '<img class="media-object img-rounded img-responsive" alt="No img available yet" ' +
-                            'style="max-height: 320px; max-width: 240px;" src="' + data + '" />';
+                            'style="max-height: 300px; max-width: 200px;" src="' + data + '" />';
                     }
                 },
                 "defaultContent": "",
                 "orderable": false
             },
             {
-                "data": "id"
+                "render": renderGetUserVoteByHotelBtn,
+                "defaultContent": "",
+                "orderable": false
             },
             {
                 "data": "name"
@@ -41,9 +43,7 @@ $(function () {
                 "data": "countryName"
             },
             {
-                "render": renderGetUserVoteByHotelBtn,
-                "defaultContent": "",
-                "orderable": false
+                "data": "id"
             }
         ],
         "order": [

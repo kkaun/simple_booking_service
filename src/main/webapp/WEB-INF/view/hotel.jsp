@@ -54,8 +54,9 @@
                                     </figure>
                                 </div>
                                 <div class="col-md-6 text-center">
+                                    <h5>${hotel.cityName}</h5>
                                     <c:if test="${hotel.votesNum > 0}">
-                                        <h3> <spring:message code="common.average"/> <c:out value="${hotel.rating}"/><small> /10</small></h3>
+                                        <h3> <spring:message code="common.average_in_panel"/> <c:out value="${hotel.rating}"/><small> /10</small></h3>
                                         <h4><small><spring:message code="common.votes_num"/></small>
                                             <c:out value="${hotel.votesNum}"/></h4>
                                     </c:if>

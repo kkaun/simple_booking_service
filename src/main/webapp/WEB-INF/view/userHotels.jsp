@@ -46,11 +46,11 @@
                                     <tr>
                                         <th></th>
                                         <th><spring:message code="common.image"/></th>
-                                        <th><spring:message code="common.id"/></th>
+                                        <th></th>
                                         <th><spring:message code="common.name"/></th>
                                         <th><spring:message code="hotels.city"/></th>
                                         <th><spring:message code="common.country"/></th>
-                                        <th></th>
+                                        <th><spring:message code="common.id"/></th>
                                     </tr>
                                     </thead>
                                 </table>

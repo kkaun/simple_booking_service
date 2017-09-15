@@ -43,17 +43,20 @@ function updateUserTableByData(data) {
 
 
 
+var voteText = i18n["common.make_vote"];
 
 
 function renderGetUserVoteByHotelBtn(data, type, row) {
     if (type === 'display') {
         return '<a class="btn btn-warning" onclick="updateUserVoteByHotelId(' + row.id + ');">' +
-            '<span><i class="fa fa-commenting" aria-hidden="true"></i> Vote Object</span></a>';
+            '<span><i class="fa fa-commenting" aria-hidden="true"></i>' + ' ' + voteText + '</span></a>';
     }
 }
 
 function updateUserVoteByHotelId(id) {
     $('#userHotelVoteModalTitle').html(i18n["editTitle"]);
+    form.find(":input").val("");
+    form.find("textarea[name='" + 'voteUserComment' + "']").val("");
     $.get('/user/votes/vote_object?id=' + id, function (data) {
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(value);

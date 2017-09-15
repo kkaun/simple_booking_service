@@ -64,9 +64,10 @@
                                                     <div class="input-group">
                                                         <input id="user_name" type="text" class="form-control"
                                                                name="userName"
+                                                               data-parsley-pattern="^\w+( \w+)*$"
                                                                data-parsley-required="true"
-                                                               data-parsley-length="[3, 44]"
-                                                               placeholder="<spring:message code="common.usr_name"/>" required>
+                                                               data-parsley-length="[3, 30]"
+                                                               placeholder="<spring:message code="common.usr_name"/> <spring:message code="common.in_latin_desc"/>" required>
                                                         <span class="input-group-addon"><i
                                                                 class="glyphicon glyphicon-user"></i></span>
                                                     </div>
@@ -78,7 +79,7 @@
                                                                data-parsley-required="true"
                                                                data-parsley-pattern="^[0-9\-\+\s\(\)]*$"
                                                                data-parsley-length="[5, 20]"
-                                                               value="" placeholder="<spring:message code="common.phone"/>" required>
+                                                               value="" placeholder="<spring:message code="common.phone"/> <spring:message code="common.phone_desc"/>" required>
                                                         <span class="input-group-addon"><i
                                                                 class="glyphicon glyphicon-earphone"></i></span>
                                                     </div>

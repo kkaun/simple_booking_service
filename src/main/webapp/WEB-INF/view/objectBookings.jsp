@@ -65,7 +65,7 @@
                                     <label class="control-label col-sm-4" for="inDate">
                                         <spring:message code="super_bookings.inDate"/>:</label>
                                     <div class="col-sm-8">
-                                        <input class="form-control in_date" name="inDate" id="inDate">
+                                        <input class="form-control in_date_filter" name="inDate" id="inDate">
                                     </div>
                                 </div>
                             </form:form>
@@ -89,7 +89,7 @@
                                     <label class="control-label col-sm-4" for="outDate">
                                         <spring:message code="super_bookings.outDate"/>:</label>
                                     <div class="col-sm-8">
-                                        <input class="form-control out_date" name="outDate" id="outDate">
+                                        <input class="form-control out_date_filter" name="outDate" id="outDate">
                                     </div>
                                 </div>
                             </form:form>

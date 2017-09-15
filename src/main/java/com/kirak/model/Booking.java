@@ -2,10 +2,12 @@ package com.kirak.model;
 
 import com.kirak.model.abstraction.BaseIntEntity;
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -50,6 +52,8 @@ public class Booking extends BaseIntEntity {
     @Email
     private String bookerEmail;
 
+    @Length(max = 20)
+    @Pattern(regexp = "^[0-9\\-+\\s()]*$")
     @Column(name = "booker_phone")
     private String bookerPhone;
 

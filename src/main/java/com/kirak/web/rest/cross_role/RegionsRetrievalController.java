@@ -21,10 +21,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/retrieve_regions")
-public class CitiesRetrievalController extends RegionAbstractController {
+public class RegionsRetrievalController extends RegionAbstractController {
 
     @Autowired
-    public CitiesRetrievalController(CityService cityService, CountryService countryService) {
+    public RegionsRetrievalController(CityService cityService, CountryService countryService) {
         super(cityService, countryService);
     }
 

@@ -59,7 +59,8 @@ public class AdminController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("admin/show_users")
-    public String showUsers() {
+    public String showUsers(Model model) {
+        ModelUtil.setAdminUsersView(model);
         return "adminUsers";
     }
 

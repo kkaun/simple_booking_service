@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.time.LocalTime;
 import java.util.Set;
 
@@ -38,7 +39,8 @@ public class Hotel extends NamedEntity {
     @NotNull
     private String address;
 
-    @Length(max = 15)
+    @Length(max = 20)
+    @Pattern(regexp = "^[0-9\\-+\\s()]*$")
     @Column(name = "phone")
     @NotNull
     private String phone;

@@ -40,8 +40,9 @@
                          style="width: 70px; height: 14px;"/></a>
                 </li>
                 <li>
-                    <a href="mailto:kirkaun@gmail.com">
-                        <strong><spring:message code="common.contact_author_mail"/></strong></a>
+                    <a href="https://github.com/kkaun/simple_booking_service">
+                        <strong><spring:message code="common.project_on_brand"/></strong> <i class="fa fa-github fa-lg" aria-hidden="true"></i>
+                    </a>
                 </li>
             </ul>
         </div>

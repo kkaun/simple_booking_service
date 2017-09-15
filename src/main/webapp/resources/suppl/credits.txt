@@ -1,5 +1,8 @@
 
 
+--- Some practical patterns and inspiration for project architecture are taken from nice open-source
+project https://github.com/JavaOPs, in which I participated for several months.
+
 --- js Gantt Chart is http://taitems.github.io/jQuery.Gantt/ project. All credits belong to project's contributors.
 
 --- Favicon image: graphic by <a href="https://thenounproject.com/xinhstudio">tnp_xinhstudio</a> from
@@ -12,4 +15,4 @@ https://logomakr.com/36fszS36fszS
 
 --- Favicon set generated from image by https://www.favicon-generator.org/
 
-
+--- Nice site with stock photos with free license: https://www.pexels.com

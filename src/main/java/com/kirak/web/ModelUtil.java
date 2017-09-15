@@ -47,6 +47,9 @@ public class ModelUtil {
     public static void setAdminAptView(Model model, List<AptType> aptTypes, List<Apartment> apartments){
         model.addAttribute("aptTypes", aptTypes);
         model.addAttribute("apartments", ApartmentUtil.getApartmentTos(apartments));
+    }
+
+    public static void setAdminUsersView(Model model){
         model.addAttribute("roles",  Arrays.asList("User", "Manager"));
     }
 

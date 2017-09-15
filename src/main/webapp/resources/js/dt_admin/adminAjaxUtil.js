@@ -290,6 +290,7 @@ function addUser() {
 }
 
 function updateUserRow(id) {
+    $('.userRoleInput').hide();
     $('#userUpdateModalTitle').html(i18n["editTitle"]);
     $.get(ajaxUrl + id, function (data) {
         var userForm = $(".detailsForm");
@@ -298,7 +299,6 @@ function updateUserRow(id) {
         }
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(value);
-            $('.userRoleInput').hide();
         });
         $('.load-bar').hide();
         $('#userEditRow').modal();

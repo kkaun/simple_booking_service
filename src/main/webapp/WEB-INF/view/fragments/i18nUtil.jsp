@@ -21,7 +21,8 @@
                                                 "common.paging_first",
                                                 "common.paging_previous",
                                                 "common.paging_next",
-                                                "common.paging_last"}%>'>
+                                                "common.paging_last",
+                                                "common.make_vote"}%>'>
     i18n['${key}'] = '<spring:message code="${key}"/>';
     </c:forEach>
 </script>

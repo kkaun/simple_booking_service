@@ -85,33 +85,33 @@
 
                     <div class="form-group">
                         <label for="name" class="control-label col-xs-3"><spring:message code="user.name"/></label>
-                        <div class="col-xs-9">
+                        <div class="col-xs-7">
                             <input type="text" class="form-control" id="name" name="name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="email" class="control-label col-xs-3"><spring:message code="user.email"/></label>
-                        <div class="col-xs-9">
+                        <div class="col-xs-7">
                             <input type="email" class="form-control" id="email" name="email">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="phone" class="control-label col-xs-3"><spring:message code="users.phone"/></label>
-                        <div class="col-xs-9">
+                        <div class="col-xs-7">
                             <input type="text" class="form-control" id="phone" name="phone">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="password" class="control-label col-xs-3"><spring:message
                                 code="users.password"/></label>
-                        <div class="col-xs-9">
+                        <div class="col-xs-7">
                             <input type="password" class="form-control" id="password" name="password">
                         </div>
                     </div>
                     <div class="form-group userRoleInput">
                         <label for="role" class="control-label col-xs-3"><spring:message code="users.role"/></label>
                         <c:if test="${not empty roles}">
-                            <div class="col-xs-9">
+                            <div class="col-xs-7">
                                 <select class="form-control" name="role" id="role">
                                     <c:forEach items="${roles}" var="role">
                                         <option name="role" value="${role}">${role}</option>

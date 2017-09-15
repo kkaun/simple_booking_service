@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
 /**
@@ -14,6 +15,7 @@ import java.io.Serializable;
 public class NamedEntity extends BaseIntEntity implements Serializable {
 
     @NotBlank
+    @Pattern(regexp = "^[\\p{L}0-9\\s]*$")
     @Column(name = "name", nullable = false)
     protected String name;
 
