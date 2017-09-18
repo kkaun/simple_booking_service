@@ -119,12 +119,12 @@
             <div class="list-group" style="background-color: #dfd7ad">
                 <c:forEach items="${hotelsFive}" var="hotel">
                 <jsp:useBean id="hotel" scope="page" type="com.kirak.to.HotelTo"/>
-                    <a href="inspect_hotel?id=${hotel.id}" class="list-group-item listItem">
-                        <div class="media col-md-3" style="margin-top: 10px;">
+                    <a href="inspect_hotel?id=${hotel.id}" class="list-group-item indexListItem">
+                        <div class="media col-md-4" style="margin-top: 10px;">
                             <figure class="pull-left">
                                 <c:if test="${not empty hotel.imgPath && hotel.imgPath.length() >= 1}">
                                     <img class="media-object img-rounded img-responsive"
-                                         src="${hotel.imgPath}" alt="" style="max-width: 230px; max-height: 180px">
+                                         src="${hotel.imgPath}" alt="" style="max-width: 320px; max-height: 220px">
                                 </c:if>
                                 <c:if test="${empty hotel.imgPath || hotel.imgPath.length() < 1}">
                                     <img class="media-object img-rounded img-responsive"
@@ -132,8 +132,10 @@
                                 </c:if>
                             </figure>
                         </div>
-                        <div class="col-md-5" style="margin-top: 10px">
-                            <h4 class="list-group-item-heading"> <c:out value="${hotel.name}"/> </h4>
+                        <div class="col-md-4" style="margin-top: 10px">
+                            <h4 class="list-group-item-heading"> <strong><c:out value="${hotel.name}"/></strong>,
+                                <c:out value="${hotel.cityName}"/></h4>
+                            <br>
                             <p class="list-group-item-text"> <c:out value="${hotel.description}"/>
                             </p>
                         </div>

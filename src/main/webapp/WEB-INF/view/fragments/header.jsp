@@ -58,7 +58,7 @@
                             <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/user_activity'}">
                                 <li style="margin-left: 10px;">
                                     <form>
-                                        <a class="btn navbar-btn btn-success" href="user_activity"
+                                        <a class="btn navbar-btn btn-primary" href="user_activity"
                                            style="border-radius: 15px">
                                             <spring:message code="common.user"/></a>
                                     </form>
@@ -91,7 +91,7 @@
                         <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/register_manager'}">
                             <li style="margin-left: 10px;">
                                 <form method="get">
-                                    <a href="register_manager" class="btn btn-warning navbar-btn" style="border-radius: 15px">
+                                    <a href="register_manager" class="btn btn-default navbar-btn navBtn">
                                         <spring:message code="common.listobject"/></a>
                                 </form>
                             </li>
@@ -101,7 +101,7 @@
                         && requestScope['javax.servlet.forward.request_uri'] ne '/login'}">
                             <li style="margin-left: 10px;">
                                 <form method="get">
-                                    <a href="register_user" class="btn btn-success navbar-btn" style="border-radius: 15px">
+                                    <a href="register_user" class="btn btn-default navbar-btn navBtn">
                                         <spring:message code="common.register"/></a>
                                 </form>
                             <li>
@@ -109,7 +109,7 @@
                         <c:if test="${requestScope['javax.servlet.forward.request_uri'] ne '/login'}">
                             <li style="margin-left: 10px;">
                                 <form method="get">
-                                    <a href="login" class="btn btn-primary navbar-btn" style="border-radius: 15px">
+                                    <a href="login" class="btn btn-default navbar-btn navBtn">
                                         <spring:message code="common.login_as"/></a>
                                 </form>
                             </li>

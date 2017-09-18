@@ -13,12 +13,12 @@ import javax.validation.constraints.Pattern;
 @Table(name = "apt_type")
 public class AptType extends BaseShortEntity {
 
-    @Pattern(regexp = "^[A-Za-z .'-]+$")
+    @Pattern(regexp = "^[A-Za-z .,+'-]+$")
     @Length(min = 3, max = 255)
     @Column(name = "beds_arrangement")
     private String bedsArrangement;
 
-    @Pattern(regexp = "^[A-Za-z .'-]+$")
+    @Pattern(regexp = "^[A-Za-z .,+'-]+$")
     @Length(min = 3, max = 255)
     @Column(name = "category")
     private String category;

@@ -15,7 +15,7 @@ import java.io.Serializable;
 public class NamedEntity extends BaseIntEntity implements Serializable {
 
     @NotBlank
-    @Pattern(regexp = "^[\\p{L}0-9\\s]*$")
+    @Pattern(regexp = "^[\\p{L}0-9'&\\s]*$")
     @Column(name = "name", nullable = false)
     protected String name;
 

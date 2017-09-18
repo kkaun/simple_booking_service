@@ -111,26 +111,28 @@
                     <input type="hidden" id="id" name="id">
 
                     <div class="form-group">
-                        <label for="regionName" class="control-label col-xs-3"><spring:message
+
+                        <label for="regionCityName" class="control-label col-xs-3"><spring:message
                                 code="common.placeName"/></label>
-                        <div class="col-xs-9">
-                            <input class="form-control" id="regionName" name="name">
+                        <div class="col-xs-6">
+                            <input class="form-control" id="regionCityName" name="name">
                         </div>
                     </div>
+
                     <div class="form-group currentCountryName">
-                        <label for="currentCountryName" class="control-label col-xs-3"><spring:message
+                        <label for="regionsCurrentCountryName" class="control-label col-xs-3"><spring:message
                                 code="common.countryName"/></label>
-                        <div class="col-xs-9">
-                            <input class="form-control" id="currentCountryName" name="countryName" readonly>
+                        <div class="col-xs-6">
+                            <input class="form-control" id="regionsCurrentCountryName" name="countryName" readonly>
                         </div>
                     </div>
 
                     <div class="form-group countryNamesList">
-                        <label for="countryNamesList" class="control-label col-xs-3"><spring:message
+                        <label for="regionsCountryNamesList" class="control-label col-xs-3"><spring:message
                                 code="common.countryName"/></label>
                         <c:if test="${not empty countries}">
-                            <div class="col-xs-9">
-                                <select class="form-control" name="countryName" id="countryNamesList">
+                            <div class="col-xs-6">
+                                <select class="form-control" name="countryName" id="regionsCountryNamesList">
                                     <c:forEach items="${countries}" var="country">
                                         <option name="countryName" value="${country.name}">${country.name}</option>
                                     </c:forEach>
@@ -142,7 +144,7 @@
                     <div class="form-group">
                         <label for="regionDescription" class="control-label col-xs-3"><spring:message
                                 code="common.description"/></label>
-                        <div class="col-xs-9">
+                        <div class="col-xs-8">
                             <textarea class="form-control" id="regionDescription" name="description">
                             </textarea>
                         </div>

@@ -16,7 +16,8 @@ public class AptTypeUtil {
 
     public static AptType createNewFromTo(AptTypeTo aptTypeTo){
 
-        return new AptType(aptTypeTo.getId(), aptTypeTo.getBedsArrangement(), aptTypeTo.getCategory(), aptTypeTo.getPersonNum());
+        return new AptType(aptTypeTo.getId(), aptTypeTo.getBedsArrangement().toUpperCase(),
+                aptTypeTo.getCategory().toUpperCase(), aptTypeTo.getPersonNum());
     }
 
     public static Map<AptType, Boolean> updateFromToWithResult(AptTypeTo aptTypeTo, AptType aptType, List<Hotel> hotels){
@@ -27,8 +28,8 @@ public class AptTypeUtil {
                 .count());
 
         if(hotelsUsing < 1){
-            aptType.setBedsArrangement(aptTypeTo.getBedsArrangement());
-            aptType.setCategory(aptTypeTo.getCategory());
+            aptType.setBedsArrangement(aptTypeTo.getBedsArrangement().toUpperCase());
+            aptType.setCategory(aptTypeTo.getCategory().toUpperCase());
             aptType.setPersonNum(aptTypeTo.getPersonNum());
             return Collections.singletonMap(aptType, true);
         }

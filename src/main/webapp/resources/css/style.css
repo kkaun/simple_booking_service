@@ -6,6 +6,17 @@
 }
 
 
+.navBtn{
+    border-radius: 15px;
+    background-color: #dfd7ad;
+}
+
+.navBtn :hover{
+    border-radius: 15px;
+    background-color: #9f8058;
+}
+
+
 #navBrand{
     font-family: 'Pacifico', cursive;
 }
@@ -24,6 +35,12 @@
 .filterHeading {
     background-color: #dfd7ad !important;
 }
+
+
+.filterHeading :hover {
+    background-color: #9f8058 !important;
+}
+
 
 
 
@@ -293,6 +310,19 @@ a.listItem {
 a.listItem.active small {
     color:#fff;
 }
+
+
+
+a.indexListItem {
+    height:auto;
+    min-height:280px;
+}
+
+
+a.indexListItem.active small {
+    color:#fff;
+}
+
 
 
 .stars {

@@ -113,16 +113,15 @@ public abstract class RegionAbstractController {
     }
 
     public Country getCountryByName(PlaceTo placeTo){
-
         return countryService.getAll().stream().filter(country ->
-                Arrays.equals(country.getName().toLowerCase().replaceAll("^[,\\s]+", "").split("[,\\s]+"),
-                        placeTo.getCountryName().toLowerCase().replaceAll("^[,\\s]+", "").split("[,\\s]+")))
+                Arrays.equals(country.getName().toLowerCase().replaceAll("^[,\\s]+", "").split("^[,\\s]+"),
+                        placeTo.getCountryName().toLowerCase().replaceAll("^[,\\s]+", "").split("^[,\\s]+")))
                 .findFirst().orElse(null);
     }
 
 
     public void checkAllBusinessRestrictions(int id){
-        if(id >= 100000 && id < 100595)
+        if(id >= 100000 && id <= 100595)
             throw new DemoEntityModificationException(EXCEPTION_REGION_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
     }
 

@@ -4,16 +4,11 @@ import com.kirak.model.Vote;
 import com.kirak.service.AbstractServiceTest;
 import com.kirak.service.VoteService;
 import com.kirak.util.exception.NotFoundException;
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
-
-import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.Arrays;
 import java.util.Collections;
-
 import static com.kirak.Profile.DATAJPA;
 import static com.kirak.mock.HotelTestData.*;
 import static com.kirak.mock.UserTestData.*;
