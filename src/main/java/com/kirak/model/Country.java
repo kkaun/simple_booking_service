@@ -51,11 +51,11 @@ public class Country extends BaseShortEntity {
         this.cities = cities;
     }
 
-    @Override
-    public String toString() {
-        return "Country{" +
-                "id" + '\'' +
-                ", name='" + name + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Country{" +
+//                "id" + '\'' +
+//                ", name='" + name + '\'' +
+//                '}';
+//    }
 }

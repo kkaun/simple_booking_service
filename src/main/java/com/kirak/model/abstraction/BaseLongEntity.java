@@ -58,10 +58,10 @@ public class BaseLongEntity implements BaseEntity, Persistable<Long> {
         return getId() != null && getId().equals(that.getId());
     }
 
-    @Override
-    public String toString() {
-        return String.format("Entity %s (%s)", getClass().getName(), getId());
-    }
+//    @Override
+//    public String toString() {
+//        return String.format("Entity %s (%s)", getClass().getName(), getId());
+//    }
 
 
 }

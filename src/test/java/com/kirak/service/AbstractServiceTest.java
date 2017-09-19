@@ -37,6 +37,8 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 @Sql(scripts = "classpath:db/populateDbForTest.sql", config = @SqlConfig(encoding = "UTF-8"))
 public abstract class AbstractServiceTest {
 
+    /* IMPORTANT: Uncomment each entity's (in path 'model') toString() method for proper testing of services */
+
     private static final Logger LOG = LoggerFactory.getLogger(AbstractServiceTest.class);
 
     private static StringBuilder results = new StringBuilder();

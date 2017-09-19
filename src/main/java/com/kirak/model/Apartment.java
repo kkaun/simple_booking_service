@@ -86,13 +86,13 @@ public class Apartment extends BaseIntEntity {
         this.imgPath = imgPath;
     }
 
-    @Override
-    public String toString() {
-        return "Apartment{" +
-                "id='" + getId() + '\'' +
-                ", type='" + type + '\'' +
-                ", hotel=" + hotel.getName() +
-                ", price=" + price +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Apartment{" +
+//                "id='" + getId() + '\'' +
+//                ", type='" + type + '\'' +
+//                ", hotel=" + hotel.getName() +
+//                ", price=" + price +
+//                '}';
+//    }
 }

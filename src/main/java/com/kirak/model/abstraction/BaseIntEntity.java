@@ -61,10 +61,10 @@ public class BaseIntEntity implements BaseEntity, Persistable<Integer> {
         return (getId() == null) ? 0 : getId();
     }
 
-    @Override
-    public String toString() {
-        return String.format("Entity %s (%s)", getClass().getName(), getId());
-    }
+//    @Override
+//    public String toString() {
+//        return String.format("Entity %s (%s)", getClass().getName(), getId());
+//    }
 
 
 }

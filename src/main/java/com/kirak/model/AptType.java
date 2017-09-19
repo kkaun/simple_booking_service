@@ -59,12 +59,12 @@ public class AptType extends BaseShortEntity {
         this.personNum = personNum;
     }
 
-    @Override
-    public String toString() {
-        return "AptType{" +
-                ", beds arrangement='" + bedsArrangement + '\'' +
-                ", category='" + category + '\'' +
-                ", personNum=" + personNum +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "AptType{" +
+//                ", beds arrangement='" + bedsArrangement + '\'' +
+//                ", category='" + category + '\'' +
+//                ", personNum=" + personNum +
+//                '}';
+//    }
 }

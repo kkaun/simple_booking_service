@@ -42,8 +42,13 @@
               username="root"
               password="0707Flbvhaim"
               driverClassName="com.mysql.jdbc.Driver"
-              maxActive="10"
-              maxIdle="5"
+              maxActive="20"
+              maxIdle="10"
+
+              maxWait="10000"
+              removeAbandoned="true"
+              removeAbandonedTimeout="300"
+
               validationQuery="SELECT 1"
               testOnBorrow="true"
               testWhileIdle="true"

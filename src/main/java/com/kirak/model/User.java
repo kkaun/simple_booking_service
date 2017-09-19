@@ -233,17 +233,17 @@ public class User extends NamedEntity {
         this.anon = anon;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + getId() +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", anon='" + anon + '\'' +
-                ", enabled=" + enabled +
-                ", registered=" + registered +
-                ", roles=" + roles.toString() +
-                "\n" + "\n" +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "User{" +
+//                "id=" + getId() +
+//                ", email='" + email + '\'' +
+//                ", phone='" + phone + '\'' +
+//                ", anon='" + anon + '\'' +
+//                ", enabled=" + enabled +
+//                ", registered=" + registered +
+//                ", roles=" + roles.toString() +
+//                "\n" + "\n" +
+//                '}';
+//    }
 }

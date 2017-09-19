@@ -24,6 +24,8 @@ import static com.kirak.mock.UserTestData.*;
 @ActiveProfiles(DATAJPA)
 public class UserServiceTest extends AbstractServiceTest {
 
+    /* IMPORTANT: Uncomment each entity's (in path 'model') toString() method for proper testing of services */
+
     @Autowired
     protected UserService service;
 

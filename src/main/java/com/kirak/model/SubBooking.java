@@ -140,17 +140,17 @@ public class SubBooking extends BaseLongEntity {
         this.booking = booking;
     }
 
-    @Override
-    public String toString() {
-        return "SubBooking{" +
-                "inDate=" + inDate +
-                ", outDate=" + outDate +
-                ", sum=" + sum +
-                ", personNum=" + personNum +
-                ", edited=" + edited +
-                ", booking=" + booking.getId() +
-                ", apartment=" + apartment.getId() +
-                ", hotel=" + hotel.getId() +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "SubBooking{" +
+//                "inDate=" + inDate +
+//                ", outDate=" + outDate +
+//                ", sum=" + sum +
+//                ", personNum=" + personNum +
+//                ", edited=" + edited +
+//                ", booking=" + booking.getId() +
+//                ", apartment=" + apartment.getId() +
+//                ", hotel=" + hotel.getId() +
+//                '}';
+//    }
 }

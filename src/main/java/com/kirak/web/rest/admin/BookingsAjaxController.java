@@ -43,7 +43,7 @@ public class BookingsAjaxController extends BookingAbstractController {
 
     @Override
     @JsonView(View.JsonUI.class)
-    @PostMapping(value = "/between_dates")
+    @PostMapping(value = "/between_dates", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<AdminBookingTo> getBookingsBetweenDatesForAdmin(@RequestParam("startDate")LocalDate startDate,
                                                                      @RequestParam("endDate")LocalDate endDate){
         return super.getBookingsBetweenDatesForAdmin(startDate, endDate);

@@ -81,7 +81,7 @@ public abstract class AptTypeAbstractController {
 
 
     public void checkPriorBusinessRestrictions(short id){
-        if(id >= 1 && id < 33)
+        if(id >= 1 && id < 34)
             throw new DemoEntityModificationException(EXCEPTION_APT_TYPE_MODIFICATION_RESTRICTION, HttpStatus.CONFLICT);
         if(apartmentService.getAll().stream()
                 .filter(apartment -> Objects.equals(apartment.getType().getId(), id)).count() > 0)

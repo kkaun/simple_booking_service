@@ -22,6 +22,8 @@ import static com.kirak.mock.UserTestData.MANAGER;
 @ActiveProfiles(DATAJPA)
 public class HotelServiceTest extends AbstractServiceTest {
 
+    /* IMPORTANT: Uncomment each entity's (in path 'model') toString() method for proper testing of services */
+
     @Autowired
     private HotelService service;
 

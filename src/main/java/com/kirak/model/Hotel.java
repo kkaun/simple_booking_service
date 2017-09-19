@@ -237,20 +237,20 @@ public class Hotel extends NamedEntity {
         this.imgPath = imgPath;
     }
 
-    @Override
-    public String toString() {
-        return "Hotel{" +
-                "name='" + name + '\'' +
-                ", stars=" + stars +
-                ", country=" + country.getName() +
-                ", city=" + city.getName() +
-                ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
-                ", description='" + description + '\'' +
-                ", checkIn=" + checkIn +
-                ", checkOut=" + checkOut +
-                ", manager=" + manager.getId() +
-                ", imgPath='" + imgPath + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Hotel{" +
+//                "name='" + name + '\'' +
+//                ", stars=" + stars +
+//                ", country=" + country.getName() +
+//                ", city=" + city.getName() +
+//                ", address='" + address + '\'' +
+//                ", phone='" + phone + '\'' +
+//                ", description='" + description + '\'' +
+//                ", checkIn=" + checkIn +
+//                ", checkOut=" + checkOut +
+//                ", manager=" + manager.getId() +
+//                ", imgPath='" + imgPath + '\'' +
+//                '}';
+//    }
 }

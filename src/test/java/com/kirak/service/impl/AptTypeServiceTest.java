@@ -19,6 +19,8 @@ import static com.kirak.mock.AptTypeTestData.*;
 @ActiveProfiles(DATAJPA)
 public class AptTypeServiceTest extends AbstractServiceTest {
 
+    /* IMPORTANT: Uncomment each entity's (in path 'model') toString() method for proper testing of services */
+
     @Autowired
     private AptTypeService service;
 

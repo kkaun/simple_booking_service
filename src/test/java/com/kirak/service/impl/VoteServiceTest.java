@@ -20,6 +20,8 @@ import static com.kirak.mock.VoteTestData.*;
 @ActiveProfiles(DATAJPA)
 public class VoteServiceTest extends AbstractServiceTest {
 
+    /* IMPORTANT: Uncomment each entity's (in path 'model') toString() method for proper testing of services */
+
     @Autowired
     private VoteService service;
 

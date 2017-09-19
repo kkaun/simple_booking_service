@@ -29,6 +29,8 @@ import static java.time.LocalDateTime.of;
 @ActiveProfiles(DATAJPA)
 public class BookingServiceTest extends AbstractServiceTest{
 
+    /* IMPORTANT: Uncomment each entity's (in path 'model') toString() method for proper testing of services */
+
     @Autowired
     private BookingService service;
 

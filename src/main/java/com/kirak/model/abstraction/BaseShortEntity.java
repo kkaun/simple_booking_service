@@ -55,9 +55,9 @@ public class BaseShortEntity implements BaseEntity, Persistable<Short> {
         return getId() != null && getId().equals(that.getId());
     }
 
-    @Override
-    public String toString() {
-        return String.format("Entity %s (%s)", getClass().getName(), getId());
-    }
+//    @Override
+//    public String toString() {
+//        return String.format("Entity %s (%s)", getClass().getName(), getId());
+//    }
 
 }

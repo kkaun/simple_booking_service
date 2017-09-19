@@ -101,17 +101,17 @@ public class AdminBookingTo extends BasicIntTo implements Serializable {
         this.userId = userId;
     }
 
-    @Override
-    public String toString() {
-        return "AdminBookingTo{" +
-                "id=" + id +
-                ", active=" + active +
-                ", dateAdded=" + dateAdded +
-                ", inDate=" + inDate +
-                ", outDate=" + outDate +
-                ", hotelId=" + hotelId +
-                ", hotelName='" + hotelName + '\'' +
-                ", userId=" + userId +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "AdminBookingTo{" +
+//                "id=" + id +
+//                ", active=" + active +
+//                ", dateAdded=" + dateAdded +
+//                ", inDate=" + inDate +
+//                ", outDate=" + outDate +
+//                ", hotelId=" + hotelId +
+//                ", hotelName='" + hotelName + '\'' +
+//                ", userId=" + userId +
+//                '}';
+//    }
 }

@@ -21,6 +21,8 @@ import static com.kirak.mock.UserTestData.*;
 @ActiveProfiles(DATAJPA)
 public class SubBookingServiceTest extends AbstractServiceTest {
 
+    /* IMPORTANT: Uncomment each entity's (in path 'model') toString() method for proper testing of services */
+
     @Autowired
     private SubBookingService service;
 

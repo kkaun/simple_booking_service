@@ -92,13 +92,13 @@ public class City extends BaseIntEntity {
         this.imgPath = imgPath;
     }
 
-    @Override
-    public String toString() {
-        return "City{" +
-                "id" + getId() + "\'" +
-                ", name='" + name + '\'' +
-                ", country=" + country.getName() +
-                ", hotels=" + hotels.toString() +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "City{" +
+//                "id" + getId() + "\'" +
+//                ", name='" + name + '\'' +
+//                ", country=" + country.getName() +
+//                ", hotels=" + hotels.toString() +
+//                '}';
+//    }
 }

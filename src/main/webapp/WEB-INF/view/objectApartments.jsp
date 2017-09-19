@@ -136,7 +136,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-1"></div>
-                    <div class="col-md-10 text-center">
+                    <div class="col-md-10">
                         <h5><span><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>
                             <spring:message code="common.image_upload_tip"/></h5>
                         <hr>
@@ -154,7 +154,7 @@
                     <div class="form-group text-center">
                         <label for="image" class="control-label col-md-6"><spring:message code="common.choose_image"/></label>
                         <div class="col-md-6">
-                            <input name="image" id="image" type="file" /><br/>
+                            <input name="image" id="image" type="file" style="margin-top: 6px"/><br/>
                         </div>
                     </div>
                     <hr>
