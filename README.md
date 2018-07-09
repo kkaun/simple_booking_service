@@ -1,7 +1,5 @@
 # Simple Booking Service
 
-_https://bookdemo.ru_
-
 This is a demo project, implementing basic functions of booking service, such as:
   - aggregating available placement options based on load factor of hotels(from this point on: objects);
   - booking of chosen apartment(s);
